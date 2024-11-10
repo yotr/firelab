@@ -11,14 +11,14 @@ export class ThemeService implements OnInit {
   storedThemes: any = localStorage.getItem('theme-settings');
   // default theme settings and binded to input values
   defaultSettings: any = {
-    layout: {
-      title: 'Vertical',
-      name: 'vertical',
-    },
+    // layout: {
+    //   title: 'Vertical',
+    //   name: 'vertical',
+    // },
     colorSchema: {
-      title: 'Blue',
-      background: 'blue-theme',
-      color: 'blue-theme-color ',
+      title: 'Red',
+      background: 'red-theme',
+      color: 'red-theme-color ',
     },
     sidebarColor: {
       title: 'Dark',
@@ -32,20 +32,20 @@ export class ThemeService implements OnInit {
     this.themeData.next(this.storedThemes);
 
     this.themeSettings = {
-      layout: [
-        {
-          title: 'Vertical',
-          name: 'vertical',
-        },
-        {
-          title: 'Horizontal',
-          name: 'horizontal',
-        },
-        {
-          title: 'Two Column',
-          name: 'tow-column',
-        },
-      ],
+      // layout: [
+      //   {
+      //     title: 'Vertical',
+      //     name: 'vertical',
+      //   },
+      //   {
+      //     title: 'Horizontal',
+      //     name: 'horizontal',
+      //   },
+      //   {
+      //     title: 'Two Column',
+      //     name: 'tow-column',
+      //   },
+      // ],
       colorSchema: [
         {
           title: 'Orange',
@@ -58,9 +58,9 @@ export class ThemeService implements OnInit {
           color: 'light-theme-color ',
         },
         {
-          title: 'Dark',
-          background: 'dark-theme',
-          color: 'dark-theme-color ',
+          title: 'Red',
+          background: 'red-theme',
+          color: 'red-theme-color ',
         },
         {
           title: 'Blue',

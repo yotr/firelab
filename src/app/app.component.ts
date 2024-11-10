@@ -15,7 +15,7 @@ export class AppComponent {
   currentTheme: any;
   // current language
   currentLanguage: any = localStorage.getItem('lang');
-  
+
   constructor(
     private themeService: ThemeService,
     private translateService: TranslateService,
@@ -35,6 +35,7 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
+    this.themeService.setDefaultThemeSettings();
     // get theme from localStorage
     this.themeService.getCurrentTheme().subscribe((theme: any) => {
       this.currentTheme = JSON.parse(theme);

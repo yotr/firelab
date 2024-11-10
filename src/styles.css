@@ -132,6 +132,12 @@
 .dark-theme-color {
   color: white;
 }
+.red-theme {
+  background: #f43b48;
+}
+.red-theme-color {
+  color: white;
+}
 .orange-theme {
   background: linear-gradient(to right, #ff9b44 0%, #fc6075 100%);
 }

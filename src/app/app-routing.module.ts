@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './view/login/login.component';
 import { ForgetPasswordComponent } from './view/forget-password/forget-password.component';
 import { ResetPasswordComponent } from './view/reset-password/reset-password.component';
+import { Error404Component } from './view/error404/error404.component';
 
 const routes: Routes = [
   {
@@ -17,6 +18,10 @@ const routes: Routes = [
     path: 'modules',
     loadChildren: () =>
       import('./modules/modules.module').then((m) => m.ModulesModule),
+  },
+  {
+    path: '**',
+    component: Error404Component,
   },
 ];
 
