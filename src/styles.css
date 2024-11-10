@@ -133,7 +133,7 @@
   color: white;
 }
 .red-theme {
-  background: #f43b48;
+  background: linear-gradient(to right, #f43b48 0%, #f43b48 100%);
 }
 .red-theme-color {
   color: white;

@@ -18,12 +18,12 @@ export class ThemeService implements OnInit {
     colorSchema: {
       title: 'Red',
       background: 'red-theme',
-      color: 'red-theme-color ',
+      color: 'red-theme-color',
     },
     sidebarColor: {
       title: 'Dark',
       background: 'sidebar-dark-theme',
-      color: 'sidebar-dark-theme-color ',
+      color: 'sidebar-dark-theme-color',
     },
     sidebarPosition: 'fixed',
   };
@@ -50,49 +50,49 @@ export class ThemeService implements OnInit {
         {
           title: 'Orange',
           background: 'orange-theme',
-          color: 'orange-theme-color ',
+          color: 'orange-theme-color',
         },
         {
           title: 'Light',
           background: 'light-theme',
-          color: 'light-theme-color ',
+          color: 'light-theme-color',
         },
         {
           title: 'Red',
           background: 'red-theme',
-          color: 'red-theme-color ',
+          color: 'red-theme-color',
         },
         {
           title: 'Blue',
           background: 'blue-theme',
-          color: 'blue-theme-color ',
+          color: 'blue-theme-color',
         },
         {
           title: 'Maroon',
           background: 'maroon-theme',
-          color: 'maroon-theme-color ',
+          color: 'maroon-theme-color',
         },
         {
           title: 'Purple',
           background: 'purple-theme',
-          color: 'purple-theme-color ',
+          color: 'purple-theme-color',
         },
       ],
       sidebarColor: [
         {
           title: 'Light',
           background: 'sidebar-light-theme',
-          color: 'sidebar-light-theme-color ',
+          color: 'sidebar-light-theme-color',
         },
         {
           title: 'Dark',
           background: 'sidebar-dark-theme',
-          color: 'sidebar-dark-theme-color ',
+          color: 'sidebar-dark-theme-color',
         },
         {
           title: 'Gradient',
           background: 'sidebar-gradient-theme',
-          color: 'sidebar-gradient-theme-color ',
+          color: 'sidebar-gradient-theme-color',
         },
       ],
       sidebarPosition: ['fixed', 'absolute'],
