@@ -20,14 +20,14 @@
 }
 
 .active {
-  text-decoration: underline;
+  color: #ffffff;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 .active-title {
   color: #ffffff;
   /* background-color: #b71b1b; */
   background-color: rgba(0, 0, 0, 0.2);
 }
-
 
 /*==========================
  sidebar dropdown dirctions

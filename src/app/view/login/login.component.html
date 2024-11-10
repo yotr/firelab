@@ -1,3 +1,136 @@
-<p>
-  login works!
-</p>
+<!-- login page -->
+<div
+  class="login-page bg-light d-flex flex-column justify-content-center align-items-center gap-4 vh-100"
+  [dir]="'dir' | translate"
+>
+  <!-- Application Login Form -->
+  <div class="login-form bg-white p-4 shadow-sm rounded">
+    <!-- Application Logo -->
+    <div class="logo">
+      <img
+        (click)="openLink()"
+        src="assets/logo.png"
+        alt="logo"
+        width="80"
+        height="80"
+        role="button"
+      />
+    </div>
+    <form
+      [formGroup]="loginForm"
+      class="d-flex flex-column justify-content-center gap-3"
+      (ngSubmit)="login()"
+    >
+      <!-- form header -->
+      <div class="text-center">
+        <!-- <h4>{{ "login.title" | translate }}</h4> -->
+        <p class="text-muted m-0">{{ "login.description" | translate }}</p>
+      </div>
+      <!-- Email Input -->
+      <div class="mb-1">
+        <!-- <label class="form-label"> {{ "login.email" | translate }}</label> -->
+        <div class="form-control login-input">
+          <!-- logo -->
+          <i class="pi pi-at text-muted"></i>
+          <p class="m-0">|</p>
+          <input
+            type="email"
+            class="form-control h-auto border-0 p-1"
+            name="email"
+            formControlName="email"
+            placeholder="Email"
+          />
+        </div>
+        <!-- errors -->
+        <div
+          *ngIf="
+            loginForm.get('email')?.invalid && loginForm.get('email')?.touched
+          "
+        >
+          <small
+            *ngIf="
+              loginForm.get('email')?.invalid && loginForm.get('email')?.touched
+            "
+            class="text-danger"
+          >
+            {{ "register.email_required" | translate }}</small
+          >
+        </div>
+        <!-- errors -->
+      </div>
+      <!-- Password Input -->
+      <div>
+        <!-- <label class="form-label"> {{ "login.password" | translate }}</label> -->
+        <div class="form-control login-input">
+          <!-- logo -->
+          <i class="pi pi-key text-muted"></i>
+          <p class="m-0">|</p>
+          <input
+            type="password"
+            class="form-control h-auto border-0 p-1"
+            name="password"
+            formControlName="password"
+            placeholder="Password"
+          />
+        </div>
+        <!-- errors -->
+        <div
+          *ngIf="
+            loginForm.get('password')?.invalid &&
+            loginForm.get('password')?.touched
+          "
+        >
+          <small
+            *ngIf="
+              loginForm.get('password')?.invalid &&
+              loginForm.get('password')?.touched
+            "
+            class="text-danger"
+          >
+            {{ "register.password_required" | translate }}</small
+          >
+        </div>
+        <!-- errors -->
+        <p
+          class="forget-password text-muted mt-3 mb-0"
+          routerLink="/forget-password"
+          role="button"
+        >
+          {{ "login.forgot_password" | translate }}
+        </p>
+      </div>
+
+      <!-- Submit Button -->
+      <button
+        type="submit"
+        class="btn account-btn p-0"
+        [disabled]="loginForm.invalid"
+      >
+        {{ "login.btn" | translate }}
+        <!-- loading -->
+        <div class="loading-spinner" *ngIf="loading">
+          <div class="spinner-border" role="status"></div>
+        </div>
+      </button>
+      <!-- <app-account-button
+        [title]="'login.btn' | translate"
+        [loading]="loading"
+        [isDisabled]="loginForm?.invalid ? true : false"
+      ></app-account-button> -->
+      <!-- account footer -->
+    </form>
+    <!-- social media -->
+    <div class="links">
+      <a href="https://www.facebook.com/AKTITEC622" target="_blank" class="link"
+        ><i class="pi pi-facebook"></i
+      ></a>
+      <a href="#" target="_blank" class="link"
+        ><i class="pi pi-linkedin"></i
+      ></a>
+      <a href="https://www.aktitec.com/" target="_blank" class="link"
+        ><i class="pi pi-globe"></i
+      ></a>
+    </div>
+  </div>
+</div>
+<!-- <div class="page-ovarlay"></div> -->
