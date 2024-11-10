@@ -1,0 +1,47 @@
+<div>
+  <!-- page header  -->
+  <div
+    class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
+    [dir]="'dir' | translate"
+  >
+    <app-breadcrumb title="Customers"></app-breadcrumb>
+    <div routerLink="/modules/customers/add">
+      <a
+        class="btn add-btn d-flex align-items-center {{
+          currentTheme?.colorSchema?.background
+        }} {{ currentTheme?.colorSchema?.color }}"
+      >
+        <i class="pi pi-plus d-none d-sm-block"></i>
+        Add Customer
+      </a>
+    </div>
+  </div>
+
+  <!-- /page header  -->
+  <app-back-button></app-back-button>
+  <!-- table -->
+  <app-customers-module-table
+    [totalItems]="totalItemsCount"
+    [dataKeys]="dataKeys"
+    [loading]="loading"
+    [currentTheme]="currentTheme"
+    deleteModalTitle="Customer"
+    tableTitle="Customers Table"
+    editPagePath="/modules/customers/edit"
+  ></app-customers-module-table>
+</div>
+
+<!-- [users]="users"
+    [totalItems]="totalItemsCount"
+    [dataKeys]="dataKeys"
+    [loading]="loading"
+    [currentTheme]="currentTheme"
+    deleteModalTitle="Users"
+    tableTitle="Users Table"
+    editPagePath="/modules/users/edit"
+    (onPageChange)="onPaginate($event)"
+    (onDelete)="delete($event)"
+    (onSearch)="search($event)"
+    (onFilter)="handleFiltersSubmit($event)"
+    (onDeleteSelected)="deleteSelected()"
+    (onReset)="resetData()" -->

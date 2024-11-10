@@ -1,0 +1,115 @@
+.dropdown-toggle::after {
+  display: none;
+}
+.dropdown .dropdown-toggle .translate-middle {
+  position: absolute;
+  top: 25%;
+  left: 150%;
+}
+.notifications .notification-content {
+  position: relative;
+  height: 290px;
+  width: 350px;
+  overflow-y: auto;
+}
+.notifications .notification-heading {
+  margin: 0;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 1.45;
+  color: #616161;
+}
+.notifications .notification-time {
+  font-size: 12px;
+  line-height: 1.35;
+  color: #bdbdbd;
+}
+.notification-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.notifications ul.notification-list > li {
+  margin-top: 0;
+  border-bottom: 1px solid #f5f5f5;
+}
+.notifications ul.notification-list > li:last-child {
+  border-bottom: none;
+}
+.notifications ul.notification-list > li a {
+  display: block;
+  padding: 12px;
+  border-radius: 2px;
+}
+.notifications ul.notification-list > li a:hover {
+  background-color: #fafafa;
+}
+.notifications ul.notification-list > li .list-item {
+  border: 0;
+  padding: 0;
+  position: relative;
+}
+.notifications .media {
+  margin-top: 0;
+  border-bottom: 1px solid #f5f5f5;
+}
+.notifications .media:last-child {
+  border-bottom: none;
+}
+.notifications .media a {
+  display: block;
+  padding: 12px;
+  border-radius: 2px;
+}
+.notifications .media a:hover {
+  background-color: #fafafa;
+}
+.notifications .media-list .media-left {
+  padding-right: 8px;
+}
+.topnav-dropdown-header {
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+.topnav-dropdown-header,
+.topnav-dropdown-footer {
+  font-size: 12px;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 12px;
+  text-align: center;
+  color: #333;
+}
+.topnav-dropdown-footer {
+  border-top: 1px solid #eee;
+}
+.topnav-dropdown-header .notification-title {
+  color: #333;
+  display: block;
+  float: left;
+  font-size: 14px;
+}
+.topnav-dropdown-header .clear-notification {
+  color: var(--main-color);
+  float: right;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+.notification-details {
+  color: #989c9e;
+  margin-bottom: 0;
+  font-size: small;
+}
+.notification-title {
+  color: #333;
+}
+.notification-time {
+  margin: 0;
+}
+/*============
+ right to left
+ ============= */
+.dropdown[dir="rtl"] .dropdown-toggle .translate-middle {
+  top: 25%;
+  left: 150%;
+}

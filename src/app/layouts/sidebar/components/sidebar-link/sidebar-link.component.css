@@ -1,0 +1,28 @@
+.sidebar-link {
+  overflow: hidden;
+  padding: 12px;
+  margin: 0;
+  position: relative;
+  border: none;
+  border-bottom: 1px solid rgba(169, 170, 174, 0.1);
+}
+.link-title {
+  padding: 8px 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.link-title span {
+  font-size: 15px;
+  white-space: nowrap;
+}
+
+.link-title:hover {
+  font-weight: bold;
+}
+.active {
+  color: #ffffff;
+  /* background-color: #b71b1b; */
+  background-color: rgba(0, 0, 0, 0.2);
+}

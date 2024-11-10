@@ -1,0 +1,29 @@
+<div
+  [dir]="'dir' | translate"
+  class="modules {{
+    currentTheme?.colorSchema?.background == 'dark-theme'
+      ? 'dark-theme dark-theme-color'
+      : 'bg-gray'
+  }}"
+>
+  <app-header></app-header>
+  <!-- sidebar depend on theme selection -->
+  <!-- vertical sidebar -->
+  <div>
+    <app-sidebar></app-sidebar>
+  </div>
+
+  <div
+    class="p-4"
+    [dir]="'dir' | translate"
+    [ngClass]="{
+      wrapperSidebarOpend: !isSidebarClosed,
+      wrapperSidebarClosed: isSidebarClosed
+    }"
+  >
+    <!-- pages -->
+    <router-outlet></router-outlet>
+  </div>
+</div>
+<!-- theme settings component -->
+<app-theme-settings></app-theme-settings>

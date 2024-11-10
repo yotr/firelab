@@ -1,0 +1,84 @@
+<div class="nav-item dropdown" [dir]="'dir' | translate">
+  <a
+    href="#"
+    class="dropdown-toggle nav-link position-relative"
+    data-bs-toggle="dropdown"
+  >
+    <!-- notification toggle icon -->
+    <i class="pi pi-bell header-icon"></i>
+    <span class="translate-middle badge rounded-pill bg-danger">{{
+      notifications.length
+    }}</span>
+    <!-- /notification toggle icon -->
+  </a>
+  <!-- notification menu -->
+  <div class="dropdown-menu notifications">
+    <div class="topnav-dropdown-header">
+      <span class="notification-title">
+        {{ "header.notifications.title" | translate }}</span
+      >
+      <a class="clear-notification">
+        {{ "header.notifications.clear_all" | translate }}</a
+      >
+    </div>
+    <div class="notification-content">
+      <!-- notifcations list of messages -->
+      <ul class="notification-list">
+        <!-- single massage -->
+        <li
+          class="notification-message"
+          *ngFor="let notification of notifications; let i = index"
+        >
+          <a routerLink="/modules/notifications">
+            <div class="media d-flex align-items-center gap-2">
+              <!-- message avatar -->
+              <img
+                class="rounded-circle"
+                alt="notification-image"
+                width="38"
+                height="38"
+                src="assets/img/profiles/avatar-{{ i + 1 }}.jpg"
+              />
+              <!-- /message avatar -->
+              <!-- message body -->
+              <div class="media-body flex-grow-1">
+                <p class="notification-details">
+                  <span class="notification-title">{{
+                    notification?.author
+                  }}</span>
+
+                  <span class="notification-message px-1">{{
+                    textLength(notification?.message, 40)
+                  }}</span>
+                </p>
+                <div class="notification-footer px-1">
+                  <!-- time -->
+                  <p class="notification-time">
+                    <span class="notification-time">{{
+                      notification?.time
+                    }}</span>
+                  </p>
+                  <!-- status -->
+                  <div class="text-center notification-status">
+                    <span class="badge bg-success">Important</span>
+                  </div>
+                </div>
+              </div>
+              <!-- /message body -->
+            </div>
+          </a>
+        </li>
+        <!-- /single massage -->
+      </ul>
+      <!-- notifcations list of messages -->
+    </div>
+    <div
+      class="topnav-dropdown-footer"
+      role="button"
+      routerLink="/modules/notifications"
+    >
+      {{ "header.notifications.view" | translate }}
+    </div>
+    <!-- /notification menu -->
+  </div>
+</div>

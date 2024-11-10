@@ -1,0 +1,44 @@
+<!-- Delete Modal -->
+<div class="modal custom-modal fade" id="delete" role="dialog">
+  <div class="modal-dialog modal-dialog-centered">
+    <div
+      class="modal-content"
+      [ngClass]="{ 'dark-theme': currentTheme?.colorSchema?.title == 'Dark' }"
+    >
+      <div class="modal-body">
+        <div class="form-header">
+          <h3>{{ "delete_modal.title" | translate }} {{ title }}</h3>
+          <p>{{ "delete_modal.description" | translate }}</p>
+        </div>
+        <div class="modal-btn delete-action">
+          <div class="row">
+            <div class="col-6">
+              <a
+                class="btn continue-btn {{
+                  currentTheme?.colorSchema?.background
+                }}"
+                (click)="delete()"
+                data-bs-dismiss="modal"
+                ><span [class]="currentTheme?.colorSchema?.color">
+                  {{ "delete_modal.delete_btn" | translate }}</span
+                ></a
+              >
+            </div>
+            <div class="col-6">
+              <a
+                data-bs-dismiss="modal"
+                class="btn cancel-btn {{
+                  currentTheme?.colorSchema?.background
+                }}"
+                ><span [class]="currentTheme?.colorSchema?.color">
+                  {{ "delete_modal.cancel_btn" | translate }}</span
+                ></a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Delete Modal -->

@@ -1,0 +1,92 @@
+<header
+  class=" position-fixed top-0 start-0 end-0 {{
+    currentTheme?.colorSchema?.background
+  }} {{ currentTheme?.colorSchema?.color }}"
+  [dir]="'dir' | translate"
+>
+  <!------------------------ heder container ------------------------>
+  <!-- logo -->
+  <div
+    class="header-logo"
+    [ngClass]="{
+      sidbarOpened: !isSidebarClosed,
+      sidbarClosed: isSidebarClosed
+    }"
+  >
+    <a routerLink="/modules" [class]="currentTheme?.colorSchema?.color">
+      <!-- animated logo -->
+      <!-- <app-animated-logo
+        [isSidebarClosed]="isSidebarClosed"
+      ></app-animated-logo> -->
+      <div class="logo">
+        <img src="assets/logo.png" width="50" height="50" alt="company_logo" />
+      </div>
+    </a>
+  </div>
+  <!-- header content -->
+  <div
+    class="d-flex justify-content-between align-items-center w-100 header-content"
+  >
+    <!--------  header content left  -------->
+    <div class="d-flex align-items-center gap-4">
+      <!-- toggle menu -->
+      <a id="toggle_btn" (click)="sidebarToggle()" role="button">
+        <span class="bar-icon" [class]="currentTheme?.colorSchema?.color">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </a>
+      <!-- <h3 class="header-title {{ currentTheme?.themeColor }}">
+        {{ "header.title" | translate }}
+      </h3> -->
+    </div>
+    <!--------  header mobile center right  -------->
+    <a class="logo d-block d-sm-none" routerLink="/modules">
+      <img src="assets/logo.png" width="40" height="40" alt="company_logo" />
+    </a>
+    <!--------  header content right  -------->
+    <ul class="m-0 p-0 d-none d-sm-flex justify-content-end align-items-center">
+      <!-- Search -->
+      <li class="px-2 header-link">
+        <app-header-search
+          [currentLanguage]="currentLanguage"
+        ></app-header-search>
+      </li>
+      <!-- language -->
+      <li class="px-3">
+        <app-language-dropdown
+          (sendSelectedLanguage)="switchLanguage($event)"
+        ></app-language-dropdown>
+      </li>
+      <!-- notification -->
+      <li class="px-3">
+        <app-notifications></app-notifications>
+      </li>
+      <!-- messages -->
+      <!-- <li class="px-3">
+        <app-header-messages></app-header-messages>
+      </li> -->
+      <!-- user -->
+      <li class="px-3">
+        <app-user-dropdown></app-user-dropdown>
+      </li>
+    </ul>
+    <!-- Mobile Menu -->
+    <div class="dropdown mobile-user-menu d-flex d-sm-none" role="button">
+      <a
+        class="nav-link dropdown-toggle"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+        ><i class="pi pi-ellipsis-v"></i
+      ></a>
+      <div class="dropdown-menu">
+        <a class="dropdown-item">Edit Profile</a>
+        <a class="dropdown-item">Change Password</a>
+        <a class="dropdown-item">Logout</a>
+      </div>
+    </div>
+    <!-- /Mobile Menu -->
+  </div>
+  <!------------------------ heder container ------------------------>
+</header>

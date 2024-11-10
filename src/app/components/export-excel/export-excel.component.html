@@ -1,0 +1,25 @@
+<!-- export excel -->
+<div class="dropdown dropdown-action">
+  <div
+    class="export-btn dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+    role="button"
+  >
+    <i class="pi pi-file-excel d-none d-md-inline"></i>
+    {{ "export_excel.export_btn" | translate }}
+  </div>
+  <div
+    [dir]="'dir' | translate"
+    class="dropdown-menu dropdown-menu-right w-auto"
+  >
+    <a class="dropdown-item" role="button" (click)="exportAllDataAsExcel()"
+      ><i class="pi pi-file-export"></i>
+      {{ "export_excel.export_all_btn" | translate }}</a
+    >
+    <a class="dropdown-item" role="button" (click)="exportTableAsExcel()"
+      ><i class="pi pi-file-export"></i>
+      {{ "export_excel.export_selected_btn" | translate }}</a
+    >
+  </div>
+</div>

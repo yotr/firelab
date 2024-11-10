@@ -1,0 +1,23 @@
+<div
+  class="nav-item dropdown has-arrow language-dropdown"
+  [dir]="'dir' | translate"
+>
+  <a
+    class="nav-link dropdown-toggle d-flex align-items-center"
+    data-bs-toggle="dropdown"
+  >
+    <img [src]="selectedLanguage?.flag" alt="selected-language" height="20" />
+    <span class="selected-language-title">{{
+      selectedLanguage?.language | translate
+    }}</span>
+  </a>
+  <div class="dropdown-menu dropdown-menu-right">
+    <!-- languages -->
+    <ng-container *ngFor="let language of avilableLanguages">
+      <a class="dropdown-item d-flex align-items-center gap-2" (click)="getSelectedLanguage(language)">
+        <img [src]="language.flag" alt="en-language" height="16" />
+        {{ language?.language | translate }}
+      </a>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,14 @@
+nav .breadcrumb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+}
+nav .breadcrumb .breadcrumb-item.active::before,
+nav .breadcrumb .breadcrumb-item::before {
+  display: none;
+}
+
+/* =============
+  Left - Right
+=============== */

@@ -1,0 +1,31 @@
+.language-dropdown {
+  cursor: pointer;
+}
+.language-dropdown a img {
+  margin-right: 5px;
+}
+
+.language-dropdown .dropdown-menu {
+  cursor: pointer;
+  max-height: 150px;
+  min-width: 120px;
+  overflow-y: auto;
+}
+.language-dropdown .dropdown-menu .dropdown-item {
+  padding: 5px 15px;
+}
+/*============
+ right to left
+ ============= */
+.language-dropdown[dir="rtl"] a img {
+  margin-left: 5px;
+}
+
+/* mobile */
+
+/* On screens that are 992px or less */
+@media (max-width: 992px) {
+  .selected-language-title {
+    display: none;
+  }
+}

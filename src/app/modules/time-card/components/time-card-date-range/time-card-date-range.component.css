@@ -1,0 +1,8 @@
+.form-label {
+  font-size: small;
+  white-space: nowrap;
+}
+
+.empty-table-area {
+  border-right: 1px solid black;
+}

@@ -1,0 +1,67 @@
+.modules {
+  height: 100%;
+}
+.modules.sidebar-horizontal {
+  height: calc(100vh - var(--header-height) * 2);
+}
+.wrapperSidebarOpend {
+  position: relative;
+  margin-top: 60px;
+  margin-left: 230px;
+  /* padding: 30px; */
+  transition: all 0.2s ease-in-out;
+}
+/* page wrapper when sidebar closed */
+.wrapperSidebarClosed {
+  position: relative;
+  margin-left: 60px;
+  margin-top: 60px;
+  /* padding: 30px; */
+  transition: all 0.2s ease-in-out;
+}
+.wrapperHorizontalSidebar {
+  position: relative;
+  margin-top: 120px;
+  /* padding: 30px; */
+  transition: all 0.2s ease-in-out;
+}
+/*============
+ right to left
+ ============= */
+.modules[dir="rtl"] {
+  font-size: larger;
+}
+.wrapperSidebarOpend[dir="rtl"] {
+  margin-right: 230px;
+  margin-left: 0px;
+}
+
+.wrapperSidebarClosed[dir="rtl"] {
+  margin-right: 60px;
+  margin-left: 0px;
+}
+
+/* mobile */
+
+/* On screens that are 992px or less */
+@media (max-width: 992px) {
+  .wrapperSidebarOpend {
+    margin-left: 0px;
+  }
+  /* page wrapper when sidebar closed */
+  .wrapperSidebarClosed {
+    margin-left: 0px;
+  }
+
+  /*============
+ right to left
+ ============= */
+
+  .wrapperSidebarOpend[dir="rtl"] {
+    margin-right: 0px;
+  }
+
+  .wrapperSidebarClosed[dir="rtl"] {
+    margin-right: 0px;
+  }
+}

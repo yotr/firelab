@@ -1,0 +1,148 @@
+[
+  {
+    "id": 0,
+    "section": "Main",
+    "menu": [
+      {
+        "id": 0,
+        "title": "Dashboard",
+        "icon": "pi-gauge",
+        "path": "/modules/dashboard"
+      },
+      {
+        "id": 1,
+        "title": "Customers",
+        "icon": "pi-address-book",
+        "path": "/modules/customers"
+      },
+      {
+        "id": 2,
+        "title": "Customers Contracts",
+        "icon": "pi-book",
+        "path": "/modules/contract"
+      },
+      {
+        "id": 3,
+        "title": "Team",
+        "icon": "pi-users",
+        "link": "/modules/team",
+        "list": [
+          {
+            "id": 0,
+            "page": "TimeCard",
+            "path": "/modules/team/timeCard"
+          },
+          {
+            "id": 1,
+            "page": "GPS",
+            "path": "/modules/team/gps"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "JobLink",
+        "icon": "pi-paperclip",
+        "path": "/modules/policies/all-policies"
+      },
+      {
+        "id": 5,
+        "title": "Reports",
+        "icon": "pi-file",
+        "list": [
+          {
+            "id": 0,
+            "page": "New",
+            "path": "/modules/sales/estimates",
+            "query": { "view_type": "table" }
+          },
+          {
+            "id": 1,
+            "page": "Completed",
+            "path": "/modules/sales/invoices",
+            "query": { "view_type": "table" }
+          },
+          {
+            "id": 2,
+            "page": "Incompleted",
+            "path": "/modules/sales/payments"
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Jobs",
+        "icon": "pi-list",
+        "list": [
+          {
+            "id": 0,
+            "page": "Job Due",
+            "path": "/modules/sales/estimates",
+            "query": { "view_type": "table" }
+          },
+          {
+            "id": 1,
+            "page": "Jobs Missed",
+            "path": "/modules/sales/invoices",
+            "query": { "view_type": "table" }
+          },
+          {
+            "id": 2,
+            "page": "My Jobs",
+            "path": "/modules/sales/payments"
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Service Requests",
+        "icon": "pi-wrench"
+      },
+      {
+        "id": 8,
+        "title": "Inventory",
+        "icon": "pi-warehouse",
+        "list": [
+          {
+            "id": 0,
+            "page": "Home",
+            "path": "/modules/sales/estimates",
+            "query": { "view_type": "table" }
+          },
+          {
+            "id": 1,
+            "page": "Parts",
+            "path": "/modules/sales/invoices",
+            "query": { "view_type": "table" }
+          },
+          {
+            "id": 2,
+            "page": "Suppliers",
+            "path": "/modules/sales/payments"
+          },
+          {
+            "id": 3,
+            "page": "Tools",
+            "path": "/modules/sales/expenses"
+          },
+          {
+            "id": 4,
+            "page": "Transactions",
+            "path": "/modules/sales/provident-fund"
+          },
+          {
+            "id": 5,
+            "page": "Vehicle Inventory",
+            "path": "/modules/sales/taxes"
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "title": "Deficiencies",
+        "icon": "pi-info-circle",
+        "path": "/modules/policies/all-policies"
+      }
+    ]
+  }
+]

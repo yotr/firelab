@@ -1,0 +1,15 @@
+.skeleton {
+  animation: skeleton 1s linear infinite alternate;
+  -webkit-animation: skeleton 1s linear infinite alternate;
+}
+
+@keyframes skeleton {
+  0% {
+    /* background-color: hsl(200, 20%, 70%); */
+    background-color: #ececec;
+  }
+  100% {
+    background-color: #ececec;
+    /* background-color: hsl(200, 20%, 95%); */
+  }
+}

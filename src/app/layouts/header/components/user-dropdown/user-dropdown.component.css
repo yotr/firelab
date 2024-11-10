@@ -1,0 +1,61 @@
+.nav-link::after {
+  display: none;
+}
+.user-name {
+  gap: 10px;
+}
+.user-img {
+  display: inline-block;
+  position: relative;
+  margin: 0 5px;
+}
+.user-img .status {
+  border: 2px solid #fff;
+  bottom: 0;
+  height: 10px;
+  margin: 0;
+  position: absolute;
+  right: 0;
+  width: 10px;
+}
+
+.user-menu .user-img .status {
+  bottom: 12px;
+}
+.status {
+  background-color: #263238;
+  border-radius: 50%;
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+}
+.status.online {
+  background-color: var(--online-status);
+}
+.status.offline {
+  background-color: var(--offline-status);
+}
+.status.away {
+  background-color: var(--offline-away);
+}
+
+.main-drop .dropdown-menu {
+  min-width: 130px;
+  padding: 0;
+}
+/*============
+ right / left
+ ============= */
+/* .dropdown[dir="rtl"] .dropdown-menu .dropdown-item {
+} */
+.dropdown[dir="rtl"] .dropdown-menu .dropdown-item {
+  text-align: start;
+}
+/* mobile */
+
+/* On screens that are 992px or less */
+@media (max-width: 992px) {
+  .user-name {
+    display: none;
+  }
+}

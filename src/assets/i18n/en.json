@@ -1,0 +1,3374 @@
+{
+  "dir": "ltr",
+  "all": "all",
+  "loading": "Loading...",
+  "offline": "You Are Offline",
+  "moreMenu": "More Menu",
+  "loadMore": "Load More",
+  "select": "Select",
+  "theme_settings": {
+    "title": "Customizer",
+    "title_dic": "Customize your overview Page layout",
+    "layout": "Layout",
+    "layout_dic": "Choose your Layout",
+    "dirction_dic": "Choose Dirction",
+    "ltr": "LTR",
+    "rtl": "RTL",
+    "color": "Color Schema",
+    "color_dic": "Choose Light or Dark Schema.",
+    "sidebar": "Sidebar Color",
+    "sidebar_dic": "Choose a color of Sidebar."
+  },
+  "active_status": {
+    "active": "active",
+    "inactive": "inactive"
+  },
+  "login": {
+    "title": "Login",
+    "description": "Access to our dashboard",
+    "email": "Email Address",
+    "password": "Password",
+    "forgot_password": "Do you forgot password?",
+    "register": "Register",
+    "no_account": "Don't have an account yet?",
+    "btn": "Login"
+  },
+  "register": {
+    "title": "Register",
+    "description": "Access to our dashboard",
+    "first_name": "First Name",
+    "first_name_required": "First Name Is required",
+    "last_name": "Last Name",
+    "last_name_required": "Last Name Is required",
+    "username": "Username",
+    "username_required": "Username Is required",
+    "email": "Email Address",
+    "email_required": "Email Is required",
+    "invalid_email": "Invalid Email Address",
+    "password": "Password",
+    "password_required": "Password Is required",
+    "password_pattern": "Password should be at least 6 characters long",
+    "confirmPassword": "Repeat Password",
+    "confirm_required": "dosn't match",
+    "forgot_password": "Do you forgot password?",
+    "login": "Login",
+    "have_account": "Already have an account?",
+    "btn": "Register"
+  },
+  "system_long_name": "Human Resources System",
+  "system_short_name": "HR System",
+  "dashboard_path_text": "Dashboard",
+  "header": {
+    "title": "Aktitec's Technologies",
+    "languages": {
+      "english": "English",
+      "arabic": "Arabic"
+    },
+    "searchText": "Search here",
+    "notifications": {
+      "title": "Notifications",
+      "clear_all": "Clear All",
+      "view": "View all Notifications"
+    },
+    "messages": {
+      "title": "Messages",
+      "clear_all": "Clear All",
+      "view": "View all Messages"
+    },
+    "user_dropdown": {
+      "admin": "Profile",
+      "profile": "Edit Profile",
+      "settings": "Change Password",
+      "logout": "Logout"
+    }
+  },
+  "module_table": {
+    "bottom_header_text": "Drag a column header and drop it here to group by that column",
+    "action_table_head_text": "Action",
+    "edit_action_text": "Edit",
+    "delete_action_text": "Delete",
+    "table_empty_text": "Table Is Empty",
+    "of_text": "of"
+  },
+  "dragfiles_modal": {
+    "title": "Drag and drop files upload",
+    "SubTitle": "Just drag and drop files here",
+    "uploading": "Uploading",
+    "cancel": "Cancel",
+    "attach": "Attach"
+  },
+  "status_dropdown": {
+    "new": "new",
+    "pending": "pending",
+    "approved": "approved",
+    "declined": "declined"
+  },
+  "delete_modal": {
+    "title": "Delete",
+    "description": "Are you sure want to delete?",
+    "delete_btn": "Delete",
+    "cancel_btn": "Cancel"
+  },
+  "table_search": {
+    "search_placeholder": "search in all columns"
+  },
+  "table_entries": {
+    "show_text": "Show",
+    "all_text": "All"
+  },
+  "pagination": {
+    "next": "Next",
+    "previous": "Previous"
+  },
+  "download_pdf": {
+    "export_btn": "Export To PDF",
+    "export_all_btn": "Export All",
+    "export_selected_btn": "Export Seleced"
+  },
+  "export_excel": {
+    "export_btn": "Export To Excel",
+    "export_all_btn": "Export All",
+    "export_selected_btn": "Export Seleced"
+  },
+  "import_excel": {
+    "import_btn": "Import Excel Sheet",
+    "import_title": "Import Excel File",
+    "upload": "Upload Data"
+  },
+  "ststus_dropdown": {},
+  "table_dropdown": {
+    "sort_asc_text": "Sort Ascending",
+    "sort_desc_text": "Sort Descending",
+    "columns_text": "Columns",
+    "apply_btn": "Apply",
+    "resert_btn": "Reset",
+    "filter_text": "Filter",
+    "choose_operator_text": "Choose Operator",
+    "filter_btn": "Filter",
+    "contains": "contains",
+    "doesnotcontain": "does not contain",
+    "startswith": "starts with",
+    "endswith": "ends with",
+    "eq": "is equal to",
+    "neq": "is not equal to",
+    "gte": "is greater than and equal",
+    "gt": "is greater than",
+    "lte": "is less than and equal",
+    "lt": "is less than"
+  },
+  "dashboard": {
+    "admin": {
+      "welcome": "Welcome Admin!",
+      "dashboard": "Dashboard",
+      "projects": "Projects",
+      "tasks": "Tasks",
+      "employees": "Employees",
+      "new_employees": "New Employees",
+      "overall_employees": "Overall Employees",
+      "earnings": "Earnings",
+      "previous_month": "Previous Month",
+      "expenses": "Expenses",
+      "profit": "Profit",
+      "total_revenue": "Total Revenue",
+      "sales_overview": "Sales Overview",
+      "statistics": "Statistics",
+      "task_statistics": "Task Statistics",
+      "today_absent": "Today Absent",
+      "invoices": "Invoices",
+      "payments": "Payments",
+      "clients": "Clients",
+      "view_all_invoices": "View all invoices",
+      "view_all_payments": "View all payments",
+      "recent_projects": "Recent Projects",
+      "view_all_projects": "View all projects",
+      "view_all_client": "View all Client",
+      "edit_action_text": "Edit",
+      "delete_action_text": "Delete",
+      "statistics_widget": {
+        "today_leave": "Today Leave",
+        "pending_invoice": "Pending Invoice",
+        "completed_projects": "Completed Projects",
+        "open_tickets": "Open Tickets",
+        "closed_tickets": "Closed Tickets",
+        "total_tasks": "Total Tasks",
+        "overdue_tasks": "Overdue Tasks",
+        "completed_tasks": "Completed Tasks",
+        "inprogress_tasks": "Inprogress Tasks",
+        "Hold_tasks": "On Hold Tasks",
+        "pending_tasks": "Pending Tasks",
+        "review_tasks": "Review Tasks"
+      },
+      "invoices_table": {
+        "invoiceId": "Invoice ID",
+        "client": "Client",
+        "duedate": "Due Date",
+        "total": "Total",
+        "status": "Status"
+      },
+      "payments_table": {
+        "invoiceId": "Invoice ID",
+        "client": "Client",
+        "paymentType": "Payment Type",
+        "paidDate": "Paid Date",
+        "paidAmount": "Paid Amount"
+      },
+      "clients_table": {
+        "name": "Name",
+        "email": "Email",
+        "status": "Status",
+        "action": "Action"
+      },
+      "projects_table": {
+        "projectName": "Project Name",
+        "projectId": "Project Id",
+        "progress": "Progress",
+        "action": "Action",
+        "status": "Status"
+      }
+    },
+    "employee": {
+      "welcome": "Welcome",
+      "today": "Today",
+      "tomorrow": "Tomorrow",
+      "next_7_days": "Next seven days",
+      "projects": "Projects",
+      "total_tasks": "Total Tasks",
+      "pending_tasks": "Pending Tasks",
+      "total_projects": "Total Projects",
+      "your_leave": "Your Leave",
+      "leave_taken": "Leave Taken",
+      "remaining": "Remaining",
+      "apply_leave": "Apply Leave",
+      "time_off_allowance": "Your time off allowance",
+      "approved": "Approved",
+      "apply_time_off": "Apply Time Off",
+      "upcoming_holiday": "Upcoming Holiday"
+    }
+  },
+  "apps": {
+    "chat": {
+      "path": "Chat",
+      "start_btn": "Start",
+      "title": "Start Chat",
+      "private": {
+        "path": "Add Direct Chat",
+        "search_btn": "Search",
+        "search_text": "Search",
+        "search_label": "Recent Contacts",
+        "add_btn": "Add"
+      },
+      "group": {
+        "path": "Add Group",
+        "title": "Groups are where your team communicates.",
+        "group_name_label": "Group Name ",
+        "group_name_required": "*Group Name is required",
+        "select_label": "Send invites to:",
+        "select_label_span": "(optional)",
+        "select_dropdown_title": "Select Users",
+        "select_loading": "loading...",
+        "add_btn": "Add"
+      },
+      "room": {
+        "last_seen": "Last seen today at",
+        "search_text": "Search",
+        "delete_room_btn": "Delete Conversations",
+        "settings_btn": "Settings",
+        "type_message_text": "Type message...",
+        "profile": {
+          "tab_title": "Profile",
+          "change_image": "Change Image",
+          "username_text": "Username",
+          "type_text": "Type",
+          "email_text": "Email",
+          "phone_text": "Phone",
+          "all_files_text": "All Files",
+          "my_files_text": "My Files"
+        },
+        "calls": {
+          "tab_title": "Calls"
+        }
+      },
+      "sidebar": {
+        "back_to_home": "Back to Home",
+        "group_rooms_title": "Chat Groups",
+        "dirct_rooms_title": "Direct Chats"
+      }
+    },
+    "contacts": {
+      "search_text": "Search",
+      "add_btn": "Add Contact",
+      "all_text": "All",
+      "loading_text": "Loading...",
+      "no_contact": "No Contacts Founded",
+      "edit_text": "Save",
+      "delete_text": "Delete",
+      "add": {
+        "add_path": "Add Contact",
+        "edit_path": "Edit Contact",
+        "contact_name": "Name",
+        "contact_email": "Email Address",
+        "contact_number": "Contact Number",
+        "contact_role": "Contact Role",
+        "contact_type": "Contact Type",
+        "contact_name_required": "*Name is required",
+        "contact_email_required": "*Email is required",
+        "contact_number_required": "*Contact number is required",
+        "contact_role_required": "*Contact role is required",
+        "contact_type_required": "*Contact type is required",
+        "add_btn": "Add"
+      }
+    },
+    "calendar": {
+      "path": "Calendar",
+      "add_event_btn": "Add Event",
+      "today": "Today",
+      "day": "Day",
+      "week": "Week",
+      "month": "Month",
+      "add": {
+        "title": "Add Event",
+        "event_name": "Event Name",
+        "start_date": "Start Event Date",
+        "end_date": "End Event Date",
+        "category": "Event Category",
+        "add_btn": "Add"
+      },
+      "edit": {
+        "title": "Edit Event",
+        "event_name": "Event Name",
+        "category": "Event Category",
+        "edit_btn": "Update"
+      },
+      "categories": {
+        "danger": "Danger",
+        "success": "Success",
+        "purple": "Purple",
+        "primary": "Primary",
+        "pink": "Pink",
+        "info": "Info",
+        "orange": "Orange",
+        "brown": "Brown",
+        "teal": "Teal",
+        "warning": "Warning"
+      }
+    },
+    "email": {
+      "compose": {
+        "path": "Compose",
+        "to": "To",
+        "cc": "Cc",
+        "bcc": "Bcc",
+        "subject": "Subject",
+        "message": "Enter your message here",
+        "to_required": "*Email is required",
+        "cc_required": "",
+        "bcc_required": "",
+        "subject_required": "*Subject is required",
+        "message_required": "*Message is required",
+        "send_btn": "Send",
+        "draft_btn": "Draft",
+        "delete_btn": "Delete"
+      },
+      "inbox": {
+        "path": "Inbox",
+        "compose_btn": "Compose"
+      },
+      "starred": {
+        "path": "Starred"
+      },
+      "sent": {
+        "path": "Send"
+      },
+      "trash": {
+        "path": "Trash"
+      },
+      "draft": {
+        "path": "Draft"
+      },
+      "archived": {
+        "path": "Archived"
+      },
+      "table": {
+        "search_text": "Search Messages",
+        "refresh_btn_title": "Refresh",
+        "no_emails_text": "No Emails Founded",
+        "select": {
+          "title": "Select",
+          "all_text": "All",
+          "none_text": "None",
+          "read_text": "Read",
+          "unread_text": "Unread"
+        },
+        "actions": {
+          "title": "Actions",
+          "reply_text": "Reply",
+          "forward_text": "Forward",
+          "archive_text": "Archive",
+          "mark_as_read": "Mark As Read",
+          "mark_as_unread": "Mark As Unread",
+          "delete_text": "Delete"
+        },
+        "folder_dropdown": {
+          "social_text": "Social",
+          "forums_text": "Forums",
+          "updates_text": "Updates",
+          "spam_text": "Spam",
+          "trash_text": "Trash",
+          "new_text": "Primary"
+        },
+        "tag_dropdown": {
+          "work_text": "Work",
+          "family_text": "Family",
+          "social_text": "Social",
+          "primary_text": "Primary",
+          "promotions_text": "Promotions",
+          "forums_text": "Forums"
+        }
+      },
+      "view": {
+        "path": "View Message",
+        "compose_btn": "Compose",
+        "reply_btn": "Reply",
+        "forward_btn": "Forward",
+        "delete_btn": "Delete",
+        "print_btn": "Print",
+        "welcome_message": "Hello",
+        "thanks_message": "Thanks,"
+      },
+      "sidebar": {
+        "back_to_home": "Back to Home",
+        "inbox_page": "Inbox",
+        "starred_pag": "Starred",
+        "sent_pag": "Sent Mail",
+        "trash_pag": "Trash",
+        "draft_pag": "Draft",
+        "archived_pag": "Archived"
+      }
+    },
+    "file_manager": {
+      "path": "Documents Manager",
+      "add_btn": "Add Document",
+      "edit_btn": "Save",
+      "projects_title": "Projects",
+      "search_text": "Search",
+      "show_more": "Show More",
+      "file_manager_title": "Documents Manager",
+      "files_text": "Files",
+      "no_files_text": "No files Founded",
+      "card_dropdown": {
+        "view": "View Details",
+        "share": "Share",
+        "download": "Download",
+        "rename": "Rename",
+        "delete": "Delete"
+      },
+      "table": {
+        "file": "File",
+        "documentNo": "Document Code",
+        "revision": "Revision",
+        "version": "Version",
+        "title": "Title",
+        "type": "Type",
+        "status": "Status",
+        "uniqueName": "Unique Name"
+      },
+      "form": {
+        "path": "Document Upload",
+        "description": "Drag your files here or click in this area.",
+        "upload_btn": "Save",
+        "documentNo": "Document Code",
+        "documentNo_required": "Document Code is required",
+        "revision": "Revision",
+        "revision_required": "Revision is required",
+        "title": "Title",
+        "title_required": "Title is required",
+        "type": "Type",
+        "type_required": "test",
+        "status": "Status",
+        "status_required": "Status is Required",
+        "printSize": "Print",
+        "printSize_required": "Print Size is required",
+        "dateCreated": "Date",
+        "dateCreated_required": "Date Created is required",
+        "revisionDate": "Revision",
+        "revisionDate_required": "Revision Date is required",
+
+        "createdBy": "Created By",
+        "version": "Version",
+        "createdBy_required": "Created By is required",
+        "confidential": "Confidential",
+        "confidential_required": "Confidential is Required",
+        "users": "Users",
+        "read": "Read",
+        "edit": "Edit",
+        "descriptionInput": "Description",
+        "selectProject": "Select Project",
+        "yes": "Yes",
+        "no": "No",
+        "attachFile": "Attach File",
+        "hash": "Hash Code",
+        "log_note": "Log Note",
+
+        "by": "By",
+        "operation": "Operation",
+        "operationDate": "Date",
+        "create": "Create",
+        "update": "Update",
+
+        "projectName": "Project Name",
+        "noProjects": "No Projects Yet",
+        "attachFiles": "Attached Files",
+        "fileName": "File Name",
+        "fileSize": "File Size",
+        "fileType": "File Type",
+        "action": "Action",
+        "noFiles": "There is no files",
+        "files": "Files",
+        "revisors": "Revisors",
+        "notes": "Notes",
+        "history": "History",
+        "confirm": "Confirm Review",
+        "add_btn": "Upload",
+        "edit_btn": "Save",
+        "name": "Name",
+        "reviewed": "Reviewed",
+        "revision_date": "Revision Date",
+        "first": "First",
+        "last": "Last"
+      },
+      "confidentials": {
+        "private": "private",
+        "share": "share",
+        "public": "public"
+      }
+    },
+    "documents_workflows": {
+      "path": "Documents Workflows",
+      "table": {
+        "documentNo": "Document No",
+        "revision": "Document Revision",
+        "version": "Document Version",
+        "title": "Document Title",
+        "dateCreated": "Date In",
+        "status": "Step Status",
+        "outcome": "Step Outcome"
+      }
+    },
+    "documents_details": {
+      "path": "Documents Details View",
+      "slect_document": "Select Document",
+      "table": {
+        "download": "Download",
+        "name": "Name",
+        "size": "Size",
+        "type": "Type",
+        "createdAt": "Created At",
+        "updatedAt": "Updated At",
+        "view": "View Details"
+      }
+    }
+  },
+  "employees": {
+    "title": "Employees Table",
+    "all_employees": {
+      "path": "Employees",
+      "add_btn": "Add Employee",
+      "hierarchy": {
+        "people_text": "people"
+      },
+      "pivot": {
+        "total_text": "Total",
+        "count_text": "Count"
+      },
+      "notes": {
+        "log_note_btn": "Log note",
+        "log_note_input": "log an internal note",
+        "log_btn": "Log",
+        "latest_text": "Latest",
+        "update_btn": "Update",
+        "edit_btn": "edit",
+        "delete_btn": "delete",
+        "not_found_text": "No Data Founded",
+        "loading_text": "loading..."
+      },
+      "employee_form": {
+        "name": "Employee's Name",
+        "name_required": "Name is required",
+        "postion": "",
+        "postion_placeholder": "Job Position",
+        "postion_required": "Position is required",
+        "department": "Department",
+        "department_required": "Department is required",
+        "department_loading": "loading...",
+        "mobile": "Mobile",
+        "mobile_placeholder": "mobile",
+        "mobile_required": "phone is required",
+        "email": "Email",
+        "email_placeholder": "email",
+        "email_required": "Email is required",
+        "manager": "Manager",
+        "manager_placeholder": "manager",
+        "manager_required": "Manager is required",
+        "manager_not_found": "no data Founded",
+        "age": "Age",
+        "age_placeholder": "age",
+        "age_required": "",
+        "experience": "Experience",
+        "experience_placeholder": "experience",
+        "experience_required": "Experience is required",
+        "salary": "Salary",
+        "salary_placeholder": "salary",
+        "salary_required": "Salary is required",
+        "date": "Joining",
+        "date_plceholder": "Joining Date",
+        "tabs": {
+          "tab1": {
+            "title": "Resume"
+          },
+          "tab2": {
+            "title": "Work Information"
+          },
+          "tab3": {
+            "title": "Private Information"
+          }
+        }
+      },
+      "employees_table": {
+        "imgUrl": "image url",
+        "fullName ": "full name",
+        "email": "email",
+        "phone": "phone",
+        "age": "age",
+        "jobPosition": "job position",
+        "experience": "experience",
+        "salary": "salary",
+        "department": "department",
+        "manager": "manager"
+      }
+    },
+    "contracts": {
+      "path": "Contracts",
+      "add_btn": "Add Contract",
+      "add_page": {
+        "path": "Add Contract",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit Contract",
+        "save_btn": "Save"
+      },
+      "contract_form": {
+        "loading": "Loading...",
+        "contractReference_label": "Contract Reference",
+        "contractReference_required": "Contract Reference is required",
+        "employeeId_label": "Employee",
+        "employeeId_required": "Employee is required",
+        "salaryStructureType_label": "Salary Structure Type",
+        "salaryStructureType_required": "Salary Structure Type is required",
+        "contractStartDate_label": "Contract Start Date",
+        "contractStartDate_placeholdar": "Contract Start Date",
+        "contractStartDate_required": "Contract Start Date is required",
+        "departmentId_label": "Department",
+        "departmentId_required": "Department is required",
+        "contractEndDate_label": "Contract End Date",
+        "contractEndDate_placeholdar": "Contract End Date",
+        "contractEndDate_required": "Contract End Date is required",
+        "jobPosition_label": "job Position",
+        "jobPosition_placeholdar": "job Position",
+        "jobPosition_required": "job Position is required",
+        "contractSchedule_label": "Contract Schedule",
+        "contractSchedule_required": "Contract Schedule is required",
+        "contractType_label": "Contract Type",
+        "contractType_required": "Contract Type is required",
+        "notes_label": "Notes",
+        "notes_placeholdar": "Type in note about this contract",
+        "wage_label": "Wage",
+        "wage_placeholdar": "5000.00",
+        "wage_required": "Wage is required",
+        "tabs": {
+          "tab1": {
+            "title": "Salary Information"
+          },
+          "tab2": {
+            "title": "Contract Details"
+          }
+        },
+        "status": {
+          "new": "New",
+          "running": "Running",
+          "expired": "Expired",
+          "cancelled": "Cancelled"
+        }
+      },
+      "contract_table": {
+        "employee": "Employee",
+        "contractReference": "Contract Reference",
+        "department": "department",
+        "jobPosition": "job Position",
+        "startDate": "Start Date",
+        "endDate": "End Date",
+        "contractType": "Contract Type",
+        "workingSchedule": "Working Schedule",
+        "status": "Status"
+      }
+    },
+    "holidays": {
+      "path": "Holidays",
+      "add_btn": "Add Holiday",
+      "add_page": {
+        "path": "Add Holiday",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit Holiday",
+        "save_btn": "Save"
+      },
+      "holiday_form": {
+        "holiday_label": "Holiday Name",
+        "holiday_required": "Holiday is required",
+        "date_label": "Holiday Date",
+        "date_required": "Date is required"
+      },
+      "holiday_table": {
+        "title": "title",
+        "date": "date"
+      }
+    },
+
+    "leaves": {
+      "leaves-admin-path": "Leaves (Admin)",
+      "leaves-employee-path": "Leaves (Employee)",
+      "add_page": {
+        "path": "Add Leave",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit Leave",
+        "save_btn": "Save"
+      },
+      "leave_form": {
+        "leave_type": "Leave Type",
+        "leave_type_required": "Leave Type is required",
+        "from": "From",
+        "from_required": "From is required",
+        "to": "To",
+        "to_required": "To is required",
+        "days": "No of Days",
+        "reason": "Reason",
+        "reason_required": "Reason is required"
+      },
+      "leave_statistics": {
+        "annual_text": "Annual Leave",
+        "medical_text": "Medical Leave",
+        "hospitalisation_text": "Hospitalisation Leave",
+        "maternity_text": "Maternity Leave",
+        "paternity_text": "Paternity Leave"
+      },
+      "leave_table": {
+        "employee": "employee",
+        "type": "type",
+        "from": "from",
+        "to": "to",
+        "reason": "reason",
+        "days": "no of days",
+        "status": "status",
+        "approvedBy": "approved By"
+      }
+    },
+    "leaves_settings": {
+      "title": "Leave Settings",
+      "annual": "Annual",
+      "edit": "Edit",
+      "delete": "Delete",
+      "cancel": "Cancel",
+      "save": "Save",
+      "carry_forward": "Carry forward",
+      "earned_leave": "Earned leave",
+      "no": "No",
+      "yes": "Yes",
+      "max": "Max",
+      "custom_policy": "Custom policy",
+      "add_custom_policy": "Add custom policy",
+      "name": "Name",
+      "days": "Days",
+      "assignee": "Assignee",
+      "sick": "Sick",
+      "hospitalisation": "Hospitalisation",
+      "maternity": "Maternity",
+      "maternity_subtitle": "Assigned to female only",
+      "paternity": "Maternity",
+      "paternity_subtitle": "Assigned to male only",
+      "lop": "LOP",
+      "custom_policy_form": {
+        "add_title": "Add Custom Policy",
+        "edit_title": "Edit Custom Policy",
+        "policy_name": "Policy Name",
+        "policy_name_required": "*Policy name is required",
+        "days": "Days",
+        "days_required": "*Days is required",
+        "assignee": "Assignee",
+        "assignee_required": "*Assignee is required",
+        "add_btn": "Add",
+        "save_btn": "Save"
+      }
+    },
+    "attendance": {
+      "path": "Attendance",
+      "hrs": "hrs",
+      "timesheet": {
+        "title": "Timesheet",
+        "punchIn_text": "Punch In at",
+        "not_punchIn_text": "not yet",
+        "punchIn_btn": "Punch In",
+        "punchOut_btn": "Punch Out",
+        "break_text": "Break",
+        "overtime_text": "Overtime"
+      },
+      "statistics": {
+        "title": "Statistics"
+      },
+      "activity": {
+        "title": "Today Activity",
+        "punchIn_time": "Punch In at",
+        "punchOut_time": "Punch Out at"
+      },
+      "attendance_table": {
+        "date_text": "Date",
+        "punchIn_text": "Punch In",
+        "punchOut_text": "Punch Out",
+        "production_text": "Production",
+        "break_text": "Break",
+        "overtime_text": "Overtime"
+      }
+    },
+    "departments": {
+      "path": "Departments",
+      "add_btn": "Add Department",
+      "add_page": {
+        "path": "Add Department",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit Department",
+        "save_btn": "Save"
+      },
+      "department_form": {
+        "department_label": "Department Name",
+        "department_required": "Department is required"
+      },
+      "department_table": {
+        "department": "department"
+      }
+    },
+    "designations": {
+      "path": "Designations",
+      "add_btn": "Add Designation",
+      "add_page": {
+        "path": "Add Designation",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit Designation",
+        "save_btn": "Save"
+      },
+      "designation_form": {
+        "designation_label": "Designation Name",
+        "designation_required": "Designation is required",
+        "department_label": "Department Name",
+        "department_selected": "Choose Department",
+        "department_required": "Department is required",
+        "department_loading": "loading..."
+      },
+      "designation_table": {
+        "designation": "designation",
+        "department": "department"
+      }
+    },
+    "timesheet": {
+      "path": "Timesheet",
+      "add_btn": "Add Timesheet",
+      "add_page": {
+        "path": "Add Timesheet",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit Timesheet",
+        "save_btn": "Save"
+      },
+      "timesheet_form": {
+        "project_label": "Project",
+        "project_required": "*Project is required",
+        "deadline_label": "Deadline",
+        "deadline_required": "Deadline is required",
+        "assignedHours_label": "Total Hours",
+        "date_label": "Date",
+        "date_required": "*Date is required",
+        "hours_label": "Hours",
+        "hours_required": "*Hrs is required",
+        "description_label": "Description",
+        "description_required": "*Description is required"
+      },
+      "timesheet_table": {
+        "employee": "employee",
+        "date": "date",
+        "project": "project",
+        "deadline": "deadline",
+        "assignedHours": "assigned hours",
+        "hours": "hours",
+        "description": "description"
+      }
+    },
+    "scheduling": {
+      "path": "Daily Scheduling",
+      "assign_btn": "Assign Shift",
+      "shift_btn": "Shift",
+      "add_page": {
+        "path": "Add Scheduling",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit Scheduling",
+        "save_btn": "Save"
+      },
+      "filter_inputs": {
+        "employee_label": "Employee",
+        "department_label": "Department",
+        "department_loading": "loading...",
+        "department_default_select": "-- Select --",
+        "date_from_label": "From",
+        "search_btn": "Search"
+      },
+      "scheduling_form": {
+        "department_label": "Department",
+        "department_loading": "loading...",
+        "department_default_select": "-- Select --",
+        "department_required": "*Department name required",
+        "employee_label": "Employee",
+        "employee_loading": "loading...",
+        "employee_default_select": "-- Select --",
+        "employee_required": "*Employee name required",
+        "date_label": "Date",
+        "date_required": "*Date required",
+        "shift_label": "Shifts",
+        "shift_loading": "loading...",
+        "shift_default_select": "-- Select --",
+        "shift_required": "*Shift name required",
+        "min_start_time_label": "Min Start Time",
+        "start_time_label": "Start Time",
+        "max_start_time_label": "Max Start Time",
+        "min_end_time_label": "Min End Time",
+        "end_time_label": "End Time",
+        "max_end_time_label": "Max End Time",
+        "break_time_label": "Break Time",
+        "extra_hours_label": "Accept Extra Hours",
+        "publish_label": "Publish"
+      },
+      "scheduling_table": {
+        "bottom_header_text": "Drag a column header and drop it here to group by that column",
+        "employee_column_title": "Scheduled Shift"
+      }
+    },
+    "shift": {
+      "path": "Shifts",
+      "add_btn": "Add Shift",
+      "add_page": {
+        "path": "Add Shift",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit Shift",
+        "save_btn": "Save"
+      },
+      "shift_form": {
+        "shift_label": "Shift Name",
+        "shift_required": "*Shift name required",
+        "min_start_time_label": "Min Start Time",
+        "start_time_label": "Start Time",
+        "max_start_time_label": "Max Start Time",
+        "min_end_time_label": "Min End Time",
+        "end_time_label": "End Time",
+        "max_end_time_label": "Max End Time",
+        "min_start_time_required": "*Min start time required",
+        "start_time_required": "*start time required",
+        "max_start_time_required": "*Max start time required",
+        "min_end_time_required": "*Min End time required",
+        "end_time_required": "*End time required",
+        "max_end_time_required": "*Max End time required",
+        "break_time_label": "Break Time",
+        "recurring_shift_label": "Recurring Shift",
+        "repeat_every_label": "Repeat Every",
+        "weeks_label": "Week(s)",
+        "days": {
+          "mon": "M",
+          "tue": "T",
+          "wed": "W",
+          "thu": "T",
+          "fri": "F",
+          "sat": "S",
+          "sun": "S"
+        },
+        "end_date_label": "End On",
+        "end_date_required": "*End Date time required",
+        "indefinite_label": "Indefinite",
+        "tag_label": "Add Tag",
+        "note_label": "Add Note"
+      },
+      "shift_table": {
+        "name": "name",
+        "min_start_time": "min start time",
+        "start_time": "start time",
+        "max_start_time": "max start time",
+        "min_end_time": "min end time",
+        "end_time": "end time",
+        "max_end_time": "max end time",
+        "break_time": "break time",
+        "end_date": "end date",
+        "repeat_every": "repeat every",
+        "recurring_shift": "recurring shift",
+        "indefinite": "indefinite",
+        "tag": "tag",
+        "note": "note",
+        "status": "status",
+        "days": "days",
+        "approvedBy": "approved by"
+      }
+    },
+    "overtime": {
+      "path": "Overtime",
+      "add_btn": "Add Overtime",
+      "add_page": {
+        "path": "Add Overtime",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit Overtime",
+        "save_btn": "Save"
+      },
+      "overtime_form": {
+        "employee_label": "Employee Name",
+        "employee_required": "Employee Name is required",
+        "employee_not_found": "no data Founded",
+        "ot_date_label": "OT Date",
+        "ot_date_required": "OT Date is required",
+        "ot_hours_label": "OT Hours",
+        "ot_hours_required": "OT Hours required",
+        "ot_type_label": "OT Type",
+        "ot_type_required": "OT Type required",
+        "description_label": "Description",
+        "description_required": "Description is required"
+      },
+      "overtime_table": {
+        "employee": "employee",
+        "ot_date": "ot date",
+        "ot_hours": "ot hours",
+        "ot_type": "ot type",
+        "description": "description",
+        "status": "status",
+        "approvedBy": "approved by"
+      }
+    }
+  },
+  "clients": {
+    "path": "Clients",
+    "add_btn": "Add Client",
+    "add_page": {
+      "path": "Add Client",
+      "add_btn": "Add"
+    },
+    "edit_page": {
+      "path": "Edit Client",
+      "save_btn": "Save"
+    },
+    "client_form": {
+      "firstname_label": "First Name",
+      "firstname_required": "First Name Is required",
+      "lastname_label": "Last Name",
+      "lastname_required": "Last Name Is required",
+      "username_label": "Username",
+      "email_label": "Email",
+      "email_required": "Email Is required",
+      "password_label": "Password",
+      "password_required": "Password Is required",
+      "confirm_label": "Confirm Password",
+      "confirm_required": "dosn't match",
+      "clientId_label": "Client ID",
+      "clientId_required": "ClientId Is required",
+      "phone_label": "Phone",
+      "phone_required": "Phone Is required",
+      "company_label": "Company Name",
+      "permission_table": {
+        "permission_head_text": "Module Permission",
+        "read_head_text": "Read",
+        "write_head_text": "Write",
+        "create_head_text": "Create",
+        "delete_head_text": "Delete",
+        "import_head_text": "Import",
+        "export_head_text": "Export"
+      }
+    },
+    "client_table": {
+      "name": "name",
+      "client_id": "client id",
+      "email": "email",
+      "mobile": "mobile",
+      "status": "status"
+    }
+  },
+  "projects": {
+    "path": "Projects",
+    "add_btn": "Add Project",
+    "add_page": {
+      "path": "Add Project",
+      "add_btn": "Add"
+    },
+    "edit_page": {
+      "path": "Edit Project",
+      "save_btn": "Save"
+    },
+    "project_form": {
+      "project": "Project Name",
+      "project_required": "*Name is required",
+      "client": "Client",
+      "client_required": "*Client is required",
+      "startDate": "Start Date",
+      "startDate_required": "*Start Date is required",
+      "endDate": "End Date",
+      "endDate_required": "*End Date is required",
+      "rate": "Rate",
+      "rateSelect": {
+        "hourly": "hourly",
+        "fixed": "fixed"
+      },
+      "priority": {
+        "label": "Priority",
+        "high": "high",
+        "medium": "medium",
+        "low": "low"
+      },
+      "leader": "Add Project Leader",
+      "team_leader": "Team Leader",
+      "add_team": "Add Team",
+      "select_text": "Select",
+      "team_members": "Team Members",
+      "projectId": "Project Id",
+      "projectId_required": "*Project Id is required",
+      "description": "Description",
+      "description_required": "*Description is required",
+      "files": "Upload Files",
+      "add_btn": "Add",
+      "select": "-- Select --",
+      "loading": "loading..."
+    },
+    "project_card": {
+      "open_tasks": "open tasks",
+      "tasks_completed": "tasks completed",
+      "deadline": "Deadline",
+      "leader": "Project Leader",
+      "team": "Team",
+      "progress": "Progress"
+    },
+    "projct_table": {
+      "project": "project",
+      "projectId": "project id",
+      "leader": "leader",
+      "team": "team",
+      "endDate": "end date",
+      "priority": "priority",
+      "status": "status"
+    },
+    "priority_dropdown": {
+      "high": "high",
+      "medium": "medium",
+      "low": "low"
+    },
+    "task_board": {
+      "path": "Task Board",
+      "select": "--Select Project--",
+      "lead": "Lead",
+      "team": "Team",
+      "create_list": "Create List",
+      "progress": "Progress",
+      "edit": "Edit",
+      "delete": "Delete",
+      "add_new_task": "Add New Task",
+      "edit_task_board": "Edit Task Board",
+      "no_tasks": "No Tasks Board Yet",
+      "task_board_form": {
+        "path": "Add Task Board",
+        "name": "Task Board Name",
+        "name_required": "Board Name is required",
+        "color": "Task Board Color",
+        "color_required": "",
+        "create": "Create",
+        "update": "Update"
+      },
+      "task_form": {
+        "add_title": "Add Task",
+        "edit_title": "Edit Task",
+        "name": "Task Name",
+        "name_required": "Task is required",
+        "priority": {
+          "label": "Task Priority",
+          "high": "high",
+          "normal": "normal",
+          "low": "low",
+          "required": "Priority is required"
+        },
+        "date": "Due Date",
+        "date_required": "Due Date is required",
+        "assigned_to": "Task Assigned To",
+        "submit": "Submit",
+        "update": "Update",
+        "loading": "loading...",
+        "select": "--Select--"
+      }
+    },
+    "tasks": {
+      "sidebar": {
+        "back_to_home": "Back to Home",
+        "projects": "Projects"
+      },
+      "add_task_dec": "Add Tasks To Your Project",
+      "add_task": "Add Task",
+      "pending_task": "Pending Tasks",
+      "completed_task": "Completed Tasks",
+      "all_task": "All Tasks",
+      "no_task": "Not Tasks Founded",
+      "add_task_placeholder": "Enter new task here. . .",
+      "add_task_error": "You need to enter a task first",
+      "close": "Close",
+      "add_task_btn": "Add Task",
+      "assignee_modal": {
+        "path": "Assign To Task",
+        "search": "Search",
+        "search_placeholder": "Search to add",
+        "assign_btn": "Assign"
+      },
+      "task_chat": {
+        "mark_complete": "Mark Complete",
+        "delete_task": "Delete Task",
+        "settings": "Settings",
+        "assigned_to": "Assigned To",
+        "due_date": "Due Date",
+        "update": "Update",
+        "team": "Team",
+        "description_placeholder": "Description",
+        "type_placeholder": "Type message..."
+      }
+    }
+  },
+  "leads": {
+    "path": "Leads",
+    "leads_table": {
+      "leader": "leader",
+      "email": "email",
+      "phone": "phone",
+      "project": "project",
+      "team": "team",
+      "status": "status",
+      "created": "created"
+    }
+  },
+  "tickets": {
+    "path": "Tickets",
+    "add_btn": "Add Ticket",
+    "add_page": {
+      "path": "Add Ticket",
+      "add_btn": "Add"
+    },
+    "edit_page": {
+      "path": "Edit Ticket",
+      "save_btn": "Save"
+    },
+    "tickets_form": {
+      "ticketSubject": "Ticket Subject",
+      "ticketSubject_required": "*Ticket Subject is required",
+      "ticketId": "Ticket Id",
+      "ticketId_required": "*Ticket Id is required",
+      "assignStaff": "Assign Staff",
+      "assignStaff_required": "*Assign Staff is required",
+      "client": "Client",
+      "client_required": "*Client is required",
+      "priority": {
+        "label": "Priority",
+        "high": "high",
+        "medium": "medium",
+        "low": "low"
+      },
+      "cc": "CC",
+      "assign": "Assign",
+      "ticket_assignee": "Ticket Assignee",
+      "add_followers": "Add Followers",
+      "select_text": "Select",
+      "ticketfollowers": "Ticket Followers",
+      "description": "Description",
+      "description_required": "*Description is required",
+      "files": "Upload Files",
+      "loading": "loading...",
+      "select": "--Select--"
+    },
+    "tickets_statistics": {
+      "new": "New Tickets",
+      "solved": "Solved Tickets",
+      "in_process": "In Process /On Hold Tickets",
+      "cancelled": "Cancelled Tickets"
+    },
+    "tickets_table": {
+      "ticketId": "ticket id",
+      "ticketSubject": "ticket subject",
+      "assignStaff": "assign staff",
+      "createdDate": "created date",
+      "lastReply": "last reply",
+      "priority": "priority",
+      "status": "status"
+    }
+  },
+  "sales": {
+    "estimate": {
+      "path": "Estimates",
+      "add_btn": "Create Estimate",
+      "add_page": {
+        "path": "Create Estimate",
+        "add_btn": "Save & Send",
+        "add_btn2": "Save"
+      },
+      "edit_page": {
+        "path": "Edit Estimate",
+        "save_btn": "Save"
+      },
+      "estimate_form": {
+        "client": "Client",
+        "client_required": "*Client is required",
+        "project": "Project",
+        "project_required": "*Project is required",
+        "email": "Email",
+        "email_required": "*Email is required",
+        "tax": "Tax",
+        "tax_required": "*Tax is required",
+        "client_address": "Client Address",
+        "client_address_required": "*Client address is required",
+        "billing_address": "Billing Address",
+        "billing_address_required": "*Billing address is required",
+        "estimate_date": "Estimate Date",
+        "estimate_date_required": "*Estimate date is required",
+        "expiry_date": "Expiry Date",
+        "expiry_date_required": "*Expiry date is required",
+        "items": {
+          "item": "Item",
+          "description": "Description",
+          "cost": "Unit Cost",
+          "qty": "Qty",
+          "amount": "Amount"
+        },
+        "totalamount": "Total",
+        "tax_per": "Tax",
+        "discount": "Discount",
+        "discount_required": "*Discount is required",
+        "grandTotal": "Grand Total",
+        "other_information": "Other Information",
+        "other_information_required": "*Other information is required",
+        "estimate_number": "Estimate Number",
+        "estimate_number_required": "*Estimate Number is required",
+        "loading": "loading...",
+        "select": "--Select--"
+      },
+      "estimate_view": {
+        "title": "Estimate View",
+        "csv": "CSV",
+        "print": "Print",
+        "create_date": "Create Date",
+        "expiry_date": "Expiry Date",
+        "estimate_to": "Estimate To",
+        "items": {
+          "item": "ITEM",
+          "description": "DESCRIPTION",
+          "cost": "UNIT COST",
+          "qty": "QUANTITY",
+          "amount": "TOTAL"
+        },
+        "subtotal": "Subtotal",
+        "tax": "Tax",
+        "discount": "Discount",
+        "total": "Total",
+        "other_informationl": "Other information"
+      },
+      "estimate_table": {
+        "estimate_number": "estimate number",
+        "client": "client",
+        "estimate_date": "estimate date",
+        "expiry_date": "expiry date",
+        "totalamount": "amount",
+        "status": "status"
+      }
+    },
+    "invoice": {
+      "path": "Invoices",
+      "add_btn": "Create Invoice",
+      "add_page": {
+        "path": "Create Invoice",
+        "add_btn": "Save & Send",
+        "add_btn2": "Save"
+      },
+      "edit_page": {
+        "path": "Edit Invoice",
+        "save_btn": "Save"
+      },
+      "invoice_form": {
+        "client": "Client",
+        "client_required": "*Client is required",
+        "project": "Project",
+        "project_required": "*Project is required",
+        "email": "Email",
+        "email_required": "*Email is required",
+        "tax": "Tax",
+        "tax_required": "*Tax is required",
+        "client_address": "Client Address",
+        "client_address_required": "*Client address is required",
+        "billing_address": "Billing Address",
+        "billing_address_required": "*Billing address is required",
+        "invoice_date": "Inovice Date",
+        "invoice_date_required": "*Inovice Date is required",
+        "due_date": "Due Date",
+        "due_date_required": "*Due Date is required",
+        "items": {
+          "item": "Item",
+          "description": "Description",
+          "cost": "Unit Cost",
+          "qty": "Qty",
+          "amount": "Amount"
+        },
+        "totalamount": "Total",
+        "tax_per": "Tax",
+        "discount": "Discount",
+        "discount_required": "*Discount is required",
+        "grandTotal": "Grand Total",
+        "other_information": "Other Information",
+        "other_information_required": "*Other information is required",
+        "invoice_number": "Invoice Number",
+        "invoice_number_required": "*Invoice Number is required",
+        "loading": "loading...",
+        "select": "--Select--"
+      },
+      "invoice_view": {
+        "title": "Invoice View",
+        "pay": "Pay",
+        "csv": "CSV",
+        "print": "Print",
+        "create_date": "Create Date",
+        "due_date": "Due Date",
+        "invoice_to": "Invoice To",
+        "payment_details": "Payment Details",
+        "total_due": "Total Due",
+        "bank_name": "Bank name",
+        "country": "Country",
+        "city": "City",
+        "address": "Address",
+        "iban": "IBAN",
+        "swift_code": "SWIFT code",
+        "status": "Status",
+        "items": {
+          "item": "ITEM",
+          "description": "DESCRIPTION",
+          "cost": "UNIT COST",
+          "qty": "QUANTITY",
+          "amount": "TOTAL"
+        },
+        "subtotal": "Subtotal",
+        "tax": "Tax",
+        "discount": "Discount",
+        "total": "Total",
+        "other_informationl": "Other information"
+      },
+      "invoice_table": {
+        "invoice_number": "invoice number",
+        "client": "client",
+        "invoice_date": "creat date",
+        "due_date": "due date",
+        "totalamount": "amount",
+        "status": "status"
+      }
+    },
+    "payment": {
+      "path": "Payments",
+      "add_btn": "Create Payment",
+      "add_page": {
+        "path": "Create Payment",
+        "add_btn": "Create"
+      },
+      "edit_page": {
+        "path": "Edit Payment",
+        "save_btn": "Update"
+      },
+      "payment_form": {
+        "total_amount": "Total Amount",
+        "client": "Client",
+        "client_required": "*Client is required",
+        "invoice": "Invoice",
+        "invoice_required": "*Invoice is required",
+        "address": "Address",
+        "address_required": "*address is required",
+        "paid_date": "Paid Date",
+        "paid_date_required": "*Paid Date is required",
+        "payment_type": "Payment Type",
+        "payment_type_required": "*Payment Type is required",
+        "paid_amount": "Paid Amount",
+        "paid_amount_required": "*Paid Amount is required",
+        "country": "Country",
+        "country_required": "*Country Type is required",
+        "city": "City",
+        "city_required": "*City Type is required",
+        "bank_name": "Bank Name",
+        "iban": "Iban",
+        "swift_code": "Swift Code",
+        "loading": "loading...",
+        "select": "--Select--"
+      },
+      "payment_table": {
+        "invoice_number": "invoice id",
+        "client": "client",
+        "payment_type": "payment type",
+        "paid_date": "paid date",
+        "paid_amount": "paid amount"
+      }
+    },
+    "expense": {
+      "path": "Expenses",
+      "add_btn": "Add Expense",
+      "add_page": {
+        "path": "Add Expense",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit Expense",
+        "save_btn": "Save"
+      },
+      "dropdown": {
+        "cash": "Cash",
+        "bank": "Cash"
+      },
+      "expense_form": {
+        "item_name": "Item Name",
+        "item_name_required": "*Item name is required",
+        "purchase_from": "Purchase From",
+        "purchase_from_required": "*Purchase from is required",
+        "purchase_date": "Purchase Date",
+        "purchase_date_required": "*Purchase date is required",
+        "purchased_by": "Purchased By",
+        "purchased_by_required": "*Purchased by is required",
+        "amount": "Amount",
+        "amount_required": "*Amount is required",
+        "paid_by": "Paid By",
+        "paid_by_required": "*Paid is required",
+        "status": "Status",
+        "attachments": "Attachments",
+        "loading": "loading...",
+        "select": "--Select--"
+      },
+      "expense_table": {
+        "item_name": "item",
+        "purchase_from": "purchase from",
+        "purchase_date": "purchase date",
+        "purchased_by": "purchased by",
+        "amount": "amount",
+        "paid_by": "paid by",
+        "status": "status"
+      }
+    },
+    "providentFund": {
+      "path": "ProvidentFunds",
+      "add_btn": "Add ProvidentFund",
+      "add_page": {
+        "path": "Add ProvidentFund",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit ProvidentFund",
+        "save_btn": "Save"
+      },
+      "providentFund_form": {
+        "employee": "Employee Name",
+        "employee_required": "*Employee name is required",
+        "provident_type": "Provident Fund Type",
+        "provident_type_required": "*Provident fund type is required",
+        "provident_type_dropdown": {
+          "fixed_amount": "Fixed Amount",
+          "basic_salary": "Percentage of Basic Salary"
+        },
+        "employee_share_amount": "Employee Share (Amount)",
+        "organization_share_amount": "Organization Share (Amount)",
+        "employee_share_percentage": "Employee Share (%) ",
+        "employee_share_percentage_required": "*Employee share is required",
+        "organization_share_percentage": "Organization Share (%)",
+        "organization_share_percentage_required": "*Organisation share is required",
+        "description": "Description",
+        "loading": "loading...",
+        "select": "--Select--"
+      },
+      "providentFund_table": {
+        "employee": "employee name",
+        "provident_type": "provident fund type",
+        "employee_share_percentage": "employee share",
+        "organization_share_percentage": "organization share",
+        "status": "status"
+      }
+    },
+    "tax": {
+      "path": "Taxes",
+      "add_btn": "Add Tax",
+      "add_page": {
+        "path": "Add Tax",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit Tax",
+        "save_btn": "Save"
+      },
+      "tax_form": {
+        "name": "Tax Name",
+        "name_required": "*Tax name is required",
+        "percentage": "Tax Percentage (%)",
+        "percentage_required": "*Tax percentage is required",
+        "status": {
+          "label": "Status",
+          "pending": "Pending",
+          "approved": "Approved"
+        },
+        "loading": "loading...",
+        "select": "--Select--"
+      },
+      "tax_table": {
+        "name": "tax name",
+        "percentage": "tax percentage (%)",
+        "status": "status"
+      }
+    }
+  },
+  "accounting": {
+    "category": {
+      "path": "Categories",
+      "add_btn": "Add Category",
+      "add_page": {
+        "path": "Add Category",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit Category",
+        "save_btn": "Save"
+      },
+      "category_form": {
+        "category_name": "Category Name",
+        "category_name_required": "*Category Name is required",
+        "subcategory_name": "Sub-Category Name"
+      },
+      "category_table": {
+        "category_name": "category name",
+        "subcategory_name": "sub-category name"
+      }
+    },
+    "budget": {
+      "path": "Budgets",
+      "add_btn": "Add Budgets",
+      "add_page": {
+        "path": "Add Budgets",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit Budgets",
+        "save_btn": "Save"
+      },
+      "budget_form": {
+        "title": "Budget Title",
+        "title_required": "*Budget title required",
+        "type_choose_label": "Choose Budget Respect Type",
+        "project": "Project",
+        "category": "Category",
+        "start_date": "Start Date",
+        "start_date_required": "*Start date required",
+        "end_date": "End Date",
+        "end_date_required": "*End date required",
+        "revenues": {
+          "expected_revenues": "Expected Revenues",
+          "revenue_title": "Revenue Title",
+          "revenue_amount": "Revenue Amount",
+          "overall_revenue": "Overall Revenues"
+        },
+        "expenses": {
+          "expected_expenses": "Expected Expenses",
+          "expenses_title": "Expenses Title",
+          "expenses_amount": "Expenses Amount",
+          "overall_expense": "Overall Expense"
+        },
+        "expected_profit": "Expected Profit",
+        "tax": "Tax",
+        "tax_required": "*Tax required",
+        "budget_amount": "Budget Amount"
+      },
+      "budget_table": {
+        "budget_no": "budget no",
+        "title": "sbudget title",
+        "type": "budget type",
+        "start_date": "start date",
+        "end_date": "end date",
+        "overall_revenue": "total revenue",
+        "overall_expense": "total expenses",
+        "tax": "tax amount",
+        "budget_amount": "budget amount"
+      }
+    },
+    "budget_expense": {
+      "path": "Budgets Expenses",
+      "add_btn": "Add Budget Expense",
+      "add_page": {
+        "path": "Add Budget Expense",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit Budget Expense",
+        "save_btn": "Save"
+      },
+      "budget_expense_form": {
+        "amount": "Amount",
+        "amount_required": "*Amount required",
+        "currency": "Choose Currency",
+        "currency_$": "$ - Amercian Dollar",
+        "currency_egp": "EGP - Egyption Pound",
+        "note": "Notes",
+        "note_required": " *Expense Notes required",
+        "date": "Expense Date",
+        "date_required": "*Expense date required",
+        "category": {
+          "select": "Category",
+          "title": "Choose Category"
+        },
+        "subcategory": {
+          "select": "Choose Sub-Category",
+          "title": "Sub Category"
+        },
+        "file": "Attach File",
+        "loading": "loading..."
+      },
+      "budget_expense_table": {
+        "no": "no",
+        "note": "note",
+        "category": "category name",
+        "subcategory": "subcategory name",
+        "amount": "amount",
+        "date": "expense date"
+      }
+    },
+    "budget_revenue": {
+      "path": "Budgets Revenues",
+      "add_btn": "Add Budget Revenue",
+      "add_page": {
+        "path": "Add Budget Revenue",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit Budget Revenue",
+        "save_btn": "Save"
+      },
+      "budget_revenue_form": {
+        "amount": "Amount",
+        "amount_required": "*Amount required",
+        "currency": "Choose Currency",
+        "currency_$": "$ - Amercian Dollar",
+        "currency_egp": "EGP - Egyption Pound",
+        "note": "Notes",
+        "note_required": " *Revenue Notes required",
+        "date": "Revenue Date",
+        "date_required": "*Revenue date required",
+        "category": {
+          "select": "Category",
+          "title": "Choose Category"
+        },
+        "subcategory": {
+          "select": "Choose Sub-Category",
+          "title": "Sub Category"
+        },
+        "file": "Attach File",
+        "loading": "loading..."
+      },
+      "budget_revenue_table": {
+        "no": "no",
+        "note": "note",
+        "category": "category name",
+        "subcategory": "subcategory name",
+        "amount": "amount",
+        "date": "revenue date"
+      }
+    }
+  },
+  "payroll": {
+    "salary": {
+      "path": "Salary",
+      "add_btn": "Add Salary",
+      "add_page": {
+        "path": "Add Salary",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit Salary",
+        "save_btn": "Save"
+      },
+      "salary_form": {
+        "employee": "Select Staff",
+        "employee_required": "*Staff name is required",
+        "net_salary": "Net Salary",
+        "net_salary_required": " *Salary is required",
+        "date": "Date",
+        "date_required": "*Date is required",
+        "earnings": {
+          "title": "Earnings",
+          "basic_earnings": "Basic",
+          "da": "DA(40%)",
+          "hra": "HRA(15%)",
+          "conveyance": "Conveyance",
+          "allowance": "Allowance",
+          "medical_allowance": "Medical Allowance",
+          "others1": "Others",
+          "payslip_id": "Payslip Id"
+        },
+        "deductions": {
+          "title": "Deductions",
+          "tds": "TDS",
+          "esi": "ESI",
+          "pf": "PF",
+          "leave": "Leave",
+          "prof_tax": "Prof. Tax",
+          "labour_welfare": "Labour Welfare",
+          "fund": "Fund",
+          "others2": "Others"
+        },
+        "select": "--Select--"
+      },
+      "salary_view": {
+        "path": "Salary View",
+        "title": "Payslip for the month of Feb 2019",
+        "csv": "CSV",
+        "print": "Print",
+        "salary_month": "Salary Month",
+        "employee_id": "Employee ID",
+        "joining_date": "Joining Date",
+        "earnings": "Earnings",
+        "basic_salary": "Basic Salary",
+        "hra": "House Rent Allowance (H.R.A.)",
+        "conveyance": "Conveyance",
+        "allowance": "Other Allowance",
+        "total_earnings": "Total Earnings",
+        "deductions": "Deductions",
+        "tds": "Tax Deducted at Source (T.D.S.)",
+        "fund": "Provident Fund",
+        "esi": "ESI",
+        "labour": "Labour",
+        "total_deductions": "Total Deductions",
+        "net_salary": "Net Salary"
+      },
+      "salary_table": {
+        "employee": "employee",
+        "employee_id": "employee id",
+        "email": "email",
+        "joining_date": "joining date",
+        "role": "role",
+        "net_salary": "net salary",
+        "payslip": "payslip",
+        "generate_slip_btn": "Generate Slip"
+      }
+    },
+    "payroll_items": {
+      "path": "Payroll Items",
+      "add_btn": "Add",
+      "save_btn": "Save",
+      "no_data": "No data found",
+      "select": "--Select--",
+      "additions_tab": "Additions",
+      "overtime_tab": "Overtime",
+      "deductions_tab": "Deductions",
+      "add_addition_btn": "Add Addition",
+      "add_overtime_btn": "Add Overtime",
+      "add_deduction_btn": "Add Deduction",
+      "addition_table": {
+        "name": "Name",
+        "category": "Category",
+        "unit_amount": "Default/Unit Amount",
+        "action": "Action"
+      },
+      "overtime_table": {
+        "name": "Name",
+        "rate": "Rate",
+        "action": "Action"
+      },
+      "deductions_table": {
+        "name": "Name",
+        "unit_amount": "Default/Unit Amount",
+        "action": "Action"
+      },
+      "addition_form": {
+        "add_path": "Add Addition",
+        "edit_path": "Edit Addition",
+        "name": "Name",
+        "name_required": "*Name is required",
+        "category": "Category",
+        "category_required": "*Category is required",
+        "unit_calculation": "Unit calculation",
+        "unit_amount": "Unit Amount",
+        "unit_amount_required": "*Amount is required",
+        "assignee": "Assignee",
+        "no_assignee": "No assignee",
+        "all_employees": "All Employees",
+        "select_employees": "Select Employee"
+      },
+      "overtime_form": {
+        "add_path": "Add Overtime",
+        "edit_path": "Edit Overtime",
+        "name": "Name",
+        "name_required": "*Name is required",
+        "rate_type": "Rate Type",
+        "rate_type_required": "*Type is required",
+        "daily_rate": "daily rate",
+        "hourly_rate": "hourly rate",
+        "rate": "rate",
+        "rate_required": "*Rate is required"
+      },
+      "deductions_form": {
+        "add_path": "Add Deduction",
+        "edit_path": "Edit Deduction",
+        "name": "Name",
+        "name_required": "*Name is required",
+        "unit_calculation": "Unit calculation",
+        "unit_amount": "Unit Amount",
+        "unit_amount_required": "*Amount is required",
+        "assignee": "Assignee",
+        "no_assignee": "No assignee",
+        "all_employees": "All Employees",
+        "select_employees": "Select Employee"
+      }
+    }
+  },
+  "policy": {
+    "path": "Policies",
+    "add_btn": "Add Policy",
+    "add_page": {
+      "path": "Add Policy",
+      "add_btn": "Add"
+    },
+    "edit_page": {
+      "path": "Edit Policy",
+      "save_btn": "Save"
+    },
+    "policy_form": {
+      "name": "Policy Name",
+      "name_required": "*Policy name is required",
+      "description": "Description",
+      "description_required": "*Description is required",
+      "department": "Department",
+      "department_required": "*Department name is required",
+      "file": "Upload Policy",
+      "select": "--Select--",
+      "loading": "--loading--"
+    },
+    "policy_table": {
+      "name": "policy name",
+      "department": "department",
+      "description": "description",
+      "date": "created"
+    }
+  },
+  "reports": {
+    "expense_report": {
+      "path": "Expense Report",
+      "expense_report_table": {
+        "item_name": "item",
+        "purchase_from": "purchase from",
+        "purchase_date": "purchase date",
+        "purchased_by": "purchase by",
+        "amount": "amount",
+        "paid_by": "paid by",
+        "status": "status"
+      }
+    },
+    "invoice_report": {
+      "path": "Invoice Report",
+      "invoice_report_table": {
+        "invoice_number": "invoice number",
+        "client": "client",
+        "invoice_date": "create date",
+        "due_date": "due date",
+        "totalamount": "amount",
+        "status": "status"
+      }
+    },
+    "payment_report": {
+      "path": "Payment Report",
+      "payment_report_table": {
+        "iban": "transaction iD",
+        "paid_date": "date",
+        "client": "client name",
+        "payment_type": "payment method",
+        "invoice_number": "invoice",
+        "paid_amount": "amount"
+      }
+    },
+    "project_report": {
+      "path": "Project Report",
+      "project_report_table": {
+        "project": "project title",
+        "client": "client name",
+        "startDate": "start date",
+        "endDate": "end date",
+        "status": "status",
+        "team": "team"
+      }
+    },
+    "task_report": {
+      "path": "Task Report",
+      "task_report_table": {
+        "text": "task name",
+        "date": "end date",
+        "completed": "status",
+        "assignedTo": "assigned to"
+      }
+    },
+    "user_report": {
+      "path": "User Report",
+      "user_report_table": {
+        "name": "name",
+        "company": "company",
+        "email": "email",
+        "role": "role",
+        "designation": "designation",
+        "status": "status"
+      }
+    },
+    "employee_report": {
+      "path": "Employee Report",
+      "employee_report_table": {
+        "fullName ": "employee name",
+        "type": "employee type",
+        "email": "email",
+        "department": "department",
+        "designation": "designation",
+        "joining_date": "joining date",
+        "dob": "dob",
+        "matrial_status": "matrial status",
+        "gender": "gender",
+        "end_date": "terminated date"
+      }
+    },
+    "payslip_report": {
+      "path": "Payslip Report",
+      "payslip_report_table": {
+        "employee": "employee name",
+        "net_salary": "paid amount",
+        "date_month": "payment month",
+        "date_year": "payment year"
+      }
+    },
+    "attendance_report": {
+      "path": "Attendance Report",
+      "attendance_report_table": {
+        "date": "date",
+        "punchIn": "clock in",
+        "punchOut": "clock out",
+        "status": "work status"
+      }
+    },
+    "leave_report": {
+      "path": "Leave Report",
+      "leave_report_table": {
+        "employee": "employee",
+        "from": "date",
+        "employee?.department": "department",
+        "type": "leave type",
+        "days": "no.of days",
+        "remaining": "remaining leave",
+        "total_leaves": "total Leaves",
+        "taken": "Total Leave taken",
+        "carryForwardMax": "leave carry forward"
+      }
+    },
+    "daily_report": {
+      "path": "Daily Report",
+      "daily_report_table": {
+        "employee": "employee",
+        "joining_date": "date",
+        "department": "department",
+        "status": "status"
+      },
+      "total_employees": "Total Employees",
+      "today_present": "Today Present",
+      "today_absent": "Today Absent",
+      "today_left": "Today Left"
+    }
+  },
+  "performance": {
+    "indicator": {
+      "path": "Performance Indicator",
+      "add_btn": "Add Indicator",
+      "add_page": {
+        "path": "Add Indicator",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit Indicator",
+        "save_btn": "Save"
+      },
+      "indicator_form": {
+        "technical": "Technical",
+        "organizational": "Organizational",
+        "select_designation": "Select Designation",
+        "designation": "Designation",
+        "designation_required": "Designation is required",
+        "customer_experience": "Customer Experience",
+        "customer_experience_required": "Customer Experience is required",
+        "marketing": "Marketing",
+        "marketing_required": "Marketing is required",
+        "management": "Management",
+        "management_required": "Management is required",
+        "administration": "Administration",
+        "administration_required": "Administration is required",
+        "presentation_skill": "Presentation Skill",
+        "presentation_skill_required": "Presentation Skill is required",
+        "quality_of_work": "Quality Of Work",
+        "quality_of_work_required": "Quality is required",
+        "efficiency": "Efficiency",
+        "efficiency_required": "Efficiency is required",
+        "integrity": "Integrity",
+        "integrity_required": "Integrity is required",
+        "professionalism": "Professionalism",
+        "professionalism_required": "Professionalism is required",
+        "team_work": "Team Work",
+        "team_work_required": "teamWork is required",
+        "critical_thinking": "Critical Thinking",
+        "critical_thinking_required": "Critical Thinking is required",
+        "conflict_management": "Conflict Management",
+        "conflict_management_required": "Conflict Management is required",
+        "attendance": "Attendance",
+        "attendance_required": "Attendance is required",
+        "meet_deadline": "Ability To Meet Deadline",
+        "meet_deadline_required": "Deadline is required",
+        "status": "Status",
+        "status_required": "Status is required",
+        "loading": "loading...",
+        "select": "--Select--",
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "indicator_table": {
+        "designation": "designation",
+        "department": "department",
+        "added_by": "added by",
+        "date": "created at",
+        "status": "status"
+      }
+    },
+    "appraisal": {
+      "path": "Performance Appraisal",
+      "add_btn": "Add Appraisal",
+      "add_page": {
+        "path": "Add Appraisal",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit Appraisal",
+        "save_btn": "Save"
+      },
+      "appraisal_form": {
+        "employee": "Employee",
+        "employee_required": "Employee is required",
+        "date": "Select Date",
+        "date_required": "Date is required",
+        "status": "status",
+        "status_required": "Status is required",
+        "loading": "loading...",
+        "select": "--Select--",
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "appraisal_table": {
+        "employee": "employee",
+        "designation": "designation",
+        "department": "department",
+        "date": "appraisal date",
+        "status": "status"
+      }
+    }
+  },
+  "goals": {
+    "list": {
+      "path": "Goal List",
+      "add_btn": "Add List",
+      "add_page": {
+        "path": "Add List",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit List",
+        "save_btn": "Save"
+      },
+      "list_form": {
+        "type": "Goal Type",
+        "type_required": "*Goal Type is required",
+        "subject": "Subject",
+        "subject_required": "*Subject is required",
+        "target_achievement": "Target Achievement",
+        "target_achievement_required": "*Target Achievement is required",
+        "start_date": "Start Date",
+        "start_date_required": "*Start Date is required",
+        "end_date": "End Date",
+        "end_date_required": "*End Date is required",
+        "description": "Description",
+        "description_required": "*Description is required",
+        "status": "Status",
+        "status_required": "*Status is required",
+        "loading": "loading...",
+        "select": "--Select--",
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "list_table": {
+        "type": "goal type",
+        "subject": "subject",
+        "target_achievement": "target achievement",
+        "start_date": "start date",
+        "end_date": "end date",
+        "description": "description",
+        "status": "status",
+        "progress": "progress"
+      }
+    },
+    "type": {
+      "path": "Goal Type",
+      "add_btn": "Add Type",
+      "add_page": {
+        "path": "Add Type",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit Type",
+        "save_btn": "Save"
+      },
+      "type_form": {
+        "type": "Goal Type",
+        "type_required": "*Goal Type is required",
+        "description": "Description",
+        "description_required": "*Description is required",
+        "status": "Status",
+        "status_required": "*Status is required",
+        "loading": "loading...",
+        "select": "--Select--",
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "type_table": {
+        "type": "type",
+        "description": "description",
+        "status": "status"
+      }
+    }
+  },
+  "training": {
+    "list": {
+      "path": "Training List",
+      "add_btn": "Add List",
+      "add_page": {
+        "path": "Add List",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit List",
+        "save_btn": "Save"
+      },
+      "list_form": {
+        "training_type": "Training Type",
+        "training_type_required": "*Type is required",
+        "trainer": "Trainer",
+        "trainer_required": "*Trainer is required",
+        "employee": "Employee",
+        "employee_required": "*Employee is required",
+        "cost": "Cost",
+        "cost_required": "*Cost is required",
+        "start_date": "Start Date",
+        "start_date_required": "*Start Date is required",
+        "end_date": "End Date",
+        "end_date_required": "*End Date is required",
+        "description": "Description",
+        "description_required": "*Description is required",
+        "status": "Status",
+        "status_required": "*Status is required",
+        "loading": "loading...",
+        "select": "--Select--",
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "list_table": {
+        "training_type": "training type",
+        "trainer": "trainer",
+        "employee": "employee",
+        "duration": "time duration",
+        "description": "description",
+        "cost": "cost",
+        "status": "status"
+      }
+    },
+    "trainer": {
+      "path": "Trainers",
+      "add_btn": "Add Trainer",
+      "add_page": {
+        "path": "Add Trainer",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit Trainer",
+        "save_btn": "Save"
+      },
+      "trainer_form": {
+        "first_name": "First Name",
+        "first_name_required": "*First Name is required",
+        "last_name": "Last Name",
+        "last_name_required": "*Last Name is required",
+        "role": "Role",
+        "role_required": "*Role is required",
+        "email": "Email",
+        "email_required": "*Email is required",
+        "phone": "Phone",
+        "phone_required": "*Phone is required",
+        "description": "Description",
+        "description_required": "*Description is required",
+        "status": "Status",
+        "status_required": "*Status is required",
+        "loading": "loading...",
+        "select": "--Select--",
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "trainer_table": {
+        "name": "name",
+        "phone": "contact number",
+        "email": "email",
+        "description": "description",
+        "status": "status"
+      }
+    },
+    "type": {
+      "path": "Training Type",
+      "add_btn": "Add Type",
+      "add_page": {
+        "path": "Add Type",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit Type",
+        "save_btn": "Save"
+      },
+      "type_form": {
+        "type": "Training Type",
+        "type_required": "*Training Type is required",
+        "description": "Description",
+        "description_required": "*Description is required",
+        "status": "Status",
+        "status_required": "*Status is required",
+        "loading": "loading...",
+        "select": "--Select--",
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "type_table": {
+        "type": "type",
+        "description": "description",
+        "status": "status"
+      }
+    }
+  },
+  "promotion": {
+    "path": "Promotion",
+    "add_btn": "Add Promotion",
+    "add_page": {
+      "path": "Add Promotion",
+      "add_btn": "Add"
+    },
+    "edit_page": {
+      "path": "Edit Promotion",
+      "save_btn": "Save"
+    },
+    "promotion_form": {
+      "employee": "Promotion For",
+      "employee_required": "*Promotion For is required",
+      "promotion_from": "Promotion From",
+      "promotion_from_required": "*Promotion From is required",
+      "promotion_to": "Promotion To",
+      "promotion_to_required": "*Promotion To is required",
+      "date": "Promotion Date",
+      "date_required": "*Promotion Date is required",
+      "loading": "loading...",
+      "select": "--Select--",
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "promotion_table": {
+      "employee": "promoted employee",
+      "department": "department",
+      "promotion_from": "promotion designation from",
+      "promotion_to": "promotion designation to",
+      "date": "promotion date"
+    }
+  },
+  "resignation": {
+    "path": "Resignation",
+    "add_btn": "Add Resignation",
+    "add_page": {
+      "path": "Add Resignation",
+      "add_btn": "Add"
+    },
+    "edit_page": {
+      "path": "Edit Resignation",
+      "save_btn": "Save"
+    },
+    "resignation_form": {
+      "employee": "Promotion For",
+      "employee_required": "*Promotion For is required",
+      "notice_date": "Notice Date",
+      "notice_date_required": "*Notice Date is required",
+      "resignation_date": "Resignation Date",
+      "resignation_date_required": "*Resignation Date is required",
+      "reason": "Reason",
+      "reason_required": "*Reason is required",
+      "loading": "loading...",
+      "select": "--Select--",
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "resignation_table": {
+      "employee": "resigning employee",
+      "department": "department",
+      "reason": "reason",
+      "notice_date": "notice date",
+      "resignation_date": "resignation date"
+    }
+  },
+  "termination": {
+    "path": "Termination",
+    "add_btn": "Add Termination",
+    "add_page": {
+      "path": "Add Termination",
+      "add_btn": "Add"
+    },
+    "edit_page": {
+      "path": "Edit Termination",
+      "save_btn": "Save"
+    },
+    "termination_form": {
+      "employee": "Terminated Employee",
+      "employee_required": "*Terminated Employee is required",
+      "type": "Termination Type",
+      "type_required": "*Termination Type is required",
+      "date": "Termination Date",
+      "date_required": "*Termination Date is required",
+      "reason": "Reason",
+      "reason_required": "*Reason is required",
+      "notice_date": "Notice Date",
+      "notice_date_required": "*Notice Date is required",
+      "loading": "loading...",
+      "select": "--Select--",
+      "active": "Active",
+      "inactive": "Inactive",
+      "others": "Others",
+      "misconduct": "Misconduct",
+      "add": "Add"
+    },
+    "termination_table": {
+      "employee": "terminated employee",
+      "department": "department",
+      "type": "termination type",
+      "date": "termination date",
+      "reason": "reason",
+      "notice_date": "notice date"
+    }
+  },
+  "assets": {
+    "path": "Assets",
+    "add_btn": "Add Asset",
+    "add_page": {
+      "path": "Add Asset",
+      "add_btn": "Add"
+    },
+    "edit_page": {
+      "path": "Edit Asset",
+      "save_btn": "Save"
+    },
+    "assets_form": {
+      "asset_name": "Asset Name",
+      "asset_name_required": "*Asset name is required",
+      "asset_id": "Asset Id",
+      "asset_id_required": "*Asset Id is required",
+      "purchase_from": "Purchase From",
+      "purchase_from_required": "*Purchase Date is required",
+      "purchase_to": "Purchase To",
+      "purchase_to_required": "*Purchase To is required",
+      "manufacturer": "Manufacturer",
+      "model": "Model",
+      "serial_number": "Serial Number",
+      "supplier": "Supplier",
+      "condition": "Condition",
+      "warranty": "Warranty",
+      "warranty_required": "*Warranty is required",
+      "value": "Value",
+      "value_required": "*Value is required",
+      "user": "Asset User",
+      "user_required": "*Asset user is required",
+      "description": "Description",
+      "status": {
+        "label": "Status",
+        "approved": "Approved",
+        "pending": "Pending",
+        "deployed": "Deployed",
+        "damaged": "Damaged",
+        "required": "*Asset status is required"
+      },
+      "loading": "loading...",
+      "select": "--Select--",
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "assets_table": {
+      "user": "asset user",
+      "asset_name": "asset name",
+      "asset_id": "asset id",
+      "purchase_from": "purchase date",
+      "warrenty": "warrenty",
+      "warrenty_end": "warrenty end",
+      "value": "amount",
+      "status": "status"
+    }
+  },
+  "users": {
+    "path": "Users",
+    "add_btn": "Add User",
+    "add_page": {
+      "path": "Add User",
+      "add_btn": "Add"
+    },
+    "edit_page": {
+      "path": "Edit User",
+      "save_btn": "Save"
+    },
+    "users_form": {
+      "first_name": "First Name",
+      "first_name_required": "*First Name is required",
+      "last_name": "Last Name",
+      "last_name_required": "*Last Name is required",
+      "username": "Username",
+      "username_required": "*Username is required",
+      "email": "Email",
+      "email_required": "*Email is required",
+      "password": "Password",
+      "password_required": "*Password is required",
+      "confirmPassword": "Confirm Password",
+      "confirmPassword_required": "*Password not Match",
+      "phone": "Phone",
+      "phone_required": "*Phone is required",
+      "role": {
+        "label": "Role",
+        "admin": "admin",
+        "client": "client",
+        "employee": "employee",
+        "required": "*Role is required"
+      },
+      "company": "Company",
+      "company_required": "*Company is required",
+      "employee": "Employee",
+      "module_permission": "Page",
+      "read": "Read",
+      "write": "Edit",
+      "create": "Add",
+      "delete": "Delete",
+      "import": "Import",
+      "export": "Export",
+      "user_type": "Select User Type",
+      "employee_type": "Employee",
+      "client_type": "Client",
+      "normal_type": "Normal",
+      "loading": "loading...",
+      "select": "--Select--"
+    },
+    "users_table": {
+      "employee": "name",
+      "email": "email",
+      "company": "company",
+      "date": "created date",
+      "role": "role"
+    }
+  },
+  "settings": {
+    "sidebar": {
+      "back_to_home": "Back to Home",
+      "title": "Settings",
+      "company": "Company Settings",
+      "localization": "Localization",
+      "theme": "Theme Settings",
+      "roles": "Roles & Permissions",
+      "email": "Email Settings",
+      "performance": "Performance Configuration",
+      "approval": "Approval Settings",
+      "invoice": "Invoice Settings",
+      "salary": "Salary Settings",
+      "notifications": "Notifications Settings",
+      "change_password": "Change Password",
+      "leave_type": "Leave Type",
+      "toxbox": "Toxbox Settings",
+      "cron": "Cron Settings"
+    },
+    "company": {
+      "title": "Company Settings",
+      "companyName": "Company Name",
+      "companyName_required": "*Company name is required",
+      "contactPerson": "Contact Person",
+      "contactPerson_required": "*Contact person is required",
+      "address": "Address",
+      "address_required": "*Address is required",
+      "country": "Country",
+      "country_required": "*Country is required",
+      "city": "City",
+      "city_required": "*City is required",
+      "state": "State/Province",
+      "state_required": "*State is required",
+      "postalCode": "Postal Code",
+      "postalCode_required": "*Postal code is required",
+      "email": "Email",
+      "email_required": "*Email is required",
+      "phoneNumber": "Phone Number",
+      "phoneNumber_required": "*Phone number is required",
+      "mobileNumber": "Mobile Number",
+      "mobileNumber_required": "*Mobile number is required",
+      "fax": "Fax",
+      "fax_required": "*Fax is required",
+      "website": "Website Url",
+      "website_required": "*Website URL is required",
+      "save": "Save"
+    },
+    "localization": {
+      "title": "Basic Settings",
+      "defaultCountry": "Default Country",
+      "defaultCountry_required": "*Default country is required",
+      "dateFormat": "Date Format",
+      "dateFormat_required": "*Date format is required",
+      "timeZone": "Timezone",
+      "timeZone_required": "*Time zone is required",
+      "deafultLanguage": "Default Language",
+      "deafultLanguage_required": "*Default Language is required",
+      "currencyCode": "Currency Code",
+      "currencyCode_required": "*Currency Code is required",
+      "text": "Currency Symbol",
+      "save": "Save"
+    },
+    "theme": {
+      "title": "Theme Settings",
+      "websiteName": "Website Name",
+      "websiteName_required": "*Website name is required",
+      "lightLogo": "Light Logo",
+      "lightLogo_required": "*Light logo is required",
+      "favicon": "Favicon",
+      "favicon_required": "*Favicon is required",
+      "save": "Save"
+    },
+    "roles": {
+      "title": "Roles & Permissions",
+      "add_role": "Add Role",
+      "edit_btn": "edit",
+      "delete_btn": "delete",
+      "module_access": "Modules Access",
+      "module_permission": "Page",
+      "read": "Read",
+      "write": "Update",
+      "create": "Add",
+      "delete": "Delete",
+      "import": "Import",
+      "export": "Export",
+      "role_name": "Role Name",
+      "role_name_required": "*Role name is required",
+      "add": "Add",
+      "edit_role": "Edit Role",
+      "save": "Save"
+    },
+    "email": {
+      "phpMail": "PHP Mail",
+      "phpMail_required": "*PHP mail is required",
+      "smtp": "SMTP",
+      "smtp_required": "*SMTP is required",
+      "emailAddress": "Email From Address",
+      "emailAddress_required": "*Email from address is required",
+      "emailName": "Emails From Name",
+      "emailName_required": "*Email from name is required",
+      "smtpHost": "SMTP HOST",
+      "smtpHost_required": "*SMTP host is required",
+      "smtpUser": "SMTP USER",
+      "smtpUser_required": "*SMTP user is required",
+      "smtpPassword": "SMTP PASSWORD",
+      "smtpPassword_required": "*SMTP password is required",
+      "smtpPort": "SMTP PORT",
+      "smtpPort_required": "*SMTP port is required",
+      "smtpSecurity": "SMTP Security",
+      "smtpSecurity_required": "*SMTP Security is required",
+      "smtpAuthentication": "SMTP Authentication Domain",
+      "smtpAuthentication_required": "*SMTP Authentication is required",
+      "save": "Save"
+    },
+    "performance": {
+      "title": "Performance Configuration",
+      "save": "Save"
+    },
+    "approval": {
+      "title": "Approval Settings",
+      "expenses_approval": "Expenses Approval",
+      "leave_approval": "Leave Approval",
+      "offer_approval": "Offer Approval",
+      "resignation_notice": "Resignation Notice",
+      "expense_approval_settings": "Expense Approval Settings",
+      "default_expense_approval": "Default Expense Approval",
+      "sequence_approval": "Sequence Approval (Chain)",
+      "simultaneous_approval": "Simultaneous Approval",
+      "expense_approvers": "Expense Approvers",
+      "approver_1": "Approver 1",
+      "approver_2": "Approver 2",
+      "approver_3": "Approver 3",
+      "add_approver": "+ Add Approver",
+      "save_changes": "Save Changes",
+      "default_leave_approval": "Default Leave Approval",
+      "leave_approvals": "leave Approvers",
+      "offer_approval_settings": "Offer Approval Settings",
+      "default_offer_approval": "Default Offer Approval",
+      "email_notification": "Email Notification",
+      "notice_days": "Notice Days"
+    },
+    "invoice": {
+      "title": "Invoice Settings",
+      "invoicePrefix": "Invoice Prefix",
+      "invoicePrefix_required": "Invoice Prefix is required",
+      "invoiceLogo": "Invoice Logo",
+      "invoiceLogo_required": "Invoice Logo is required",
+      "image_dec": "Recommended image size is 200px x 40px",
+      "save": "Save"
+    },
+    "salary": {
+      "title": "Salary Settings",
+      "da_and_hra": "DA and HRA",
+      "da": "DA (%)",
+      "da_required": "*DA (%) is required",
+      "hra": "HRA (%)",
+      "hra_required": "*HRA (%) is required",
+      "provident_fund_settings": "Provident Fund Settings",
+      "employeeShare": "Employee Share (%)",
+      "employeeShare_required": "*Employee share is required",
+      "organisationShare": "Organization Share (%)",
+      "organisationShare_required": "*Organisation share is required",
+      "esi_settings": "ESI Settings",
+      "esiEmployeeShare": "Employee Share (%)",
+      "esiEmployeeShare_required": "*Employee share is required",
+      "esiOrganisationShare": "Organization Share (%",
+      "esiOrganisationShare_required": "*Organisation share is required",
+      "tds": "TDS",
+      "annual_salary": "Annual Salary",
+      "annualSalaryFrom1": "Salary From",
+      "annualSalaryFrom1_required": "*Salary is required",
+      "annualSalaryTo1": "Salary To",
+      "annualSalaryTo1_required": "*Salary is required",
+      "annualpercentage1_required": "*Salary percentage is required",
+      "annualSalaryFrom2": "Salary From",
+      "annualSalaryFrom2_required": "*Salary is required",
+      "annualSalaryTo2": "Salary To",
+      "annualSalaryTo2_required": "*Salary is required",
+      "annualpercentage2_required": "*Salary percentage is required",
+      "save": "Save"
+    },
+    "notifications": {
+      "title": "Notifications Settings",
+      "employee": "Employee",
+      "holidays": "Holidays",
+      "leaves": "Leaves",
+      "events": "Events",
+      "chat": "Chat",
+      "jobs": "Jobs"
+    },
+    "password": {
+      "title": "Change Password",
+      "oldPassword": "Old password",
+      "oldPassword_required": "*Old password is required",
+      "newPassword": "New password",
+      "newPassword_required": "*New password is required",
+      "confirmPassword": "Confirm password",
+      "confirmPassword_required": "Password not Match",
+      "save": "Save"
+    },
+    "leave_types": {
+      "path": "Leave Types",
+      "add_btn": "Add Leave Type",
+      "add_page": {
+        "path": "Add Leave Type",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit Leave Type",
+        "save_btn": "Save"
+      },
+      "leave_types_form": {
+        "type": "Leave days",
+        "type_required": "*Leave days is required",
+        "days": "Number of days",
+        "days_required": "*Leave days is required",
+        "status": "Status",
+        "status_required": "*Status is required",
+        "active": "Active",
+        "inactive": "Inactive",
+        "loading": "loading...",
+        "select": "--Select--"
+      },
+      "leave_types_table": {
+        "type": "type",
+        "days": "days",
+        "status": "status"
+      }
+    },
+    "toxbox": {
+      "title": "ToxBox Setting",
+      "apiKey": "ApiKey",
+      "apiSecret": "ApiSecret",
+      "save": "Save"
+    },
+    "cron": {
+      "title": "Cron Setting",
+      "cron_key": "Cron Key",
+      "auto_backup_database": "Auto Backup Database",
+      "save": "Save"
+    }
+  },
+  "jobs": {
+    "job_applicant": {
+      "path": "Job Applicant",
+      "add_btn": "Add Job Applicant",
+      "add_page": {
+        "path": "Add Job Applicant",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit Job Applicant",
+        "save_btn": "Save"
+      },
+      "job_applicant_form": {
+        "name": "Name",
+        "name_required": "*Name is required",
+        "email": "Email",
+        "email_required": "*Email is required",
+        "phone": "Phone",
+        "phone_required": "*Phone is required",
+        "date": "Date",
+        "date_required": "*Date is required",
+        "status": "Status",
+        "resume": "Resume",
+        "loading": "loading...",
+        "select": "--Select--"
+      },
+      "job_applicant_table": {
+        "name": "name",
+        "email": "email",
+        "phone": "phone",
+        "date": "apply date",
+        "status": "status",
+        "resume": "resume"
+      }
+    },
+    "add_aptitude_result": {
+      "path": "Aptitude Result",
+      "add_btn": "Add Aptitude Result",
+      "add_page": {
+        "path": "Add Aptitude Result",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit Aptitude Result",
+        "save_btn": "Save"
+      },
+      "job_applicant_form": {
+        "employeeId": "Employee ID",
+        "employeeId_required": "*Name is required",
+        "jobId": "Job Title",
+        "jobId_required": "*Job required",
+        "wise_mark": "Category Wise Mark",
+        "wise_mark_required": "*Wise Mark required",
+        "total_mark": "Total Mark",
+        "total_mark_required": "*Total Mark required",
+        "status": "Status",
+        "status_required": "*Status required",
+        "resume": "Resume",
+        "loading": "loading...",
+        "select": "--Select--"
+      },
+      "job_applicant_table": {
+        "employeeId": "name",
+        "jobId": "job title",
+        "department": "department",
+        "wise_mark": "category wise mark",
+        "total_mark": "total mark",
+        "status": "status"
+      }
+    },
+    "schedule_timing": {
+      "path": "Schedule Timing",
+      "add_btn": "Add Schedule Timing",
+      "add_page": {
+        "path": "Add Schedule Timing",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit Schedule Timing",
+        "save_btn": "Save"
+      },
+      "schedule_timing_form": {
+        "employeeId": "Employee ID",
+        "employeeId_required": "*Email is required",
+        "jobId": "Job Title",
+        "jobId_required": "*Job required",
+        "first_schedule_date": "Schedule Date 1",
+        "first_schedule_timing": "Select Time",
+        "second_schedule_date": "Schedule Date 2",
+        "second_schedule_timing": "Select Time",
+        "third_schedule_date": "Schedule Date 3",
+        "third_schedule_timing": "Select Time",
+        "loading": "loading...",
+        "select": "--Select--"
+      },
+      "schedule_timing_table": {
+        "employeeId": "name",
+        "jobId": "job title",
+        "timings": "user available timings",
+        "schedule": "schedule timing"
+      }
+    },
+    "candidates": {
+      "path": "Candidates List",
+      "add_btn": "Add Candidates List",
+      "add_page": {
+        "path": "Add Candidates List",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit Candidates List",
+        "save_btn": "Save"
+      },
+      "candidates_form": {
+        "first_name": "First Name",
+        "last_name": "Last Name",
+        "email": "Email",
+        "email_required": "*Email required",
+        "employeeId": "Employee ID",
+        "created_date": "Created Date",
+        "created_date_required": "*Date required",
+        "phone": "Phone",
+        "phone_required": "*Phone required",
+        "loading": "loading...",
+        "select": "--Select--"
+      },
+      "candidates_table": {
+        "employeeId": "name",
+        "phone": "mobile number",
+        "email": "email",
+        "created_date": "created date"
+      }
+    },
+    "experience": {
+      "path": "Experience List",
+      "add_btn": "Add Experience",
+      "add_page": {
+        "path": "Add Experience",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit Experience",
+        "save_btn": "Save"
+      },
+      "experience_form": {
+        "experience": "Experience Level",
+        "experience_required": "*Experience level required",
+        "status": "Status",
+        "status_required": "*Status required",
+        "active": "Active",
+        "inactive": "Inactive",
+        "loading": "loading...",
+        "select": "--Select--"
+      },
+      "experience_table": {
+        "experience": "experience",
+        "status": "status"
+      }
+    },
+    "offer": {
+      "path": "Offer Approvals",
+      "add_btn": "Add Offer Approvals",
+      "add_page": {
+        "path": "Add Offer Approvals",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit Offer Approvals",
+        "save_btn": "Save"
+      },
+      "offer_form": {
+        "employeeId": "Name",
+        "employeeId_required": "*Name required",
+        "jobId": "Job Title",
+        "jobId_required": "*Job required",
+        "pay": "Pay",
+        "pay_required": "*Pay required",
+        "annual_ip": "Annual Ip",
+        "annual_ip_required": "*Annual Ip required",
+        "long_term_ip": "Long Term Ip",
+        "long_term_ip_required": "*Long Term Ip required",
+        "status": "Status",
+        "status_required": "*Status required",
+        "loading": "loading...",
+        "select": "--Select--"
+      },
+      "offer_table": {
+        "employeeId": "name",
+        "jobId": "job title",
+        "type": "job type",
+        "pay": "pay",
+        "annual_ip": "annual ip",
+        "long_term_ip": "long term ip",
+        "status": "status"
+      }
+    },
+    "interview": {
+      "path": "Interview Questions",
+      "add_btn": "Add Interview Questions",
+      "add_page": {
+        "path": "Add Interview Question",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit Interview Question",
+        "save_btn": "Save"
+      },
+      "interview_form": {
+        "category": "Add Category",
+        "department": "Department",
+        "add_question": "Add Questions",
+        "add_question_required": "*Questions required",
+        "option_a": "Option A",
+        "option_a_required": "*Quesitons required",
+        "option_b": "Option B",
+        "option_b_required": "*Quesitons required",
+        "option_c": "Option C",
+        "option_c_required": "*Quesitons required",
+        "option_d": "Option D",
+        "option_d_required": "*Quesitons required",
+        "answer": "Correct Answer",
+        "answer_required": "*Anwser required",
+        "code_snippets": "Code Snippets",
+        "answer_explanation": "Answer Explanation",
+        "video_link": "Add Video Link",
+        "file": "Add Image To Question",
+        "loading": "loading...",
+        "select": "--Select--"
+      },
+      "interview_table": {
+        "add_question": "questions",
+        "option_a": "option a",
+        "option_b": "option b",
+        "option_c": "option c",
+        "option_d": "option d",
+        "answer": "correct anwser"
+      }
+    },
+    "shortlist": {
+      "path": "Shortlist Candidates",
+      "add_btn": "Add Shortlist",
+      "add_page": {
+        "path": "Add Shortlist",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit Shortlist",
+        "save_btn": "Save"
+      },
+      "shortlist_form": {
+        "employeeId": "Name",
+        "employeeId_required": "*Name required",
+        "jobId": "Job Title",
+        "jobId_required": "*Job required",
+        "status": "Status",
+        "status_required": "*Status required",
+        "loading": "loading...",
+        "select": "--Select--"
+      },
+      "shortlist_table": {
+        "employeeId": "name",
+        "jobId": "job title",
+        "department": "department",
+        "status": "status",
+        "option_d": "option d",
+        "answer": "correct anwser"
+      }
+    },
+    "resumes": {
+      "path": "Manage Resumes",
+      "resumes_table": {
+        "name": "name",
+        "job_title": "job title",
+        "department": "department",
+        "start_date": "start date",
+        "expire_date": "expire date",
+        "job_type": "job type",
+        "status": "status",
+        "resume": "resume"
+      }
+    },
+    "jobs": {
+      "path": "Jobs",
+      "add_btn": "Add Job",
+      "add_page": {
+        "path": "Add Job",
+        "add_btn": "Add"
+      },
+      "edit_page": {
+        "path": "Edit Job",
+        "save_btn": "Save"
+      },
+      "jobs_form": {
+        "job_title": "Job Title",
+        "job_title_required": "*Job title is required",
+        "department": "Department",
+        "department_required": "*Department is required",
+        "job_location": "Job Location",
+        "no_of_vacancies": "No of Vacancies",
+        "experience": "Experience",
+        "age": "Age",
+        "salary_from": "Salary From",
+        "salary_to": "Salary To",
+        "job_type": "Job Type",
+        "status": "Status",
+        "category": "Category",
+        "start_date": "Start Date",
+        "start_date_required": "*Start date is required",
+        "expire_date": "Expired Date",
+        "expire_date_required": "*Expire date is required",
+        "description": "Description",
+        "loading": "loading...",
+        "select": "--Select--"
+      },
+      "jobs_table": {
+        "job_title": "job title",
+        "department": "department",
+        "start_date": "start date",
+        "expire_date": "expire date",
+        "job_type": "job type",
+        "status": "status",
+        "applicants": "applicants"
+      }
+    },
+    "jobs_dashboard": {
+      "path": "Job Dashboard",
+      "Jobs": "Jobs",
+      "job_seekers": "Job Seekers",
+      "employees": "Employees",
+      "applications": "Applications",
+      "overview": "Overview",
+      "latest_jobs": "Latest Jobs",
+      "applicants_list": "Applicants List",
+      "download": "Download",
+      "shortlist_candidates": "Shortlist Candidates"
+    },
+    "user_dashboard": {
+      "title": "User Job Dashboard",
+      "dashboard": "Dashboard",
+      "jobs": "Jobs",
+      "user_dashboard": "User Dashboard",
+      "all": "All",
+      "saved": "Saved",
+      "applied": "Applied",
+      "interviewing": "Interviewing",
+      "offered": "Offered",
+      "visited": "Visited",
+      "archived": "Archived",
+      "overview": "Overview",
+      "latest_jobs": "Latest Jobs",
+      "offered_jobs": "Offered Jobs",
+      "applied_jobs": "Applied Jobs",
+      "download_offer": "Download Offer",
+      "delete": "Delete"
+    },
+    "saved_jobs": {
+      "title": "Saved Jobs"
+    },
+    "applied_jobs": {
+      "title": "Applied Jobs"
+    },
+    "visited_jobs": {
+      "title": "Visited Jobs"
+    },
+    "archived_jobs": {
+      "title": "Archived Jobs"
+    },
+    "offered_jobs": {
+      "title": "Offered Jobs"
+    },
+    "interviewing_jobs": {
+      "title": "Interviewing",
+      "apptitude": "Apptitude",
+      "schedule_interview": "Schedule Interview"
+    }
+  },
+  "profile": {
+    "path": "Profile",
+    "employee_id": "Employee ID",
+    "date_join": "Date of Join",
+    "send_message": "Send Message",
+    "phone": "Phone",
+    "email": "Email",
+    "birthday": "Birthday",
+    "address": "Address",
+    "gender": "Gender",
+    "reports_to": "Reports to",
+    "profile": "Profile",
+    "projects": "Projects",
+    "bank_statutory": "Bank & Statutory",
+    "admin_only": "Admin Only",
+    "personal_informations": "Personal Informations",
+    "passport_no": "Passport No",
+    "passport_exp_date": "Passport Exp Date",
+    "tel": "Tel",
+    "nationality": "Nationality",
+    "religion": "Religion",
+    "matrital_status": "matrital status",
+    "employment_spouse": "Employment of spouse",
+    "no_children": "No. of children",
+    "emergency_contact": "Emergency Contact",
+    "primary": "Primary",
+    "name": "Name",
+    "relationship": "Relationship",
+    "secondary": "Secondary",
+    "bank_information": "Bank information",
+    "bank_name": "Bank name",
+    "Bank_account": "Bank account No.",
+    "ifsc_code": "IFSC Code",
+    "pan_no": "PAN No",
+    "family_informations": "Family Informations",
+    "date_birth": "Date of Birth",
+    "add_more": "Add More",
+    "member": "Family Member",
+    "edit": "Edit",
+    "delete": "Delete",
+    "education_informations": "Education Informations",
+    "experience": "Experience",
+    "institution": "Institution",
+    "subject": "Subject",
+    "starting_date": "Starting Date",
+    "complete_date": "Complete Date",
+    "degree": "degree",
+    "grade": "grade",
+    "experience_informations": "Experience Informations",
+    "company_name": "Company Name",
+    "location": "Location",
+    "job_position": "Job Position",
+    "period_from": "Period From",
+    "period_to": "Period To"
+
+  },
+  "userActivities": {
+    "path": "User Activities (logs)",
+    "table": {
+      "table_name": "Table Name",
+      "date": "Date",
+      "action": "Action",
+      "ip_address": "Ip Address"
+    }
+  },
+
+  "notifications": {
+    "path": "Notifications",
+    "no_notifications": "No Notifications Available Yet",
+    "send_btn": "Send Notifications",
+    "form": {
+      "path": "Send Notifications",
+      "title": "Title",
+      "title_required": "Title is required",
+      "priority": "Priority",
+      "priority_required": "Priority is required",
+      "content": "Content",
+      "content_required": "Content is required",
+      "sendTo": "Send To",
+      "all": "All",
+      "admin": "Admin",
+      "multible": "Multible",
+      "users": "Users",
+      "send_btn": "Send"
+    }
+  },
+  "trash": {
+    "path": "Trash",
+    "delete_tmp_btn": "Delete Not Active Data"
+  },
+  "licenses": {
+    "path": "Licenses",
+    "table": {
+      "companyId": "Company Name",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "active": "Active"
+    },
+    "form": {
+      "add_path": "Add License",
+      "edit_path": "Edit License",
+      "companyName": "Company Name",
+      "startDate": "Start Date",
+      "startDate_required": "Start date is required",
+      "endDate": "End Date",
+      "endDate_required": "End date is required",
+      "price": "License Price",
+      "price_required": "Price is required",
+      "no": "No",
+      "yes": "Yes",
+      "status": "Licesnse Status",
+      "status_required": "Licesnse Status is required",
+      "add_btn": "Add",
+      "save_btn": "Save"
+    }
+  },
+  "companies": {
+    "path": "Branches",
+    "table": {
+      "companyName": "Branch Name",
+      "address": "Address",
+      "phone": "Phone Number",
+      "firstName": "Manager Name"
+    },
+    "form": {
+      "add_path": "Add Branch",
+      "edit_path": "Edit Branch",
+      "companySection": "Branch Section",
+      "managerSection": "Manager Section",
+      "companyName": "Branch Name",
+      "companyName_required": "Branch Name is required",
+      "address": "Address",
+      "phone": "Phone",
+      "fax": "Fax",
+      "country": "Country",
+      "city": "City",
+      "state": "State",
+      "postal": "Postal",
+      "contact": "Contact",
+      "companyEmail": "Branch Email",
+      "next": "Next",
+      "firstName": "First Name",
+      "firstName_required": "First Name is required",
+      "lastName": "Last Name",
+      "lastName_required": "Last Name is required",
+      "userName": "User Name",
+      "userName_required": "User Name is required",
+      "managerEmail": "Manager Email",
+      "managerEmail_required": "Manager Email is required",
+      "validEmail": "please enter valid email",
+      "vaildPassword": "Password must be at least 8 characters.",
+      "add_btn": "Add",
+      "save_btn": "Save"
+    }
+  }
+}

@@ -1,0 +1,85 @@
+header {
+  height: var(--header-height);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.header-logo {
+  /* display: grid;
+  place-content: center; */
+  overflow: hidden;
+  transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  -ms-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+}
+.logo {
+  text-align: center;
+}
+
+.header-title {
+  font-size: 20px;
+  font-weight: normal;
+  margin-bottom: 0;
+}
+
+.toggle-menu-icon {
+  font-size: 20px;
+}
+
+#toggle_btn {
+  color: #999;
+  float: left;
+  font-size: 26px;
+  line-height: 70px;
+  padding: 0 5px;
+  display: none;
+}
+#toggle_btn .bar-icon {
+  display: inline-block;
+  width: 21px;
+}
+#toggle_btn .bar-icon span {
+  background-color: #ffffff;
+  display: block;
+  float: left;
+  height: 2px;
+  width: 21px;
+  border-radius: 50px;
+}
+#toggle_btn .bar-icon.light-theme-color span {
+  background-color: black;
+}
+
+#toggle_btn .bar-icon span:not(:last-child) {
+  margin: 0 0 5px;
+}
+#toggle_btn .bar-icon span:nth-child(2) {
+  width: 15px;
+}
+
+
+/* dirctions */
+header[dir="rtl"] #toggle_btn {
+  transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  -moz-transform: scaleX(-1);
+  -ms-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+}
+/* mobile */
+/* On screens that are 992px or less */
+@media (max-width: 992px) {
+  .header-title {
+    display: none;
+  }
+  .header-logo {
+    display: none;
+  }
+  #toggle_btn {
+    display: block;
+  }
+}

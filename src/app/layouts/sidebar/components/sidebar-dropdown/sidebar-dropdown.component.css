@@ -1,0 +1,117 @@
+.dropdown-submenu {
+  transition: max-height 0.4s ease-in-out;
+  -webkit-transition: max-height 0.4s ease-in-out;
+  -moz-transition: max-height 0.4s ease-in-out;
+  -ms-transition: max-height 0.4s ease-in-out;
+  -o-transition: max-height 0.4s ease-in-out;
+}
+
+.dropdown-submenu li {
+  padding: 8px 8px 8px 52px;
+}
+
+.dropdown-submenu li:hover {
+  font-weight: bold;
+}
+
+.dropdown-submenu li a {
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.active {
+  text-decoration: underline;
+}
+.active-title {
+  color: #ffffff;
+  /* background-color: #b71b1b; */
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+
+/*==========================
+ sidebar dropdown dirctions
+ ========================== */
+.sidebar-dropdown-menu {
+  position: relative;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-bottom: 1px solid rgba(169, 170, 174, 0.1);
+}
+.dropdown-header {
+  padding: 12px;
+  /* padding: 8px 15px; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  transition: all 0.1s;
+  -webkit-transition: all 0.1s;
+  -moz-transition: all 0.1s;
+  -ms-transition: all 0.1s;
+  -o-transition: all 0.1s;
+}
+.dropdown-header .header-content {
+  padding: 8px 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.dropdown-header .header-content span {
+  font-size: 15px;
+}
+.dropdown-header .menu-arrow {
+  display: grid;
+  place-content: center;
+  right: 10px;
+  transition: 0.4s ease;
+  -webkit-transition: 0.4s ease;
+  -moz-transition: 0.4s ease;
+  -ms-transition: 0.4s ease;
+  -o-transition: 0.4s ease;
+}
+
+.dropdown-header:hover {
+  font-weight: bold;
+}
+/* to hide text when sidebar closed */
+.hideText {
+  opacity: 0;
+}
+.dropdown-submenu-cover {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 98;
+  /* background-color: #009be9; */
+}
+.show-dropdown-submenu-cover {
+  display: block;
+}
+.sidebar-dropdown-menu[dir*="rtl"] .dropdown-submenu li {
+  padding: 8px 52px 8px 8px;
+}
+
+.sidebar-dropdown-menu[dir*="rtl"] .dropdown-submenu li a {
+  text-align: right;
+}
+
+.sidebar-dropdown-menu[dir*="ltr"] .menu-arrow.rotate,
+.sidebar-dropdown-menu[dir*="rtl"] .menu-arrow.rotate {
+  transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+}
+.sidebar-dropdown-menu[dir*="rtl"] .menu-arrow {
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+}

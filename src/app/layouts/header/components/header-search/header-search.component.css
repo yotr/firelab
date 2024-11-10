@@ -1,0 +1,97 @@
+/* left to right */
+.header-search-form {
+  position: relative;
+  width: 230px;
+  height: 38.5px;
+  display: flex;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.1);
+  align-items: center;
+  border-radius: 40px;
+  -webkit-border-radius: 40px;
+  -moz-border-radius: 40px;
+  -ms-border-radius: 40px;
+  -o-border-radius: 40px;
+}
+.header-search-form.default {
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  /* color: black; */
+}
+.header-search-form.light {
+  border: 1px solid #bababa;
+}
+.header-search-form .search-input {
+  border: none;
+  width: 100%;
+  padding-left: 20px;
+  background-color: transparent;
+}
+.header-search-form .search-btn {
+  outline: none;
+  border: none;
+  padding: 7px 15px;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-search-form .search-icon {
+  color: #e9e5e5;
+}
+.search-result {
+  position: absolute;
+  top: 110%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  max-height: 250px;
+  overflow-y: auto;
+  background-color: white;
+  z-index: 1;
+}
+ul li div {
+  display: flex;
+  flex-direction: column;
+}
+ul li div span:hover {
+  cursor: pointer;
+  background-color: #eeeded;
+}
+/*============
+ right to left
+ ============= */
+.header-search-form[dir="rtl"] .search-input {
+  padding-right: 20px;
+}
+/* mobile */
+
+/* On screens that are 992px or less */
+@media (max-width: 992px) {
+  /* left to right */
+  .header-search-form {
+    width: fit-content;
+    border: none;
+    background-color: transparent;
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius: 0px;
+    -ms-border-radius: 0px;
+    -o-border-radius: 0px;
+  }
+  .header-search-form.default,
+  .header-search-form.light {
+    border: none;
+  }
+  .header-search-form .search-input {
+    display: none;
+  }
+  .header-search-form .search-btn {
+    background-color: transparent;
+    padding: 0;
+  }
+  .header-search-form .search-icon {
+    /* color: #ffffff; */
+    color: #bababa;
+  }
+}

@@ -1,0 +1,47 @@
+<div class="sidebar-dropdown-menu overflow-hidden" [dir]="'dir' | translate">
+  <!-- dropdwon header -->
+  <a
+    class="dropdown-header"
+    role="button"
+    (click)="handleActiveMenu(list?.title)"
+    [ngClass]="{ 'dropdown-active': activeMenu.value == list?.title }"
+    [routerLink]="list?.link"
+    routerLinkActive="active-title"
+  >
+    <div class="header-content">
+      <!-- icon -->
+      <i
+        class="pi {{ list?.icon }} {{
+          isSidebarClosed ? 'big-link-icon' : 'small-link-icon'
+        }} "
+      ></i>
+      <!-- title -->
+      <span>{{ list?.title }}</span>
+    </div>
+    <!-- arrow -->
+    <span
+      class="menu-arrow {{ currentTheme?.sidebarColor?.color }}"
+      [ngClass]="{ rotate: activeMenu.value === list?.title }"
+    >
+      <i class="pi pi-angle-right"></i>
+    </span>
+  </a>
+  <!-- dropdown submenu -->
+  <div
+    class="dropdown-submenu"
+    [ngStyle]="{ maxHeight: activeMenu.value == list?.title ? '1000px' : 0 }"
+    [@toggle-animation]="activeMenu.value == list?.title ? 'opened' : 'closed'"
+  >
+    <ng-container *ngFor="let link of list?.list">
+      <li
+        *ngIf="currentLanguage == 'ar' ? link?.page_en : link?.page"
+        [routerLink]="link?.path"
+        [queryParams]="link?.query"
+        routerLinkActive="active"
+        role="button"
+      >
+        <a class="{{ currentTheme?.sidebarColor?.color }}">{{ link?.page }}</a>
+      </li>
+    </ng-container>
+  </div>
+</div>

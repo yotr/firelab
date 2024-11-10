@@ -1,0 +1,207 @@
+<div class="time-container">
+  <!-- header -->
+  <div class="d-flex align-items-center justify-content-between">
+    <div class="d-flex align-items-center">
+      <app-back-button></app-back-button>
+      <h3 class="text-muted">Ibrahim Joe</h3>
+    </div>
+    <div class="d-flex align-items-center gap-2">
+      <label for="simpleCalendarUpCenter" class="form-label">Date Range</label>
+      <input
+        type="text"
+        id="simpleCalendarUpCenter"
+        class="form-control"
+        style="
+          box-shadow: none;
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        "
+        readonly
+        ngxDaterangepickerBootstrap
+        [(ngModel)]="selectedSimpleCalendarUpCenter"
+        [drops]="dropsDown"
+        [opens]="opensCenter"
+        [locale]="locale"
+        [showCancel]="true"
+        [linkedCalendars]="true"
+        [alwaysShowCalendars]="false"
+        [showRangeLabelOnInput]="false"
+        [keepCalendarOpeningWithRange]="false"
+        [isTooltipDate]="isTooltipDate"
+        [isCustomDate]="isCustomDate"
+        [isInvalidDate]="isInvalidDate"
+        (datesUpdated)="datesUpdatedRange($event)"
+        aria-describedby="simpleCalendarUpCenterDesc"
+      />
+    </div>
+  </div>
+  <!-- time table -->
+  <!-- title -->
+  <p class="my-4">TimeCard</p>
+  <table class="table table-bordered border border-1 border-dark">
+    <thead>
+      <tr>
+        <th scope="col">Days</th>
+        <th scope="col" class="text-center text-info">Driving</th>
+        <th scope="col" class="text-center text-success">Break</th>
+        <th scope="col" class="text-center text-danger">Working</th>
+        <th scope="col" class="text-center text-muted">Clocked Out</th>
+        <th scope="col" class="text-center text-warning">Miscellaneous</th>
+        <th scope="col" class="text-center text-muted">Total Hours</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="border border-1 border-secondary">
+        <th class="bg-danger text-white" scope="row">{{ today | date }}</th>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+      </tr>
+      <tr class="border border-1 border-secondary">
+        <th class="bg-danger text-white" scope="row">{{ today | date }}</th>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+      </tr>
+      <tr class="border border-1 border-secondary">
+        <th class="bg-danger text-white" scope="row">{{ today | date }}</th>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+      </tr>
+      <tr class="border border-1 border-light">
+        <td class="empty-table-area" colspan="6"></td>
+        <td class="text-center text-muted border border-1 border-dark">
+          0 hs 0 mins
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- <div class="card mt-4 mb-4">
+  <div class="card-body">
+    <div class="row mb-5">
+      <div class="col-4">
+        <label for="simpleCalendarTimeUpRight" class="form-label"
+          >Simple Calendar</label
+        >
+        <input
+          type="text"
+          id="simpleCalendarTimeUpRight"
+          class="form-control"
+          style="
+            box-shadow: none;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+          "
+          readonly
+          ngxDaterangepickerBootstrap
+          [(ngModel)]="selectedSimpleCalendarTimeUpRight"
+          [drops]="dropsDown"
+          [opens]="opensRight"
+          [locale]="localeTime"
+          [timePicker]="true"
+          [timePickerSeconds]="true"
+          [timePicker24Hour]="true"
+          [showCancel]="true"
+          [linkedCalendars]="true"
+          [alwaysShowCalendars]="false"
+          [showRangeLabelOnInput]="false"
+          [keepCalendarOpeningWithRange]="false"
+          [isTooltipDate]="isTooltipDate"
+          [isCustomDate]="isCustomDate"
+          [isInvalidDate]="isInvalidDate"
+          (datesUpdated)="datesUpdatedRange($event)"
+          aria-describedby="simpleCalendarTimeUpRightDesc"
+        />
+        <div id="simpleCalendarTimeUpRightDesc" class="form-text">
+          Opens down, right, with apply button and time
+        </div>
+      </div>
+      <div class="col-4">
+        <label for="simpleCalendarUpCenter" class="form-label"
+          >Simple Calendar</label
+        >
+        <input
+          type="text"
+          id="simpleCalendarUpCenter"
+          class="form-control"
+          style="
+            box-shadow: none;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+          "
+          readonly
+          ngxDaterangepickerBootstrap
+          [(ngModel)]="selectedSimpleCalendarUpCenter"
+          [drops]="dropsDown"
+          [opens]="opensCenter"
+          [locale]="locale"
+          [showCancel]="true"
+          [linkedCalendars]="true"
+          [alwaysShowCalendars]="false"
+          [showRangeLabelOnInput]="false"
+          [keepCalendarOpeningWithRange]="false"
+          [isTooltipDate]="isTooltipDate"
+          [isCustomDate]="isCustomDate"
+          [isInvalidDate]="isInvalidDate"
+          (datesUpdated)="datesUpdatedRange($event)"
+          aria-describedby="simpleCalendarUpCenterDesc"
+        />
+        <div id="simpleCalendarUpCenterDesc" class="form-text">
+          Opens down, center, with apply button
+        </div>
+      </div>
+      <div class="col-4">
+        <label for="simpleCalendarAutoUpLeft" class="form-label"
+          >Simple Calendar</label
+        >
+        <input
+          type="text"
+          id="simpleCalendarAutoUpLeft"
+          class="form-control"
+          style="
+            box-shadow: none;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+          "
+          readonly
+          ngxDaterangepickerBootstrap
+          [(ngModel)]="selectedSimpleCalendarAutoUpLeft"
+          [drops]="dropsDown"
+          [opens]="opensLeft"
+          [locale]="locale"
+          [showCancel]="true"
+          [linkedCalendars]="true"
+          [alwaysShowCalendars]="false"
+          [showRangeLabelOnInput]="false"
+          [keepCalendarOpeningWithRange]="false"
+          [closeOnAutoApply]="true"
+          [autoApply]="true"
+          [isTooltipDate]="isTooltipDate"
+          [isCustomDate]="isCustomDate"
+          [isInvalidDate]="isInvalidDate"
+          (datesUpdated)="datesUpdatedRange($event)"
+          aria-describedby="simpleCalendarAutoUpLeftDesc"
+        />
+        <div id="simpleCalendarAutoUpLeftDesc" class="form-text">
+          Opens down, left, with auto apply
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->

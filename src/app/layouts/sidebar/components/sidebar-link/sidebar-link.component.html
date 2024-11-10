@@ -1,0 +1,13 @@
+<div class="sidebar-link" [routerLink]="path" routerLinkActive="active" [queryParams]="query">
+  <!-- link -->
+  <div class="link-title" role="button">
+    <!-- icon -->
+    <i
+      class="pi {{ icon }} {{
+        isSidebarClosed ? 'big-link-icon' : 'small-link-icon'
+      }}"
+    ></i>
+    <!-- title -->
+    <span>{{ page }}</span>
+  </div>
+</div>

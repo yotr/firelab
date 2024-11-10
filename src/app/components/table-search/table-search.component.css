@@ -1,0 +1,12 @@
+.table-search-field {
+  padding: 4px 8px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: white;
+  height: 28px;
+  font-size: small;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}

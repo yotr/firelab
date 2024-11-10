@@ -1,0 +1,122 @@
+<div class="p-4 h-100">
+  <!-- header -->
+  <h5 class="text-center fs-3">
+    {{ "import_excel.import_title" | translate }}
+  </h5>
+  <!-- import excel -->
+  <div class="button-wrap my-5 align-center">
+    <label class="btn btn-success" for="upload">{{
+      "import_excel.import_title" | translate
+    }}</label>
+    <input
+      id="upload"
+      type="file"
+      accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+      (change)="importExcel($event)"
+    />
+  </div>
+  <!-- /import excel -->
+  <!-- /header -->
+
+  <div class="table-responsive m-t-15" *ngIf="excelData.length > 0">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th *ngFor="let key of DataKeys">{{ key?.name }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let value of excelData
+              | paginate
+                : {
+                    itemsPerPage: itemsPerPage,
+                    currentPage: currentPage,
+                    totalItems: excelData?.length
+                  }
+          "
+        >
+          <ng-container *ngFor="let key of DataKeys">
+            <td
+              *ngIf="key.active"
+              [ngClass]="{
+                default: currentTheme?.colorSchema?.title != 'Dark'
+              }"
+            >
+              <!-- avatar -->
+              <!-- <a class="avatar" *ngIf="key?.name == 'imgUrl'">
+                <img
+                  class="rounded-circle"
+                  [src]="value?.imgUrl"
+                  alt="avatar"
+                  width="32"
+                  height="32"
+                />
+              </a> -->
+              <ng-container *ngIf="key?.name != 'imgUrl'">
+                {{ value[key?.name] }}
+              </ng-container>
+            </td>
+          </ng-container>
+        </tr>
+      </tbody>
+    </table>
+    <!-- no data -->
+    <h1 *ngIf="excelData?.length == 0" class="fs-3 my-4 text-center">
+      {{ "module_table.table_empty_text" | translate }}
+    </h1>
+    <!-- grid footer -->
+    <div
+      class="grid-footer"
+      [ngClass]="{
+        'dark-theme': currentTheme?.colorSchema?.title == 'Dark',
+        default: currentTheme?.colorSchema?.title != 'Dark'
+      }"
+    >
+      <!-- pagination -->
+      <pagination-controls
+        class="pagination"
+        (pageChange)="onPaginate($event)"
+        [directionLinks]="true"
+        [responsive]="true"
+        [previousLabel]="'pagination.previous' | translate"
+        [nextLabel]="'pagination.next' | translate"
+      ></pagination-controls>
+
+      <!-- table entris -->
+      <div
+        class="d-flex align-items-center gap-1"
+        *ngIf="excelData.length >= tableEntries[0]"
+      >
+        <app-table-entries
+          [entries]="tableEntries"
+          [dataLength]="excelData.length"
+          (onSizeChange)="onTableSizeChange($event)"
+        ></app-table-entries>
+        <span
+          >{{ "module_table.of_text" | translate }}
+          {{ excelData.length }}</span
+        >
+      </div>
+      <!-- /table entris -->
+    </div>
+  </div>
+  <div class="submit-section" *ngIf="excelData.length > 0">
+    <button
+      (click)="uploadExcelData()"
+      class="btn btn-primary submit-btn {{
+        currentTheme?.colorSchema?.background
+      }}"
+    >
+      {{ "import_excel.upload" | translate }}
+    </button>
+  </div>
+</div>
+
+
+<!-- loading section -->
+<!-- <div *ngIf="uploading">
+  <app-loading-section></app-loading-section>
+</div> -->
+<!-- /loading section -->

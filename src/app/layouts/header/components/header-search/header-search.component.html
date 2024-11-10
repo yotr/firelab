@@ -1,0 +1,65 @@
+<form
+  class="header-search-form"
+  [dir]="'dir' | translate"
+  [ngClass]="{
+    light: currentTheme?.colorSchema?.title === 'Light',
+    default: currentTheme?.colorSchema?.title === 'Light'
+  }"
+>
+  <input
+    class="search-input {{ currentTheme?.colorSchema?.color }}"
+    type="text"
+    placeholder="{{ 'header.searchText' | translate }}"
+    name="searchText"
+    [(ngModel)]="searchText"
+  />
+  <button class="search-btn" type="submit">
+    <!-- search icon -->
+    <i class="pi pi-search search-icon"></i>
+    <!-- <fa-icon class="search-icon" [icon]="serachInputIcon"></fa-icon> -->
+    <!-- /search icon -->
+  </button>
+  <!-- search result -->
+  <ul *ngIf="searchText" class="search-result rounded shadow p-0 text-dark">
+    <ng-container *ngFor="let result of data | filter : searchText">
+      <li>
+        <div *ngFor="let menu of result?.menu">
+          <!-- if there is list in menu -->
+          <ng-container *ngIf="menu?.list">
+            <ng-container *ngFor="let list of menu?.list">
+              <span
+                *ngIf="
+                  list?.page
+                    ?.toLowerCase()
+                    ?.includes(searchText.toLowerCase()) &&
+                  checkPagePermissions(list?.page)
+                "
+                class="px-3 py-2"
+                [routerLink]="list?.path"
+                [queryParams]="list?.query"
+                (click)="resetData()"
+                >{{ list?.page }}</span
+              >
+            </ng-container>
+          </ng-container>
+          <!-- if there is no list in menu -->
+          <ng-container *ngIf="!menu?.list">
+            <span
+              *ngIf="
+                menu?.title
+                  ?.toLowerCase()
+                  ?.includes(searchText.toLowerCase()) &&
+                checkPagePermissions(menu?.title)
+              "
+              class="px-3 py-2"
+              [routerLink]="menu?.path"
+              [queryParams]="menu?.query"
+              (click)="resetData()"
+              >{{ menu?.title }}</span
+            >
+          </ng-container>
+        </div>
+      </li>
+    </ng-container>
+  </ul>
+</form>

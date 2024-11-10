@@ -1,0 +1,107 @@
+.custom-table-dropdown {
+  position: relative;
+}
+.table-dropdown-menu {
+  position: absolute;
+  top: 120%;
+  left: 100%;
+  width: 228px;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  font-size: 14px;
+  line-height: 1.4285714286;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  color: #424242;
+  z-index: 99;
+}
+.dropdown-item {
+  padding: 4px 8px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  outline: 0;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+.dropdown-item:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+.dropdown-item.active {
+  color: #ffffff;
+  background-color: var(--secondary-table-color);
+}
+.dropdown-item-icon {
+  font-size: smaller;
+  font-weight: bold;
+}
+.dropdown-columns-submenu,
+.dropdown-filters-submenu {
+  color: #424242;
+  background-color: #ffffff;
+  transition: all 0.3s;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+}
+.dropdown-columns-submenu .columns {
+  max-height: 100px;
+  overflow-y: auto;
+}
+
+.dropdown-columns-submenu .columns .columns-submenu-item {
+  padding: 4px 8px;
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.dropdown-columns-submenu .columns .columns-submenu-item:hover {
+  background-color: rgba(0, 0, 0, 0.08);
+}
+
+/* filter form */
+.filters {
+  padding: 4px 8px;
+}
+
+.form-select {
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #424242;
+  background-color: #f5f5f5;
+  max-height: 35px;
+  background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.02));
+}
+
+.form-control {
+  border-color: rgba(0, 0, 0, 0.08);
+  color: #424242;
+  background-color: #ffffff;
+  font-size: 14px;
+  max-height: 35px;
+}
+
+/* buttons */
+.actions-btns {
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+.actions-btns button {
+  padding: 4px 8px;
+  width: 100%;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.actions-btns .submit-btn {
+  color: #ffffff;
+  background-color: var(--secondary-table-color);
+}
+

@@ -1,0 +1,16 @@
+<!-- Show entries -->
+<div class="entries">
+  <span> {{'table_entries.show_text' | translate}} </span>
+  <select (change)="onTableSizeChange($event)">
+    <option hidden selected>
+      {{ entries[0] }}
+    </option>
+    <ng-container *ngFor="let entry of entries">
+      <option *ngIf="entry < dataLength">
+        {{ entry }}
+      </option>
+    </ng-container>
+    <option [value]="dataLength">{{'table_entries.all_text' | translate}}</option>
+  </select>
+</div>
+<!-- /Show entries -->

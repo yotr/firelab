@@ -1,0 +1,150 @@
+.theme-settings-btn {
+  position: fixed;
+  width: 45px;
+  height: 45px;
+  color: #ffffff;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform-origin: center;
+}
+
+.theme-btn-icon {
+  font-size: 24px;
+  transform-origin: center;
+  animation: spin 5s linear infinite;
+  -webkit-animation: spin 5s linear infinite;
+}
+
+.header .header-title h2 {
+  font-size: 24px;
+}
+
+.header .header-title h3 {
+  font-size: 15px;
+}
+.header .header-close .close-icon {
+  color: red;
+  font-size: 24px;
+}
+
+.settings .head h5 {
+  font-size: 16px;
+}
+.settings .head h6 {
+  font-size: 14px;
+}
+
+.card-radio .form-check-input {
+  display: none;
+}
+
+.form-check .form-check-input {
+  cursor: pointer;
+}
+
+.form-check-input:checked {
+  background-color: #405189;
+  border-color: #405189;
+}
+
+.card-radio .form-check-input:checked + .form-check-label {
+  border-color: #3bb800 !important;
+}
+
+.card-radio .form-check-label {
+  border: 1px solid #bababa;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  position: relative;
+  padding-right: 32px;
+  padding: 10px;
+}
+
+.form-check label {
+  cursor: pointer;
+}
+.card-radio .form-check-input + .selected {
+  border-color: #3bb800 !important;
+}
+
+.card-radio .form-check-input + .selected:before {
+  content: "✓";
+  font-family: "Line Awesome Free";
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  font-size: 10px;
+  background: #3bb800;
+  font-weight: 900;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  color: #f4f4f9;
+  transform: translate(0%);
+}
+.bg-sidebarcolor {
+  height: 45px;
+  display: block;
+  border-radius: 5px;
+}
+#layout-position .radio input + label {
+  min-width: 110px;
+  border: 0;
+}
+#layout-position .radio input + .selected-position {
+  background: var(--main-color);
+  color: #fff;
+}
+.dirction {
+  position: relative;
+}
+.active-dir-btn {
+  background-color: var(--main-color);
+  color: white;
+}
+/* animation */
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+  }
+}
+
+/*============
+ right to left
+ ============= */
+.theme-settings-btn[dir="ltr"] {
+  bottom: 40px;
+  right: 20px;
+}
+.theme-settings-btn[dir="rtl"] {
+  bottom: 40px;
+  left: 20px;
+}
+/* .offcanvas-end[dir="ltr"] {
+  top: 0;
+  right: 0;
+}
+.offcanvas-end[dir="rtl"] {
+  top: 0;
+  left: 0;
+} */

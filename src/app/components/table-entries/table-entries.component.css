@@ -1,0 +1,8 @@
+.entries {
+  font-size: small;
+}
+select {
+  height: 30px;
+  border: 1px solid #ccc;
+  padding: 4px;
+}

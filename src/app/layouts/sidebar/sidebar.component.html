@@ -1,0 +1,52 @@
+<div
+  class="sidebar sidebar-dirction {{
+    currentTheme?.sidebarColor?.background
+  }} {{ currentTheme?.sidebarColor?.color }}"
+  [ngClass]="{ closed: isSidebarClosed }"
+  [ngStyle]="{
+    position: currentTheme?.sidebarPosition,
+    bottom: currentTheme?.sidebarPosition == 'fixed' && 0
+  }"
+  [dir]="'dir' | translate"
+>
+  <div class="sidebar-inner">
+    <div class="sidebar-menu">
+      <!-- default menu links -->
+      <ng-container *ngIf="sidebarMenus.default">
+        <ng-container *ngFor="let link of sidebarLinks; trackBy: trackFun">
+          <!-- <div
+            *ngIf="currentLanguage == 'ar' ? link?.section_en : link?.section"
+            class="menu-section-title {{ currentTheme?.sidebarColor?.color }}"
+            [hidden]="isSidebarClosed"
+          >
+            {{ link?.section }}
+          </div> -->
+          <ng-container *ngFor="let list of link?.menu">
+            <ng-container
+              *ngIf="currentLanguage == 'ar' ? list?.title_en : list?.title"
+            >
+              <app-sidebar-dropdown
+                *ngIf="list?.list"
+                [list]="list"
+                [currentLanguage]="currentLanguage"
+              ></app-sidebar-dropdown>
+              <app-sidebar-link
+                *ngIf="list?.path"
+                [page]="list?.title"
+                [path]="list?.path"
+                [icon]="list?.icon"
+                [query]="list?.query"
+              ></app-sidebar-link>
+            </ng-container>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</div>
+<!-- sidebar back cover in mobile theme -->
+<div
+  (click)="sidebarToggle()"
+  class="sidebar-back-cover"
+  [ngClass]="{ showBackCover: isSidebarClosed }"
+></div>

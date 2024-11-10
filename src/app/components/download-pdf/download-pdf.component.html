@@ -1,0 +1,116 @@
+<!-- export pdf -->
+<div class="dropdown dropdown-action">
+  <div
+    class="export-btn dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-expanded="false"
+    role="button"
+  >
+    <i class="pi pi-file-pdf d-none d-md-inline"></i>
+    {{ "download_pdf.export_btn" | translate }}
+  </div>
+  <div
+    [dir]="'dir' | translate"
+    class="dropdown-menu dropdown-menu-right w-auto"
+  >
+    <button class="dropdown-item" role="button" (click)="printAll()">
+      <i class="pi pi-file-export"></i
+      >{{ "download_pdf.export_all_btn" | translate }}
+    </button>
+    <button
+      class="dropdown-item"
+      role="button"
+      styleSheetFile="assets/style/print-pdf.css"
+      printSectionId="print-table-section"
+      ngxPrint
+    >
+      <i class="pi pi-file-export"></i>
+      {{ "download_pdf.export_selected_btn" | translate }}
+    </button>
+  </div>
+</div>
+<!-- /export pdf -->
+
+<!-- all data fetched in table here when u export all  -->
+<div class="d-none">
+  <!--=================== printed all section ===================-->
+  <div id="print-all-section">
+    <!-- table print header section  -->
+    <div id="print-section-header" [dir]="'dir' | translate">
+      <img src="assets/logo.png" alt="logo" width="40" height="40" />
+      <h3>{{ tableTitle }}</h3>
+      <p>{{ date | date }}</p>
+    </div>
+    <!-- /table print header section  -->
+    <!-- small table -->
+    <table [dir]="'dir' | translate" class="test-small-table d-none">
+      <thead>
+        <tr>
+          <th>From</th>
+          <th>To</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of testingTable">
+          <td>{{ data?.from }}</td>
+          <td>{{ data?.to }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- /small table -->
+    <!-- table -->
+    <div class="table-responsive">
+      <table
+        id="table-id"
+        class="table table-striped"
+        [dir]="'dir' | translate"
+      >
+        <thead>
+          <tr id="table-top-speace"></tr>
+          <!-- caption -->
+          <tr id="caption">
+            <th>#</th>
+            <ng-container *ngFor="let key of dataKeys">
+              <th
+                *ngIf="key.active && key?.name != 'id'"
+                [style]="{ textTransform: 'capitalize' }"
+              >
+                {{ key?.name }}
+              </th>
+            </ng-container>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let value of data; let i = index">
+            <td>{{ i }}</td>
+            <ng-container *ngFor="let key of dataKeys">
+              <td
+                *ngIf="
+                  key.active &&
+                  key?.name != 'id' &&
+                  key?.type != 'object' &&
+                  key?.name != 'name'
+                "
+              >
+                {{ value[key?.name] }}
+              </td>
+              <!-- name when have first and last  -->
+              <td
+                *ngIf="
+                  key.active &&
+                  key?.name != 'id' &&
+                  key?.type == 'object' &&
+                  key?.name == 'name'
+                "
+              >
+                {{ value["firstname"] }} {{ value["lastname"] }}
+              </td>
+            </ng-container>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <!-- /table -->
+  </div>
+  <!--===================printed section ===================-->
+</div>

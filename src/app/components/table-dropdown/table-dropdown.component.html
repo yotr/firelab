@@ -1,0 +1,154 @@
+<div
+  class="custom-table-dropdown"
+  ClickOutside
+  (clickOutside)="clickedOutside()"
+>
+  <div class="dropdown-table-icon" role="button" (click)="toggleMenu()">
+    <i
+      id="toggleMenuBtn"
+      class="pi pi-ellipsis-v"
+      data-bs-toggle="custom-table-dropdown"
+      aria-expanded="false"
+    ></i>
+  </div>
+  <!-- custom dropdown menu  -->
+  <div class="table-dropdown-menu shadow" *ngIf="isMenuOpen">
+    <!-- links -->
+    <a
+      class="dropdown-item"
+      role="button"
+      [ngClass]="{ active: sortingOrder == 'asc' && sortingKey == key?.name }"
+      (click)="handleSortingChange('asc')"
+      ><i class="pi pi-arrow-up dropdown-item-icon"></i
+      >{{ "table_dropdown.sort_asc_text" | translate }}</a
+    >
+    <a
+      class="dropdown-item"
+      role="button"
+      [ngClass]="{ active: sortingOrder == 'desc' && sortingKey == key?.name }"
+      (click)="handleSortingChange('desc')"
+      ><i class="pi pi-arrow-down dropdown-item-icon"></i
+      >{{ "table_dropdown.sort_desc_text" | translate }}</a
+    >
+    <!-- ======================= select columns dropdown ===================== -->
+    <button
+      class="dropdown-item dropdown-item-menu border-top"
+      role="button"
+      (click)="toggleColumnsSubmenu()"
+    >
+      <i class="pi pi-sliders-v dropdown-item-icon"></i
+      >{{ "table_dropdown.columns_text" | translate }}
+    </button>
+    <!-- submenu -->
+    <div class="dropdown-columns-submenu" *ngIf="isColumnsSubmenuOpen">
+      <div class="columns">
+        <ng-container
+          *ngFor="let column of columns; let i = index; trackBy: trackFun"
+        >
+          <div
+            class="columns-submenu-item"
+            role="button"
+            (click)="columnsSelectChanges(column.name)"
+          >
+            <label class="table-dropdown-checkbox-container">
+              <input type="checkbox" [checked]="column?.active" />
+              <div class="checkmark"></div>
+            </label>
+            <span>{{ column?.name }}</span>
+          </div>
+        </ng-container>
+      </div>
+
+      <!-- columns actions butons -->
+      <div class="actions-btns">
+        <button class="submit-btn" (click)="handleColumnsChanges()">
+          {{ "table_dropdown.apply_btn" | translate }}
+        </button>
+        <button>{{ "table_dropdown.resert_btn" | translate }}</button>
+      </div>
+    </div>
+    <!-- ======================= / select columns dropdown ===================== -->
+    <!-- ======================= filter dropdown ===================== -->
+    <button
+      class="dropdown-item dropdown-item-menu border-top"
+      role="button"
+      (click)="toggleFilterSubmenu()"
+    >
+      <i class="pi pi-filter-fill dropdown-item-icon"></i
+      >{{ "table_dropdown.filter_text" | translate }}
+    </button>
+    <!-- submenu -->
+    <div class="dropdown-filters-submenu" *ngIf="isFilterSubmenuOpen">
+      <!--form filters -->
+      <form
+        [formGroup]="filterForm"
+        class="filters"
+        (submit)="handleFiltersChanges()"
+      >
+        <!-- inputs -->
+        <div>
+          <!-- selectbox operator 1 -->
+          <select
+            class="form-select my-1"
+            aria-label="Default select example"
+            name="operator1"
+            formControlName="operator1"
+          >
+            <option value="" selected>
+              {{ "table_dropdown.choose_operator_text" | translate }}
+            </option>
+            <ng-container *ngFor="let op of filterOperators">
+              <option *ngIf="op?.type == key?.type" [value]="op?.operator">
+                {{ op?.name | translate }}
+              </option>
+            </ng-container>
+          </select>
+          <!-- input search 1 -->
+          <input
+            [type]="key?.type == 'string' ? 'text' : 'number'"
+            class="form-control my-1"
+            name="searchValue1"
+            formControlName="searchValue1"
+          />
+          <!-- selectbox operator 2 -->
+          <select
+            class="form-select my-1"
+            aria-label="Default select example"
+            name="operator2"
+            formControlName="operator2"
+          >
+            <option value="" selected>
+              {{ "table_dropdown.choose_operator_text" | translate }}
+            </option>
+            <ng-container *ngFor="let op of filterOperators">
+              <option *ngIf="op?.type == key?.type" [value]="op?.operator">
+                {{ op?.name | translate }}
+              </option>
+            </ng-container>
+          </select>
+          <!-- input search 2 -->
+          <input
+            [type]="key?.type == 'string' ? 'text' : 'number'"
+            class="form-control my-1"
+            name="searchValue2"
+            formControlName="searchValue2"
+          />
+        </div>
+        <!-- filters actions butons -->
+        <div class="actions-btns">
+          <button
+            type="submit"
+            class="submit-btn"
+            [disabled]="filterForm.invalid"
+          >
+            {{ "table_dropdown.filter_btn" | translate }}
+          </button>
+          <button type="button" (click)="handleReset()">
+            {{ "table_dropdown.resert_btn" | translate }}
+          </button>
+        </div>
+      </form>
+    </div>
+    <!-- ======================= / filter dropdown ===================== -->
+  </div>
+</div>

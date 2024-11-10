@@ -1,0 +1,8 @@
+<!-- back btn -->
+<a
+  [dir]="'dir' | translate"
+  class="btn back-btn"
+  [ngClass]="{ 'text-white': currentTheme?.colorSchema?.title == 'Dark' }"
+  (click)="back()"
+  ><i class="pi pi-angle-left"></i
+></a>
