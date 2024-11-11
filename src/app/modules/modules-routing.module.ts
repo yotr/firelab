@@ -14,6 +14,11 @@ import { EditTeamComponent } from './team/components/edit-team/edit-team.compone
 import { TimeCardComponent } from './time-card/time-card.component';
 import { TimeCardDateRangeComponent } from './time-card/components/time-card-date-range/time-card-date-range.component';
 import { GpsComponent } from './gps/gps.component';
+import { ServiceRequestsComponent } from './service-requests/service-requests.component';
+import { MyJobsComponent } from './jobs/my-jobs/my-jobs.component';
+import { JobsMissedComponent } from './jobs/jobs-missed/jobs-missed.component';
+import { JobsDueComponent } from './jobs/jobs-due/jobs-due.component';
+import { DeficienciesComponent } from './deficiencies/deficiencies.component';
 
 const routes: Routes = [
   {
@@ -82,6 +87,29 @@ const routes: Routes = [
       {
         path: 'team/gps',
         component: GpsComponent,
+      },
+      // jobs
+      {
+        path: 'task/due',
+        component: JobsDueComponent,
+      },
+      {
+        path: 'task/missed',
+        component: JobsMissedComponent,
+      },
+      {
+        path: 'task/myJobs',
+        component: MyJobsComponent,
+      },
+      // services requests
+      {
+        path: 'serviceRequests',
+        component: ServiceRequestsComponent,
+      },
+      // Deficiencies
+      {
+        path: 'deficiencies',
+        component: DeficienciesComponent,
       },
     ],
   },

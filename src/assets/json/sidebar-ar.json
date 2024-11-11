@@ -77,26 +77,25 @@
           {
             "id": 0,
             "page": "Job Due",
-            "path": "/modules/sales/estimates",
-            "query": { "view_type": "table" }
+            "path": "/modules/task/due"
           },
           {
             "id": 1,
             "page": "Jobs Missed",
-            "path": "/modules/sales/invoices",
-            "query": { "view_type": "table" }
+            "path": "/modules/task/missed"
           },
           {
             "id": 2,
             "page": "My Jobs",
-            "path": "/modules/sales/payments"
+            "path": "/modules/task/myJobs"
           }
         ]
       },
       {
         "id": 7,
         "title": "Service Requests",
-        "icon": "pi-wrench"
+        "icon": "pi-wrench",
+        "path": "/modules/serviceRequests"
       },
       {
         "id": 8,
@@ -141,7 +140,7 @@
         "id": 9,
         "title": "Deficiencies",
         "icon": "pi-info-circle",
-        "path": "/modules/policies/all-policies"
+        "path": "/modules/deficiencies"
       }
     ]
   }

@@ -37,6 +37,16 @@ import {
   NgxDaterangepickerLocaleService,
 } from 'ngx-daterangepicker-bootstrap';
 import { GpsComponent } from './gps/gps.component';
+import { JobsDueComponent } from './jobs/jobs-due/jobs-due.component';
+import { MyJobsComponent } from './jobs/my-jobs/my-jobs.component';
+import { JobsMissedComponent } from './jobs/jobs-missed/jobs-missed.component';
+import { MyJobsModuleTableComponent } from './jobs/components/my-jobs-module-table/my-jobs-module-table.component';
+import { JobsMissedModuleTableComponent } from './jobs/components/jobs-missed-module-table/jobs-missed-module-table.component';
+import { JobsDueModuleTableComponent } from './jobs/components/jobs-due-module-table/jobs-due-module-table.component';
+import { ServiceRequestsComponent } from './service-requests/service-requests.component';
+import { ServiceRequestsModuleTableComponent } from './service-requests/components/service-requests-module-table/service-requests-module-table.component';
+import { DeficienciesComponent } from './deficiencies/deficiencies.component';
+import { DeficienciesModuleTableComponent } from './deficiencies/components/deficiencies-module-table/deficiencies-module-table.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +76,17 @@ import { GpsComponent } from './gps/gps.component';
     TimeCardComponent,
     TimeCardDateRangeComponent,
     TimeCardModuleTableComponent,
-    GpsComponent
+    GpsComponent,
+    JobsDueComponent,
+    MyJobsComponent,
+    JobsMissedComponent,
+    MyJobsModuleTableComponent,
+    JobsMissedModuleTableComponent,
+    JobsDueModuleTableComponent,
+    ServiceRequestsComponent,
+    ServiceRequestsModuleTableComponent,
+    DeficienciesComponent,
+    DeficienciesModuleTableComponent
   ],
   imports: [
     CommonModule,
