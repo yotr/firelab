@@ -91,11 +91,11 @@
     "of_text": "من"
   },
   "dragfiles_modal": {
-    "title": "سحب وإفلات تحميل الملفات",
-    "SubTitle": "فقط قم بسحب الملفات وإفلاتها هنا",
+    "title": "تحميل عميل",
+    "SubTitle": "تحميل جدول البيانات",
     "uploading": "جاري التحميل",
     "cancel": "إلغاء",
-    "attach": "إرفاق"
+    "attach": "حفظ"
   },
   "status_dropdown": {
     "new": "جديد",

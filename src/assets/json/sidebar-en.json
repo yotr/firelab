@@ -13,7 +13,7 @@
         "id": 1,
         "title": "Customers",
         "icon": "pi-address-book",
-        "path": "/modules/customers"
+        "path": "/modules/customers/allCustomers"
       },
       {
         "id": 2,

@@ -19,6 +19,7 @@ import { MyJobsComponent } from './jobs/my-jobs/my-jobs.component';
 import { JobsMissedComponent } from './jobs/jobs-missed/jobs-missed.component';
 import { JobsDueComponent } from './jobs/jobs-due/jobs-due.component';
 import { DeficienciesComponent } from './deficiencies/deficiencies.component';
+import { CustomerHomeComponent } from './customers/components/customer-home/customer-home.component';
 
 const routes: Routes = [
   {
@@ -38,15 +39,8 @@ const routes: Routes = [
       // customers
       {
         path: 'customers',
-        component: CustomersComponent,
-      },
-      {
-        path: 'customers/add',
-        component: AddCustomerComponent,
-      },
-      {
-        path: 'customers/edit/:id',
-        component: EditCustomerComponent,
+        loadChildren: () =>
+          import('./customers/customers.module').then((m) => m.CustomersModule),
       },
       // contract
       {

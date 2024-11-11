@@ -91,11 +91,11 @@
     "of_text": "of"
   },
   "dragfiles_modal": {
-    "title": "Drag and drop files upload",
-    "SubTitle": "Just drag and drop files here",
+    "title": "Import Customer",
+    "SubTitle": "Upload Spreadsheet",
     "uploading": "Uploading",
     "cancel": "Cancel",
-    "attach": "Attach"
+    "attach": "Save"
   },
   "status_dropdown": {
     "new": "new",

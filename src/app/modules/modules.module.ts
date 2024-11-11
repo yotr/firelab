@@ -47,6 +47,9 @@ import { ServiceRequestsComponent } from './service-requests/service-requests.co
 import { ServiceRequestsModuleTableComponent } from './service-requests/components/service-requests-module-table/service-requests-module-table.component';
 import { DeficienciesComponent } from './deficiencies/deficiencies.component';
 import { DeficienciesModuleTableComponent } from './deficiencies/components/deficiencies-module-table/deficiencies-module-table.component';
+import { DropFileSectionComponent } from './customers/components/drop-file-section/drop-file-section.component';
+import { CustomerHomeComponent } from './customers/components/customer-home/customer-home.component';
+import { CustomerReportsSidebarComponent } from './customers/components/customer-reports-sidebar/customer-reports-sidebar.component';
 
 @NgModule({
   declarations: [
@@ -61,10 +64,6 @@ import { DeficienciesModuleTableComponent } from './deficiencies/components/defi
     HeaderMessagesComponent,
     UserDropdownComponent,
     ThemeSettingsComponent,
-    CustomersComponent,
-    AddCustomerComponent,
-    EditCustomerComponent,
-    CustomersModuleTableComponent,
     ContractComponent,
     ContractModuleTableComponent,
     AddContractComponent,

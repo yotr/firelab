@@ -23,7 +23,6 @@ export class CustomersModuleTableComponent implements OnInit {
   @Input() tableTitle: string = '';
   @Input() editPagePath: any;
   //if exist to leave - admin  table
-  @Input() userPermission: any = 'admin';
   @Output() onStatusChange: EventEmitter<any> = new EventEmitter();
   // pagination
   @Input() totalItems: number = 0;

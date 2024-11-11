@@ -1,0 +1,80 @@
+.upload-drop-zone {
+  position: relative;
+  background-color: #ffffff;
+  border: 2px dashed #e3e3e3;
+  color: #cccccc;
+  height: 200px;
+  line-height: 200px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.upload-drop-zone .upload-text {
+  font-size: 24px;
+  margin-left: 10px;
+}
+.upload-drop-zone input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  opacity: 0;
+}
+.upload-list {
+  padding: 10px;
+  margin: 0;
+}
+
+.upload-list .file-size {
+  color: #888888;
+}
+.upload-list .file-list {
+  background-color: #ffffff;
+  border-top: 1px solid #e3e3e3;
+  padding: 10px 0;
+}
+.upload-list .file-list:first-child {
+  border-top: none;
+}
+.upload-list .upload-wrap {
+  position: relative;
+  margin: 0 0 5px;
+  padding: 0 20px 0 0;
+}
+.upload-list .file-name {
+  padding-right: 15px;
+  overflow: hidden;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  display: inline-block;
+  vertical-align: top;
+  white-space: nowrap;
+  color: #888888;
+  margin: 0 5px 0 0;
+  vertical-align: middle;
+}
+.upload-list .file-close {
+  border: none;
+  background: none;
+  color: #cccccc;
+  position: absolute;
+  top: 2px;
+  right: 0;
+}
+.upload-list .progress {
+  margin-bottom: 5px;
+}
+.upload-list .upload-process {
+  font-size: 10px;
+  color: #888888;
+}
+.progress-xs {
+  height: 4px;
+}
+
+.progress .progress-bar {
+  background-color: #25628f;
+}

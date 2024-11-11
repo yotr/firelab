@@ -1,0 +1,71 @@
+<div>
+  <!-- page header  -->
+  <div
+    class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
+    [dir]="'dir' | translate"
+  >
+    <app-breadcrumb title="Customers"></app-breadcrumb>
+    <div routerLink="/modules/customers/add">
+      <a
+        class="btn add-btn d-flex align-items-center {{
+          currentTheme?.colorSchema?.background
+        }} {{ currentTheme?.colorSchema?.color }}"
+      >
+        <i class="pi pi-plus d-none d-sm-block"></i>
+        Add Customer
+      </a>
+    </div>
+  </div>
+
+  <!-- /page header  -->
+  <app-back-button></app-back-button>
+  <!-- table -->
+  <app-customers-module-table
+    [data]="data"
+    [totalItems]="totalItemsCount"
+    [dataKeys]="dataKeys"
+    [loading]="loading"
+    [currentTheme]="currentTheme"
+    deleteModalTitle="Customer"
+    tableTitle="Customers Table"
+    editPagePath="/modules/customers/edit"
+  ></app-customers-module-table>
+</div>
+<div
+  class="page-footer w-100 d-flex justify-content-between align-items-center gap-4"
+  [dir]="'dir' | translate"
+>
+  <div class="mt-4">
+    <a
+      class="btn add-btn d-flex align-items-center {{
+        currentTheme?.colorSchema?.background
+      }} {{ currentTheme?.colorSchema?.color }}"
+      data-bs-toggle="modal"
+      data-bs-target="#drag_documents_files"
+      role="button"
+    >
+      <i class="pi pi-plus d-none d-sm-block"></i>
+      Import Customers
+    </a>
+  </div>
+</div>
+
+<app-drop-file-section
+  [currentTheme]="currentTheme"
+  (onAttach)="onAttachFiles($event)"
+></app-drop-file-section>
+
+<!-- [users]="users"
+    [totalItems]="totalItemsCount"
+    [dataKeys]="dataKeys"
+    [loading]="loading"
+    [currentTheme]="currentTheme"
+    deleteModalTitle="Users"
+    tableTitle="Users Table"
+    editPagePath="/modules/users/edit"
+    (onPageChange)="onPaginate($event)"
+    (onDelete)="delete($event)"
+    (onSearch)="search($event)"
+    (onFilter)="handleFiltersSubmit($event)"
+    (onDeleteSelected)="deleteSelected()"
+    (onReset)="resetData()" -->

@@ -1,0 +1,135 @@
+<!-- Drogfiles Modal -->
+<div id="drag_documents_files" class="modal custom-modal fade" role="dialog">
+  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">{{ "dragfiles_modal.title" | translate }}</h5>
+        <button
+          type="button"
+          class="close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form id="js-upload-form">
+          <div class="upload-drop-zone" id="drop-zone" role="button">
+            <input
+              id="files"
+              type="file"
+              (change)="getSelectedFiles($event)"
+              multiple
+            />
+            <i class="pi pi-cloud-upload fs-4"></i>
+            <span class="upload-text mx-2">{{
+              "dragfiles_modal.SubTitle" | translate
+            }}</span>
+          </div>
+          <h4 *ngIf="files?.length !== 0">
+            {{ "dragfiles_modal.uploading" | translate }}
+          </h4>
+          <!-- files list -->
+          <ul class="upload-list">
+            <li class="file-list" *ngFor="let file of files; let i = index">
+              <div class="upload-wrap">
+                <div class="file-name">
+                  <!-- <i class="fa fa-photo"></i> -->
+                  <!-- file type -->
+                  <!-- img -->
+                  <i
+                    *ngIf="file?.type?.includes(fileTypes?.img)"
+                    class="pi pi-image"
+                  ></i>
+                  <!-- pdf -->
+                  <i
+                    *ngIf="file?.type?.includes(fileTypes?.pdf)"
+                    class="pi pi-file-pdf"
+                  ></i>
+                  <!-- excel -->
+                  <i
+                    *ngIf="file?.type?.includes(fileTypes?.excel)"
+                    class="pi pi-file-excel"
+                  ></i>
+                  <!-- word -->
+                  <i
+                    *ngIf="file?.type?.includes(fileTypes?.word)"
+                    class="pi pi-file-word"
+                  ></i>
+                  <!-- text -->
+                  <i
+                    *ngIf="file?.type?.includes(fileTypes?.text)"
+                    class="pi pi-file"
+                  ></i>
+                  <!-- audio -->
+                  <i
+                    *ngIf="file?.type?.includes(fileTypes?.audio)"
+                    class="pi pi-volume-up"
+                  ></i>
+                  <!-- video -->
+                  <i
+                    *ngIf="file?.type?.includes(fileTypes?.video)"
+                    class="pi pi-video"
+                  ></i>
+                  <!-- json -->
+                  <i
+                    *ngIf="file?.type?.includes(fileTypes?.json)"
+                    class="pi pi-file"
+                  ></i>
+                  <!-- app -->
+                  <i
+                    *ngIf="file?.type?.includes(fileTypes?.app)"
+                    class="pi pi-microsoft"
+                  ></i>
+                  <!-- /file type -->
+                  {{ file?.name }}
+                </div>
+                <div class="file-size">{{ formatBytes(file?.size) }}</div>
+                <button
+                  type="button"
+                  class="file-close"
+                  role="button"
+                  (click)="removeFile(i)"
+                >
+                  <i class="pi pi-times"></i>
+                </button>
+              </div>
+              <div class="progress progress-xs progress-striped">
+                <div
+                  class="progress-bar bg-success"
+                  role="progressbar"
+                  style="width: 100%"
+                ></div>
+              </div>
+              <!-- <div class="upload-process">37% done</div> -->
+            </li>
+          </ul>
+        </form>
+        <div class="submit-section">
+          <!-- <div
+            class="btn submit-btn mx-2"
+            [class]="currentTheme?.colorSchema?.color"
+            role="button"
+            (click)="cancel()"
+          >
+            <span class="text-muted">
+              {{ "dragfiles_modal.cancel" | translate }}
+            </span>
+          </div> -->
+          <div
+            class="btn submit-btn mx-2"
+            [class]="currentTheme?.colorSchema?.background"
+            role="button"
+            (click)="onAttachFiles()"
+          >
+            <span [class]="currentTheme?.colorSchema?.color">
+              {{ "dragfiles_modal.attach" | translate }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Drogfiles Modal -->

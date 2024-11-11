@@ -1,0 +1,8 @@
+
+.page-header[dir="rtl"] div .add-btn {
+  float: left;
+}
+
+.page-footer[dir="rtl"] div .add-btn {
+  float: right;
+}
