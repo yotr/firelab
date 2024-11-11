@@ -1,0 +1,26 @@
+.next-btn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.next {
+  color: rgb(106, 161, 78);
+  border: 1px solid rgb(106, 161, 78);
+  padding: 6px 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 155px;
+  font-weight: bold;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.next:hover {
+  cursor: pointer;
+  color: white;
+  background-color: rgb(106, 161, 78);
+}
