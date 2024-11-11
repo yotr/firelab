@@ -1,0 +1,49 @@
+:host ::ng-deep .calendar_default_colheader_inner {
+  padding: 5px;
+}
+
+:host ::ng-deep .calendar_default_rowheader_inner {
+  padding: 5px;
+}
+
+.wrap {
+  display: flex;
+}
+
+.left {
+  margin-right: 10px;
+}
+
+.main {
+  flex-grow: 1;
+}
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 10px;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.buttons a {
+  text-align: center;
+  background-color: var(--main-color);
+  color: #fff;
+  padding: 6px 20px;
+  border-radius: 2px;
+  cursor: pointer;
+  margin-right: 5px;
+  width: 100px;
+  text-decoration: none;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}

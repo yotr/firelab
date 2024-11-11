@@ -50,7 +50,8 @@
         "id": 4,
         "title": "JobLink",
         "icon": "pi-paperclip",
-        "path": "/modules/policies/all-policies"
+        "path": "/modules/jobLink",
+        "query": { "view": "Week" }
       },
       {
         "id": 5,

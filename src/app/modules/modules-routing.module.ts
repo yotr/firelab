@@ -20,6 +20,7 @@ import { JobsMissedComponent } from './jobs/jobs-missed/jobs-missed.component';
 import { JobsDueComponent } from './jobs/jobs-due/jobs-due.component';
 import { DeficienciesComponent } from './deficiencies/deficiencies.component';
 import { CustomerHomeComponent } from './customers/components/customer-home/customer-home.component';
+import { JobLinkComponent } from './job-link/job-link.component';
 
 const routes: Routes = [
   {
@@ -81,6 +82,11 @@ const routes: Routes = [
       {
         path: 'team/gps',
         component: GpsComponent,
+      },
+      // jobLink
+      {
+        path: 'jobLink',
+        component: JobLinkComponent,
       },
       // reports
       {

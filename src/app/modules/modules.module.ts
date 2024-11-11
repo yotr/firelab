@@ -1,4 +1,4 @@
-import { importProvidersFrom, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { ModulesRoutingModule } from './modules-routing.module';
@@ -16,11 +16,6 @@ import { UserDropdownComponent } from '../layouts/header/components/user-dropdow
 import { ThemeSettingsComponent } from '../layouts/theme-settings/theme-settings.component';
 import { SidebarDropdownComponent } from '../layouts/sidebar/components/sidebar-dropdown/sidebar-dropdown.component';
 import { SidebarLinkComponent } from '../layouts/sidebar/components/sidebar-link/sidebar-link.component';
-import { GridTableComponent } from '../layouts/grid-table/grid-table.component';
-import { CustomersComponent } from './customers/customers.component';
-import { AddCustomerComponent } from './customers/components/add-customer/add-customer.component';
-import { EditCustomerComponent } from './customers/components/edit-customer/edit-customer.component';
-import { CustomersModuleTableComponent } from './customers/components/customers-module-table/customers-module-table.component';
 import { EditContractComponent } from './contract/components/edit-contract/edit-contract.component';
 import { AddContractComponent } from './contract/components/add-contract/add-contract.component';
 import { ContractComponent } from './contract/contract.component';
@@ -47,9 +42,10 @@ import { ServiceRequestsComponent } from './service-requests/service-requests.co
 import { ServiceRequestsModuleTableComponent } from './service-requests/components/service-requests-module-table/service-requests-module-table.component';
 import { DeficienciesComponent } from './deficiencies/deficiencies.component';
 import { DeficienciesModuleTableComponent } from './deficiencies/components/deficiencies-module-table/deficiencies-module-table.component';
-import { DropFileSectionComponent } from './customers/components/drop-file-section/drop-file-section.component';
-import { CustomerHomeComponent } from './customers/components/customer-home/customer-home.component';
-import { CustomerReportsSidebarComponent } from './customers/components/customer-reports-sidebar/customer-reports-sidebar.component';
+import { JobLinkComponent } from './job-link/job-link.component';
+import { DayPilotModule } from '@daypilot/daypilot-lite-angular';
+import { UndoService } from '../services/jobLink/undo.service';
+import { DataService } from '../services/jobLink/data.service';
 
 @NgModule({
   declarations: [
@@ -85,13 +81,15 @@ import { CustomerReportsSidebarComponent } from './customers/components/customer
     ServiceRequestsComponent,
     ServiceRequestsModuleTableComponent,
     DeficienciesComponent,
-    DeficienciesModuleTableComponent
+    DeficienciesModuleTableComponent,
+    JobLinkComponent,
   ],
   imports: [
     CommonModule,
     ModulesRoutingModule,
     SharedModule,
     NgxDaterangepickerBootstrapModule.forRoot(),
+    DayPilotModule,
   ],
   providers: [
     HttpClient,
@@ -101,6 +99,8 @@ import { CustomerReportsSidebarComponent } from './customers/components/customer
       multi: true,
     },
     NgxDaterangepickerLocaleService,
+    DataService,
+    UndoService,
   ],
 })
 export class ModulesModule {}

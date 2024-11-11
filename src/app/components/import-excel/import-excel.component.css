@@ -14,7 +14,6 @@ input[type="file"] {
   font-size: small;
 }
 
-
 .submit-section {
   text-align: center;
   margin-top: 40px;
@@ -42,9 +41,6 @@ select:focus {
   }
 }
 
-
-
-
 /* grid header */
 .grid-header.default {
   background-color: #fafafa;
@@ -70,6 +66,7 @@ select:focus {
   height: 460px;
   position: relative;
   overflow-x: auto;
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 table {
@@ -187,7 +184,6 @@ a .object-data-sub {
   }
 }
 
-
 /* custom import excel btn */
 
 .import-btn {
@@ -210,4 +206,3 @@ a .object-data-sub {
 .import-btn:hover {
   background-color: #d6d6d6;
 }
-

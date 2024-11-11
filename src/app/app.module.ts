@@ -16,10 +16,6 @@ import { TranslateService } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideAnimations } from '@angular/platform-browser/animations';
-import {
-  NgxDaterangepickerBootstrapModule,
-  NgxDaterangepickerLocaleService,
-} from 'ngx-daterangepicker-bootstrap';
 import { Error404Component } from './view/error404/error404.component';
 import { LoginComponent } from './view/login/login.component';
 import { ResetPasswordComponent } from './view/reset-password/reset-password.component';
