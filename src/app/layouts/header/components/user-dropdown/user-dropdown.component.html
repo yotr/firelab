@@ -1,20 +1,22 @@
 <div class="nav-item dropdown has-arrow main-drop" [dir]="'dir' | translate">
   <div class="dropdown-toggle nav-link" data-bs-toggle="dropdown" role="button">
-    <span class="user-img"
-      ><img
-        class="rounded-circle"
-        [src]="userImage"
-        alt=""
-        width="30"
-        height="30" />
-      <span class="status online"></span
-    ></span>
-    <!-- if user no exist -->
-    <span>{{
-      isLoggedIn() == true
-        ? user?.userName
-        : ("header.user_dropdown.admin" | translate)
-    }}</span>
+    <div class="profile">
+      <span class="user-img"
+        ><img
+          class="rounded-circle"
+          [src]="userImage"
+          alt=""
+          width="30"
+          height="30" />
+        <span class="status online"></span
+      ></span>
+      <!-- if user no exist -->
+      <span>{{
+        isLoggedIn() == true
+          ? user?.userName
+          : ("header.user_dropdown.admin" | translate)
+      }}</span>
+    </div>
   </div>
   <div class="dropdown-menu">
     <a

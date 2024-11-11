@@ -1,7 +1,7 @@
-<h3 class="">{{ title }}</h3>
-<!-- <nav aria-label="breadcrumb" [dir]="'dir' | translate">
+<h3 class="text-secondary">{{ title }}</h3>
+<nav aria-label="breadcrumb" [dir]="'dir' | translate">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"  role="button">
+    <li class="breadcrumb-item" role="button" (click)="goToDashboard()">
       <div>{{ "dashboard_path_text" | translate }}</div>
     </li>
     <li>/</li>
@@ -14,4 +14,4 @@
       {{ title }}
     </li>
   </ol>
-</nav> -->
+</nav>

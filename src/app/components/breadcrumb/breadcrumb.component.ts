@@ -18,4 +18,8 @@ export class BreadcrumbComponent implements OnInit {
       this.currentTheme = JSON.parse(theme);
     });
   }
+
+  goToDashboard() {
+    this.router.navigate(['/modules/dashboard']);
+  }
 }
