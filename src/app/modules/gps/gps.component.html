@@ -1,6 +1,47 @@
-<div class="map-container">
-  <div class="map-frame">
-    <div id="map"></div>
+<div class="gps">
+  <div class="header">
+    <!-- Team Member list dropdown  -->
+    <div class="dropdown-list">
+      <div class="title" (click)="toggleDropdown()">
+        <i class="pi pi-angle-double-up fs-5"></i>
+        Team Member list
+      </div>
+      <div class="list" [ngClass]="{ active: isDropdownActive }">
+        <!-- search -->
+        <div class="search">
+          <input type="text" class="h-auto form-control" placeholder="Search" />
+          <div class="search-icon">
+            <i class="pi pi-search"></i>
+          </div>
+        </div>
+        <!-- table -->
+        <table class="table mt-4">
+          <thead class="table-bg">
+            <tr class="border border-1">
+              <th>Member Name</th>
+              <th>GPS Status</th>
+              <th>Last Updated</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody class="border border-1">
+            <tr [style]="{ background: 'rgb(231, 231, 231)' }">
+              <td class="text-muted">ibrahim abdelrahman</td>
+              <td class="text-danger">Disabled</td>
+              <td></td>
+              <td>
+                <i class="pi pi-refresh text-info fs-4" role="button"></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <!-- map -->
+  <div class="map-container">
+    <div class="map-frame">
+      <div id="map"></div>
+    </div>
   </div>
 </div>
-

@@ -7,6 +7,7 @@ import * as L from 'leaflet';
   styleUrls: ['./gps.component.css'],
 })
 export class GpsComponent implements OnInit, AfterViewInit {
+  isDropdownActive = false;
   private map: any;
   private centroid: L.LatLngExpression = [42.3601, -71.0589]; //
   private initMap(): void {
@@ -21,7 +22,7 @@ export class GpsComponent implements OnInit, AfterViewInit {
         maxZoom: 18,
         minZoom: 3,
         attribution:
-          '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+          '&copy; <a href="https://www.aktitec.com/">Aktitec Open Street Map</a>',
       }
     );
 
@@ -44,5 +45,8 @@ export class GpsComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.initMap();
+  }
+  toggleDropdown(): void {
+    this.isDropdownActive = !this.isDropdownActive;
   }
 }

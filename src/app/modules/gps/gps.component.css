@@ -1,12 +1,67 @@
+.dropdown-list {
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  width: 500px;
+  z-index: 2;
+}
+.dropdown-list .title {
+  cursor: pointer;
+  padding: 20px;
+  height: 30px;
+  background-color: var(--dark-theme-bg);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: white;
+  font-weight: bold;
+}
+.dropdown-list .list {
+  display: none;
+  padding: 30px;
+  height: 60vh;
+  background-color: white;
+  border: 1px solid black;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+.dropdown-list .list.active {
+  display: block;
+}
+.search {
+  display: flex;
+  align-items: center;
+}
+.search .form-control {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.search .search-icon {
+  padding: 6px 25px;
+  background-color: var(--dark-theme-bg);
+  color: white;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.table-bg {
+  background-color: var(--dark-theme-bg);
+  color: white;
+}
+.table-bg tr th {
+  color: white;
+}
 .map-container {
-  z-index: -1;
+  z-index: 1;
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  margin: 30px;
-  height: 80vh;
+  /* margin: 30px; */
+  height: calc(100vh - var(--header-height));
 }
 
 .map-frame {
