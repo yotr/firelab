@@ -5,11 +5,11 @@ import { SidebarService } from 'src/app/services/sidebar/sidebar.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-customers-module-table',
-  templateUrl: './customers-module-table.component.html',
-  styleUrls: ['./customers-module-table.component.css'],
+  selector: 'app-reports-module-table',
+  templateUrl: './reports-module-table.component.html',
+  styleUrls: ['./reports-module-table.component.css'],
 })
-export class CustomersModuleTableComponent implements OnInit {
+export class ReportsModuleTableComponent implements OnInit {
   //variables
   @Input() data: any[] = [];
   @Input() dataKeys: any[] = [];
@@ -202,5 +202,3 @@ export class CustomersModuleTableComponent implements OnInit {
     // );
   }
 }
-
-

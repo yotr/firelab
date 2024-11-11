@@ -1,3 +1,11 @@
-<p>
-  customer-reports-sidebar works!
-</p>
+<div class="customer-reports-sidebar">
+  <div class="reports-sidebar-header">
+    <h4 class="m-0">REPORTS</h4>
+  </div>
+  <div class="reports-types">
+    <div class="report-type" *ngFor="let report of reports">
+      <i class="pi + {{ report?.icon }} "></i>
+      <span>{{ report?.name }}</span>
+    </div>
+  </div>
+</div>

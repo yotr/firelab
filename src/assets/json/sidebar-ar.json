@@ -13,7 +13,14 @@
         "id": 1,
         "title": "Customers",
         "icon": "pi-address-book",
-        "path": "/modules/customers/allCustomers"
+        "link": "/modules/customers/allCustomers",
+        "list": [
+          {
+            "id": 0,
+            "page": "Home",
+            "path": "/modules/customers/home"
+          }
+        ]
       },
       {
         "id": 2,
@@ -25,7 +32,7 @@
         "id": 3,
         "title": "Team",
         "icon": "pi-users",
-        "link": "/modules/team",
+        "link": "/modules/team/allTeam",
         "list": [
           {
             "id": 0,
@@ -53,19 +60,17 @@
           {
             "id": 0,
             "page": "New",
-            "path": "/modules/sales/estimates",
-            "query": { "view_type": "table" }
+            "path": "/modules/reports/newReport"
           },
           {
             "id": 1,
             "page": "Completed",
-            "path": "/modules/sales/invoices",
-            "query": { "view_type": "table" }
+            "path": "/modules/reports/completedReports"
           },
           {
             "id": 2,
             "page": "Incompleted",
-            "path": "/modules/sales/payments"
+            "path": "/modules/reports/incompletedReports"
           }
         ]
       },

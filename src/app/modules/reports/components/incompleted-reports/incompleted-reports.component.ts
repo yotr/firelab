@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
@@ -7,18 +7,18 @@ import { LanguageService } from 'src/app/services/language/language.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
 
 @Component({
-  selector: 'app-deficiencies',
-  templateUrl: './deficiencies.component.html',
-  styleUrls: ['./deficiencies.component.css'],
+  selector: 'app-incompleted-reports',
+  templateUrl: './incompleted-reports.component.html',
+  styleUrls: ['./incompleted-reports.component.css'],
 })
-export class DeficienciesComponent implements OnInit {
+export class IncompletedReportsComponent implements OnInit {
   // current language
   currentLanguage: any = localStorage.getItem('lang');
   currentTheme: any;
-  dataKeys: any[] = [];
-  contacts: any[] = [];
-  totalItemsCount: number = 0;
+  data: any[] = [] as any[];
   loading: boolean = true;
+  totalItemsCount: number = 0;
+  dataKeys: any[] = [];
   // current logged in user
   currentUser: any = {} as any;
 
@@ -49,8 +49,8 @@ export class DeficienciesComponent implements OnInit {
     // this.translateService.instant('clients.client_table.client_id');
     this.dataKeys = [
       {
-        name: 'Customer Name',
-        display: 'Customer Name',
+        name: 'CompanyName',
+        display: 'Company Name',
         type: 'string',
         active: true,
       },
@@ -61,20 +61,20 @@ export class DeficienciesComponent implements OnInit {
         active: true,
       },
       {
-        name: 'Date',
-        display: 'Date',
+        name: 'Type',
+        display: 'Type',
         type: 'string',
         active: true,
       },
       {
-        name: 'Description',
-        display: 'Description',
+        name: 'StartDate',
+        display: 'Start Date',
         type: 'string',
         active: true,
       },
       {
-        name: 'Status',
-        display: 'Status',
+        name: 'ModifiedDate',
+        display: 'Modified Date',
         type: 'string',
         active: true,
       },
@@ -84,11 +84,11 @@ export class DeficienciesComponent implements OnInit {
   ngOnInit() {
     this.getLanguage();
     this.getTheme();
+    this.getData();
     //   this.getCurrentUserData();
   }
 
-  // ngAfterViewInit(): void {
-  // }
+  ngAfterViewInit(): void {}
   // get user
   isLoggedIn(): boolean {
     return this.auth.currentUserSignal() == undefined ? false : true;
@@ -116,30 +116,50 @@ export class DeficienciesComponent implements OnInit {
     });
   }
 
-  // //get all Clients
-  // getClients(
-  //   page?: number,
-  //   pageSize?: number,
-  //   column?: any,
-  //   operator1?: any,
-  //   operator2?: any,
-  //   value1?: any,
-  //   value2?: any
-  // ) {
-  //   this.apiService
-  //     .filterData(
-  //       `clients/getFilteredClients`,
-  //       page ? page : 1,
-  //       pageSize ? pageSize : 10
-  //     )
-  //     .subscribe((data) => {
-  //       this.clients = data?.clientDto;
-  //       this.totalItemsCount = data?.totalCount;
-  //       this.loading = false;
-  //       // get dynamic columns keys
-  //       // this.getTableTabKeys(data);
-  //     });
-  // }
+  onAttachFiles(files: any): void {
+    // this.attachedFiles = files;
+    // this.addFileForm.patchValue({
+    //   files: this.attachedFiles,
+    // });
+    console.log(files);
+  }
+
+  //get data
+  getData(
+    page?: number,
+    pageSize?: number,
+    column?: any,
+    operator1?: any,
+    operator2?: any,
+    value1?: any,
+    value2?: any
+  ) {
+    // this.data = [
+    //   {
+    //     CompanyName: 'Test Company',
+    //     Id: 'Test',
+    //     Address: 'Test Address',
+    //     Phone: '7890574534',
+    //     Status: false,
+    //     Checked: false,
+    //   },
+    // ];
+    // this.loading = false;
+    // this.totalItemsCount = this.data.length;
+    // this.apiService
+    //   .filterData(
+    //     `clients/getFilteredClients`,
+    //     page ? page : 1,
+    //     pageSize ? pageSize : 10
+    //   )
+    //   .subscribe((data) => {
+    //     this.clients = data?.clientDto;
+    //     this.totalItemsCount = data?.totalCount;
+    //     this.loading = false;
+    //     // get dynamic columns keys
+    //     // this.getTableTabKeys(data);
+    //   });
+  }
 
   // search(event: any) {
   //   if (event?.value != null && event.value?.trim() != '') {

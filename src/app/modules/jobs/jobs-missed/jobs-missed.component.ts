@@ -81,13 +81,7 @@ export class JobsMissedComponent implements OnInit {
       {
         name: 'Type',
         display: 'Type',
-        type: 'boolean',
-        active: true,
-      },
-      {
-        name: 'Action',
-        display: 'Action',
-        type: 'boolean',
+        type: 'string',
         active: true,
       },
     ];

@@ -3,7 +3,7 @@
   <a
     class="dropdown-header"
     role="button"
-    (click)="handleActiveMenu(list?.title)"
+    (click)="list?.title == 'Customers' ? null : handleActiveMenu(list?.title)"
     [ngClass]="{ 'dropdown-active': activeMenu.value == list?.title }"
     [routerLink]="list?.link"
     routerLinkActive="active-title"
@@ -19,12 +19,12 @@
       <span>{{ list?.title }}</span>
     </div>
     <!-- arrow -->
-    <span
+    <!-- <span
       class="menu-arrow {{ currentTheme?.sidebarColor?.color }}"
       [ngClass]="{ rotate: activeMenu.value === list?.title }"
     >
       <i class="pi pi-angle-right"></i>
-    </span>
+    </span> -->
   </a>
   <!-- dropdown submenu -->
   <div

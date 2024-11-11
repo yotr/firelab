@@ -99,7 +99,8 @@
 
 :root {
   /* main colors */
-  --main-color: #ff9b44;
+  /* --main-color: #ff9b44; */
+  --main-color: rgb(183, 27, 27);
   --selected-table-row-bg: rgba(255, 99, 88, 0.25);
   --primary-table-color: #424242;
   --secondary-table-color: #ff6358;
@@ -114,6 +115,7 @@
   --sidebar-closed-width: 50px;
   /* themes */
   --dark-theme-bg: #292c36;
+  --red-theme-color: rgb(183, 27, 27);
 }
 /*-----------------------
 	4. Themes Colors
@@ -133,7 +135,7 @@
   color: white;
 }
 .red-theme {
-  background: linear-gradient(to right, #f43b48 0%, #f43b48 100%);
+  background: linear-gradient(to right, rgb(183, 27, 27) 0%, #f43b48 100%);
 }
 .red-theme-color {
   color: white;

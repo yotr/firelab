@@ -162,11 +162,7 @@
             </ng-container>
             <!-- action -->
             <th
-              *ngIf="
-                currentUser?.isAdmin
-                  ? true
-                  : checkPageActions('delete') || checkPageActions('update')
-              "
+              
               class="text-center no-sort actions-table"
               [ngClass]="{
                 default: currentTheme?.colorSchema?.title != 'Dark'

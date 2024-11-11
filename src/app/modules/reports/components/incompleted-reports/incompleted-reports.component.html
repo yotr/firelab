@@ -1,0 +1,40 @@
+<div>
+  <!-- page header  -->
+  <div
+    class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
+    [dir]="'dir' | translate"
+  >
+    <app-breadcrumb title="Incompleted Reports"></app-breadcrumb>
+  </div>
+
+  <!-- /page header  -->
+  <app-back-button></app-back-button>
+  <!-- table -->
+  <app-reports-module-table
+    [data]="data"
+    [totalItems]="totalItemsCount"
+    [dataKeys]="dataKeys"
+    [loading]="loading"
+    [currentTheme]="currentTheme"
+    deleteModalTitle="Customer"
+    tableTitle="Customers Table"
+    editPagePath="/modules/customers/edit"
+  ></app-reports-module-table>
+</div>
+
+
+
+<!-- [users]="users"
+    [totalItems]="totalItemsCount"
+    [dataKeys]="dataKeys"
+    [loading]="loading"
+    [currentTheme]="currentTheme"
+    deleteModalTitle="Users"
+    tableTitle="Users Table"
+    editPagePath="/modules/users/edit"
+    (onPageChange)="onPaginate($event)"
+    (onDelete)="delete($event)"
+    (onSearch)="search($event)"
+    (onFilter)="handleFiltersSubmit($event)"
+    (onDeleteSelected)="deleteSelected()"
+    (onReset)="resetData()" -->

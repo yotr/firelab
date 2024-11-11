@@ -57,7 +57,7 @@ const routes: Routes = [
       },
       // team
       {
-        path: 'team',
+        path: 'team/allTeam',
         component: TeamComponent,
       },
       {
@@ -81,6 +81,12 @@ const routes: Routes = [
       {
         path: 'team/gps',
         component: GpsComponent,
+      },
+      // reports
+      {
+        path: 'reports',
+        loadChildren: () =>
+          import('./reports/reports.module').then((m) => m.ReportsModule),
       },
       // jobs
       {

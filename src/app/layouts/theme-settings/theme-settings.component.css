@@ -25,7 +25,7 @@
   font-size: 15px;
 }
 .header .header-close .close-icon {
-  color: red;
+  color: var(--red-theme-color);
   font-size: 24px;
 }
 
@@ -107,7 +107,7 @@
   position: relative;
 }
 .active-dir-btn {
-  background-color: var(--main-color);
+  background-color: var(--dark-theme-bg);
   color: white;
 }
 /* animation */
