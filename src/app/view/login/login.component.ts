@@ -68,44 +68,45 @@ export class LoginComponent implements OnInit {
     };
 
     let isTokenExist = false;
+    this.router.navigate(['/modules/dashboard']);
 
-    this.auth.login('users/login', loginData).subscribe({
-      next: (data) => {
-        console.log(data);
-        // check if ther is token
-        if (data?.token && data?.userData) {
-          // store the token
-          localStorage.setItem('loginData', JSON.stringify(data));
-          // this.auth.currentUserSignal?.set(data);
-          isTokenExist = true;
-          this.auth.currentUserSignal?.set(data);
-        } else {
-          // show erroe message
-          this.toastr.error('The Email or Password Incorrect Please Try Again');
-        }
-      },
-      error: (err) => {
-        // show erroe message
-        this.toastr.error('There is something wrong with please try again');
-        // stop login btn loading
-        setTimeout(() => {
-          this.loading = false;
-          // this.loginForm.reset();
-        }, 2000);
-      },
-      complete: () => {
-        if (isTokenExist) {
-          //  navigate to login after 2 sec
-          setTimeout(() => {
-            // stop login btn loading
-            this.loading = false;
-            this.router.navigate(['/modules/dashboard/employee-dashboard']);
-            this.loginForm.reset();
-            this.toastr.success('User Successfully Logged In', 'Success');
-          }, 2000);
-        }
-      },
-    });
+    // this.auth.login('users/login', loginData).subscribe({
+    //   next: (data) => {
+    //     console.log(data);
+    //     // check if ther is token
+    //     if (data?.token && data?.userData) {
+    //       // store the token
+    //       localStorage.setItem('firelab-loginData', JSON.stringify(data));
+    //       // this.auth.currentUserSignal?.set(data);
+    //       isTokenExist = true;
+    //       this.auth.currentUserSignal?.set(data);
+    //     } else {
+    //       // show erroe message
+    //       this.toastr.error('The Email or Password Incorrect Please Try Again');
+    //     }
+    //   },
+    //   error: (err) => {
+    //     // show erroe message
+    //     this.toastr.error('There is something wrong with please try again');
+    //     // stop login btn loading
+    //     setTimeout(() => {
+    //       this.loading = false;
+    //       // this.loginForm.reset();
+    //     }, 2000);
+    //   },
+    //   complete: () => {
+    //     if (isTokenExist) {
+    //       //  navigate to login after 2 sec
+    //       setTimeout(() => {
+    //         // stop login btn loading
+    //         this.loading = false;
+    //         this.router.navigate(['/modules/dashboard/employee-dashboard']);
+    //         this.loginForm.reset();
+    //         this.toastr.success('User Successfully Logged In', 'Success');
+    //       }, 2000);
+    //     }
+    //   },
+    // });
   }
   openLink() {
     window.open('https://www.aktitec.com/');

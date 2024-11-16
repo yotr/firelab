@@ -36,11 +36,11 @@ export class AuthService {
 
   logout() {
     // get user if exist
-    let isLoggedIn = localStorage.getItem('loginData');
+    let isLoggedIn = localStorage.getItem('firelab-loginData');
 
     if (isLoggedIn) {
       // remove uset from storage
-      localStorage.removeItem('loginData');
+      localStorage.removeItem('firelab-loginData');
       // make current user signal undefined
       this.currentUserSignal.set(undefined);
       // navigate to login page

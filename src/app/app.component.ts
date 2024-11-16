@@ -27,7 +27,7 @@ export class AppComponent {
     this.translateService.use(this.currentLanguage);
     // this.titleService.setTitle(this.title);
     // check local storage
-    let user = localStorage.getItem('loginData');
+    let user = localStorage.getItem('firelab-loginData');
     if (user) {
       // this.signalRService.startConnection();
       // signal R connection test
@@ -59,7 +59,7 @@ export class AppComponent {
   // get current user
   getCurrentActiveUser() {
     // check local storage
-    let user = localStorage.getItem('loginData');
+    let user = localStorage.getItem('firelab-loginData');
     // if exist
     if (user) {
       this.auth.currentUserSignal.set(JSON.parse(user));

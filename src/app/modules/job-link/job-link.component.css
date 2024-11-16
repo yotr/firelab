@@ -6,6 +6,8 @@
   padding: 5px;
 }
 
+
+
 .wrap {
   display: flex;
 }
@@ -47,3 +49,7 @@
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
 }
+
+  .calendar_default_event_bar_inner {
+      background-color: rgb(183, 27, 27);
+    }

@@ -84,7 +84,7 @@ export class AddCustomerComponent implements OnInit {
   // get current user
   getCurrentActiveUser() {
     // check local storage
-    let user = localStorage.getItem('loginData');
+    let user = localStorage.getItem('firelab-loginData');
     // if exist
     if (user) {
       this.auth.currentUserSignal.set(JSON.parse(user));

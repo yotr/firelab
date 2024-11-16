@@ -34,7 +34,7 @@ export class NotificationsComponent implements OnInit {
 
   // get current user
   getCurrentUser() {
-    let user = localStorage.getItem('loginData');
+    let user = localStorage.getItem('firelab-loginData');
     if (user) {
       let data = JSON?.parse(user);
       this.currentUser = data?.userData;

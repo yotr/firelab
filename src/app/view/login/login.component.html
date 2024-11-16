@@ -104,7 +104,7 @@
       <button
         type="submit"
         class="btn account-btn p-0"
-        [disabled]="loginForm.invalid"
+        [disabled]="!loginForm.invalid"
       >
         {{ "login.btn" | translate }}
         <!-- loading -->
