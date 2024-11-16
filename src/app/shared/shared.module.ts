@@ -19,6 +19,8 @@ import { TableEntriesComponent } from '../components/table-entries/table-entries
 import { BreadcrumbComponent } from '../components/breadcrumb/breadcrumb.component';
 import { BackButtonComponent } from '../components/back-button/back-button.component';
 import { LoadingSectionComponent } from '../components/loading-section/loading-section.component';
+import { CustomDropdownComponent } from '../components/custom-dropdown/custom-dropdown.component';
+import { ClickOutsideDirective } from '../directives/clickOutside.directive';
 
 export function httpTranslateLoaderfactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -28,6 +30,7 @@ export function httpTranslateLoaderfactory(http: HttpClient) {
   declarations: [
     FilterPipe,
     SortPipe,
+    ClickOutsideDirective,
     GridTableComponent,
     SkeletonComponent,
     DeleteModalComponent,
@@ -40,6 +43,7 @@ export function httpTranslateLoaderfactory(http: HttpClient) {
     BreadcrumbComponent,
     BackButtonComponent,
     LoadingSectionComponent,
+    CustomDropdownComponent,
   ],
   imports: [
     CommonModule,
@@ -69,6 +73,7 @@ export function httpTranslateLoaderfactory(http: HttpClient) {
     TranslateModule,
     FilterPipe,
     SortPipe,
+    ClickOutsideDirective,
     GridTableComponent,
     SkeletonComponent,
     DeleteModalComponent,
@@ -81,6 +86,7 @@ export function httpTranslateLoaderfactory(http: HttpClient) {
     BreadcrumbComponent,
     BackButtonComponent,
     LoadingSectionComponent,
+    CustomDropdownComponent,
   ],
   providers: [HttpClient],
 })

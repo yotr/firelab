@@ -136,6 +136,7 @@ export class AllCustomersComponent implements OnInit {
   ) {
     this.data = [
       {
+        id: 1,
         CompanyName: 'Test Company',
         Id: 'Test',
         Address: 'Test Address',
