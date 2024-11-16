@@ -29,10 +29,7 @@
             <ng-container *ngFor="let list of menu?.list">
               <span
                 *ngIf="
-                  list?.page
-                    ?.toLowerCase()
-                    ?.includes(searchText.toLowerCase()) &&
-                  checkPagePermissions(list?.page)
+                  list?.page?.toLowerCase()?.includes(searchText.toLowerCase())
                 "
                 class="px-3 py-2"
                 [routerLink]="list?.path"
@@ -46,10 +43,7 @@
           <ng-container *ngIf="!menu?.list">
             <span
               *ngIf="
-                menu?.title
-                  ?.toLowerCase()
-                  ?.includes(searchText.toLowerCase()) &&
-                checkPagePermissions(menu?.title)
+                menu?.title?.toLowerCase()?.includes(searchText.toLowerCase())
               "
               class="px-3 py-2"
               [routerLink]="menu?.path"

@@ -14,6 +14,7 @@
   text-transform: uppercase;
   font-size: larger;
   display: flex;
+  background-color: white;
   place-items: center;
   border-radius: 5px;
   -webkit-border-radius: 5px;
@@ -33,9 +34,14 @@
 }
 
 .custom-dropdown .custom-dropdown-list {
+  background-color: white;
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  right: 0;
   user-select: none;
   padding: 0;
-  margin: 10px 0 0 0;
+  /* margin: 10px 0 0 0; */
   border: 1px solid #ccc;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-radius: 5px;

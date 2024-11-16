@@ -3,5 +3,5 @@
   class="table-search-field"
   [placeholder]="'table_search.search_placeholder' | translate"
   [(ngModel)]="searchValue"
-  (keyup)="sendSearch()"
+  (keyup)="search($event)"
 />

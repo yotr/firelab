@@ -202,7 +202,7 @@
               <ng-container *ngFor="let key of dataKeys">
                 <td *ngIf="key.active && key?.name != 'id'">
                   <!-- name -->
-                  <ng-container>
+                  <ng-container *ngIf="key?.name != 'status'">
                     <div
                       routerLink="/modules/customers/home/1"
                       role="button"
@@ -210,6 +210,14 @@
                     >
                       {{ value[key?.name] }}
                     </div>
+                  </ng-container>
+                  <!-- status -->
+                  <ng-container *ngIf="key?.name == 'status'">
+                    <app-custom-dropdown
+                      minWidth="100%"
+                      [title]="statusDropdown[0]"
+                      [data]="statusDropdown"
+                    ></app-custom-dropdown>
                   </ng-container>
                 </td>
               </ng-container>

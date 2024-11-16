@@ -1,0 +1,11 @@
+table thead tr th .head-value {
+  height: 45px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+table tbody tr td {
+  background-color: white;
+}

@@ -17,4 +17,10 @@ export class TableSearchComponent implements OnInit {
   sendSearch() {
     this.sendSearchValue.emit(this.searchValue);
   }
+  search(event: any) {
+    if (event?.keyCode === 13) {
+      console.log(this.searchValue);
+      this.sendSearchValue.emit(this.searchValue);
+    }
+  }
 }

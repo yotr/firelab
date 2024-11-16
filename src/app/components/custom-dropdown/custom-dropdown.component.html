@@ -1,10 +1,15 @@
-<div class="custom-dropdown" ClickOutside (clickOutside)="close()">
+<div
+  class="custom-dropdown"
+  ClickOutside
+  (clickOutside)="close()"
+  [ngStyle]="{ minWidth: minWidth }"
+>
   <div
     class="custom-dropdown-title"
     [ngClass]="{ active: isActive }"
     (click)="toggle()"
   >
-    <span>Select</span>
+    <span>{{ title }}</span>
     <i [hidden]="!isActive" class="pi pi-angle-up text-secondary"></i>
     <i [hidden]="isActive" class="pi pi-angle-down text-secondary"></i>
   </div>
@@ -12,6 +17,6 @@
     <ng-container *ngFor="let value of data">
       <li class="text-secondary" (click)="action(value)">{{ value }}</li>
     </ng-container>
-    <li *ngIf="data?.length == 0" class="text-secondary">No Data</li>
+    <!-- <li *ngIf="data?.length == 0" class="text-secondary">No Data</li> -->
   </ul>
 </div>

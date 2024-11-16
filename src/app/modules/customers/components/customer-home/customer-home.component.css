@@ -1,0 +1,28 @@
+.customer-home {
+  position: relative;
+  display: flex;
+}
+.content {
+  flex: 1;
+}
+.reports-sidebar {
+  position: relative;
+  height: 100%;
+  width: 325px;
+}
+.actions {
+  padding: 20px;
+  display: flex;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+.actions .action {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.inspections-tables {
+  /* display: flex; */
+}

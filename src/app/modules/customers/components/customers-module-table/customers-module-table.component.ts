@@ -56,6 +56,7 @@ export class CustomersModuleTableComponent implements OnInit {
   api: string = '';
   // current logged in user
   currentUser: any = {} as any;
+  statusDropdown: any[] = ['active', 'inactive'];
 
   constructor(
     private printService: NgxPrintService,
@@ -202,5 +203,3 @@ export class CustomersModuleTableComponent implements OnInit {
     // );
   }
 }
-
-

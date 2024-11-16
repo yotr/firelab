@@ -49,31 +49,31 @@ export class AllCustomersComponent implements OnInit {
     // this.translateService.instant('clients.client_table.client_id');
     this.dataKeys = [
       {
-        name: 'CompanyName',
+        name: 'companyName',
         display: 'Company Name',
         type: 'string',
         active: true,
       },
       {
-        name: 'Id',
+        name: 'iD',
         display: 'ID/Account',
         type: 'string',
         active: true,
       },
       {
-        name: 'Address',
+        name: 'address',
         display: 'Address',
         type: 'string',
         active: true,
       },
       {
-        name: 'Phone',
+        name: 'phone',
         display: 'Phone',
         type: 'string',
         active: true,
       },
       {
-        name: 'Status',
+        name: 'status',
         display: 'Status',
         type: 'boolean',
         active: true,
@@ -137,12 +137,12 @@ export class AllCustomersComponent implements OnInit {
     this.data = [
       {
         id: 1,
-        CompanyName: 'Test Company',
-        Id: 'Test',
-        Address: 'Test Address',
-        Phone: '7890574534',
-        Status: false,
-        Checked: false,
+        companyName: 'Test Company',
+        iD: 'Test',
+        address: 'Test Address',
+        phone: '7890574534',
+        status: false,
+        checked: false,
       },
     ];
     this.loading = false;
