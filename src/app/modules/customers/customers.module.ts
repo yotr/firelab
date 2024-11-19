@@ -12,6 +12,8 @@ import { DropFileSectionComponent } from './components/drop-file-section/drop-fi
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AllCustomersComponent } from './components/all-customers/all-customers.component';
 import { CustomerHomeTableComponent } from './components/customer-home/components/customer-home-table/customer-home-table.component';
+import { CustomerInfoComponent } from './components/customer-info/customer-info.component';
+import { OwnerComponent } from './components/owner/owner.component';
 
 @NgModule({
   declarations: [
@@ -24,8 +26,11 @@ import { CustomerHomeTableComponent } from './components/customer-home/component
     CustomerHomeComponent,
     DropFileSectionComponent,
     CustomerReportsSidebarComponent,
-    CustomerHomeTableComponent
+    CustomerHomeTableComponent,
+    CustomerInfoComponent,
+    OwnerComponent,
   ],
+
   imports: [CommonModule, CustomersRoutingModule, SharedModule],
   bootstrap: [CustomersComponent],
 })

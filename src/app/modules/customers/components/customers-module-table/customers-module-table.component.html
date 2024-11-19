@@ -204,7 +204,8 @@
                   <!-- name -->
                   <ng-container *ngIf="key?.name != 'status'">
                     <div
-                      routerLink="/modules/customers/home/1"
+                      routerLink="/modules/customers/home"
+                      [queryParams]="{ id: 2 }"
                       role="button"
                       (click)="setActiveMenu()"
                     >

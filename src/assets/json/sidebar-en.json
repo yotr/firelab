@@ -19,6 +19,16 @@
             "id": 0,
             "page": "Home",
             "path": "/modules/customers/home"
+          },
+          {
+            "id": 1,
+            "page": "Customer Info",
+            "path": "/modules/customers/customerInfo"
+          },
+          {
+            "id": 2,
+            "page": "Owner/Agent Info",
+            "path": "/modules/customers/owner"
           }
         ]
       },

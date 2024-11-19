@@ -1,4 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import {
+  ActivatedRoute,
+  Event,
+  NavigationEnd,
+  Params,
+  Router,
+} from '@angular/router';
 
 @Component({
   selector: 'app-customer-home',
@@ -16,7 +23,29 @@ export class CustomerHomeComponent implements OnInit {
   inspectionsDueLoading: boolean = false;
   inspectionsDoneLoading: boolean = false;
 
-  constructor() {
+  id: any = null;
+
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+    //get id
+    this.activatedRoute.queryParamMap.subscribe((paramMap: Params) => {
+      if (paramMap['get']('id')) {
+        this.id = paramMap['get']('id');
+      }
+    });
+    // add id
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        if (event.url.includes('/customerInfo')) {
+          this.router.navigate(['/modules/customers/customerInfo'], {
+            queryParams: { id: this.id },
+          });
+        } else if (event.url.includes('/owner')) {
+          this.router.navigate(['/modules/customers/owner'], {
+            queryParams: { id: this.id },
+          });
+        }
+      }
+    });
     this.acount_types = ['master', 'sub', 'building'];
     this.inspectionsDueKeys = [
       {

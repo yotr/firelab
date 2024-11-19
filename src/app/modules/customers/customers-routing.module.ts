@@ -5,6 +5,8 @@ import { AddCustomerComponent } from './components/add-customer/add-customer.com
 import { EditCustomerComponent } from './components/edit-customer/edit-customer.component';
 import { CustomersComponent } from './customers.component';
 import { AllCustomersComponent } from './components/all-customers/all-customers.component';
+import { CustomerInfoComponent } from './components/customer-info/customer-info.component';
+import { OwnerComponent } from './components/owner/owner.component';
 
 const routes: Routes = [
   {
@@ -24,8 +26,16 @@ const routes: Routes = [
         component: EditCustomerComponent,
       },
       {
-        path: 'home/:id',
+        path: 'home',
         component: CustomerHomeComponent,
+      },
+      {
+        path: 'customerInfo',
+        component: CustomerInfoComponent,
+      },
+      {
+        path: 'owner',
+        component: OwnerComponent,
       },
     ],
   },
