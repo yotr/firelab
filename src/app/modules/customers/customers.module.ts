@@ -23,6 +23,7 @@ import { EditSystemInfoComponent } from './components/system-info/components/edi
 import { SystemInfoTableComponent } from './components/system-info/components/system-info-table/system-info-table.component';
 import { AddImageModalComponent } from './components/images/add-image-modal/add-image-modal.component';
 import { ImagesComponent } from './components/images/images.component';
+import { ViewImageModalComponent } from './components/images/view-image-modal/view-image-modal.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { ImagesComponent } from './components/images/images.component';
     SystemInfoTableComponent,
     ImagesComponent,
     AddImageModalComponent,
+    ViewImageModalComponent
   ],
 
   imports: [CommonModule, CustomersRoutingModule, SharedModule],

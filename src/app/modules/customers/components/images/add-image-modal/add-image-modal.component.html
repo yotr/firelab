@@ -24,7 +24,7 @@
             />
             <i class="pi pi-cloud-upload fs-4"></i>
             <span class="upload-text mx-2">{{
-              file != null ? file?.name : "Upload Image"
+              file != null ? truncateString(file?.name, 10) : "Upload Image"
             }}</span>
           </div>
           <!-- submit -->

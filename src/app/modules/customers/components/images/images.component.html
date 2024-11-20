@@ -32,7 +32,13 @@
       <div class="building-images mt-4">
         <div class="building-image" *ngFor="let img of data">
           <div class="image">
-            <i class="pi pi-trash"></i>
+            <i class="pi pi-trash trash"></i>
+            <i
+              class="pi pi-expand expand"
+              data-bs-toggle="modal"
+              data-bs-target="#view_image"
+              (click)="onView(img?.image)"
+            ></i>
             <img [src]="img?.image" alt="image" />
           </div>
           <div class="comment">
@@ -65,3 +71,6 @@
 <!-- add-image-modal -->
 <app-add-image-modal (onAttach)="onUploadFile($event)"></app-add-image-modal>
 <!-- /add-image-modal -->
+<!-- view-image-modal -->
+<app-view-image-modal [image]="viewUrl"></app-view-image-modal>
+<!-- /view-image-modal -->

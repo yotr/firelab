@@ -20,6 +20,8 @@ export class ImagesComponent implements OnInit {
   // current language
   currentLanguage: any = localStorage.getItem('lang');
   currentTheme: any;
+  viewUrl: string = 'assets/logo.png';
+
   data: any[] = [
     {
       id: 1,
@@ -111,6 +113,9 @@ export class ImagesComponent implements OnInit {
     });
   }
 
+  onView(imageUrl: string) {
+    this.viewUrl = imageUrl;
+  }
   onUploadFile(file: any) {
     let newFile = {
       id: 3,

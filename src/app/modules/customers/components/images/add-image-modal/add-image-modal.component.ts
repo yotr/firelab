@@ -36,6 +36,7 @@ export class AddImageModalComponent implements OnInit {
   onAttachImage() {
     this.onAttach.emit(this.fileURL);
     $('#add_image').modal('hide');
+    this.file = null;
   }
   cancel() {
     this.file = null;
@@ -53,5 +54,11 @@ export class AddImageModalComponent implements OnInit {
     const i = Math.floor(Math.log(bytes) / Math.log(k));
 
     return `${parseFloat((bytes / Math.pow(k, i)).toFixed(dm))} ${sizes[i]}`;
+  }
+  truncateString(str: any, length: any, ending = '...') {
+    if (str.length > length) {
+      return str.slice(0, length - ending.length) + ending;
+    }
+    return str;
   }
 }
