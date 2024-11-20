@@ -4,6 +4,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { LanguageService } from 'src/app/services/language/language.service';
+import { SidebarService } from 'src/app/services/sidebar/sidebar.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
 
 @Component({
@@ -31,7 +32,8 @@ export class AllCustomersComponent implements OnInit {
     private toastr: ToastrService,
     // public apiService: ApiService,
     // private permissionsService: PermissionsService,
-    private auth: AuthService
+    private auth: AuthService,
+    private sidebarService: SidebarService
   ) {
     //   //get id
     //   this.activatedRoute.queryParamMap.subscribe((paramMap: Params) => {
@@ -55,7 +57,7 @@ export class AllCustomersComponent implements OnInit {
         active: true,
       },
       {
-        name: 'iD',
+        name: 'ID',
         display: 'ID/Account',
         type: 'string',
         active: true,
@@ -137,8 +139,17 @@ export class AllCustomersComponent implements OnInit {
     this.data = [
       {
         id: 1,
-        companyName: 'Test Company',
-        iD: 'Test',
+        companyName: 'Test Company One',
+        ID: 'Test',
+        address: 'Test Address',
+        phone: '7890574534',
+        status: false,
+        checked: false,
+      },
+      {
+        id: 2,
+        companyName: 'Test Company Two',
+        ID: 'Test',
         address: 'Test Address',
         phone: '7890574534',
         status: false,
@@ -267,5 +278,9 @@ export class AllCustomersComponent implements OnInit {
   //     'Clients',
   //     action
   //   );
+  // }
+  //handle display submenu from list menu array by know which item active
+  // setActiveMenu() {
+  //   this.sidebarService.sendActiveDropdown('Customers');
   // }
 }

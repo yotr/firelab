@@ -1,3 +1,176 @@
-<p>
-  owner works!
-</p>
+<div class="owner">
+  <!-- content page -->
+  <div class="content">
+    <!-- title -->
+    <h3 class="text-secondary">Owner/Agent Information</h3>
+    <!-- content -->
+    <form (ngSubmit)="submit()" [formGroup]="editForm">
+      <!-- header -->
+      <div
+        class="form-header pe-4 ps-4 mt-4 {{
+          currentTheme?.colorSchema?.background
+        }} {{ currentTheme?.colorSchema?.color }}"
+      >
+        <div class="d-flex justify-content-between align-items-center w-100">
+          <h4 class="m-0">Owner/Agent Information</h4>
+          <!-- check -->
+          <div class="d-flex gap-2 align-items-center">
+            <span class="select-input">
+              <label class="table-checkbox-container">
+                <input type="checkbox" />
+                <div class="checkmark"></div>
+              </label>
+            </span>
+            <p class="m-0">Same as Customer</p>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-sm-6">
+          <!-- Business Name -->
+          <div class="form-group mt-2">
+            <label>Business Name <span class="text-danger">*</span></label>
+            <input
+              class="form-control"
+              type="text"
+              formControlName="ownerBusinessName"
+            />
+            <!-- errors -->
+            <div
+              *ngIf="
+                editForm.get('ownerBusinessName')?.invalid &&
+                editForm.get('ownerBusinessName')?.touched
+              "
+            >
+              <small
+                *ngIf="
+                  editForm.get('ownerBusinessName')?.invalid &&
+                  editForm.get('ownerBusinessName')?.touched
+                "
+                class="text-danger"
+              >
+                Business Name Is Required</small
+              >
+            </div>
+            <!-- errors -->
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <!-- Contact Name -->
+          <div class="form-group mt-2">
+            <label>Contact Name </label>
+            <input
+              class="form-control"
+              type="text"
+              formControlName="ownerContactName"
+            />
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <!-- email -->
+          <div class="form-group mt-2">
+            <label>Email </label>
+            <input
+              class="form-control"
+              type="email"
+              formControlName="ownerEmail"
+            />
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <!-- Cell Phone -->
+          <div class="form-group mt-2">
+            <label>Cell Phone </label>
+            <input
+              class="form-control"
+              type="text"
+              formControlName="ownerCellPhone"
+            />
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <!-- Office Phone  -->
+          <div class="form-group mt-2">
+            <label>Office Phone </label>
+            <input
+              class="form-control"
+              type="text"
+              formControlName="ownerOfficePhone"
+            />
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <!-- Contact Fax Number -->
+          <div class="form-group mt-2">
+            <label>Contact Fax Number </label>
+            <input
+              class="form-control"
+              type="text"
+              formControlName="ownerContactFaxNumber"
+            />
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <!-- Address 1 -->
+          <div class="form-group mt-2">
+            <label>Address 1 </label>
+            <input
+              class="form-control"
+              type="text"
+              formControlName="ownerAddress1"
+            />
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <!-- Address 2 -->
+          <div class="form-group mt-2">
+            <label>Address 2 </label>
+            <input
+              class="form-control"
+              type="text"
+              formControlName="ownerAddress2"
+            />
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <!-- Postal Code -->
+          <div class="form-group mt-2">
+            <label>Postal Code </label>
+            <input
+              class="form-control"
+              type="text"
+              formControlName="ownerPostalCode"
+            />
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <!-- City -->
+          <div class="form-group mt-2">
+            <label>City </label>
+            <input
+              class="form-control"
+              type="text"
+              formControlName="ownerCity"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- submit -->
+      <div class="submit-section mb-4">
+        <button
+          class="btn submit-btn mx-2"
+          [class]="currentTheme?.colorSchema?.background"
+          type="submit"
+          [disabled]="editForm.invalid"
+        >
+          <span [class]="currentTheme?.colorSchema?.color">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+  <!-- /content page -->
+  <div class="reports-sidebar">
+    <app-customer-reports-sidebar></app-customer-reports-sidebar>
+  </div>
+</div>

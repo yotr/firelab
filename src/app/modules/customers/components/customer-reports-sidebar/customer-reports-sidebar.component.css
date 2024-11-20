@@ -1,11 +1,10 @@
-.customer-reports-sidebar {
+/* .customer-reports-sidebar {
   position: fixed;
   top: var(--header-height);
   right: 0;
   bottom: 0;
   border-left: 1px solid black;
-  /* background-color: white; */
-}
+} */
 .reports-sidebar-header {
   height: 68px;
   max-width: 325px;
@@ -61,4 +60,21 @@
 
 .report-type:hover span {
   color: white;
+}
+
+/* dirctions */
+.customer-reports-sidebar[dir*="ltr"] {
+  position: fixed;
+  top: var(--header-height);
+  right: 0;
+  bottom: 0;
+  border-left: 1px solid black;
+}
+
+.customer-reports-sidebar[dir*="rtl"] {
+  position: fixed;
+  top: var(--header-height);
+  left: 0;
+  bottom: 0;
+  border-right: 1px solid black;
 }

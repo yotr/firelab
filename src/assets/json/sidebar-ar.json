@@ -29,6 +29,21 @@
             "id": 2,
             "page": "Owner/Agent Info",
             "path": "/modules/customers/owner"
+          },
+          {
+            "id": 3,
+            "page": "Building Info",
+            "path": "/modules/customers/buildingInfo"
+          },
+          {
+            "id": 4,
+            "page": "System Info",
+            "path": "/modules/customers/systemInfo"
+          },
+          {
+            "id": 5,
+            "page": "Images",
+            "path": "/modules/customers/images"
           }
         ]
       },

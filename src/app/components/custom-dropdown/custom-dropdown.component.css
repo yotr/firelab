@@ -34,6 +34,7 @@
 }
 
 .custom-dropdown .custom-dropdown-list {
+  z-index: 99;
   background-color: white;
   position: absolute;
   top: calc(100% + 10px);

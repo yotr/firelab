@@ -1,0 +1,52 @@
+.building-info {
+  position: relative;
+  display: flex;
+}
+.content {
+  flex: 1;
+}
+.reports-sidebar {
+  position: relative;
+  height: 100%;
+  width: 325px;
+}
+
+.form-header {
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.building-notes {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.note .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.note .title .actions {
+  display: flex;
+  align-items: center;
+}
+.note .title .actions i {
+  cursor: pointer;
+}
+
+.note .note-input textarea {
+  margin-top: 5px;
+  padding: 10px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}

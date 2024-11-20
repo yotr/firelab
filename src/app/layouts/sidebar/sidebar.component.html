@@ -22,22 +22,18 @@
             {{ link?.section }}
           </div> -->
           <ng-container *ngFor="let list of link?.menu">
-            <ng-container
-              *ngIf="currentLanguage == 'ar' ? list?.title_en : list?.title"
-            >
-              <app-sidebar-dropdown
-                *ngIf="list?.list"
-                [list]="list"
-                [currentLanguage]="currentLanguage"
-              ></app-sidebar-dropdown>
-              <app-sidebar-link
-                *ngIf="list?.path"
-                [page]="list?.title"
-                [path]="list?.path"
-                [icon]="list?.icon"
-                [query]="list?.query"
-              ></app-sidebar-link>
-            </ng-container>
+            <app-sidebar-dropdown
+              *ngIf="list?.list"
+              [list]="list"
+              [currentLanguage]="currentLanguage"
+            ></app-sidebar-dropdown>
+            <app-sidebar-link
+              *ngIf="list?.path"
+              [page]="list?.title"
+              [path]="list?.path"
+              [icon]="list?.icon"
+              [query]="list?.query"
+            ></app-sidebar-link>
           </ng-container>
         </ng-container>
       </ng-container>

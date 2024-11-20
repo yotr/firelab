@@ -1,0 +1,71 @@
+<!-- add_building_info_modal -->
+<div id="add_building_info_modal" class="modal custom-modal fade" role="dialog">
+  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add Note</h5>
+        <button
+          type="button"
+          class="close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form (ngSubmit)="onSubmit()" [formGroup]="addForm">
+          <div class="row mt-4">
+            <div class="col-sm-12">
+              <!-- title -->
+              <div class="form-group mt-2">
+                <label>Title <span class="text-danger">*</span></label>
+                <input
+                  class="form-control"
+                  type="text"
+                  formControlName="title"
+                  placeholder="title"
+                />
+                <!-- errors -->
+                <div
+                  *ngIf="
+                    addForm.get('title')?.invalid &&
+                    addForm.get('title')?.touched
+                  "
+                >
+                  <small
+                    *ngIf="
+                      addForm.get('title')?.invalid &&
+                      addForm.get('title')?.touched
+                    "
+                    class="text-danger"
+                  >
+                    Title Is Required</small
+                  >
+                </div>
+                <!-- errors -->
+              </div>
+            </div>
+            <div class="col-sm-12">
+              <!-- description -->
+              <div class="form-group mt-2">
+                <label>Description </label>
+                <textarea
+                  rows="3"
+                  placeholder="description"
+                  formControlName="description"
+                ></textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- submit -->
+          <div class="save-btn text-center">
+            <button type="submit" [disabled]="addForm.invalid" class="save mt-4">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Drogfiles Modal -->

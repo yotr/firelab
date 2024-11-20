@@ -1,0 +1,19 @@
+.owner {
+  position: relative;
+  display: flex;
+}
+.content {
+  flex: 1;
+}
+.reports-sidebar {
+  position: relative;
+  height: 100%;
+  width: 325px;
+}
+
+.form-header {
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

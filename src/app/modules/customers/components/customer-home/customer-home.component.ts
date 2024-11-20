@@ -6,6 +6,7 @@ import {
   Params,
   Router,
 } from '@angular/router';
+import { SidebarService } from 'src/app/services/sidebar/sidebar.service';
 
 @Component({
   selector: 'app-customer-home',
@@ -23,29 +24,22 @@ export class CustomerHomeComponent implements OnInit {
   inspectionsDueLoading: boolean = false;
   inspectionsDoneLoading: boolean = false;
 
-  id: any = null;
+  customerId: any = null;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private sidebarService: SidebarService
+  ) {
     //get id
     this.activatedRoute.queryParamMap.subscribe((paramMap: Params) => {
-      if (paramMap['get']('id')) {
-        this.id = paramMap['get']('id');
+      if (paramMap['get']('customerId')) {
+        this.customerId = paramMap['get']('customerId');
+        // activate current customer id so we can get in other pages after refresh
+        this.sidebarService.sendCurrentCustomer(paramMap['get']('customerId'));
       }
     });
-    // add id
-    this.router.events.subscribe((event: Event) => {
-      if (event instanceof NavigationEnd) {
-        if (event.url.includes('/customerInfo')) {
-          this.router.navigate(['/modules/customers/customerInfo'], {
-            queryParams: { id: this.id },
-          });
-        } else if (event.url.includes('/owner')) {
-          this.router.navigate(['/modules/customers/owner'], {
-            queryParams: { id: this.id },
-          });
-        }
-      }
-    });
+
     this.acount_types = ['master', 'sub', 'building'];
     this.inspectionsDueKeys = [
       {
@@ -113,5 +107,39 @@ export class CustomerHomeComponent implements OnInit {
     ];
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getCurrentCustomerId();
+    this.navigationHandler();
+  }
+  //handle display submenu from list menu array by know which item active
+  setActiveMenu() {
+    this.sidebarService.activateDropdown('Customers');
+  }
+  getCurrentCustomerId() {
+    this.sidebarService.getCurrentCustomerValue().subscribe((value: any) => {
+      if (value) {
+        this.customerId = value;
+      }
+    });
+    this.setActiveMenu();
+    // set querys to current page
+    this.router.navigate([], {
+      queryParams: { customerId: this.customerId },
+    });
+  }
+  navigationHandler() {
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
+        if (
+          event.url.includes('/customers/home') ||
+          event.url.includes('/customers/owner') ||
+          event.url.includes('/customers/customerInfo') ||
+          event.url.includes('/customers/buildingInfo') ||
+          event.url.includes('/customers/systemInfo')
+        ) {
+          this.getCurrentCustomerId();
+        }
+      }
+    });
+  }
 }

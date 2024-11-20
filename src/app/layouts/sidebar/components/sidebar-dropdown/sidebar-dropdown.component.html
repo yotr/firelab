@@ -34,7 +34,6 @@
   >
     <ng-container *ngFor="let link of list?.list">
       <li
-        *ngIf="currentLanguage == 'ar' ? link?.page_en : link?.page"
         [routerLink]="link?.path"
         [queryParams]="link?.query"
         routerLinkActive="active"

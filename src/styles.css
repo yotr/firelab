@@ -473,8 +473,8 @@ input[type="checkbox"] {
 }
 .table-checkbox-container input:checked ~ .checkmark {
   background-image: linear-gradient(
-    var(--secondary-table-color),
-    var(--secondary-table-color)
+    var(--main-color),
+    var(--main-color)
   );
 }
 .table-checkbox-container .checkmark:after {

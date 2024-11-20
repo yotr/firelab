@@ -7,6 +7,13 @@ import { CustomersComponent } from './customers.component';
 import { AllCustomersComponent } from './components/all-customers/all-customers.component';
 import { CustomerInfoComponent } from './components/customer-info/customer-info.component';
 import { OwnerComponent } from './components/owner/owner.component';
+import { BuildingInfoComponent } from './components/building-info/building-info.component';
+import { AddBuildingInfoModalComponent } from './components/building-info/components/add-building-info-modal/add-building-info-modal.component';
+import { EditBuildingInfoModalComponent } from './components/building-info/components/edit-building-info-modal/edit-building-info-modal.component';
+import { SystemInfoComponent } from './components/system-info/system-info.component';
+import { AddSystemInfoComponent } from './components/system-info/components/add-system-info/add-system-info.component';
+import { EditSystemInfoComponent } from './components/system-info/components/edit-system-info/edit-system-info.component';
+import { ImagesComponent } from './components/images/images.component';
 
 const routes: Routes = [
   {
@@ -36,6 +43,30 @@ const routes: Routes = [
       {
         path: 'owner',
         component: OwnerComponent,
+      },
+      {
+        path: 'buildingInfo',
+        component: BuildingInfoComponent,
+      },
+      {
+        path: 'buildingInfo/edit/:id',
+        component: EditBuildingInfoModalComponent,
+      },
+      {
+        path: 'systemInfo',
+        component: SystemInfoComponent,
+      },
+      {
+        path: 'systemInfo/add',
+        component: AddSystemInfoComponent,
+      },
+      {
+        path: 'systemInfo/edit/:id',
+        component: EditSystemInfoComponent,
+      },
+      {
+        path: 'images',
+        component: ImagesComponent,
       },
     ],
   },

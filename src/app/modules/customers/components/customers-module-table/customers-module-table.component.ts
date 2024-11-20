@@ -190,8 +190,8 @@ export class CustomersModuleTableComponent implements OnInit {
   }
 
   //handle display submenu from list menu array by know which item active
-  setActiveMenu() {
-    this.sidebarService.sendActiveDropdown('Customers');
+  sendActiveCustomer(id: any) {
+    this.sidebarService.sendCurrentCustomer(id);
   }
 
   // check page || components permissions

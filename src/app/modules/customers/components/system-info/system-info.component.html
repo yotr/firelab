@@ -1,0 +1,35 @@
+<div class="system-info">
+  <!-- content page -->
+  <div class="content">
+    <!-- title -->
+    <h3 class="text-secondary">
+      System Information <i class="pi pi-info-circle text-danger fs-5 mx-2"></i>
+    </h3>
+
+    <!-- table -->
+    <div>
+      <div
+        class="d-flex justify-content-start my-4"
+        (click)="navigateToAddPage()"
+      >
+        <a
+          class="btn add-btn d-flex align-items-center {{
+            currentTheme?.colorSchema?.background
+          }} {{ currentTheme?.colorSchema?.color }}"
+        >
+          <i class="pi pi-plus d-none d-sm-block"></i>
+          Add System/Device
+        </a>
+      </div>
+      <app-system-info-table
+        [data]="data"
+        [dataKeys]="dataKeys"
+        [loading]="loading"
+      ></app-system-info-table>
+    </div>
+  </div>
+  <!-- /content page -->
+  <div class="reports-sidebar">
+    <app-customer-reports-sidebar></app-customer-reports-sidebar>
+  </div>
+</div>

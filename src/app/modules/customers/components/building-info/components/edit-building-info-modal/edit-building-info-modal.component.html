@@ -1,0 +1,66 @@
+<!-- edit_building_info_modal -->
+<div id="edit_building_info_modal">
+  <!-- Page Header -->
+  <div
+    class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
+    [dir]="'dir' | translate"
+  >
+    <!-- breadcrumb -->
+    <app-breadcrumb title="Update Note"></app-breadcrumb>
+  </div>
+  <!-- /Page Header -->
+
+  <app-back-button></app-back-button>
+  <div class="modal-body">
+    <form (ngSubmit)="onSubmit()" [formGroup]="editForm">
+      <div class="row mt-4">
+        <div class="col-sm-12">
+          <!-- title -->
+          <div class="form-group mt-2">
+            <label>Title <span class="text-danger">*</span></label>
+            <input
+              class="form-control"
+              type="text"
+              formControlName="title"
+              placeholder="title"
+            />
+            <!-- errors -->
+            <div
+              *ngIf="
+                editForm.get('title')?.invalid && editForm.get('title')?.touched
+              "
+            >
+              <small
+                *ngIf="
+                  editForm.get('title')?.invalid &&
+                  editForm.get('title')?.touched
+                "
+                class="text-danger"
+              >
+                Title Is Required</small
+              >
+            </div>
+            <!-- errors -->
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <!-- description -->
+          <div class="form-group mt-2">
+            <label>Description </label>
+            <textarea
+              rows="3"
+              placeholder="description"
+              formControlName="description"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- submit -->
+      <div class="save-btn text-center">
+        <button type="submit" [disabled]="editForm.invalid" class="save mt-4">Save</button>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- /Drogfiles Modal -->

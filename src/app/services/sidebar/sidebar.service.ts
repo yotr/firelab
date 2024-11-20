@@ -12,12 +12,16 @@ export class SidebarService {
   //using Observable service to share status of sidebar between all components
   private isSidebarOpend: BehaviorSubject<boolean>;
   private activeDropdown: BehaviorSubject<string>;
+  // for customer pages
+  private currentCustomerId: BehaviorSubject<any>;
   sidebarLinks: any = [];
 
   constructor(private http: HttpClient) {
     //define init variables
     this.isSidebarOpend = new BehaviorSubject<boolean>(false);
     this.activeDropdown = new BehaviorSubject<string>('');
+    // for customer pages
+    this.currentCustomerId = new BehaviorSubject<any>('');
     this.http
       .get<any>(`${this.apiurl}/sidebar-en.json`)
       .subscribe((response: any) => {
@@ -56,8 +60,21 @@ export class SidebarService {
       this.activeDropdown.next(value);
     }
   }
+  // send name of active dropdown to know which one active
+  activateDropdown(value: string) {
+    this.activeDropdown.next(value);
+  }
   //get active as observable
   getActiveDropdownValue(): Observable<string> {
     return this.activeDropdown.asObservable();
+  }
+  // for customer pages
+
+  sendCurrentCustomer(value: any) {
+    this.currentCustomerId.next(value);
+  }
+  //get active as observable
+  getCurrentCustomerValue(): Observable<string> {
+    return this.currentCustomerId.asObservable();
   }
 }

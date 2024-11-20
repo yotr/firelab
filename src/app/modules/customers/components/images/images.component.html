@@ -1,0 +1,67 @@
+<div class="images">
+  <!-- content page -->
+  <div class="content">
+    <!-- title -->
+    <h3 class="text-secondary">Images</h3>
+    <!-- content -->
+    <div>
+      <div class="d-flex justify-content-start my-4">
+        <a
+          class="btn add-btn d-flex align-items-center {{
+            currentTheme?.colorSchema?.background
+          }} {{ currentTheme?.colorSchema?.color }}"
+          data-bs-toggle="modal"
+          data-bs-target="#add_image"
+        >
+          <i class="pi pi-plus d-none d-sm-block"></i>
+          Add Image
+        </a>
+      </div>
+      <!-- header -->
+      <div
+        class="form-header pe-4 ps-4 mt-4 {{
+          currentTheme?.colorSchema?.background
+        }} {{ currentTheme?.colorSchema?.color }}"
+      >
+        <div class="d-flex justify-content-between align-items-center w-100">
+          <h4 class="m-0">Upload Building Image</h4>
+          <div></div>
+        </div>
+      </div>
+      <!-- images -->
+      <div class="building-images mt-4">
+        <div class="building-image" *ngFor="let img of data">
+          <div class="image">
+            <i class="pi pi-trash"></i>
+            <img [src]="img?.image" alt="image" />
+          </div>
+          <div class="comment">
+            <input
+              class="form-control"
+              type="text"
+              placeholder="Add Comment"
+              [value]="img?.comment"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- no data -->
+      <h5
+        *ngIf="data.length == 0 && loading == false"
+        class="text-center text-danger bg-light m-0 py-2"
+      >
+        No images available
+      </h5>
+    </div>
+  </div>
+
+  <!-- /content page -->
+  <div class="reports-sidebar">
+    <app-customer-reports-sidebar></app-customer-reports-sidebar>
+  </div>
+</div>
+
+<!-- add-image-modal -->
+<app-add-image-modal (onAttach)="onUploadFile($event)"></app-add-image-modal>
+<!-- /add-image-modal -->
