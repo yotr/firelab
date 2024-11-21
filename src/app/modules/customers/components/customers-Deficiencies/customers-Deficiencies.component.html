@@ -1,0 +1,30 @@
+<div class="deficiencies">
+  <!-- content page -->
+  <div class="content">
+    <!-- page header  -->
+    <div
+      class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
+      [dir]="'dir' | translate"
+    >
+      <app-breadcrumb title="Deficiencies"></app-breadcrumb>
+    </div>
+
+    <!-- /page header  -->
+    <app-back-button></app-back-button>
+    <!-- table -->
+    <app-customer-Deficiencies-module-table
+      [data]="data"
+      [totalItems]="totalItemsCount"
+      [dataKeys]="dataKeys"
+      [loading]="loading"
+      [currentTheme]="currentTheme"
+      deleteModalTitle="Deficiencies"
+      tableTitle="Deficiencies Table"
+      editPagePath=""
+    ></app-customer-Deficiencies-module-table>
+  </div>
+  <!-- /content page -->
+  <div class="reports-sidebar">
+    <app-customer-reports-sidebar></app-customer-reports-sidebar>
+  </div>
+</div>

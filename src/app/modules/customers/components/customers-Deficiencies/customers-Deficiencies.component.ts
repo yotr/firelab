@@ -1,26 +1,28 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { LanguageService } from 'src/app/services/language/language.service';
+import { SidebarService } from 'src/app/services/sidebar/sidebar.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
 
 @Component({
-  selector: 'app-deficiencies',
-  templateUrl: './deficiencies.component.html',
-  styleUrls: ['./deficiencies.component.css'],
+  selector: 'app-customers-Deficiencies',
+  templateUrl: './customers-Deficiencies.component.html',
+  styleUrls: ['./customers-Deficiencies.component.css'],
 })
-export class DeficienciesComponent implements OnInit {
+export class CustomersDeficienciesComponent implements OnInit, AfterViewInit {
   // current language
   currentLanguage: any = localStorage.getItem('lang');
   currentTheme: any;
-  dataKeys: any[] = [];
-  data: any[] = [];
-  totalItemsCount: number = 0;
+  data: any[] = [] as any[];
   loading: boolean = true;
+  totalItemsCount: number = 0;
+  dataKeys: any[] = [];
   // current logged in user
   currentUser: any = {} as any;
+  customerId: any = null;
 
   constructor(
     private themeService: ThemeService,
@@ -31,49 +33,36 @@ export class DeficienciesComponent implements OnInit {
     private toastr: ToastrService,
     // public apiService: ApiService,
     // private permissionsService: PermissionsService,
-    private auth: AuthService
+    private auth: AuthService,
+    private sidebarService: SidebarService
   ) {
-    //   //get id
-    //   this.activatedRoute.queryParamMap.subscribe((paramMap: Params) => {
-    //     if (paramMap['get']('operationid')) {
-    //       this.operationId = paramMap['get']('operationid');
-    //     }
-    //   });
-    //   // get query parameters
-    //   this.activatedRoute.queryParams.subscribe((query) => {
-    //     this.view_type = query['view_type'];
-    //   });
+    //get id
+    this.activatedRoute.queryParamMap.subscribe((paramMap: Params) => {
+      if (paramMap['get']('customerId')) {
+        this.customerId = paramMap['get']('customerId');
+        // activate current customer id so we can get in other pages after refresh
+        this.sidebarService.sendCurrentCustomer(paramMap['get']('customerId'));
+      }
+    });
 
     //   // turn on current language (trandlate)
     this.translateService.use(this.currentLanguage);
     // this.translateService.instant('clients.client_table.client_id');
     this.dataKeys = [
       {
-        name: 'Customer Name',
-        display: 'Customer Name',
-        type: 'string',
-        active: true,
-      },
-      {
-        name: 'Category',
+        name: 'category',
         display: 'Category',
         type: 'string',
         active: true,
       },
       {
-        name: 'Date',
+        name: 'date',
         display: 'Date',
         type: 'string',
         active: true,
       },
       {
-        name: 'Description',
-        display: 'Description',
-        type: 'string',
-        active: true,
-      },
-      {
-        name: 'Status',
+        name: 'status',
         display: 'Status',
         type: 'string',
         active: true,
@@ -85,11 +74,11 @@ export class DeficienciesComponent implements OnInit {
     this.getLanguage();
     this.getTheme();
     this.getData();
+    this.getCurrentCustomerId();
     //   this.getCurrentUserData();
   }
 
-  // ngAfterViewInit(): void {
-  // }
+  ngAfterViewInit(): void {}
   // get user
   isLoggedIn(): boolean {
     return this.auth.currentUserSignal() == undefined ? false : true;
@@ -116,8 +105,47 @@ export class DeficienciesComponent implements OnInit {
       this.translateService.use(this.currentLanguage);
     });
   }
+  //handle display submenu from list menu array by know which item active
+  setActiveMenu() {
+    this.sidebarService.activateDropdown('Customers');
+  }
+  getCurrentCustomerId() {
+    this.sidebarService.getCurrentCustomerValue().subscribe((value: any) => {
+      if (value) {
+        this.customerId = value;
+      }
+    });
+    this.setActiveMenu();
+    // set querys to current page
+    // this.router.navigate([], {
+    //   queryParams: { customerId: this.customerId },
+    // });
+  }
+  // navigationHandler() {
+  //   this.router.events.subscribe((event: Event) => {
+  //     if (event instanceof NavigationEnd) {
+  //       if (
+  //         event.url.includes('/customers/home') ||
+  //         event.url.includes('/customers/owner') ||
+  //         event.url.includes('/customers/customerInfo') ||
+  //         event.url.includes('/customers/buildingInfo') ||
+  //         event.url.includes('/customers/systemInfo')
+  //       ) {
+  //         this.getCurrentCustomerId();
+  //       }
+  //     }
+  //   });
+  // }
 
-  //get all Clients
+  onAttachFiles(files: any): void {
+    // this.attachedFiles = files;
+    // this.addFileForm.patchValue({
+    //   files: this.attachedFiles,
+    // });
+    console.log(files);
+  }
+
+  //get data
   getData(
     page?: number,
     pageSize?: number,
@@ -129,19 +157,19 @@ export class DeficienciesComponent implements OnInit {
   ) {
     this.loading = false;
     this.totalItemsCount = this.data.length;
-    //   this.apiService
-    //     .filterData(
-    //       `clients/getFilteredClients`,
-    //       page ? page : 1,
-    //       pageSize ? pageSize : 10
-    //     )
-    //     .subscribe((data) => {
-    //       this.clients = data?.clientDto;
-    //       this.totalItemsCount = data?.totalCount;
-    //       this.loading = false;
-    //       // get dynamic columns keys
-    //       // this.getTableTabKeys(data);
-    //     });
+    // this.apiService
+    //   .filterData(
+    //     `clients/getFilteredClients`,
+    //     page ? page : 1,
+    //     pageSize ? pageSize : 10
+    //   )
+    //   .subscribe((data) => {
+    //     this.clients = data?.clientDto;
+    //     this.totalItemsCount = data?.totalCount;
+    //     this.loading = false;
+    //     // get dynamic columns keys
+    //     // this.getTableTabKeys(data);
+    //   });
   }
 
   // search(event: any) {
@@ -249,5 +277,9 @@ export class DeficienciesComponent implements OnInit {
   //     'Clients',
   //     action
   //   );
+  // }
+  //handle display submenu from list menu array by know which item active
+  // setActiveMenu() {
+  //   this.sidebarService.sendActiveDropdown('Customers');
   // }
 }

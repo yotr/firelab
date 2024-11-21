@@ -32,6 +32,11 @@ import { RecurringInspectionsComponent } from './components/recurring-inspection
 import { RecurringInspectionsModuleTableComponent } from './components/recurring-inspections/components/recurring-inspections-module-table/recurring-inspections-module-table.component';
 import { AddRecurringInspectionsComponent } from './components/recurring-inspections/components/add-recurring-inspections/add-recurring-inspections.component';
 import { EditRecurringInspectionsComponent } from './components/recurring-inspections/components/edit-recurring-inspections/edit-recurring-inspections.component';
+import { CustomersDeficienciesComponent } from './components/customers-Deficiencies/customers-Deficiencies.component';
+import { CustomerDeficienciesModuleTableComponent } from './components/customers-Deficiencies/customer-Deficiencies-module-table/customer-Deficiencies-module-table.component';
+import { CustomerPortalComponent } from './components/customer-portal/customer-portal.component';
+import { AddJobComponent } from './components/add-job/add-job.component';
+import { AutoEmailComponent } from './components/auto-email/auto-email.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +70,11 @@ import { EditRecurringInspectionsComponent } from './components/recurring-inspec
     RecurringInspectionsModuleTableComponent,
     AddRecurringInspectionsComponent,
     EditRecurringInspectionsComponent,
+    CustomersDeficienciesComponent,
+    CustomerDeficienciesModuleTableComponent,
+    CustomerPortalComponent,
+    AddJobComponent,
+    AutoEmailComponent,
   ],
 
   imports: [CommonModule, CustomersRoutingModule, SharedModule],

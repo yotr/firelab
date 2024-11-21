@@ -16,7 +16,7 @@ export class ServiceRequestsComponent implements OnInit {
   currentLanguage: any = localStorage.getItem('lang');
   currentTheme: any;
   dataKeys: any[] = [];
-  contacts: any[] = [];
+  data: any[] = [];
   totalItemsCount: number = 0;
   loading: boolean = true;
   // current logged in user
@@ -84,6 +84,7 @@ export class ServiceRequestsComponent implements OnInit {
   ngOnInit() {
     this.getLanguage();
     this.getTheme();
+    this.getData();
     //   this.getCurrentUserData();
   }
 
@@ -116,30 +117,32 @@ export class ServiceRequestsComponent implements OnInit {
     });
   }
 
-  // //get all Clients
-  // getClients(
-  //   page?: number,
-  //   pageSize?: number,
-  //   column?: any,
-  //   operator1?: any,
-  //   operator2?: any,
-  //   value1?: any,
-  //   value2?: any
-  // ) {
-  //   this.apiService
-  //     .filterData(
-  //       `clients/getFilteredClients`,
-  //       page ? page : 1,
-  //       pageSize ? pageSize : 10
-  //     )
-  //     .subscribe((data) => {
-  //       this.clients = data?.clientDto;
-  //       this.totalItemsCount = data?.totalCount;
-  //       this.loading = false;
-  //       // get dynamic columns keys
-  //       // this.getTableTabKeys(data);
-  //     });
-  // }
+  //get data
+  getData(
+    page?: number,
+    pageSize?: number,
+    column?: any,
+    operator1?: any,
+    operator2?: any,
+    value1?: any,
+    value2?: any
+  ) {
+    this.loading = false;
+    this.totalItemsCount = this.data.length;
+    // this.apiService
+    //   .filterData(
+    //     `clients/getFilteredClients`,
+    //     page ? page : 1,
+    //     pageSize ? pageSize : 10
+    //   )
+    //   .subscribe((data) => {
+    //     this.clients = data?.clientDto;
+    //     this.totalItemsCount = data?.totalCount;
+    //     this.loading = false;
+    //     // get dynamic columns keys
+    //     // this.getTableTabKeys(data);
+    //   });
+  }
 
   // search(event: any) {
   //   if (event?.value != null && event.value?.trim() != '') {

@@ -20,6 +20,10 @@ import { EditDeviceComponent } from './components/import-devices/components/edit
 import { RecurringInspectionsComponent } from './components/recurring-inspections/recurring-inspections.component';
 import { AddRecurringInspectionsComponent } from './components/recurring-inspections/components/add-recurring-inspections/add-recurring-inspections.component';
 import { EditRecurringInspectionsComponent } from './components/recurring-inspections/components/edit-recurring-inspections/edit-recurring-inspections.component';
+import { CustomersDeficienciesComponent } from './components/customers-Deficiencies/customers-Deficiencies.component';
+import { CustomerPortalComponent } from './components/customer-portal/customer-portal.component';
+import { AutoEmailComponent } from './components/auto-email/auto-email.component';
+import { AddJobComponent } from './components/add-job/add-job.component';
 
 const routes: Routes = [
   {
@@ -97,6 +101,22 @@ const routes: Routes = [
       {
         path: 'recurringInspections/edit/:id',
         component: EditRecurringInspectionsComponent,
+      },
+      {
+        path: 'customerDeficiencies',
+        component: CustomersDeficienciesComponent,
+      },
+      {
+        path: 'customerPortal',
+        component: CustomerPortalComponent,
+      },
+      {
+        path: 'addJob',
+        component: AddJobComponent,
+      },
+      {
+        path: 'autoEmail',
+        component: AutoEmailComponent,
       },
     ],
   },

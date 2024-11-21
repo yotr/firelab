@@ -134,9 +134,6 @@ export class AddRecurringInspectionsComponent implements OnInit {
       date: '',
     });
   }
-  emptyTasks(): FormGroup {
-    return this.formBuilder.group({});
-  }
 
   addTaskItem() {
     this.tasks.push(this.newTaskItem());

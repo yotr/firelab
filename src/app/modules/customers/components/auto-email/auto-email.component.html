@@ -1,0 +1,73 @@
+<div class="auto-email">
+  <!-- content page -->
+  <div class="content">
+    <!-- title -->
+    <h3 class="text-secondary">
+      Auto Email <i class="pi pi-info-circle text-danger fs-5 mx-2"></i>
+    </h3>
+    <!-- content -->
+    <div>
+      <!-- header -->
+      <div
+        class="form-header pe-4 ps-4 mt-4 {{
+          currentTheme?.colorSchema?.background
+        }} {{ currentTheme?.colorSchema?.color }}"
+      >
+        <div class="d-flex justify-content-between align-items-center w-100">
+          <h4 class="m-0">Auto Email</h4>
+          <div></div>
+        </div>
+      </div>
+      <form (ngSubmit)="submit()" [formGroup]="addForm">
+        <!-- emails -->
+        <div class="emails">
+          <!-- emails inputs -->
+          <div class="row" formArrayName="emails">
+            <div
+              class="col-sm-6"
+              *ngFor="let item of emails.controls; let i = index"
+              [formGroupName]="i"
+            >
+              <div class="form-group mt-2">
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="example@example.com"
+                  formControlName="email"
+                  name="email[]"
+                />
+                <i
+                  class="pi pi-trash trash-icon"
+                  (click)="removeEmailItems(i)"
+                ></i>
+              </div>
+            </div>
+          </div>
+          <!-- buttons -->
+          <div class="btns">
+            <!-- add email -->
+            <div class="add-btn">
+              <div class="add my-4" (click)="addEmailItem()">Add Email ID</div>
+            </div>
+            <!-- submit -->
+            <div class="save-btn text-center">
+              <button type="submit" class="save mt-4">Save</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <!-- /content page -->
+  <div class="reports-sidebar">
+    <app-customer-reports-sidebar></app-customer-reports-sidebar>
+  </div>
+</div>
+
+<!-- delete modal -->
+<app-delete-modal
+  title="Building Information"
+  [currentTheme]="currentTheme"
+  (onDelete)="deleteItem()"
+></app-delete-modal>
+<!--/ delete modal -->
