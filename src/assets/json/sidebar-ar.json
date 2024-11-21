@@ -44,6 +44,11 @@
             "id": 5,
             "page": "Images",
             "path": "/modules/customers/images"
+          },
+          {
+            "id": 6,
+            "page": "Import Devices",
+            "path": "/modules/customers/importDevices"
           }
         ]
       },

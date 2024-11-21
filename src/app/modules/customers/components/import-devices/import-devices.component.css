@@ -1,0 +1,21 @@
+.import-devices {
+  position: relative;
+  display: flex;
+}
+.content {
+  flex: 1;
+}
+.reports-sidebar {
+  position: relative;
+  height: 100%;
+  width: 325px;
+}
+
+
+.page-header[dir="rtl"] div .add-btn {
+  float: left;
+}
+
+.page-footer[dir="rtl"] div .add-btn {
+  float: right;
+}

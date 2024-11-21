@@ -16,12 +16,7 @@
       <div class="modal-body">
         <form id="js-upload-form">
           <div class="upload-drop-zone" id="drop-zone" role="button">
-            <input
-              id="files"
-              type="file"
-              (change)="getSelectedFiles($event)"
-              multiple
-            />
+            <input id="files" type="file" (change)="getSelectedFiles($event)" />
             <i class="pi pi-cloud-upload fs-4"></i>
             <span class="upload-text mx-2">{{
               "dragfiles_modal.SubTitle" | translate

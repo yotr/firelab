@@ -1,0 +1,65 @@
+.save-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.save {
+  color: rgb(106, 161, 78);
+  border: 1px solid rgb(106, 161, 78);
+  background-color: white;
+  padding: 6px 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 155px;
+  font-weight: bold;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.save:hover {
+  cursor: pointer;
+  color: white;
+  background-color: rgb(106, 161, 78);
+}
+.add-btn {
+  display: flex;
+  justify-content: flex-start;
+  border: none;
+}
+
+.add {
+  color: rgb(78, 114, 161);
+  border: 1px solid rgb(78, 114, 161);
+  background-color: white;
+  padding: 6px 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  font-weight: bold;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.add:hover {
+  cursor: pointer;
+  color: white;
+  background-color: rgb(78, 114, 161);
+}
+.row {
+  position: relative;
+}
+.trash-icon {
+  cursor: pointer;
+  width: fit-content;
+  position: absolute;
+  font-size: larger;
+  top: 10px;
+  right: 10px;
+}

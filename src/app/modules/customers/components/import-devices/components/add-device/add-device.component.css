@@ -1,0 +1,54 @@
+.upload-drop-zone {
+  position: relative;
+  background-color: #ffffff;
+  border: 2px dashed #e3e3e3;
+  color: #cccccc;
+  height: 200px;
+  line-height: 200px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.upload-drop-zone .upload-text {
+  font-size: 24px;
+  margin-left: 10px;
+  color: #cccccc;
+}
+.upload-drop-zone input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  outline: none;
+  opacity: 0;
+}
+
+.save-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.save {
+  color: rgb(106, 161, 78);
+  border: 1px solid rgb(106, 161, 78);
+  background-color: white;
+  padding: 6px 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 155px;
+  font-weight: bold;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.save:hover {
+  cursor: pointer;
+  color: white;
+  background-color: rgb(106, 161, 78);
+}

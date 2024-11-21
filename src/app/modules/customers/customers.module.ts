@@ -24,6 +24,14 @@ import { SystemInfoTableComponent } from './components/system-info/components/sy
 import { AddImageModalComponent } from './components/images/add-image-modal/add-image-modal.component';
 import { ImagesComponent } from './components/images/images.component';
 import { ViewImageModalComponent } from './components/images/view-image-modal/view-image-modal.component';
+import { ImportDevicesComponent } from './components/import-devices/import-devices.component';
+import { AddDeviceComponent } from './components/import-devices/components/add-device/add-device.component';
+import { ImporDevicesModuleTableComponent } from './components/import-devices/components/impor-devices-module-table/impor-devices-module-table.component';
+import { EditDeviceComponent } from './components/import-devices/components/edit-device/edit-device.component';
+import { RecurringInspectionsComponent } from './components/recurring-inspections/recurring-inspections.component';
+import { RecurringInspectionsModuleTableComponent } from './components/recurring-inspections/components/recurring-inspections-module-table/recurring-inspections-module-table.component';
+import { AddRecurringInspectionsComponent } from './components/recurring-inspections/components/add-recurring-inspections/add-recurring-inspections.component';
+import { EditRecurringInspectionsComponent } from './components/recurring-inspections/components/edit-recurring-inspections/edit-recurring-inspections.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +56,15 @@ import { ViewImageModalComponent } from './components/images/view-image-modal/vi
     SystemInfoTableComponent,
     ImagesComponent,
     AddImageModalComponent,
-    ViewImageModalComponent
+    ViewImageModalComponent,
+    ImportDevicesComponent,
+    AddDeviceComponent,
+    EditDeviceComponent,
+    ImporDevicesModuleTableComponent,
+    RecurringInspectionsComponent,
+    RecurringInspectionsModuleTableComponent,
+    AddRecurringInspectionsComponent,
+    EditRecurringInspectionsComponent,
   ],
 
   imports: [CommonModule, CustomersRoutingModule, SharedModule],

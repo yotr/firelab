@@ -1,0 +1,130 @@
+<!-- Add  Modal -->
+<div class="add-page">
+  <!-- Page Header -->
+  <div
+    class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
+    [dir]="'dir' | translate"
+  >
+    <!-- breadcrumb -->
+    <app-breadcrumb title="Import Device"></app-breadcrumb>
+  </div>
+  <!-- /Page Header -->
+
+  <app-back-button></app-back-button>
+  <!-- content -->
+  <form (ngSubmit)="submit()" [formGroup]="addForm">
+    <div class="row">
+      <div class="col-sm-6">
+        <!-- Report Category -->
+        <div class="form-group mt-2">
+          <label>Report Category <span class="text-danger">*</span></label>
+          <select
+            class="form-select form-control"
+            formControlName="reportCategory"
+          >
+            <option disabled selected>
+              {{ "select" | translate }}
+            </option>
+            <ng-container *ngFor="let report of reports">
+              <option [value]="report?.id">
+                {{ report?.name }}
+              </option>
+            </ng-container>
+            <option *ngIf="!reportsLoading && reports.length == 0" disabled>
+              No Data Yet
+            </option>
+          </select>
+          <!-- errors -->
+          <div
+            *ngIf="
+              addForm.get('reportCategory')?.invalid &&
+              addForm.get('reportCategory')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('reportCategory')?.invalid &&
+                addForm.get('reportCategory')?.touched
+              "
+              class="text-danger"
+            >
+              Report Category Is Required</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <!-- List Name -->
+        <div class="form-group mt-2">
+          <label>List Name </label>
+          <input
+            class="form-control"
+            type="text"
+            placeholder="Input Here"
+            formControlName="listName"
+          />
+          <!-- errors -->
+          <div
+            *ngIf="
+              addForm.get('listName')?.invalid &&
+              addForm.get('listName')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('listName')?.invalid &&
+                addForm.get('listName')?.touched
+              "
+              class="text-danger"
+            >
+              List Name Is Required</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+      <!-- download zone -->
+      <a
+        class="col-sm-12 mt-4"
+        href="/assets/files/client-devices.xlsx"
+        download
+      >
+        <div class="upload-drop-zone" id="drop-zone" role="button">
+          <i class="pi pi-cloud-download fs-4 text-success"></i>
+          <a class="upload-text mx-2"> Download SpreadSheet </a>
+        </div>
+      </a>
+
+      <!-- upload zone -->
+      <div class="col-sm-12 mt-4">
+        <div class="upload-drop-zone" id="drop-zone" role="button">
+          <input
+            id="files"
+            type="file"
+            (change)="importExcel($event)"
+            accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+          />
+          <i class="pi pi-cloud-upload fs-4 text-info"></i>
+          <span class="upload-text mx-2">{{
+            file != null ? truncateString(file?.name, 20) : "Upload SpreadSheet"
+          }}</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- submit -->
+    <div class="save-btn text-center">
+      <button type="submit" [disabled]="addForm.invalid" class="save mt-4">
+        Save
+      </button>
+    </div>
+  </form>
+</div>
+<!-- /Add  Modal -->
+
+<!-- loading section -->
+<div *ngIf="uploading">
+  <app-loading-section></app-loading-section>
+</div>
+<!-- /loading section -->

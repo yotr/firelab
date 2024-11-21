@@ -14,6 +14,12 @@ import { SystemInfoComponent } from './components/system-info/system-info.compon
 import { AddSystemInfoComponent } from './components/system-info/components/add-system-info/add-system-info.component';
 import { EditSystemInfoComponent } from './components/system-info/components/edit-system-info/edit-system-info.component';
 import { ImagesComponent } from './components/images/images.component';
+import { ImportDevicesComponent } from './components/import-devices/import-devices.component';
+import { AddDeviceComponent } from './components/import-devices/components/add-device/add-device.component';
+import { EditDeviceComponent } from './components/import-devices/components/edit-device/edit-device.component';
+import { RecurringInspectionsComponent } from './components/recurring-inspections/recurring-inspections.component';
+import { AddRecurringInspectionsComponent } from './components/recurring-inspections/components/add-recurring-inspections/add-recurring-inspections.component';
+import { EditRecurringInspectionsComponent } from './components/recurring-inspections/components/edit-recurring-inspections/edit-recurring-inspections.component';
 
 const routes: Routes = [
   {
@@ -67,6 +73,30 @@ const routes: Routes = [
       {
         path: 'images',
         component: ImagesComponent,
+      },
+      {
+        path: 'importDevices',
+        component: ImportDevicesComponent,
+      },
+      {
+        path: 'importDevices/add',
+        component: AddDeviceComponent,
+      },
+      {
+        path: 'importDevices/edit/:id',
+        component: EditDeviceComponent,
+      },
+      {
+        path: 'recurringInspections',
+        component: RecurringInspectionsComponent,
+      },
+      {
+        path: 'recurringInspections/add',
+        component: AddRecurringInspectionsComponent,
+      },
+      {
+        path: 'recurringInspections/edit/:id',
+        component: EditRecurringInspectionsComponent,
       },
     ],
   },

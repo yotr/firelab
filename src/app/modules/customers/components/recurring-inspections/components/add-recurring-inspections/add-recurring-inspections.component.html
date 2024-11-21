@@ -1,0 +1,268 @@
+<!-- Add  Modal -->
+<div class="add-page">
+  <!-- Page Header -->
+  <div
+    class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
+    [dir]="'dir' | translate"
+  >
+    <!-- breadcrumb -->
+    <app-breadcrumb title="Add Inspections"></app-breadcrumb>
+  </div>
+  <!-- /Page Header -->
+
+  <app-back-button></app-back-button>
+  <!-- content -->
+  <form (ngSubmit)="submit()" [formGroup]="addForm">
+    <div class="row">
+      <div class="col-sm-6">
+        <!-- Report Category -->
+        <div class="form-group mt-2">
+          <label>Report Category <span class="text-danger">*</span></label>
+          <select
+            class="form-select form-control"
+            formControlName="reportCategory"
+          >
+            <option disabled selected>
+              {{ "select" | translate }}
+            </option>
+            <ng-container *ngFor="let report of reports">
+              <option [value]="report?.id">
+                {{ report?.name }}
+              </option>
+            </ng-container>
+            <option *ngIf="!reportsLoading && reports.length == 0" disabled>
+              No Data Yet
+            </option>
+          </select>
+          <!-- errors -->
+          <div
+            *ngIf="
+              addForm.get('reportCategory')?.invalid &&
+              addForm.get('reportCategory')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('reportCategory')?.invalid &&
+                addForm.get('reportCategory')?.touched
+              "
+              class="text-danger"
+            >
+              Report Category Is Required</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <!-- Frequency -->
+        <div class="form-group mt-2">
+          <label>Select Frequency <span class="text-danger">*</span></label>
+          <select class="form-select form-control" formControlName="frequency">
+            <option disabled selected>
+              {{ "select" | translate }}
+            </option>
+            <ng-container *ngFor="let frequency of frequencies">
+              <option [value]="frequency?.id">
+                {{ frequency?.name }}
+              </option>
+            </ng-container>
+            <option
+              *ngIf="!frequencyLoading && frequencies.length == 0"
+              disabled
+            >
+              No Data Yet
+            </option>
+          </select>
+          <!-- errors -->
+          <div
+            *ngIf="
+              addForm.get('frequency')?.invalid &&
+              addForm.get('frequency')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('frequency')?.invalid &&
+                addForm.get('frequency')?.touched
+              "
+              class="text-danger"
+            >
+              Frequency Is Required</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <!-- Year -->
+        <div class="form-group mt-2">
+          <label>Select Year/Month <span class="text-danger">*</span></label>
+          <input type="month" class="form-control" formControlName="year" />
+          <!-- errors -->
+          <div
+            *ngIf="addForm.get('year')?.invalid && addForm.get('year')?.touched"
+          >
+            <small
+              *ngIf="
+                addForm.get('year')?.invalid && addForm.get('year')?.touched
+              "
+              class="text-danger"
+            >
+              List Name Is Required</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <div class="add-btn">
+          <div class="add my-4" (click)="togglePrices()">
+            Add Inspection Price
+          </div>
+        </div>
+      </div>
+      <ng-container *ngIf="isPricesAdded">
+        <div class="col-sm-6">
+          <div class="form-group mt-2">
+            <label>1st Price </label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="firstPrice"
+            />
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group mt-2">
+            <label>2nd Price </label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="secondPrice"
+            />
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group mt-2">
+            <label>3rd Price </label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="thirdPrice"
+            />
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="form-group mt-2">
+            <label>4th Price </label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="forthPrice"
+            />
+          </div>
+        </div>
+      </ng-container>
+      <div class="col-sm-12">
+        <!-- check box -->
+        <div class="form-group mt-2">
+          <div class="d-flex gap-2 align-items-center">
+            <span class="select-input">
+              <label class="table-checkbox-container">
+                <input
+                  type="checkbox"
+                  [checked]="isTasksAdded"
+                  (change)="onCheck($event)"
+                />
+                <div class="checkmark"></div>
+              </label>
+            </span>
+            <p class="m-0">
+              Do you want to add recurring tasks within this inspections?
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- task section -->
+    <div formArrayName="tasks" [hidden]="!isTasksAdded">
+      <div
+        *ngFor="let item of tasks.controls; let i = index"
+        [formGroupName]="i"
+      >
+        <div class="row mt-4 py-4" [ngStyle]="{ background: '#ccc' }">
+          <i class="pi pi-trash trash-icon"  (click)="removeTaskItems(i)"></i>
+          <div class="col-sm-6">
+            <!-- Describe Task -->
+            <div class="form-group mt-2">
+              <label>Describe Task </label>
+              <input
+                type="text"
+                class="form-control"
+                formControlName="description"
+                name="description[]"
+              />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <!-- task Frequency -->
+            <div class="form-group mt-2">
+              <label>Select Frequency </label>
+              <select
+                class="form-select form-control"
+                formControlName="frequency"
+                name="frequency[]"
+              >
+                <option disabled selected>
+                  {{ "select" | translate }}
+                </option>
+                <ng-container *ngFor="let frequency of frequencies">
+                  <option [value]="frequency?.id">
+                    {{ frequency?.name }}
+                  </option>
+                </ng-container>
+                <option
+                  *ngIf="!frequencyLoading && frequencies.length == 0"
+                  disabled
+                >
+                  No Data Yet
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <!-- task Year -->
+            <div class="form-group mt-2">
+              <label>Select Year/Month </label>
+              <input
+                type="month"
+                class="form-control"
+                formControlName="date"
+                name="date[]"
+              />
+            </div>
+          </div>
+          <p class="mt-3 text-danger" role="button" (click)="addTaskItem()">
+            <i class="pi pi-plus"></i> Add Another Task
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- submit -->
+    <div class="save-btn text-center">
+      <button type="submit" [disabled]="addForm.invalid" class="save mt-4">
+        Save
+      </button>
+    </div>
+  </form>
+</div>
+<!-- /Add  Modal -->
+
+<!-- loading section -->
+<div *ngIf="uploading">
+  <app-loading-section></app-loading-section>
+</div>
+<!-- /loading section -->

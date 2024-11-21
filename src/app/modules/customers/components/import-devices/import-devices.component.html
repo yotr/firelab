@@ -1,0 +1,41 @@
+<div class="import-devices">
+  <!-- content page -->
+  <div class="content">
+    <!-- page header  -->
+    <div
+      class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
+      [dir]="'dir' | translate"
+    >
+      <app-breadcrumb title="Import Devices"></app-breadcrumb>
+      <div routerLink="/modules/customers/importDevices/add">
+        <a
+          class="btn add-btn d-flex align-items-center {{
+            currentTheme?.colorSchema?.background
+          }} {{ currentTheme?.colorSchema?.color }}"
+        >
+          <i class="pi pi-plus d-none d-sm-block"></i>
+          Import Device
+        </a>
+      </div>
+    </div>
+
+    <!-- /page header  -->
+    <app-back-button></app-back-button>
+    <!-- table -->
+    <app-impor-devices-module-table
+      [data]="data"
+      [totalItems]="totalItemsCount"
+      [dataKeys]="dataKeys"
+      [loading]="loading"
+      [currentTheme]="currentTheme"
+      deleteModalTitle="Import Devices"
+      tableTitle="Import Devices Table"
+      editPagePath=""
+    ></app-impor-devices-module-table>
+  </div>
+
+  <!-- /content page -->
+  <div class="reports-sidebar">
+    <app-customer-reports-sidebar></app-customer-reports-sidebar>
+  </div>
+</div>
