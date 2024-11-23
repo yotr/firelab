@@ -8,6 +8,11 @@ import { IncompletedReportsComponent } from './components/incompleted-reports/in
 import { ReportsComponent } from './reports.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ReportsModuleTableComponent } from './components/reports-module-table/reports-module-table.component';
+import { ReportClientDetailsComponent } from './components/new-report/components/report-client-details/report-client-details.component';
+import { NewCopyReportModalComponent } from './components/new-report/components/new-copy-report-modal/new-copy-report-modal.component';
+import { ReportDetailsComponent } from './components/new-report/components/report-details/report-details.component';
+import { StartReportModalComponent } from './components/new-report/components/start-report-modal/start-report-modal.component';
+import { ConfirmationModalComponent } from './components/new-report/components/confirmation-modal/confirmation-modal.component';
 
 
 @NgModule({
@@ -16,12 +21,13 @@ import { ReportsModuleTableComponent } from './components/reports-module-table/r
     NewReportComponent,
     CompletedReportsComponent,
     IncompletedReportsComponent,
-    ReportsModuleTableComponent
+    ReportsModuleTableComponent,
+    ReportClientDetailsComponent,
+    NewCopyReportModalComponent,
+    ReportDetailsComponent,
+    StartReportModalComponent,
+    ConfirmationModalComponent
   ],
-  imports: [
-    CommonModule,
-    ReportsRoutingModule,
-    SharedModule
-  ]
+  imports: [CommonModule, ReportsRoutingModule, SharedModule],
 })
-export class ReportsModule { }
+export class ReportsModule {}

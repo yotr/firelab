@@ -1,0 +1,49 @@
+.yes-btn,
+.no-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.yes {
+  color: rgb(106, 161, 78);
+  border: 1px solid rgb(106, 161, 78);
+  padding: 6px 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 155px;
+  font-weight: bold;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.yes:hover {
+  cursor: pointer;
+  color: white;
+  background-color: rgb(106, 161, 78);
+}
+
+.no {
+  color: var(--main-color);
+  border: 1px solid var(--main-color);
+  padding: 6px 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 155px;
+  font-weight: bold;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.no:hover {
+  cursor: pointer;
+  color: white;
+  background-color: var(--main-color);
+}

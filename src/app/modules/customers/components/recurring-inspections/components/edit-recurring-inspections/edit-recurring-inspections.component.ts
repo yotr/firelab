@@ -46,7 +46,7 @@ export class EditRecurringInspectionsComponent implements OnInit {
     this.addForm = this.formBuilder.group({
       reportCategory: ['', [Validators.required]],
       frequency: ['', [Validators.required]],
-      year: ['', [Validators.email]],
+      year: ['', [Validators.required]],
       firstPrice: [''],
       secondPrice: [''],
       thirdPrice: [''],

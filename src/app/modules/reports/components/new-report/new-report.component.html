@@ -17,13 +17,19 @@
         <div class="card-body">
           <!-- customer -->
           <div class="form-group mt-2">
-            <label class="form-label" for="customer">Customer</label>
-            <select class="form-select form-control" id="customer">
+            <label class="form-label">Customer</label>
+            <app-custom-dropdown
+              title="Customer"
+              minWidth="100%"
+              [filter]="true"
+              [data]="['One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven']"
+            ></app-custom-dropdown>
+            <!-- <select class="form-select form-control" id="customer">
               <option selected>Select here</option>
               <option value="1">One</option>
               <option value="2">Two</option>
               <option value="3">Three</option>
-            </select>
+            </select> -->
           </div>
         </div>
       </div>
@@ -32,13 +38,18 @@
         <div class="card-body">
           <!-- type -->
           <div class="form-group mt-2">
-            <label class="form-label" for="customer">Type</label>
-            <select class="form-select form-control" id="customer">
+            <label class="form-label">Type</label>
+            <app-custom-dropdown
+              title="Customer"
+              minWidth="100%"
+              [data]="types"
+            ></app-custom-dropdown>
+            <!-- <select class="form-select form-control" id="customer">
               <option selected>Select here</option>
               <option value="1">One</option>
               <option value="2">Two</option>
               <option value="3">Three</option>
-            </select>
+            </select> -->
           </div>
         </div>
       </div>
@@ -47,13 +58,18 @@
         <div class="card-body">
           <!-- Report Category -->
           <div class="form-group mt-2">
-            <label class="form-label" for="customer">Report Category</label>
-            <select class="form-select form-control" id="customer">
+            <label class="form-label">Report Category</label>
+            <app-custom-dropdown
+              title="Customer"
+              minWidth="100%"
+              [data]="reports"
+            ></app-custom-dropdown>
+            <!-- <select class="form-select form-control" id="customer">
               <option selected>Select here</option>
               <option value="1">One</option>
               <option value="2">Two</option>
               <option value="3">Three</option>
-            </select>
+            </select> -->
           </div>
         </div>
       </div>
@@ -61,7 +77,9 @@
   </div>
 
   <!-- next -->
-  <div class="next-btn" >
-    <div class="next mt-4" >Next</div>
+  <div class="next-btn">
+    <div class="next mt-4" routerLink="/modules/reports/reportClientDetail">
+      Next
+    </div>
   </div>
 </div>

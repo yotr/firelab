@@ -144,8 +144,8 @@ export class IncompletedReportsComponent implements OnInit {
     //     Checked: false,
     //   },
     // ];
-    // this.loading = false;
-    // this.totalItemsCount = this.data.length;
+    this.loading = false;
+    this.totalItemsCount = this.data.length;
     // this.apiService
     //   .filterData(
     //     `clients/getFilteredClients`,

@@ -13,10 +13,22 @@
     <i [hidden]="!isActive" class="pi pi-angle-up text-secondary"></i>
     <i [hidden]="isActive" class="pi pi-angle-down text-secondary"></i>
   </div>
-  <ul [hidden]="!isActive" class="custom-dropdown-list">
-    <ng-container *ngFor="let value of data">
-      <li class="text-secondary" (click)="action(value)">{{ value }}</li>
-    </ng-container>
+  <div [hidden]="!isActive" class="custom-dropdown-list">
+    <input
+      [hidden]="!filter"
+      type="text"
+      class="search-field"
+      placeholder="Search..."
+      name="searchText"
+      [(ngModel)]="searchText"
+    />
+    <div class="list">
+      <ng-container *ngFor="let value of data | filter : searchText">
+        <div class="item text-secondary" (click)="action(value)">
+          {{ value }}
+        </div>
+      </ng-container>
+    </div>
     <!-- <li *ngIf="data?.length == 0" class="text-secondary">No Data</li> -->
-  </ul>
+  </div>
 </div>
