@@ -7,10 +7,24 @@ declare const $: any;
   styleUrls: ['./report-details.component.css'],
 })
 export class ReportDetailsComponent implements OnInit {
-  constructor() {}
+  // frequency
+  frequencies: any[] = [];
+  frequencyLoading: boolean = true;
+
+  constructor() {
+    this.frequencies = [
+      'Weekly',
+      'Bi Weekly',
+      'Monthly',
+      'Bi Monthly',
+      'Quarterly',
+      'Semi Annual',
+      'Annual',
+    ];
+  }
 
   ngOnInit() {
-    this.startReport();
+    // this.startReport();
   }
 
   startReport() {

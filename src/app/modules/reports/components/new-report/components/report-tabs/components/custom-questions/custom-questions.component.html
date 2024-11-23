@@ -1,0 +1,63 @@
+<!-- questions -->
+<div class="questions">
+  <div class="question mb-3" *ngFor="let value of questions">
+    <div class="question_details">
+      <span> {{ value?.question }}</span>
+      <div class="answers">
+        <!-- yes or no answer -->
+        <div *ngIf="value?.type == 'yes_no'" class="answers-btns mt-2">
+          <button [ngClass]="{ active: value?.answer == 'yes' }">Yes</button>
+          <button [ngClass]="{ active: value?.answer == 'no' }">No</button>
+        </div>
+        <!-- pass or fail or n/a answer -->
+        <div *ngIf="value?.type == 'pass_fail'" class="answers-btns mt-2">
+          <button [ngClass]="{ active: value?.answer == 'pass' }">Pass</button>
+          <button [ngClass]="{ active: value?.answer == 'fail' }">Fail</button>
+          <button [ngClass]="{ active: value?.answer == 'n/a' }">N/A</button>
+        </div>
+        <!-- input text answer -->
+        <div *ngIf="value?.type == 'input'" class="answers-btns mt-2">
+          <input
+            type="text"
+            class="answer-text-input"
+            placeholder="answer"
+            [value]="value?.answer"
+          />
+        </div>
+        <!-- input date answer -->
+        <div *ngIf="value?.type == 'date'" class="answers-btns mt-2">
+          <input
+            type="date"
+            class="form-control"
+            [value]="formatDate(value?.answer)"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="question_actions">
+      <div class="action">
+        <i class="pi pi-pen-to-square text-danger"></i>
+        <span>Notes</span>
+      </div>
+      <div class="action">
+        <input type="checkbox" class="check-box" />
+        <span>Hide</span>
+      </div>
+      <div class="action">
+        <i class="pi pi-trash"></i>
+        <span>Delete</span>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- add new question -->
+<div
+  class="add-custom-btn mt-4"
+  data-bs-toggle="modal"
+  data-bs-target="#add_custom_question_modal"
+>
+  <div class="add"><i class="pi pi-plus"></i> Add Custom Question</div>
+</div>
+
+<!-- add custom question -->
+<app-add-custom-question></app-add-custom-question>

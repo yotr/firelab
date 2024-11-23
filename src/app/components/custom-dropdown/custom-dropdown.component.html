@@ -8,6 +8,7 @@
     class="custom-dropdown-title"
     [ngClass]="{ active: isActive }"
     (click)="toggle()"
+    [ngStyle]="{ height: height }"
   >
     <span>{{ title }}</span>
     <i [hidden]="!isActive" class="pi pi-angle-up text-secondary"></i>

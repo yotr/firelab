@@ -1,0 +1,74 @@
+<div class="tabs mt-4" [dir]="'dir' | translate">
+  <!-- Nav tabs -->
+  <ul class="tabs-navbar" id="myTab" role="tablist">
+    <li
+      class="tab-item"
+      [ngClass]="{ 'active-tab': activeTab == 1 }"
+      (click)="openTab(1)"
+    >
+      <div class="active">Monitoring</div>
+      <div class="space"></div>
+    </li>
+    <li
+      class="tab-item"
+      [ngClass]="{ 'active-tab': activeTab == 2 }"
+      (click)="openTab(2)"
+    >
+      <div class="active">Control Panel</div>
+      <div class="space"></div>
+    </li>
+    <li
+      class="tab-item"
+      [ngClass]="{ 'active-tab': activeTab == 3 }"
+      (click)="openTab(3)"
+    >
+      <div class="active">Devices</div>
+      <div class="space"></div>
+    </li>
+    <li
+      class="tab-item"
+      [ngClass]="{ 'active-tab': activeTab == 4 }"
+      (click)="openTab(4)"
+    >
+      <div class="active">Finish</div>
+      <div class="space"></div>
+    </li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tabs-content">
+    <div
+      class="active-content"
+      [ngStyle]="{ display: activeTab == 1 ? 'block' : 'none' }"
+    >
+      <app-custom-questions></app-custom-questions>
+    </div>
+    <div
+      class="active-content"
+      [ngStyle]="{ display: activeTab == 2 ? 'block' : 'none' }"
+    >
+      Control Panel Tab dolor sit amet consectetur adipisicing elit. Deserunt
+      fugiat omnis qui voluptatum ut et ratione obcaecati minima! Odit cum saepe
+      quisquam. Praesentium facere labore pariatur totam cupiditate eaque
+      deserunt?
+    </div>
+    <div
+      class="active-content"
+      [ngStyle]="{ display: activeTab == 3 ? 'block' : 'none' }"
+    >
+      Devices Tab dolor sit amet consectetur adipisicing elit. Deserunt fugiat
+      omnis qui voluptatum ut et ratione obcaecati minima! Odit cum saepe
+      quisquam. Praesentium facere labore pariatur totam cupiditate eaque
+      deserunt?
+    </div>
+    <div
+      class="active-content"
+      [ngStyle]="{ display: activeTab == 4 ? 'block' : 'none' }"
+    >
+      Finish Tab dolor sit amet consectetur adipisicing elit. Deserunt fugiat
+      omnis qui voluptatum ut et ratione obcaecati minima! Odit cum saepe
+      quisquam. Praesentium facere labore pariatur totam cupiditate eaque
+      deserunt?
+    </div>
+  </div>
+</div>

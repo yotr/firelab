@@ -13,7 +13,9 @@ import { NewCopyReportModalComponent } from './components/new-report/components/
 import { ReportDetailsComponent } from './components/new-report/components/report-details/report-details.component';
 import { StartReportModalComponent } from './components/new-report/components/start-report-modal/start-report-modal.component';
 import { ConfirmationModalComponent } from './components/new-report/components/confirmation-modal/confirmation-modal.component';
-
+import { ReportTabsComponent } from './components/new-report/components/report-tabs/report-tabs.component';
+import { CustomQuestionsComponent } from './components/new-report/components/report-tabs/components/custom-questions/custom-questions.component';
+import { AddCustomQuestionComponent } from './components/new-report/components/report-tabs/components/add-custom-question/add-custom-question.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,10 @@ import { ConfirmationModalComponent } from './components/new-report/components/c
     NewCopyReportModalComponent,
     ReportDetailsComponent,
     StartReportModalComponent,
-    ConfirmationModalComponent
+    ConfirmationModalComponent,
+    ReportTabsComponent,
+    CustomQuestionsComponent,
+    AddCustomQuestionComponent,
   ],
   imports: [CommonModule, ReportsRoutingModule, SharedModule],
 })

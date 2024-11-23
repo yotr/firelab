@@ -2,6 +2,69 @@
   position: relative;
 }
 
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btns {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.add-report-btn,
+.cancel-report-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.add {
+  color: #52bfea;
+  border: 1px solid #52bfea;
+  background-color: white;
+  padding: 6px 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  height: 40px;
+  width: 100%;
+  font-weight: bold;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.add:hover {
+  cursor: pointer;
+  color: white;
+  background-color: #52bfea;
+}
+
+.cancel {
+  color: #6b717e;
+  border: 1px solid #6b717e;
+  background-color: white;
+  padding: 6px 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 100%;
+  font-weight: bold;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.cancel:hover {
+  cursor: pointer;
+  color: white;
+  background-color: #6b717e;
+}
+
 .client-detail-card {
   background-color: white;
   padding: 20px;
@@ -10,6 +73,8 @@
 }
 .profile {
   flex: 1;
+}
+.profile .profile-details {
   display: flex;
   align-items: center;
   gap: 15px;
@@ -49,31 +114,4 @@
 }
 .details ul li p {
   margin: 0;
-}
-
-.next-btn {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.next {
-  color: rgb(106, 161, 78);
-  border: 1px solid rgb(106, 161, 78);
-  padding: 6px 18px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 40px;
-  width: 155px;
-  font-weight: bold;
-  border-radius: 5px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  -o-border-radius: 5px;
-}
-.next:hover {
-  cursor: pointer;
-  color: white;
-  background-color: rgb(106, 161, 78);
 }

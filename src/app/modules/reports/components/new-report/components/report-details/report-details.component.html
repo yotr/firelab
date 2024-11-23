@@ -1,16 +1,47 @@
 <div class="report-details">
   <!-- content page -->
   <div class="content">
-    <!-- title -->
-    <h3 class="text-secondary">Alarm | Inspection</h3>
+    <div class="header mb-4">
+      <!-- title -->
+      <h3 class="text-secondary">Alarm | Inspection</h3>
+      <div class="btns">
+        <!-- New -->
+        <div class="add-report-btn">
+          <div class="add"><i class="pi pi-plus"></i> Add New Report</div>
+        </div>
+        <!-- Cancel -->
+        <div class="cancel-report-btn">
+          <div class="cancel">Cancel Report</div>
+        </div>
+      </div>
+    </div>
     <!-- client detail card -->
 
     <div class="client-detail-card">
       <div class="profile">
-        <img src="/assets/img/user.jpg" alt="profile" />
-        <div class="title">
-          <h5 class="m-0">Customer</h5>
-          <i class="pi pi-building fs-5 text-info"></i>
+        <div class="profile-details">
+          <img src="/assets/img/user.jpg" alt="profile" />
+          <div class="title">
+            <h5 class="m-0 mb-2">Customer</h5>
+            <div>
+              <i class="pi pi-building fs-4 mx-1 text-info" role="button"></i>
+              <i class="pi pi-camera fs-4 mx-1" role="button"></i>
+              <i
+                class="pi pi-pen-to-square fs-4 mx-1 text-danger"
+                role="button"
+              ></i>
+              <i class="pi pi-qrcode fs-4 mx-1" role="button"></i>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex align-items-center gap-2 mt-4">
+          <span>Frequency :</span>
+          <app-custom-dropdown
+            height="40px"
+            minWidth="180px"
+            title="Frequency"
+            [data]="frequencies"
+          ></app-custom-dropdown>
         </div>
       </div>
       <div class="details">
@@ -30,9 +61,11 @@
         </ul>
       </div>
     </div>
+
+    <!-- report tabs -->
+    <app-report-tabs></app-report-tabs>
   </div>
 </div>
-
 
 <!-- start report modal -->
 <app-start-report-modal></app-start-report-modal>
