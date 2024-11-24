@@ -1,3 +1,9 @@
+.btns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .save-btn {
   display: flex;
   justify-content: center;
@@ -24,4 +30,15 @@
   cursor: pointer;
   color: white;
   background-color: rgb(106, 161, 78);
+}
+
+.form-control {
+  background-color: #fafafacc;
+}
+
+.trash-icon {
+  cursor: pointer;
+  font-size: larger;
+  position: absolute;
+  right: 15px;
 }

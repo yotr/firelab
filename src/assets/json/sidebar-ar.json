@@ -49,6 +49,31 @@
             "id": 6,
             "page": "Import Devices",
             "path": "/modules/customers/importDevices"
+          },
+          {
+            "id": 7,
+            "page": "Recurring Inspections",
+            "path": "/modules/customers/recurringInspections"
+          },
+          {
+            "id": 8,
+            "page": "Deficiencies",
+            "path": "/modules/customers/customerDeficiencies"
+          },
+          {
+            "id": 9,
+            "page": "Customer Portal",
+            "path": "/modules/customers/customerPortal"
+          },
+          {
+            "id": 10,
+            "page": "Add Job",
+            "path": "/modules/customers/addJob"
+          },
+          {
+            "id": 11,
+            "page": "Auto Email",
+            "path": "/modules/customers/autoEmail"
           }
         ]
       },
@@ -141,8 +166,7 @@
           {
             "id": 0,
             "page": "Home",
-            "path": "/modules/sales/estimates",
-            "query": { "view_type": "table" }
+            "path": "/modules/inventory/home"
           },
           {
             "id": 1,

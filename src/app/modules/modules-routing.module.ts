@@ -21,6 +21,7 @@ import { JobsDueComponent } from './jobs/jobs-due/jobs-due.component';
 import { DeficienciesComponent } from './deficiencies/deficiencies.component';
 import { CustomerHomeComponent } from './customers/components/customer-home/customer-home.component';
 import { JobLinkComponent } from './job-link/job-link.component';
+import { EditJobComponent } from './jobs/components/edit-job/edit-job.component';
 
 const routes: Routes = [
   {
@@ -107,6 +108,10 @@ const routes: Routes = [
         path: 'task/myJobs',
         component: MyJobsComponent,
       },
+      {
+        path: 'task/edit/:id',
+        component: EditJobComponent,
+      },
       // services requests
       {
         path: 'serviceRequests',
@@ -116,6 +121,12 @@ const routes: Routes = [
       {
         path: 'deficiencies',
         component: DeficienciesComponent,
+      },
+      // reports
+      {
+        path: 'inventory',
+        loadChildren: () =>
+          import('./inventory/inventory.module').then((m) => m.InventoryModule),
       },
     ],
   },

@@ -166,8 +166,7 @@
           {
             "id": 0,
             "page": "Home",
-            "path": "/modules/sales/estimates",
-            "query": { "view_type": "table" }
+            "path": "/modules/inventory/home"
           },
           {
             "id": 1,

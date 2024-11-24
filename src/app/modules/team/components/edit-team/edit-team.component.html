@@ -1,3 +1,214 @@
-<p>
-  edit-team works!
-</p>
+<!-- Add  Modal -->
+<div class="add-page">
+  <!-- Page Header -->
+  <div
+    class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
+    [dir]="'dir' | translate"
+  >
+    <!-- breadcrumb -->
+    <app-breadcrumb title="Update Member"></app-breadcrumb>
+  </div>
+  <!-- /Page Header -->
+
+  <app-back-button></app-back-button>
+  <!-- content -->
+  <form (ngSubmit)="submit()" [formGroup]="addForm">
+    <!-- step 1 -->
+    <div class="form-step">
+      <span class="step-no" [ngClass]="{ active: firstStep }">1</span>
+      <div
+        class="form-step-btn"
+        [ngClass]="{ active: firstStep }"
+        (click)="changeStep(1)"
+      >
+        Basic Details
+      </div>
+    </div>
+    <div class="row" [hidden]="secondStep">
+      <div class="col-sm-6">
+        <!-- First Name -->
+        <div class="form-group mt-2">
+          <label>First Name <span class="text-danger">*</span></label>
+          <input class="form-control" type="text" formControlName="firstName" />
+          <!-- errors -->
+          <div
+            *ngIf="
+              addForm.get('firstName')?.invalid &&
+              addForm.get('firstName')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('firstName')?.invalid &&
+                addForm.get('firstName')?.touched
+              "
+              class="text-danger"
+            >
+              First Name Is Required</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <!-- Last Name -->
+        <div class="form-group mt-2">
+          <label>Last Name <span class="text-danger">*</span></label>
+          <input class="form-control" type="text" formControlName="lastName" />
+          <!-- errors -->
+          <div
+            *ngIf="
+              addForm.get('lastName')?.invalid &&
+              addForm.get('lastName')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('lastName')?.invalid &&
+                addForm.get('lastName')?.touched
+              "
+              class="text-danger"
+            >
+              Last Name Is Required</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <!-- Email -->
+        <div class="form-group mt-2">
+          <label>Email <span class="text-danger">*</span></label>
+          <input class="form-control" type="email" formControlName="email" />
+          <!-- errors -->
+          <div
+            *ngIf="
+              addForm.get('email')?.invalid && addForm.get('email')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('email')?.invalid && addForm.get('email')?.touched
+              "
+              class="text-danger"
+            >
+              Email Is Required</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <!-- Contact Number -->
+        <div class="form-group mt-2">
+          <label>Contact Number <span class="text-danger">*</span></label>
+          <input
+            class="form-control"
+            type="text"
+            formControlName="contactNumber"
+          />
+          <!-- errors -->
+          <div
+            *ngIf="
+              addForm.get('contactNumber')?.invalid &&
+              addForm.get('contactNumber')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('contactNumber')?.invalid &&
+                addForm.get('contactNumber')?.touched
+              "
+              class="text-danger"
+            >
+              Contact Number Is Required</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <!-- Billable Hourly Rate -->
+        <div class="form-group mt-2">
+          <label>Billable Hourly Rate <span class="text-danger">*</span></label>
+          <input
+            class="form-control"
+            type="text"
+            formControlName="billableHourlyRate"
+          />
+          <!-- errors -->
+          <div
+            *ngIf="
+              addForm.get('billableHourlyRate')?.invalid &&
+              addForm.get('billableHourlyRate')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('billableHourlyRate')?.invalid &&
+                addForm.get('billableHourlyRate')?.touched
+              "
+              class="text-danger"
+            >
+              Billable Hourly Rate Is Required</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <!-- Position -->
+        <div class="form-group mt-2">
+          <label>Position </label>
+          <input class="form-control" type="text" formControlName="position" />
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <!-- Divisions -->
+        <div class="form-group mt-2">
+          <label>Divisions </label>
+          <select
+            class="form-select form-control"
+            name="Divisions"
+            id="Divisions"
+            formControlName="divisions"
+          >
+            <option value="1">one</option>
+            <option value="2">two</option>
+            <!-- <option *ngIf="teamLoading" disabled>
+              loading
+            </option> -->
+          </select>
+        </div>
+      </div>
+    </div>
+    <!-- next -->
+    <div class="next-btn" [hidden]="secondStep">
+      <div class="next mt-4" (click)="nextStep()">Next</div>
+    </div>
+    <!-- step 2 -->
+    <div class="form-step">
+      <span class="step-no" [ngClass]="{ active: secondStep }">2</span>
+      <div
+        class="form-step-btn"
+        [ngClass]="{ active: secondStep }"
+        (click)="changeStep(2)"
+      >
+        Permissions
+      </div>
+    </div>
+    <div class="row" [hidden]="firstStep">Permissons</div>
+
+    <!-- submit -->
+    <div [hidden]="!secondStep" class="save-btn text-center">
+      <button type="submit" class="save mt-4">Save</button>
+    </div>
+  </form>
+</div>
+<!-- /Add  Modal -->
+
+<!-- loading section -->
+<div *ngIf="uploading">
+  <app-loading-section></app-loading-section>
+</div>
+<!-- /loading section -->

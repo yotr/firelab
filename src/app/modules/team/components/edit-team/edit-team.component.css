@@ -1,0 +1,119 @@
+.form-step {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.form-step .step-no {
+  margin: 20px 0;
+  height: 50px;
+  width: 50px;
+  font-size: larger;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+.form-step .step-no.active {
+  color: white;
+  background-color: var(--main-color);
+  border: none;
+}
+
+.form-step-btn {
+  padding: 6px 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  font-weight: bold;
+  color: var(--main-color);
+  border: 1px solid var(--main-color);
+  background-color: transparent;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+.form-step-btn.active {
+  color: white;
+  background-color: var(--main-color);
+  border: none;
+}
+
+.form-step-btn:hover {
+  cursor: pointer;
+  background-color: var(--main-color);
+  color: white;
+  border: 1px solid var(--main-color);
+}
+
+.next-btn {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.next {
+  color: rgb(106, 161, 78);
+  border: 1px solid rgb(106, 161, 78);
+  padding: 6px 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 155px;
+  font-weight: bold;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.next:hover {
+  cursor: pointer;
+  color: white;
+  background-color: rgb(106, 161, 78);
+}
+
+
+
+.save-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.save {
+  color: rgb(106, 161, 78);
+  border: 1px solid rgb(106, 161, 78);
+  background-color: white;
+  padding: 6px 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 155px;
+  font-weight: bold;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.save:hover {
+  cursor: pointer;
+  color: white;
+  background-color: rgb(106, 161, 78);
+}

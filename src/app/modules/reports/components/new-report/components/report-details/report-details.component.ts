@@ -24,7 +24,7 @@ export class ReportDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.startReport();
+    this.startReport();
   }
 
   startReport() {

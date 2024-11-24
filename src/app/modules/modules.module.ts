@@ -46,6 +46,7 @@ import { JobLinkComponent } from './job-link/job-link.component';
 import { DayPilotModule } from '@daypilot/daypilot-lite-angular';
 import { UndoService } from '../services/jobLink/undo.service';
 import { DataService } from '../services/jobLink/data.service';
+import { EditJobComponent } from './jobs/components/edit-job/edit-job.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { DataService } from '../services/jobLink/data.service';
     JobsDueComponent,
     MyJobsComponent,
     JobsMissedComponent,
+    EditJobComponent,
     MyJobsModuleTableComponent,
     JobsMissedModuleTableComponent,
     JobsDueModuleTableComponent,

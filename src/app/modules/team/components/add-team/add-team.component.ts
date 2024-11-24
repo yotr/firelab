@@ -44,6 +44,7 @@ export class AddTeamComponent implements OnInit {
         contactNumber: [''],
         billableHourlyRate: [''],
         position: [''],
+        divisions: [''],
       }
       // { validators: passwordMatch }
     );

@@ -200,15 +200,8 @@
     <div class="row" [hidden]="firstStep">Permissons</div>
 
     <!-- submit -->
-    <div class="submit-section mb-4">
-      <button
-        class="btn submit-btn mx-2"
-        [class]="currentTheme?.colorSchema?.background"
-        type="submit"
-        [disabled]="addForm.invalid"
-      >
-        <span [class]="currentTheme?.colorSchema?.color">Save</span>
-      </button>
+    <div [hidden]="!secondStep" class="save-btn text-center">
+      <button type="submit" class="save mt-4">Save</button>
     </div>
   </form>
 </div>
