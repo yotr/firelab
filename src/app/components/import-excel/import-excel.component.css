@@ -67,6 +67,7 @@ select:focus {
   position: relative;
   overflow-x: auto;
   border: 1px solid rgba(0, 0, 0, 0.08);
+  background-color: white;
 }
 
 table {
