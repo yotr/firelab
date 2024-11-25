@@ -1,0 +1,240 @@
+<!-- Add  Modal -->
+<div class="add-page">
+  <!-- Page Header -->
+  <div
+    class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
+    [dir]="'dir' | translate"
+  >
+    <!-- breadcrumb -->
+    <app-breadcrumb title="Add Parts"></app-breadcrumb>
+  </div>
+  <!-- /Page Header -->
+
+  <app-back-button></app-back-button>
+  <!-- content -->
+  <form (ngSubmit)="submit()" [formGroup]="addForm">
+    <div class="row">
+      <div class="col-sm-4">
+        <!-- upload zone -->
+        <div class="upload-drop-zone" id="drop-zone" role="button">
+          <input id="files" type="file" (change)="getSelectedFiles($event)" />
+          <i class="pi pi-cloud-upload fs-4"></i>
+          <span class="upload-text mx-2">{{
+            file != null ? truncateString(file?.name, 20) : "Add Image"
+          }}</span>
+        </div>
+        <div class="clear my-2" (click)="clearImage()">Clear Image</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-4">
+        <!-- Select suppliers -->
+        <div class="form-group mt-2">
+          <label>Supplier <span class="text-danger">*</span></label>
+          <select class="form-select form-control" formControlName="supplier">
+            <option disabled selected>
+              {{ "select" | translate }}
+            </option>
+            <ng-container *ngFor="let supply of suppliers">
+              <option [value]="supply?.id">
+                {{ supply?.name }}
+              </option>
+            </ng-container>
+            <option *ngIf="!reportsLoading && reports.length == 0" disabled>
+              No Data Yet
+            </option>
+          </select>
+          <!-- errors -->
+          <div
+            *ngIf="
+              addForm.get('supplier')?.invalid &&
+              addForm.get('supplier')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('supplier')?.invalid &&
+                addForm.get('supplier')?.touched
+              "
+              class="text-danger"
+            >
+              Supplier Is Required</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <!-- Select Category -->
+        <div class="form-group mt-2">
+          <label>Report Category <span class="text-danger">*</span></label>
+          <select class="form-select form-control" formControlName="category">
+            <option disabled selected>
+              {{ "select" | translate }}
+            </option>
+            <ng-container *ngFor="let report of reports">
+              <option [value]="report?.id">
+                {{ report?.name }}
+              </option>
+            </ng-container>
+            <option *ngIf="!reportsLoading && reports.length == 0" disabled>
+              No Data Yet
+            </option>
+          </select>
+          <!-- errors -->
+          <div
+            *ngIf="
+              addForm.get('category')?.invalid &&
+              addForm.get('category')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('category')?.invalid &&
+                addForm.get('category')?.touched
+              "
+              class="text-danger"
+            >
+              Category Is Required</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <!-- part name -->
+        <div class="form-group mt-2">
+          <label>Part Name <span class="text-danger">*</span></label>
+          <input class="form-control" type="text" formControlName="partName" />
+          <!-- errors -->
+          <div
+            *ngIf="
+              addForm.get('partName')?.invalid &&
+              addForm.get('partName')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('partName')?.invalid &&
+                addForm.get('partName')?.touched
+              "
+              class="text-danger"
+            >
+              Part Name Is Required</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <!-- SKU -->
+        <div class="form-group mt-2">
+          <label>SKU </label>
+          <input class="form-control" type="text" formControlName="sku" />
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <!-- Make -->
+        <div class="form-group mt-2">
+          <label>Make <span class="text-danger">*</span></label>
+          <input class="form-control" type="text" formControlName="make" />
+          <!-- errors -->
+          <div
+            *ngIf="addForm.get('make')?.invalid && addForm.get('make')?.touched"
+          >
+            <small
+              *ngIf="
+                addForm.get('make')?.invalid && addForm.get('make')?.touched
+              "
+              class="text-danger"
+            >
+              Make Is Required</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <!-- Model -->
+        <div class="form-group mt-2">
+          <label>Model <span class="text-danger">*</span></label>
+          <input class="form-control" type="text" formControlName="model" />
+          <!-- errors -->
+          <div
+            *ngIf="
+              addForm.get('model')?.invalid && addForm.get('model')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('model')?.invalid && addForm.get('model')?.touched
+              "
+              class="text-danger"
+            >
+              Model Is Required</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <!-- Cost -->
+        <div class="form-group mt-2">
+          <label>Cost <span class="text-danger">*</span></label>
+          <input class="form-control" type="text" formControlName="cost" />
+          <!-- errors -->
+          <div
+            *ngIf="addForm.get('cost')?.invalid && addForm.get('cost')?.touched"
+          >
+            <small
+              *ngIf="
+                addForm.get('cost')?.invalid && addForm.get('cost')?.touched
+              "
+              class="text-danger"
+            >
+              Cost Is Required</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <!-- Quantity -->
+        <div class="form-group mt-2">
+          <label>Quantity <span class="text-danger">*</span></label>
+          <input class="form-control" type="text" formControlName="quantity" />
+          <!-- errors -->
+          <div
+            *ngIf="
+              addForm.get('quantity')?.invalid &&
+              addForm.get('quantity')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('quantity')?.invalid &&
+                addForm.get('quantity')?.touched
+              "
+              class="text-danger"
+            >
+              Quantity Is Required</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+    </div>
+
+    <!-- submit -->
+    <div class="save-btn text-center">
+      <button type="submit" class="save mt-4">Save</button>
+    </div>
+  </form>
+</div>
+<!-- /Add  Modal -->
+
+<!-- loading section -->
+<div *ngIf="uploading">
+  <app-loading-section></app-loading-section>
+</div>
+<!-- /loading section -->

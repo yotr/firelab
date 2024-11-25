@@ -171,28 +171,27 @@
           {
             "id": 1,
             "page": "Parts",
-            "path": "/modules/sales/invoices",
-            "query": { "view_type": "table" }
+            "path": "/modules/inventory/parts"
           },
           {
             "id": 2,
             "page": "Suppliers",
-            "path": "/modules/sales/payments"
+            "path": "/modules/inventory/suppliers"
           },
           {
             "id": 3,
             "page": "Tools",
-            "path": "/modules/sales/expenses"
+            "path": "/modules/inventory/tools"
           },
           {
             "id": 4,
             "page": "Transactions",
-            "path": "/modules/sales/provident-fund"
+            "path": "/modules/inventory/transactions"
           },
           {
             "id": 5,
             "page": "Vehicle Inventory",
-            "path": "/modules/sales/taxes"
+            "path": "/modules/inventory/vehicles"
           }
         ]
       },

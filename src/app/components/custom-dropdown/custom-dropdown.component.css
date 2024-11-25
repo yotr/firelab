@@ -14,7 +14,7 @@
   text-transform: uppercase;
   font-size: larger;
   display: flex;
-  background-color: white;
+  background-color: #fafafacc;
   place-items: center;
   border-radius: 5px;
   -webkit-border-radius: 5px;

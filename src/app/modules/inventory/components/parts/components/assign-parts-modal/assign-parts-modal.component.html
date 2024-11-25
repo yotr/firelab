@@ -1,0 +1,76 @@
+<div class="modal custom-modal fade" id="add_parts_modal" role="dialog">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="form-header">
+          <h3>Add Parts</h3>
+        </div>
+        <!-- add parts-->
+        <form>
+          <div class="row">
+            <!-- Suppliers -->
+            <div class="col-sm-12">
+              <div class="form-group mt-2">
+                <label>Suppliers <span class="text-danger">*</span></label>
+                <app-custom-dropdown
+                  title="Select Here"
+                  minWidth="100%"
+                  [filter]="true"
+                  [object]="true"
+                  objectKey="value"
+                  [data]="suppliers"
+                ></app-custom-dropdown>
+              </div>
+            </div>
+            <!-- Reports -->
+            <div class="col-sm-12">
+              <div class="form-group mt-2">
+                <label
+                  >Report Category <span class="text-danger">*</span></label
+                >
+                <app-custom-dropdown
+                  title="Select Here"
+                  minWidth="100%"
+                  [filter]="true"
+                  [object]="true"
+                  objectKey="value"
+                  [data]="reports"
+                ></app-custom-dropdown>
+              </div>
+            </div>
+            <!-- Parts -->
+            <div class="col-sm-12">
+              <div class="form-group mt-2">
+                <label
+                  >Report Category <span class="text-danger">*</span></label
+                >
+                <app-custom-dropdown
+                  title="Select Here"
+                  minWidth="100%"
+                  [filter]="true"
+                  [object]="true"
+                  objectKey="value"
+                  [data]="parts"
+                ></app-custom-dropdown>
+              </div>
+            </div>
+            <!-- Quantity -->
+            <div class="col-sm-12">
+              <div class="form-group mt-2">
+                <label
+                  >Quantity (Max .Quantity: 9 )
+                  <span class="text-danger">*</span></label
+                >
+                <input type="number" class="form-control" />
+              </div>
+            </div>
+          </div>
+          <!-- submit -->
+          <div class="save-btn">
+            <button type="submit" class="save mt-4">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

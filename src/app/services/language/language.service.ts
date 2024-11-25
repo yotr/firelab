@@ -7,6 +7,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 export class LanguageService {
   private currentLang: BehaviorSubject<string>;
   storedLang: any = localStorage.getItem('lang');
+  default: string = 'en';
 
   constructor() {
     this.currentLang = new BehaviorSubject<string>(this.storedLang);
@@ -21,5 +22,13 @@ export class LanguageService {
   // get language from local storage
   getCurrentLanguage(): Observable<string> {
     return this.currentLang.asObservable();
+  }
+  //ser default language
+  setDefaultLanguage() {
+    //set default language
+    if (!localStorage.getItem('lang')) {
+      localStorage.setItem('lang', this.default.trim());
+      this.currentLang.next(this.default.trim());
+    }
   }
 }

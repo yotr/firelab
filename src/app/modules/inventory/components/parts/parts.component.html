@@ -1,0 +1,60 @@
+<div>
+  <!-- page header  -->
+  <div
+    class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
+    [dir]="'dir' | translate"
+  >
+    <app-breadcrumb title="Parts"></app-breadcrumb>
+    <div class="d-flex align-items-center gap-2">
+      <div routerLink="/modules/inventory/parts/add">
+        <a
+          class="btn add-btn d-flex align-items-center {{
+            currentTheme?.colorSchema?.background
+          }} {{ currentTheme?.colorSchema?.color }}"
+        >
+          <i class="pi pi-plus d-none d-sm-block"></i>
+          Add Parts
+        </a>
+      </div>
+      <div routerLink="/modules/inventory/parts/assign">
+        <a
+          class="btn add-btn d-flex align-items-center {{
+            currentTheme?.colorSchema?.background
+          }} {{ currentTheme?.colorSchema?.color }}"
+        >
+          <i class="pi pi-plus d-none d-sm-block"></i>
+          Assign Parts
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- /page header  -->
+  <app-back-button></app-back-button>
+  <!-- table -->
+  <app-parts-module-table
+    [data]="data"
+    [totalItems]="totalItemsCount"
+    [dataKeys]="dataKeys"
+    [loading]="loading"
+    [currentTheme]="currentTheme"
+    deleteModalTitle="Parts"
+    tableTitle="Parts Table"
+    editPagePath="/modules/inventory/parts/edit"
+  ></app-parts-module-table>
+</div>
+
+<!-- [users]="users"
+    [totalItems]="totalItemsCount"
+    [dataKeys]="dataKeys"
+    [loading]="loading"
+    [currentTheme]="currentTheme"
+    deleteModalTitle="Users"
+    tableTitle="Users Table"
+    editPagePath="/modules/users/edit"
+    (onPageChange)="onPaginate($event)"
+    (onDelete)="delete($event)"
+    (onSearch)="search($event)"
+    (onFilter)="handleFiltersSubmit($event)"
+    (onDeleteSelected)="deleteSelected()"
+    (onReset)="resetData()" -->

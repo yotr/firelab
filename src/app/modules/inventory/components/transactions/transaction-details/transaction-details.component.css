@@ -1,0 +1,16 @@
+
+.form-header {
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+form {
+  padding: 30px;
+  background-color: white;
+}
+
+.form-control {
+  background-color: #fafafacc;
+}

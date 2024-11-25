@@ -25,8 +25,21 @@
     />
     <div class="list">
       <ng-container *ngFor="let value of data | filter : searchText">
-        <div class="item text-secondary" (click)="action(value)">
+        <!-- normal array -->
+        <div
+          *ngIf="!object"
+          class="item text-secondary"
+          (click)="action(value)"
+        >
           {{ value }}
+        </div>
+        <!-- object of array -->
+        <div
+          *ngIf="object"
+          class="item text-secondary"
+          (click)="action(value?.id, value[objectKey])"
+        >
+          {{ value[objectKey] }}
         </div>
       </ng-container>
     </div>

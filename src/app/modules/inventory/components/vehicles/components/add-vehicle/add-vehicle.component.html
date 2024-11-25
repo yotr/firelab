@@ -1,0 +1,111 @@
+<!-- Add  Modal -->
+<div class="add-page">
+  <!-- Page Header -->
+  <div
+    class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
+    [dir]="'dir' | translate"
+  >
+    <!-- breadcrumb -->
+    <app-breadcrumb title="Add Vehicle"></app-breadcrumb>
+  </div>
+  <!-- /Page Header -->
+
+  <app-back-button></app-back-button>
+  <!-- content -->
+  <!-- header -->
+  <div
+    class="form-header pe-4 ps-4 mt-4 {{
+      currentTheme?.colorSchema?.background
+    }} {{ currentTheme?.colorSchema?.color }}"
+  >
+    <div class="d-flex justify-content-between align-items-center w-100">
+      <h4 class="m-0">Vehicle Inventory</h4>
+      <div></div>
+    </div>
+  </div>
+  <form (ngSubmit)="submit()" [formGroup]="addForm">
+    <div class="row">
+      <div class="col-sm-6">
+        <!-- Vehicle Number -->
+        <div class="form-group mt-2">
+          <label>Vehicle Number <span class="text-danger">*</span></label>
+          <input
+            class="form-control"
+            type="text"
+            formControlName="vehicleNumber"
+          />
+          <!-- errors -->
+          <div
+            *ngIf="
+              addForm.get('vehicleNumber')?.invalid &&
+              addForm.get('vehicleNumber')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('vehicleNumber')?.invalid &&
+                addForm.get('vehicleNumber')?.touched
+              "
+              class="text-danger"
+            >
+              Vehicle Number Is Required</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <!-- assignedTechnician -->
+        <div class="form-group mt-2">
+          <label>Assigned Technician <span class="text-danger">*</span></label>
+          <select
+            class="form-select form-control"
+            formControlName="assignedTechnician"
+          >
+            <option disabled selected>
+              {{ "select" | translate }}
+            </option>
+            <ng-container *ngFor="let user of users">
+              <option [value]="user?.id">
+                {{ user?.name }}
+              </option>
+            </ng-container>
+            <option *ngIf="!usersLoading && users.length == 0" disabled>
+              No Data Yet
+            </option>
+          </select>
+          <!-- errors -->
+          <div
+            *ngIf="
+              addForm.get('assignedTechnician')?.invalid &&
+              addForm.get('assignedTechnician')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('assignedTechnician')?.invalid &&
+                addForm.get('assignedTechnician')?.touched
+              "
+              class="text-danger"
+            >
+              Assigned Technician Is Required</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+    </div>
+
+    <!-- submit -->
+    <div class="save-btn text-center">
+      <button type="submit" class="save mt-4">Save</button>
+    </div>
+  </form>
+</div>
+<!-- /Add  Modal -->
+
+<!-- loading section -->
+<div *ngIf="uploading">
+  <app-loading-section></app-loading-section>
+</div>
+<!-- /loading section -->

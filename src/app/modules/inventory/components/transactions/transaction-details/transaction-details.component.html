@@ -1,0 +1,101 @@
+<div class="transaction-details">
+  <!-- page header  -->
+  <div
+    class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
+    [dir]="'dir' | translate"
+  >
+    <app-breadcrumb title="Transaction Details"></app-breadcrumb>
+  </div>
+  <!-- /page header  -->
+  <app-back-button></app-back-button>
+  <!-- content page -->
+  <div class="content">
+    <!-- header -->
+    <div
+      class="form-header pe-4 ps-4 mt-4 {{
+        currentTheme?.colorSchema?.background
+      }} {{ currentTheme?.colorSchema?.color }}"
+    >
+      <div class="d-flex justify-content-between align-items-center w-100">
+        <h4 class="m-0">Transaction Details</h4>
+        <div></div>
+      </div>
+    </div>
+    <form (ngSubmit)="submit()" [formGroup]="addForm">
+      <div class="row">
+        <div class="col-sm-4">
+          <!-- transactionId -->
+          <div class="form-group mt-2">
+            <label>Transaction Id </label>
+            <input
+              readonly
+              class="form-control"
+              type="text"
+              formControlName="transactionId"
+            />
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <!-- assetType -->
+          <div class="form-group mt-2">
+            <label>Asset Type </label>
+            <input
+              readonly
+              class="form-control"
+              type="text"
+              formControlName="assetType"
+            />
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <!-- transactionType -->
+          <div class="form-group mt-2">
+            <label>Transaction Type </label>
+            <input
+              readonly
+              class="form-control"
+              type="text"
+              formControlName="transactionType"
+            />
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <!-- userName -->
+          <div class="form-group mt-2">
+            <label>User Name </label>
+            <input
+              readonly
+              class="form-control"
+              type="text"
+              formControlName="userName"
+            />
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <!-- createdAt -->
+          <div class="form-group mt-2">
+            <label>Created At </label>
+            <input
+              readonly
+              class="form-control"
+              type="text"
+              formControlName="createdAt"
+            />
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <!-- vehicleNumber -->
+          <div class="form-group mt-2">
+            <label>Vehicle Number </label>
+            <input
+              readonly
+              class="form-control"
+              type="text"
+              formControlName="vehicleNumber"
+            />
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

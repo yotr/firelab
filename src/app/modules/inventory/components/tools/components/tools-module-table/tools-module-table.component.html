@@ -1,0 +1,315 @@
+<!-- grid header -->
+<div
+  class="grid-header"
+  [ngClass]="{
+    'dark-theme': currentTheme?.colorSchema?.title == 'Dark',
+    default: currentTheme?.colorSchema?.title != 'Dark'
+  }"
+>
+  <!-- top -->
+  <div class="top-header">
+    <!-- search -->
+    <div>
+      <app-table-search (sendSearchValue)="search($event)"></app-table-search>
+      <!-- <app-table-colums-dropdown
+        [columns]="dataKeys"
+        (onSelect)="getSelectedColumn($event)"
+      ></app-table-colums-dropdown> -->
+    </div>
+    <!-- export btns -->
+    <div class="data-btns d-flex align-items-center gap-2">
+      <app-export-excel [data]="data" elememtId="table-id"></app-export-excel>
+      <!-- donwload pdf -->
+      <app-download-pdf
+        [data]="data"
+        [dataKeys]="dataKeys"
+        [tableTitle]="tableTitle"
+        (onPrintAll)="printAll()"
+      ></app-download-pdf>
+    </div>
+    <!-- bottom -->
+  </div>
+  <div class="bottom-header">
+    <div>
+      {{ "module_table.bottom_header_text" | translate }}
+    </div>
+    <!-- actions icons -->
+    <!-- <div>
+      <i
+        class="pi pi-trash px-2 fs-6"
+        role="button"
+        (click)="deleteSelected()"
+      ></i>
+    </div> -->
+  </div>
+</div>
+<div class="row mt-0">
+  <!--=================== printed table section ===================-->
+  <div class="col-md-12 m-0 border-0" id="print-table-section">
+    <!------------------- header ------------------->
+    <!-- table print header section  -->
+    <div class="d-none" id="print-section-header" [dir]="'dir' | translate">
+      <img src="assets/logo.png" alt="logo" width="40" height="40" />
+      <h3>{{ tableTitle }}</h3>
+      <p>{{ date | date }}</p>
+    </div>
+    <!-- /table print header section  -->
+    <!-- small table -->
+    <table [dir]="'dir' | translate" class="test-small-table d-none">
+      <thead>
+        <tr>
+          <th>From</th>
+          /
+          <th>To</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of testingTable">
+          <td>{{ data?.from }}</td>
+          <td>{{ data?.to }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- /small table -->
+    <!------------------- /header ------------------->
+    <!-- grid table  -->
+    <div
+      class="table-responsive {{
+        currentTheme?.colorSchema?.title === 'Dark' &&
+          currentTheme?.colorSchema?.color
+      }}"
+    >
+      <table
+        id="table-id"
+        class="table table-hover {{
+          currentTheme?.colorSchema?.title === 'Dark'
+            ? 'table-dark'
+            : 'table-striped'
+        }}"
+        [dir]="'dir' | translate"
+      >
+        <!-- caption -->
+        <thead>
+          <tr class="d-none" id="table-top-speace"></tr>
+          <tr>
+            <!-- checkbox cheack all -->
+            <th rowspan="2" class="select-column">
+              <span class="select-input">
+                <label class="table-checkbox-container">
+                  <input
+                    type="checkbox"
+                    [checked]="isAllCheckBoxChecked()"
+                    (change)="checkAllCheckBox($event)"
+                  />
+                  <div class="checkmark"></div>
+                </label>
+              </span>
+            </th>
+            <!-- table keys -->
+            <ng-container *ngFor="let key of dataKeys">
+              <th
+                *ngIf="key.active && key?.name != 'id'"
+                [ngClass]="{
+                  default: currentTheme?.colorSchema?.title != 'Dark'
+                }"
+              >
+                <div class="head-column">
+                  <!-- title & sorting icon -->
+                  <div
+                    class="d-flex w-100"
+                    (click)="autoSortingTable(key?.name)"
+                  >
+                    <span class="table-head-key">{{
+                      key?.display | translate
+                    }}</span>
+                    <!-- sort icons -->
+                    <div
+                      class="sort-icons"
+                      [ngStyle]="{
+                        visibility:
+                          sortingOrder == 'none' ? 'hidden' : 'visible'
+                      }"
+                    >
+                      <!-- asc -->
+                      <i
+                        class="pi pi-arrow-up mx-1 sort-icon"
+                        *ngIf="sortingOrder == 'asc' && sortingKey == key?.name"
+                      ></i>
+                      <!-- dec -->
+                      <i
+                        class="pi pi-arrow-down mx-1 sort-icon"
+                        *ngIf="
+                          sortingOrder == 'desc' && sortingKey == key?.name
+                        "
+                      ></i>
+                    </div>
+                  </div>
+                  <!-- dropdown icon -->
+                  <app-table-dropdown
+                    [columns]="dataKeys"
+                    [key]="key"
+                    [sortingKey]="sortingKey"
+                    [sortingOrder]="sortingOrder"
+                    (onSortingChange)="sortingTableByOrder($event, key?.name)"
+                    (onColumnsChange)="handleColumnsChangs($event)"
+                    (onFiltersSubmit)="handleFiltersSubmit($event, key?.name)"
+                    (onReset)="resetData()"
+                  ></app-table-dropdown>
+                </div>
+              </th>
+            </ng-container>
+            <!-- action -->
+            <th
+              class="text-center no-sort actions-table"
+              [ngClass]="{
+                default: currentTheme?.colorSchema?.title != 'Dark'
+              }"
+            >
+              {{ "module_table.action_table_head_text" | translate }}
+            </th>
+          </tr>
+        </thead>
+        <!-- body -->
+        <tbody>
+          <ng-container>
+            <tr
+              *ngFor="
+                let value of data
+                  | sort : [sortingKey, sortingOrder]
+                  | paginate
+                    : {
+                        itemsPerPage: itemsPerPage,
+                        currentPage: currentPage,
+                        totalItems: totalItems
+                      }
+              "
+              [ngClass]="{
+                selected: value?.checked
+              }"
+            >
+              <!-- select checkbox -->
+              <td class="select-column">
+                <span class="select-input">
+                  <label
+                    class="table-checkbox-container"
+                    (click)="checkOneCheckBox(value?.id)"
+                  >
+                    <input type="checkbox" [(ngModel)]="value.checked" />
+                    <div class="checkmark"></div>
+                  </label>
+                </span>
+              </td>
+              <ng-container *ngFor="let key of dataKeys">
+                <td *ngIf="key.active && key?.name != 'id'">
+                  <!-- name -->
+                  <ng-container *ngIf="key?.name != 'status'">
+                    <div role="button">
+                      {{ value[key?.name] }}
+                    </div>
+                  </ng-container>
+                </td>
+              </ng-container>
+              <!-- actions -->
+              <td class="actions-table">
+                <div class="dropdown dropdown-action">
+                  <a
+                    class="action-icon dropdown-toggle h-auto text-secondary fw-bold"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                    role="button"
+                    ><i class="pi pi-ellipsis-v"></i
+                  ></a>
+                  <div
+                    [dir]="'dir' | translate"
+                    class="dropdown-menu dropdown-menu-right"
+                  >
+                    <a
+                      class="dropdown-item"
+                      role="button"
+                      [routerLink]="[editPagePath + '/' + value?.id]"
+                      ><i class="pi pi-pencil mx-1"></i>
+                      {{ "module_table.edit_action_text" | translate }}</a
+                    >
+                    <a
+                      class="dropdown-item"
+                      data-bs-toggle="modal"
+                      data-bs-target="#delete"
+                      role="button"
+                      (click)="deleteId = value?.id"
+                      ><i class="pi pi-trash mx-1"></i>
+                      {{ "module_table.delete_action_text" | translate }}
+                    </a>
+                  </div>
+                </div>
+              </td>
+              <!-- /actions -->
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+      <!-- no data -->
+      <h1
+        *ngIf="totalItems == 0 && loading == false"
+        class="fs-3 my-4 text-center"
+      >
+        {{ "module_table.table_empty_text" | translate }}
+      </h1>
+      <!-- load skeleton if there is no data -->
+      <app-skeleton
+        *ngIf="loading"
+        type="line"
+        [count]="itemsPerPage"
+        width="100%"
+        height="48px"
+      ></app-skeleton>
+      <!-- /load skeleton if there is no data -->
+    </div>
+    <!-- grid footer -->
+    <div
+      class="grid-footer"
+      [ngClass]="{
+        'dark-theme': currentTheme?.colorSchema?.title == 'Dark',
+        default: currentTheme?.colorSchema?.title != 'Dark'
+      }"
+    >
+      <!-- pagination -->
+      <pagination-controls
+        class="pagination"
+        (pageChange)="onPaginate($event)"
+        [directionLinks]="true"
+        [responsive]="true"
+        [previousLabel]="'pagination.previous' | translate"
+        [nextLabel]="'pagination.next' | translate"
+      ></pagination-controls>
+
+      <!-- table entris -->
+      <div
+        class="d-flex align-items-center gap-1"
+        *ngIf="totalItems >= tableEntries[0]"
+      >
+        <app-table-entries
+          [entries]="tableEntries"
+          [dataLength]="totalItems"
+          (onSizeChange)="onTableSizeChange($event)"
+        ></app-table-entries>
+        <span>{{ "module_table.of_text" | translate }} {{ totalItems }}</span>
+      </div>
+      <!-- /table entris -->
+    </div>
+  </div>
+  <!--=================== printed table section ===================-->
+</div>
+
+<!-- /module table  -->
+<!-- delete modal -->
+<app-delete-modal
+  [title]="deleteModalTitle"
+  [currentTheme]="currentTheme"
+  (onDelete)="deleteItem()"
+></app-delete-modal>
+<!--/ delete modal -->
+<!-- printing spinner -->
+<div class="printing" *ngIf="printing">
+  <div class="spinner-grow" role="status"></div>
+</div>
+<!-- /printing spinner -->

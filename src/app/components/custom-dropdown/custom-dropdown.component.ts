@@ -11,6 +11,8 @@ export class CustomDropdownComponent implements OnInit {
   @Input() filter: boolean = false;
   @Input() title: string = 'Select';
   @Input() data: any[] = [];
+  @Input() object: boolean = false;
+  @Input() objectKey: any = null;
   @Output() onAction: EventEmitter<any> = new EventEmitter();
   isActive: boolean = false;
   searchText: string = '';
@@ -25,8 +27,12 @@ export class CustomDropdownComponent implements OnInit {
   close() {
     this.isActive = false;
   }
-  action(value: any) {
-    this.title = value;
+  action(value: any, objectKey?: any) {
+    if (this.object) {
+      this.title = objectKey;
+    } else {
+      this.title = value;
+    }
     this.onAction.emit(value);
     this.close();
   }

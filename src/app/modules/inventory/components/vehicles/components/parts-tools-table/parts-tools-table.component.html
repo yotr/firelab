@@ -1,0 +1,28 @@
+<table class="table mt-4">
+  <thead
+    class="bg-dark {{ currentTheme?.colorSchema?.background }} {{
+      currentTheme?.colorSchema?.color
+    }}"
+  >
+    <tr>
+      <th class="text-light" *ngFor="let value of dataKeys">
+        <div class="head-value">{{ value?.display }}</div>
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let value of data">
+      <th class="bg-light">1</th>
+      <td class="bg-light">Mark</td>
+      <td class="bg-light">Otto</td>
+      <td class="bg-light"></td>
+    </tr>
+  </tbody>
+</table>
+<!-- no data -->
+<!-- <h5
+  *ngIf="data.length == 0 && loading == false"
+  class="text-center text-danger bg-light m-0 py-2"
+>
+  No data found
+</h5> -->

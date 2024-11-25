@@ -1,0 +1,20 @@
+table {
+  border: 1px solid #ccc;
+}
+
+table thead tr th .head-value {
+  height: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+table tbody tr td {
+  background-color: white;
+}
+
+table tbody {
+  height: 250px;
+  overflow-y: auto;
+}

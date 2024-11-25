@@ -12,7 +12,7 @@ import { ThemeService } from 'src/app/services/theme/theme.service';
   templateUrl: './all-customers.component.html',
   styleUrls: ['./all-customers.component.css'],
 })
-export class AllCustomersComponent implements OnInit {
+export class AllCustomersComponent implements OnInit, AfterViewInit {
   // current language
   currentLanguage: any = localStorage.getItem('lang');
   currentTheme: any;

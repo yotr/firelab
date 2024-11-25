@@ -35,12 +35,15 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
+    // set default theme
     this.themeService.setDefaultThemeSettings();
-    // get theme from localStorage
     this.themeService.getCurrentTheme().subscribe((theme: any) => {
       this.currentTheme = JSON.parse(theme);
     });
 
+    // set default language
+    this.languageService.setDefaultLanguage();
+    this.getCurrentLanguage();
     // get user
     this.getCurrentActiveUser();
   }

@@ -1,0 +1,165 @@
+<!-- Add  Modal -->
+<div class="add-page">
+  <!-- Page Header -->
+  <div
+    class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
+    [dir]="'dir' | translate"
+  >
+    <!-- breadcrumb -->
+    <app-breadcrumb title="Assign Parts"></app-breadcrumb>
+  </div>
+  <!-- /Page Header -->
+
+  <app-back-button></app-back-button>
+  <!-- content -->
+  <!-- header -->
+  <div
+    class="form-header pe-4 ps-4 mt-4 {{
+      currentTheme?.colorSchema?.background
+    }} {{ currentTheme?.colorSchema?.color }}"
+  >
+    <div class="d-flex justify-content-between align-items-center w-100">
+      <h4 class="m-0">Assign Parts</h4>
+      <div></div>
+    </div>
+  </div>
+  <form (ngSubmit)="submit()" [formGroup]="addForm">
+    <div class="row">
+      <div class="col-sm-4">
+        <!-- Vehicle Number -->
+        <div class="form-group mt-2">
+          <label>Vehicle Number </label>
+          <app-custom-dropdown
+            title="Select Here"
+            minWidth="100%"
+            [filter]="true"
+            [object]="true"
+            objectKey="name"
+            [data]="vehicles"
+          ></app-custom-dropdown>
+          <!-- <select
+            class="form-select form-control"
+            formControlName="vehicleNumber"
+          >
+            <option disabled selected>
+              {{ "select" | translate }}
+            </option>
+            <ng-container *ngFor="let user of users">
+              <option [value]="user?.id">
+                {{ user?.name }}
+              </option>
+            </ng-container>
+            <option *ngIf="!usersLoading && users.length == 0" disabled>
+              No Data Yet
+            </option>
+          </select> -->
+          <!-- errors -->
+          <!-- <div
+            *ngIf="
+              addForm.get('vehicleNumber')?.invalid &&
+              addForm.get('vehicleNumber')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('vehicleNumber')?.invalid &&
+                addForm.get('vehicleNumber')?.touched
+              "
+              class="text-danger"
+            >
+              Vehicle Number Is Required</small
+            >
+          </div> -->
+          <!-- errors -->
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <!-- assignedTechnician -->
+        <div class="form-group mt-2">
+          <label>Assigned Technician </label>
+          <app-custom-dropdown
+            title="Select Here"
+            minWidth="100%"
+            [filter]="true"
+            [object]="true"
+            objectKey="name"
+            [data]="users"
+          ></app-custom-dropdown>
+          <!-- <select
+            class="form-select form-control"
+            formControlName="assignedTechnician"
+          >
+            <option disabled selected>
+              {{ "select" | translate }}
+            </option>
+            <ng-container *ngFor="let user of users">
+              <option [value]="user?.id">
+                {{ user?.name }}
+              </option>
+            </ng-container>
+            <option *ngIf="!usersLoading && users.length == 0" disabled>
+              No Data Yet
+            </option>
+          </select> -->
+          <!-- errors -->
+          <!-- <div
+            *ngIf="
+              addForm.get('assignedTechnician')?.invalid &&
+              addForm.get('assignedTechnician')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('assignedTechnician')?.invalid &&
+                addForm.get('assignedTechnician')?.touched
+              "
+              class="text-danger"
+            >
+              Assigned Technician Is Required</small
+            >
+          </div> -->
+          <!-- errors -->
+        </div>
+      </div>
+    </div>
+    <!-- tools and parts -->
+    <div class="row mt-4">
+      <!-- parts -->
+      <div class="col-sm-12">
+        <app-parts-tools-table
+          [data]="parts"
+          [dataKeys]="partsKeys"
+          [loading]="partsLoading"
+        ></app-parts-tools-table>
+      </div>
+    </div>
+
+    <!-- buttons -->
+    <div class="btns">
+      <!-- add parts -->
+      <div class="add-parts-btn text-center">
+        <div
+          class="add mt-4"
+          data-bs-toggle="modal"
+          data-bs-target="#add_parts_modal"
+        >
+          <i class="pi pi-plus"></i>
+          Add Parts
+        </div>
+      </div>
+      <!-- submit -->
+      <div class="save-btn text-center">
+        <button type="submit" class="save mt-4">Save</button>
+      </div>
+    </div>
+  </form>
+</div>
+<!-- /Add  Modal -->
+
+<!-- loading section -->
+<div *ngIf="uploading">
+  <app-loading-section></app-loading-section>
+</div>
+<!-- /loading section -->
+<!-- assign parts modal -->
+<app-assign-parts-modal></app-assign-parts-modal>

@@ -24,7 +24,6 @@ export class AuthService {
     this.httpOptions = environment.HTTP_OPTIONS;
   }
 
-
   // register function
   login(path: string, data: any): Observable<any> {
     return this.http.post<any>(
