@@ -1,0 +1,64 @@
+.hood-system {
+  position: relative;
+  display: flex;
+}
+.content {
+  flex: 1;
+}
+.reports-sidebar {
+  position: relative;
+  height: 100%;
+  width: 325px;
+}
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+}
+.tabs .tab {
+  background-color: white;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  transition: all 0.3s ease-in-out;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+}
+.tabs .tab:hover {
+  background-color: var(--main-color);
+  color: white;
+}
+
+.tabs .tab.active {
+  background-color: var(--main-color);
+  color: white;
+}
+
+.start-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.start {
+  color: #52bfea;
+  border: 1px solid #52bfea;
+  background-color: white;
+  padding: 6px 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  height: 40px;
+  width: 100%;
+  font-weight: bold;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.start:hover {
+  cursor: pointer;
+  color: white;
+  background-color: #52bfea;
+}

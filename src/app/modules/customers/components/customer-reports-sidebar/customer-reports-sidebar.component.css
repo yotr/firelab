@@ -53,6 +53,13 @@
   cursor: pointer;
   background-color: var(--red-theme-color);
 }
+.report-type.active {
+  color: white;
+  background-color: var(--red-theme-color);
+}
+.report-type.active i {
+  color: white;
+}
 
 .report-type:hover i {
   color: white;

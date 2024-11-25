@@ -77,4 +77,8 @@ export class SidebarService {
   getCurrentCustomerValue(): Observable<string> {
     return this.currentCustomerId.asObservable();
   }
+
+  sendActiveDropdownPage(value: any) {
+    this.activeDropdown.next(value);
+  }
 }

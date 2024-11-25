@@ -16,7 +16,7 @@ export class ContractComponent implements OnInit {
   currentLanguage: any = localStorage.getItem('lang');
   currentTheme: any;
   dataKeys: any[] = [];
-  contacts: any[] = [];
+  data: any[] = [];
   totalItemsCount: number = 0;
   loading: boolean = true;
   // current logged in user

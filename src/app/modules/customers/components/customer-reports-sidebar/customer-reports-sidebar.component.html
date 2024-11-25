@@ -3,9 +3,16 @@
     <h4 class="m-0">REPORTS</h4>
   </div>
   <div class="reports-types">
-    <div class="report-type" *ngFor="let report of reports">
-      <i class="pi + {{ report?.icon }} "></i>
-      <span>{{ report?.name }}</span>
-    </div>
+    <ng-container *ngFor="let report of reports">
+      <div
+        class="report-type"
+        [ngClass]="{ active: activeReport == report?.name }"
+        routerLink="/modules/customers/hoodSystem"
+        [queryParams]="{ report: report?.name }"
+      >
+        <i class="pi + {{ report?.icon }} "></i>
+        <span>{{ report?.name }}</span>
+      </div>
+    </ng-container>
   </div>
 </div>

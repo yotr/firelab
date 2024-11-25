@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-customer-reports-sidebar',
@@ -8,7 +9,16 @@ import { Component, OnInit } from '@angular/core';
 export class CustomerReportsSidebarComponent implements OnInit {
   reports: any[] = [];
 
-  constructor() {
+  activeReport: string = '';
+
+  constructor(private activatedRoute: ActivatedRoute) {
+    //get id
+    this.activatedRoute.queryParamMap.subscribe((paramMap: Params) => {
+      if (paramMap['get']('report')) {
+        this.activeReport = paramMap['get']('report');
+      }
+    });
+
     this.reports = [
       {
         id: 0,
@@ -17,50 +27,31 @@ export class CustomerReportsSidebarComponent implements OnInit {
         link: '',
       },
       {
-        id: 0,
-        name: 'Spcial Hazard',
+        id: 1,
+        name: 'Alarm',
         icon: 'pi-exclamation-triangle',
       },
       {
-        id: 0,
-        name: 'Spcial Hazard',
+        id: 3,
+        name: 'Lighting',
         icon: 'pi-exclamation-triangle',
       },
       {
-        id: 0,
-        name: 'Spcial Hazard',
+        id: 4,
+        name: 'Fire Door',
         icon: 'pi-exclamation-triangle',
       },
       {
-        id: 0,
-        name: 'Spcial Hazard',
+        id: 5,
+        name: 'Doors',
         icon: 'pi-exclamation-triangle',
       },
       {
-        id: 0,
-        name: 'Spcial Hazard',
+        id: 6,
+        name: 'Testing',
         icon: 'pi-exclamation-triangle',
       },
-      {
-        id: 0,
-        name: 'Spcial Hazard',
-        icon: 'pi-exclamation-triangle',
-      },
-      {
-        id: 0,
-        name: 'Spcial Hazard',
-        icon: 'pi-exclamation-triangle',
-      },
-      {
-        id: 0,
-        name: 'Spcial Hazard',
-        icon: 'pi-exclamation-triangle',
-      },
-      {
-        id: 0,
-        name: 'Spcial Hazard',
-        icon: 'pi-exclamation-triangle',
-      },
+      
     ];
   }
 

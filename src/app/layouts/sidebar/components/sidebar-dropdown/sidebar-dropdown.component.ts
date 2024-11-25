@@ -6,6 +6,7 @@ import {
   trigger,
 } from '@angular/animations';
 import { Component, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 // import { AuthService } from 'src/app/services/auth/auth.service';
 //services
 import { SidebarService } from 'src/app/services/sidebar/sidebar.service';
@@ -51,7 +52,7 @@ export class SidebarDropdownComponent implements OnInit {
   constructor(
     private sidebarService: SidebarService,
     private themeService: ThemeService,
-    // private auth: AuthService
+    private router: Router
   ) {}
 
   ngOnInit() {

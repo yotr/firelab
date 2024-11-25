@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Event, NavigationEnd, Params, Router } from '@angular/router';
+import {
+  ActivatedRoute,
+  Event,
+  NavigationEnd,
+  Params,
+  Router,
+} from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { SidebarService } from 'src/app/services/sidebar/sidebar.service';
@@ -123,7 +129,7 @@ export class EditSystemInfoComponent implements OnInit {
   }
   //handle display submenu from list menu array by know which item active
   setActiveMenu() {
-    this.sidebarService.activateDropdown('Customers');
+    this.sidebarService.activateDropdown('customers');
   }
   getCurrentCustomerId() {
     this.sidebarService.getCurrentCustomerValue().subscribe((value: any) => {
@@ -238,4 +244,3 @@ export class EditSystemInfoComponent implements OnInit {
     // );
   }
 }
-

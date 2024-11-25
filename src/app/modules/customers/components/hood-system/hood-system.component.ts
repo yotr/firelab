@@ -1,28 +1,27 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { LanguageService } from 'src/app/services/language/language.service';
-import { SidebarService } from 'src/app/services/sidebar/sidebar.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
 
 @Component({
-  selector: 'app-import-devices',
-  templateUrl: './import-devices.component.html',
-  styleUrls: ['./import-devices.component.css'],
+  selector: 'app-hood-system',
+  templateUrl: './hood-system.component.html',
+  styleUrls: ['./hood-system.component.css'],
 })
-export class ImportDevicesComponent implements OnInit, AfterViewInit {
+export class HoodSystemComponent implements OnInit {
   // current language
   currentLanguage: any = localStorage.getItem('lang');
   currentTheme: any;
-  data: any[] = [] as any[];
-  loading: boolean = true;
-  totalItemsCount: number = 0;
   dataKeys: any[] = [];
+  data: any[] = [];
+  totalItemsCount: number = 0;
+  loading: boolean = true;
   // current logged in user
   currentUser: any = {} as any;
-  customerId: any = null;
+  activeTab: number = 1;
 
   constructor(
     private themeService: ThemeService,
@@ -33,31 +32,38 @@ export class ImportDevicesComponent implements OnInit, AfterViewInit {
     private toastr: ToastrService,
     // public apiService: ApiService,
     // private permissionsService: PermissionsService,
-    private auth: AuthService,
-    private sidebarService: SidebarService
+    private auth: AuthService
   ) {
-    //get id
-    this.activatedRoute.queryParamMap.subscribe((paramMap: Params) => {
-      if (paramMap['get']('customerId')) {
-        this.customerId = paramMap['get']('customerId');
-        // activate current customer id so we can get in other pages after refresh
-        this.sidebarService.sendCurrentCustomer(paramMap['get']('customerId'));
-      }
-    });
+    //   //get id
+    //   this.activatedRoute.queryParamMap.subscribe((paramMap: Params) => {
+    //     if (paramMap['get']('operationid')) {
+    //       this.operationId = paramMap['get']('operationid');
+    //     }
+    //   });
+    //   // get query parameters
+    //   this.activatedRoute.queryParams.subscribe((query) => {
+    //     this.view_type = query['view_type'];
+    //   });
 
     //   // turn on current language (trandlate)
     this.translateService.use(this.currentLanguage);
     // this.translateService.instant('clients.client_table.client_id');
     this.dataKeys = [
       {
-        name: 'reportCategory',
-        display: 'Report Category',
+        name: 'frequency',
+        display: 'Frequency',
         type: 'string',
         active: true,
       },
       {
-        name: 'listName',
-        display: 'List Name',
+        name: 'completionDate',
+        display: 'Completion Date',
+        type: 'string',
+        active: true,
+      },
+      {
+        name: 'name',
+        display: 'Name',
         type: 'string',
         active: true,
       },
@@ -67,12 +73,11 @@ export class ImportDevicesComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.getLanguage();
     this.getTheme();
-    this.getData();
-    this.getCurrentCustomerId();
-    //   this.getCurrentUserData();
+    this.getDate();
   }
 
-  ngAfterViewInit(): void {}
+  // ngAfterViewInit(): void {
+  // }
   // get user
   isLoggedIn(): boolean {
     return this.auth.currentUserSignal() == undefined ? false : true;
@@ -100,40 +105,11 @@ export class ImportDevicesComponent implements OnInit, AfterViewInit {
     });
   }
 
-  //handle display submenu from list menu array by know which item active
-  setActiveMenu() {
-    this.sidebarService.activateDropdown('customers');
+  setActiveTab(tab: number) {
+    this.activeTab = tab;
   }
-  getCurrentCustomerId() {
-    this.sidebarService.getCurrentCustomerValue().subscribe((value: any) => {
-      if (value) {
-        this.customerId = value;
-      }
-    });
-    this.setActiveMenu();
-    // set querys to current page
-    // this.router.navigate([], {
-    //   queryParams: { customerId: this.customerId },
-    // });
-  }
-  // navigationHandler() {
-  //   this.router.events.subscribe((event: Event) => {
-  //     if (event instanceof NavigationEnd) {
-  //       if (
-  //         event.url.includes('/customers/home') ||
-  //         event.url.includes('/customers/owner') ||
-  //         event.url.includes('/customers/customerInfo') ||
-  //         event.url.includes('/customers/buildingInfo') ||
-  //         event.url.includes('/customers/systemInfo')
-  //       ) {
-  //         this.getCurrentCustomerId();
-  //       }
-  //     }
-  //   });
-  // }
-
   //get data
-  getData(
+  getDate(
     page?: number,
     pageSize?: number,
     column?: any,
@@ -142,8 +118,9 @@ export class ImportDevicesComponent implements OnInit, AfterViewInit {
     value1?: any,
     value2?: any
   ) {
+    this.data = [];
     this.loading = false;
-    this.totalItemsCount = this.data.length;
+    this.totalItemsCount = this.data?.length;
     // this.apiService
     //   .filterData(
     //     `clients/getFilteredClients`,
@@ -154,9 +131,9 @@ export class ImportDevicesComponent implements OnInit, AfterViewInit {
     //     this.clients = data?.clientDto;
     //     this.totalItemsCount = data?.totalCount;
     //     this.loading = false;
-    //     // get dynamic columns keys
-    //     // this.getTableTabKeys(data);
-    //   });
+    // get dynamic columns keys
+    // this.getTableTabKeys(data);
+    // });
   }
 
   // search(event: any) {
@@ -264,9 +241,5 @@ export class ImportDevicesComponent implements OnInit, AfterViewInit {
   //     'Clients',
   //     action
   //   );
-  // }
-  //handle display submenu from list menu array by know which item active
-  // setActiveMenu() {
-  //   this.sidebarService.sendActiveDropdown('Customers');
   // }
 }

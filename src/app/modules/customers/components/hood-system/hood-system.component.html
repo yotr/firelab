@@ -1,0 +1,63 @@
+<div class="hood-system">
+  <!-- content page -->
+  <div class="content">
+    <div class="d-flex justify-content-between align-items-center">
+      <!-- title -->
+      <h3 class="text-secondary">Hood System</h3>
+      <div class="start-btn text-center">
+        <div class="start mt-4" routerLink="/modules/reports/newReport">
+          Start
+        </div>
+      </div>
+    </div>
+    <!-- tabs -->
+    <div class="tabs my-4">
+      <button
+        [ngClass]="{ active: activeTab === 1 }"
+        type="button"
+        class="tab"
+        (click)="setActiveTab(1)"
+      >
+        Inspections
+      </button>
+      <button
+        [ngClass]="{ active: activeTab === 2 }"
+        type="button"
+        class="tab"
+        (click)="setActiveTab(2)"
+      >
+        Work Orders
+      </button>
+      <button
+        [ngClass]="{ active: activeTab === 3 }"
+        type="button"
+        class="tab"
+        (click)="setActiveTab(3)"
+      >
+        Quotes
+      </button>
+      <button
+        [ngClass]="{ active: activeTab === 4 }"
+        type="button"
+        class="tab"
+        (click)="setActiveTab(4)"
+      >
+        Incomplete Reports
+      </button>
+    </div>
+    <!-- table -->
+    <app-hood-system-module-table
+      [data]="data"
+      [totalItems]="totalItemsCount"
+      [dataKeys]="dataKeys"
+      [loading]="loading"
+      [currentTheme]="currentTheme"
+      deleteModalTitle="Reports"
+      tableTitle="Reports Table"
+    ></app-hood-system-module-table>
+  </div>
+  <!-- /content page -->
+  <div class="reports-sidebar">
+    <app-customer-reports-sidebar></app-customer-reports-sidebar>
+  </div>
+</div>

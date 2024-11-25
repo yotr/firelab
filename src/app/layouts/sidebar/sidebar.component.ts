@@ -12,7 +12,7 @@ import { ThemeService } from 'src/app/services/theme/theme.service';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css'],
 })
-export class SidebarComponent implements OnInit {
+export class SidebarComponent implements OnInit, AfterViewInit {
   //variables
   sidebarLinks: any = [];
   isSidebarClosed: boolean = false;
@@ -29,13 +29,16 @@ export class SidebarComponent implements OnInit {
     private sidebarService: SidebarService,
     private themeService: ThemeService,
     private languageService: LanguageService,
-    private router: Router,
-    // private auth: AuthService
+    private router: Router // private auth: AuthService
   ) {
     //call sidebar menus changes
     this.handleSidebarMenuChanges();
     //current language
     this.getCurrentLanguage();
+  }
+  ngAfterViewInit(): void {
+    // get active dropdown
+    this.getActiveMenu();
   }
 
   ngOnInit(): void {
@@ -75,7 +78,7 @@ export class SidebarComponent implements OnInit {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         // const url = event.url.split('/');
-          this.sidebarMenus.default = true;
+        this.sidebarMenus.default = true;
       }
     });
   }
@@ -104,6 +107,32 @@ export class SidebarComponent implements OnInit {
     this.sidebarService.getSidebarMenuArabic().subscribe((menu) => {
       this.sidebarLinks = menu;
     });
+  }
+
+  getActiveMenu() {
+    let currentPath = this.router.url;
+    // get sidebar links list from services
+    this.sidebarService.getSidebarMenuEnglish().subscribe((sidebar) => {
+      let code = this.searchByPath(sidebar[0]?.menu, currentPath);
+      if (code) {
+        this.sidebarService.activateDropdown(code);
+      }
+    });
+  }
+
+  searchByPath(menu: any, searchPath: string) {
+    // Loop through the menu and search for the path
+    for (let item of menu) {
+      // Check if this item has a path and if it matches the searchPath
+      if (item?.list) {
+        for (let subItem of item.list) {
+          if (subItem.path && subItem.path === searchPath) {
+            return item?.code;
+          }
+        }
+      }
+    }
+    return null; // Return null if no matching path is found
   }
   // to enhance performance of loop when u remove or update item not render all items when changes happen
   trackFun(index: number, item: any): number {

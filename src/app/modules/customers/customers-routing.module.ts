@@ -24,6 +24,7 @@ import { CustomersDeficienciesComponent } from './components/customers-Deficienc
 import { CustomerPortalComponent } from './components/customer-portal/customer-portal.component';
 import { AutoEmailComponent } from './components/auto-email/auto-email.component';
 import { AddJobComponent } from './components/add-job/add-job.component';
+import { HoodSystemComponent } from './components/hood-system/hood-system.component';
 
 const routes: Routes = [
   {
@@ -117,6 +118,10 @@ const routes: Routes = [
       {
         path: 'autoEmail',
         component: AutoEmailComponent,
+      },
+      {
+        path: 'hoodSystem',
+        component: HoodSystemComponent,
       },
     ],
   },

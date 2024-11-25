@@ -6,12 +6,14 @@
       {
         "id": 0,
         "title": "Dashboard",
+        "code": "dashboard",
         "icon": "pi-gauge",
         "path": "/modules/dashboard"
       },
       {
         "id": 1,
         "title": "Customers",
+        "code": "customers",
         "icon": "pi-address-book",
         "link": "/modules/customers/allCustomers",
         "list": [
@@ -80,12 +82,14 @@
       {
         "id": 2,
         "title": "Customers Contracts",
+        "code": "contract",
         "icon": "pi-book",
         "path": "/modules/contract"
       },
       {
         "id": 3,
         "title": "Team",
+        "code": "team",
         "icon": "pi-users",
         "link": "/modules/team/allTeam",
         "list": [
@@ -104,6 +108,7 @@
       {
         "id": 4,
         "title": "JobLink",
+        "code": "jobLink",
         "icon": "pi-paperclip",
         "path": "/modules/jobLink",
         "query": { "view": "Week" }
@@ -111,6 +116,7 @@
       {
         "id": 5,
         "title": "Reports",
+        "code": "reports",
         "icon": "pi-file",
         "list": [
           {
@@ -133,6 +139,7 @@
       {
         "id": 6,
         "title": "Jobs",
+        "code": "jobs",
         "icon": "pi-list",
         "list": [
           {
@@ -155,12 +162,14 @@
       {
         "id": 7,
         "title": "Service Requests",
+        "code": "serviceRequests",
         "icon": "pi-wrench",
         "path": "/modules/serviceRequests"
       },
       {
         "id": 8,
         "title": "Inventory",
+        "code": "inventory",
         "icon": "pi-warehouse",
         "list": [
           {
@@ -198,6 +207,7 @@
       {
         "id": 9,
         "title": "Deficiencies",
+        "code": "deficiencies",
         "icon": "pi-info-circle",
         "path": "/modules/deficiencies"
       }

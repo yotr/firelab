@@ -37,6 +37,8 @@ import { CustomerDeficienciesModuleTableComponent } from './components/customers
 import { CustomerPortalComponent } from './components/customer-portal/customer-portal.component';
 import { AddJobComponent } from './components/add-job/add-job.component';
 import { AutoEmailComponent } from './components/auto-email/auto-email.component';
+import { HoodSystemComponent } from './components/hood-system/hood-system.component';
+import { HoodSystemModuleTableComponent } from './components/hood-system/hood-system-module-table/hood-system-module-table.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +77,8 @@ import { AutoEmailComponent } from './components/auto-email/auto-email.component
     CustomerPortalComponent,
     AddJobComponent,
     AutoEmailComponent,
+    HoodSystemComponent,
+    HoodSystemModuleTableComponent
   ],
 
   imports: [CommonModule, CustomersRoutingModule, SharedModule],
