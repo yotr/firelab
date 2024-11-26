@@ -1,0 +1,136 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 20px;
+  border-bottom: 2px dashed #ccc;
+  margin-bottom: 20px;
+}
+
+.left-section,
+.right-section {
+  flex: 1;
+  padding: 0;
+  margin: 0;
+}
+.left-section li,
+.right-section li {
+  margin-bottom: 20px;
+}
+.form-control {
+  background-color: #fafafacc;
+}
+
+.notes {
+  background-color: #f2f2f2;
+  padding: 10px;
+}
+.note-title {
+  cursor: pointer;
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+.notes .content {
+  display: flex;
+  justify-content: space-between;
+}
+.customer-note,
+.inspector-note {
+  flex: 1;
+}
+
+.note-input {
+  padding: 10px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.customer-note div,
+.inspector-note div {
+  cursor: pointer;
+}
+
+.btns {
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+.delete-btn,
+.unassign-btn,
+.save-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.delete {
+  color: var(--main-color);
+  border: 1px solid var(--main-color);
+  padding: 6px 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  min-width: 200px;
+  font-weight: bold;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.delete:hover {
+  cursor: pointer;
+  color: white;
+  background-color: var(--main-color);
+}
+
+.unassign {
+  color: #0e161a;
+  border: 1px solid #0e161a;
+  padding: 6px 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  min-width: 200px;
+  font-weight: bold;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.unassign:hover {
+  cursor: pointer;
+  color: white;
+  background-color: #0e161a;
+}
+.save {
+  color: rgb(106, 161, 78);
+  border: 1px solid rgb(106, 161, 78);
+  background-color: white;
+  padding: 6px 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  min-width: 200px;
+  font-weight: bold;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.save:hover {
+  cursor: pointer;
+  color: white;
+  background-color: rgb(106, 161, 78);
+}

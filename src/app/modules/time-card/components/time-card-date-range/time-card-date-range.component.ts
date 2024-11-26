@@ -7,6 +7,7 @@ import dayjs, { Dayjs } from 'dayjs';
   styleUrls: ['./time-card-date-range.component.css'],
 })
 export class TimeCardDateRangeComponent implements OnInit {
+  week: any[] = [];
   today = new Date();
   title = 'daterangepicker-bootstrap-sdk';
   dropsDown = 'down';
@@ -105,7 +106,9 @@ export class TimeCardDateRangeComponent implements OnInit {
       endDate: dayjs().endOf('day'),
     };
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getWeekDaysInEnglish(this.today);
+  }
 
   isInvalidDate = (m: dayjs.Dayjs) => {
     return this.invalidDates.some((d) => d.isSame(m, 'day'));
@@ -122,6 +125,7 @@ export class TimeCardDateRangeComponent implements OnInit {
 
   datesUpdatedRange($event: Object) {
     console.log('range', $event);
+    console.log($event.constructor);
   }
 
   datesUpdatedSingle($event: any) {
@@ -130,5 +134,25 @@ export class TimeCardDateRangeComponent implements OnInit {
 
   datesUpdatedInline($event: Object) {
     console.log('inline', $event);
+  }
+
+  // get current week
+
+  // get selected week days in english
+  async getWeekDaysInEnglish(date: Date) {
+    this.week = [];
+    for (let i = 0; i < 7; i++) {
+      this.week.push({
+        name:
+          this.today.toLocaleDateString('en-EN', { weekday: 'short' }) +
+          ', ' +
+          this.today.getDate() +
+          ' ' +
+          this.today.toLocaleString('default', { month: 'short' }),
+        date: new Date(date.setDate(date.getDate())),
+        active: true,
+      });
+      date.setDate(date.getDate() + 1);
+    }
   }
 }

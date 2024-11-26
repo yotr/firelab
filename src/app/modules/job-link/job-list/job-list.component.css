@@ -1,0 +1,187 @@
+.job-list {
+  position: relative;
+  z-index: 99;
+}
+
+.job-list-title {
+  cursor: pointer;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 10px;
+  width: 120px;
+  background-color: var(--dark-theme-bg);
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+/* .job-list-content {
+  position: absolute;
+  top: 110%;
+  right: 0px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+} */
+
+.search {
+  display: flex;
+}
+
+/* .search .search-field {
+  padding: 5px 10px;
+  min-width: 250px;
+  height: 40px;
+  border: none;
+  border-left: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.search .btn-search {
+  border: none;
+  color: white;
+  padding: 0 20px;
+  background-color: var(--main-color);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+} */
+
+.job-list-content .jobs .jobs-section {
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.job-list-content .jobs .jobs-section .title {
+  padding: 5px;
+  font-size: 14px;
+  text-align: center;
+  color: white;
+  background-color: var(--main-color);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.job-list-content .jobs .jobs-section .jobs-section-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  height: 350px;
+  overflow-y: auto;
+}
+.job-list-content .jobs .jobs-section .jobs-section-list .job {
+  cursor: pointer;
+  padding: 5px 20px;
+  font-size: 13px;
+  color: #666565;
+  background-color: #f3f3f3;
+  border-bottom: 1px solid #ccc;
+}
+
+.no-data {
+  font-size: small;
+}
+
+/* =========style scroll bar========= */
+.jobs-section-list::-webkit-scrollbar {
+  background-color: transparent;
+  width: 3px;
+}
+.jobs-section-list::-webkit-scrollbar-thumb {
+  display: none;
+  background-color: #ccc;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.jobs-section-list:hover::-webkit-scrollbar-thumb {
+  display: block;
+}
+
+/* =========end style scroll bar========= */
+
+/* dirctions */
+/* ltr */
+.job-list[dir="ltr"] .job-list-content {
+  position: absolute;
+  top: 110%;
+  right: 0px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+.job-list[dir="ltr"] .search .search-field {
+  padding: 5px 10px;
+  min-width: 250px;
+  height: 40px;
+  border: none;
+  border-left: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.job-list[dir="ltr"] .search .btn-search {
+  border: none;
+  color: white;
+  padding: 0 20px;
+  background-color: var(--main-color);
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+/* rtl */
+
+.job-list[dir="rtl"] .job-list-content {
+  position: absolute;
+  top: 110%;
+  left: 0px;
+  padding: 10px;
+  background-color: white;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+.job-list[dir="rtl"] .search .search-field {
+  padding: 5px 10px;
+  min-width: 250px;
+  height: 40px;
+  border: none;
+  border-right: 1px solid #ccc;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.job-list[dir="rtl"] .search .btn-search {
+  border: none;
+  color: white;
+  padding: 0 20px;
+  background-color: var(--main-color);
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}

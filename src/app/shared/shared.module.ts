@@ -21,6 +21,7 @@ import { BackButtonComponent } from '../components/back-button/back-button.compo
 import { LoadingSectionComponent } from '../components/loading-section/loading-section.component';
 import { CustomDropdownComponent } from '../components/custom-dropdown/custom-dropdown.component';
 import { ClickOutsideDirective } from '../directives/clickOutside.directive';
+import { CustomMultiSelectDropdownComponent } from '../components/custom-multi-select-dropdown/custom-multi-select-dropdown.component';
 
 export function httpTranslateLoaderfactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -44,6 +45,7 @@ export function httpTranslateLoaderfactory(http: HttpClient) {
     BackButtonComponent,
     LoadingSectionComponent,
     CustomDropdownComponent,
+    CustomMultiSelectDropdownComponent,
   ],
   imports: [
     CommonModule,
@@ -87,6 +89,7 @@ export function httpTranslateLoaderfactory(http: HttpClient) {
     BackButtonComponent,
     LoadingSectionComponent,
     CustomDropdownComponent,
+    CustomMultiSelectDropdownComponent,
   ],
   providers: [HttpClient],
 })

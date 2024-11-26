@@ -1,0 +1,334 @@
+<div class="assign-jobs">
+  <!-- Page Header -->
+  <div
+    class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
+    [dir]="'dir' | translate"
+  >
+    <!-- breadcrumb -->
+    <app-breadcrumb title="Assign Job"></app-breadcrumb>
+  </div>
+  <!-- /Page Header -->
+
+  <app-back-button></app-back-button>
+  <div class="header">
+    <ul class="left-section">
+      <li>Contact Name: NA</li>
+      <li>Job Id Number: NA</li>
+      <li>Email Id: NA</li>
+    </ul>
+    <ul class="right-section">
+      <li>Office Number: NA</li>
+      <li>Address: NA</li>
+    </ul>
+  </div>
+  <form (ngSubmit)="submit()" [formGroup]="addForm">
+    <div class="row">
+      <div class="col-sm-6">
+        <span class="fs-5 fw-bold">Start Date and Time</span>
+      </div>
+      <div class="col-sm-6">
+        <span class="fs-5 fw-bold">End Date and Time</span>
+      </div>
+      <div class="col-sm-6">
+        <!-- Select Start Date -->
+        <div class="form-group mt-2">
+          <label>Select Start Date <span class="text-danger">*</span></label>
+          <input class="form-control" type="date" formControlName="startDate" />
+          <!-- errors -->
+          <div
+            *ngIf="
+              addForm.get('startDate')?.invalid &&
+              addForm.get('startDate')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('startDate')?.invalid &&
+                addForm.get('startDate')?.touched
+              "
+              class="text-danger"
+            >
+              Start Date Is Required</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <!-- Duration By -->
+        <div class="form-group mt-2">
+          <label>Duration By <span class="text-danger">*</span></label>
+          <select
+            class="form-select form-control"
+            name="durationBy"
+            id="durationBy"
+            formControlName="durationBy"
+          >
+            <option ngDefaultControl>{{ "select" | translate }}</option>
+            <option value="Hours">Hours</option>
+            <option value="Date">Date</option>
+          </select>
+        </div>
+        <!-- errors -->
+        <div
+          *ngIf="
+            addForm.get('durationBy')?.invalid &&
+            addForm.get('durationBy')?.touched
+          "
+        >
+          <small
+            *ngIf="
+              addForm.get('durationBy')?.invalid &&
+              addForm.get('durationBy')?.touched
+            "
+            class="text-danger"
+          >
+            Duration By Is Required</small
+          >
+        </div>
+        <!-- errors -->
+      </div>
+      <div class="col-sm-6">
+        <div class="mt-2">Select Start Time (HH:MM)</div>
+      </div>
+      <div class="col-sm-2">
+        <div class="mt-2">Duration(Hrs.)</div>
+      </div>
+      <div class="col-sm-4">
+        <div class="mt-2">Select End Date</div>
+      </div>
+      <div class="col-sm-2">
+        <!-- hours -->
+        <div class="form-group mt-2">
+          <select
+            class="form-select form-control"
+            name="hours"
+            id="hours"
+            formControlName="hours"
+          >
+            <option ngDefaultControl>{{ "select" | translate }}</option>
+            <ng-container *ngFor="let hour of hours">
+              <option [value]="hour">{{ hour }}</option>
+            </ng-container>
+          </select>
+        </div>
+        <!-- errors -->
+        <div
+          *ngIf="addForm.get('hours')?.invalid && addForm.get('hours')?.touched"
+        >
+          <small
+            *ngIf="
+              addForm.get('hours')?.invalid && addForm.get('hours')?.touched
+            "
+            class="text-danger"
+          >
+            Hours Is Required</small
+          >
+        </div>
+        <!-- errors -->
+      </div>
+      <div class="col-sm-2">
+        <!-- mintes -->
+        <div class="form-group mt-2">
+          <select
+            class="form-select form-control"
+            name="mintes"
+            id="mintes"
+            formControlName="mintes"
+          >
+            <option ngDefaultControl>{{ "select" | translate }}</option>
+            <ng-container *ngFor="let minute of minutes">
+              <option [value]="minute">{{ minute }}</option>
+            </ng-container>
+          </select>
+        </div>
+        <!-- errors -->
+        <div
+          *ngIf="
+            addForm.get('mintes')?.invalid && addForm.get('mintes')?.touched
+          "
+        >
+          <small
+            *ngIf="
+              addForm.get('mintes')?.invalid && addForm.get('mintes')?.touched
+            "
+            class="text-danger"
+          >
+            Mintes Is Required</small
+          >
+        </div>
+        <!-- errors -->
+      </div>
+      <div class="col-sm-2">
+        <!-- time -->
+        <div class="form-group mt-2">
+          <select
+            class="form-select form-control"
+            name="time"
+            id="time"
+            formControlName="meridiem"
+          >
+            <option>{{ "select" | translate }}</option>
+            <option value="am">AM</option>
+            <option value="pm">PM</option>
+          </select>
+        </div>
+        <!-- errors -->
+        <div
+          *ngIf="
+            addForm.get('meridiem')?.invalid && addForm.get('meridiem')?.touched
+          "
+        >
+          <small
+            *ngIf="
+              addForm.get('meridiem')?.invalid &&
+              addForm.get('meridiem')?.touched
+            "
+            class="text-danger"
+          >
+            PM or AM Is Required</small
+          >
+        </div>
+        <!-- errors -->
+      </div>
+      <div class="col-sm-2">
+        <!-- duration -->
+        <div class="form-group mt-2">
+          <select
+            class="form-select form-control"
+            name="duration"
+            id="duration"
+            formControlName="duration"
+          >
+            <option ngDefaultControl>{{ "select" | translate }}</option>
+            <ng-container *ngFor="let duration of durations">
+              <option [value]="duration">{{ duration }}</option>
+            </ng-container>
+          </select>
+        </div>
+        <!-- errors -->
+        <div
+          *ngIf="
+            addForm.get('duration')?.invalid && addForm.get('duration')?.touched
+          "
+        >
+          <small
+            *ngIf="
+              addForm.get('duration')?.invalid &&
+              addForm.get('duration')?.touched
+            "
+            class="text-danger"
+          >
+            Duration Is Required</small
+          >
+        </div>
+        <!-- errors -->
+      </div>
+      <div class="col-sm-4">
+        <!-- endDate -->
+        <div class="form-group mt-2">
+          <input class="form-control" type="date" formControlName="endDate" />
+        </div>
+        <!-- errors -->
+        <div
+          *ngIf="
+            addForm.get('endDate')?.invalid && addForm.get('endDate')?.touched
+          "
+        >
+          <small
+            *ngIf="
+              addForm.get('endDate')?.invalid && addForm.get('endDate')?.touched
+            "
+            class="text-danger"
+          >
+            End Date Is Required</small
+          >
+        </div>
+        <!-- errors -->
+      </div>
+      <div class="col-sm-6 mt-2">
+        <div class="form-group mt-2">
+          <label for="">Add Technicians</label>
+          <app-custom-multi-select-dropdown
+            minWidth="100%"
+            height="44px"
+            title="Select Here"
+            [object]="true"
+            objectKey="name"
+            [data]="members"
+            [filter]="true"
+            (onAction)="getSelectedMembers($event)"
+          ></app-custom-multi-select-dropdown>
+        </div>
+      </div>
+    </div>
+
+    <!-- notes -->
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="notes my-4">
+          <div
+            class="note-title fs-5"
+            [ngClass]="{ active: isNoteActive }"
+            (click)="toggleNote()"
+          >
+            <span>Notes</span>
+            <i
+              [hidden]="!isNoteActive"
+              class="pi pi-angle-up text-secondary"
+            ></i>
+            <i
+              [hidden]="isNoteActive"
+              class="pi pi-angle-down text-secondary"
+            ></i>
+          </div>
+          <div class="content" [hidden]="!isNoteActive">
+            <div class="inspector-note">
+              <span>Inspector's Note</span>
+              <div
+                class="note-input"
+                [ngStyle]="{
+                  display: isInspectorNoteActive ? 'flex' : 'none'
+                }"
+              >
+                <input type="text" class="form-control" />
+                <i class="pi pi-trash fs-5" (click)="removeInspectorNote()"></i>
+              </div>
+              <div class="text-danger mt-2" (click)="addInspectorNote()">
+                <i class="pi pi-plus"></i> Add Note
+              </div>
+            </div>
+            <div class="customer-note">
+              <span>Customer's Note</span>
+              <div
+                class="note-input"
+                [ngStyle]="{
+                  display: isCustomerNoteActive ? 'flex' : 'none'
+                }"
+              >
+                <input type="text" class="form-control" />
+                <i class="pi pi-trash fs-5" (click)="removeCustomerNote()"></i>
+              </div>
+              <div class="text-danger mt-2" (click)="addCustomerNote()">
+                <i class="pi pi-plus"></i> Add Note
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- submit -->
+    <div class="btns">
+      <div class="delete-btn text-center">
+        <div class="delete mt-4">Delete</div>
+      </div>
+      <div class="unassign-btn text-center">
+        <div class="unassign mt-4">Unassign</div>
+      </div>
+      <div class="save-btn text-center">
+        <button type="submit" class="save mt-4">Save</button>
+      </div>
+    </div>
+  </form>
+</div>

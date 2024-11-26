@@ -7,6 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 })
 export class CustomDropdownComponent implements OnInit {
   @Input() minWidth: string = '150px';
+  @Input() fixedHeight: boolean = true;
   @Input() height: string = '50px';
   @Input() filter: boolean = false;
   @Input() title: string = 'Select';

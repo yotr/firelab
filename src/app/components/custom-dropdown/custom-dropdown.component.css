@@ -63,8 +63,16 @@
   background-color: #f2f2f2;
   padding: 10px;
 }
-.custom-dropdown .custom-dropdown-list .list {
-  max-height: 300px;
+/* .custom-dropdown .custom-dropdown-list .list {
+  height: 200px;
+  overflow-y: auto;
+} */
+.fixed-list {
+  height: 200px;
+  overflow-y: auto;
+}
+.unfixed-list {
+  max-height: 200px;
   overflow-y: auto;
 }
 .custom-dropdown .custom-dropdown-list .list .item {
@@ -76,6 +84,10 @@
   font-weight: bold;
   font-size: larger;
   text-transform: uppercase;
+}
+
+.custom-dropdown .custom-dropdown-list .list .item:hover {
+  background-color: #f2f2f2;
 }
 
 /* =========style scroll bar========= */

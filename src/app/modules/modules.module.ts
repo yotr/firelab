@@ -47,6 +47,10 @@ import { DayPilotModule } from '@daypilot/daypilot-lite-angular';
 import { UndoService } from '../services/jobLink/undo.service';
 import { DataService } from '../services/jobLink/data.service';
 import { EditJobComponent } from './jobs/components/edit-job/edit-job.component';
+import { JobListComponent } from './job-link/job-list/job-list.component';
+import { ChooseModalComponent } from './job-link/choose-modal/choose-modal.component';
+import { AssignJobComponent } from './job-link/assign-job/assign-job.component';
+import { EditAssignedJobComponent } from './job-link/edit-assigned-job/edit-assigned-job.component';
 
 @NgModule({
   declarations: [
@@ -85,6 +89,10 @@ import { EditJobComponent } from './jobs/components/edit-job/edit-job.component'
     DeficienciesComponent,
     DeficienciesModuleTableComponent,
     JobLinkComponent,
+    JobListComponent,
+    ChooseModalComponent,
+    AssignJobComponent,
+    EditAssignedJobComponent
   ],
   imports: [
     CommonModule,

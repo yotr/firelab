@@ -41,7 +41,7 @@
   <p class="my-4">TimeCard</p>
   <table class="table table-bordered border border-1 border-dark">
     <thead>
-      <tr>
+      <tr class="bg-light">
         <th scope="col">Days</th>
         <th scope="col" class="text-center text-info">Driving</th>
         <th scope="col" class="text-center text-success">Break</th>
@@ -52,7 +52,19 @@
       </tr>
     </thead>
     <tbody>
-      <tr class="border border-1 border-secondary">
+      <tr
+        class="bg-light border border-1 border-secondary"
+        *ngFor="let day of week"
+      >
+        <th class="bg-danger text-white" scope="row">{{ day?.name }}</th>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+      </tr>
+      <!-- <tr class="bg-light border border-1 border-secondary">
         <th class="bg-danger text-white" scope="row">{{ today | date }}</th>
         <td class="text-center text-muted">0 hs 0 mins</td>
         <td class="text-center text-muted">0 hs 0 mins</td>
@@ -61,7 +73,7 @@
         <td class="text-center text-muted">0 hs 0 mins</td>
         <td class="text-center text-muted">0 hs 0 mins</td>
       </tr>
-      <tr class="border border-1 border-secondary">
+      <tr class="bg-light border border-1 border-secondary">
         <th class="bg-danger text-white" scope="row">{{ today | date }}</th>
         <td class="text-center text-muted">0 hs 0 mins</td>
         <td class="text-center text-muted">0 hs 0 mins</td>
@@ -70,7 +82,7 @@
         <td class="text-center text-muted">0 hs 0 mins</td>
         <td class="text-center text-muted">0 hs 0 mins</td>
       </tr>
-      <tr class="border border-1 border-secondary">
+      <tr class="bg-light border border-1 border-secondary">
         <th class="bg-danger text-white" scope="row">{{ today | date }}</th>
         <td class="text-center text-muted">0 hs 0 mins</td>
         <td class="text-center text-muted">0 hs 0 mins</td>
@@ -79,9 +91,36 @@
         <td class="text-center text-muted">0 hs 0 mins</td>
         <td class="text-center text-muted">0 hs 0 mins</td>
       </tr>
+      <tr class="bg-light border border-1 border-secondary">
+        <th class="bg-danger text-white" scope="row">{{ today | date }}</th>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+      </tr>
+      <tr class="bg-light border border-1 border-secondary">
+        <th class="bg-danger text-white" scope="row">{{ today | date }}</th>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+      </tr>
+      <tr class="bg-light border border-1 border-secondary">
+        <th class="bg-danger text-white" scope="row">{{ today | date }}</th>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+        <td class="text-center text-muted">0 hs 0 mins</td>
+      </tr> -->
       <tr class="border border-1 border-light">
         <td class="empty-table-area" colspan="6"></td>
-        <td class="text-center text-muted border border-1 border-dark">
+        <td class="bg-light text-center text-muted border border-1 border-dark">
           0 hs 0 mins
         </td>
       </tr>

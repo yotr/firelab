@@ -1,5 +1,5 @@
 <div
-  class="custom-dropdown"
+  class="custom-multi-dropdown"
   ClickOutside
   (clickOutside)="close()"
   [ngStyle]="{ minWidth: minWidth }"
@@ -10,7 +10,13 @@
     (click)="toggle()"
     [ngStyle]="{ height: height }"
   >
-    <span>{{ title }}</span>
+    <span *ngIf="checkedData.length == 0">{{ title }}</span>
+    <div class="checked-data" *ngIf="checkedData.length != 0">
+      <span *ngFor="let value of checkedData;let i = index"
+        >{{ value[objectKey] }}
+        <span [hidden]="checkedData.length === i + 1">,</span>
+      </span>
+    </div>
     <i [hidden]="!isActive" class="pi pi-angle-up text-secondary"></i>
     <i [hidden]="isActive" class="pi pi-angle-down text-secondary"></i>
   </div>
@@ -23,25 +29,23 @@
       name="searchText"
       [(ngModel)]="searchText"
     />
-    <div
-      class="list"
-      [ngClass]="{ 'fixed-list': fixedHeight, 'unfixed-list': !fixedHeight }"
-    >
+    <div class="list">
       <ng-container *ngFor="let value of data | filter : searchText">
-        <!-- normal array -->
-        <div
-          *ngIf="!object"
-          class="item text-secondary"
-          (click)="action(value)"
-        >
-          {{ value }}
-        </div>
         <!-- object of array -->
         <div
           *ngIf="object"
           class="item text-secondary"
           (click)="action(value?.id, value[objectKey])"
         >
+          <!-- custom check box -->
+          <label class="form-checkbox">
+            <input
+              type="checkbox"
+              name="checkbox"
+              [checked]="value?.checked"
+              (change)="onCheck($event, value?.id)"
+            />
+          </label>
           {{ value[objectKey] }}
         </div>
       </ng-container>

@@ -1,0 +1,86 @@
+<div
+  class="job-list"
+  ClickOutside
+  (clickOutside)="close()"
+  [dir]="'dir' | translate"
+>
+  <div
+    class="job-list-title"
+    [ngClass]="{ active: isActive }"
+    (click)="toggle()"
+  >
+    <span>{{ title }}</span>
+    <i [hidden]="!isActive" class="pi pi-angle-up text-secondary"></i>
+    <i [hidden]="isActive" class="pi pi-angle-down text-secondary"></i>
+  </div>
+  <div [hidden]="!isActive" class="job-list-content">
+    <div class="search mb-3">
+      <input
+        type="text"
+        class="search-field"
+        placeholder="Search"
+        name="searchText"
+        [(ngModel)]="searchText"
+      />
+      <button class="btn-search">
+        <i class="pi pi-search"></i>
+      </button>
+    </div>
+    <app-custom-dropdown
+      minWidth="100%"
+      height="44px"
+      title="All"
+      [object]="true"
+      objectKey="title"
+      [data]="filterBy"
+      (onAction)="onChangeFilterBy($event)"
+    ></app-custom-dropdown>
+    <div class="jobs mt-4">
+      <div class="jobs-section" *ngIf="activeFilter == 0 || activeFilter == 3">
+        <div class="title">Missed Inspections</div>
+        <div class="jobs-section-list">
+          <span
+            class="job"
+            data-bs-toggle="modal"
+            data-bs-target="#choose_modal"
+            >First Test Title</span
+          >
+          <span class="job">Job Test Title</span>
+          <span class="job">Job Test Title</span>
+          <span class="job">Job Test Title</span>
+          <span class="job">Job Test Title</span>
+          <span class="job">Job Test Title</span>
+          <span class="job">Job Test Title</span>
+          <span class="job">Job Test Title</span>
+          <span class="job">Job Test Title</span>
+          <span class="job">Job Test Title</span>
+          <span class="job">Job Test Title</span>
+          <span class="job">Job Test Title</span>
+          <span class="job">Job Test Title</span>
+          <span class="job">Job Test Title</span>
+          <span class="job">Job Test Title</span>
+          <span class="job">Job Test Title</span>
+          <span class="job">Job Test Title</span>
+          <span class="job">Last Test Title</span>
+        </div>
+      </div>
+      <div class="jobs-section" *ngIf="activeFilter == 1 || activeFilter == 3">
+        <div class="title">Due This Month</div>
+        <div class="jobs-section-list">
+          <span class="job">Job Test Title</span>
+          <span class="job">Job Test Title</span>
+        </div>
+      </div>
+      <div class="jobs-section" *ngIf="activeFilter == 2 || activeFilter == 3">
+        <div class="title">Due Next Month</div>
+        <div class="jobs-section-list">
+          <p class="no-data text-danger text-center my-2">No data found</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- choose modal -->
+
+<app-choose-modal></app-choose-modal>

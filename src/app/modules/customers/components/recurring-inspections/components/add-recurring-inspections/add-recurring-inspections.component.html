@@ -253,7 +253,7 @@
 
     <!-- submit -->
     <div class="save-btn text-center">
-      <button type="submit" [disabled]="addForm.invalid" class="save mt-4">
+      <button type="submit" [disabled]="!addForm.invalid" class="save mt-4">
         Save
       </button>
     </div>

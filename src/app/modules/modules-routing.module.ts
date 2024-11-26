@@ -22,6 +22,8 @@ import { DeficienciesComponent } from './deficiencies/deficiencies.component';
 import { CustomerHomeComponent } from './customers/components/customer-home/customer-home.component';
 import { JobLinkComponent } from './job-link/job-link.component';
 import { EditJobComponent } from './jobs/components/edit-job/edit-job.component';
+import { AssignJobComponent } from './job-link/assign-job/assign-job.component';
+import { EditAssignedJobComponent } from './job-link/edit-assigned-job/edit-assigned-job.component';
 
 const routes: Routes = [
   {
@@ -88,6 +90,14 @@ const routes: Routes = [
       {
         path: 'jobLink',
         component: JobLinkComponent,
+      },
+      {
+        path: 'jobLink/assignJob/:id',
+        component: AssignJobComponent,
+      },
+      {
+        path: 'jobLink/edit/:id',
+        component: EditAssignedJobComponent,
       },
       // reports
       {

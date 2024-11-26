@@ -159,6 +159,7 @@ export class AddRecurringInspectionsComponent implements OnInit {
   submit() {
     let date = new Date();
     // add the new date
+    console.log(this.addForm.value);
     // this.addUserForm.patchValue({
     //   date: date.toLocaleDateString('en-CA'),
     // });

@@ -216,6 +216,7 @@
                   <ng-container *ngIf="key?.name == 'status'">
                     <app-custom-dropdown
                       minWidth="100%"
+                      [fixedHeight]="false"
                       [title]="statusDropdown[0]"
                       [data]="statusDropdown"
                     ></app-custom-dropdown>
