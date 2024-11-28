@@ -1,113 +1,113 @@
 [
   {
     "id": 0,
-    "section": "Main",
+    "section": "رئيسي",
     "menu": [
       {
         "id": 0,
-        "title": "Dashboard",
+        "title": "اللوحة الرئيسية",
         "code": "dashboard",
         "icon": "pi-gauge",
         "path": "/modules/dashboard"
       },
       {
         "id": 1,
-        "title": "Customers",
+        "title": "العملاء",
         "code": "customers",
         "icon": "pi-address-book",
         "link": "/modules/customers/allCustomers",
         "list": [
           {
             "id": 0,
-            "page": "Home",
+            "page": "الرئيسية",
             "path": "/modules/customers/home"
           },
           {
             "id": 1,
-            "page": "Customer Info",
+            "page": "معلومات العميل",
             "path": "/modules/customers/customerInfo"
           },
           {
             "id": 2,
-            "page": "Owner/Agent Info",
+            "page": "معلومات المالك/الوكيل",
             "path": "/modules/customers/owner"
           },
           {
             "id": 3,
-            "page": "Building Info",
+            "page": "معلومات المبنى",
             "path": "/modules/customers/buildingInfo"
           },
           {
             "id": 4,
-            "page": "System Info",
+            "page": "معلومات النظام",
             "path": "/modules/customers/systemInfo"
           },
           {
             "id": 5,
-            "page": "Images",
+            "page": "الصور",
             "path": "/modules/customers/images"
           },
           {
             "id": 6,
-            "page": "Import Devices",
+            "page": "إضافة الأجهزة",
             "path": "/modules/customers/importDevices"
           },
           {
             "id": 7,
-            "page": "Recurring Inspections",
+            "page": "التفتيشات المتكررة",
             "path": "/modules/customers/recurringInspections"
           },
           {
             "id": 8,
-            "page": "Deficiencies",
+            "page": "النقائص",
             "path": "/modules/customers/customerDeficiencies"
           },
           {
             "id": 9,
-            "page": "Customer Portal",
+            "page": "بوابة العملاء",
             "path": "/modules/customers/customerPortal"
           },
           {
             "id": 10,
-            "page": "Add Job",
+            "page": "إضافة وظيفة",
             "path": "/modules/customers/addJob"
           },
           {
             "id": 11,
-            "page": "Auto Email",
+            "page": "البريد الإلكتروني التلقائي",
             "path": "/modules/customers/autoEmail"
           }
         ]
       },
       {
         "id": 2,
-        "title": "Customers Contracts",
+        "title": "عقود العملاء",
         "code": "contract",
         "icon": "pi-book",
         "path": "/modules/contract"
       },
       {
         "id": 3,
-        "title": "Team",
+        "title": "فريق العمل",
         "code": "team",
         "icon": "pi-users",
         "link": "/modules/team/allTeam",
         "list": [
           {
             "id": 0,
-            "page": "TimeCard",
+            "page": "بطاقة الوقت",
             "path": "/modules/team/timeCard"
           },
           {
             "id": 1,
-            "page": "GPS",
+            "page": "جي بي اس",
             "path": "/modules/team/gps"
           }
         ]
       },
       {
         "id": 4,
-        "title": "JobLink",
+        "title": "تعيين وظيفة",
         "code": "jobLink",
         "icon": "pi-paperclip",
         "path": "/modules/jobLink",
@@ -115,98 +115,98 @@
       },
       {
         "id": 5,
-        "title": "Reports",
+        "title": "التقارير",
         "code": "reports",
         "icon": "pi-file",
         "list": [
           {
             "id": 0,
-            "page": "New",
+            "page": "جديد",
             "path": "/modules/reports/newReport"
           },
           {
             "id": 1,
-            "page": "Completed",
+            "page": "مكتملة",
             "path": "/modules/reports/completedReports"
           },
           {
             "id": 2,
-            "page": "Incompleted",
+            "page": "غير مكتملة",
             "path": "/modules/reports/incompletedReports"
           }
         ]
       },
       {
         "id": 6,
-        "title": "Jobs",
+        "title": "الوظائف",
         "code": "jobs",
         "icon": "pi-list",
         "list": [
           {
             "id": 0,
-            "page": "Job Due",
+            "page": "الوظيفة المستحقة",
             "path": "/modules/task/due"
           },
           {
             "id": 1,
-            "page": "Jobs Missed",
+            "page": "الوظائف المفقودة",
             "path": "/modules/task/missed"
           },
           {
             "id": 2,
-            "page": "My Jobs",
+            "page": "وظائفي",
             "path": "/modules/task/myJobs"
           }
         ]
       },
       {
         "id": 7,
-        "title": "Service Requests",
+        "title": "طلبات الخدمة",
         "code": "serviceRequests",
         "icon": "pi-wrench",
         "path": "/modules/serviceRequests"
       },
       {
         "id": 8,
-        "title": "Inventory",
+        "title": "الخزنة",
         "code": "inventory",
         "icon": "pi-warehouse",
         "list": [
           {
             "id": 0,
-            "page": "Home",
+            "page": "الرئيسية",
             "path": "/modules/inventory/home"
           },
           {
             "id": 1,
-            "page": "Parts",
+            "page": "أجزاء",
             "path": "/modules/inventory/parts"
           },
           {
             "id": 2,
-            "page": "Suppliers",
+            "page": "الموردين",
             "path": "/modules/inventory/suppliers"
           },
           {
             "id": 3,
-            "page": "Tools",
+            "page": "أدوات",
             "path": "/modules/inventory/tools"
           },
           {
             "id": 4,
-            "page": "Transactions",
+            "page": "المعاملات",
             "path": "/modules/inventory/transactions"
           },
           {
             "id": 5,
-            "page": "Vehicle Inventory",
+            "page": "مخزون المركبات",
             "path": "/modules/inventory/vehicles"
           }
         ]
       },
       {
         "id": 9,
-        "title": "Deficiencies",
+        "title": "النقائص",
         "code": "deficiencies",
         "icon": "pi-info-circle",
         "path": "/modules/deficiencies"
