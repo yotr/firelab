@@ -16,10 +16,14 @@
 <!-- canva of theme settings -->
 <div
   [dir]="'dir' | translate"
-  class="offcanvas offcanvas-end {{
+  class="offcanvas {{
     currentTheme?.colorSchema?.title == 'Dark' &&
       currentTheme?.colorSchema?.background
   }}"
+  [ngClass]="{
+    'offcanvas-start': currentLanguage === 'ar',
+    'offcanvas-end': currentLanguage === 'en'
+  }"
   tabindex="-1"
   id="offcanvasRight"
   aria-labelledby="offcanvasRightLabel"
@@ -153,7 +157,7 @@
                   currentTheme?.colorSchema?.title == 'Dark' && 'text-white'
                 }}"
               >
-                {{ color?.title }}
+                {{ currentLanguage === "ar" ? color?.title_ar : color?.title }}
               </h5>
             </div>
           </div>
@@ -247,7 +251,9 @@
                   currentTheme?.colorSchema?.title == 'Dark' && 'text-white'
                 }}"
               >
-                {{ sidebar?.title }}
+                {{
+                  currentLanguage === "ar" ? sidebar?.title_ar : sidebar?.title
+                }}
               </h5>
             </div>
             <!--  ---------------------------------------------------  -->

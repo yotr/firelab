@@ -49,31 +49,37 @@ export class ThemeService implements OnInit {
       colorSchema: [
         {
           title: 'Orange',
+          title_ar: 'برتقالي',
           background: 'orange-theme',
           color: 'orange-theme-color',
         },
         {
           title: 'Light',
+          title_ar: 'أبيض',
           background: 'light-theme',
           color: 'light-theme-color',
         },
         {
           title: 'Red',
+          title_ar: 'أحمر',
           background: 'red-theme',
           color: 'red-theme-color',
         },
         {
           title: 'Blue',
+          title_ar: 'أزرق',
           background: 'blue-theme',
           color: 'blue-theme-color',
         },
         {
           title: 'Maroon',
+          title_ar: 'كستنائي',
           background: 'maroon-theme',
           color: 'maroon-theme-color',
         },
         {
           title: 'Purple',
+          title_ar: 'أرجواني',
           background: 'purple-theme',
           color: 'purple-theme-color',
         },
@@ -81,16 +87,19 @@ export class ThemeService implements OnInit {
       sidebarColor: [
         {
           title: 'Light',
+          title_ar: 'أبيض',
           background: 'sidebar-light-theme',
           color: 'sidebar-light-theme-color',
         },
         {
           title: 'Dark',
+          title_ar: 'مظلم',
           background: 'sidebar-dark-theme',
           color: 'sidebar-dark-theme-color',
         },
         {
           title: 'Gradient',
+          title_ar: 'متدرج',
           background: 'sidebar-gradient-theme',
           color: 'sidebar-gradient-theme-color',
         },
