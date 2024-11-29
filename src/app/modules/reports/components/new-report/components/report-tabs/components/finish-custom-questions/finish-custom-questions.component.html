@@ -1,0 +1,77 @@
+<!-- add new question -->
+<div
+  class="add-custom-btn mt-4"
+  data-bs-toggle="modal"
+  data-bs-target="#finish_custom_question_modal"
+>
+  <div class="add"><i class="pi pi-plus"></i> Add Custom Question</div>
+</div>
+
+
+<div
+  class="modal custom-modal fade"
+  id="finish_custom_question_modal"
+  role="dialog"
+>
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="form-header">
+          <h3>Add Custom Question</h3>
+        </div>
+        <!-- question to add details -->
+        <form>
+          <span>What will be the question?</span>
+          <input
+            type="text"
+            name="question"
+            id="question"
+            class="form-control question-input my-3"
+            placeholder="Input Here"
+          />
+          <span>What type of question is this?</span>
+          <div class="types">
+            <div class="form-check" *ngFor="let type of types">
+              <input
+                type="radio"
+                class="form-check-input"
+                [id]="type?.value"
+                name="type"
+                [value]="type?.value"
+              />
+              <label class="form-check-label" for="pass_fail">{{
+                type?.title
+              }}</label>
+            </div>
+          </div>
+          <span>Please select recurrence of this question?</span>
+          <div class="recurrences">
+            <div class="form-check" *ngFor="let recurrence of recurrences">
+              <input
+                type="radio"
+                class="form-check-input"
+                [id]="recurrence?.value"
+                name="recurrence"
+                [value]="recurrence?.value"
+              />
+              <label class="form-check-label" for="oneTime">{{
+                recurrence?.title
+              }}</label>
+            </div>
+          </div>
+          <!-- submit -->
+          <div class="modal-btn">
+            <div class="row">
+              <div class="col-12">
+                <!-- save -->
+                <div class="save-btn">
+                  <button type="submit" class="save mt-4">Save</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

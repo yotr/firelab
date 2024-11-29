@@ -16,6 +16,10 @@ import { ConfirmationModalComponent } from './components/new-report/components/c
 import { ReportTabsComponent } from './components/new-report/components/report-tabs/report-tabs.component';
 import { CustomQuestionsComponent } from './components/new-report/components/report-tabs/components/custom-questions/custom-questions.component';
 import { AddCustomQuestionComponent } from './components/new-report/components/report-tabs/components/add-custom-question/add-custom-question.component';
+import { ControlPanelComponent } from './components/new-report/components/report-tabs/components/control-panel/control-panel.component';
+import { AddPanelQuestionComponent } from './components/new-report/components/report-tabs/components/add-panel-question/add-panel-question.component';
+import { DevicesTabComponent } from './components/new-report/components/report-tabs/components/devices-tab/devices-tab.component';
+import { FinishCustomQuestionsComponent } from './components/new-report/components/report-tabs/components/finish-custom-questions/finish-custom-questions.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +36,10 @@ import { AddCustomQuestionComponent } from './components/new-report/components/r
     ReportTabsComponent,
     CustomQuestionsComponent,
     AddCustomQuestionComponent,
+    ControlPanelComponent,
+    AddPanelQuestionComponent,
+    DevicesTabComponent,
+    FinishCustomQuestionsComponent
   ],
   imports: [CommonModule, ReportsRoutingModule, SharedModule],
 })

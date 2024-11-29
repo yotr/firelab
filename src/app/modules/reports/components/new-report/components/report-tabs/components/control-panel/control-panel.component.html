@@ -1,0 +1,115 @@
+<div class="panels">
+  <div class="panel mb-4" *ngFor="let panel of panels">
+    <div class="header">
+      <i [hidden]="panel?.active" class="pi pi-angle-up"></i>
+      <i [hidden]="!panel?.active" class="pi pi-angle-down"></i>
+      <div class="title">{{ panel?.name }}</div>
+      <i class="pi pi-trash trash"></i>
+    </div>
+    <!-- questions -->
+    <div class="questions">
+      <div class="question mb-3" *ngFor="let value of panel?.questions">
+        <div class="question_details">
+          <span> Panel Type ?</span>
+          <div class="answers">
+            <div class="types">
+              <div class="form-check" *ngFor="let type of types">
+                <input
+                  type="radio"
+                  class="form-check-input"
+                  [id]="type?.name"
+                  [name]="panel?.name"
+                  [checked]="panel?.type == type?.id"
+                />
+                <label class="form-check-label" [for]="type?.name">{{
+                  type?.name
+                }}</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="question_actions">
+          <div class="action">
+            <i class="pi pi-pen-to-square text-danger"></i>
+            <span>Notes</span>
+          </div>
+        </div>
+      </div>
+      <div class="question mb-3" *ngFor="let value of panel?.questions">
+        <div class="question_details">
+          <span> {{ value?.question }}</span>
+          <div class="answers">
+            <!-- yes or no answer -->
+            <div *ngIf="value?.type == 'yes_no'" class="answers-btns mt-2">
+              <button [ngClass]="{ active: value?.answer == 'yes' }">
+                Yes
+              </button>
+              <button [ngClass]="{ active: value?.answer == 'no' }">No</button>
+            </div>
+            <!-- pass or fail or n/a answer -->
+            <div *ngIf="value?.type == 'pass_fail'" class="answers-btns mt-2">
+              <button [ngClass]="{ active: value?.answer == 'pass' }">
+                Pass
+              </button>
+              <button [ngClass]="{ active: value?.answer == 'fail' }">
+                Fail
+              </button>
+              <button [ngClass]="{ active: value?.answer == 'n/a' }">
+                N/A
+              </button>
+            </div>
+            <!-- input text answer -->
+            <div *ngIf="value?.type == 'input'" class="answers-btns mt-2">
+              <input
+                type="text"
+                class="answer-text-input"
+                placeholder="answer"
+                [value]="value?.answer"
+              />
+            </div>
+            <!-- input date answer -->
+            <div *ngIf="value?.type == 'date'" class="answers-btns mt-2">
+              <input
+                type="date"
+                class="form-control"
+                [value]="formatDate(value?.answer)"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="question_actions">
+          <div class="action">
+            <i class="pi pi-pen-to-square text-danger"></i>
+            <span>Notes</span>
+          </div>
+          <div class="action">
+            <i class="pi pi-trash"></i>
+            <span>Delete</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="btns">
+      <!-- add new question -->
+      <div
+        class="add-custom-btn"
+        data-bs-toggle="modal"
+        data-bs-target="#add_panel_question_modal"
+      >
+        <div class="add"><i class="pi pi-plus"></i> Add Custom Question</div>
+      </div>
+      <!-- Save -->
+      <div class="save-btn">
+        <div class="save"><i class="pi pi-plus"></i> Save</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- New Panel -->
+<div class="add-panel-btn">
+  <div class="add"><i class="pi pi-plus"></i> Add Panel</div>
+</div>
+
+<!-- add-question modal  -->
+<app-add-panel-question></app-add-panel-question>

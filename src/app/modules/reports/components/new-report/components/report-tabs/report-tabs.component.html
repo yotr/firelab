@@ -47,28 +47,19 @@
       class="active-content"
       [ngStyle]="{ display: activeTab == 2 ? 'block' : 'none' }"
     >
-      Control Panel Tab dolor sit amet consectetur adipisicing elit. Deserunt
-      fugiat omnis qui voluptatum ut et ratione obcaecati minima! Odit cum saepe
-      quisquam. Praesentium facere labore pariatur totam cupiditate eaque
-      deserunt?
+      <app-control-panel></app-control-panel>
     </div>
     <div
       class="active-content"
       [ngStyle]="{ display: activeTab == 3 ? 'block' : 'none' }"
     >
-      Devices Tab dolor sit amet consectetur adipisicing elit. Deserunt fugiat
-      omnis qui voluptatum ut et ratione obcaecati minima! Odit cum saepe
-      quisquam. Praesentium facere labore pariatur totam cupiditate eaque
-      deserunt?
+      <app-devices-tab></app-devices-tab>
     </div>
     <div
       class="active-content"
       [ngStyle]="{ display: activeTab == 4 ? 'block' : 'none' }"
     >
-      Finish Tab dolor sit amet consectetur adipisicing elit. Deserunt fugiat
-      omnis qui voluptatum ut et ratione obcaecati minima! Odit cum saepe
-      quisquam. Praesentium facere labore pariatur totam cupiditate eaque
-      deserunt?
+     <app-finish-custom-questions></app-finish-custom-questions>
     </div>
   </div>
 </div>

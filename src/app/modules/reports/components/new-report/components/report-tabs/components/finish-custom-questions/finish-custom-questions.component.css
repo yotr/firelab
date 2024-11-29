@@ -1,0 +1,67 @@
+.add-custom-btn {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.add {
+  color: #52bfea;
+  border: 1px solid #52bfea;
+  background-color: white;
+  padding: 6px 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  height: 40px;
+  width: fit-content;
+  font-weight: bold;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.add:hover {
+  cursor: pointer;
+  color: white;
+  background-color: #52bfea;
+}
+
+
+.save-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.save {
+  color: rgb(106, 161, 78);
+  border: 1px solid rgb(106, 161, 78);
+  background-color: white;
+  padding: 6px 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 100%;
+  font-weight: bold;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.save:hover {
+  cursor: pointer;
+  color: white;
+  background-color: rgb(106, 161, 78);
+}
+.question-input{
+   background-color: #f2f2f2;
+}
+.form-check {
+  margin-bottom: 5px;
+}
+
+.form-check .form-check-label {
+  font-size: small;
+}
