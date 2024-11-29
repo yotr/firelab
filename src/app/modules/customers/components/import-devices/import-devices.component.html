@@ -6,7 +6,9 @@
       class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
       [dir]="'dir' | translate"
     >
-      <app-breadcrumb title="Import Devices"></app-breadcrumb>
+      <app-breadcrumb
+        [title]="'customers.import_devices.title' | translate"
+      ></app-breadcrumb>
       <div routerLink="/modules/customers/importDevices/add">
         <a
           class="btn add-btn d-flex align-items-center {{
@@ -14,7 +16,7 @@
           }} {{ currentTheme?.colorSchema?.color }}"
         >
           <i class="pi pi-plus d-none d-sm-block"></i>
-          Import Device
+          {{ "customers.import_devices.add_btn" | translate }}
         </a>
       </div>
     </div>
@@ -28,9 +30,9 @@
       [dataKeys]="dataKeys"
       [loading]="loading"
       [currentTheme]="currentTheme"
-      deleteModalTitle="Import Devices"
-      tableTitle="Import Devices Table"
-      editPagePath=""
+      [deleteModalTitle]="'customers.import_devices.delete' | translate"
+      [tableTitle]="'customers.import_devices.table_title' | translate"
+      editPagePath="/modules/customers/importDevices/edit"
     ></app-impor-devices-module-table>
   </div>
 

@@ -18,10 +18,7 @@
     </div>
     <!-- export btns -->
     <div class="data-btns d-flex align-items-center gap-2">
-      <app-export-excel
-        [data]="data"
-        elememtId="table-id"
-      ></app-export-excel>
+      <app-export-excel [data]="data" elememtId="table-id"></app-export-excel>
       <!-- donwload pdf -->
       <app-download-pdf
         [data]="data"
@@ -61,7 +58,8 @@
     <table [dir]="'dir' | translate" class="test-small-table d-none">
       <thead>
         <tr>
-          <th>From</th>/
+          <th>From</th>
+          /
           <th>To</th>
         </tr>
       </thead>
@@ -162,7 +160,6 @@
             </ng-container>
             <!-- action -->
             <th
-              
               class="text-center no-sort actions-table"
               [ngClass]="{
                 default: currentTheme?.colorSchema?.title != 'Dark'

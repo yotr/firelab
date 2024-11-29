@@ -28,9 +28,9 @@
 /*============
  right to left
  ============= */
-.modules[dir="rtl"] {
+/* .modules[dir="rtl"] {
   font-size: larger;
-}
+} */
 .wrapperSidebarOpend[dir="rtl"] {
   margin-right: 230px;
   margin-left: 0px;

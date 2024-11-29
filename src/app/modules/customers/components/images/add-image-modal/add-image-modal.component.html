@@ -3,7 +3,9 @@
   <div class="modal-dialog modal-dialog-centered modal-md" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Add Image</h5>
+        <h5 class="modal-title">
+          {{ "customers.images.add_title" | translate }}
+        </h5>
         <button
           type="button"
           class="close"
@@ -16,21 +18,22 @@
       <div class="modal-body">
         <form id="js-upload-form">
           <div class="upload-drop-zone" id="drop-zone" role="button">
-            <input
-              id="files"
-              type="file"
-              (change)="getSelectedFiles($event)"
-            
-            />
+            <input id="files" type="file" (change)="getSelectedFiles($event)" />
             <i class="pi pi-cloud-upload fs-4"></i>
             <span class="upload-text mx-2">{{
-              file != null ? truncateString(file?.name, 10) : "Upload Image"
+              file != null
+                ? truncateString(file?.name, 10)
+                : ("customers.images.upload" | translate)
             }}</span>
           </div>
           <!-- submit -->
           <div class="btns text-center">
-            <button class="cancel mt-4" (click)="cancel()">Cancel</button>
-            <button class="save mt-4" (click)="onAttachImage()">Save</button>
+            <button class="cancel mt-4" (click)="cancel()">
+              {{ "cancel" | translate }}
+            </button>
+            <button class="save mt-4" (click)="onAttachImage()">
+              {{ "save" | translate }}
+            </button>
           </div>
         </form>
       </div>

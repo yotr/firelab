@@ -6,7 +6,9 @@
     [dir]="'dir' | translate"
   >
     <!-- breadcrumb -->
-    <app-breadcrumb title="Update Contact"></app-breadcrumb>
+    <app-breadcrumb
+      [title]="'contracts.edit_title' | translate"
+    ></app-breadcrumb>
   </div>
   <!-- /Page Header -->
 
@@ -17,7 +19,12 @@
       <div class="col-sm-6">
         <!-- Contract Reference -->
         <div class="form-group mt-2">
-          <label>Contract Reference <span class="text-danger">*</span></label>
+          <label
+            >{{
+              "contracts.contract_form.contractReference_label" | translate
+            }}
+            <span class="text-danger">*</span></label
+          >
           <input
             class="form-control"
             type="text"
@@ -37,7 +44,9 @@
               "
               class="text-danger"
             >
-              Contract Reference Is Required</small
+              {{
+                "contracts.contract_form.contractReference_required" | translate
+              }}</small
             >
           </div>
           <!-- errors -->
@@ -46,7 +55,10 @@
       <div class="col-sm-6">
         <!-- teamId -->
         <div class="form-group mt-2">
-          <label>Team Member <span class="text-danger">*</span></label>
+          <label
+            >{{ "contracts.contract_form.team_label" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <select
             class="form-select form-control"
             name="teamId"
@@ -72,7 +84,7 @@
             "
             class="text-danger"
           >
-            Team Member Is Required</small
+            {{ "contracts.contract_form.team_required" | translate }}</small
           >
         </div>
         <!-- errors -->
@@ -80,7 +92,11 @@
       <div class="col-sm-6">
         <!-- salaryStructureType -->
         <div class="form-group mt-2">
-          <label>Salary Structure Type </label>
+          <label
+            >{{
+              "contracts.contract_form.salaryStructureType_label" | translate
+            }}
+          </label>
           <input
             class="form-control"
             type="text"
@@ -89,9 +105,11 @@
         </div>
       </div>
       <div class="col-sm-6">
-        <!-- contractStartDate -->
+        <!-- contract StartDate -->
         <div class="form-group mt-2">
-          <label>Contract StartDate </label>
+          <label
+            >{{ "contracts.contract_form.contractStartDate_label" | translate }}
+          </label>
           <input
             class="form-control"
             type="date"
@@ -100,9 +118,11 @@
         </div>
       </div>
       <div class="col-sm-6">
-        <!-- Cell Phone -->
+        <!-- Contract EndDate -->
         <div class="form-group mt-2">
-          <label>Contract EndDate </label>
+          <label
+            >{{ "contracts.contract_form.contractEndDate_label" | translate }}
+          </label>
           <input
             class="form-control"
             type="date"
@@ -113,7 +133,9 @@
       <div class="col-sm-6">
         <!-- jobPosition  -->
         <div class="form-group mt-2">
-          <label>Job Position </label>
+          <label
+            >{{ "contracts.contract_form.jobPosition_label" | translate }}
+          </label>
           <input
             class="form-control"
             type="text"
@@ -124,7 +146,9 @@
       <div class="col-sm-6">
         <!-- contractSchedule -->
         <div class="form-group mt-2">
-          <label>Contract Schedule </label>
+          <label
+            >{{ "contracts.contract_form.contractSchedule_label" | translate }}
+          </label>
           <input
             class="form-control"
             type="text"
@@ -135,7 +159,9 @@
       <div class="col-sm-6">
         <!-- contractType -->
         <div class="form-group mt-2">
-          <label>Contract Type </label>
+          <label
+            >{{ "contracts.contract_form.contractType_label" | translate }}
+          </label>
           <input
             class="form-control"
             type="text"
@@ -146,21 +172,23 @@
       <div class="col-sm-6">
         <!-- wage -->
         <div class="form-group mt-2">
-          <label>Wage </label>
+          <label>{{ "contracts.contract_form.wage_label" | translate }} </label>
           <input class="form-control" type="text" formControlName="wage" />
         </div>
       </div>
       <div class="col-sm-6">
         <!-- notes -->
         <div class="form-group mt-2">
-          <label>notes </label>
+          <label
+            >{{ "contracts.contract_form.notes_label" | translate }}
+          </label>
           <input class="form-control" type="text" formControlName="notes" />
         </div>
       </div>
       <div class="col-sm-6">
         <!-- status -->
         <div class="form-group mt-2">
-          <label>Status </label>
+          <label>{{ "contracts.contract_form.status_label" | translate }}</label>
           <select
             class="form-select form-control"
             name="teamId"
@@ -176,7 +204,7 @@
 
     <!-- submit -->
     <div class="save-btn text-center">
-      <button type="submit" class="save mt-4">Save</button>
+      <button type="submit" class="save mt-4">{{ "save" | translate }}</button>
     </div>
   </form>
 </div>

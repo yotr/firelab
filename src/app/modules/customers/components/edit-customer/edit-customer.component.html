@@ -6,7 +6,11 @@
     [dir]="'dir' | translate"
   >
     <!-- breadcrumb -->
-    <app-breadcrumb title="Update Customer"></app-breadcrumb>
+    <app-breadcrumb
+      [title]="
+        'customers.all_customers.customers_form.update_title' | translate
+      "
+    ></app-breadcrumb>
   </div>
   <!-- /Page Header -->
 
@@ -14,12 +18,21 @@
   <!-- content -->
   <form (ngSubmit)="submit()" [formGroup]="addForm">
     <!-- title -->
-    <h4 class="text-danger">Customer Information</h4>
+    <h4 class="text-danger">
+      {{
+        "customers.all_customers.customers_form.customer_info_title" | translate
+      }}
+    </h4>
     <div class="row">
       <div class="col-sm-6">
         <!-- Business Name -->
         <div class="form-group mt-2">
-          <label>Business Name <span class="text-danger">*</span></label>
+          <label>
+            {{
+              "customers.all_customers.customers_form.business_name" | translate
+            }}
+            <span class="text-danger">*</span></label
+          >
           <input
             class="form-control"
             type="text"
@@ -39,7 +52,10 @@
               "
               class="text-danger"
             >
-              Business Name Is Required</small
+              {{
+                "customers.all_customers.customers_form.business_name_required"
+                  | translate
+              }}</small
             >
           </div>
           <!-- errors -->
@@ -48,7 +64,11 @@
       <div class="col-sm-6">
         <!-- Contact Name -->
         <div class="form-group mt-2">
-          <label>Contact Name </label>
+          <label>
+            {{
+              "customers.all_customers.customers_form.contact_name" | translate
+            }}
+          </label>
           <input
             class="form-control"
             type="text"
@@ -59,7 +79,9 @@
       <div class="col-sm-6">
         <!-- email -->
         <div class="form-group mt-2">
-          <label>Email </label>
+          <label>
+            {{ "customers.all_customers.customers_form.email" | translate }}
+          </label>
           <input
             class="form-control"
             type="email"
@@ -70,7 +92,9 @@
       <div class="col-sm-6">
         <!-- Cell Phone -->
         <div class="form-group mt-2">
-          <label>Cell Phone </label>
+          <label>
+            {{ "customers.all_customers.customers_form.phone" | translate }}
+          </label>
           <input
             class="form-control"
             type="text"
@@ -81,7 +105,11 @@
       <div class="col-sm-6">
         <!-- Office Phone  -->
         <div class="form-group mt-2">
-          <label>Office Phone </label>
+          <label>
+            {{
+              "customers.all_customers.customers_form.office_phone" | translate
+            }}
+          </label>
           <input
             class="form-control"
             type="text"
@@ -92,7 +120,11 @@
       <div class="col-sm-6">
         <!-- Contact Fax Number -->
         <div class="form-group mt-2">
-          <label>Contact Fax Number </label>
+          <label>
+            {{
+              "customers.all_customers.customers_form.contact_fax" | translate
+            }}
+          </label>
           <input
             class="form-control"
             type="text"
@@ -103,7 +135,9 @@
       <div class="col-sm-6">
         <!-- ID/Account -->
         <div class="form-group mt-2">
-          <label>ID/Account </label>
+          <label>
+            {{ "customers.all_customers.customers_form.id" | translate }}
+          </label>
           <input
             class="form-control"
             type="text"
@@ -115,7 +149,9 @@
       <div class="col-sm-6">
         <!-- Address 1 -->
         <div class="form-group mt-2">
-          <label>Address 1 </label>
+          <label>
+            {{ "customers.all_customers.customers_form.address_1" | translate }}
+          </label>
           <input
             class="form-control"
             type="text"
@@ -126,7 +162,9 @@
       <div class="col-sm-6">
         <!-- Address 2 -->
         <div class="form-group mt-2">
-          <label>Address 2 </label>
+          <label>
+            {{ "customers.all_customers.customers_form.address_2" | translate }}
+          </label>
           <input
             class="form-control"
             type="text"
@@ -137,7 +175,11 @@
       <div class="col-sm-6">
         <!-- Postal Code -->
         <div class="form-group mt-2">
-          <label>Postal Code </label>
+          <label>
+            {{
+              "customers.all_customers.customers_form.postal_code" | translate
+            }}
+          </label>
           <input
             class="form-control"
             type="text"
@@ -148,7 +190,9 @@
       <div class="col-sm-6">
         <!-- City -->
         <div class="form-group mt-2">
-          <label>City </label>
+          <label>
+            {{ "customers.all_customers.customers_form.city" | translate }}
+          </label>
           <input
             class="form-control"
             type="text"
@@ -160,7 +204,11 @@
 
     <!-- title -->
     <div class="mt-4 d-flex justify-content-between align-items-center">
-      <h4 class="text-danger">Owner/Agent Information</h4>
+      <h4 class="text-danger">
+        {{
+          "customers.all_customers.customers_form.owner_info_title" | translate
+        }}
+      </h4>
       <!-- check -->
       <div class="d-flex gap-2 align-items-center">
         <span class="select-input">
@@ -169,7 +217,12 @@
             <div class="checkmark"></div>
           </label>
         </span>
-        <p class="text-muted m-0">Same as Customer</p>
+        <p class="text-muted m-0">
+          {{
+            "customers.all_customers.customers_form.same_as_customer"
+              | translate
+          }}
+        </p>
       </div>
     </div>
 
@@ -177,7 +230,12 @@
       <div class="col-sm-6">
         <!-- Business Name -->
         <div class="form-group mt-2">
-          <label>Business Name <span class="text-danger">*</span></label>
+          <label>
+            {{
+              "customers.all_customers.customers_form.business_name" | translate
+            }}
+            <span class="text-danger">*</span></label
+          >
           <input
             class="form-control"
             type="text"
@@ -197,7 +255,10 @@
               "
               class="text-danger"
             >
-              Business Name Is Required</small
+              {{
+                "customers.all_customers.customers_form.business_name_required"
+                  | translate
+              }}</small
             >
           </div>
           <!-- errors -->
@@ -206,7 +267,11 @@
       <div class="col-sm-6">
         <!-- Contact Name -->
         <div class="form-group mt-2">
-          <label>Contact Name </label>
+          <label>
+            {{
+              "customers.all_customers.customers_form.contact_name" | translate
+            }}
+          </label>
           <input
             class="form-control"
             type="text"
@@ -217,7 +282,9 @@
       <div class="col-sm-6">
         <!-- email -->
         <div class="form-group mt-2">
-          <label>Email </label>
+          <label>
+            {{ "customers.all_customers.customers_form.email" | translate }}
+          </label>
           <input
             class="form-control"
             type="email"
@@ -228,7 +295,9 @@
       <div class="col-sm-6">
         <!-- Cell Phone -->
         <div class="form-group mt-2">
-          <label>Cell Phone </label>
+          <label>
+            {{ "customers.all_customers.customers_form.phone" | translate }}
+          </label>
           <input
             class="form-control"
             type="text"
@@ -239,7 +308,11 @@
       <div class="col-sm-6">
         <!-- Office Phone  -->
         <div class="form-group mt-2">
-          <label>Office Phone </label>
+          <label>
+            {{
+              "customers.all_customers.customers_form.office_phone" | translate
+            }}
+          </label>
           <input
             class="form-control"
             type="text"
@@ -250,7 +323,11 @@
       <div class="col-sm-6">
         <!-- Contact Fax Number -->
         <div class="form-group mt-2">
-          <label>Contact Fax Number </label>
+          <label>
+            {{
+              "customers.all_customers.customers_form.contact_fax" | translate
+            }}
+          </label>
           <input
             class="form-control"
             type="text"
@@ -261,7 +338,9 @@
       <div class="col-sm-6">
         <!-- Address 1 -->
         <div class="form-group mt-2">
-          <label>Address 1 </label>
+          <label>
+            {{ "customers.all_customers.customers_form.address_1" | translate }}
+          </label>
           <input
             class="form-control"
             type="text"
@@ -272,7 +351,9 @@
       <div class="col-sm-6">
         <!-- Address 2 -->
         <div class="form-group mt-2">
-          <label>Address 2 </label>
+          <label>
+            {{ "customers.all_customers.customers_form.address_2" | translate }}
+          </label>
           <input
             class="form-control"
             type="text"
@@ -283,7 +364,11 @@
       <div class="col-sm-6">
         <!-- Postal Code -->
         <div class="form-group mt-2">
-          <label>Postal Code </label>
+          <label>
+            {{
+              "customers.all_customers.customers_form.postal_code" | translate
+            }}
+          </label>
           <input
             class="form-control"
             type="text"
@@ -294,7 +379,9 @@
       <div class="col-sm-6">
         <!-- City -->
         <div class="form-group mt-2">
-          <label>City </label>
+          <label>
+            {{ "customers.all_customers.customers_form.city" | translate }}
+          </label>
           <input class="form-control" type="text" formControlName="ownerCity" />
         </div>
       </div>
@@ -302,7 +389,9 @@
 
     <!-- submit -->
     <div class="save-btn text-center">
-      <button type="submit" class="save mt-4">Save</button>
+      <button type="submit" class="save mt-4">
+        {{ "save" | translate }}
+      </button>
     </div>
   </form>
 </div>

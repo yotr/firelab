@@ -23,7 +23,7 @@ export class SystemInfoComponent implements OnInit, AfterViewChecked {
   data: any[] = [
     {
       id: 1,
-      reportCategory: 'Alarm',
+      reportType: 'Alarm',
       system: 'Master Panel',
       type: 'Bell',
       quantity: '100',
@@ -55,26 +55,34 @@ export class SystemInfoComponent implements OnInit, AfterViewChecked {
 
     this.dataKeys = [
       {
-        name: 'reporttype',
-        display: 'Report type',
+        name: 'reportType',
+        display: this.translateService.instant(
+          'customers.system_info.table.reportType'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'system',
-        display: 'System/Device',
+        display: this.translateService.instant(
+          'customers.system_info.table.system'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'type',
-        display: 'Type',
+        display: this.translateService.instant(
+          'customers.system_info.table.type'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'quantity',
-        display: 'Quantity',
+        display: this.translateService.instant(
+          'customers.system_info.table.quantity'
+        ),
         type: 'string',
         active: true,
       },
@@ -167,4 +175,111 @@ export class SystemInfoComponent implements OnInit, AfterViewChecked {
     //     // this.getTableTabKeys(data);
     //   });
   }
+
+  // search(event: any) {
+  //   if (event?.value != null && event.value?.trim() != '') {
+  //     this.apiService
+  //       .globalSearch('clients/globalsearch', event?.value, event?.column)
+  //       .subscribe((data) => {
+  //         // console.log(data);
+  //         this.clients = data;
+  //         this.totalItemsCount = data?.length;
+  //         this.loading = false;
+  //       });
+  //   } else {
+  //     this.getClients();
+  //   }
+  // }
+
+  // delete(deleteId: any) {
+  //   console.log(deleteId);
+  //   this.apiService.delete('clients', deleteId).subscribe({
+  //     next: () => {
+  //       // delete in client side when success
+  //       this.clients = this.clients.filter((data) => data?.id !== deleteId);
+  //     },
+  //     error: (err) => {
+  //       console.log(err);
+  //     },
+  //     complete: () => {
+  //       //success message
+  //       this.toastr.success('Client', 'Deleted Successfully', {
+  //         timeOut: 3000,
+  //       });
+  //     },
+  //   });
+  // }
+  // //filters handle
+  // handleFiltersSubmit(event: any) {
+  //   this.loading = true;
+  //   // check if filters operator  contains selected
+  //   this.apiService
+  //     .filterData(
+  //       'clients/getFilteredClients',
+  //       1,
+  //       10,
+  //       event?.column,
+  //       event?.filters?.operator1,
+  //       event?.filters?.operator2,
+  //       event?.filters?.searchValue1,
+  //       event?.filters?.searchValue2
+  //     )
+  //     .subscribe((result) => {
+  //       this.clients = result?.clientDto;
+  //       this.totalItemsCount = result?.totalCount;
+  //       this.loading = false;
+  //     });
+  // }
+  // //delete selected
+  // deleteSelected() {
+  //   //success message
+  //   this.toastr.success('Client Deleted Successfully...', 'Success');
+  //   //in server side
+  // }
+  // resetData() {
+  //   this.getClients();
+  // }
+  // //change status
+  // onStatusChange(data: any) {
+  //   data.client.status = data.status;
+  //   data.client.checked = false;
+  //   // update status of leave
+  //   let formData: FormData = new FormData();
+  //   formData.append('email', data.client.email);
+  //   // formData.append('password', data.client.password);
+  //   // formData.append('confirmPassword', data.client.confirmPassword);
+  //   formData.append('firstName', data.client.firstName);
+  //   formData.append('lastName', data.client.lastName);
+  //   formData.append('clientId', data.client.clientId);
+  //   formData.append('mobile', data.client.phone);
+  //   formData.append('companyName', data.client.companyName);
+  //   // formData.append('permissions', JSON.stringify(data.client.permissions));
+  //   formData.append('status', data.client.status);
+
+  //   let updated = false;
+  //   this.apiService
+  //     .update('clients/update', data?.client?.id, formData)
+  //     .subscribe({
+  //       next: () => {
+  //         updated = true;
+  //       },
+  //       error: () => {
+  //         this.toastr.error('There Is Somthing Wrong', 'Error');
+  //       },
+  //       complete: () => {
+  //         if (updated) {
+  //           //success
+  //           this.toastr.success(`Status Changed Successfully...`, 'Success');
+  //         }
+  //       },
+  //     });
+  // }
+  // // check page || components permissions
+  // checkPageActions(action: string): boolean {
+  //   return this.permissionsService.checkPageActions(
+  //     this.auth.currentUserSignal()?.userData,
+  //     'Clients',
+  //     action
+  //   );
+  // }
 }

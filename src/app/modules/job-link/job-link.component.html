@@ -4,7 +4,7 @@
     class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
     [dir]="'dir' | translate"
   >
-    <app-breadcrumb title="Job Link"></app-breadcrumb>
+    <app-breadcrumb [title]="'job_link.title' | translate"></app-breadcrumb>
   </div>
 
   <!-- /page header  -->
@@ -26,10 +26,10 @@
       <div class="actions">
         <div class="buttons">
           <a class="m-0" href="#" (click)="navigatePrevious($event)"
-            >Previous</a
+            >{{'job_link.previous' | translate}}</a
           >
-          <a class="m-0" href="#" (click)="navigateToday($event)">Today</a>
-          <a class="m-0" href="#" (click)="navigateNext($event)">Next</a>
+          <a class="m-0" href="#" (click)="navigateToday($event)">{{'job_link.today' | translate}}</a>
+          <a class="m-0" href="#" (click)="navigateNext($event)">{{'job_link.next' | translate}}</a>
         </div>
         <div>
           <!-- view -->
@@ -39,8 +39,8 @@
               [value]="view"
               (change)="setView($event)"
             >
-              <option value="Day">Day</option>
-              <option value="Week">Week</option>
+              <option value="Day">{{'job_link.day' | translate}}</option>
+              <option value="Week">{{'job_link.week' | translate}}</option>
             </select>
           </div>
         </div>

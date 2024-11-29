@@ -95,9 +95,17 @@ input[type="email"] {
   background-color: #fafafacc;;
 }
 
-.trash-icon {
+/* dirctions */
+.auto-email[dir="ltr"] .trash-icon {
+  width: fit-content;
   cursor: pointer;
   font-size: larger;
   position: absolute;
   right: 15px;
+}
+.auto-email[dir="rtl"] .trash-icon {
+  cursor: pointer;
+  font-size: larger;
+  position: absolute;
+  left: 15px;
 }

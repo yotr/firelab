@@ -3,10 +3,12 @@
   <div class="content">
     <div class="d-flex justify-content-between align-items-center">
       <!-- title -->
-      <h3 class="text-secondary">Hood System</h3>
+      <h3 class="text-secondary">
+        {{ "customers.hood_system.title" | translate }}
+      </h3>
       <div class="start-btn text-center">
         <div class="start mt-4" routerLink="/modules/reports/newReport">
-          Start
+          {{ "customers.hood_system.start" | translate }}
         </div>
       </div>
     </div>
@@ -18,7 +20,7 @@
         class="tab"
         (click)="setActiveTab(1)"
       >
-        Inspections
+        {{ "customers.hood_system.inspections" | translate }}
       </button>
       <button
         [ngClass]="{ active: activeTab === 2 }"
@@ -26,7 +28,7 @@
         class="tab"
         (click)="setActiveTab(2)"
       >
-        Work Orders
+        {{ "customers.hood_system.work_orders" | translate }}
       </button>
       <button
         [ngClass]="{ active: activeTab === 3 }"
@@ -34,7 +36,7 @@
         class="tab"
         (click)="setActiveTab(3)"
       >
-        Quotes
+        {{ "customers.hood_system.quotes" | translate }}
       </button>
       <button
         [ngClass]="{ active: activeTab === 4 }"
@@ -42,7 +44,7 @@
         class="tab"
         (click)="setActiveTab(4)"
       >
-        Incomplete Reports
+        {{ "customers.hood_system.incomplete_reports" | translate }}
       </button>
     </div>
     <!-- table -->
@@ -52,8 +54,8 @@
       [dataKeys]="dataKeys"
       [loading]="loading"
       [currentTheme]="currentTheme"
-      deleteModalTitle="Reports"
-      tableTitle="Reports Table"
+      [deleteModalTitle]="'customers.hood_system.delete' | translate"
+      [tableTitle]="'customers.hood_system.table_title' | translate"
     ></app-hood-system-module-table>
   </div>
   <!-- /content page -->

@@ -49,14 +49,14 @@ export class TimeCardComponent implements OnInit {
     // this.translateService.instant('clients.client_table.client_id');
     this.dataKeys = [
       {
-        name: 'Name',
-        display: 'Name',
+        name: 'name',
+        display: this.translateService.instant('team.time_card.name'),
         type: 'string',
         active: true,
       },
       {
         name: 'Hours Worked Today',
-        display: 'Hours Worked Today',
+        display: this.translateService.instant('team.time_card.hours'),
         type: 'string',
         active: true,
       },

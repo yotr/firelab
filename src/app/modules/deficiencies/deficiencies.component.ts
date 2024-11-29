@@ -49,32 +49,36 @@ export class DeficienciesComponent implements OnInit {
     // this.translateService.instant('clients.client_table.client_id');
     this.dataKeys = [
       {
-        name: 'Customer Name',
-        display: 'Customer Name',
+        name: 'customerName',
+        display: this.translateService.instant(
+          'deficiencies.table.customer_name'
+        ),
         type: 'string',
         active: true,
       },
       {
-        name: 'Category',
-        display: 'Category',
+        name: 'category',
+        display: this.translateService.instant('deficiencies.table.category'),
         type: 'string',
         active: true,
       },
       {
-        name: 'Date',
-        display: 'Date',
+        name: 'date',
+        display: this.translateService.instant('deficiencies.table.date'),
         type: 'string',
         active: true,
       },
       {
-        name: 'Description',
-        display: 'Description',
+        name: 'description',
+        display: this.translateService.instant(
+          'deficiencies.table.description'
+        ),
         type: 'string',
         active: true,
       },
       {
-        name: 'Status',
-        display: 'Status',
+        name: 'status',
+        display: this.translateService.instant('deficiencies.table.status'),
         type: 'string',
         active: true,
       },
@@ -117,7 +121,7 @@ export class DeficienciesComponent implements OnInit {
     });
   }
 
-  //get all Clients
+  //get
   getData(
     page?: number,
     pageSize?: number,

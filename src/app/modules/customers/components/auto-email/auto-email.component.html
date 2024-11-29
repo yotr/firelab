@@ -1,9 +1,10 @@
-<div class="auto-email">
+<div class="auto-email" [dir]="'dir' | translate">
   <!-- content page -->
   <div class="content">
     <!-- title -->
     <h3 class="text-secondary">
-      Auto Email <i class="pi pi-info-circle text-danger fs-5 mx-2"></i>
+      {{ "customers.auto_email.title" | translate }}
+      <i class="pi pi-info-circle text-danger fs-5 mx-2"></i>
     </h3>
     <!-- content -->
     <div>
@@ -14,7 +15,9 @@
         }} {{ currentTheme?.colorSchema?.color }}"
       >
         <div class="d-flex justify-content-between align-items-center w-100">
-          <h4 class="m-0">Auto Email</h4>
+          <h4 class="m-0">
+            {{ "customers.auto_email.title" | translate }}
+          </h4>
           <div></div>
         </div>
       </div>
@@ -47,11 +50,15 @@
           <div class="btns">
             <!-- add email -->
             <div class="add-btn">
-              <div class="add my-4" (click)="addEmailItem()">Add Email ID</div>
+              <div class="add my-4" (click)="addEmailItem()">
+                {{ "customers.auto_email.add" | translate }}
+              </div>
             </div>
             <!-- submit -->
             <div class="save-btn text-center">
-              <button type="submit" class="save mt-4">Save</button>
+              <button type="submit" class="save mt-4">
+                {{ "save" | translate }}
+              </button>
             </div>
           </div>
         </div>

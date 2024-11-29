@@ -48,35 +48,45 @@ export class AllCustomersComponent implements OnInit, AfterViewInit {
 
     //   // turn on current language (trandlate)
     this.translateService.use(this.currentLanguage);
-    // this.translateService.instant('clients.client_table.client_id');
+
     this.dataKeys = [
       {
         name: 'companyName',
-        display: 'Company Name',
+        display: this.translateService.instant(
+          'customers.all_customers.customers_table.companyName'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'ID',
-        display: 'ID/Account',
+        display: this.translateService.instant(
+          'customers.all_customers.customers_table.id'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'address',
-        display: 'Address',
+        display: this.translateService.instant(
+          'customers.all_customers.customers_table.address'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'phone',
-        display: 'Phone',
+        display: this.translateService.instant(
+          'customers.all_customers.customers_table.phone'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'status',
-        display: 'Status',
+        display: this.translateService.instant(
+          'customers.all_customers.customers_table.status'
+        ),
         type: 'boolean',
         active: true,
       },

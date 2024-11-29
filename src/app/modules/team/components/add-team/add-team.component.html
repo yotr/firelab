@@ -6,7 +6,9 @@
     [dir]="'dir' | translate"
   >
     <!-- breadcrumb -->
-    <app-breadcrumb title="Add Member"></app-breadcrumb>
+    <app-breadcrumb
+      [title]="'team.add_title' | translate"
+    ></app-breadcrumb>
   </div>
   <!-- /Page Header -->
 
@@ -21,14 +23,17 @@
         [ngClass]="{ active: firstStep }"
         (click)="changeStep(1)"
       >
-        Basic Details
+        {{ "team.form.basic_details" | translate }}
       </div>
     </div>
     <div class="row" [hidden]="secondStep">
       <div class="col-sm-6">
         <!-- First Name -->
         <div class="form-group mt-2">
-          <label>First Name <span class="text-danger">*</span></label>
+          <label
+            >{{ "team.form.first_name" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <input class="form-control" type="text" formControlName="firstName" />
           <!-- errors -->
           <div
@@ -44,7 +49,7 @@
               "
               class="text-danger"
             >
-              First Name Is Required</small
+              {{ "team.form.first_name_required" | translate }}</small
             >
           </div>
           <!-- errors -->
@@ -53,7 +58,10 @@
       <div class="col-sm-6">
         <!-- Last Name -->
         <div class="form-group mt-2">
-          <label>Last Name <span class="text-danger">*</span></label>
+          <label
+            >{{ "team.form.last_name" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <input class="form-control" type="text" formControlName="lastName" />
           <!-- errors -->
           <div
@@ -69,7 +77,7 @@
               "
               class="text-danger"
             >
-              Last Name Is Required</small
+              {{ "team.form.last_name_required" | translate }}</small
             >
           </div>
           <!-- errors -->
@@ -78,7 +86,10 @@
       <div class="col-sm-6">
         <!-- Email -->
         <div class="form-group mt-2">
-          <label>Email <span class="text-danger">*</span></label>
+          <label
+            >{{ "team.form.email" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <input class="form-control" type="email" formControlName="email" />
           <!-- errors -->
           <div
@@ -92,7 +103,7 @@
               "
               class="text-danger"
             >
-              Email Is Required</small
+              {{ "team.form.email_required" | translate }}</small
             >
           </div>
           <!-- errors -->
@@ -101,7 +112,10 @@
       <div class="col-sm-6">
         <!-- Contact Number -->
         <div class="form-group mt-2">
-          <label>Contact Number <span class="text-danger">*</span></label>
+          <label
+            >{{ "team.form.contact_number" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <input
             class="form-control"
             type="text"
@@ -121,7 +135,7 @@
               "
               class="text-danger"
             >
-              Contact Number Is Required</small
+              {{ "team.form.contact_number_required" | translate }}</small
             >
           </div>
           <!-- errors -->
@@ -130,7 +144,10 @@
       <div class="col-sm-6">
         <!-- Billable Hourly Rate -->
         <div class="form-group mt-2">
-          <label>Billable Hourly Rate <span class="text-danger">*</span></label>
+          <label
+            >{{ "team.form.billable_rate" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <input
             class="form-control"
             type="text"
@@ -150,7 +167,7 @@
               "
               class="text-danger"
             >
-              Billable Hourly Rate Is Required</small
+              {{ "team.form.billable_rate_required" | translate }}</small
             >
           </div>
           <!-- errors -->
@@ -159,14 +176,14 @@
       <div class="col-sm-6">
         <!-- Position -->
         <div class="form-group mt-2">
-          <label>Position </label>
+          <label>{{ "team.form.position" | translate }} </label>
           <input class="form-control" type="text" formControlName="position" />
         </div>
       </div>
       <div class="col-sm-6">
         <!-- Divisions -->
         <div class="form-group mt-2">
-          <label>Divisions </label>
+          <label>{{ "team.form.divisions" | translate }} </label>
           <select
             class="form-select form-control"
             name="Divisions"
@@ -184,7 +201,7 @@
     </div>
     <!-- next -->
     <div class="next-btn" [hidden]="secondStep">
-      <div class="next mt-4" (click)="nextStep()">Next</div>
+      <div class="next mt-4" (click)="nextStep()">{{ "next" | translate }}</div>
     </div>
     <!-- step 2 -->
     <div class="form-step">
@@ -194,14 +211,14 @@
         [ngClass]="{ active: secondStep }"
         (click)="changeStep(2)"
       >
-        Permissions
+        {{ "team.form.permissons" | translate }}
       </div>
     </div>
     <div class="row" [hidden]="firstStep">Permissons</div>
 
     <!-- submit -->
     <div [hidden]="!secondStep" class="save-btn text-center">
-      <button type="submit" class="save mt-4">Save</button>
+      <button type="submit" class="save mt-4">{{ "save" | translate }}</button>
     </div>
   </form>
 </div>

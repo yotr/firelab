@@ -6,6 +6,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./custom-dropdown.component.css'],
 })
 export class CustomDropdownComponent implements OnInit {
+  @Input() translated: boolean = false;
   @Input() minWidth: string = '150px';
   @Input() fixedHeight: boolean = true;
   @Input() height: string = '50px';

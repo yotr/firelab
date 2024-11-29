@@ -4,7 +4,7 @@
     class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
     [dir]="'dir' | translate"
   >
-    <app-breadcrumb title="Service Requests"></app-breadcrumb>
+    <app-breadcrumb [title]="'service_requests.title' | translate"></app-breadcrumb>
     <!-- <div routerLink="/modules/contract/add">
       <a
         class="btn add-btn d-flex align-items-center {{
@@ -25,9 +25,9 @@
     [dataKeys]="dataKeys"
     [loading]="loading"
     [currentTheme]="currentTheme"
-    deleteModalTitle="Contract"
-    tableTitle="Contracts Table"
-    editPagePath="/modules/contract/edit"
+    [deleteModalTitle]="'service_requests.title' | translate"
+    [tableTitle]="'service_requests.table_title' | translate"
+    editPagePath=""
   ></app-service-requests-module-table>
 </div>
 

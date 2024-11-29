@@ -6,7 +6,9 @@
       class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
       [dir]="'dir' | translate"
     >
-      <app-breadcrumb title="Deficiencies"></app-breadcrumb>
+      <app-breadcrumb
+        [title]="'customers.deficiencies.title' | translate"
+      ></app-breadcrumb>
     </div>
 
     <!-- /page header  -->
@@ -18,8 +20,8 @@
       [dataKeys]="dataKeys"
       [loading]="loading"
       [currentTheme]="currentTheme"
-      deleteModalTitle="Deficiencies"
-      tableTitle="Deficiencies Table"
+      [deleteModalTitle]="'customers.deficiencies.title' | translate"
+      [tableTitle]="'customers.deficiencies.table_title' | translate"
       editPagePath=""
     ></app-customer-Deficiencies-module-table>
   </div>

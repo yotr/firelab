@@ -10,7 +10,7 @@
     (click)="toggle()"
     [ngStyle]="{ height: height }"
   >
-    <span>{{ title }}</span>
+    <span>{{ translated ? (title | translate) : title }}</span>
     <i [hidden]="!isActive" class="pi pi-angle-up text-secondary"></i>
     <i [hidden]="isActive" class="pi pi-angle-down text-secondary"></i>
   </div>
@@ -42,7 +42,7 @@
           class="item text-secondary"
           (click)="action(value?.id, value[objectKey])"
         >
-          {{ value[objectKey] }}
+          {{ translated ? (value[objectKey] | translate) : value[objectKey] }}
         </div>
       </ng-container>
     </div>

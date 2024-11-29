@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { NgxPrintService, PrintOptions } from 'ngx-print';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { LanguageService } from 'src/app/services/language/language.service';
 import { SidebarService } from 'src/app/services/sidebar/sidebar.service';
 import { environment } from 'src/environments/environment';
 
@@ -56,21 +58,46 @@ export class CustomersModuleTableComponent implements OnInit {
   api: string = '';
   // current logged in user
   currentUser: any = {} as any;
-  statusDropdown: any[] = ['active', 'inactive'];
+  statusDropdown: any[] = [];
 
   constructor(
     private printService: NgxPrintService,
     private sidebarService: SidebarService,
-    // private permissionsService: PermissionsService,
-    private auth: AuthService
+    private languageService: LanguageService,
+    private auth: AuthService,
+    public translateService: TranslateService
   ) {
+    this.translateService.use(this.currentLanguage);
     this.api = environment.API;
+    this.statusDropdown = [
+      {
+        id: 0,
+        value: this.translateService.instant(
+          'customers.all_customers.status_options.active'
+        ),
+      },
+      {
+        id: 1,
+        value: this.translateService.instant(
+          'customers.all_customers.status_options.inactive'
+        ),
+      },
+    ];
   }
 
   // ================== \\  General Functions for all tables  \\ ==================
 
   ngOnInit() {
+    this.getLanguage();
     this.getCurrentUserData();
+  }
+  getLanguage() {
+    // get language from localStorage
+    this.languageService.getCurrentLanguage().subscribe((language) => {
+      this.currentLanguage = language;
+      // turn on current language (trandlate)
+      this.translateService.use(this.currentLanguage);
+    });
   }
   // get user
   isLoggedIn(): boolean {

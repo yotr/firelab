@@ -6,6 +6,7 @@ import {
   Params,
   Router,
 } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { SidebarService } from 'src/app/services/sidebar/sidebar.service';
 
 @Component({
@@ -29,7 +30,8 @@ export class CustomerHomeComponent implements OnInit {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private sidebarService: SidebarService
+    private sidebarService: SidebarService,
+    public translateService: TranslateService
   ) {
     //get id
     this.activatedRoute.queryParamMap.subscribe((paramMap: Params) => {
@@ -44,31 +46,37 @@ export class CustomerHomeComponent implements OnInit {
     this.inspectionsDueKeys = [
       {
         name: 'category',
-        display: 'Category',
+        display: this.translateService.instant(
+          'customers.home.tables.category'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'frequency',
-        display: 'Frequency',
+        display: this.translateService.instant(
+          'customers.home.tables.frequency'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'month',
-        display: 'Month',
+        display: this.translateService.instant('customers.home.tables.month'),
         type: 'string',
         active: true,
       },
       {
         name: 'pendingDue',
-        display: 'Pending Due',
+        display: this.translateService.instant(
+          'customers.home.tables.pendingDue'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'tasks',
-        display: 'Tasks',
+        display: this.translateService.instant('customers.home.tables.tasks'),
         type: 'boolean',
         active: true,
       },
@@ -76,31 +84,35 @@ export class CustomerHomeComponent implements OnInit {
     this.inspectionsDoneKeys = [
       {
         name: 'category',
-        display: 'Category',
+        display: this.translateService.instant(
+          'customers.home.tables.category'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'frequency',
-        display: 'Frequency',
+        display: this.translateService.instant(
+          'customers.home.tables.frequency'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'month',
-        display: 'Month',
+        display: this.translateService.instant('customers.home.tables.month'),
         type: 'string',
         active: true,
       },
       {
         name: 'done',
-        display: 'Done',
+        display: this.translateService.instant('customers.home.tables.done'),
         type: 'string',
         active: true,
       },
       {
         name: 'tasks',
-        display: 'Tasks',
+        display: this.translateService.instant('customers.home.tables.tasks'),
         type: 'boolean',
         active: true,
       },

@@ -46,35 +46,38 @@ export class ServiceRequestsComponent implements OnInit {
 
     //   // turn on current language (trandlate)
     this.translateService.use(this.currentLanguage);
-    // this.translateService.instant('clients.client_table.client_id');
     this.dataKeys = [
       {
         name: 'Sr. No',
-        display: 'Sr. No',
+        display: this.translateService.instant('service_requests.table.sr_no'),
         type: 'string',
         active: true,
       },
       {
         name: 'Customer',
-        display: 'Customer',
+        display: this.translateService.instant(
+          'service_requests.table.customer'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'Report Category',
-        display: 'Report Category',
+        display: this.translateService.instant(
+          'service_requests.table.report_category'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'Type',
-        display: 'Type',
+        display: this.translateService.instant('service_requests.table.type'),
         type: 'string',
         active: true,
       },
       {
         name: 'Status',
-        display: 'Status',
+        display: this.translateService.instant('service_requests.table.status'),
         type: 'string',
         active: true,
       },

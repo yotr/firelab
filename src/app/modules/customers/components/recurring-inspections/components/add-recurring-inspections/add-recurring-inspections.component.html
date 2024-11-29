@@ -6,7 +6,9 @@
     [dir]="'dir' | translate"
   >
     <!-- breadcrumb -->
-    <app-breadcrumb title="Add Inspections"></app-breadcrumb>
+    <app-breadcrumb
+      [title]="'customers.recurring_inspections.form.add_title' | translate"
+    ></app-breadcrumb>
   </div>
   <!-- /Page Header -->
 
@@ -17,7 +19,11 @@
       <div class="col-sm-6">
         <!-- Report Category -->
         <div class="form-group mt-2">
-          <label>Report Category <span class="text-danger">*</span></label>
+          <label
+            >{{
+              "customers.recurring_inspections.form.reportCategory" | translate
+            }}<span class="text-danger">*</span></label
+          >
           <select
             class="form-select form-control"
             formControlName="reportCategory"
@@ -31,7 +37,7 @@
               </option>
             </ng-container>
             <option *ngIf="!reportsLoading && reports.length == 0" disabled>
-              No Data Yet
+              {{ "customers.recurring_inspections.form.no_data" | translate }}
             </option>
           </select>
           <!-- errors -->
@@ -48,7 +54,10 @@
               "
               class="text-danger"
             >
-              Report Category Is Required</small
+              {{
+                "customers.recurring_inspections.form.reportCategory_required"
+                  | translate
+              }}</small
             >
           </div>
           <!-- errors -->
@@ -57,7 +66,10 @@
       <div class="col-sm-6">
         <!-- Frequency -->
         <div class="form-group mt-2">
-          <label>Select Frequency <span class="text-danger">*</span></label>
+          <label
+            >{{ "customers.recurring_inspections.form.frequency" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <select class="form-select form-control" formControlName="frequency">
             <option disabled selected>
               {{ "select" | translate }}
@@ -71,7 +83,7 @@
               *ngIf="!frequencyLoading && frequencies.length == 0"
               disabled
             >
-              No Data Yet
+              {{ "customers.recurring_inspections.form.no_data" | translate }}
             </option>
           </select>
           <!-- errors -->
@@ -88,7 +100,10 @@
               "
               class="text-danger"
             >
-              Frequency Is Required</small
+              {{
+                "customers.recurring_inspections.form.frequency_required"
+                  | translate
+              }}</small
             >
           </div>
           <!-- errors -->
@@ -97,7 +112,10 @@
       <div class="col-sm-6">
         <!-- Year -->
         <div class="form-group mt-2">
-          <label>Select Year/Month <span class="text-danger">*</span></label>
+          <label
+            >{{ "customers.recurring_inspections.form.month" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <input type="month" class="form-control" formControlName="year" />
           <!-- errors -->
           <div
@@ -109,7 +127,10 @@
               "
               class="text-danger"
             >
-              Date Is Required</small
+              {{
+                "customers.recurring_inspections.form.month_required"
+                  | translate
+              }}</small
             >
           </div>
           <!-- errors -->
@@ -118,14 +139,18 @@
       <div class="col-sm-12">
         <div class="add-btn">
           <div class="add my-4" (click)="togglePrices()">
-            Add Inspection Price
+            {{ "customers.recurring_inspections.form.add_price" | translate }}
           </div>
         </div>
       </div>
       <ng-container *ngIf="isPricesAdded">
         <div class="col-sm-6">
           <div class="form-group mt-2">
-            <label>1st Price </label>
+            <label
+              >{{
+                "customers.recurring_inspections.form.first_price" | translate
+              }}
+            </label>
             <input
               type="text"
               class="form-control"
@@ -135,7 +160,9 @@
         </div>
         <div class="col-sm-6">
           <div class="form-group mt-2">
-            <label>2nd Price </label>
+            <label>{{
+              "customers.recurring_inspections.form.second_price" | translate
+            }}</label>
             <input
               type="text"
               class="form-control"
@@ -145,7 +172,11 @@
         </div>
         <div class="col-sm-6">
           <div class="form-group mt-2">
-            <label>3rd Price </label>
+            <label
+              >{{
+                "customers.recurring_inspections.form.third_price" | translate
+              }}
+            </label>
             <input
               type="text"
               class="form-control"
@@ -155,7 +186,11 @@
         </div>
         <div class="col-sm-6">
           <div class="form-group mt-2">
-            <label>4th Price </label>
+            <label
+              >{{
+                "customers.recurring_inspections.form.forth_price" | translate
+              }}
+            </label>
             <input
               type="text"
               class="form-control"
@@ -179,7 +214,7 @@
               </label>
             </span>
             <p class="m-0">
-              Do you want to add recurring tasks within this inspections?
+              {{ "customers.recurring_inspections.form.add_task" | translate }}
             </p>
           </div>
         </div>
@@ -193,11 +228,16 @@
         [formGroupName]="i"
       >
         <div class="row mt-4 py-4" [ngStyle]="{ background: '#ccc' }">
-          <i class="pi pi-trash trash-icon"  (click)="removeTaskItems(i)"></i>
+          <i class="pi pi-trash trash-icon" (click)="removeTaskItems(i)"></i>
           <div class="col-sm-6">
             <!-- Describe Task -->
             <div class="form-group mt-2">
-              <label>Describe Task </label>
+              <label
+                >{{
+                  "customers.recurring_inspections.form.describe_task"
+                    | translate
+                }}
+              </label>
               <input
                 type="text"
                 class="form-control"
@@ -209,7 +249,11 @@
           <div class="col-sm-6">
             <!-- task Frequency -->
             <div class="form-group mt-2">
-              <label>Select Frequency </label>
+              <label
+                >{{
+                  "customers.recurring_inspections.form.frequency" | translate
+                }}
+              </label>
               <select
                 class="form-select form-control"
                 formControlName="frequency"
@@ -227,7 +271,9 @@
                   *ngIf="!frequencyLoading && frequencies.length == 0"
                   disabled
                 >
-                  No Data Yet
+                  {{
+                    "customers.recurring_inspections.form.no_data" | translate
+                  }}
                 </option>
               </select>
             </div>
@@ -235,7 +281,9 @@
           <div class="col-sm-6">
             <!-- task Year -->
             <div class="form-group mt-2">
-              <label>Select Year/Month </label>
+              <label
+                >{{ "customers.recurring_inspections.form.month" | translate }}
+              </label>
               <input
                 type="month"
                 class="form-control"
@@ -245,7 +293,8 @@
             </div>
           </div>
           <p class="mt-3 text-danger" role="button" (click)="addTaskItem()">
-            <i class="pi pi-plus"></i> Add Another Task
+            <i class="pi pi-plus"></i>
+            {{ "customers.recurring_inspections.form.add_another" | translate }}
           </p>
         </div>
       </div>
@@ -254,7 +303,7 @@
     <!-- submit -->
     <div class="save-btn text-center">
       <button type="submit" [disabled]="!addForm.invalid" class="save mt-4">
-        Save
+        {{ "save" | translate }}
       </button>
     </div>
   </form>

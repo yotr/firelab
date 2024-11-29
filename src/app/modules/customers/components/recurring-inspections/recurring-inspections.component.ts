@@ -47,23 +47,28 @@ export class RecurringInspectionsComponent implements OnInit {
 
     //   // turn on current language (trandlate)
     this.translateService.use(this.currentLanguage);
-    // this.translateService.instant('clients.client_table.client_id');
     this.dataKeys = [
       {
         name: 'reportCategory',
-        display: 'Report Category',
+        display: this.translateService.instant(
+          'customers.recurring_inspections.table.reportCategory'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'frequency',
-        display: 'Frequency',
+        display: this.translateService.instant(
+          'customers.recurring_inspections.table.frequency'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'months',
-        display: 'Months',
+        display: this.translateService.instant(
+          'customers.recurring_inspections.table.months'
+        ),
         type: 'string',
         active: true,
       },

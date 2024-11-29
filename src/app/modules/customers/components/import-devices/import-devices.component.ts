@@ -47,17 +47,21 @@ export class ImportDevicesComponent implements OnInit, AfterViewInit {
 
     //   // turn on current language (trandlate)
     this.translateService.use(this.currentLanguage);
-    // this.translateService.instant('clients.client_table.client_id');
+
     this.dataKeys = [
       {
         name: 'reportCategory',
-        display: 'Report Category',
+        display: this.translateService.instant(
+          'customers.import_devices.table.reportCategory'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'listName',
-        display: 'List Name',
+        display: this.translateService.instant(
+          'customers.import_devices.table.listName'
+        ),
         type: 'string',
         active: true,
       },

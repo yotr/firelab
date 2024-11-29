@@ -6,7 +6,9 @@
     [dir]="'dir' | translate"
   >
     <!-- breadcrumb -->
-    <app-breadcrumb title="Update Note"></app-breadcrumb>
+    <app-breadcrumb
+      [title]="'customers.building_info.form.edit_title' | translate"
+    ></app-breadcrumb>
   </div>
   <!-- /Page Header -->
 
@@ -17,7 +19,10 @@
         <div class="col-sm-12">
           <!-- title -->
           <div class="form-group mt-2">
-            <label>Title <span class="text-danger">*</span></label>
+            <label
+              >{{ "customers.building_info.form.title" | translate }}
+              <span class="text-danger">*</span></label
+            >
             <input
               class="form-control"
               type="text"
@@ -37,7 +42,9 @@
                 "
                 class="text-danger"
               >
-                Title Is Required</small
+                {{
+                  "customers.building_info.form.title_required" | translate
+                }}</small
               >
             </div>
             <!-- errors -->
@@ -46,7 +53,9 @@
         <div class="col-sm-12">
           <!-- description -->
           <div class="form-group mt-2">
-            <label>Description </label>
+            <label
+              >{{ "customers.building_info.form.description" | translate }}
+            </label>
             <textarea
               rows="3"
               placeholder="description"
@@ -58,7 +67,9 @@
 
       <!-- submit -->
       <div class="save-btn text-center">
-        <button type="submit" [disabled]="editForm.invalid" class="save mt-4">Save</button>
+        <button type="submit" [disabled]="editForm.invalid" class="save mt-4">
+          {{ "save" | translate }}
+        </button>
       </div>
     </form>
   </div>

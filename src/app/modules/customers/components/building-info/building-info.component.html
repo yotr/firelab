@@ -2,7 +2,9 @@
   <!-- content page -->
   <div class="content">
     <!-- title -->
-    <h3 class="text-secondary">Building Information</h3>
+    <h3 class="text-secondary">
+      {{ "customers.building_info.title" | translate }}
+    </h3>
     <!-- content -->
     <div>
       <!-- header -->
@@ -12,7 +14,7 @@
         }} {{ currentTheme?.colorSchema?.color }}"
       >
         <div class="d-flex justify-content-between align-items-center w-100">
-          <h4 class="m-0">Building Information</h4>
+          <h4 class="m-0">{{ "customers.building_info.title" | translate }}</h4>
           <div></div>
         </div>
       </div>
@@ -73,7 +75,9 @@
           data-bs-toggle="modal"
           data-bs-target="#add_building_info_modal"
         >
-          <span [class]="currentTheme?.colorSchema?.color">Add</span>
+          <span [class]="currentTheme?.colorSchema?.color">{{
+            "add" | translate
+          }}</span>
         </button>
       </div>
     </div>
@@ -86,7 +90,7 @@
 
 <!-- delete modal -->
 <app-delete-modal
-  title="Building Information"
+  [title]="'customers.building_info.title' | translate"
   [currentTheme]="currentTheme"
   (onDelete)="deleteItem()"
 ></app-delete-modal>

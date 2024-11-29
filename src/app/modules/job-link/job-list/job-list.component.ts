@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-job-list',
@@ -14,23 +15,23 @@ export class JobListComponent implements OnInit {
   isActive: boolean = false;
   searchText: string = '';
 
-  constructor() {
+  constructor(public translateService: TranslateService) {
     this.filterBy = [
       {
         id: 0,
-        title: 'Missed Inspections',
+        title: this.translateService.instant('job_link.list.missed'),
       },
       {
         id: 1,
-        title: 'Due This Month',
+        title: this.translateService.instant('job_link.list.due_this'),
       },
       {
         id: 2,
-        title: 'Due Next Month',
+        title: this.translateService.instant('job_link.list.due_next'),
       },
       {
         id: 3,
-        title: 'All',
+        title: this.translateService.instant('job_link.list.all'),
       },
     ];
   }

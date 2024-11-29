@@ -6,7 +6,9 @@
       class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
       [dir]="'dir' | translate"
     >
-      <app-breadcrumb title="Recurring Inspections"></app-breadcrumb>
+      <app-breadcrumb
+        [title]="'customers.recurring_inspections.title' | translate"
+      ></app-breadcrumb>
       <div routerLink="/modules/customers/recurringInspections/add">
         <a
           class="btn add-btn d-flex align-items-center {{
@@ -14,7 +16,7 @@
           }} {{ currentTheme?.colorSchema?.color }}"
         >
           <i class="pi pi-plus d-none d-sm-block"></i>
-          Add Recurring Inspection
+          {{ "customers.recurring_inspections.add_btn" | translate }}
         </a>
       </div>
     </div>
@@ -28,8 +30,8 @@
       [dataKeys]="dataKeys"
       [loading]="loading"
       [currentTheme]="currentTheme"
-      deleteModalTitle="Recurring Inspections"
-      tableTitle="Recurring Inspections Table"
+      [deleteModalTitle]="'customers.recurring_inspections.delete' | translate"
+      [tableTitle]="'customers.recurring_inspections.table_title' | translate"
       editPagePath="/modules/customers/recurringInspections/edit"
     ></app-recurring-inspections-module-table>
   </div>

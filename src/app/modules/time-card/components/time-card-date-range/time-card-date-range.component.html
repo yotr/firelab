@@ -6,7 +6,9 @@
       <h3 class="text-muted">Ibrahim Joe</h3>
     </div>
     <div class="d-flex align-items-center gap-2">
-      <label for="simpleCalendarUpCenter" class="form-label">Date Range</label>
+      <label for="simpleCalendarUpCenter" class="form-label">{{
+        "team.date_range.date" | translate
+      }}</label>
       <input
         type="text"
         id="simpleCalendarUpCenter"
@@ -38,17 +40,29 @@
   </div>
   <!-- time table -->
   <!-- title -->
-  <p class="my-4">TimeCard</p>
+  <p class="my-4">{{ "team.date_range.time_card" | translate }}</p>
   <table class="table table-bordered border border-1 border-dark">
     <thead>
       <tr class="bg-light">
-        <th scope="col">Days</th>
-        <th scope="col" class="text-center text-info">Driving</th>
-        <th scope="col" class="text-center text-success">Break</th>
-        <th scope="col" class="text-center text-danger">Working</th>
-        <th scope="col" class="text-center text-muted">Clocked Out</th>
-        <th scope="col" class="text-center text-warning">Miscellaneous</th>
-        <th scope="col" class="text-center text-muted">Total Hours</th>
+        <th scope="col">{{ "team.date_range.days" | translate }}</th>
+        <th scope="col" class="text-center text-info">
+          {{ "team.date_range.driving" | translate }}
+        </th>
+        <th scope="col" class="text-center text-success">
+          {{ "team.date_range.break" | translate }}
+        </th>
+        <th scope="col" class="text-center text-danger">
+          {{ "team.date_range.working" | translate }}
+        </th>
+        <th scope="col" class="text-center text-muted">
+          {{ "team.date_range.clocked" | translate }}
+        </th>
+        <th scope="col" class="text-center text-warning">
+          {{ "team.date_range.miscellaneous" | translate }}
+        </th>
+        <th scope="col" class="text-center text-muted">
+          {{ "team.date_range.total" | translate }}
+        </th>
       </tr>
     </thead>
     <tbody>

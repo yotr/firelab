@@ -47,23 +47,28 @@ export class HoodSystemComponent implements OnInit {
 
     //   // turn on current language (trandlate)
     this.translateService.use(this.currentLanguage);
-    // this.translateService.instant('clients.client_table.client_id');
     this.dataKeys = [
       {
         name: 'frequency',
-        display: 'Frequency',
+        display: this.translateService.instant(
+          'customers.hood_system.table.frequency'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'completionDate',
-        display: 'Completion Date',
+        display: this.translateService.instant(
+          'customers.hood_system.table.completion_date'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'name',
-        display: 'Name',
+        display: this.translateService.instant(
+          'customers.hood_system.table.name'
+        ),
         type: 'string',
         active: true,
       },

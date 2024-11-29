@@ -215,9 +215,12 @@
                   <!-- status -->
                   <ng-container *ngIf="key?.name == 'status'">
                     <app-custom-dropdown
+                      [translated]="true"
                       minWidth="100%"
                       [fixedHeight]="false"
-                      [title]="statusDropdown[0]"
+                      [title]="statusDropdown[0].value"
+                      [object]="true"
+                      objectKey="value"
                       [data]="statusDropdown"
                     ></app-custom-dropdown>
                   </ng-container>

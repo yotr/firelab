@@ -23,6 +23,8 @@ export class EditAssignedJobComponent implements OnInit {
   defaultImgUrl: any = 'assets/img/camera.png';
   currentTheme: any;
   selectUserType: string = 'normal';
+  members: any[] = [];
+  selectedMembers: any[] = [];
 
   currentUser: any = null;
   // roles
@@ -105,6 +107,10 @@ export class EditAssignedJobComponent implements OnInit {
     }
   }
 
+  getSelectedMembers(members: any[]) {
+    this.selectedMembers = members;
+    console.log(members);
+  }
   //add a new
   submit() {
     let date = new Date();

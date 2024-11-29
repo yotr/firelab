@@ -2,7 +2,7 @@
   <!-- content page -->
   <div class="content">
     <!-- title -->
-    <h3 class="text-secondary">Images</h3>
+    <h3 class="text-secondary">{{ "customers.images.title" | translate }}</h3>
     <!-- content -->
     <div>
       <div class="d-flex justify-content-start my-4">
@@ -14,7 +14,7 @@
           data-bs-target="#add_image"
         >
           <i class="pi pi-plus d-none d-sm-block"></i>
-          Add Image
+          {{ "customers.images.add_btn" | translate }}
         </a>
       </div>
       <!-- header -->
@@ -24,7 +24,7 @@
         }} {{ currentTheme?.colorSchema?.color }}"
       >
         <div class="d-flex justify-content-between align-items-center w-100">
-          <h4 class="m-0">Upload Building Image</h4>
+          <h4 class="m-0">{{ "customers.images.header" | translate }}</h4>
           <div></div>
         </div>
       </div>
@@ -45,7 +45,7 @@
             <input
               class="form-control"
               type="text"
-              placeholder="Add Comment"
+              [placeholder]="'customers.images.comment_placehoder' | translate"
               [value]="img?.comment"
             />
           </div>
@@ -57,7 +57,7 @@
         *ngIf="data.length == 0 && loading == false"
         class="text-center text-danger bg-light m-0 py-2"
       >
-        No images available
+        {{ "customers.images.no_images" | translate }}
       </h5>
     </div>
   </div>

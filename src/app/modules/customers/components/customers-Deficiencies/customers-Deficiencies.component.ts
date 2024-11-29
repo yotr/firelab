@@ -47,23 +47,28 @@ export class CustomersDeficienciesComponent implements OnInit, AfterViewInit {
 
     //   // turn on current language (trandlate)
     this.translateService.use(this.currentLanguage);
-    // this.translateService.instant('clients.client_table.client_id');
     this.dataKeys = [
       {
         name: 'category',
-        display: 'Category',
+        display: this.translateService.instant(
+          'customers.deficiencies.table.category'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'date',
-        display: 'Date',
+        display: this.translateService.instant(
+          'customers.deficiencies.table.date'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'status',
-        display: 'Status',
+        display: this.translateService.instant(
+          'customers.deficiencies.table.status'
+        ),
         type: 'string',
         active: true,
       },

@@ -46,41 +46,52 @@ export class ContractComponent implements OnInit {
 
     //   // turn on current language (trandlate)
     this.translateService.use(this.currentLanguage);
-    // this.translateService.instant('clients.client_table.client_id');
     this.dataKeys = [
       {
-        name: 'Contract Reference',
-        display: 'Contract Reference',
+        name: 'contractReference',
+        display: this.translateService.instant(
+          'contracts.contract_table.contractReference'
+        ),
         type: 'string',
         active: true,
       },
       {
-        name: 'Member',
-        display: 'Member',
+        name: 'member',
+        display: this.translateService.instant(
+          'contracts.contract_table.member'
+        ),
         type: 'string',
         active: true,
       },
       {
-        name: 'Position',
-        display: 'Position',
+        name: 'jobPosition',
+        display: this.translateService.instant(
+          'contracts.contract_table.jobPosition'
+        ),
         type: 'string',
         active: true,
       },
       {
-        name: 'Start Date',
-        display: 'Start Date',
+        name: 'startDate',
+        display: this.translateService.instant(
+          'contracts.contract_table.startDate'
+        ),
         type: 'string',
         active: true,
       },
       {
-        name: 'End Date',
-        display: 'End Date',
+        name: 'endDate',
+        display: this.translateService.instant(
+          'contracts.contract_table.endDate'
+        ),
         type: 'string',
         active: true,
       },
       {
-        name: 'Status',
-        display: 'Status',
+        name: 'status',
+        display: this.translateService.instant(
+          'contracts.contract_table.status'
+        ),
         type: 'boolean',
         active: true,
       },

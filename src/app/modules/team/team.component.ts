@@ -46,29 +46,28 @@ export class TeamComponent implements OnInit {
 
     //   // turn on current language (trandlate)
     this.translateService.use(this.currentLanguage);
-    // this.translateService.instant('clients.client_table.client_id');
     this.dataKeys = [
       {
         name: 'Name',
-        display: 'Name',
+        display: this.translateService.instant('team.table.name'),
         type: 'string',
         active: true,
       },
       {
         name: 'Email Id',
-        display: 'Email Id',
+        display: this.translateService.instant('team.table.email_id'),
         type: 'string',
         active: true,
       },
       {
         name: 'Phone',
-        display: 'Phone',
+        display: this.translateService.instant('team.table.phone'),
         type: 'string',
         active: true,
       },
       {
         name: 'Status',
-        display: 'Status',
+        display: this.translateService.instant('team.table.status'),
         type: 'string',
         active: true,
       },

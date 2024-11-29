@@ -6,7 +6,9 @@
     [dir]="'dir' | translate"
   >
     <!-- breadcrumb -->
-    <app-breadcrumb title="Import Device"></app-breadcrumb>
+    <app-breadcrumb
+      [title]="'customers.import_devices.title' | translate"
+    ></app-breadcrumb>
   </div>
   <!-- /Page Header -->
 
@@ -17,7 +19,10 @@
       <div class="col-sm-6">
         <!-- Report Category -->
         <div class="form-group mt-2">
-          <label>Report Category <span class="text-danger">*</span></label>
+          <label
+            >{{ "customers.import_devices.form.reportCategory" | translate
+            }}<span class="text-danger">*</span></label
+          >
           <select
             class="form-select form-control"
             formControlName="reportCategory"
@@ -31,7 +36,7 @@
               </option>
             </ng-container>
             <option *ngIf="!reportsLoading && reports.length == 0" disabled>
-              No Data Yet
+              {{ "customers.import_devices.form.no_data" | translate }}
             </option>
           </select>
           <!-- errors -->
@@ -48,7 +53,10 @@
               "
               class="text-danger"
             >
-              Report Category Is Required</small
+              {{
+                "customers.import_devices.form.reportCategory_required"
+                  | translate
+              }}</small
             >
           </div>
           <!-- errors -->
@@ -57,7 +65,10 @@
       <div class="col-sm-6">
         <!-- List Name -->
         <div class="form-group mt-2">
-          <label>List Name </label>
+          <label
+            >{{ "customers.import_devices.form.listName" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <input
             class="form-control"
             type="text"
@@ -78,7 +89,9 @@
               "
               class="text-danger"
             >
-              List Name Is Required</small
+              {{
+                "customers.import_devices.form.listName_required" | translate
+              }}</small
             >
           </div>
           <!-- errors -->
@@ -92,7 +105,9 @@
       >
         <div class="upload-drop-zone" id="drop-zone" role="button">
           <i class="pi pi-cloud-download fs-4 text-success"></i>
-          <a class="upload-text mx-2"> Download SpreadSheet </a>
+          <a class="upload-text mx-2">
+            {{ "customers.import_devices.form.download" | translate }}
+          </a>
         </div>
       </a>
 
@@ -107,7 +122,9 @@
           />
           <i class="pi pi-cloud-upload fs-4 text-info"></i>
           <span class="upload-text mx-2">{{
-            file != null ? truncateString(file?.name, 20) : "Upload SpreadSheet"
+            file != null
+              ? truncateString(file?.name, 20)
+              : ("customers.import_devices.form.upload" | translate)
           }}</span>
         </div>
       </div>
@@ -116,7 +133,7 @@
     <!-- submit -->
     <div class="save-btn text-center">
       <button type="submit" [disabled]="addForm.invalid" class="save mt-4">
-        Save
+        {{ "save" | translate }}
       </button>
     </div>
   </form>

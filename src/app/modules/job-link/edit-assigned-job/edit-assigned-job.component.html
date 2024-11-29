@@ -5,34 +5,43 @@
     [dir]="'dir' | translate"
   >
     <!-- breadcrumb -->
-    <app-breadcrumb title="Update Assigned Job"></app-breadcrumb>
+    <app-breadcrumb
+      [title]="'job_link.assign_job.update_title' | translate"
+    ></app-breadcrumb>
   </div>
   <!-- /Page Header -->
 
   <app-back-button></app-back-button>
   <div class="header">
     <ul class="left-section">
-      <li>Contact Name: NA</li>
-      <li>Job Id Number: NA</li>
-      <li>Email Id: NA</li>
+      <li>{{ "job_link.assign_job.contact_name" | translate }}: NA</li>
+      <li>{{ "job_link.assign_job.job_id" | translate }}: NA</li>
+      <li>{{ "job_link.assign_job.email_id" | translate }}: NA</li>
     </ul>
     <ul class="right-section">
-      <li>Office Number: NA</li>
-      <li>Address: NA</li>
+      <li>{{ "job_link.assign_job.office_number" | translate }}: NA</li>
+      <li>{{ "job_link.assign_job.address" | translate }}: NA</li>
     </ul>
   </div>
   <form (ngSubmit)="submit()" [formGroup]="addForm">
     <div class="row">
       <div class="col-sm-6">
-        <span class="fs-5 fw-bold">Start Date and Time</span>
+        <span class="fs-5 fw-bold">{{
+          "job_link.assign_job.start_date_and_time" | translate
+        }}</span>
       </div>
       <div class="col-sm-6">
-        <span class="fs-5 fw-bold">End Date and Time</span>
+        <span class="fs-5 fw-bold">{{
+          "job_link.assign_job.end_date_and_time" | translate
+        }}</span>
       </div>
       <div class="col-sm-6">
         <!-- Select Start Date -->
         <div class="form-group mt-2">
-          <label>Select Start Date <span class="text-danger">*</span></label>
+          <label
+            >{{ "job_link.assign_job.start_date" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <input class="form-control" type="date" formControlName="startDate" />
           <!-- errors -->
           <div
@@ -48,7 +57,7 @@
               "
               class="text-danger"
             >
-              Start Date Is Required</small
+              {{ "job_link.assign_job.start_date_required" | translate }}</small
             >
           </div>
           <!-- errors -->
@@ -57,7 +66,10 @@
       <div class="col-sm-6">
         <!-- Duration By -->
         <div class="form-group mt-2">
-          <label>Duration By <span class="text-danger">*</span></label>
+          <label
+            >{{ "job_link.assign_job.duration_by" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <select
             class="form-select form-control"
             name="durationBy"
@@ -65,8 +77,12 @@
             formControlName="durationBy"
           >
             <option ngDefaultControl>{{ "select" | translate }}</option>
-            <option value="Hours">Hours</option>
-            <option value="Date">Date</option>
+            <option value="Hours">
+              {{ "job_link.assign_job.hours" | translate }}
+            </option>
+            <option value="Date">
+              {{ "job_link.assign_job.date" | translate }}
+            </option>
           </select>
         </div>
         <!-- errors -->
@@ -83,19 +99,21 @@
             "
             class="text-danger"
           >
-            Duration By Is Required</small
+            {{ "job_link.assign_job.duration_by_required" | translate }}</small
           >
         </div>
         <!-- errors -->
       </div>
       <div class="col-sm-6">
-        <div class="mt-2">Select Start Time (HH:MM)</div>
+        <div class="mt-2">
+          {{ "job_link.assign_job.start_time" | translate }}
+        </div>
       </div>
       <div class="col-sm-2">
-        <div class="mt-2">Duration(Hrs.)</div>
+        <div class="mt-2">{{ "job_link.assign_job.duration" | translate }}</div>
       </div>
       <div class="col-sm-4">
-        <div class="mt-2">Select End Date</div>
+        <div class="mt-2">{{ "job_link.assign_job.end_date" | translate }}</div>
       </div>
       <div class="col-sm-2">
         <!-- hours -->
@@ -122,7 +140,7 @@
             "
             class="text-danger"
           >
-            Hours Is Required</small
+            {{ "job_link.assign_job.hours_required" | translate }}</small
           >
         </div>
         <!-- errors -->
@@ -154,7 +172,7 @@
             "
             class="text-danger"
           >
-            Mintes Is Required</small
+            {{ "job_link.assign_job.mintes_required" | translate }}</small
           >
         </div>
         <!-- errors -->
@@ -186,7 +204,7 @@
             "
             class="text-danger"
           >
-            PM or AM Is Required</small
+            {{ "job_link.assign_job.pm_am_required" | translate }}</small
           >
         </div>
         <!-- errors -->
@@ -219,7 +237,7 @@
             "
             class="text-danger"
           >
-            Duration Is Required</small
+            {{ "job_link.assign_job.duration_required" | translate }}</small
           >
         </div>
         <!-- errors -->
@@ -241,12 +259,30 @@
             "
             class="text-danger"
           >
-            End Date Is Required</small
+            {{ "job_link.assign_job.end_date_required" | translate }}</small
           >
         </div>
         <!-- errors -->
       </div>
+      <div class="col-sm-6 mt-2">
+        <div class="form-group mt-2">
+          <label for="">{{
+            "job_link.assign_job.add_technicians" | translate
+          }}</label>
+          <app-custom-multi-select-dropdown
+            minWidth="100%"
+            height="44px"
+            title="Select Here"
+            [object]="true"
+            objectKey="name"
+            [data]="members"
+            [filter]="true"
+            (onAction)="getSelectedMembers($event)"
+          ></app-custom-multi-select-dropdown>
+        </div>
+      </div>
     </div>
+
     <!-- notes -->
     <div class="row">
       <div class="col-sm-12">
@@ -256,7 +292,7 @@
             [ngClass]="{ active: isNoteActive }"
             (click)="toggleNote()"
           >
-            <span>Notes</span>
+            <span>{{ "job_link.assign_job.notes" | translate }}</span>
             <i
               [hidden]="!isNoteActive"
               class="pi pi-angle-up text-secondary"
@@ -268,7 +304,9 @@
           </div>
           <div class="content" [hidden]="!isNoteActive">
             <div class="inspector-note">
-              <span>Inspector's Note</span>
+              <span>{{
+                "job_link.assign_job.inspectors_note" | translate
+              }}</span>
               <div
                 class="note-input"
                 [ngStyle]="{
@@ -279,11 +317,12 @@
                 <i class="pi pi-trash fs-5" (click)="removeInspectorNote()"></i>
               </div>
               <div class="text-danger mt-2" (click)="addInspectorNote()">
-                <i class="pi pi-plus"></i> Add Note
+                <i class="pi pi-plus"></i>
+                {{ "job_link.assign_job.add_note" | translate }}
               </div>
             </div>
             <div class="customer-note">
-              <span>Customer's Note</span>
+              <span>{{ "job_link.assign_job.customer_note" | translate }}</span>
               <div
                 class="note-input"
                 [ngStyle]="{
@@ -294,7 +333,8 @@
                 <i class="pi pi-trash fs-5" (click)="removeCustomerNote()"></i>
               </div>
               <div class="text-danger mt-2" (click)="addCustomerNote()">
-                <i class="pi pi-plus"></i> Add Note
+                <i class="pi pi-plus"></i>
+                {{ "job_link.assign_job.add_note" | translate }}
               </div>
             </div>
           </div>
@@ -305,13 +345,19 @@
     <!-- submit -->
     <div class="btns">
       <div class="delete-btn text-center">
-        <button type="submit" class="delete mt-4">Delete</button>
+        <div class="delete mt-4">
+          {{ "job_link.assign_job.delete" | translate }}
+        </div>
       </div>
       <div class="unassign-btn text-center">
-        <button type="submit" class="unassign mt-4">Unassign</button>
+        <div class="unassign mt-4">
+          {{ "job_link.assign_job.unassign" | translate }}
+        </div>
       </div>
       <div class="save-btn text-center">
-        <button type="submit" class="save mt-4">Save</button>
+        <button type="submit" class="save mt-4">
+          {{ "save" | translate }}
+        </button>
       </div>
     </div>
   </form>

@@ -2,11 +2,13 @@
   <!-- content page -->
   <div class="content">
     <!-- title -->
-    <h3 class="text-secondary">Test Customer Data - Bussniss Center</h3>
+    <h3 class="text-secondary">
+      Test Customer Data - {{ "customers.home.title" | translate }}
+    </h3>
     <!-- action -->
     <div class="actions">
       <div class="action">
-        <label>Sate Tax</label>
+        <label>{{ "customers.home.tax" | translate }}</label>
         <app-custom-dropdown title="%" minWidth="50px"></app-custom-dropdown>
       </div>
       <app-custom-dropdown
@@ -21,7 +23,9 @@
     <!-- tables -->
     <div class="inspections-tables">
       <div>
-        <h4 class="text-center text-secondary my-4">Inspections Due</h4>
+        <h4 class="text-center text-secondary my-4">
+          {{ "customers.home.inspections_due" | translate }}
+        </h4>
         <app-customer-home-table
           [data]="inspectionsDue"
           [dataKeys]="inspectionsDueKeys"
@@ -29,7 +33,9 @@
         ></app-customer-home-table>
       </div>
       <div>
-        <h4 class="text-center text-secondary my-4">Inspections Done</h4>
+        <h4 class="text-center text-secondary my-4">
+          {{ "customers.home.inspections_done" | translate }}
+        </h4>
         <app-customer-home-table
           [data]="inspectionsDone"
           [dataKeys]="inspectionsDoneKeys"

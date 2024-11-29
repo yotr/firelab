@@ -4,7 +4,9 @@
     class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
     [dir]="'dir' | translate"
   >
-    <app-breadcrumb title="Customers"></app-breadcrumb>
+    <app-breadcrumb
+      [title]="'customers.all_customers.title' | translate"
+    ></app-breadcrumb>
     <div routerLink="/modules/customers/add">
       <a
         class="btn add-btn d-flex align-items-center {{
@@ -12,7 +14,7 @@
         }} {{ currentTheme?.colorSchema?.color }}"
       >
         <i class="pi pi-plus d-none d-sm-block"></i>
-        Add Customer
+        {{ "customers.all_customers.add_btn" | translate }}
       </a>
     </div>
   </div>
@@ -27,7 +29,7 @@
     [loading]="loading"
     [currentTheme]="currentTheme"
     deleteModalTitle="Customer"
-    tableTitle="Customers Table"
+    [tableTitle]="'customers.all_customers.table_title' | translate"
     editPagePath="/modules/customers/edit"
   ></app-customers-module-table>
 </div>
@@ -45,7 +47,7 @@
       role="button"
     >
       <i class="pi pi-plus d-none d-sm-block"></i>
-      Import Customers
+      {{ "customers.all_customers.import_btn" | translate }}
     </a>
   </div>
 </div>

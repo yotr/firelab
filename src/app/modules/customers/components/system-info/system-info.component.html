@@ -3,7 +3,8 @@
   <div class="content">
     <!-- title -->
     <h3 class="text-secondary">
-      System Information <i class="pi pi-info-circle text-danger fs-5 mx-2"></i>
+      {{ "customers.system_info.title" | translate }}
+      <i class="pi pi-info-circle text-danger fs-5 mx-2"></i>
     </h3>
 
     <!-- table -->
@@ -18,13 +19,15 @@
           }} {{ currentTheme?.colorSchema?.color }}"
         >
           <i class="pi pi-plus d-none d-sm-block"></i>
-          Add System/Device
+          {{ "customers.system_info.add_btn" | translate }}
         </a>
       </div>
       <app-system-info-table
         [data]="data"
+        [totalItems]="totalItemsCount"
         [dataKeys]="dataKeys"
         [loading]="loading"
+        editPagePath="/modules/customers/systemInfo/edit"
       ></app-system-info-table>
     </div>
   </div>
