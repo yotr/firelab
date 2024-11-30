@@ -1,0 +1,53 @@
+<!-- notes -->
+<div class="building-notes mt-4">
+  <div class="note">
+    <div class="title">
+      <div class="label">
+        Inspector Note 1
+      </div>
+      <div class="actions">
+        <i class="pi pi-pencil text-danger mx-2 fs-5" ></i>
+        <i
+          class="pi pi-trash mx-2 fs-5"
+          data-bs-toggle="modal"
+          data-bs-target="#delete"
+          (click)="deleteId = 1"
+        ></i>
+      </div>
+    </div>
+    <div class="note-input">
+      <textarea
+        rows="3"
+        placeholder="Planning and Design: Create architectural plans, secure necessar permits, and finalize the design of the house."
+        readonly
+      ></textarea>
+    </div>
+  </div>
+  <div class="note">
+    <div class="title">
+      <div class="label">
+        Inspector Note 2
+      </div>
+      <div class="actions">
+        <i class="pi pi-pencil text-danger mx-2 fs-5"></i>
+        <i class="pi pi-trash mx-2 fs-5"></i>
+      </div>
+    </div>
+    <div class="note-input">
+      <textarea
+        rows="3"
+        placeholder="Planning and Design: Create architectural plans, secure necessary permits, and finalize the design of the house."
+        readonly
+      ></textarea>
+    </div>
+  </div>
+</div>
+
+
+<!-- delete modal -->
+<app-delete-modal
+  [title]="'customers.building_info.title' | translate"
+  [currentTheme]="currentTheme"
+  (onDelete)="deleteItem()"
+></app-delete-modal>
+<!--/ delete modal -->

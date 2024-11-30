@@ -22,6 +22,17 @@ import { LoadingSectionComponent } from '../components/loading-section/loading-s
 import { CustomDropdownComponent } from '../components/custom-dropdown/custom-dropdown.component';
 import { ClickOutsideDirective } from '../directives/clickOutside.directive';
 import { CustomMultiSelectDropdownComponent } from '../components/custom-multi-select-dropdown/custom-multi-select-dropdown.component';
+import { ImagesComponent } from '../modules/customers/components/images/images.component';
+import { AddImageModalComponent } from '../modules/customers/components/images/add-image-modal/add-image-modal.component';
+import { ViewImageModalComponent } from '../modules/customers/components/images/view-image-modal/view-image-modal.component';
+import { CustomerReportsSidebarComponent } from '../modules/customers/components/customer-reports-sidebar/customer-reports-sidebar.component';
+import { BuildingInfoComponent } from '../modules/customers/components/building-info/building-info.component';
+import { AddBuildingInfoModalComponent } from '../modules/customers/components/building-info/components/add-building-info-modal/add-building-info-modal.component';
+import { EditBuildingInfoModalComponent } from '../modules/customers/components/building-info/components/edit-building-info-modal/edit-building-info-modal.component';
+import { SystemInfoTableComponent } from '../modules/customers/components/system-info/components/system-info-table/system-info-table.component';
+import { SystemInfoComponent } from '../modules/customers/components/system-info/system-info.component';
+import { AddSystemInfoComponent } from '../modules/customers/components/system-info/components/add-system-info/add-system-info.component';
+import { EditSystemInfoComponent } from '../modules/customers/components/system-info/components/edit-system-info/edit-system-info.component';
 
 export function httpTranslateLoaderfactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -46,6 +57,18 @@ export function httpTranslateLoaderfactory(http: HttpClient) {
     LoadingSectionComponent,
     CustomDropdownComponent,
     CustomMultiSelectDropdownComponent,
+    // multi used in other components as well
+    ImagesComponent,
+    AddImageModalComponent,
+    ViewImageModalComponent,
+    CustomerReportsSidebarComponent,
+    BuildingInfoComponent,
+    AddBuildingInfoModalComponent,
+    EditBuildingInfoModalComponent,
+    SystemInfoComponent,
+    SystemInfoTableComponent,
+    AddSystemInfoComponent,
+    EditSystemInfoComponent,
   ],
   imports: [
     CommonModule,
@@ -90,6 +113,18 @@ export function httpTranslateLoaderfactory(http: HttpClient) {
     LoadingSectionComponent,
     CustomDropdownComponent,
     CustomMultiSelectDropdownComponent,
+    // multi used in other components as well
+    ImagesComponent,
+    AddImageModalComponent,
+    ViewImageModalComponent,
+    CustomerReportsSidebarComponent,
+    BuildingInfoComponent,
+    AddBuildingInfoModalComponent,
+    EditBuildingInfoModalComponent,
+    SystemInfoComponent,
+    SystemInfoTableComponent,
+    AddSystemInfoComponent,
+    EditSystemInfoComponent,
   ],
   providers: [HttpClient],
 })

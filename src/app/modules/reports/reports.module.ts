@@ -20,6 +20,10 @@ import { ControlPanelComponent } from './components/new-report/components/report
 import { AddPanelQuestionComponent } from './components/new-report/components/report-tabs/components/add-panel-question/add-panel-question.component';
 import { DevicesTabComponent } from './components/new-report/components/report-tabs/components/devices-tab/devices-tab.component';
 import { FinishCustomQuestionsComponent } from './components/new-report/components/report-tabs/components/finish-custom-questions/finish-custom-questions.component';
+import { AddNoteModalComponent } from './components/new-report/components/add-note-modal/add-note-modal.component';
+import { CancelReportComponent } from './components/new-report/components/cancel-report/cancel-report.component';
+import { AddReportDeviceModalComponent } from './components/new-report/components/add-report-device-modal/add-report-device-modal.component';
+import { NotesTabComponent } from './components/new-report/components/report-tabs/components/notes-tab/notes-tab.component';
 
 @NgModule({
   declarations: [
@@ -39,8 +43,12 @@ import { FinishCustomQuestionsComponent } from './components/new-report/componen
     ControlPanelComponent,
     AddPanelQuestionComponent,
     DevicesTabComponent,
-    FinishCustomQuestionsComponent
+    FinishCustomQuestionsComponent,
+    AddNoteModalComponent,
+    CancelReportComponent,
+    AddReportDeviceModalComponent,
+    NotesTabComponent
   ],
-  imports: [CommonModule, ReportsRoutingModule, SharedModule],
+  imports: [CommonModule, SharedModule, ReportsRoutingModule],
 })
 export class ReportsModule {}

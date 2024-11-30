@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer-reports-sidebar',
@@ -11,7 +11,7 @@ export class CustomerReportsSidebarComponent implements OnInit {
 
   activeReport: string = '';
 
-  constructor(private activatedRoute: ActivatedRoute) {
+  constructor(private activatedRoute: ActivatedRoute, private router: Router) {
     //get id
     this.activatedRoute.queryParamMap.subscribe((paramMap: Params) => {
       if (paramMap['get']('report')) {
@@ -51,9 +51,14 @@ export class CustomerReportsSidebarComponent implements OnInit {
         name: 'Testing',
         icon: 'pi-exclamation-triangle',
       },
-      
     ];
   }
 
   ngOnInit() {}
+
+  navigate(report: any) {
+    this.router.navigate(['/modules/customers/hoodSystem'], {
+      queryParams: { report: report?.name },
+    });
+  }
 }

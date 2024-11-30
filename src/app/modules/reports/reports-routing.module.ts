@@ -6,6 +6,8 @@ import { CompletedReportsComponent } from './components/completed-reports/comple
 import { IncompletedReportsComponent } from './components/incompleted-reports/incompleted-reports.component';
 import { ReportClientDetailsComponent } from './components/new-report/components/report-client-details/report-client-details.component';
 import { ReportDetailsComponent } from './components/new-report/components/report-details/report-details.component';
+import { SharedModule } from 'src/app/shared/shared.module';
+import { AddReportDeviceModalComponent } from './components/new-report/components/add-report-device-modal/add-report-device-modal.component';
 
 const routes: Routes = [
   {
@@ -28,10 +30,14 @@ const routes: Routes = [
     path: 'reportDetail/:id',
     component: ReportDetailsComponent,
   },
+  {
+    path: 'addReportDevice/:id',
+    component: AddReportDeviceModalComponent,
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routes), SharedModule],
   exports: [RouterModule],
 })
 export class ReportsRoutingModule {}

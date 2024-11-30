@@ -1,0 +1,152 @@
+<div class="add-page">
+  <!-- Page Header -->
+  <div
+    class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
+    [dir]="'dir' | translate"
+  >
+    <!-- breadcrumb -->
+    <app-breadcrumb title="Add Device"></app-breadcrumb>
+  </div>
+  <!-- /Page Header -->
+
+  <app-back-button></app-back-button>
+  <!-- content -->
+  <form (ngSubmit)="submit()" [formGroup]="addForm">
+    <div class="row">
+      <div class="col-sm-6">
+        <!-- Device Type -->
+        <div class="form-group mt-2">
+          <label>
+            Device Type
+            <span class="text-danger">*</span></label
+          >
+          <select class="form-select form-control" formControlName="device">
+            <option disabled selected>
+              {{ "select" | translate }}
+            </option>
+            <ng-container *ngFor="let type of types">
+              <option [value]="type?.id">
+                {{ type?.name }}
+              </option>
+            </ng-container>
+            <option *ngIf="!typesLoading && types.length == 0" disabled>
+              No Data Yet
+            </option>
+          </select>
+          <!-- errors -->
+          <div
+            *ngIf="
+              addForm.get('device')?.invalid && addForm.get('device')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('device')?.invalid && addForm.get('device')?.touched
+              "
+              class="text-danger"
+            >
+              Device Type is requierd
+            </small>
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <!-- Device Floor -->
+        <div class="form-group mt-2">
+          <label> Device Floor <span class="text-danger">*</span></label>
+          <input class="form-control" type="text" formControlName="floor" />
+          <!-- errors -->
+          <div
+            *ngIf="
+              addForm.get('floor')?.invalid && addForm.get('floor')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('floor')?.invalid && addForm.get('floor')?.touched
+              "
+              class="text-danger"
+            >
+              Device Floor is requierd</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <!-- address -->
+        <div class="form-group mt-2">
+          <label> Address <span class="text-danger">*</span></label>
+          <input class="form-control" type="text" formControlName="address" />
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <!-- location -->
+        <div class="form-group mt-2">
+          <label> Location <span class="text-danger">*</span></label>
+          <input class="form-control" type="text" formControlName="location" />
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <!-- make -->
+        <div class="form-group mt-2">
+          <label> Make <span class="text-danger">*</span></label>
+          <input class="form-control" type="text" formControlName="make" />
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <!-- modal -->
+        <div class="form-group mt-2">
+          <label> Modal <span class="text-danger">*</span></label>
+          <input class="form-control" type="text" formControlName="modal" />
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <!-- status -->
+        <div class="form-group mt-2">
+          <label> status <span class="text-danger">*</span></label>
+          <!-- pass or fail or n/a answer -->
+          <div class="answers-btns mt-2">
+            <button
+              [ngClass]="{ active: activeStatus == true }"
+              (click)="setStatus(true)"
+            >
+              Pass
+            </button>
+            <button
+              [ngClass]="{ active: activeStatus == false }"
+              (click)="setStatus(false)"
+            >
+              Fail
+            </button>
+            <button
+              [ngClass]="{ active: activeStatus == null }"
+              (click)="setStatus(null)"
+            >
+              N/A
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <!-- Describe Job -->
+        <div class="form-group mt-2">
+          <label>Notes <span class="text-danger">*</span></label>
+          <textarea
+            class="form-control h-auto"
+            formControlName="note"
+            rows="2"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- submit -->
+    <div class="save-btn text-center">
+      <button type="submit" [disabled]="addForm.invalid" class="save mt-4">
+        Save
+      </button>
+    </div>
+  </form>
+</div>

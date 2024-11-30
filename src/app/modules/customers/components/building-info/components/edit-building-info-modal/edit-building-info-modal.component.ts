@@ -56,11 +56,12 @@ export class EditBuildingInfoModalComponent implements OnInit {
         this.customerId = value;
       }
     });
-    this.setActiveMenu();
-    // set querys to current page
-    this.router.navigate([], {
-      queryParams: { customerId: this.customerId },
-    });
+      this.setActiveMenu();
+
+      // set querys to current page
+      this.router.navigate([], {
+        queryParams: { customerId: this.customerId },
+      });
   }
   navigationHandler() {
     this.router.events.subscribe((event: Event) => {

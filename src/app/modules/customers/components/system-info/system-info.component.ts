@@ -1,4 +1,4 @@
-import { AfterViewChecked, Component, OnInit } from '@angular/core';
+import { AfterViewChecked, Component, Input, OnInit } from '@angular/core';
 import {
   ActivatedRoute,
   Event,
@@ -17,6 +17,7 @@ import { ThemeService } from 'src/app/services/theme/theme.service';
   styleUrls: ['./system-info.component.css'],
 })
 export class SystemInfoComponent implements OnInit, AfterViewChecked {
+  @Input() isReportsActive: boolean = true;
   // current language
   currentLanguage: any = localStorage.getItem('lang');
   currentTheme: any;
@@ -34,6 +35,7 @@ export class SystemInfoComponent implements OnInit, AfterViewChecked {
   dataKeys: any[] = [];
 
   customerId: any = null;
+  section: any = null;
 
   constructor(
     private themeService: ThemeService,
@@ -50,6 +52,9 @@ export class SystemInfoComponent implements OnInit, AfterViewChecked {
         this.customerId = paramMap['get']('customerId');
         // activate current customer id so we can get in other pages after refresh
         this.sidebarService.sendCurrentCustomer(paramMap['get']('customerId'));
+      }
+      if (paramMap['get']('section')) {
+        this.section = paramMap['get']('section');
       }
     });
 
@@ -123,11 +128,14 @@ export class SystemInfoComponent implements OnInit, AfterViewChecked {
         this.customerId = value;
       }
     });
-    this.setActiveMenu();
-    // set querys to current page
-    this.router.navigate([], {
-      queryParams: { customerId: this.customerId },
-    });
+    if (this.section == null) {
+      this.setActiveMenu();
+
+      // set querys to current page
+      this.router.navigate([], {
+        queryParams: { customerId: this.customerId },
+      });
+    }
   }
   navigationHandler() {
     this.router.events.subscribe((event: Event) => {

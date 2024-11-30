@@ -7,11 +7,19 @@
       <div class="btns">
         <!-- New -->
         <div class="add-report-btn">
-          <div class="add"><i class="pi pi-plus"></i> Add New Report</div>
+          <div class="add" routerLink="/modules/reports/newReport">
+            <i class="pi pi-plus"></i> Add New Report
+          </div>
         </div>
         <!-- Cancel -->
         <div class="cancel-report-btn">
-          <div class="cancel">Cancel Report</div>
+          <div
+            class="cancel"
+            data-bs-toggle="modal"
+            data-bs-target="#cancel_report_modal"
+          >
+            Cancel Report
+          </div>
         </div>
       </div>
     </div>
@@ -23,10 +31,50 @@
           <img src="/assets/img/user.jpg" alt="profile" />
           <div class="title">
             <h5 class="m-0 mb-2">Customer</h5>
-            <div>
-              <i class="pi pi-building fs-4 mx-1 text-info" role="button"></i>
+            <div class="d-flex">
+              <!-- building/images/system information dropdown -->
+
+              <div
+                class="nav-item dropdown has-arrow main-drop"
+                [dir]="'dir' | translate"
+              >
+                <div
+                  class="dropdown-toggle nav-link h-auto"
+                  data-bs-toggle="dropdown"
+                  role="button"
+                >
+                  <i
+                    class="pi pi-building fs-4 mx-1 text-info"
+                    role="button"
+                  ></i>
+                </div>
+                <div class="dropdown-menu">
+                  <a
+                    class="dropdown-item"
+                    role="button"
+                    (click)="setActiveSection('building')"
+                    >Building Information</a
+                  >
+                  <a
+                    class="dropdown-item"
+                    role="button"
+                    (click)="setActiveSection('system')"
+                    >System Information</a
+                  >
+                  <a
+                    class="dropdown-item"
+                    role="button"
+                    (click)="setActiveSection('images')"
+                    >Images</a
+                  >
+                </div>
+              </div>
+              <!-- building/images/system information dropdown -->
+
               <i class="pi pi-camera fs-4 mx-1" role="button"></i>
               <i
+                data-bs-toggle="modal"
+                data-bs-target="#add_note_modal"
                 class="pi pi-pen-to-square fs-4 mx-1 text-danger"
                 role="button"
               ></i>
@@ -63,10 +111,51 @@
     </div>
 
     <!-- report tabs -->
-    <app-report-tabs></app-report-tabs>
+    <div *ngIf="activeSection == 'tabs'">
+      <app-report-tabs></app-report-tabs>
+    </div>
+    <!-- customer system informaion -->
+    <div class="mt-4" *ngIf="activeSection == 'system'">
+      <!-- back -->
+      <i
+        class="pi pi-angle-left text-danger fs-4 fw-bold"
+        role="button"
+        (click)="setActiveSection('system')"
+      >
+      </i>
+      <app-system-info [isReportsActive]="false"></app-system-info>
+    </div>
+    <!-- customer building informaion -->
+    <div class="mt-4" *ngIf="activeSection == 'building'">
+      <!-- back -->
+      <i
+        class="pi pi-angle-left text-danger fs-4 fw-bold"
+        role="button"
+        (click)="setActiveSection('tabs')"
+      ></i>
+      <app-building-info [isReportsActive]="false"></app-building-info>
+    </div>
+    <!-- customer images -->
+    <div class="mt-4" *ngIf="activeSection == 'images'">
+      <!-- back -->
+      <i
+        class="pi pi-angle-left text-danger fs-4 fw-bold"
+        role="button"
+        (click)="setActiveSection('tabs')"
+      ></i>
+      <app-images [isReportsActive]="false"></app-images>
+    </div>
   </div>
 </div>
 
 <!-- start report modal -->
 <app-start-report-modal></app-start-report-modal>
 <!-- /start report modal -->
+
+<!-- add notes modal -->
+<app-add-note-modal></app-add-note-modal>
+<!-- /add notes modal -->
+
+<!-- cancel report -->
+<app-cancel-report></app-cancel-report>
+<!-- /cancel report -->

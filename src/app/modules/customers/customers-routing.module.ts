@@ -25,6 +25,7 @@ import { CustomerPortalComponent } from './components/customer-portal/customer-p
 import { AutoEmailComponent } from './components/auto-email/auto-email.component';
 import { AddJobComponent } from './components/add-job/add-job.component';
 import { HoodSystemComponent } from './components/hood-system/hood-system.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 const routes: Routes = [
   {
@@ -128,7 +129,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routes), SharedModule],
   exports: [RouterModule],
 })
 export class CustomersRoutingModule {}

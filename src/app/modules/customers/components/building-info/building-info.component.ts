@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import {
   ActivatedRoute,
   Event,
@@ -16,12 +16,15 @@ declare const $: any;
   styleUrls: ['./building-info.component.css'],
 })
 export class BuildingInfoComponent implements OnInit {
+  @Input() isReportsActive: boolean = true;
   currentTheme: any;
   deleteId: any = null;
   editId: any = null;
   updatedData: any = null;
 
   customerId: any = null;
+
+  section: any = null;
 
   constructor(
     private router: Router,
@@ -35,6 +38,9 @@ export class BuildingInfoComponent implements OnInit {
         this.customerId = paramMap['get']('customerId');
         // activate current customer id so we can get in other pages after refresh
         this.sidebarService.sendCurrentCustomer(paramMap['get']('customerId'));
+      }
+      if (paramMap['get']('section')) {
+        this.section = paramMap['get']('section');
       }
     });
   }
@@ -59,11 +65,14 @@ export class BuildingInfoComponent implements OnInit {
         this.customerId = value;
       }
     });
-    this.setActiveMenu();
-    // set querys to current page
-    this.router.navigate([], {
-      queryParams: { customerId: this.customerId },
-    });
+    if (this.section == null) {
+      this.setActiveMenu();
+
+      // set querys to current page
+      this.router.navigate([], {
+        queryParams: { customerId: this.customerId },
+      });
+    }
   }
   navigationHandler() {
     this.router.events.subscribe((event: Event) => {

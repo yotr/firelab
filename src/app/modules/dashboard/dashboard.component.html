@@ -11,4 +11,37 @@
       <div>Revenue of 2024: <span class="fw-bold"> $0</span></div>
     </div>
   </div>
+  <div class="filters mt-4">
+    <p class="m-0 text-muted">Due Jobs thus month</p>
+    <p class="m-0 text-muted">
+      Selected Month: <span class="fw-bold">{{ currentMonth }}</span>
+    </p>
+    <div class="filters-dropdowns">
+      <!-- months -->
+      <app-custom-dropdown
+        title="Month"
+        minWidth="155px"
+        [filter]="true"
+        [object]="false"
+        [data]="months"
+      ></app-custom-dropdown>
+      <!-- years -->
+      <app-custom-dropdown
+        title="Year"
+        minWidth="100%"
+        [filter]="true"
+        [object]="false"
+        [data]="years"
+      ></app-custom-dropdown>
+    </div>
+  </div>
+  <div class="boxs-charts">
+    <div class="jobs-due">one</div>
+    <div class="other-jobs">
+      <div class="jobs-invoices">two</div>
+      <div class="jobs-completed">three</div>
+      <div class="project-revenue">four</div>
+      <div class="jobs-scheduled">five</div>
+    </div>
+  </div>
 </div>

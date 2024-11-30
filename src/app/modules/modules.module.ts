@@ -51,6 +51,7 @@ import { JobListComponent } from './job-link/job-list/job-list.component';
 import { ChooseModalComponent } from './job-link/choose-modal/choose-modal.component';
 import { AssignJobComponent } from './job-link/assign-job/assign-job.component';
 import { EditAssignedJobComponent } from './job-link/edit-assigned-job/edit-assigned-job.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { EditAssignedJobComponent } from './job-link/edit-assigned-job/edit-assi
     HeaderMessagesComponent,
     UserDropdownComponent,
     ThemeSettingsComponent,
+    DashboardComponent,
     ContractComponent,
     ContractModuleTableComponent,
     AddContractComponent,

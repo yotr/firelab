@@ -1,14 +1,15 @@
 <div class="customer-reports-sidebar" [dir]="'dir' | translate">
   <div class="reports-sidebar-header">
-    <h4 class="m-0">{{'customers.all_customers.reports_sidebar.title' | translate}}</h4>
+    <h4 class="m-0">
+      {{ "customers.all_customers.reports_sidebar.title" | translate }}
+    </h4>
   </div>
   <div class="reports-types">
     <ng-container *ngFor="let report of reports">
       <div
         class="report-type"
         [ngClass]="{ active: activeReport == report?.name }"
-        routerLink="/modules/customers/hoodSystem"
-        [queryParams]="{ report: report?.name }"
+        (click)="navigate(report)"
       >
         <i class="pi + {{ report?.icon }} "></i>
         <span>{{ report?.name }}</span>

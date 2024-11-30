@@ -1,0 +1,34 @@
+<div class="modal custom-modal fade" id="add_note_modal" role="dialog">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="form-header">
+          <h3>Note</h3>
+          <p>Notes *</p>
+        </div>
+        <textarea
+          class="form-control h-auto"
+          name="notes"
+          id="notes"
+          rows="4"
+        ></textarea>
+        <div class="modal-btn">
+          <div class="row">
+            <div class="col-6">
+              <!-- New -->
+              <div class="new-btn">
+                <div class="new mt-4" (click)="saveAndNew()">Save and New</div>
+              </div>
+            </div>
+            <div class="col-6">
+              <!-- Copy -->
+              <div class="save-btn">
+                <div class="save mt-4" (click)="save()">Save</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="modal custom-modal fade" id="cancel_report_modal" role="dialog">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="form-header">
+          <h3>Cancel Report</h3>
+          <p class="m-0 text-center">
+            Canceling the report will permanently delete any data you have
+            entered.
+          </p>
+          <p class="m-0 text-center">
+            Would you like to proceed with cancellation?
+          </p>
+        </div>
+        <div class="modal-btn">
+          <div class="row">
+            <div class="col-6">
+              <!-- New -->
+              <div class="yes-btn">
+                <div class="yes mt-4" (click)="yes()">yes</div>
+              </div>
+            </div>
+            <div class="col-6">
+              <!-- Copy -->
+              <div class="no-btn">
+                <div class="no mt-4" (click)="no()">no</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

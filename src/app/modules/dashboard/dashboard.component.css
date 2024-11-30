@@ -27,3 +27,47 @@
   height: 20px;
   background-color: var(--main-color);
 }
+
+.filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.filters-dropdowns {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.boxs-charts {
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+}
+.jobs-due {
+  background-color: white;
+  height: 400px;
+  width: 100%;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+
+.other-jobs {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+.other-jobs div {
+  width: 200px;
+  background-color: white;
+}

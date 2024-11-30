@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgxPrintService, PrintOptions } from 'ngx-print';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { environment } from 'src/environments/environment';
@@ -60,7 +61,8 @@ export class SystemInfoTableComponent implements OnInit {
   constructor(
     private printService: NgxPrintService,
     // private permissionsService: PermissionsService,
-    private auth: AuthService
+    private auth: AuthService,
+    private router: Router
   ) {
     this.api = environment.API;
   }
@@ -193,5 +195,8 @@ export class SystemInfoTableComponent implements OnInit {
     //   'data',
     //   action
     // );
+  }
+  navigate(path: any, id: any) {
+    this.router.navigate([path, id]);
   }
 }
