@@ -31,6 +31,12 @@
     deleteModalTitle="Customer"
     [tableTitle]="'customers.all_customers.table_title' | translate"
     editPagePath="/modules/customers/edit"
+    (onPageChange)="onPaginate($event)"
+    (onDelete)="delete($event)"
+    (onSearch)="search($event)"
+    (onFilter)="handleFiltersSubmit($event)"
+    (onReset)="resetData()"
+    (onStatusChange)="onStatusChange($event)"
   ></app-customers-module-table>
 </div>
 <div

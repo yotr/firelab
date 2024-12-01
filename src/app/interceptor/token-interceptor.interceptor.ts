@@ -17,7 +17,7 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     // return next.handle(request);
     // Retrieve the token from a service or storage
-    let user: any = localStorage.getItem('user');
+    let user: any = localStorage.getItem('firelab-loginData');
     const token: string = JSON.parse(user)?.token;
     // console.log(token);
     // const token = 'YOUR_ACCESS_TOKEN_HERE';

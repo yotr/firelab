@@ -196,8 +196,8 @@ export class CustomersModuleTableComponent implements OnInit {
   // ================== \\  Functions for scpcific tables  \\ ==================
 
   //change status
-  onTableStatusChange(status: any, client: any) {
-    this.onStatusChange.emit({ status, client });
+  onTableStatusChange(event: any, id: any) {
+    this.onStatusChange.emit({ status: event?.id, id });
   }
 
   printAll() {

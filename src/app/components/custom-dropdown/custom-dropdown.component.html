@@ -40,9 +40,9 @@
         <div
           *ngIf="object"
           class="item text-secondary"
-          (click)="action(value?.id, value[objectKey])"
+          (click)="action(value, value[objectKey])"
         >
-          {{ translated ? (value[objectKey] | translate) : value[objectKey] }}
+          {{ translated ? (value[objectKey] | translate) : value[objectKey]  }}
         </div>
       </ng-container>
     </div>

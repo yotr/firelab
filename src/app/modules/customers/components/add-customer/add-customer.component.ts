@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
+import { ApiService } from 'src/app/services/api/api.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { LanguageService } from 'src/app/services/language/language.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
 
 @Component({
@@ -13,27 +16,24 @@ import { ThemeService } from 'src/app/services/theme/theme.service';
 export class AddCustomerComponent implements OnInit {
   addForm: FormGroup;
   loading: boolean = true;
-  // employees: any[] = [];
-  // employeesLoading: boolean = true;
-  // clients: any[] = [];
-  // clientsLoading: boolean = true;
-  defaultImgUrl: any = 'assets/img/camera.png';
   currentTheme: any;
+  currentLanguage: any = localStorage.getItem('lang');
   selectUserType: string = 'normal';
-
   currentUser: any = null;
+  sameAsCustomer: boolean = false;
   // roles
   roles: any[] = [];
   rolesLoading: boolean = true;
-  // defaultPermissions: Permission[];
   uploading: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
     private themeService: ThemeService,
+    private languageService: LanguageService,
+    private translateService: TranslateService,
     private toastr: ToastrService,
     private router: Router,
-    // private apiService: ApiService,
+    private apiService: ApiService,
     // private permissionsService: PermissionsService,
     private auth: AuthService
   ) {
@@ -41,17 +41,17 @@ export class AddCustomerComponent implements OnInit {
     this.addForm = this.formBuilder.group(
       {
         // customer
-        customerBusinessName: ['', [Validators.required]],
-        customerContactName: [''],
-        customerEmail: ['', [Validators.email]],
-        customerCellPhone: [''],
-        customerOfficePhone: [''],
-        customerContactFaxNumber: [''],
-        customerId: [''],
-        customerAddress1: [''],
-        customerAddress2: [''],
-        customerPostalCode: [''],
-        customerCity: [''],
+        businessName: ['', [Validators.required]],
+        contactName: [''],
+        email: ['', [Validators.email]],
+        cellPhone: [''],
+        officePhone: [''],
+        contactFaxNumber: [''],
+        idAccount: [''],
+        address1: [''],
+        address2: [''],
+        postalCode: [''],
+        city: [''],
         // owner
         ownerBusinessName: ['', [Validators.required]],
         ownerContactName: [''],
@@ -59,7 +59,6 @@ export class AddCustomerComponent implements OnInit {
         ownerCellPhone: [''],
         ownerOfficePhone: [''],
         ownerContactFaxNumber: [''],
-        ownerId: [''],
         ownerAddress1: [''],
         ownerAddress2: [''],
         ownerPostalCode: [''],
@@ -72,12 +71,22 @@ export class AddCustomerComponent implements OnInit {
 
   ngOnInit() {
     this.getTheme();
+    this.getCurrentLanguage();
     this.getCurrentActiveUser();
   }
   // get theme from localStorage
   getTheme() {
     this.themeService.getCurrentTheme().subscribe((theme) => {
       this.currentTheme = JSON.parse(theme);
+    });
+  }
+
+  getCurrentLanguage() {
+    // get language from localStorage
+    this.languageService.getCurrentLanguage().subscribe((language: any) => {
+      this.currentLanguage = language;
+      // turn on current language (trandlate)
+      this.translateService.use(this.currentLanguage);
     });
   }
 
@@ -93,77 +102,106 @@ export class AddCustomerComponent implements OnInit {
     }
   }
 
+  setOwnerData(event: any) {
+    let checked = event.target.checked;
+    this.sameAsCustomer = checked;
+    if (checked) {
+      this.addForm.patchValue({
+        ownerBusinessName: this.addForm.get('businessName')?.value,
+        ownerContactName: this.addForm.get('contactName')?.value,
+        ownerEmail: this.addForm.get('email')?.value,
+        ownerCellPhone: this.addForm.get('cellPhone')?.value,
+        ownerOfficePhone: this.addForm.get('officePhone')?.value,
+        ownerContactFaxNumber: this.addForm.get('contactFaxNumber')?.value,
+        ownerAddress1: this.addForm.get('address1')?.value,
+        ownerAddress2: this.addForm.get('address2')?.value,
+        ownerPostalCode: this.addForm.get('postalCode')?.value,
+        ownerCity: this.addForm.get('city')?.value,
+      });
+    } else {
+      this.addForm.patchValue({
+        ownerBusinessName: '',
+        ownerContactName: '',
+        ownerEmail: '',
+        ownerCellPhone: '',
+        ownerOfficePhone: '',
+        ownerContactFaxNumber: '',
+        ownerAddress1: '',
+        ownerAddress2: '',
+        ownerPostalCode: '',
+        ownerCity: '',
+      });
+    }
+  }
+  fillOwnerData() {
+    if (this.sameAsCustomer) {
+      this.addForm.patchValue({
+        ownerBusinessName: this.addForm.get('businessName')?.value,
+        ownerContactName: this.addForm.get('contactName')?.value,
+        ownerEmail: this.addForm.get('email')?.value,
+        ownerCellPhone: this.addForm.get('cellPhone')?.value,
+        ownerOfficePhone: this.addForm.get('officePhone')?.value,
+        ownerContactFaxNumber: this.addForm.get('contactFaxNumber')?.value,
+        ownerAddress1: this.addForm.get('address1')?.value,
+        ownerAddress2: this.addForm.get('address2')?.value,
+        ownerPostalCode: this.addForm.get('postalCode')?.value,
+        ownerCity: this.addForm.get('city')?.value,
+      });
+    } else {
+      this.addForm.patchValue({
+        ownerBusinessName: '',
+        ownerContactName: '',
+        ownerEmail: '',
+        ownerCellPhone: '',
+        ownerOfficePhone: '',
+        ownerContactFaxNumber: '',
+        ownerAddress1: '',
+        ownerAddress2: '',
+        ownerPostalCode: '',
+        ownerCity: '',
+      });
+    }
+  }
+
   //add a new
   submit() {
-    let date = new Date();
-    // add the new date
-    // this.addUserForm.patchValue({
-    //   date: date.toLocaleDateString('en-CA'),
-    // });
-
-    // // add to server
-    // if (this.addUserForm.valid) {
-    //   let formData: FormData = new FormData();
-    //   formData.append('firstName', this.addUserForm.get('firstName').value);
-    //   formData.append('lastName', this.addUserForm.get('lastName').value);
-    //   formData.append('userName', this.addUserForm.get('userName').value);
-    //   formData.append('email', this.addUserForm.get('email').value);
-    //   formData.append('password', this.addUserForm.get('password').value);
-    //   formData.append(
-    //     'confirmPassword',
-    //     this.addUserForm.get('confirmPassword').value
-    //   );
-    //   formData.append('phone', this.addUserForm.get('phone').value);
-    //   formData.append('role', this.addUserForm.get('role').value);
-    //   // formData.append('company', this.addUserForm.get('company').value);
-    //   if (this.addUserForm.get('employeeId').value !== null) {
-    //     formData.append('employeeId', this.addUserForm.get('employeeId').value);
-    //   }
-    //   if (this.addUserForm.get('clientId').value !== null) {
-    //     formData.append('clientId', this.addUserForm.get('clientId').value);
-    //   }
-
-    //   formData.append('date', this.addUserForm.get('date').value);
-    //   // formData.append('permissions', JSON.stringify(this.defaultPermissions));
-    //   if (this.addUserForm.get('image').value != null) {
-    //     formData.append('image', this.addUserForm.get('image').value);
-    //   }
-
-    //   let added = false;
-    //   this.uploading = true;
-    //   // send the data to server
-    //   this.apiService.addMultiData('users/create', formData).subscribe({
-    //     next: (data) => {
-    //       this.uploading = false;
-    //       added = true;
-    //     },
-    //     error: (error) => {
-    //       this.uploading = false;
-    //       this.toastr.error('there is something wrong', 'Error');
-    //     },
-    //     complete: () => {
-    //       if (added) {
-    //         this.uploading = false;
-    //         this.router.navigate(['/modules/users/all-users']);
-    //         this.toastr.success('User added Successfully');
-    //         this.addUserForm.reset();
-    //       }
-    //     },
-    //   });
-    // } else {
-    //   this.uploading = false;
-    //   this.toastr.error('', 'Please enter mandatory field!');
-    // }
-  }
-  trackFun(index: number, item: any): number {
-    return item.id;
-  }
-  // check page || components permissions
-  checkPageActions(): any {
-    // return this.permissionsService.checkPageActions(
-    //   this.auth.currentUserSignal()?.userData,
-    //   'Users',
-    //   'add'
-    // );
+    if (this.addForm.valid) {
+      let data = {
+        ...this.addForm.value,
+      };
+      console.log(data);
+      this.uploading = true;
+      // api
+      this.apiService?.add('customers/add', data).subscribe({
+        next: (data) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            if (this.currentLanguage == 'ar') {
+              this.toastr.success('تمت إضافة البيانات بنجاح...');
+            } else {
+              this.toastr.success('data added successfully...', 'Success');
+            }
+          }
+        },
+        error: (err: any) => {
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+          this.uploading = false;
+        },
+        complete: () => {
+          this.uploading = false;
+          this.router.navigate(['/modules/customers/allCustomers']);
+        },
+      });
+    } else {
+      if (this.currentLanguage == 'ar') {
+        this.toastr.warning('الرجاء إدخال الحقول المطلوبة');
+      } else {
+        this.toastr.warning('Please enter the required fields');
+      }
+    }
   }
 }

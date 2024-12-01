@@ -36,19 +36,20 @@
           <input
             class="form-control"
             type="text"
-            formControlName="customerBusinessName"
+            formControlName="businessName"
+            (change)="fillOwnerData()"
           />
           <!-- errors -->
           <div
             *ngIf="
-              addForm.get('customerBusinessName')?.invalid &&
-              addForm.get('customerBusinessName')?.touched
+              addForm.get('businessName')?.invalid &&
+              addForm.get('businessName')?.touched
             "
           >
             <small
               *ngIf="
-                addForm.get('customerBusinessName')?.invalid &&
-                addForm.get('customerBusinessName')?.touched
+                addForm.get('businessName')?.invalid &&
+                addForm.get('businessName')?.touched
               "
               class="text-danger"
             >
@@ -72,7 +73,8 @@
           <input
             class="form-control"
             type="text"
-            formControlName="customerContactName"
+            formControlName="contactName"
+            (change)="fillOwnerData()"
           />
         </div>
       </div>
@@ -85,7 +87,8 @@
           <input
             class="form-control"
             type="email"
-            formControlName="customerEmail"
+            formControlName="email"
+            (change)="fillOwnerData()"
           />
         </div>
       </div>
@@ -98,7 +101,8 @@
           <input
             class="form-control"
             type="text"
-            formControlName="customerCellPhone"
+            formControlName="cellPhone"
+            (change)="fillOwnerData()"
           />
         </div>
       </div>
@@ -113,7 +117,8 @@
           <input
             class="form-control"
             type="text"
-            formControlName="customerOfficePhone"
+            formControlName="officePhone"
+            (change)="fillOwnerData()"
           />
         </div>
       </div>
@@ -128,7 +133,8 @@
           <input
             class="form-control"
             type="text"
-            formControlName="customerContactFaxNumber"
+            formControlName="contactFaxNumber"
+            (change)="fillOwnerData()"
           />
         </div>
       </div>
@@ -138,11 +144,7 @@
           <label>
             {{ "customers.all_customers.customers_form.id" | translate }}
           </label>
-          <input
-            class="form-control"
-            type="text"
-            formControlName="customerId"
-          />
+          <input class="form-control" type="text" formControlName="idAccount" />
         </div>
       </div>
       <div class="col-sm-6"></div>
@@ -155,7 +157,8 @@
           <input
             class="form-control"
             type="text"
-            formControlName="customerAddress1"
+            formControlName="address1"
+            (change)="fillOwnerData()"
           />
         </div>
       </div>
@@ -168,7 +171,8 @@
           <input
             class="form-control"
             type="text"
-            formControlName="customerAddress2"
+            formControlName="address2"
+            (change)="fillOwnerData()"
           />
         </div>
       </div>
@@ -183,7 +187,8 @@
           <input
             class="form-control"
             type="text"
-            formControlName="customerPostalCode"
+            formControlName="postalCode"
+            (change)="fillOwnerData()"
           />
         </div>
       </div>
@@ -196,7 +201,8 @@
           <input
             class="form-control"
             type="text"
-            formControlName="customerCity"
+            formControlName="city"
+            (change)="fillOwnerData()"
           />
         </div>
       </div>
@@ -213,7 +219,12 @@
       <div class="d-flex gap-2 align-items-center">
         <span class="select-input">
           <label class="table-checkbox-container">
-            <input type="checkbox" />
+            <input
+              type="checkbox"
+              id="same_as_customer"
+              name="same_as_customer"
+              (change)="setOwnerData($event)"
+            />
             <div class="checkmark"></div>
           </label>
         </span>

@@ -222,6 +222,7 @@
                       [object]="true"
                       objectKey="value"
                       [data]="statusDropdown"
+                      (onAction)="onTableStatusChange($event, value['id'])"
                     ></app-custom-dropdown>
                   </ng-container>
                 </td>
