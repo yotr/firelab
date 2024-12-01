@@ -290,9 +290,7 @@ export class AllCustomersComponent implements OnInit, AfterViewInit {
 
     let updated = false;
     this.apiService
-      .statusChange('customers/updateStatus', id, {
-        status,
-      })
+      .statusChange(`customers/updateStatus?status=${status}`, id, {})
       .subscribe({
         next: (data) => {
           if (data?.isSuccess) {
