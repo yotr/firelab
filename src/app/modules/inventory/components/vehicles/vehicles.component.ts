@@ -48,29 +48,36 @@ export class VehiclesComponent implements OnInit, AfterViewInit {
 
     //   // turn on current language (trandlate)
     this.translateService.use(this.currentLanguage);
-    // this.translateService.instant('clients.client_table.client_id');
     this.dataKeys = [
       {
         name: 'vehicleNumber',
-        display: 'Vehicle Number',
+        display: this.translateService.instant(
+          'inventory.vehicles.table.vehicle_number'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'assignedTechnician',
-        display: 'Assigned Technician',
+        display: this.translateService.instant(
+          'inventory.vehicles.table.assigned_technician'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'partsQuantity',
-        display: 'Parts Quantity',
+        display: this.translateService.instant(
+          'inventory.vehicles.table.parts_quantity'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'toolsQuantity',
-        display: 'Tools Quantity',
+        display: this.translateService.instant(
+          'inventory.vehicles.table.tools_quantity'
+        ),
         type: 'string',
         active: true,
       },

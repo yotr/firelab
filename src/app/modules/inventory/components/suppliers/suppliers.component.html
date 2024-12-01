@@ -4,17 +4,17 @@
     class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
     [dir]="'dir' | translate"
   >
-    <app-breadcrumb title="Suppliers"></app-breadcrumb>
-      <div routerLink="/modules/inventory/suppliers/add">
-        <a
-          class="btn add-btn d-flex align-items-center {{
-            currentTheme?.colorSchema?.background
-          }} {{ currentTheme?.colorSchema?.color }}"
-        >
-          <i class="pi pi-plus d-none d-sm-block"></i>
-          Add Supplier
-        </a>
-      </div>
+    <app-breadcrumb [title]="'inventory.supplier.title' | translate"></app-breadcrumb>
+    <div routerLink="/modules/inventory/suppliers/add">
+      <a
+        class="btn add-btn d-flex align-items-center {{
+          currentTheme?.colorSchema?.background
+        }} {{ currentTheme?.colorSchema?.color }}"
+      >
+        <i class="pi pi-plus d-none d-sm-block"></i>
+        {{ "inventory.supplier.add_btn" | translate }}
+      </a>
+    </div>
   </div>
 
   <!-- /page header  -->
@@ -26,8 +26,8 @@
     [dataKeys]="dataKeys"
     [loading]="loading"
     [currentTheme]="currentTheme"
-    deleteModalTitle="Suppliers"
-    tableTitle="Suppliers Table"
+    [deleteModalTitle]="'inventory.supplier.title' | translate"
+    [tableTitle]="'inventory.supplier.table_title' | translate"
     editPagePath="/modules/inventory/suppliers/edit"
   ></app-supplier-module-table>
 </div>

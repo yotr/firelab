@@ -19,7 +19,7 @@
     }} {{ currentTheme?.colorSchema?.color }}"
   >
     <div class="d-flex justify-content-between align-items-center w-100">
-      <h4 class="m-0">Vehicle Inventory</h4>
+      <h4 class="m-0">{{ "inventory.vehicles.title" | translate }}</h4>
       <div></div>
     </div>
   </div>
@@ -28,7 +28,10 @@
       <div class="col-sm-4">
         <!-- Vehicle Number -->
         <div class="form-group mt-2">
-          <label>Vehicle Number <span class="text-danger">*</span></label>
+          <label
+            >{{ "inventory.vehicles.form.vehicle_number" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <input
             class="form-control"
             type="text"
@@ -48,7 +51,9 @@
               "
               class="text-danger"
             >
-              Vehicle Number Is Required</small
+              {{
+                "inventory.vehicles.form.vehicle_number_required" | translate
+              }}</small
             >
           </div>
           <!-- errors -->
@@ -57,7 +62,10 @@
       <div class="col-sm-4">
         <!-- assignedTechnician -->
         <div class="form-group mt-2">
-          <label>Assigned Technician <span class="text-danger">*</span></label>
+          <label
+            >{{ "inventory.vehicles.form.assigned_technician" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <select
             class="form-select form-control"
             formControlName="assignedTechnician"
@@ -71,7 +79,7 @@
               </option>
             </ng-container>
             <option *ngIf="!usersLoading && users.length == 0" disabled>
-              No Data Yet
+              {{ "inventory.vehicles.form.no_data" | translate }}
             </option>
           </select>
           <!-- errors -->
@@ -88,7 +96,10 @@
               "
               class="text-danger"
             >
-              Assigned Technician Is Required</small
+              {{
+                "inventory.vehicles.form.assigned_technician_required"
+                  | translate
+              }}</small
             >
           </div>
           <!-- errors -->
@@ -116,7 +127,7 @@
 
     <!-- submit -->
     <div class="save-btn text-center">
-      <button type="submit" class="save mt-4">Save</button>
+      <button type="submit" class="save mt-4">{{ "save" | translate }}</button>
     </div>
   </form>
 </div>

@@ -48,35 +48,44 @@ export class TransactionsComponent implements OnInit, AfterViewInit {
 
     //   // turn on current language (trandlate)
     this.translateService.use(this.currentLanguage);
-    // this.translateService.instant('clients.client_table.client_id');
     this.dataKeys = [
       {
         name: 'ID',
-        display: 'Id',
+        display: this.translateService.instant(
+          'inventory.transactions.table.id'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'username',
-        display: 'Username',
+        display: this.translateService.instant(
+          'inventory.transactions.table.username'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'date',
-        display: 'Date',
+        display: this.translateService.instant(
+          'inventory.transactions.table.date'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'assetType',
-        display: 'Asset Type',
+        display: this.translateService.instant(
+          'inventory.transactions.table.asset_type'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'transactionsType',
-        display: 'Transactions Type',
+        display: this.translateService.instant(
+          'inventory.transactions.table.transactions_type'
+        ),
         type: 'string',
         active: true,
       },

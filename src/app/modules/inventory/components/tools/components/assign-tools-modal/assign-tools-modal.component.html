@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="modal-body">
         <div class="form-header">
-          <h3>Add Tools</h3>
+          <h3>{{ "inventory.tools.add_btn" | translate }}</h3>
         </div>
         <!-- add tools-->
         <form>
@@ -11,7 +11,10 @@
             <!-- Suppliers -->
             <div class="col-sm-12">
               <div class="form-group mt-2">
-                <label>Tool <span class="text-danger">*</span></label>
+                <label
+                  >{{ "inventory.tools.assign.add_modal.tool" | translate }}
+                  <span class="text-danger">*</span></label
+                >
                 <app-custom-dropdown
                   title="Select Here"
                   minWidth="100%"
@@ -26,7 +29,9 @@
             <div class="col-sm-12">
               <div class="form-group mt-2">
                 <label
-                  >Quantity (Max .Quantity: 9 )
+                  >{{
+                    "inventory.tools.assign.add_modal.quantity" | translate
+                  }}
                   <span class="text-danger">*</span></label
                 >
                 <input type="number" class="form-control" />
@@ -35,7 +40,9 @@
           </div>
           <!-- submit -->
           <div class="save-btn">
-            <button type="submit" class="save mt-4">Save</button>
+            <button type="submit" class="save mt-4">
+              {{ "save" | translate }}
+            </button>
           </div>
         </form>
       </div>

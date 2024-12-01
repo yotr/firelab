@@ -6,7 +6,9 @@
     [dir]="'dir' | translate"
   >
     <!-- breadcrumb -->
-    <app-breadcrumb title="Add Parts"></app-breadcrumb>
+    <app-breadcrumb
+      [title]="'inventory.parts.add_btn' | translate"
+    ></app-breadcrumb>
   </div>
   <!-- /Page Header -->
 
@@ -23,14 +25,19 @@
             file != null ? truncateString(file?.name, 20) : "Add Image"
           }}</span>
         </div>
-        <div class="clear my-2" (click)="clearImage()">Clear Image</div>
+        <div class="clear my-2" (click)="clearImage()">
+          {{ "inventory.parts.form.clear" | translate }}
+        </div>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-4">
         <!-- Select suppliers -->
         <div class="form-group mt-2">
-          <label>Supplier <span class="text-danger">*</span></label>
+          <label
+            >{{ "inventory.parts.form.supplier" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <select class="form-select form-control" formControlName="supplier">
             <option disabled selected>
               {{ "select" | translate }}
@@ -41,7 +48,7 @@
               </option>
             </ng-container>
             <option *ngIf="!reportsLoading && reports.length == 0" disabled>
-              No Data Yet
+              {{ "inventory.parts.form.no_data" | translate }}
             </option>
           </select>
           <!-- errors -->
@@ -58,7 +65,7 @@
               "
               class="text-danger"
             >
-              Supplier Is Required</small
+              {{ "inventory.parts.form.supplier_required" | translate }}</small
             >
           </div>
           <!-- errors -->
@@ -67,7 +74,10 @@
       <div class="col-sm-4">
         <!-- Select Category -->
         <div class="form-group mt-2">
-          <label>Report Category <span class="text-danger">*</span></label>
+          <label
+            >{{ "inventory.parts.form.category" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <select class="form-select form-control" formControlName="category">
             <option disabled selected>
               {{ "select" | translate }}
@@ -78,7 +88,7 @@
               </option>
             </ng-container>
             <option *ngIf="!reportsLoading && reports.length == 0" disabled>
-              No Data Yet
+              {{ "inventory.parts.form.no_data" | translate }}
             </option>
           </select>
           <!-- errors -->
@@ -95,7 +105,7 @@
               "
               class="text-danger"
             >
-              Category Is Required</small
+              {{ "inventory.parts.form.category_required" | translate }}</small
             >
           </div>
           <!-- errors -->
@@ -104,7 +114,10 @@
       <div class="col-sm-4">
         <!-- part name -->
         <div class="form-group mt-2">
-          <label>Part Name <span class="text-danger">*</span></label>
+          <label
+            >{{ "inventory.parts.form.partName" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <input class="form-control" type="text" formControlName="partName" />
           <!-- errors -->
           <div
@@ -120,7 +133,7 @@
               "
               class="text-danger"
             >
-              Part Name Is Required</small
+              {{ "inventory.parts.form.partName_required" | translate }}</small
             >
           </div>
           <!-- errors -->
@@ -129,14 +142,17 @@
       <div class="col-sm-4">
         <!-- SKU -->
         <div class="form-group mt-2">
-          <label>SKU </label>
+          <label>{{ "inventory.parts.form.sku" | translate }} </label>
           <input class="form-control" type="text" formControlName="sku" />
         </div>
       </div>
       <div class="col-sm-4">
         <!-- Make -->
         <div class="form-group mt-2">
-          <label>Make <span class="text-danger">*</span></label>
+          <label
+            >{{ "inventory.parts.form.make" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <input class="form-control" type="text" formControlName="make" />
           <!-- errors -->
           <div
@@ -148,7 +164,7 @@
               "
               class="text-danger"
             >
-              Make Is Required</small
+              {{ "inventory.parts.form.make_required" | translate }}</small
             >
           </div>
           <!-- errors -->
@@ -157,7 +173,10 @@
       <div class="col-sm-4">
         <!-- Model -->
         <div class="form-group mt-2">
-          <label>Model <span class="text-danger">*</span></label>
+          <label
+            >{{ "inventory.parts.form.model" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <input class="form-control" type="text" formControlName="model" />
           <!-- errors -->
           <div
@@ -171,7 +190,7 @@
               "
               class="text-danger"
             >
-              Model Is Required</small
+              {{ "inventory.parts.form.model_required" | translate }}</small
             >
           </div>
           <!-- errors -->
@@ -180,7 +199,10 @@
       <div class="col-sm-4">
         <!-- Cost -->
         <div class="form-group mt-2">
-          <label>Cost <span class="text-danger">*</span></label>
+          <label
+            >{{ "inventory.parts.form.cost" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <input class="form-control" type="text" formControlName="cost" />
           <!-- errors -->
           <div
@@ -192,7 +214,7 @@
               "
               class="text-danger"
             >
-              Cost Is Required</small
+              {{ "inventory.parts.form.cost_required" | translate }}</small
             >
           </div>
           <!-- errors -->
@@ -201,7 +223,10 @@
       <div class="col-sm-4">
         <!-- Quantity -->
         <div class="form-group mt-2">
-          <label>Quantity <span class="text-danger">*</span></label>
+          <label
+            >{{ "inventory.parts.form.quantity" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <input class="form-control" type="text" formControlName="quantity" />
           <!-- errors -->
           <div
@@ -217,7 +242,7 @@
               "
               class="text-danger"
             >
-              Quantity Is Required</small
+              {{ "inventory.parts.form.quantity_required" | translate }}</small
             >
           </div>
           <!-- errors -->
@@ -227,7 +252,9 @@
 
     <!-- submit -->
     <div class="save-btn text-center">
-      <button type="submit" class="save mt-4">Save</button>
+      <button type="submit" class="save mt-4">
+        {{ "save" | translate }}
+      </button>
     </div>
   </form>
 </div>

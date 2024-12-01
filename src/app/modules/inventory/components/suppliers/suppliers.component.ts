@@ -48,29 +48,36 @@ export class SuppliersComponent implements OnInit, AfterViewInit {
 
     //   // turn on current language (trandlate)
     this.translateService.use(this.currentLanguage);
-    // this.translateService.instant('clients.client_table.client_id');
     this.dataKeys = [
       {
         name: 'supplierName',
-        display: 'Supplier Name',
+        display: this.translateService.instant(
+          'inventory.supplier.table.supplier_name'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'emailId',
-        display: 'Email Id',
+        display: this.translateService.instant(
+          'inventory.supplier.table.email_id'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'contactNumber',
-        display: 'Contact Number',
+        display: this.translateService.instant(
+          'inventory.supplier.table.contact_number'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'status',
-        display: 'Status',
+        display: this.translateService.instant(
+          'inventory.supplier.table.status'
+        ),
         type: 'boolean',
         active: true,
       },

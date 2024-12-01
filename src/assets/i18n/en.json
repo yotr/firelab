@@ -493,5 +493,192 @@
       "description": "Description",
       "status": "Status"
     }
+  },
+  "jobs": {
+    "jobs_due": {
+      "title": "Jobs Due",
+      "table_title": "Jobs Due Table"
+    },
+    "jobs_missed": {
+      "title": "Jobs Missed",
+      "table_title": "Jobs Missed Table"
+    },
+    "my_jobs": {
+      "title": "My Jobs",
+      "table_title": "My Jobs Table"
+    },
+
+    "table": {
+      "job_id": "Job Id",
+      "name": "Name",
+      "report_category": "Report Category",
+      "frequency": "Frequency",
+      "date": "Date & Time",
+      "type": "Type"
+    }
+  },
+  "inventory": {
+    "home": {
+      "title": "Process to setup or manage inventory",
+      "step1": "Step 1. Click on Suppliers to add a supplier.",
+      "step2": "Step 2. Click on Parts or Tools to add parts and tools.",
+      "note": "To only add parts or tools to inventory, only step 1 and 2 are needed.",
+      "step3": "Step 3. Click on Vehicle Inventory to assign a team member to a vehicle.",
+      "step4": "Step 4. Click on Parts or Tools to assign parts and tools to a vehicle."
+    },
+    "parts": {
+      "title": "Parts",
+      "table_title": "Parts Table",
+      "add_btn": "Add Parts",
+      "update_title": "Update Parts",
+      "assign_btn": "Assign Parts",
+      "form": {
+        "clear": "Clear Image",
+        "no_data": "No Data Yet",
+        "supplier": "Supplier",
+        "supplier_required": "Supplier is required",
+        "category": "Report Category",
+        "category_required": "Report Category is required",
+        "partName": "Part Name",
+        "partName_required": "Part Name is required",
+        "sku": "SKU",
+        "make": "Make",
+        "make_required": "Make is required",
+        "model": "Model",
+        "model_required": "Model is required",
+        "cost": "Cost",
+        "cost_required": "Cost is required",
+        "quantity": "Quantity",
+        "quantity_required": "Quantity is required"
+      },
+      "table": {
+        "part_name": "Part Name",
+        "report_category": "Report Category",
+        "sku": "SKU",
+        "warehouse": "Qty/Warehouse",
+        "vehicle": "Qty/vehicle",
+        "status": "Status"
+      },
+      "assign": {
+        "title": "Assign Parts",
+        "vehicle_no": "Vehicle Number",
+        "assigned_technician": "Assigned Technician",
+        "table": {
+          "parts": "Parts",
+          "sku": "SKU",
+          "quantity": "Quantity",
+          "price": "Price($)"
+        },
+        "add_modal": {
+          "suppliers": "Suppliers",
+          "report_category": "Report Category",
+          "part": "Part",
+          "quantity": "Quantity (Max .Quantity: 9 )"
+        }
+      }
+    },
+    "supplier": {
+      "title": "Suppliers",
+      "table_title": "Suppliers Table",
+      "add_btn": "Add Supplier",
+      "update_title": "Update Supplier",
+      "form": {
+        "clear": "Clear Logo",
+        "no_data": "No Data Yet",
+        "supplier_name": "Supplier Name",
+        "supplier_name_required": "Supplier Name is required",
+        "website": "Website",
+        "email_id": "Email Id",
+        "part_name": "Part Name",
+        "contact_number": "Contact Number",
+        "contact_name": "Contact Name",
+        "address": "address"
+      },
+      "table": {
+        "supplier_name": "Supplier Name",
+        "email_id": "Email Id",
+        "contact_number": "Contact Number",
+        "status": "Status"
+      }
+    },
+    "tools": {
+      "title": "Tools",
+      "table_title": "Tools Table",
+      "add_btn": "Add Tools",
+      "update_title": "Update Tools",
+      "assign_btn": "Assign Tools",
+      "form": {
+        "id_number": "Id Number",
+        "id_number_required": "Id Number is required",
+        "tool_name": "Tool Name",
+        "tool_name_required": "Tool Name is required",
+        "quantity": "Quantity",
+        "quantity_required": "Quantity is required",
+        "description": "Description"
+      },
+      "table": {
+        "tool_name": "Tool Name",
+        "id_number": "Id Number",
+        "description": "Description",
+        "warehouse": "Qty/Warehouse",
+        "vehicle": "Qty/vehicle"
+      },
+      "assign": {
+        "title": "Assign Tools",
+        "vehicle_no": "Vehicle Number",
+        "assigned_technician": "Assigned Technician",
+        "table": {
+          "tool": "Tool",
+          "id_number": "Id Number",
+          "quantity": "Quantity",
+          "description": "Description"
+        },
+        "add_modal": {
+          "tool": "Tool",
+          "quantity": "Quantity (Max .Quantity: 9 )"
+        }
+      }
+    },
+    "transactions": {
+      "title": "Transactions",
+      "table": {
+        "id": "Id",
+        "username": "Username",
+        "date": "Date",
+        "asset_type": "Asset Type",
+        "transactions_type": "transactions Type"
+      }
+    },
+    "vehicles": {
+      "title": "Vehicle Inventory",
+      "table_title": "Vehicles Inventory Table",
+      "add_btn": "Add Vehicle",
+      "update_title": "Update Vehicle",
+      "form": {
+        "no_data": "No Data Yet",
+        "vehicle_number": "Vehicle Number",
+        "vehicle_number_required": "Vehicle Number is required",
+        "assigned_technician": "Assigned Technician",
+        "assigned_technician_required": "Assigned Technicia is required"
+      },
+      "table": {
+        "vehicle_number": "Vehicle Number",
+        "assigned_technician": "Assigned Technician",
+        "parts_quantity": "Parts Quantity",
+        "tools_quantity": "Tools Quantity"
+      },
+      "edit_tables": {
+        "parts": {
+          "parts": "Parts",
+          "sku": "SKU",
+          "quantity": "Quantity"
+        },
+        "tools": {
+          "tools": "Tools",
+          "id": "ID",
+          "quantity": "Quantity"
+        }
+      }
+    }
   }
 }

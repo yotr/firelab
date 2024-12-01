@@ -48,35 +48,42 @@ export class ToolsComponent implements OnInit, AfterViewInit {
 
     //   // turn on current language (trandlate)
     this.translateService.use(this.currentLanguage);
-    // this.translateService.instant('clients.client_table.client_id');
     this.dataKeys = [
       {
         name: 'toolName',
-        display: 'Tool Name',
+        display: this.translateService.instant(
+          'inventory.tools.table.tool_name'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'idNumber',
-        display: 'Id Number',
+        display: this.translateService.instant(
+          'inventory.tools.table.id_number'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'description',
-        display: 'Description',
+        display: this.translateService.instant(
+          'inventory.tools.table.description'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'warehouse',
-        display: 'Qty/Warehouse',
+        display: this.translateService.instant(
+          'inventory.tools.table.warehouse'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'vehicle',
-        display: 'Qty/Vehicle',
+        display: this.translateService.instant('inventory.tools.table.vehicle'),
         type: 'string',
         active: true,
       },

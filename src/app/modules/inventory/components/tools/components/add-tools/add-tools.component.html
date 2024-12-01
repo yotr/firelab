@@ -6,7 +6,9 @@
     [dir]="'dir' | translate"
   >
     <!-- breadcrumb -->
-    <app-breadcrumb title="Add Parts"></app-breadcrumb>
+    <app-breadcrumb
+      [title]="'inventory.tools.add_btn' | translate"
+    ></app-breadcrumb>
   </div>
   <!-- /Page Header -->
 
@@ -17,7 +19,10 @@
       <div class="col-sm-4">
         <!-- Id Number -->
         <div class="form-group mt-2">
-          <label>Id Number <span class="text-danger">*</span></label>
+          <label
+            >{{ "inventory.tools.form.id_number" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <input class="form-control" type="text" formControlName="idNumber" />
           <!-- errors -->
           <div
@@ -33,7 +38,7 @@
               "
               class="text-danger"
             >
-              Id Number Is Required</small
+              {{ "inventory.tools.form.id_number_required" | translate }}</small
             >
           </div>
           <!-- errors -->
@@ -42,7 +47,10 @@
       <div class="col-sm-4">
         <!-- toolName -->
         <div class="form-group mt-2">
-          <label>Tool Name <span class="text-danger">*</span></label>
+          <label
+            >{{ "inventory.tools.form.tool_name" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <input class="form-control" type="text" formControlName="toolName" />
           <!-- errors -->
           <div
@@ -58,7 +66,7 @@
               "
               class="text-danger"
             >
-              Tool Name Is Required</small
+              {{ "inventory.tools.form.tool_name_required" | translate }}</small
             >
           </div>
           <!-- errors -->
@@ -67,7 +75,10 @@
       <div class="col-sm-4">
         <!-- quantity -->
         <div class="form-group mt-2">
-          <label>Quantity <span class="text-danger">*</span></label>
+          <label
+            >{{ "inventory.tools.form.quantity" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <input class="form-control" type="text" formControlName="quantity" />
           <!-- errors -->
           <div
@@ -83,7 +94,7 @@
               "
               class="text-danger"
             >
-              Quantity Is Required</small
+              {{ "inventory.tools.form.quantity_required" | translate }}</small
             >
           </div>
           <!-- errors -->
@@ -91,9 +102,9 @@
       </div>
 
       <div class="col-sm-12">
-        <!-- address -->
+        <!-- description -->
         <div class="form-group mt-2">
-          <label>description </label>
+          <label>{{ "inventory.tools.form.description" | translate }} </label>
           <textarea
             class="form-control h-auto"
             rows="4"
@@ -105,7 +116,9 @@
 
     <!-- submit -->
     <div class="save-btn text-center">
-      <button type="submit" class="save mt-4">Save</button>
+      <button type="submit" class="save mt-4">
+        {{ "save" | translate }}
+      </button>
     </div>
   </form>
 </div>

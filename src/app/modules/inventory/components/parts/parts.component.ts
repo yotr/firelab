@@ -48,41 +48,46 @@ export class PartsComponent implements OnInit, AfterViewInit {
 
     //   // turn on current language (trandlate)
     this.translateService.use(this.currentLanguage);
-    // this.translateService.instant('clients.client_table.client_id');
     this.dataKeys = [
       {
         name: 'partName',
-        display: 'Part Name',
+        display: this.translateService.instant(
+          'inventory.parts.table.part_name'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'reportCategory',
-        display: 'Report Category',
+        display: this.translateService.instant(
+          'inventory.parts.table.report_category'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'sku',
-        display: 'SKU',
+        display: this.translateService.instant('inventory.parts.table.sku'),
         type: 'string',
         active: true,
       },
       {
         name: 'warehouse',
-        display: 'Qty/Warehouse',
+        display: this.translateService.instant(
+          'inventory.parts.table.warehouse'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'vehicle',
-        display: 'Qty/vehicle',
+        display: this.translateService.instant('inventory.parts.table.vehicle'),
         type: 'string',
         active: true,
       },
       {
         name: 'status',
-        display: 'Status',
+        display: this.translateService.instant('inventory.parts.table.status'),
         type: 'string',
         active: true,
       },

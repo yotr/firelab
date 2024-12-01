@@ -6,7 +6,9 @@
     [dir]="'dir' | translate"
   >
     <!-- breadcrumb -->
-    <app-breadcrumb title="Add Parts"></app-breadcrumb>
+    <app-breadcrumb
+      [title]="'inventory.supplier.add_btn' | translate"
+    ></app-breadcrumb>
   </div>
   <!-- /Page Header -->
 
@@ -23,14 +25,19 @@
             file != null ? truncateString(file?.name, 20) : "Add Logo"
           }}</span>
         </div>
-        <div class="clear my-2" (click)="clearImage()">Clear Logo</div>
+        <div class="clear my-2" (click)="clearImage()">
+          {{ "inventory.supplier.form.clear" | translate }}
+        </div>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-4">
         <!-- Supplier Name -->
         <div class="form-group mt-2">
-          <label>Supplier Name <span class="text-danger">*</span></label>
+          <label
+            >{{ "inventory.supplier.form.supplier_name" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <input
             class="form-control"
             type="text"
@@ -50,7 +57,9 @@
               "
               class="text-danger"
             >
-              Supplier Name Is Required</small
+              {{
+                "inventory.supplier.form.supplier_name_required" | translate
+              }}</small
             >
           </div>
           <!-- errors -->
@@ -59,21 +68,23 @@
       <div class="col-sm-4">
         <!-- website -->
         <div class="form-group mt-2">
-          <label>Website </label>
+          <label>{{ "inventory.supplier.form.website" | translate }} </label>
           <input class="form-control" type="text" formControlName="website" />
         </div>
       </div>
       <div class="col-sm-4">
         <!-- emailId -->
         <div class="form-group mt-2">
-          <label>Email Id </label>
+          <label>{{ "inventory.supplier.form.email_id" | translate }} </label>
           <input class="form-control" type="text" formControlName="emailId" />
         </div>
       </div>
       <div class="col-sm-4">
         <!-- contactNumber -->
         <div class="form-group mt-2">
-          <label>Contact Number </label>
+          <label
+            >{{ "inventory.supplier.form.contact_number" | translate }}
+          </label>
           <input
             class="form-control"
             type="text"
@@ -84,7 +95,9 @@
       <div class="col-sm-4">
         <!-- contactName -->
         <div class="form-group mt-2">
-          <label>Contact Name </label>
+          <label
+            >{{ "inventory.supplier.form.contact_name" | translate }}
+          </label>
           <input
             class="form-control"
             type="text"
@@ -95,7 +108,7 @@
       <div class="col-sm-4">
         <!-- address -->
         <div class="form-group mt-2">
-          <label>address </label>
+          <label>{{ "inventory.supplier.form.address" | translate }} </label>
           <input class="form-control" type="text" formControlName="address" />
         </div>
       </div>
@@ -103,7 +116,9 @@
 
     <!-- submit -->
     <div class="save-btn text-center">
-      <button type="submit" class="save mt-4">Save</button>
+      <button type="submit" class="save mt-4">
+        {{ "save" | translate }}
+      </button>
     </div>
   </form>
 </div>

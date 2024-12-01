@@ -6,7 +6,9 @@
     [dir]="'dir' | translate"
   >
     <!-- breadcrumb -->
-    <app-breadcrumb title="Assign Tools"></app-breadcrumb>
+    <app-breadcrumb
+      [title]="'inventory.tools.assign.title' | translate"
+    ></app-breadcrumb>
   </div>
   <!-- /Page Header -->
 
@@ -19,7 +21,7 @@
     }} {{ currentTheme?.colorSchema?.color }}"
   >
     <div class="d-flex justify-content-between align-items-center w-100">
-      <h4 class="m-0">Assign Tools</h4>
+      <h4 class="m-0">{{ "inventory.tools.assign.title" | translate }}</h4>
       <div></div>
     </div>
   </div>
@@ -28,7 +30,7 @@
       <div class="col-sm-4">
         <!-- Vehicle Number -->
         <div class="form-group mt-2">
-          <label>Vehicle Number </label>
+          <label>{{ "inventory.tools.assign.vehicle_no" | translate }} </label>
           <app-custom-dropdown
             title="Select Here"
             minWidth="100%"
@@ -76,7 +78,9 @@
       <div class="col-sm-4">
         <!-- assignedTechnician -->
         <div class="form-group mt-2">
-          <label>Assigned Technician </label>
+          <label
+            >{{ "inventory.tools.assign.assigned_technician" | translate }}
+          </label>
           <app-custom-dropdown
             title="Select Here"
             minWidth="100%"
@@ -136,7 +140,7 @@
 
     <!-- buttons -->
     <div class="btns">
-      <!-- add parts -->
+      <!-- add tools -->
       <div class="add-parts-btn text-center">
         <div
           class="add mt-4"
@@ -144,12 +148,14 @@
           data-bs-target="#add_tools_modal"
         >
           <i class="pi pi-plus"></i>
-          Add Tools
+          {{ "inventory.tools.add_btn" | translate }}
         </div>
       </div>
       <!-- submit -->
       <div class="save-btn text-center">
-        <button type="submit" class="save mt-4">Save</button>
+        <button type="submit" class="save mt-4">
+          {{ "save" | translate }}
+        </button>
       </div>
     </div>
   </form>

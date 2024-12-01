@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
@@ -30,6 +31,7 @@ export class EditVehicleComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    public translateService: TranslateService,
     private themeService: ThemeService,
     private toastr: ToastrService,
     private router: Router,
@@ -51,19 +53,25 @@ export class EditVehicleComponent implements OnInit {
     this.partsKeys = [
       {
         name: 'parts',
-        display: 'Parts',
+        display: this.translateService.instant(
+          'inventory.vehicles.edit_tables.parts.parts'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'sku',
-        display: 'SKU',
+        display: this.translateService.instant(
+          'inventory.vehicles.edit_tables.parts.sku'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'quantity',
-        display: 'Quantity',
+        display: this.translateService.instant(
+          'inventory.vehicles.edit_tables.parts.quantity'
+        ),
         type: 'string',
         active: true,
       },
@@ -71,19 +79,25 @@ export class EditVehicleComponent implements OnInit {
     this.toolsKeys = [
       {
         name: 'tools',
-        display: 'Tools',
+        display: this.translateService.instant(
+          'inventory.vehicles.edit_tables.tools.tools'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'id',
-        display: 'ID',
+        display: this.translateService.instant(
+          'inventory.vehicles.edit_tables.tools.id'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'quantity',
-        display: 'Quantity',
+        display: this.translateService.instant(
+          'inventory.vehicles.edit_tables.tools.quantity'
+        ),
         type: 'string',
         active: true,
       },

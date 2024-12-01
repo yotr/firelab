@@ -6,7 +6,7 @@
   >
     <tr>
       <th class="text-light" *ngFor="let value of dataKeys">
-        <div class="head-value">{{ value?.display }}</div>
+        <div class="head-value">{{ value?.display | translate }}</div>
       </th>
     </tr>
   </thead>

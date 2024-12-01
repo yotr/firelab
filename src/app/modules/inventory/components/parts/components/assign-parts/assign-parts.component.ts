@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
@@ -33,6 +34,7 @@ export class AssignPartsComponent implements OnInit {
     private themeService: ThemeService,
     private toastr: ToastrService,
     private router: Router,
+    public translateService: TranslateService,
     // private apiService: ApiService,
     // private permissionsService: PermissionsService,
     private auth: AuthService
@@ -62,25 +64,33 @@ export class AssignPartsComponent implements OnInit {
     this.partsKeys = [
       {
         name: 'parts',
-        display: 'Parts',
+        display: this.translateService.instant(
+          'inventory.parts.assign.table.parts'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'sku',
-        display: 'SKU',
+        display: this.translateService.instant(
+          'inventory.parts.assign.table.sku'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'quantity',
-        display: 'Quantity',
+        display: this.translateService.instant(
+          'inventory.parts.assign.table.quantity'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'price',
-        display: 'Price($)',
+        display: this.translateService.instant(
+          'inventory.parts.assign.table.price'
+        ),
         type: 'string',
         active: true,
       },

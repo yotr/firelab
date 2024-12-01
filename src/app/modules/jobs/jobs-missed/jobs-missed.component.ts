@@ -50,37 +50,37 @@ export class JobsMissedComponent implements OnInit {
     this.dataKeys = [
       {
         name: 'Job Id',
-        display: 'Job Id',
+        display: this.translateService.instant('jobs.table.job_id'),
         type: 'string',
         active: true,
       },
       {
         name: 'Name',
-        display: 'Name',
+        display: this.translateService.instant('jobs.table.name'),
         type: 'string',
         active: true,
       },
       {
         name: 'Report Category',
-        display: 'Report Category',
+        display: this.translateService.instant('jobs.table.report_category'),
         type: 'string',
         active: true,
       },
       {
         name: 'Frequency',
-        display: 'Frequency',
+        display: this.translateService.instant('jobs.table.frequency'),
         type: 'string',
         active: true,
       },
       {
         name: 'Date & Time',
-        display: 'Date & Time',
+        display: this.translateService.instant('jobs.table.date'),
         type: 'string',
         active: true,
       },
       {
         name: 'Type',
-        display: 'Type',
+        display: this.translateService.instant('jobs.table.type'),
         type: 'string',
         active: true,
       },
