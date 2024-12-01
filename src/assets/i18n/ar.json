@@ -9,6 +9,7 @@
   "save": "حفظ",
   "add": "إضافة",
   "cancel": "إلغاء",
+  "next": "التالي",
   "theme_settings": {
     "title": "أداة التخصيص",
     "title_dic": "تخصيص تخطيط صفحة النظرة العامة الخاصة بك",
@@ -162,2361 +163,521 @@
   "dashboard": {},
   "customers": {
     "all_customers": {
-      "title": "Customers",
-      "add_btn": "Add Customer",
-      "table_title": "Customers Table",
-      "import_btn": "Import Customers",
+      "title": "عملاء",
+      "add_btn": "إضافة العميل",
+      "table_title": "جدول العملاء",
+      "import_btn": "إضافه عملاء",
       "customers_table": {
-        "companyName": "Company Name",
-        "id": "ID/Account",
-        "address": "Address",
-        "phone": "Phone",
-        "status": "Status"
+        "companyName": "اسم الشركة",
+        "id": "معرف/حساب",
+        "address": "عنوان",
+        "phone": "هاتف",
+        "status": "حالة"
       },
       "status_options": {
-        "active": "active",
-        "inactive": "inactive"
+        "active": "نشط",
+        "inactive": "غير نشط"
       },
       "customers_form": {
-        "add_title": "Add Customer",
-        "update_title": "Update Customer",
-        "customer_info_title": "Customer Information",
-        "business_name": "Business Name",
-        "business_name_required": "Business Name is required",
-        "contact_name": "Contact Name",
-        "contact_name_required": "Contact Name is required",
-        "email": "Email",
-        "phone": "Cell Phone",
-        "office_phone": "Office Phone",
-        "contact_fax": "Contact Fax Number",
-        "id": "ID/Account",
-        "address_1": "Address 1",
-        "address_2": "Address 2",
-        "postal_code": "Postal Code",
-        "city": "City",
-        "owner_info_title": "Owner/Agent Information",
-        "same_as_customer": "Same as Customer"
+        "add_title": "إضافة العميل",
+        "update_title": "تحديث العميل",
+        "customer_info_title": "معلومات العميل",
+        "business_name": "اسم العمل",
+        "business_name_required": "اسم العمل مطلوب",
+        "contact_name": "اسم جهة الاتصال",
+        "email": "بريد إلكتروني",
+        "phone": "الهاتف الخلوي",
+        "office_phone": "هاتف المكتب",
+        "contact_fax": "رقم الفاكس للتواصل",
+        "id": "معرف/حساب",
+        "address_1": "عنوان 1",
+        "address_2": "عنوان 2",
+        "postal_code": "رمز بريدي",
+        "city": "المدينة",
+        "owner_info_title": "معلومات المالك/الوكيل",
+        "same_as_customer": "نفس العميل",
+        "same_as_owner": "نفس المالك/الوكيل"
       },
       "reports_sidebar": {
-        "title": "فئة التقارير"
+        "title": "التقارير"
       }
     },
     "home": {
-      "title": "Bussniss Center",
-      "tax": "Sate Tax",
-      "inspections_due": "Inspections Due",
-      "inspections_done": "Inspections Done",
+      "title": "مركز الأعمال",
+      "tax": "حالة الضريبة",
+      "inspections_due": "عمليات التفتيش التي لم تم بعد",
+      "inspections_done": "عمليات التفتيش التي تم إجراءها",
       "tables": {
-        "category": "Category",
-        "frequency": "Frequency",
-        "pendingDue": "Pending Due",
-        "tasks": "Tasks",
-        "month": "Month",
-        "done": "Done"
+        "category": "فئة",
+        "frequency": "تكرار",
+        "pendingDue": "معلق مستحق",
+        "tasks": "المهام",
+        "month": "شهر",
+        "done": "تم"
+      }
+    },
+    "building_info": {
+      "title": "معلومات المبنى",
+      "form": {
+        "add_title": "أضف ملاحظة",
+        "edit_title": "ملاحظة التحديث",
+        "title": "عنوان",
+        "title_required": "العنوان مطلوب",
+        "description": "وصف"
+      }
+    },
+    "system_info": {
+      "title": "معلومات النظام",
+      "add_btn": "إضافة النظام/الجهاز",
+      "table": {
+        "reportType": "نوع التقرير",
+        "system": "النظام/الجهاز",
+        "type": "نوع",
+        "quantity": "كمية"
+      }
+    },
+    "images": {
+      "title": "الصور",
+      "add_btn": "أضف صورة",
+      "header": "تحميل صورة المبنى",
+      "comment_placehoder": "أضف تعليق",
+      "no_images": "لا توجد صور متاحة",
+      "preview": "معاينة",
+      "add_title": "أضف صورة",
+      "upload": "تحميل الصورة"
+    },
+    "import_devices": {
+      "title": "اضافة جهاز",
+      "add_btn": "اضافة جهاز",
+      "delete": "اضافه اجهزة",
+      "table_title": "جدول الاجهزة",
+      "table": {
+        "reportCategory": "فئة التقرير",
+        "listName": "اسم القائمة"
+      },
+      "form": {
+        "reportCategory": "فئة التقرير",
+        "reportCategory_required": "يجب تحديد فئة التقرير",
+        "listName": "اسم القائمة",
+        "listName_required": "اسم القائمة مطلوب",
+        "no_data": "لا توجد بيانات حتى الآن",
+        "download": "تنزيل جدول البيانات",
+        "upload": "تحميل جدول البيانات"
+      }
+    },
+    "recurring_inspections": {
+      "title": "التفتيشات المتكررة",
+      "add_btn": "إضافة تفتيش المتكرر",
+      "delete": "التفتيشات المتكررة",
+      "table_title": "جدول التفتيش المتكرر",
+      "table": {
+        "reportCategory": "فئة التقرير",
+        "frequency": "التكرار",
+        "months": "شهور"
+      },
+      "form": {
+        "add_title": "إضافة عمليات التفتيش",
+        "edit_title": "تحديث عمليات التفتيش",
+        "reportCategory": "فئة التقرير",
+        "reportCategory_required": "يجب تحديد فئة التقرير",
+        "no_data": "لا توجد بيانات حتى الآن",
+        "frequency": "حدد التكرار",
+        "frequency_required": "يجب تحديد تكرار التقرير",
+        "month": "حدد السنة/الشهر",
+        "month_required": "السنة/الشهر مطلوب",
+        "add_price": "إضافة سعر التفتيش",
+        "first_price": "السعر الأول",
+        "second_price": "السعر الثاني",
+        "third_price": "السعر الثالث",
+        "forth_price": "السعر الرابع",
+        "add_task": "هل تريد إضافة مهام متكررة ضمن عمليات التفتيش هذه؟",
+        "describe_task": "وصف المهمة",
+        "add_another": "إضافة مهمة أخرى"
+      }
+    },
+    "deficiencies": {
+      "title": "النقائص",
+      "table_title": "جدول النواقص",
+      "table": {
+        "category": "فئة",
+        "date": "تاريخ",
+        "status": "حالة"
+      }
+    },
+    "customer_portal": {
+      "title": "بوابة العملاء",
+      "add": "إضافة معرف البريد الإلكتروني"
+    },
+    "auto_email": {
+      "title": "البريد الإلكتروني التلقائي",
+      "add": "إضافة معرف البريد الإلكتروني"
+    },
+    "add_job": {
+      "title": "إضافة وظيفة",
+      "no_data": "لا توجد بيانات حتى الآن",
+      "description": "وصف الوظيفة",
+      "description_required": "وصف الوظيفة المطلوبة",
+      "date": "حدد الشهر",
+      "date_required": "التاريخ مطلوب",
+      "category": "اختر الفئة",
+      "category_required": "الفئة مطلوبة",
+      "type": "حدد النوع",
+      "type_required": "النوع مطلوب",
+      "job_id": "معرف الوظيفة"
+    },
+    "hood_system": {
+      "title": "نظام الهود",
+      "start": "ابدأ",
+      "delete": "التقارير",
+      "table_title": "جدول التقارير",
+      "inspections": "التفتيشات",
+      "work_orders": "أوامر العمل",
+      "quotes": "اقتباسات",
+      "incomplete_reports": "التقارير غير المكتملة",
+      "table": {
+        "frequency": "التكرار",
+        "completion_date": "تاريخ الانتهاء",
+        "name": "الاسم"
       }
     }
   },
-  "clients": {
-    "path": "العملاء",
-    "add_btn": "إضافة عميل",
-    "add_page": {
-      "path": "إضافة عميل",
-      "add_btn": "أضف"
+  "contracts": {
+    "title": "العقود",
+    "add_title": "إضافة عقد",
+    "edit_title": "تحديث العقد",
+    "table_title": "جدول العقود",
+    "contract_form": {
+      "contractReference_label": "مرجع العقد",
+      "contractReference_required": "مطلوب مرجع العقد",
+      "team_label": "عضو",
+      "team_required": "العضو مطلوب",
+      "salaryStructureType_label": "نوع هيكل الراتب",
+      "contractStartDate_label": "تاريخ بدء العقد",
+      "contractEndDate_label": "تاريخ انتهاء العقد",
+      "jobPosition_label": "الوظيفة",
+      "contractSchedule_label": "جدول العقد",
+      "contractType_label": "نوع العقد",
+      "notes_label": "ملحوظات",
+      "wage_label": "الراتب",
+      "wage_placeholdar": "5000.00",
+      "status_label": "حالة"
     },
-    "edit_page": {
-      "path": "تحرير العميل",
-      "save_btn": "حفظ"
-    },
-    "client_form": {
-      "firstname_label": "الاسم الاول",
-      "firstname_required": "الإسم الأول مطلوب",
-      "lastname_label": "اسم العائلة",
-      "lastname_required": "إسم العائلة مطلوب",
-      "username_label": "اسم المستخدم",
-      "email_label": "البريد",
-      "email_required": "البريد الالكتروني مطلوب",
-      "password_label": "كلمة المرور",
-      "password_required": "كلمة المرور مطلوبة",
-      "confirm_label": "تأكيد كلمة المرور",
-      "confirm_required": "لا يتطابق",
-      "clientId_label": "معرف العميل",
-      "clientId_required": "معرف العميل مطلوب",
-      "phone_label": "الهاتف",
-      "phone_required": "الهاتف مطلوب",
-      "company_label": "اسم الشركة",
-      "permission_table": {
-        "permission_head_text": "الصلاحيات",
-        "read_head_text": "قراءة",
-        "write_head_text": "تعديل",
-        "create_head_text": "إضافه",
-        "delete_head_text": "مسح",
-        "import_head_text": "رفع",
-        "export_head_text": "تنزيل"
-      }
-    },
-    "client_table": {
-      "name": "الاسم",
-      "client_id": "معرف العميل",
-      "email": "بريد إلكتروني",
-      "mobile": "الهاتف",
-      "status": "الحالة"
-    }
-  },
-  "projects": {
-    "path": "المشاريع",
-    "add_btn": "أضف مشروع",
-    "add_page": {
-      "path": "أضف مشروع",
-      "add_btn": "أضف"
-    },
-    "edit_page": {
-      "path": "تحرير المشروع",
-      "save_btn": "حفظ"
-    },
-    "project_form": {
-      "project": "اسم المشروع",
-      "project_required": "*مطلوب الاسم",
-      "client": "عميل",
-      "client_required": "* مطلوب العميل",
+    "contract_table": {
+      "contractReference": "مرجع العقد",
+      "member": "عضو",
+      "jobPosition": "الوظيفة",
       "startDate": "تاريخ البدء",
-      "startDate_required": "*تاريخ البدء مطلوب",
-      "endDate": "تاريخ الانتهاء",
-      "endDate_required": "*تاريخ الانتهاء مطلوب",
-      "rate": "معدل",
-      "rateSelect": {
-        "hourly": "ساعيا",
-        "fixed": "مُثَبَّت"
-      },
-      "priority": {
-        "label": "أولوية",
-        "high": "عالي",
-        "medium": "متوسط",
-        "low": "قليل"
-      },
-      "leader": "إضافة قائد المشروع",
-      "team_leader": "رئيس الفريق",
-      "add_team": "إضافة فريق",
-      "select_text": "إختر",
-      "team_members": "أعضاء الفريق",
-      "projectId": "معرف المشروع",
-      "projectId_required": "*معرف المشروع مطلوب",
-      "description": "وصف",
-      "description_required": "*الوصف مطلوب",
-      "files": "تحميل الملفات",
-      "add_btn": "أضف",
-      "select": "-- إختر --",
-      "loading": "تحميل..."
-    },
-    "project_card": {
-      "open_tasks": "المهام المفتوحة",
-      "tasks_completed": "المهام المكتمله",
-      "deadline": "موعد التسليم",
-      "leader": "قائد المشروع",
-      "team": "فريق",
-      "progress": "تقدم"
-    },
-    "projct_table": {
-      "project": "مشروع",
-      "projectId": "معرف المشروع",
-      "leader": "قائد",
-      "team": "فريق",
-      "endDate": "تاريخ الانتهاء",
-      "priority": "أولوية",
-      "status": "حالة"
-    },
-    "priority_dropdown": {
-      "high": "عالي",
-      "medium": "متوسط",
-      "low": "قليل"
-    },
-    "task_board": {
-      "path": "لوحة المهام",
-      "select": "--حدد المشروع--",
-      "lead": "يقود",
-      "team": "فريق",
-      "create_list": "إنشاء قائمة",
-      "progress": "تقدم",
-      "edit": "تحرير",
-      "delete": "حذف",
-      "add_new_task": "إضافة مهمة جديدة",
-      "edit_task_board": "تحرير لوحة المهام",
-      "no_tasks": "لا توجد لوحة مهام حتى الآن",
-      "task_board_form": {
-        "path": "إضافة لوحة المهام",
-        "name": "اسم لوحة المهام",
-        "name_required": "اسم المجلس مطلوب",
-        "color": "لون لوحة المهام",
-        "color_required": "",
-        "create": "أنشئ",
-        "update": "تحديث"
-      },
-      "task_form": {
-        "add_title": "إضافة مهمة",
-        "edit_title": "تحرير المهمة",
-        "name": "اسم المهمة",
-        "name_required": "المهمة مطلوبة",
-        "priority": {
-          "label": "أولوية المهمة",
-          "high": "عالي",
-          "normal": "طبيعي",
-          "low": "قليل",
-          "required": "الأولوية مطلوبة"
-        },
-        "date": "تاريخ الاستحقاق",
-        "date_required": "تاريخ الاستحقاق مطلوب",
-        "assigned_to": "المهمة المخصصة ل",
-        "submit": "موافقة",
-        "update": "تحديث",
-        "loading": "تحميل...",
-        "select": "--أختر--"
-      }
-    },
-    "tasks": {
-      "sidebar": {
-        "back_to_home": "العودة إلى القائمة",
-        "projects": "المشاريع"
-      },
-      "add_task_dec": "أضف المهام إلى مشروعك",
-      "add_task": "إضافة مهمة",
-      "pending_task": "المهام العالقة",
-      "completed_task": "المهام المكتمله",
-      "all_task": "كل المهام",
-      "no_task": "لاتوجد مهام",
-      "add_task_placeholder": "أدخل مهمة جديدة هنا. . .",
-      "add_task_error": "تحتاج إلى إدخال مهمة أولاً",
-      "close": "أغلق",
-      "add_task_btn": "إضافة مهمة",
-      "assignee_modal": {
-        "path": "تعيين إلى المهمة",
-        "search": "ابحث",
-        "search_placeholder": "بحث للإضافة",
-        "assign_btn": "تعيين"
-      },
-      "task_chat": {
-        "mark_complete": "وضع علامة كامكتمل",
-        "delete_task": "حذف المهمة",
-        "settings": "إعدادات",
-        "assigned_to": "مخصص ل",
-        "due_date": "تاريخ الاستحقاق",
-        "update": "تحديث",
-        "team": "فريق",
-        "description_placeholder": "وصف",
-        "type_placeholder": "اكتب الرسالة..."
-      }
-    }
-  },
-  "leads": {
-    "path": "يؤدي",
-    "leads_table": {
-      "leader": "قائد",
-      "email": "بريد إلكتروني",
-      "phone": "هاتف",
-      "project": "مشروع",
-      "team": "فريق",
-      "status": "حالة",
-      "created": "أنشئ"
-    }
-  },
-  "tickets": {
-    "path": "التذاكر",
-    "add_btn": "أضف تذكرة",
-    "add_page": {
-      "path": "أضف تذكرة",
-      "add_btn": "أضف"
-    },
-    "edit_page": {
-      "path": "تحرير التذكرة",
-      "save_btn": "حفظ"
-    },
-    "tickets_form": {
-      "ticketSubject": "موضوع التذكرة",
-      "ticketSubject_required": "*موضوع التذكرة مطلوب",
-      "ticketId": "معرف التذكرة",
-      "ticketId_required": "* معرف التذكرة مطلوب",
-      "assignStaff": "تعيين الموظفين",
-      "assignStaff_required": "* مطلوب تعيين الموظفين",
-      "client": "عميل",
-      "client_required": "* مطلوب العميل",
-      "priority": {
-        "label": "أولوية",
-        "high": "عالي",
-        "medium": "متوسط",
-        "low": "قليل"
-      },
-      "cc": "CC",
-      "assign": "تعيين",
-      "ticket_assignee": "مندوب التذكرة",
-      "add_followers": "أضف متابعين",
-      "select_text": "أختر",
-      "ticketfollowers": "متابعين التذاكر",
-      "description": "وصف",
-      "description_required": "*الوصف مطلوب",
-      "files": "تحميل الملفات",
-      "loading": "تحميل...",
-      "select": "--أختر--"
-    },
-    "tickets_statistics": {
-      "new": "تذاكر جديدة",
-      "solved": "تذاكر محلولة",
-      "in_process": "التذاكر قيد المعالجة/قيد الانتظار",
-      "cancelled": "التذاكر الملغاة"
-    },
-    "tickets_table": {
-      "ticketId": "معرف التذكرة",
-      "ticketSubject": "موضوع التذكرة",
-      "assignStaff": "الموظف المعين",
-      "createdDate": "تاريخ الإنشاء",
-      "lastReply": "الرد الأخير",
-      "priority": "أولوية",
+      "endDate": "تاريخ النهاية",
+      "contractType": "نوع العقد",
+      "workingSchedule": "جدول العمل",
       "status": "حالة"
     }
   },
-  "sales": {
-    "estimate": {
-      "path": "التقديرات",
-      "add_btn": "إنشاء تقدير",
-      "add_page": {
-        "path": "إنشاء تقدير",
-        "add_btn": "حفظ وإرسال",
-        "add_btn2": "حفظ"
-      },
-      "edit_page": {
-        "path": "تحرير التقدير",
-        "save_btn": "حفظ"
-      },
-      "estimate_form": {
-        "client": "عميل",
-        "client_required": "* مطلوب العميل",
-        "project": "مشروع",
-        "project_required": "*المشروع مطلوب",
-        "email": "بريد إلكتروني",
-        "email_required": "*البريد الالكتروني مطلوب",
-        "tax": "ضريبة",
-        "tax_required": "*الضريبة مطلوبة",
-        "client_address": "عنوان العميل",
-        "client_address_required": "* عنوان العميل مطلوب",
-        "billing_address": "عنوان وصول الفواتير",
-        "billing_address_required": "* عنوان إرسال الفواتير مطلوب",
-        "estimate_date": "تاريخ التقدير",
-        "estimate_date_required": "*التاريخ التقديري مطلوب",
-        "expiry_date": "تاريخ الانتهاء",
-        "expiry_date_required": "*تاريخ انتهاء الصلاحية مطلوب",
-        "items": {
-          "item": "غرض",
-          "description": "وصف",
-          "cost": "تكلفة الوحدة",
-          "qty": "الكمية",
-          "amount": "كمية"
-        },
-        "totalamount": "المجموع",
-        "tax_per": "ضريبة",
-        "discount": "تخفيض",
-        "discount_required": "*الخصم مطلوب",
-        "grandTotal": "المجموع الإجمالي",
-        "other_information": "معلومات أخرى",
-        "other_information_required": "* معلومات أخرى مطلوبة",
-        "estimate_number": "الرقم التقديري",
-        "estimate_number_required": "*الرقم التقديري مطلوب",
-        "loading": "تحميل...",
-        "select": "--أختر--"
-      },
-      "estimate_view": {
-        "title": "عرض التقدير",
-        "csv": "CSV",
-        "print": "ضباعة",
-        "create_date": "تاريخ الإنشاء",
-        "expiry_date": "تاريخ الانتهاء",
-        "estimate_to": "تقدير ل",
-        "items": {
-          "item": "غرض",
-          "description": "وصف",
-          "cost": "تكلفة الوحدة",
-          "qty": "كمية",
-          "amount": "المجموع"
-        },
-        "subtotal": "المجموع الشركةي",
-        "tax": "ضريبة",
-        "discount": "تخفيض",
-        "total": "المجموع",
-        "other_informationl": "معلومات أخرى"
-      },
-      "estimate_table": {
-        "estimate_number": "رقم تقديري",
-        "client": "عميل",
-        "estimate_date": "تاريخ التقدير",
-        "expiry_date": "تاريخ الانتهاء",
-        "totalamount": "كمية",
-        "status": "حالة"
-      }
-    },
-    "invoice": {
-      "path": "الفواتير",
-      "add_btn": "إنشاء فاتورة",
-      "add_page": {
-        "path": "إنشاء فاتورة",
-        "add_btn": "حفظ وإرسال",
-        "add_btn2": "حفظ"
-      },
-      "edit_page": {
-        "path": "تحرير الفاتورة",
-        "save_btn": "حفظ"
-      },
-      "invoice_form": {
-        "client": "عميل",
-        "client_required": "* مطلوب العميل",
-        "project": "مشروع",
-        "project_required": "*المشروع مطلوب",
-        "email": "بريد إلكتروني",
-        "email_required": "*البريد الالكتروني مطلوب",
-        "tax": "ضريبة",
-        "tax_required": "*الضريبة مطلوبة",
-        "client_address": "عنوان العميل",
-        "client_address_required": "* عنوان العميل مطلوب",
-        "billing_address": "عنوان وصول الفواتير",
-        "billing_address_required": "* عنوان إرسال الفواتير مطلوب",
-        "invoice_date": "تاريخ الفاتورة",
-        "invoice_date_required": "*تاريخ الفاتورة مطلوب",
-        "due_date": "تاريخ الاستحقاق",
-        "due_date_required": "*تاريخ الاستحقاق مطلوب",
-        "items": {
-          "item": "غرض",
-          "description": "وصف",
-          "cost": "تكلفة الوحدة",
-          "qty": "كمية",
-          "amount": "المجموع"
-        },
-        "totalamount": "المجموع",
-        "tax_per": "ضريبة",
-        "discount": "تخفيض",
-        "discount_required": "*الخصم مطلوب",
-        "grandTotal": "المجموع الإجمالي",
-        "other_information": "معلومات أخرى",
-        "other_information_required": "* معلومات أخرى مطلوبة",
-        "invoice_number": "رقم الفاتورة",
-        "invoice_number_required": "* رقم الفاتورة مطلوب",
-        "loading": "تحميل...",
-        "select": "--أختر--"
-      },
-      "invoice_view": {
-        "title": "عرض الفاتورة",
-        "pay": "دفع",
-        "csv": "CSV",
-        "print": "طباعة",
-        "create_date": "تاريخ الإنشاء",
-        "due_date": "تاريخ الاستحقاق",
-        "invoice_to": "فاتورة إلى",
-        "payment_details": "بيانات الدفع",
-        "total_due": "الاجمالي المستحق",
-        "bank_name": "اسم البنك",
-        "country": "دولة",
-        "city": "مدينة",
-        "address": "عنوان",
-        "iban": "رقم الحساب المصرفي الدولي",
-        "swift_code": "SWIFT code",
-        "status": "حالة",
-        "items": {
-          "item": "غرض",
-          "description": "وصف",
-          "cost": "تكلفة الوحدة",
-          "qty": "كمية",
-          "amount": "المجموع"
-        },
-        "subtotal": "المجموع الشركةي",
-        "tax": "ضريبة",
-        "discount": "تخفيض",
-        "total": "المجموع",
-        "other_informationl": "معلومات أخرى"
-      },
-      "invoice_table": {
-        "invoice_number": "رقم الفاتورة",
-        "client": "عميل",
-        "invoice_date": "تاريخ الإنشاء",
-        "due_date": "تاريخ الاستحقاق",
-        "totalamount": "كمية",
-        "status": "حالة"
-      }
-    },
-    "payment": {
-      "path": "المدفوعات",
-      "add_btn": "إنشاء الدفع",
-      "add_page": {
-        "path": "إنشاء الدفع",
-        "add_btn": "إنشاء"
-      },
-      "edit_page": {
-        "path": "تحرير الدفع",
-        "save_btn": "تحديث"
-      },
-      "payment_form": {
-        "total_amount": "المبلغ الإجمالي",
-        "client": "عميل",
-        "client_required": "* مطلوب العميل",
-        "invoice": "فاتورة",
-        "invoice_required": "* الفاتورة مطلوبة",
-        "address": "عنوان",
-        "address_required": "*العنوان مطلوب",
-        "paid_date": "تاريخ المدفوعة",
-        "paid_date_required": "*تاريخ الدفع مطلوب",
-        "payment_type": "نوع الدفع",
-        "payment_type_required": "*نوع الدفع مطلوب",
-        "paid_amount": "المبلغ المدفوع",
-        "paid_amount_required": "*المبلغ المدفوع مطلوب",
-        "country": "دولة",
-        "country_required": "*نوع البلد مطلوب",
-        "city": "مدينة",
-        "city_required": "*نوع المدينة مطلوب",
-        "bank_name": "اسم البنك",
-        "iban": "ايبان",
-        "swift_code": "Swift Code",
-        "loading": "تحميل...",
-        "select": "--أختر--"
-      },
-      "payment_table": {
-        "invoice_number": "معرف الفاتوره",
-        "client": "عميل",
-        "payment_type": "نوع الدفع",
-        "paid_date": "تاريخ المدفوعة",
-        "paid_amount": "المبلغ المدفوع"
-      }
-    },
-    "expense": {
-      "path": "نفقات",
-      "add_btn": "أضف النفقات",
-      "add_page": {
-        "path": "أضف النفقات",
-        "add_btn": "أضف"
-      },
-      "edit_page": {
-        "path": "تحرير النفقات",
-        "save_btn": "حفظ"
-      },
-      "dropdown": {
-        "cash": "نقدي",
-        "bank": "بنك"
-      },
-      "expense_form": {
-        "item_name": "اسم العنصر",
-        "item_name_required": "*اسم العنصر مطلوب",
-        "purchase_from": "الشراء من",
-        "purchase_from_required": "* الشراء من مطلوب",
-        "purchase_date": "تاريخ الشراء",
-        "purchase_date_required": "*تاريخ الشراء مطلوب",
-        "purchased_by": "تم الشراء بواسطة",
-        "purchased_by_required": "* تم شراؤها من قبل مطلوب",
-        "amount": "كمية",
-        "amount_required": "*المبلغ مطلوب",
-        "paid_by": "المدفوعة بواسطة",
-        "paid_by_required": "* مطلوب الدفع",
-        "status": "حالة",
-        "attachments": "المرفقات",
-        "loading": "تحميل...",
-        "select": "--أختر--"
-      },
-      "expense_table": {
-        "item_name": "غرض",
-        "purchase_from": "الشراء من",
-        "purchase_date": "تاريخ الشراء",
-        "purchased_by": "تم الشراء بواسطة",
-        "amount": "كمية",
-        "paid_by": "تدفع بواسطة",
-        "status": "status"
-      }
-    },
-    "providentFund": {
-      "path": "صناديق الادخار",
-      "add_btn": "إضافة صندوق الادخار",
-      "add_page": {
-        "path": "إضافة صندوق الادخار",
-        "add_btn": "أضف"
-      },
-      "edit_page": {
-        "path": "تحرير صندوق الادخار",
-        "save_btn": "حفظ"
-      },
-      "providentFund_form": {
-        "employee": "اسم الموظف",
-        "employee_required": "* اسم الموظف مطلوب",
-        "provident_type": "نوع صندوق الادخار",
-        "provident_type_required": "*نوع صندوق الادخار مطلوب",
-        "provident_type_dropdown": {
-          "fixed_amount": "مبلغ ثابت",
-          "basic_salary": "نسبة الراتب الأساسي"
-        },
-        "employee_share_amount": "حصة الموظف (المبلغ)",
-        "organization_share_amount": "حصة المنظمة (المبلغ)",
-        "employee_share_percentage": "حصة الموظف (%) ",
-        "employee_share_percentage_required": "* مطلوب حصة الموظف",
-        "organization_share_percentage": "حصة المنظمة (%)",
-        "organization_share_percentage_required": "* حصة المنظمة مطلوبة",
-        "description": "وصف",
-        "loading": "تحميل...",
-        "select": "--أختر--"
-      },
-      "providentFund_table": {
-        "employee": "اسم الموظف",
-        "provident_type": "نوع صندوق الادخار",
-        "employee_share_percentage": "حصة الموظف",
-        "organization_share_percentage": "حصة المنظمة",
-        "status": "حالة"
-      }
-    },
-    "tax": {
-      "path": "الضرائب",
-      "add_btn": "أضف الضريبة",
-      "add_page": {
-        "path": "أضف الضريبة",
-        "add_btn": "أضف"
-      },
-      "edit_page": {
-        "path": "تحرير الضريبة",
-        "save_btn": "حفظ"
-      },
-      "tax_form": {
-        "name": "الاسم الضريبي",
-        "name_required": "*الاسم الضريبي مطلوب",
-        "percentage": "نسبة الضريبة (%)",
-        "percentage_required": "*نسبة الضريبة مطلوبة",
-        "status": {
-          "label": "حالة",
-          "pending": "قيد الانتظار",
-          "approved": "موافقة"
-        },
-        "loading": "تحميل...",
-        "select": "--أختر--"
-      },
-      "tax_table": {
-        "name": "اسم الضريبة",
-        "percentage": "نسبة الضريبة (%)",
-        "status": "حالة"
-      }
-    }
-  },
-  "accounting": {
-    "category": {
-      "path": "فئات",
-      "add_btn": "إضافة فئة",
-      "add_page": {
-        "path": "إضافة فئة",
-        "add_btn": "أضف"
-      },
-      "edit_page": {
-        "path": "تحرير الفئة",
-        "save_btn": "حفظ"
-      },
-      "category_form": {
-        "category_name": "اسم التصنيف",
-        "category_name_required": "*اسم الفئة مطلوب",
-        "subcategory_name": "اسم الفئة الشركةية"
-      },
-      "category_table": {
-        "category_name": "اسم التصنيف",
-        "subcategory_name": "اسم الفئة الشركةية"
-      }
-    },
-    "budget": {
-      "path": "الميزانيات",
-      "add_btn": "أضف الميزانيات",
-      "add_page": {
-        "path": "أضف الميزانيات",
-        "add_btn": "أضف"
-      },
-      "edit_page": {
-        "path": "تحرير الميزانيات",
-        "save_btn": "حفظ"
-      },
-      "budget_form": {
-        "title": "عنوان الميزانية",
-        "title_required": "*عنوان الميزانية مطلوب",
-        "type_choose_label": "اختر نوع احترام الميزانية",
-        "project": "مشروع",
-        "category": "فئة",
-        "start_date": "تاريخ البدء",
-        "start_date_required": "*تاريخ البدء مطلوب",
-        "end_date": "تاريخ الانتهاء",
-        "end_date_required": "*تاريخ الانتهاء مطلوب",
-        "revenues": {
-          "expected_revenues": "الإيرادات المتوقعة",
-          "revenue_title": "عنوان الإيرادات",
-          "revenue_amount": "مبلغ الإيرادات",
-          "overall_revenue": "الإيرادات الإجمالية"
-        },
-        "expenses": {
-          "expected_expenses": "النفقات المتوقعة",
-          "expenses_title": "عنوان النفقات",
-          "expenses_amount": "مبلغ المصروفات",
-          "overall_expense": "التكلفة الإجمالية"
-        },
-        "expected_profit": "الربح المتوقع",
-        "tax": "ضريبة",
-        "tax_required": "*الضريبة مطلوبة",
-        "budget_amount": "مبلغ الميزانية"
-      },
-      "budget_table": {
-        "budget_no": "رقم الميزانية",
-        "title": "عنوان الميزانية",
-        "type": "نوع الميزانية",
-        "start_date": "تاريخ البدء",
-        "end_date": "تاريخ الانتهاء",
-        "overall_revenue": "إجمالي الإيرادات",
-        "overall_expense": "المصروفات الكلية",
-        "tax": "قيمة الضريبة",
-        "budget_amount": "مبلغ الميزانية"
-      }
-    },
-    "budget_expense": {
-      "path": "نفقات الميزانيات",
-      "add_btn": "إضافة نفقات الميزانية",
-      "add_page": {
-        "path": "إضافة نفقات الميزانية",
-        "add_btn": "أضف"
-      },
-      "edit_page": {
-        "path": "تحرير نفقات الميزانية",
-        "save_btn": "حفظ"
-      },
-      "budget_expense_form": {
-        "amount": "كمية",
-        "amount_required": "*كمية مطلوبة",
-        "currency": "اختر العملة",
-        "currency_$": "$ - الدولار الأمريكي",
-        "currency_egp": "جنيه مصري",
-        "note": "ملحوظات",
-        "note_required": "* ملاحظات النفقات مطلوبة",
-        "date": "تاريخ النفقات",
-        "date_required": "*تاريخ النفقة مطلوب",
-        "category": {
-          "select": "فئة",
-          "title": "اختر الفئة"
-        },
-        "subcategory": {
-          "select": "اختر فئة فرعية",
-          "title": "تصنيف فرعي"
-        },
-        "file": "أرفق ملف",
-        "loading": "تحميل..."
-      },
-      "budget_expense_table": {
-        "no": "رقم",
-        "note": "ملحوظة",
-        "category": "اسم التصنيف",
-        "subcategory": "اسم الفئة الشركةية",
-        "amount": "كمية",
-        "date": "تاريخ النفقات"
-      }
-    },
-    "budget_revenue": {
-      "path": "إيرادات الميزانيات",
-      "add_btn": "أضف إيرادات الميزانية",
-      "add_page": {
-        "path": "أضف إيرادات الميزانية",
-        "add_btn": "أضف"
-      },
-      "edit_page": {
-        "path": "تحرير إيرادات الميزانية",
-        "save_btn": "حفظ"
-      },
-      "budget_revenue_form": {
-        "amount": "كمية",
-        "amount_required": "*كمية مطلوبة",
-        "currency": "اختر العملة",
-        "currency_$": "$ - الدولار الأمريكي",
-        "currency_egp": "جنيه مصري",
-        "note": "ملحوظات",
-        "note_required": " *ملاحظات الإيرادات المطلوبة",
-        "date": "تاريخ الإيرادات",
-        "date_required": "*تاريخ الإيرادات مطلوب",
-        "category": {
-          "select": "فئة",
-          "title": "اختر الفئة"
-        },
-        "subcategory": {
-          "select": "اختر فئة فرعية",
-          "title": "تصنيف فرعي"
-        },
-        "file": "أرفق ملف",
-        "loading": "تحميل..."
-      },
-      "budget_revenue_table": {
-        "no": "رقم",
-        "note": "ملحوظة",
-        "category": "اسم التصنيف",
-        "subcategory": "اسم الفئة الشركةية",
-        "amount": "كمية",
-        "date": "تاريخ الإيرادات"
-      }
-    }
-  },
-  "payroll": {
-    "salary": {
-      "path": "مرتب",
-      "add_btn": "أضف الراتب",
-      "add_page": {
-        "path": "أضف الراتب",
-        "add_btn": "أضف"
-      },
-      "edit_page": {
-        "path": "تحرير الراتب",
-        "save_btn": "حفظ"
-      },
-      "salary_form": {
-        "employee": "حدد طاقم العمل",
-        "employee_required": "* اسم الموظف مطلوب",
-        "net_salary": "صافي الراتب",
-        "net_salary_required": " *الراتب مطلوب",
-        "date": "تاريخ",
-        "date_required": "*التاريخ مطلوب",
-        "earnings": {
-          "title": "الأرباح",
-          "basic_earnings": "أساسي",
-          "da": "DA(40%)",
-          "hra": "HRA(15%)",
-          "conveyance": "نقل",
-          "allowance": "مخصص",
-          "medical_allowance": "بدل الطبي",
-          "others1": "أخر",
-          "payslip_id": "معرف قسيمة الدفع"
-        },
-        "deductions": {
-          "title": "الخصومات",
-          "tds": "TDS",
-          "esi": "ESI",
-          "pf": "PF",
-          "leave": "المغادره",
-          "prof_tax": "Prof. ضريبة",
-          "labour_welfare": "رعاية العمل",
-          "fund": "تمويل",
-          "others2": "أخر"
-        },
-        "select": "--أختر--"
-      },
-      "salary_view": {
-        "path": "عرض الراتب",
-        "title": "صرف رواتب شهر  ",
-        "csv": "CSV",
-        "print": "طباعة",
-        "salary_month": "شهر الراتب",
-        "employee_id": "هوية الموظف",
-        "joining_date": "تاريخ الانضمام",
-        "earnings": "الأرباح",
-        "basic_salary": "راتب اساسي",
-        "hra": "بدل إيجار المنزل (H.R.A.)",
-        "conveyance": "نقل",
-        "allowance": "بدلات أخرى",
-        "total_earnings": "الأرباح الكلية",
-        "deductions": "الخصومات",
-        "tds": "الضريبة المخصومة من المصدر (TDS)",
-        "fund": "صندوق الادخار",
-        "esi": "ESI",
-        "labour": "تَعَب",
-        "total_deductions": "إجمالي الخصومات",
-        "net_salary": "صافي الراتب"
-      },
-      "salary_table": {
-        "employee": "موظف",
-        "employee_id": "هوية الموظف",
-        "email": "بريد إلكتروني",
-        "joining_date": "تاريخ الانضمام",
-        "role": "role",
-        "net_salary": "صافي الراتب",
-        "payslip": "قسيمة الدفع",
-        "generate_slip_btn": "عمل قسيمه"
-      }
-    },
-    "payroll_items": {
-      "path": "عناصر الرواتب",
-      "add_btn": "أضف",
-      "save_btn": "حفظ",
-      "no_data": "لاتوجد بيانات",
-      "select": "--أختر--",
-      "additions_tab": "الإضافات",
-      "overtime_tab": "وقت إضافي",
-      "deductions_tab": "الخصومات",
-      "add_addition_btn": "أضف إضافة",
-      "add_overtime_btn": "أضف وقت إضافي",
-      "add_deduction_btn": "إضافة خصم",
-      "addition_table": {
-        "name": "اسم",
-        "category": "فئة",
-        "unit_amount": "المبلغ الافتراضي/الوحدة",
-        "action": "فعل"
-      },
-      "overtime_table": {
-        "name": "اسم",
-        "rate": "معدل",
-        "action": "فعل"
-      },
-      "deductions_table": {
-        "name": "اسم",
-        "unit_amount": "المبلغ الافتراضي/الوحدة",
-        "action": "فعل"
-      },
-      "addition_form": {
-        "add_path": "أضف إضافة",
-        "edit_path": "تحرير الإضافة",
-        "name": "اسم",
-        "name_required": "*مطلوب اسم",
-        "category": "فئة",
-        "category_required": "*اختيار القسم مطلوب",
-        "unit_calculation": "حساب الوحدة",
-        "unit_amount": "وحدة المبلغ",
-        "unit_amount_required": "*المبلغ مطلوب",
-        "assignee": "المكلف",
-        "no_assignee": "لا يوجد مكلف",
-        "all_employees": "كل الموظفين",
-        "select_employees": "حدد الموظف"
-      },
-      "overtime_form": {
-        "add_path": "أضف وقت إضافي",
-        "edit_path": "تحرير الوقت الاضافي",
-        "name": "اسم",
-        "name_required": "*مطلوب اسم",
-        "rate_type": "نوع معدل",
-        "rate_type_required": "*النوع مطلوب",
-        "daily_rate": "تقييم يومي",
-        "hourly_rate": "المعدل بالساعة",
-        "rate": "معدل",
-        "rate_required": "*السعر مطلوب"
-      },
-      "deductions_form": {
-        "add_path": "إضافة خصم",
-        "edit_path": "تحرير الخصم",
-        "name": "اسم",
-        "name_required": "*مطلوب اسم",
-        "unit_calculation": "حساب الوحدة",
-        "unit_amount": "وحدة المبلغ",
-        "unit_amount_required": "*المبلغ مطلوب",
-        "assignee": "المكلف",
-        "no_assignee": "لا يوجد مكلف",
-        "all_employees": "كل الموظفين",
-        "select_employees": "حدد الموظف"
-      }
-    }
-  },
-  "policy": {
-    "path": "سياسات",
-    "add_btn": "إضافة سياسة",
-    "add_page": {
-      "path": "إضافة سياسة",
-      "add_btn": "أضف"
-    },
-    "edit_page": {
-      "path": "تحرير السياسة",
-      "save_btn": "حفظ"
-    },
-    "policy_form": {
-      "name": "اسم السياسة",
-      "name_required": "*اسم السياسة مطلوب",
-      "description": "وصف",
-      "description_required": "*الوصف مطلوب",
-      "department": "قسم",
-      "department_required": "* اسم القسم مطلوب",
-      "file": "سياسة التحميل",
-      "select": "--أختر--",
-      "loading": "--تحميل--"
-    },
-    "policy_table": {
-      "name": "اسم السياسة",
-      "department": "قسم",
-      "description": "وصف",
-      "date": "أنشئ"
-    }
-  },
-  "reports": {
-    "expense_report": {
-      "path": "تقرير المصاريف",
-      "expense_report_table": {
-        "item_name": "غرض",
-        "purchase_from": "الشراء من",
-        "purchase_date": "تاريخ الشراء",
-        "purchased_by": "الشراء عن طريق",
-        "amount": "كمية",
-        "paid_by": "تدفع بواسطة",
-        "status": "حالة"
-      }
-    },
-    "invoice_report": {
-      "path": "تقرير الفاتورة",
-      "invoice_report_table": {
-        "invoice_number": "رقم الفاتورة",
-        "client": "عميل",
-        "invoice_date": "تاريخ الإنشاء",
-        "due_date": "تاريخ الاستحقاق",
-        "totalamount": "كمية",
-        "status": "حالة"
-      }
-    },
-    "payment_report": {
-      "path": "تقرير الدفع",
-      "payment_report_table": {
-        "iban": "رقم المعاملة",
-        "paid_date": "تاريخ",
-        "client": "اسم العميل",
-        "payment_type": "طريقة الدفع او السداد",
-        "invoice_number": "فاتورة",
-        "paid_amount": "كمية"
-      }
-    },
-    "project_report": {
-      "path": "تقرير المشروع",
-      "project_report_table": {
-        "project": "عنوان المشروع",
-        "client": "اسم العميل",
-        "startDate": "تاريخ البدء",
-        "endDate": "تاريخ الانتهاء",
-        "status": "حالة",
-        "team": "فريق"
-      }
-    },
-    "task_report": {
-      "path": "تقرير المهمة",
-      "task_report_table": {
-        "text": "اسم المهمة",
-        "date": "تاريخ الانتهاء",
-        "completed": "حالة",
-        "assignedTo": "مخصص ل"
-      }
-    },
-    "user_report": {
-      "path": "تقرير المستخدم",
-      "user_report_table": {
-        "name": "اسم",
-        "company": "شركة",
-        "email": "بريد إلكتروني",
-        "role": "دور",
-        "designation": "تعيين",
-        "status": "حالة"
-      }
-    },
-    "employee_report": {
-      "path": "تقرير الموظف",
-      "employee_report_table": {
-        "fullName ": "اسم الموظف",
-        "type": "نوع موظف",
-        "email": "بريد إلكتروني",
-        "department": "قسم",
-        "designation": "تعيين",
-        "joining_date": "تاريخ الانضمام",
-        "dob": "dob",
-        "matrial_status": "الحالة الاجتماعية",
-        "gender": "جنس",
-        "end_date": "تاريخ الإنهاء"
-      }
-    },
-    "payslip_report": {
-      "path": "تقرير قسيمة الدفع",
-      "payslip_report_table": {
-        "employee": "اسم الموظف",
-        "net_salary": "المبلغ المدفوع",
-        "date_month": "شهر الدفع",
-        "date_year": "سنة الدفع"
-      }
-    },
-    "attendance_report": {
-      "path": "تقرير الحضور",
-      "attendance_report_table": {
-        "date": "تاريخ",
-        "punchIn": "تسجيل دخول",
-        "punchOut": "تسجيل خروج",
-        "status": "حالة العمل"
-      }
-    },
-    "leave_report": {
-      "path": "ترك التقرير",
-      "leave_report_table": {
-        "employee": "موظف",
-        "from": "تاريخ",
-        "employee?.department": "قسم",
-        "type": "نوع الإجازة",
-        "days": "عدد الايام",
-        "remaining": "الإجازة المتبقية",
-        "total_leaves": "مجموع الإجازة",
-        "taken": "إجمالي الإجازة المتخذة",
-        "carryForwardMax": "أجازات المضي قدما"
-      }
-    },
-    "daily_report": {
-      "path": "تقرير يومي",
-      "daily_report_table": {
-        "employee": "موظف",
-        "joining_date": "تاريخ",
-        "department": "قسم",
-        "status": "حالة"
-      },
-      "total_employees": "عدد الموظفي",
-      "today_present": "اليوم حاضر",
-      "today_absent": "اليوم غائب",
-      "today_left": "المتبقي اليوم"
-    }
-  },
-  "performance": {
-    "indicator": {
-      "path": "مؤشر الأداء",
-      "add_btn": "إضافة المؤشر",
-      "add_page": {
-        "path": "إضافة المؤشر",
-        "add_btn": "أضف"
-      },
-      "edit_page": {
-        "path": "تحرير المؤشر",
-        "save_btn": "حفظ"
-      },
-      "indicator_form": {
-        "technical": "اِصطِلاحِيّ",
-        "organizational": "تنظيمي",
-        "select_designation": "حدد التسمية",
-        "designation": "التسمية",
-        "designation_required": "التسمية مطلوب",
-        "customer_experience": "تجربة الزبون",
-        "customer_experience_required": "تجربة العملاء مطلوبة",
-        "marketing": "تسويق",
-        "marketing_required": "التسويق مطلوب",
-        "management": "هيئة الإدارة",
-        "management_required": "هيئة الإدارة مطلوبة",
-        "administration": "إدارة",
-        "administration_required": "الإدارة مطلوبة",
-        "presentation_skill": "مهارات التقديم",
-        "presentation_skill_required": "مطلوب مهارة العرض",
-        "quality_of_work": "جودة العمل",
-        "quality_of_work_required": "الجودة مطلوبة",
-        "efficiency": "كفاءة",
-        "efficiency_required": "الكفاءة مطلوبة",
-        "integrity": "نزاهة",
-        "integrity_required": "النزاهة مطلوبة",
-        "professionalism": "احترافية",
-        "professionalism_required": "الاحتراف مطلوب",
-        "team_work": "العمل الجماعي",
-        "team_work_required": "مطلوب العمل الجماعي",
-        "critical_thinking": "التفكير النقدي",
-        "critical_thinking_required": "مطلوب التفكير النقدي",
-        "conflict_management": "فض النزاعات",
-        "conflict_management_required": "إدارة الصراع مطلوبة",
-        "attendance": "حضور",
-        "attendance_required": "الحضور مطلوب",
-        "meet_deadline": "القدرة على الوفاء بالموعد النهائي",
-        "meet_deadline_required": "الموعد النهائي مطلوب",
-        "status": "حالة",
-        "status_required": "الحالة مطلوبة",
-        "loading": "تحميل...",
-        "select": "--أختر--",
-        "active": "نشط",
-        "inactive": "غير نشط"
-      },
-      "indicator_table": {
-        "designation": "التسمية",
-        "department": "القسم",
-        "added_by": "تمت إضافته بواسطة",
-        "date": "أنشئت في",
-        "status": "حالة"
-      }
-    },
-    "appraisal": {
-      "path": "تقييم الأداء",
-      "add_btn": "إضافة تقييم",
-      "add_page": {
-        "path": "إضافة تقييم",
-        "add_btn": "أضف"
-      },
-      "edit_page": {
-        "path": "تحرير التقييم",
-        "save_btn": "حفظ"
-      },
-      "appraisal_form": {
-        "employee": "موظف",
-        "employee_required": "مطلوب موظف",
-        "date": "حدد تاريخ",
-        "date_required": "التاريخ مطلوب",
-        "status": "حالة",
-        "status_required": "الحالة مطلوبة",
-        "loading": "تحميل...",
-        "select": "--أختر--",
-        "active": "نشط",
-        "inactive": "غير نشط"
-      },
-      "appraisal_table": {
-        "employee": "موظف",
-        "designation": "التسمية",
-        "department": "القسم",
-        "date": "تاريخ التقييم",
-        "status": "حالة"
-      }
-    }
-  },
-  "goals": {
-    "list": {
-      "path": "قائمة الأهداف",
-      "add_btn": "اضف قائمة",
-      "add_page": {
-        "path": "اضف قائمة",
-        "add_btn": "أضف"
-      },
-      "edit_page": {
-        "path": "تحرير القائمة",
-        "save_btn": "حفظ"
-      },
-      "list_form": {
-        "type": "نوع الهدف",
-        "type_required": "*نوع الهدف مطلوب",
-        "subject": "موضوع",
-        "subject_required": "*الموضوع مطلوب",
-        "target_achievement": "تحقيق الهدف",
-        "target_achievement_required": "*مطلوب تحقيق الهدف",
-        "start_date": "تاريخ البدء",
-        "start_date_required": "*تاريخ البدء مطلوب",
-        "end_date": "تاريخ الانتهاء",
-        "end_date_required": "*تاريخ الانتهاء مطلوب",
-        "description": "وصف",
-        "description_required": "*الوصف مطلوب",
-        "status": "حالة",
-        "status_required": "*الحالة مطلوبة",
-        "loading": "تحميل...",
-        "select": "--أختر--",
-        "active": "نشط",
-        "inactive": "غير نشط"
-      },
-      "list_table": {
-        "type": "نوع الهدف",
-        "subject": "موضوع",
-        "target_achievement": "تحقيق الهدف",
-        "start_date": "تاريخ البدء",
-        "end_date": "تاريخ الانتهاء",
-        "description": "وصف",
-        "status": "حالة",
-        "progress": "تقدم"
-      }
-    },
-    "type": {
-      "path": "نوع الهدف",
-      "add_btn": "أضف النوع",
-      "add_page": {
-        "path": "أضف النوع",
-        "add_btn": "أضف"
-      },
-      "edit_page": {
-        "path": "تحرير النوع",
-        "save_btn": "حفظ"
-      },
-      "type_form": {
-        "type": "نوع الهدف",
-        "type_required": "*نوع الهدف مطلوب",
-        "description": "وصف",
-        "description_required": "*الوصف مطلوب",
-        "status": "حالة",
-        "status_required": "*الحالة مطلوبة",
-        "loading": "تحميل...",
-        "select": "--أختر--",
-        "active": "نشط",
-        "inactive": "غير نشط"
-      },
-      "type_table": {
-        "type": "النوع",
-        "description": "وصف",
-        "status": "حالة"
-      }
-    }
-  },
-  "training": {
-    "list": {
-      "path": "قائمة التدريب",
-      "add_btn": "اضف قائمة",
-      "add_page": {
-        "path": "اضف قائمة",
-        "add_btn": "أضف"
-      },
-      "edit_page": {
-        "path": "تحرير القائمة",
-        "save_btn": "حفظ"
-      },
-      "list_form": {
-        "training_type": "نوع التدريب",
-        "training_type_required": "*النوع مطلوب",
-        "trainer": "مدرب",
-        "trainer_required": "*مطلوب مدرب",
-        "employee": "موظف",
-        "employee_required": "*مطلوب موظف",
-        "cost": "يكلف",
-        "cost_required": "*التكلفة مطلوبة",
-        "start_date": "تاريخ البدء",
-        "start_date_required": "*تاريخ البدء مطلوب",
-        "end_date": "تاريخ الانتهاء",
-        "end_date_required": "*تاريخ الانتهاء مطلوب",
-        "description": "وصف",
-        "description_required": "*الوصف مطلوب",
-        "status": "حالة",
-        "status_required": "*الحالة مطلوبة",
-        "loading": "تحميل...",
-        "select": "--أختر--",
-        "active": "نشط",
-        "inactive": "غير نشط"
-      },
-      "list_table": {
-        "training_type": "نوع التدريب",
-        "trainer": "مدرب",
-        "employee": "موظف",
-        "duration": "المدة الزمنية",
-        "description": "وصف",
-        "cost": "يكلف",
-        "status": "حالة"
-      }
-    },
-    "trainer": {
-      "path": "المدربون",
-      "add_btn": "إضافة مدرب",
-      "add_page": {
-        "path": "إضافة مدرب",
-        "add_btn": "أضف"
-      },
-      "edit_page": {
-        "path": "تحرير المدرب",
-        "save_btn": "حفظ"
-      },
-      "trainer_form": {
-        "first_name": "الاسم الأول",
-        "first_name_required": "*الإسم الأول مطلوب",
-        "last_name": "اسم العائلة",
-        "last_name_required": "*إسم العائلة مطلوب",
-        "role": "دور",
-        "role_required": "* الدور مطلوب",
-        "email": "بريد إلكتروني",
-        "email_required": "*البريد الالكتروني مطلوب",
-        "phone": "هاتف",
-        "phone_required": "*الهاتف مطلوب",
-        "description": "وصف",
-        "description_required": "*الوصف مطلوب",
-        "status": "حالة",
-        "status_required": "*الحالة مطلوبة",
-        "loading": "تحميل...",
-        "select": "--أختر--",
-        "active": "نشط",
-        "inactive": "غير نشط"
-      },
-      "trainer_table": {
-        "name": "اسم",
-        "phone": "رقم الاتصال",
-        "email": "بريد إلكتروني",
-        "description": "وصف",
-        "status": "حالة"
-      }
-    },
-    "type": {
-      "path": "نوع التدريب",
-      "add_btn": "أضف النوع",
-      "add_page": {
-        "path": "أضف النوع",
-        "add_btn": "أضف"
-      },
-      "edit_page": {
-        "path": "تحرير النوع",
-        "save_btn": "حفظ"
-      },
-      "type_form": {
-        "type": "نوع التدريب",
-        "type_required": "*نوع التدريب مطلوب",
-        "description": "وصف",
-        "description_required": "*الوصف مطلوب",
-        "status": "حالة",
-        "status_required": "*الحالة مطلوبة",
-        "loading": "تحميل...",
-        "select": "--أختر--",
-        "active": "نشط",
-        "inactive": "غير نشط"
-      },
-      "type_table": {
-        "type": "النوع",
-        "description": "وصف",
-        "status": "حالة"
-      }
-    }
-  },
-  "promotion": {
-    "path": "ترقية",
-    "add_btn": "إضافة ترقية",
-    "add_page": {
-      "path": "إضافة ترقية",
-      "add_btn": "أضف"
-    },
-    "edit_page": {
-      "path": "تحرير الترقية",
-      "save_btn": "حفظ"
-    },
-    "promotion_form": {
-      "employee": "الترقية ل",
-      "employee_required": "*الترقية مطلوب",
-      "promotion_from": "الترقية من",
-      "promotion_from_required": "*الترقية من مطلوبة",
-      "promotion_to": "الترقية ل",
-      "promotion_to_required": "*الترقية إلى مطلوبة",
-      "date": "تاريخ الترقية",
-      "date_required": "*تاريخ العرض مطلوب",
-      "loading": "تحميل...",
-      "select": "--أختر--",
-      "active": "نشط",
-      "inactive": "غير نشط"
-    },
-    "promotion_table": {
-      "employee": "الموظف الذي تمت ترقيته",
-      "department": "قسم",
-      "promotion_from": "تسمية الترقية من",
-      "promotion_to": "تعيين الترقية إلى",
-      "date": "تاريخ الترقية"
-    }
-  },
-  "resignation": {
-    "path": "استقالة",
-    "add_btn": "إضافة الاستقالة",
-    "add_page": {
-      "path": "إضافة الاستقالة",
-      "add_btn": "أضف"
-    },
-    "edit_page": {
-      "path": "تحرير الاستقالة",
-      "save_btn": "حفظ"
-    },
-    "resignation_form": {
-      "employee": "الترويج ل",
-      "employee_required": "*الترويج مطلوب",
-      "notice_date": "تاريخ الإخطار",
-      "notice_date_required": "*تاريخ الإشعار مطلوب",
-      "resignation_date": "تاريخ الاستقالة",
-      "resignation_date_required": "*تاريخ الاستقالة مطلوب",
-      "reason": "سبب",
-      "reason_required": "*السبب مطلوب",
-      "loading": "تحميل...",
-      "select": "--أختر--",
-      "active": "نشط",
-      "inactive": "غير نشط"
-    },
-    "resignation_table": {
-      "employee": "الموظف المستقيل",
-      "department": "قسم",
-      "reason": "سبب",
-      "notice_date": "تاريخ الإخطار",
-      "resignation_date": "تاريخ الاستقالة"
-    }
-  },
-  "termination": {
-    "path": "فسخ عقد",
-    "add_btn": "إضافة فسخ عقد",
-    "add_page": {
-      "path": "إضافة فسخ عقد",
-      "add_btn": "أضف"
-    },
-    "edit_page": {
-      "path": "تحرير فسخ عقد",
-      "save_btn": "حفظ"
-    },
-    "termination_form": {
-      "employee": "الموظف مفسوخ عقدة",
-      "employee_required": "*مطلوب موظف منتهية خدمته",
-      "type": "نوع الإنهاء",
-      "type_required": "*نوع فسخ العقد مطلوب",
-      "date": "تاريخ الإنهاء",
-      "date_required": "*تاريخ فسخ العقد مطلوب",
-      "reason": "سبب",
-      "reason_required": "*السبب مطلوب",
-      "notice_date": "تاريخ الإخطار",
-      "notice_date_required": "*تاريخ الإشعار مطلوب",
-      "loading": "تحميل...",
-      "select": "--أختر--",
-      "active": "نشط",
-      "inactive": "غير نشط",
-      "others": "أخري",
-      "misconduct": "سوء السلوك",
-      "add": "أضف"
-    },
-    "termination_table": {
-      "employee": "موظف أنهيت خدمته",
-      "department": "قسم",
-      "type": "نوع فسخ العقد",
-      "date": "تاريخ فسخ العقد",
-      "reason": "سبب",
-      "notice_date": "تاريخ الإخطار"
-    }
-  },
-  "assets": {
-    "path": "أصول",
-    "add_btn": "أضف الأصول",
-    "add_page": {
-      "path": "أضف الأصول",
-      "add_btn": "أضف"
-    },
-    "edit_page": {
-      "path": "تحرير الأصول",
-      "save_btn": "حفظ"
-    },
-    "assets_form": {
-      "asset_name": "اسم الأصل",
-      "asset_name_required": "*اسم الأصل مطلوب",
-      "asset_id": "معرف الأصول",
-      "asset_id_required": "*معرف الأصول مطلوب",
-      "purchase_from": "الشراء من",
-      "purchase_from_required": "*تاريخ الشراء مطلوب",
-      "purchase_to": "شراء ل",
-      "purchase_to_required": "* الشراء إلى مطلوب",
-      "manufacturer": "الصانع",
-      "model": "نموذج",
-      "serial_number": "رقم سري",
-      "supplier": "المورد",
-      "condition": "حالة",
-      "warranty": "ضمان",
-      "warranty_required": "*الضمان مطلوب",
-      "value": "قيمة",
-      "value_required": "*القيمة مطلوبة",
-      "user": "مستخدم الأصول",
-      "user_required": "* مطلوب مستخدم الأصول",
-      "description": "وصف",
-      "status": {
-        "label": "حالة",
-        "approved": "موافقة",
-        "pending": "قيد الانتظار",
-        "deployed": "نشر",
-        "damaged": "تالف",
-        "required": "*حالة الأصول مطلوبة"
-      },
-      "loading": "تحميل...",
-      "select": "--أختر--",
-      "active": "نشط",
-      "inactive": "غير نشط"
-    },
-    "assets_table": {
-      "user": "مستخدم الأصول",
-      "asset_name": "اسم الأصل",
-      "asset_id": "معرف الأصول",
-      "purchase_from": "تاريخ الشراء",
-      "warrenty": "ضمان",
-      "warrenty_end": "نهاية الضمان",
-      "value": "كمية",
-      "status": "حالة"
-    }
-  },
-  "users": {
-    "path": "المستخدمين",
-    "add_btn": "إضافة مستخدم",
-    "add_page": {
-      "path": "إضافة مستخدم",
-      "add_btn": "أضف"
-    },
-    "edit_page": {
-      "path": "تحرير العضو",
-      "save_btn": "حفظ"
-    },
-    "users_form": {
+  "team": {
+    "title": "فريق",
+    "delete": "عضو",
+    "add_title": "إضافة عضو",
+    "edit_title": "تحديث العضو",
+    "table_title": "جدول الأعضاء",
+    "form": {
+      "basic_details": "التفاصيل الأساسية",
       "first_name": "الاسم الأول",
-      "first_name_required": "*الإسم الأول مطلوب",
+      "first_name_required": "الاسم الأول مطلوب",
       "last_name": "اسم العائلة",
-      "last_name_required": "*إسم العائلة مطلوب",
-      "username": "اسم المستخدم",
-      "username_required": "*اسم المستخدم مطلوب",
+      "last_name_required": "الاسم الأخير مطلوب",
       "email": "بريد إلكتروني",
-      "email_required": "*البريد الالكتروني مطلوب",
-      "password": "كلمة المرور",
-      "password_required": "*كلمة المرور مطلوبة",
-      "confirmPassword": "تأكيد كلمة المرور",
-      "confirmPassword_required": "*كلمة السر ليست متطابقة",
-      "phone": "هاتف",
-      "phone_required": "*الهاتف مطلوب",
-      "role": {
-        "label": "دور",
-        "admin": "مشرف",
-        "client": "عميل",
-        "employee": "موظف",
-        "required": "* الدور مطلوب"
-      },
-      "company": "شركة",
-      "company_required": "*الشركة مطلوبة",
-      "employee": "الموظف",
-      "module_permission": "إذن الوحدة النمطية",
-      "read": "يقرأ",
-      "write": "يكتب",
-      "create": "ينشئ",
-      "delete": "يحذف",
-      "import": "يرفع",
-      "export": "يستخرج",
-
-      "user_type": "اختر نوع المستخدم",
-      "employee_type": "موظف",
-      "client_type": "عميل",
-      "normal_type": "عادي",
-
-      "loading": "تحميل...",
-      "select": "--أختر--"
+      "email_required": "البريد الإلكتروني مطلوب",
+      "contact_number": "رقم التواصل",
+      "contact_number_required": "رقم التواصل مطلوب",
+      "billable_rate": "سعر الساعة القابل للفواتير",
+      "billable_rate_required": "مطلوب سعر بالساعة قابل للفواتير",
+      "position": "موضع",
+      "divisions": "الأقسام",
+      "permissons": "الأذونات"
     },
-    "users_table": {
-      "employee": "اسم",
-      "email": "بريد إلكتروني",
-      "company": "شركة",
-      "date": "تاريخ الإنشاء",
-      "role": "دور"
+    "table": {
+      "name": "اسم",
+      "email_id": "معرف البريد الإلكتروني",
+      "phone": "هاتف",
+      "status": "حالة"
+    },
+    "time_card": {
+      "name": "اسم",
+      "hours": "ساعات العمل اليوم"
+    },
+    "date_range": {
+      "date": "نطاق التاريخ",
+      "time_card": "بطاقة الوقت",
+      "days": "أيام",
+      "driving": "القيادة",
+      "break": "استراحة",
+      "working": "عمل",
+      "clocked": "انتهت المدة",
+      "miscellaneous": "متنوع",
+      "total": "مجموع الساعات"
     }
   },
-  "settings": {
-    "sidebar": {
-      "back_to_home": "العودة إلى القائمة",
-      "title": "إعدادات",
-      "company": "إعدادات الشركة",
-      "localization": "الموقع",
-      "theme": "إعدادات السيمات",
-      "roles": "الأدوار والأذونات",
-      "email": "إعدادات البريد الإلكتروني",
-      "performance": "تكوين الأداء",
-      "approval": "إعدادات الموافقة",
-      "invoice": "إعدادات الفاتورة",
-      "salary": "إعدادات الراتب",
-      "notifications": "إعدادات الإخطارات",
-      "change_password": "تغيير كلمة المرور",
-      "leave_type": "نوع الإجازة",
-      "toxbox": "إعداد ToxBox",
-      "cron": "إعدادات cron"
+  "job_link": {
+    "title": "رابط الوظيفة",
+    "previous": "سابق",
+    "today": "اليوم",
+    "next": "التالي",
+    "day": "يوم",
+    "week": "أسبوع",
+    "list": {
+      "all": "كل",
+      "title": "قائمة الوظائف",
+      "missed": "عمليات التفتيش الفائتة",
+      "due_this": "المستحق هذا الشهر",
+      "due_next": "المستحق الشهر القادم",
+      "no_data": "لم يتم العثور على أي بيانات"
     },
-    "company": {
-      "title": "إعدادات الشركة",
-      "companyName": "اسم الشركة",
-      "companyName_required": "* اسم الشركة مطلوب",
-      "contactPerson": "جهة الاتصال",
-      "contactPerson_required": "* مطلوب جهة الاتصال",
+    "choose_modal": {
+      "title": "اختار",
+      "description": "اختر واحدًا مما يلي:-",
+      "schedule": "جدولة الوظيفة",
+      "make": "تدوين الملاحظات"
+    },
+    "assign_job": {
+      "title": "تعيين وظيفة",
+      "update_title": "تحديث الوظيفة المعينة",
+      "contact_name": "اسم جهة الاتصال",
+      "job_id": "رقم معرف الوظيفة",
+      "email_id": "معرف البريد الإلكتروني",
+      "office_number": "رقم المكتب",
       "address": "عنوان",
-      "address_required": "*العنوان مطلوب",
-      "country": "دولة",
-      "country_required": "*الدولة مطلوبة",
-      "city": "مدينة",
-      "city_required": "*المدينة مطلوبة",
-      "state": "الولاية/المقاطعة",
-      "state_required": "*الدولة مطلوبة",
-      "postalCode": "رمز بريدي",
-      "postalCode_required": "*الرمز البريدي مطلوب",
-      "email": "بريد إلكتروني",
-      "email_required": "*البريد الالكتروني مطلوب",
-      "phoneNumber": "رقم التليفون",
-      "phoneNumber_required": "* رقم الهاتف مطلوب",
-      "mobileNumber": "رقم الهاتف المحمول",
-      "mobileNumber_required": "* رقم الجوال مطلوب",
-      "fax": "فاكس",
-      "fax_required": "*الفاكس مطلوب",
-      "website": "رابط الموقع",
-      "website_required": "*مطلوب عنوان URL لموقع الويب",
-      "save": "حفظ"
-    },
-    "localization": {
-      "title": "الإعدادات الأساسية",
-      "defaultCountry": "البلد الافتراضي",
-      "defaultCountry_required": "*البلد الافتراضي مطلوب",
-      "dateFormat": "صيغة التاريخ",
-      "dateFormat_required": "*تنسيق التاريخ مطلوب",
-      "timeZone": "وحدة زمنية",
-      "timeZone_required": "* المنطقة الزمنية مطلوبة",
-      "deafultLanguage": "اللغة الافتراضية",
-      "deafultLanguage_required": "*اللغة الافتراضية مطلوبة",
-      "currencyCode": "رمز العملة",
-      "currencyCode_required": "*رمز العملة مطلوب",
-      "text": "رمز العملة",
-      "save": "حفظ"
-    },
-    "theme": {
-      "title": "إعدادات الموضوع",
-      "websiteName": "اسم الموقع",
-      "websiteName_required": "* اسم الموقع مطلوب",
-      "lightLogo": "الشعار",
-      "lightLogo_required": "* مطلوب الشعار",
-      "favicon": "الرمز المفضل",
-      "favicon_required": "*الرمز المفضل مطلوب",
-      "save": "حفظ"
-    },
-    "roles": {
-      "title": "الرتب والأذونات",
-      "add_role": "أضف رتبة",
-      "edit_btn": "تعديل",
-      "delete_btn": "حذف",
-      "module_access": "الوصول إلى الوحدات النمطية",
-      "module_permission": "الصفحة",
-      "read": "العرض",
-      "write": "التعديل",
-      "create": "الإضافة",
-      "delete": "الحذف",
-      "import": "إرفاق",
-      "export": "الطباعة",
-      "role_name": "اسم الرتبة",
-      "role_name_required": "*اسم الرتبة مطلوب",
-      "add": "أضف",
-      "edit_role": "تعديل الرتبة",
-      "save": "حفظ"
-    },
-    "email": {
-      "phpMail": "بريد PHP",
-      "phpMail_required": "*مطلوب بريد PHP",
-      "smtp": "SMTP",
-      "smtp_required": "* SMTP مطلوب",
-      "emailAddress": "البريد الإلكتروني من العنوان",
-      "emailAddress_required": "*البريد الإلكتروني من العنوان مطلوب",
-      "emailName": "رسائل البريد الإلكتروني من الاسم",
-      "emailName_required": "* البريد الإلكتروني من الاسم مطلوب",
-      "smtpHost": "مضيف SMTP",
-      "smtpHost_required": "*مطلوب مضيف SMTP",
-      "smtpUser": "مستخدم SMTP",
-      "smtpUser_required": "*مطلوب مستخدم SMTP",
-      "smtpPassword": "كلمة مرور SMTP",
-      "smtpPassword_required": "* كلمة مرور SMTP مطلوبة",
-      "smtpPort": "منفذ SMTP",
-      "smtpPort_required": "*مطلوب منفذ SMTP",
-      "smtpSecurity": "أمان SMTP",
-      "smtpSecurity_required": "* مطلوب أمان SMTP",
-      "smtpAuthentication": "مجال مصادقة SMTP",
-      "smtpAuthentication_required": "* مطلوب مصادقة SMTP",
-      "save": "حفظ"
-    },
-    "performance": {
-      "title": "تكوين الأداء",
-      "save": "حفظ"
-    },
-    "approval": {
-      "title": "إعدادات الموافقة",
-      "expenses_approval": "الموافقة على النفقات",
-      "leave_approval": "الموافقة على الإجازة",
-      "offer_approval": "الموافقة على العرض",
-      "resignation_notice": "إشعار الاستقالة",
-      "expense_approval_settings": "إعدادات الموافقة على النفقات",
-      "default_expense_approval": "الموافقة على النفقات الافتراضية",
-      "sequence_approval": "الموافقة على التسلسل (السلسلة)",
-      "simultaneous_approval": "الموافقة المتزامنة",
-      "expense_approvers": "الموافقون على النفقات",
-      "approver_1": "المعتمد 1",
-      "approver_2": "المعتمد 2",
-      "approver_3": "المعتمد 3",
-      "add_approver": "+ إضافة الموافق",
-      "save_changes": "حفظ التغييرات",
-      "default_leave_approval": "الموافقة الافتراضية على الإجازة",
-      "leave_approvals": "ترك الموافقين",
-      "offer_approval_settings": "إعدادات الموافقة على العرض",
-      "default_offer_approval": "الموافقة على العرض الافتراضي",
-      "email_notification": "إشعار البريد الإلكتروني",
-      "notice_days": "أيام الإشعار"
-    },
-    "invoice": {
-      "title": "إعدادات الفاتورة",
-      "invoicePrefix": "بادئة الفاتورة",
-      "invoicePrefix_required": "بادئة الفاتورة مطلوبة",
-      "invoiceLogo": "شعار الفاتورة",
-      "invoiceLogo_required": "مطلوب شعار الفاتورة",
-      "image_dec": "حجم الصورة الموصى به هو 200 بكسل × 40 بكسل",
-      "save": "حفظ"
-    },
-    "salary": {
-      "title": "إعدادات الراتب",
-      "da_and_hra": "DA و HRA",
-      "da": "DA (%)",
-      "da_required": "*مطلوب DA (%)",
-      "hra": "HRA (%)",
-      "hra_required": "*HRA (%) مطلوب",
-      "provident_fund_settings": "إعدادات صندوق الادخار",
-      "employeeShare": "حصة الموظف (%)",
-      "employeeShare_required": "* مطلوب حصة الموظف",
-      "organisationShare": "حصة المنظمة (%)",
-      "organisationShare_required": "* حصة المنظمة مطلوبة",
-      "esi_settings": "ESI Settings",
-      "esiEmployeeShare": "حصة الموظف (%)",
-      "esiEmployeeShare_required": "* مطلوب حصة الموظف",
-      "esiOrganisationShare": "Organization Share (%",
-      "esiOrganisationShare_required": "* حصة المنظمة مطلوبة",
-      "tds": "TDS",
-      "annual_salary": "الراتب السنوي",
-      "annualSalaryFrom1": "الراتب من",
-      "annualSalaryFrom1_required": "*الراتب مطلوب",
-      "annualSalaryTo1": "الراتب الى",
-      "annualSalaryTo1_required": "*الراتب مطلوب",
-      "annualpercentage1_required": "* نسبة الراتب مطلوبة",
-      "annualSalaryFrom2": "الراتب من",
-      "annualSalaryFrom2_required": "*الراتب مطلوب",
-      "annualSalaryTo2": "الراتب الى",
-      "annualSalaryTo2_required": "*الراتب مطلوب",
-      "annualpercentage2_required": "* نسبة الراتب مطلوبة",
-      "save": "حفظ"
-    },
-    "notifications": {
-      "title": "إعدادات الإخطارات",
-      "employee": "موظف",
-      "holidays": "العطل",
-      "leaves": "المغادرة",
-      "events": "الأحداث",
-      "chat": "محادثة",
-      "jobs": "وظائف"
-    },
-    "password": {
-      "title": "تغيير كلمة المرور",
-      "oldPassword": "كلمة المرور القديمة",
-      "oldPassword_required": "*كلمة المرور القديمة مطلوبة",
-      "newPassword": "كلمة المرور الجديدة",
-      "newPassword_required": "* كلمة المرور الجديدة مطلوبة",
-      "confirmPassword": "تأكيد كلمة المرور",
-      "confirmPassword_required": "*كلمة السر ليست متطابقة",
-      "save": "حفظ"
-    },
-    "leave_types": {
-      "path": "أنواع الإجازات",
-      "add_btn": "إضافة نوع الإجازة",
-      "add_page": {
-        "path": "إضافة نوع الإجازة",
-        "add_btn": "أضف"
-      },
-      "edit_page": {
-        "path": "تحرير نوع الإجازة",
-        "save_btn": "حفظ"
-      },
-      "leave_types_form": {
-        "type": "أيام الإجازة",
-        "type_required": "*أيام الإجازة مطلوبة",
-        "days": "عدد الأيام",
-        "days_required": "*أيام الإجازة مطلوبة",
-        "status": "حالة",
-        "status_required": "*الحالة مطلوبة",
-        "active": "نشط",
-        "inactive": "غير نشط",
-        "loading": "تحميل...",
-        "select": "--أختر--"
-      },
-      "leave_types_table": {
-        "type": "النوع",
-        "days": "أيام",
-        "status": "حالة"
-      }
-    },
-    "toxbox": {
-      "title": "إعداد ToxBox",
-      "apiKey": "ApiKey",
-      "apiSecret": "ApiSecret",
-      "save": "حفظ"
-    },
-    "cron": {
-      "title": "اعدادات cron",
-      "cron_key": "Cron Key",
-      "auto_backup_database": "قاعدة بيانات النسخ الاحتياطي التلقائي",
-      "save": "حفظ"
+      "start_date_and_time": "تاريخ ووقت البدء",
+      "end_date_and_time": "تاريخ ووقت النهاية",
+      "start_date": "حدد تاريخ البدء",
+      "start_date_required": "تاريخ البدء مطلوب",
+      "duration_by": "المدة حسب",
+      "hours": "ساعات",
+      "date": "تاريخ",
+      "duration_by_required": "المدة مطلوبة",
+      "start_time": "حدد وقت البدء (ساعة:دقيقة)",
+      "duration": "المدة(ساعات)",
+      "end_date": "حدد تاريخ النهاية",
+      "hours_required": "عدد الساعات المطلوبة",
+      "mintes_required": "الدقائق مطلوبة",
+      "pm_am_required": "مطلوب PM أو AM",
+      "duration_required": "المدة المطلوبة",
+      "end_date_required": "تاريخ النهاية مطلوب",
+      "add_technicians": "إضافة الفنيين",
+      "notes": "ملحوظات",
+      "inspectors_note": "ملاحظة المفتش",
+      "add_note": "أضف ملاحظة",
+      "customer_note": "ملاحظة العميل",
+      "delete": "حذف",
+      "unassign": "إلغاء التعيين"
+    }
+  },
+  "service_requests": {
+    "title": "طلبات الخدمة",
+    "table_title": "جدول طلبات الخدمة",
+    "table": {
+      "sr_no": "Sr. رقم",
+      "customer": "عميل",
+      "report_category": "فئة التقرير",
+      "type": "نوع",
+      "status": "حالة"
+    }
+  },
+  "deficiencies": {
+    "title": "النقائص",
+    "table_title": "جدول النواقص",
+    "table": {
+      "customer_name": "اسم العميل",
+      "category": "فئة",
+      "date": "تاريخ",
+      "description": "وصف",
+      "status": "حالة"
     }
   },
   "jobs": {
-    "job_applicant": {
-      "path": "طالب العمل",
-      "add_btn": "إضافة طالب العمل",
-      "add_page": {
-        "path": "إضافة طالب العمل",
-        "add_btn": "إضافة"
-      },
-      "edit_page": {
-        "path": "تحرير طالب العمل",
-        "save_btn": "حفظ"
-      },
-      "job_applicant_form": {
-        "name": "اسم",
-        "name_required": "*مطلوب اسم",
-        "email": "بريد إلكتروني",
-        "email_required": "*البريد الالكتروني مطلوب",
-        "phone": "هاتف",
-        "phone_required": "*الهاتف مطلوب",
-        "date": "تاريخ",
-        "date_required": "*التاريخ مطلوب",
-        "status": "حالة",
-        "resume": "سيرة ذاتية",
-        "loading": "تحميل...",
-        "select": "--ختر--"
-      },
-      "job_applicant_table": {
-        "name": "اسم",
-        "email": "بريد إلكتروني",
-        "phone": "هاتف",
-        "date": "تاريخ التطبيق",
-        "status": "حالة",
-        "resume": "سيرة ذاتية"
-      }
+    "jobs_due": {
+      "title": "الوظائف المستحقة",
+      "table_title": "جدول الوظائف المستحقة"
     },
-    "add_aptitude_result": {
-      "path": "نتيجة الكفاءة",
-      "add_btn": "إضافة نتيجة الكفاءة",
-      "add_page": {
-        "path": "إضافة نتيجة الكفاءة",
-        "add_btn": "إضافة"
+    "jobs_missed": {
+      "title": "الوظائف المفقودة",
+      "table_title": "جدول الوظائف المفقودة"
+    },
+    "my_jobs": {
+      "title": "وظائفي",
+      "table_title": "جدول الوظائف الخاص بي"
+    },
+
+    "table": {
+      "job_id": "معرف الوظيفة",
+      "name": "اسم",
+      "report_category": "فئة التقرير",
+      "frequency": "التكرار",
+      "date": "التاريخ والوقت",
+      "type": "نوع"
+    }
+  },
+  "inventory": {
+    "home": {
+      "title": "عملية إعداد أو إدارة المخزون",
+      "step1": "الخطوة 1. انقر فوق الموردين لإضافة مورد.",
+      "step2": "الخطوة 2. انقر فوق الأجزاء أو الأدوات لإضافة الأجزاء والأدوات.",
+      "note": "لإضافة أجزاء أو أدوات فقط إلى المخزون، هناك حاجة إلى الخطوتين 1 و2 فقط.",
+      "step3": "الخطوة 3. انقر فوق مخزون المركبات لتعيين عضو فريق لمركبة ما.",
+      "step4": "الخطوة 4. انقر فوق الأجزاء أو الأدوات لتعيين الأجزاء والأدوات لمركبة."
+    },
+    "parts": {
+      "title": "أجزاء",
+      "table_title": "جدول الأجزاء",
+      "add_btn": "إضافة أجزاء",
+      "update_title": "تحديث الأجزاء",
+      "assign_btn": "تعيين الأجزاء",
+      "form": {
+        "clear": "حذف الصوره",
+        "no_data": "لا توجد بيانات حتى الآن",
+        "supplier": "المورد",
+        "supplier_required": "المورد مطلوب",
+        "category": "فئة التقرير",
+        "category_required": "يجب تحديد فئة التقرير",
+        "partName": "اسم القطعة",
+        "partName_required": "اسم الجزء مطلوب",
+        "sku": "رقم الصنف",
+        "make": "صنع",
+        "make_required": "الصنع مطلوب",
+        "model": "نموذج",
+        "model_required": "النموذج مطلوب",
+        "cost": "التكلفة",
+        "cost_required": "التكلفة مطلوبة",
+        "quantity": "كمية",
+        "quantity_required": "الكمية المطلوبة"
       },
-      "edit_page": {
-        "path": "تحرير نتيجة الكفاءة",
-        "save_btn": "حفظ"
-      },
-      "job_applicant_form": {
-        "employeeId": "هوية الموظف",
-        "employeeId_required": "*مطلوب اسم",
-        "jobId": "مسمى وظيفي",
-        "jobId_required": "*الوظيفة مطلوبة",
-        "wise_mark": "فئة العلامة الحكيمة",
-        "wise_mark_required": "*العلامة الحكيمة مطلوبة",
-        "total_mark": "المجموع",
-        "total_mark_required": "*المجموع الإجمالي مطلوبة",
-        "status": "حالة",
-        "status_required": "*الحالة مطلوبة",
-        "resume": "سيرة ذاتية",
-        "loading": "تحميل...",
-        "select": "--أختر--"
-      },
-      "job_applicant_table": {
-        "employeeId": "اسم",
-        "jobId": "مسمى وظيفي",
-        "department": "قسم",
-        "wise_mark": "فئة العلامة الحكيمة",
-        "total_mark": "المجموع",
+      "table": {
+        "part_name": "اسم القطعة",
+        "report_category": "فئة التقرير",
+        "sku": "رقم الصنف",
+        "warehouse": "الكمية/المخزن",
+        "vehicle": "الكمية / المركبة",
         "status": "حالة"
+      },
+      "assign": {
+        "title": "تعيين الأجزاء",
+        "vehicle_no": "رقم السيارة",
+        "assigned_technician": "فني مخصص",
+        "table": {
+          "parts": "أجزاء",
+          "sku": "رقم الصنف",
+          "quantity": "كمية",
+          "price": "السعر($)"
+        },
+        "add_modal": {
+          "suppliers": "الموردين",
+          "report_category": "فئة التقرير",
+          "part": "جزء",
+          "quantity": "الكمية (الحد الأقصى للكمية: 9)"
+        }
       }
     },
-    "schedule_timing": {
-      "path": "توقيت الجدول الزمني",
-      "add_btn": "إضافة توقيت الجدول الزمني",
-      "add_page": {
-        "path": "إضافة توقيت الجدول الزمني",
-        "add_btn": "إضافة"
+    "supplier": {
+      "title": "الموردين",
+      "table_title": "جدول الموردين",
+      "add_btn": "إضافة المورد",
+      "update_title": "تحديث المورد",
+      "form": {
+        "clear": "حذف الشعار",
+        "no_data": "لا توجد بيانات حتى الآن",
+        "supplier_name": "اسم المورد",
+        "supplier_name_required": "اسم المورد مطلوب",
+        "website": "موقع إلكتروني",
+        "email_id": "معرف البريد الإلكتروني",
+        "part_name": "اسم القطعة",
+        "contact_number": "رقم التواصل",
+        "contact_name": "اسم جهة الاتصال",
+        "address": "عنوان"
       },
-      "edit_page": {
-        "path": "تحرير توقيت الجدول الزمني",
-        "save_btn": "حفظ"
-      },
-      "schedule_timing_form": {
-        "employeeId": "هوية الموظف",
-        "employeeId_required": "*البريد الالكتروني مطلوب",
-        "jobId": "مسمى وظيفي",
-        "jobId_required": "*الوظيفة مطلوبة",
-        "first_schedule_date": "تاريخ الجدول 1",
-        "first_schedule_timing": "حدد الوقت",
-        "second_schedule_date": "تاريخ الجدول 2",
-        "second_schedule_timing": "حدد الوقت",
-        "third_schedule_date": "تاريخ الجدول 3",
-        "third_schedule_timing": "حدد الوقت",
-        "loading": "تحميل...",
-        "select": "--أختر--"
-      },
-      "schedule_timing_table": {
-        "employeeId": "اسم",
-        "jobId": "مسمى وظيفي",
-        "timings": "التوقيتات المتاحة للمستخدم",
-        "schedule": "توقيت الجدول الزمني"
+      "table": {
+        "supplier_name": "اسم المورد",
+        "email_id": "معرف البريد الإلكتروني",
+        "contact_number": "رقم التواصل",
+        "status": "Status"
       }
     },
-    "candidates": {
-      "path": "قائمة المرشحين",
-      "add_btn": "إضافة قائمة المرشحين",
-      "add_page": {
-        "path": "إضافة قائمة المرشحين",
-        "add_btn": "إضافة"
+    "tools": {
+      "title": "أدوات",
+      "table_title": "جدول الأدوات",
+      "add_btn": "إضافة أدوات",
+      "update_title": "أدوات التحديث",
+      "assign_btn": "تعيين الأدوات",
+      "form": {
+        "id_number": "رقم الهوية",
+        "id_number_required": "رقم الهوية مطلوب",
+        "tool_name": "اسم الأداة",
+        "tool_name_required": "اسم الأداة مطلوب",
+        "quantity": "كمية",
+        "quantity_required": "الكمية مطلوبة",
+        "description": "وصف"
       },
-      "edit_page": {
-        "path": "تحرير قائمة المرشحين",
-        "save_btn": "حفظ"
-      },
-      "candidates_form": {
-        "first_name": "الاسم الأول",
-        "last_name": "اسم العائلة",
-        "email": "بريد إلكتروني",
-        "email_required": "*البريد الإلكتروني مطلوب",
-        "employeeId": "هوية الموظف",
-        "created_date": "تاريخ الإنشاء",
-        "created_date_required": "*التاريخ مطلوب",
-        "phone": "هاتف",
-        "phone_required": "*الهاتف مطلوب",
-        "loading": "تحميل...",
-        "select": "--أختر--"
-      },
-      "candidates_table": {
-        "employeeId": "اسم",
-        "phone": "رقم الهاتف المحمول",
-        "email": "بريد إلكتروني",
-        "created_date": "تاريخ الإنشاء"
-      }
-    },
-    "experience": {
-      "path": "قائمة الخبرة",
-      "add_btn": "أضف الخبرة",
-      "add_page": {
-        "path": "أضف الخبرة",
-        "add_btn": "إضافة"
-      },
-      "edit_page": {
-        "path": "تحرير الخبرة",
-        "save_btn": "حفظ"
-      },
-      "experience_form": {
-        "experience": "مستوى الخبرة",
-        "experience_required": "*مستوى الخبرة مطلوب",
-        "status": "حالة",
-        "status_required": "*الحالة مطلوبة",
-        "active": "نشط",
-        "inactive": "غير نشط",
-        "loading": "تحميل...",
-        "select": "--أختر--"
-      },
-      "experience_table": {
-        "experience": "خبرة",
-        "status": "حالة"
-      }
-    },
-    "offer": {
-      "path": "الموافقات على العروض",
-      "add_btn": "إضافة الموافقات على العروض",
-      "add_page": {
-        "path": "إضافة الموافقات على العروض",
-        "add_btn": "إضافة"
-      },
-      "edit_page": {
-        "path": "تحرير الموافقات على العروض",
-        "save_btn": "حفظ"
-      },
-      "offer_form": {
-        "employeeId": "اسم",
-        "employeeId_required": "*الاسم مطلوب",
-        "jobId": "مسمى وظيفي",
-        "jobId_required": "*الوظيفة مطلوبة",
-        "pay": "إدفع",
-        "pay_required": "*الدفع مطلوب",
-        "annual_ip": "IP السنوية",
-        "annual_ip_required": "* مطلوب IP السنوي",
-        "long_term_ip": "طويل الأمد Ip",
-        "long_term_ip_required": "*مطلوب IP طويل المدى",
-        "status": "حالة",
-        "status_required": "*الحالة مطلوبة",
-        "loading": "تحميل...",
-        "select": "--أختر--"
-      },
-      "offer_table": {
-        "employeeId": "اسم",
-        "jobId": "مسمى وظيفي",
-        "type": "نوع الوظيفة",
-        "pay": "إدفع",
-        "annual_ip": "IP السنوية",
-        "long_term_ip": "طويل الأمد Ip",
-        "status": "حالة"
-      }
-    },
-    "interview": {
-      "path": "اسئلة المقابلة",
-      "add_btn": "إضافة اسئلة المقابلة",
-      "add_page": {
-        "path": "إضافة أسئلة المقابلة",
-        "add_btn": "إضافة"
-      },
-      "edit_page": {
-        "path": "تحرير أسئلة المقابلة",
-        "save_btn": "حفظ"
-      },
-      "interview_form": {
-        "category": "إضافة فئة",
-        "department": "قسم",
-        "add_question": "أضف أسئلة",
-        "add_question_required": "* الأسئلة المطلوبة",
-        "option_a": "الخيار أ",
-        "option_a_required": "* الأسئلة المطلوبة",
-        "option_b": "الخيار ب",
-        "option_b_required": "* الأسئلة المطلوبة",
-        "option_c": "الخيار ج",
-        "option_c_required": "* الأسئلة المطلوبة",
-        "option_d": "الخيار د",
-        "option_d_required": "* الأسئلة المطلوبة",
-        "answer": "اجابة صحيحة",
-        "answer_required": "*الإجابة مطلوبة",
-        "code_snippets": "مقتطفات الشفرة",
-        "answer_explanation": "شرح الإجابة",
-        "video_link": "إضافة رابط الفيديو",
-        "file": "إضافة صورة إلى السؤال",
-        "loading": "تحميل...",
-        "select": "--أختر--"
-      },
-      "interview_table": {
-        "add_question": "أسئلة",
-        "option_a": "الخيار أ",
-        "option_b": "الخيار ب",
-        "option_c": "الخيار ج",
-        "option_d": "الخيار د",
-        "answer": "اجابة صحيحة"
-      }
-    },
-    "shortlist": {
-      "path": "المرشحين في القائمة المختصرة",
-      "add_btn": "أضف القائمة المختصرة",
-      "add_page": {
-        "path": "أضف القائمة المختصرة",
-        "add_btn": "إضافة"
-      },
-      "edit_page": {
-        "path": "تحرير القائمة المختصرة",
-        "save_btn": "حفظ"
-      },
-      "shortlist_form": {
-        "employeeId": "اسم",
-        "employeeId_required": "*الاسم مطلوب",
-        "jobId": "مسمى وظيفي",
-        "jobId_required": "*الوظيفة مطلوبة",
-        "status": "حالة",
-        "status_required": "*الحالة مطلوبة",
-        "loading": "تحميل...",
-        "select": "--أختر--"
-      },
-      "shortlist_table": {
-        "employeeId": "اسم",
-        "jobId": "مسمى وظيفي",
-        "department": "قسم",
-        "status": "حالة",
-        "option_d": "الخيار د",
-        "answer": "اجابة صحيحة"
-      }
-    },
-    "resumes": {
-      "path": "إدارة السيرة الذاتية",
-      "resumes_table": {
-        "name": "اسم",
-        "job_title": "مسمى وظيفي",
-        "department": "قسم",
-        "start_date": "تاريخ البدء",
-        "expire_date": "تاريخ انتهاء الصلاحية",
-        "job_type": "نوع الوظيفة",
-        "status": "حالة",
-        "resume": "سيرة ذاتية"
-      }
-    },
-    "jobs": {
-      "path": "وظائف",
-      "add_btn": "أضف الوظيفة",
-      "add_page": {
-        "path": "أضف الوظيفة",
-        "add_btn": "أضف"
-      },
-      "edit_page": {
-        "path": "تحرير الوظيفة",
-        "save_btn": "حفظ"
-      },
-      "jobs_form": {
-        "job_title": "مسمى وظيفي",
-        "job_title_required": "*المسمى الوظيفي مطلوب",
-        "department": "قسم",
-        "department_required": "*القسم مطلوب",
-        "job_location": "مكان العمل",
-        "no_of_vacancies": "عدد الوظائف الشاغرة",
-        "experience": "خبرة",
-        "age": "عمر",
-        "salary_from": "الراتب من",
-        "salary_to": "الراتب الى",
-        "job_type": "نوع الوظيفة",
-        "status": "حالة",
-        "category": "التصنيف",
-        "start_date": "تاريخ البدء",
-        "start_date_required": "*تاريخ البدء مطلوب",
-        "expire_date": "منتهي الصلاحية",
-        "expire_date_required": "*تاريخ انتهاء الصلاحية مطلوب",
+      "table": {
+        "tool_name": "اسم الأداة",
+        "id_number": "رقم الهوية",
         "description": "وصف",
-        "loading": "تحميل...",
-        "select": "--أختر--"
+        "warehouse": "الكمية/المخزن",
+        "vehicle": "الكمية/المركبة"
       },
-      "jobs_table": {
-        "job_title": "مسمى وظيفي",
-        "department": "قسم",
-        "start_date": "تاريخ البدء",
-        "expire_date": "تاريخ انتهاء الصلاحية",
-        "job_type": "نوع الوظيفة",
-        "status": "حالة",
-        "applicants": "المتقدمين"
+      "assign": {
+        "title": "تعيين الأدوات",
+        "vehicle_no": "رقم السيارة",
+        "assigned_technician": "فني مخصص",
+        "table": {
+          "tool": "أداة",
+          "id_number": "رقم الهوية",
+          "quantity": "كمية",
+          "description": "وصف"
+        },
+        "add_modal": {
+          "tool": "أداة",
+          "quantity": "الكمية (الحد الأقصى للكمية: 9)"
+        }
       }
     },
-    "jobs_dashboard": {
-      "path": "لوحة معلومات الوظيفة",
-      "Jobs": "وظائف",
-      "job_seekers": "الباحثين عن عمل",
-      "employees": "موظفين",
-      "applications": "التطبيقات",
-      "overview": "ملخص",
-      "latest_jobs": "أحدث الوظائف",
-      "applicants_list": "قائمة المتقدمين",
-      "download": "تحميل",
-      "shortlist_candidates": "المرشحين في القائمة المختصرة"
+    "transactions": {
+      "title": "المعاملات",
+      "table": {
+        "id": "بطاقة تعريف",
+        "username": "اسم المستخدم",
+        "date": "تاريخ",
+        "asset_type": "نوع الأصول",
+        "transactions_type": "نوع المعاملات"
+      }
     },
-    "user_dashboard": {
-      "title": "لوحة معلومات مهمة المستخدم",
-      "dashboard": "لوحة القيادة",
-      "jobs": "وظائف",
-      "user_dashboard": "لوحة تحكم المستخدم",
-      "all": "الجميع",
-      "saved": "المحفوظ",
-      "applied": "مُطبَّق",
-      "interviewing": "إجراء المقابلات",
-      "offered": "تقدم",
-      "visited": "تمت زيارتها",
-      "archived": "مؤرشف",
-      "overview": "ملخص",
-      "latest_jobs": "أحدث الوظائف",
-      "offered_jobs": "الوظائف المعروضة",
-      "applied_jobs": "الوظائف التطبيقية",
-      "download_offer": "تنزيل العرض",
-      "delete": "حذف"
-    },
-    "saved_jobs": {
-      "title": "الوظائف المحفوظة"
-    },
-    "applied_jobs": {
-      "title": "الوظائف التطبيقية"
-    },
-    "visited_jobs": {
-      "title": "الوظائف التي تمت زيارتها"
-    },
-    "archived_jobs": {
-      "title": "الوظائف المؤرشفة"
-    },
-    "offered_jobs": {
-      "title": "الوظائف المعروضة"
-    },
-    "interviewing_jobs": {
-      "title": "إجراء المقابلات",
-      "apptitude": "الكفاءة",
-      "schedule_interview": "جدولة المقابلة"
-    }
-  },
-  "profile": {
-    "path": "الحساب",
-    "employee_id": "هوية الموظف",
-    "date_join": "تاريخ الانضمام",
-    "send_message": "أرسل رسالة",
-    "phone": "هاتف",
-    "email": "بريد إلكتروني",
-    "birthday": "عيد ميلاد",
-    "address": "عنوان",
-    "gender": "جنس",
-    "reports_to": "تقارير ل",
-    "profile": "الحساب",
-    "projects": "المشاريع",
-    "bank_statutory": "البنك والقانوني",
-    "admin_only": "المشرف فقط",
-    "personal_informations": "معلومات شخصية",
-    "passport_no": "رقم جواز السفر",
-    "passport_exp_date": "تاريخ انتهاء صلاحية جواز السفر",
-    "tel": "تليفون",
-    "nationality": "جنسية",
-    "religion": "دِين",
-    "matrital_status": "الحالة الاجتماعية",
-    "employment_spouse": "عمالة الزوج",
-    "no_children": "عدد الأطفال",
-    "emergency_contact": "الاتصال بالطوارىء",
-    "primary": "أساسي",
-    "name": "اسم",
-    "relationship": "علاقة",
-    "secondary": "ثانوي",
-    "bank_information": "المعلومات المصرفية",
-    "bank_name": "اسم البنك",
-    "Bank_account": "رقم الحساب البنكي.",
-    "ifsc_code": "رمز إفسك",
-    "pan_no": "رقم الآيبان",
-    "family_informations": "معلومات عائلية",
-    "date_birth": "تاريخ الميلاد",
-    "add_more": "اضف أكثر",
-    "member": "عضو العائلة",
-    "edit": "تحرير",
-    "delete": "حذف",
-    "education_informations": "معلومات التعليم",
-    "experience": "خبرة",
-    "institution": "مؤسسة",
-    "subject": "موضوع",
-    "starting_date": "تاريخ البدء",
-    "complete_date": "التاريخ الكامل",
-    "degree": "درجة",
-    "grade": "رتبة",
-    "experience_informations": "معلومات عن الخبرة",
-    "company_name": "اسم الشركة",
-    "location": "موقع",
-    "job_position": "الوظيفة",
-    "period_from": "الفترة من",
-    "period_to": "الفترة الي"
-  },
-  "userActivities": {
-    "path": "نشاطات المستخدمين",
-    "table": {
-      "table_name": "اسم الجدول",
-      "date": "التاريخ",
-      "action": "العملية",
-      "ip_address": "عنوان الجهاز"
-    }
-  },
-  "notifications": {
-    "path": "إشعارات",
-    "no_notifications": "لا توجد إشعارات متاحة حتى الآن",
-    "send_btn": "إرسال الإشعارات",
-    "form": {
-      "path": "إرسال الإشعارات",
-      "title": "عنوان",
-      "title_required": "العنوان مطلوب",
-      "priority": "أولوية",
-      "priority_required": "الأولوية مطلوبة",
-      "content": "محتوى",
-      "content_required": "المحتوى مطلوب",
-      "sendTo": "ارسال الي",
-      "all": "الكل",
-      "admin": "مسؤل",
-      "multible": "عديد",
-      "users": "المستخدمون",
-      "send_btn": "ارسال"
-    }
-  },
-  "trash": {
-    "path": "نفاية",
-    "delete_tmp_btn": "حذف البيانات غير النشطة"
-  },
-  "licenses": {
-    "path": "التراخيص",
-    "table": {
-      "companyId": "اسم الشركة",
-      "startDate": "تاريخ البدء",
-      "endDate": "تاريخ النهاية",
-      "active": "نشيط"
-    },
-    "form": {
-      "add_path": "إضافة الترخيص",
-      "edit_path": "تعديل الترخيص",
-      "companyName": "اسم الشركة",
-      "startDate": "تاريخ البدء",
-      "startDate_required": "تاريخ البدء مطلوب",
-      "endDate": "تاريخ النهاية",
-      "endDate_required": "تاريخ النهاية مطلوب",
-      "price": "سعر الترخيص",
-      "price_required": "السعر مطلوب",
-      "no": "لا",
-      "yes": "نعم",
-      "status": "حالة الترخيص",
-      "status_required": "مطلوب حالة الترخيص",
-      "add_btn": "اضافة",
-      "save_btn": "حفظ"
-    }
-  },
-  "companies": {
-    "path": "الفروع",
-    "table": {
-      "companyName": "اسم الفرع",
-      "address": "عنوان",
-      "phone": "رقم التليفون",
-      "firstName": "اسم المدير"
-    },
-    "form": {
-      "add_path": "إضافة فرع",
-      "edit_path": "تعديل الفرع",
-      "companySection": "قسم الفرع",
-      "managerSection": "قسم المدير",
-      "companyName": "اسم الفرع",
-      "companyName_required": "اسم الفرع مطلوب",
-      "address": "العنوان",
-      "phone": "الهاتف",
-      "fax": "فاكس",
-      "country": "دولة",
-      "city": "مدينة",
-      "state": "ولاية",
-      "postal": "البريد",
-      "contact": "رقم الهاتف",
-      "companyEmail": "البريد الإلكتروني للفرع",
-      "next": "التالي",
-      "firstName": "الاسم الأول",
-      "firstName_required": "الاسم الأول مطلوب",
-      "lastName": "اسم العائلة",
-      "lastName_required": "الاسم الأخير مطلوب",
-      "userName": "اسم المستخدم",
-      "userName_required": "اسم المستخدم مطلوب",
-      "managerEmail": "البريد الإلكتروني للمدير",
-      "managerEmail_required": "مطلوب البريد الإلكتروني للمدير",
-      "validEmail": "الرجاء إدخال بريد إلكتروني صالح",
-      "vaildPassword": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل.",
-      "add_btn": "اضافة",
-      "save_btn": "حفظ"
+    "vehicles": {
+      "title": "مخزون المركبات",
+      "table_title": "جدول جرد المركبات",
+      "add_btn": "إضافة مركبة",
+      "update_title": "تحديث السيارة",
+      "form": {
+        "no_data": "لا توجد بيانات حتى الآن",
+        "vehicle_number": "رقم السيارة",
+        "vehicle_number_required": "رقم السيارة مطلوب",
+        "assigned_technician": "فني مخصص",
+        "assigned_technician_required": "مطلوب فني معين"
+      },
+      "table": {
+        "vehicle_number": "رقم السيارة",
+        "assigned_technician": "فني مخصص",
+        "parts_quantity": "كمية الأجزاء",
+        "tools_quantity": "كمية الأدوات"
+      },
+      "edit_tables": {
+        "parts": {
+          "parts": "أجزاء",
+          "sku": "رقم الصنف",
+          "quantity": "كمية"
+        },
+        "tools": {
+          "tools": "أدوات",
+          "id": "معرف",
+          "quantity": "كمية"
+        }
+      }
     }
   }
 }
