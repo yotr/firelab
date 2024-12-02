@@ -68,7 +68,7 @@ export class ImagesComponent implements OnInit {
     this.getLanguage();
     this.getTheme();
     this.getCurrentCustomerId();
-    this.navigationHandler();
+    // this.navigationHandler();
   }
 
   getTheme() {
@@ -96,29 +96,15 @@ export class ImagesComponent implements OnInit {
         this.customerId = value;
       }
     });
-    if (this.section == null) {
+    if (this.customerId != null) {
       this.setActiveMenu();
-
       // set querys to current page
       this.router.navigate([], {
         queryParams: { customerId: this.customerId },
       });
+    } else {
+      this.router.navigate(['/modules/customers/allCustomers']);
     }
-  }
-  navigationHandler() {
-    this.router.events.subscribe((event: Event) => {
-      if (event instanceof NavigationEnd) {
-        if (
-          event.url.includes('/customers/home') ||
-          event.url.includes('/customers/owner') ||
-          event.url.includes('/customers/customerInfo') ||
-          event.url.includes('/customers/buildingInfo') ||
-          event.url.includes('/customers/systemInfo')
-        ) {
-          this.getCurrentCustomerId();
-        }
-      }
-    });
   }
 
   onView(imageUrl: string) {

@@ -21,6 +21,7 @@
   <app-back-button></app-back-button>
   <!-- table -->
   <app-team-module-table
+    [data]="data"
     [totalItems]="totalItemsCount"
     [dataKeys]="dataKeys"
     [loading]="loading"
@@ -28,20 +29,11 @@
     [deleteModalTitle]="'team.delete' | translate"
     [tableTitle]="'team.table_title' | translate"
     editPagePath="/modules/team/edit"
-  ></app-team-module-table>
-</div>
-
-<!-- [users]="users"
-    [totalItems]="totalItemsCount"
-    [dataKeys]="dataKeys"
-    [loading]="loading"
-    [currentTheme]="currentTheme"
-    deleteModalTitle="Users"
-    tableTitle="Users Table"
-    editPagePath="/modules/users/edit"
     (onPageChange)="onPaginate($event)"
     (onDelete)="delete($event)"
     (onSearch)="search($event)"
     (onFilter)="handleFiltersSubmit($event)"
-    (onDeleteSelected)="deleteSelected()"
-    (onReset)="resetData()" -->
+    (onReset)="resetData()"
+    (onStatusChange)="onStatusChange($event)"
+  ></app-team-module-table>
+</div>

@@ -6,9 +6,7 @@
     [dir]="'dir' | translate"
   >
     <!-- breadcrumb -->
-    <app-breadcrumb
-      [title]="'team.edit_title' | translate"
-    ></app-breadcrumb>
+    <app-breadcrumb [title]="'team.edit_title' | translate"></app-breadcrumb>
   </div>
   <!-- /Page Header -->
 
@@ -190,11 +188,12 @@
             id="Divisions"
             formControlName="divisions"
           >
-            <option value="1">one</option>
-            <option value="2">two</option>
-            <!-- <option *ngIf="teamLoading" disabled>
-              loading
-            </option> -->
+            <ng-container *ngFor="let category of categories">
+              <option [value]="category?.id">{{ category?.name }}</option>
+            </ng-container>
+            <option *ngIf="categoriesLoading" disabled>
+              {{ "loading" | translate }}
+            </option>
           </select>
         </div>
       </div>

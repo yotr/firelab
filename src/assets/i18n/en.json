@@ -416,6 +416,13 @@
       "clocked": "Clocked Out",
       "miscellaneous": "Miscellaneous",
       "total": "Total Hours"
+    },
+    "status": {
+      "driving": "Driving",
+      "break": "Break",
+      "working": "Working",
+      "clocked": "Clocked Out",
+      "miscellaneous": "Miscellaneous"
     }
   },
   "job_link": {

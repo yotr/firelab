@@ -220,13 +220,4 @@ export class CustomersModuleTableComponent implements OnInit {
   sendActiveCustomer(id: any) {
     this.sidebarService.sendCurrentCustomer(id);
   }
-
-  // check page || components permissions
-  checkPageActions(action: string): any {
-    // return this.permissionsService.checkPageActions(
-    //   this.auth.currentUserSignal()?.userData,
-    //   'data',
-    //   action
-    // );
-  }
 }

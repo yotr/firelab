@@ -33,6 +33,11 @@
       [deleteModalTitle]="'customers.import_devices.delete' | translate"
       [tableTitle]="'customers.import_devices.table_title' | translate"
       editPagePath="/modules/customers/importDevices/edit"
+      (onPageChange)="onPaginate($event)"
+      (onDelete)="delete($event)"
+      (onSearch)="search($event)"
+      (onFilter)="handleFiltersSubmit($event)"
+      (onReset)="resetData()"
     ></app-impor-devices-module-table>
   </div>
 

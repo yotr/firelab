@@ -18,7 +18,7 @@
           <!-- download zone -->
           <a
             class="col-sm-12 mt-4"
-            href="/assets/files/client-devices.xlsx"
+            href="/assets/files/customers.xlsx"
             download
           >
             <div class="upload-drop-zone" id="drop-zone" role="button">
@@ -30,102 +30,23 @@
           </a>
           <!-- upload zone -->
           <div class="upload-drop-zone" id="drop-zone" role="button">
-            <input id="files" type="file" (change)="getSelectedFiles($event)" />
+            <input
+              id="files"
+              type="file"
+              (change)="importExcel($event)"
+              accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+            />
             <i class="pi pi-cloud-upload fs-4 text-info"></i>
-            <span class="upload-text mx-2">{{
-              "dragfiles_modal.SubTitle" | translate
-            }}</span>
+            <span class="upload-text mx-2">
+              {{
+                file != null
+                  ? truncateString(file?.name, 20)
+                  : ("dragfiles_modal.SubTitle" | translate)
+              }}
+            </span>
           </div>
-          <h4 *ngIf="files?.length !== 0">
-            {{ "dragfiles_modal.uploading" | translate }}
-          </h4>
-          <!-- files list -->
-          <ul class="upload-list">
-            <li class="file-list" *ngFor="let file of files; let i = index">
-              <div class="upload-wrap">
-                <div class="file-name">
-                  <!-- <i class="fa fa-photo"></i> -->
-                  <!-- file type -->
-                  <!-- img -->
-                  <i
-                    *ngIf="file?.type?.includes(fileTypes?.img)"
-                    class="pi pi-image"
-                  ></i>
-                  <!-- pdf -->
-                  <i
-                    *ngIf="file?.type?.includes(fileTypes?.pdf)"
-                    class="pi pi-file-pdf"
-                  ></i>
-                  <!-- excel -->
-                  <i
-                    *ngIf="file?.type?.includes(fileTypes?.excel)"
-                    class="pi pi-file-excel"
-                  ></i>
-                  <!-- word -->
-                  <i
-                    *ngIf="file?.type?.includes(fileTypes?.word)"
-                    class="pi pi-file-word"
-                  ></i>
-                  <!-- text -->
-                  <i
-                    *ngIf="file?.type?.includes(fileTypes?.text)"
-                    class="pi pi-file"
-                  ></i>
-                  <!-- audio -->
-                  <i
-                    *ngIf="file?.type?.includes(fileTypes?.audio)"
-                    class="pi pi-volume-up"
-                  ></i>
-                  <!-- video -->
-                  <i
-                    *ngIf="file?.type?.includes(fileTypes?.video)"
-                    class="pi pi-video"
-                  ></i>
-                  <!-- json -->
-                  <i
-                    *ngIf="file?.type?.includes(fileTypes?.json)"
-                    class="pi pi-file"
-                  ></i>
-                  <!-- app -->
-                  <i
-                    *ngIf="file?.type?.includes(fileTypes?.app)"
-                    class="pi pi-microsoft"
-                  ></i>
-                  <!-- /file type -->
-                  {{ file?.name }}
-                </div>
-                <div class="file-size">{{ formatBytes(file?.size) }}</div>
-                <button
-                  type="button"
-                  class="file-close"
-                  role="button"
-                  (click)="removeFile(i)"
-                >
-                  <i class="pi pi-times"></i>
-                </button>
-              </div>
-              <div class="progress progress-xs progress-striped">
-                <div
-                  class="progress-bar bg-success"
-                  role="progressbar"
-                  style="width: 100%"
-                ></div>
-              </div>
-              <!-- <div class="upload-process">37% done</div> -->
-            </li>
-          </ul>
         </form>
         <div class="submit-section">
-          <!-- <div
-            class="btn submit-btn mx-2"
-            [class]="currentTheme?.colorSchema?.color"
-            role="button"
-            (click)="cancel()"
-          >
-            <span class="text-muted">
-              {{ "dragfiles_modal.cancel" | translate }}
-            </span>
-          </div> -->
           <div
             class="btn submit-btn mx-2"
             [class]="currentTheme?.colorSchema?.background"
@@ -142,3 +63,9 @@
   </div>
 </div>
 <!-- /Drogfiles Modal -->
+
+<!-- loading section -->
+<div *ngIf="uploading">
+  <app-loading-section></app-loading-section>
+</div>
+<!-- /loading section -->

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { NgxPrintService, PrintOptions } from 'ngx-print';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { environment } from 'src/environments/environment';
@@ -56,13 +57,42 @@ export class TeamModuleTableComponent implements OnInit {
   api: string = '';
   // current logged in user
   currentUser: any = {} as any;
+  statusDropdown: any[] = [];
 
   constructor(
     private printService: NgxPrintService,
     // private permissionsService: PermissionsService,
-    private auth: AuthService
+    private auth: AuthService,
+    public translateService: TranslateService
   ) {
     this.api = environment.API;
+    this.statusDropdown = [
+      {
+        id: 0,
+        name: this.translateService.instant('team.status.driving'),
+        value: 'driving',
+      },
+      {
+        id: 1,
+        name: this.translateService.instant('team.status.break'),
+        value: 'break',
+      },
+      {
+        id: 2,
+        name: this.translateService.instant('team.status.working'),
+        value: 'working',
+      },
+      {
+        id: 3,
+        name: this.translateService.instant('team.status.clocked'),
+        value: 'clocked',
+      },
+      {
+        id: 4,
+        name: this.translateService.instant('team.status.miscellaneous'),
+        value: 'miscellaneous',
+      },
+    ];
   }
 
   // ================== \\  General Functions for all tables  \\ ==================
@@ -167,8 +197,9 @@ export class TeamModuleTableComponent implements OnInit {
   // ================== \\  Functions for scpcific tables  \\ ==================
 
   //change status
-  onTableStatusChange(status: any, client: any) {
-    this.onStatusChange.emit({ status, client });
+  onTableStatusChange(event: any, id: any) {
+    console.log(event);
+    this.onStatusChange.emit({ status: event?.value, id });
   }
 
   printAll() {

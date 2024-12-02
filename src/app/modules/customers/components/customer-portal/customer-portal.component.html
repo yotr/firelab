@@ -21,7 +21,7 @@
           <div></div>
         </div>
       </div>
-      <form (ngSubmit)="submit()" [formGroup]="addForm">
+      <form [formGroup]="addForm">
         <!-- emails -->
         <div class="emails">
           <!-- emails inputs -->
@@ -40,8 +40,10 @@
                   name="email[]"
                 />
                 <i
+                  data-bs-toggle="modal"
+                  data-bs-target="#delete"
                   class="pi pi-trash trash-icon"
-                  (click)="removeEmailItems(i)"
+                  (click)="removeEmailItems(i, item?.value)"
                 ></i>
               </div>
             </div>
@@ -55,8 +57,8 @@
               </div>
             </div>
             <!-- submit -->
-            <div class="save-btn text-center">
-              <button type="submit" class="save mt-4">
+            <div class="save-btn text-center" [hidden]="emails.length < 1">
+              <button type="button" class="save mt-4" (click)="submit()">
                 {{ "save" | translate }}
               </button>
             </div>
@@ -73,8 +75,14 @@
 
 <!-- delete modal -->
 <app-delete-modal
-  title="Building Information"
+  title="Email"
   [currentTheme]="currentTheme"
   (onDelete)="deleteItem()"
 ></app-delete-modal>
 <!--/ delete modal -->
+
+<!-- loading section -->
+<div *ngIf="uploading">
+  <app-loading-section></app-loading-section>
+</div>
+<!-- /loading section -->

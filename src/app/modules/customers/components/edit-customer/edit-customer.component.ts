@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api/api.service';
@@ -13,7 +13,7 @@ import { ThemeService } from 'src/app/services/theme/theme.service';
   templateUrl: './edit-customer.component.html',
   styleUrls: ['./edit-customer.component.css'],
 })
-export class EditCustomerComponent implements OnInit {
+export class EditCustomerComponent implements OnInit, AfterViewInit {
   addForm: FormGroup;
   loading: boolean = true;
   currentTheme: any;
@@ -26,6 +26,7 @@ export class EditCustomerComponent implements OnInit {
   rolesLoading: boolean = true;
   // defaultPermissions: Permission[];
   uploading: boolean = false;
+  updateId: any = null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -34,10 +35,17 @@ export class EditCustomerComponent implements OnInit {
     private translateService: TranslateService,
     private toastr: ToastrService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private apiService: ApiService,
     // private permissionsService: PermissionsService,
     private auth: AuthService
   ) {
+    //get id
+    this.activatedRoute.paramMap.subscribe((paramMap: Params) => {
+      if (paramMap['get']('id')) {
+        this.updateId = paramMap['get']('id');
+      }
+    });
     // Add form
     this.addForm = this.formBuilder.group(
       {
@@ -69,7 +77,9 @@ export class EditCustomerComponent implements OnInit {
       // { validators: passwordMatch }
     );
   }
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void {
+    // this.getCurrentData();
+  }
 
   ngOnInit() {
     this.getTheme();
@@ -102,6 +112,50 @@ export class EditCustomerComponent implements OnInit {
       this.currentUser = JSON.parse(user)?.userData;
     } else {
     }
+  }
+
+  // get current data
+  getCurrentData() {
+    this.apiService.getById('customers', this.updateId).subscribe({
+      next: (data: any) => {
+        //  set values
+        console.log(data);
+        this.addForm.patchValue({
+          // customer
+          businessName: data?.businessName,
+          contactName: data?.contactName,
+          email: data?.email,
+          cellPhone: data?.cellPhone,
+          officePhone: data?.officePhone,
+          contactFaxNumber: data?.contactFaxNumber,
+          idAccount: data?.idAccount,
+          address1: data?.address1,
+          address2: data?.address2,
+          postalCode: data?.postalCode,
+          city: data?.city,
+          // owner
+          ownerBusinessName: data?.ownerBusinessName,
+          ownerContactName: data?.ownerContactName,
+          ownerEmail: data?.ownerEmail,
+          ownerCellPhone: data?.ownerCellPhone,
+          ownerOfficePhone: data?.ownerOfficePhone,
+          ownerContactFaxNumber: data?.ownerContactFaxNumber,
+          ownerId: data?.ownerId,
+          ownerAddress1: data?.ownerAddress1,
+          ownerAddress2: data?.ownerAddress2,
+          ownerPostalCode: data?.ownerPostalCode,
+          ownerCity: data?.ownerCity,
+        });
+      },
+      error: (error) => {
+        console.log(error);
+        if (this.currentLanguage == 'ar') {
+          this.toastr.error('هناك شيء خاطئ', 'خطأ');
+        } else {
+          this.toastr.error('There Is Somthing Wrong', 'Error');
+        }
+      },
+    });
   }
 
   setOwnerData(event: any) {
@@ -174,7 +228,7 @@ export class EditCustomerComponent implements OnInit {
       console.log(data);
       this.uploading = true;
       // api
-      this.apiService?.add('customers/update', data).subscribe({
+      this.apiService?.update('customers', this.updateId, data).subscribe({
         next: (data) => {
           console.log(data);
           if (data?.isSuccess) {
@@ -183,6 +237,7 @@ export class EditCustomerComponent implements OnInit {
             } else {
               this.toastr.success('data added successfully...', 'Success');
             }
+            this.router.navigate(['/modules/customers/allCustomers']);
           }
         },
         error: (err: any) => {
@@ -195,7 +250,6 @@ export class EditCustomerComponent implements OnInit {
         },
         complete: () => {
           this.uploading = false;
-          this.router.navigate(['/modules/customers/allCustomers']);
         },
       });
     } else {

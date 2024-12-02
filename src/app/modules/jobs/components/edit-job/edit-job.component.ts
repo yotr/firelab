@@ -36,6 +36,8 @@ export class EditJobComponent implements OnInit {
         this.customerId = paramMap['get']('customerId');
         // activate current customer id so we can get in other pages after refresh
         this.sidebarService.sendCurrentCustomer(paramMap['get']('customerId'));
+      } else {
+        // this.router.navigate(['/modules/customers/allCustomers']);
       }
     });
 

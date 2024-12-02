@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   ActivatedRoute,
@@ -7,6 +7,10 @@ import {
   Params,
   Router,
 } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
+import { ApiService } from 'src/app/services/api/api.service';
+import { LanguageService } from 'src/app/services/language/language.service';
 import { SidebarService } from 'src/app/services/sidebar/sidebar.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
 
@@ -15,18 +19,25 @@ import { ThemeService } from 'src/app/services/theme/theme.service';
   templateUrl: './owner.component.html',
   styleUrls: ['./owner.component.css'],
 })
-export class OwnerComponent implements OnInit {
+export class OwnerComponent implements OnInit, AfterViewInit {
   currentTheme: any;
   editForm: FormGroup;
-
+  data: any = {};
+  loading: boolean = true;
+  currentLanguage: any = localStorage.getItem('lang');
   customerId: any = null;
+  uploading: boolean = false;
 
   constructor(
+    private themeService: ThemeService,
+    private languageService: LanguageService,
+    private translateService: TranslateService,
+    private toastr: ToastrService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private sidebarService: SidebarService,
     private formBuilder: FormBuilder,
-    private themeService: ThemeService
+    private apiService: ApiService
   ) {
     //get id
     this.activatedRoute.queryParamMap.subscribe((paramMap: Params) => {
@@ -38,6 +49,18 @@ export class OwnerComponent implements OnInit {
     });
     // update form
     this.editForm = this.formBuilder.group({
+      // customer
+      businessName: ['', [Validators.required]],
+      contactName: [''],
+      email: ['', [Validators.email]],
+      cellPhone: [''],
+      officePhone: [''],
+      contactFaxNumber: [''],
+      idAccount: [''],
+      address1: [''],
+      address2: [''],
+      postalCode: [''],
+      city: [''],
       // owner
       ownerBusinessName: ['', [Validators.required]],
       ownerContactName: [''],
@@ -53,10 +76,15 @@ export class OwnerComponent implements OnInit {
     });
   }
 
+  ngAfterViewInit(): void {
+    // this.getCurrentData();
+  }
+
   ngOnInit() {
     this.getTheme();
+    this.getCurrentLanguage();
     this.getCurrentCustomerId();
-    this.navigationHandler();
+    // this.navigationHandler();
   }
   // get theme from localStorage
   getTheme() {
@@ -64,96 +92,120 @@ export class OwnerComponent implements OnInit {
       this.currentTheme = JSON.parse(theme);
     });
   }
+
+  getCurrentLanguage() {
+    // get language from localStorage
+    this.languageService.getCurrentLanguage().subscribe((language: any) => {
+      this.currentLanguage = language;
+      // turn on current language (trandlate)
+      this.translateService.use(this.currentLanguage);
+    });
+  }
+
   //handle display submenu from list menu array by know which item active
   setActiveMenu() {
     this.sidebarService.activateDropdown('customers');
   }
+
   getCurrentCustomerId() {
     this.sidebarService.getCurrentCustomerValue().subscribe((value: any) => {
       if (value) {
         this.customerId = value;
       }
     });
-    this.setActiveMenu();
-    // set querys to current page
-    this.router.navigate([], {
-      queryParams: { customerId: this.customerId },
-    });
+    if (this.customerId != null) {
+      this.setActiveMenu();
+      // set querys to current page
+      this.router.navigate([], {
+        queryParams: { customerId: this.customerId },
+      });
+    } else {
+      this.router.navigate(['/modules/customers/allCustomers']);
+    }
   }
-  navigationHandler() {
-    this.router.events.subscribe((event: Event) => {
-      if (event instanceof NavigationEnd) {
-        if (
-          event.url.includes('/customers/home') ||
-          event.url.includes('/customers/owner') ||
-          event.url.includes('/customers/customerInfo') ||
-          event.url.includes('/customers/buildingInfo') ||
-          event.url.includes('/customers/systemInfo')
-        ) {
-          this.getCurrentCustomerId();
+
+  // get current data
+  getCurrentData() {
+    this.apiService.getById('customers', this.customerId).subscribe({
+      next: (data: any) => {
+        //  set values
+        console.log(data);
+        this.editForm.patchValue({
+          // customer
+          businessName: data?.businessName,
+          contactName: data?.contactName,
+          email: data?.email,
+          cellPhone: data?.cellPhone,
+          officePhone: data?.officePhone,
+          contactFaxNumber: data?.contactFaxNumber,
+          idAccount: data?.idAccount,
+          address1: data?.address1,
+          address2: data?.address2,
+          postalCode: data?.postalCode,
+          city: data?.city,
+          // owner
+          ownerBusinessName: data?.ownerBusinessName,
+          ownerContactName: data?.ownerContactName,
+          ownerEmail: data?.ownerEmail,
+          ownerCellPhone: data?.ownerCellPhone,
+          ownerOfficePhone: data?.ownerOfficePhone,
+          ownerContactFaxNumber: data?.ownerContactFaxNumber,
+          ownerId: data?.ownerId,
+          ownerAddress1: data?.ownerAddress1,
+          ownerAddress2: data?.ownerAddress2,
+          ownerPostalCode: data?.ownerPostalCode,
+          ownerCity: data?.ownerCity,
+        });
+      },
+      error: (error) => {
+        console.log(error);
+        if (this.currentLanguage == 'ar') {
+          this.toastr.error('هناك شيء خاطئ', 'خطأ');
+        } else {
+          this.toastr.error('There Is Somthing Wrong', 'Error');
         }
-      }
+      },
     });
   }
+  //add a new
   submit() {
-    let date = new Date();
-    // add the new date
-    // this.addUserForm.patchValue({
-    //   date: date.toLocaleDateString('en-CA'),
-    // });
-
-    // // add to server
-    // if (this.addUserForm.valid) {
-    //   let formData: FormData = new FormData();
-    //   formData.append('firstName', this.addUserForm.get('firstName').value);
-    //   formData.append('lastName', this.addUserForm.get('lastName').value);
-    //   formData.append('userName', this.addUserForm.get('userName').value);
-    //   formData.append('email', this.addUserForm.get('email').value);
-    //   formData.append('password', this.addUserForm.get('password').value);
-    //   formData.append(
-    //     'confirmPassword',
-    //     this.addUserForm.get('confirmPassword').value
-    //   );
-    //   formData.append('phone', this.addUserForm.get('phone').value);
-    //   formData.append('role', this.addUserForm.get('role').value);
-    //   // formData.append('company', this.addUserForm.get('company').value);
-    //   if (this.addUserForm.get('employeeId').value !== null) {
-    //     formData.append('employeeId', this.addUserForm.get('employeeId').value);
-    //   }
-    //   if (this.addUserForm.get('clientId').value !== null) {
-    //     formData.append('clientId', this.addUserForm.get('clientId').value);
-    //   }
-
-    //   formData.append('date', this.addUserForm.get('date').value);
-    //   // formData.append('permissions', JSON.stringify(this.defaultPermissions));
-    //   if (this.addUserForm.get('image').value != null) {
-    //     formData.append('image', this.addUserForm.get('image').value);
-    //   }
-
-    //   let added = false;
-    //   this.uploading = true;
-    //   // send the data to server
-    //   this.apiService.addMultiData('users/create', formData).subscribe({
-    //     next: (data) => {
-    //       this.uploading = false;
-    //       added = true;
-    //     },
-    //     error: (error) => {
-    //       this.uploading = false;
-    //       this.toastr.error('there is something wrong', 'Error');
-    //     },
-    //     complete: () => {
-    //       if (added) {
-    //         this.uploading = false;
-    //         this.router.navigate(['/modules/users/all-users']);
-    //         this.toastr.success('User added Successfully');
-    //         this.addUserForm.reset();
-    //       }
-    //     },
-    //   });
-    // } else {
-    //   this.uploading = false;
-    //   this.toastr.error('', 'Please enter mandatory field!');
-    // }
+    if (this.editForm.valid) {
+      let data = {
+        ...this.editForm.value,
+      };
+      console.log(data);
+      this.uploading = true;
+      // api
+      this.apiService?.update('customers', this.customerId, data).subscribe({
+        next: (data) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            if (this.currentLanguage == 'ar') {
+              this.toastr.success('تمت إضافة البيانات بنجاح...');
+            } else {
+              this.toastr.success('data added successfully...', 'Success');
+            }
+            // this.router.navigate(['/modules/customers/allCustomers']);
+          }
+        },
+        error: (err: any) => {
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+          this.uploading = false;
+        },
+        complete: () => {
+          this.uploading = false;
+        },
+      });
+    } else {
+      if (this.currentLanguage == 'ar') {
+        this.toastr.warning('الرجاء إدخال الحقول المطلوبة');
+      } else {
+        this.toastr.warning('Please enter the required fields');
+      }
+    }
   }
 }

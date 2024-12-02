@@ -188,17 +188,4 @@ export class ReportsModuleTableComponent implements OnInit {
     }, 1000);
   }
 
-  //handle display submenu from list menu array by know which item active
-  setActiveMenu() {
-    this.sidebarService.sendActiveDropdown('Customers');
-  }
-
-  // check page || components permissions
-  checkPageActions(action: string): any {
-    // return this.permissionsService.checkPageActions(
-    //   this.auth.currentUserSignal()?.userData,
-    //   'data',
-    //   action
-    // );
-  }
 }

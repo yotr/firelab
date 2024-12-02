@@ -64,6 +64,10 @@ export class SidebarService {
   activateDropdown(value: string) {
     this.activeDropdown.next(value);
   }
+  // send name of active dropdown to know which one active
+  deActivateDropdown(value: string) {
+    this.activeDropdown.next('');
+  }
   //get active as observable
   getActiveDropdownValue(): Observable<string> {
     return this.activeDropdown.asObservable();

@@ -14,7 +14,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <form (ngSubmit)="onSubmit()" [formGroup]="addForm">
+        <form (ngSubmit)="submit()" [formGroup]="addForm">
           <div class="row mt-4">
             <div class="col-sm-12">
               <!-- title -->
@@ -77,3 +77,10 @@
   </div>
 </div>
 <!-- /Drogfiles Modal -->
+
+
+<!-- loading section -->
+<div *ngIf="uploading">
+  <app-loading-section></app-loading-section>
+</div>
+<!-- /loading section -->

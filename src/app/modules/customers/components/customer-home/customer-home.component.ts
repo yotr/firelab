@@ -121,7 +121,7 @@ export class CustomerHomeComponent implements OnInit {
 
   ngOnInit() {
     this.getCurrentCustomerId();
-    this.navigationHandler();
+    // this.navigationHandler();
   }
   //handle display submenu from list menu array by know which item active
   setActiveMenu() {
@@ -133,25 +133,14 @@ export class CustomerHomeComponent implements OnInit {
         this.customerId = value;
       }
     });
-    this.setActiveMenu();
-    // set querys to current page
-    this.router.navigate([], {
-      queryParams: { customerId: this.customerId },
-    });
-  }
-  navigationHandler() {
-    this.router.events.subscribe((event: Event) => {
-      if (event instanceof NavigationEnd) {
-        if (
-          event.url.includes('/customers/home') ||
-          event.url.includes('/customers/owner') ||
-          event.url.includes('/customers/customerInfo') ||
-          event.url.includes('/customers/buildingInfo') ||
-          event.url.includes('/customers/systemInfo')
-        ) {
-          this.getCurrentCustomerId();
-        }
-      }
-    });
+    if (this.customerId != null) {
+      this.setActiveMenu();
+      // set querys to current page
+      this.router.navigate([], {
+        queryParams: { customerId: this.customerId },
+      });
+    } else {
+      this.router.navigate(['/modules/customers/allCustomers']);
+    }
   }
 }

@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
+import { ApiService } from 'src/app/services/api/api.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { SidebarService } from 'src/app/services/sidebar/sidebar.service';
@@ -31,7 +32,7 @@ export class RecurringInspectionsComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private toastr: ToastrService,
-    // public apiService: ApiService,
+    public apiService: ApiService,
     // private permissionsService: PermissionsService,
     private auth: AuthService,
     private sidebarService: SidebarService
@@ -115,33 +116,23 @@ export class RecurringInspectionsComponent implements OnInit {
   setActiveMenu() {
     this.sidebarService.activateDropdown('customers');
   }
+
   getCurrentCustomerId() {
     this.sidebarService.getCurrentCustomerValue().subscribe((value: any) => {
       if (value) {
         this.customerId = value;
       }
     });
-    this.setActiveMenu();
-    // set querys to current page
-    // this.router.navigate([], {
-    //   queryParams: { customerId: this.customerId },
-    // });
+    if (this.customerId != null) {
+      this.setActiveMenu();
+      // set querys to current page
+      this.router.navigate([], {
+        queryParams: { customerId: this.customerId },
+      });
+    } else {
+      this.router.navigate(['/modules/customers/allCustomers']);
+    }
   }
-  // navigationHandler() {
-  //   this.router.events.subscribe((event: Event) => {
-  //     if (event instanceof NavigationEnd) {
-  //       if (
-  //         event.url.includes('/customers/home') ||
-  //         event.url.includes('/customers/owner') ||
-  //         event.url.includes('/customers/customerInfo') ||
-  //         event.url.includes('/customers/buildingInfo') ||
-  //         event.url.includes('/customers/systemInfo')
-  //       ) {
-  //         this.getCurrentCustomerId();
-  //       }
-  //     }
-  //   });
-  // }
 
   //get data
   getData(
@@ -154,130 +145,120 @@ export class RecurringInspectionsComponent implements OnInit {
     value2?: any
   ) {
     this.loading = false;
-    this.totalItemsCount = this.data.length;
+
+    // api
     // this.apiService
-    //   .filterData(
-    //     `clients/getFilteredClients`,
+    //   ?.filterData(
+    //     'recurringInspections/getFilteredRecurringInspections',
     //     page ? page : 1,
     //     pageSize ? pageSize : 10
     //   )
-    //   .subscribe((data) => {
-    //     this.clients = data?.clientDto;
-    //     this.totalItemsCount = data?.totalCount;
-    //     this.loading = false;
-    //     // get dynamic columns keys
-    //     // this.getTableTabKeys(data);
+    //   .subscribe({
+    //     next: (data:any) => {
+    //       console.log(data);
+    //       if (data?.isSuccess) {
+    //         this.data = data?.value;
+    //         this.totalItemsCount = data?.totalCount;
+    //         this.loading = false;
+    //       }
+    //     },
+    //     error: (err: any) => {
+    //       this.loading = false;
+    //       if (this.currentLanguage == 'ar') {
+    //         this.toastr.error('هناك شيء خاطئ', 'خطأ');
+    //       } else {
+    //         this.toastr.error('There Is Somthing Wrong', 'Error');
+    //       }
+    //     },
+    //     complete: () => {},
     //   });
   }
 
-  // search(event: any) {
-  //   if (event?.value != null && event.value?.trim() != '') {
-  //     this.apiService
-  //       .globalSearch('clients/globalsearch', event?.value, event?.column)
-  //       .subscribe((data) => {
-  //         // console.log(data);
-  //         this.clients = data;
-  //         this.totalItemsCount = data?.length;
-  //         this.loading = false;
-  //       });
-  //   } else {
-  //     this.getClients();
-  //   }
-  // }
+  onPaginate(event: any) {
+    this.getData(event?.page, event?.itemsPerPage);
+  }
 
-  // delete(deleteId: any) {
-  //   console.log(deleteId);
-  //   this.apiService.delete('clients', deleteId).subscribe({
-  //     next: () => {
-  //       // delete in client side when success
-  //       this.clients = this.clients.filter((data) => data?.id !== deleteId);
-  //     },
-  //     error: (err) => {
-  //       console.log(err);
-  //     },
-  //     complete: () => {
-  //       //success message
-  //       this.toastr.success('Client', 'Deleted Successfully', {
-  //         timeOut: 3000,
-  //       });
-  //     },
-  //   });
-  // }
-  // //filters handle
-  // handleFiltersSubmit(event: any) {
-  //   this.loading = true;
-  //   // check if filters operator  contains selected
-  //   this.apiService
-  //     .filterData(
-  //       'clients/getFilteredClients',
-  //       1,
-  //       10,
-  //       event?.column,
-  //       event?.filters?.operator1,
-  //       event?.filters?.operator2,
-  //       event?.filters?.searchValue1,
-  //       event?.filters?.searchValue2
-  //     )
-  //     .subscribe((result) => {
-  //       this.clients = result?.clientDto;
-  //       this.totalItemsCount = result?.totalCount;
-  //       this.loading = false;
-  //     });
-  // }
-  // //delete selected
-  // deleteSelected() {
-  //   //success message
-  //   this.toastr.success('Client Deleted Successfully...', 'Success');
-  //   //in server side
-  // }
-  // resetData() {
-  //   this.getClients();
-  // }
-  // //change status
-  // onStatusChange(data: any) {
-  //   data.client.status = data.status;
-  //   data.client.checked = false;
-  //   // update status of leave
-  //   let formData: FormData = new FormData();
-  //   formData.append('email', data.client.email);
-  //   // formData.append('password', data.client.password);
-  //   // formData.append('confirmPassword', data.client.confirmPassword);
-  //   formData.append('firstName', data.client.firstName);
-  //   formData.append('lastName', data.client.lastName);
-  //   formData.append('clientId', data.client.clientId);
-  //   formData.append('mobile', data.client.phone);
-  //   formData.append('companyName', data.client.companyName);
-  //   // formData.append('permissions', JSON.stringify(data.client.permissions));
-  //   formData.append('status', data.client.status);
+  search(event: any) {
+    if (event?.value != null && event.value?.trim() != '') {
+      this.apiService
+        .globalSearch(
+          'recurringInspections/globalsearch',
+          event?.value,
+          event?.column
+        )
+        .subscribe((data: any) => {
+          console.log(data);
+          this.data = data?.value;
+          this.totalItemsCount = data?.value?.length;
+          this.loading = false;
+        });
+    } else {
+      this.getData();
+    }
+  }
 
-  //   let updated = false;
-  //   this.apiService
-  //     .update('clients/update', data?.client?.id, formData)
-  //     .subscribe({
-  //       next: () => {
-  //         updated = true;
-  //       },
-  //       error: () => {
-  //         this.toastr.error('There Is Somthing Wrong', 'Error');
-  //       },
-  //       complete: () => {
-  //         if (updated) {
-  //           //success
-  //           this.toastr.success(`Status Changed Successfully...`, 'Success');
-  //         }
-  //       },
-  //     });
-  // }
-  // // check page || components permissions
-  // checkPageActions(action: string): boolean {
-  //   return this.permissionsService.checkPageActions(
-  //     this.auth.currentUserSignal()?.userData,
-  //     'Clients',
-  //     action
-  //   );
-  // }
-  //handle display submenu from list menu array by know which item active
-  // setActiveMenu() {
-  //   this.sidebarService.sendActiveDropdown('Customers');
-  // }
+  delete(deleteId: any) {
+    console.log(deleteId);
+    this.apiService.delete('recurringInspections', deleteId).subscribe({
+      next: (data) => {
+        this.data = this.data.filter((item: any) => item?.id !== deleteId);
+
+        if (data?.isSuccess) {
+          if (this.currentLanguage == 'ar') {
+            this.toastr.success('تم حذف العنصر بنجاح...');
+          } else {
+            this.toastr.success('item deleted successfully...');
+          }
+        }
+      },
+      error: (err) => {
+        console.log(err);
+        if (this.currentLanguage == 'ar') {
+          this.toastr.error('هناك شيء خاطئ', 'خطأ');
+        } else {
+          this.toastr.error('There Is Somthing Wrong', 'Error');
+        }
+      },
+      complete: () => {},
+    });
+  }
+  //filters handle
+  handleFiltersSubmit(event: any) {
+    this.loading = true;
+    // check if filters operator  contains selected
+    this.apiService
+      .filterData(
+        'recurringInspections/getFilteredRecurringInspections',
+        1,
+        10,
+        event?.column,
+        event?.filters?.operator1,
+        event?.filters?.operator2,
+        event?.filters?.searchValue1,
+        event?.filters?.searchValue2
+      )
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.data = data?.value;
+            this.totalItemsCount = data?.totalCount;
+            this.loading = false;
+          }
+        },
+        error: (err: any) => {
+          this.loading = false;
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {},
+      });
+  }
+
+  resetData() {
+    this.getData();
+  }
 }

@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
+import { ApiService } from 'src/app/services/api/api.service';
+import { LanguageService } from 'src/app/services/language/language.service';
 
 @Component({
   selector: 'app-customer-reports-sidebar',
@@ -7,11 +11,21 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   styleUrls: ['./customer-reports-sidebar.component.css'],
 })
 export class CustomerReportsSidebarComponent implements OnInit {
-  reports: any[] = [];
-
   activeReport: string = '';
+  currentLanguage: any = localStorage.getItem('lang');
 
-  constructor(private activatedRoute: ActivatedRoute, private router: Router) {
+  // categories
+  categories: any[] = [];
+  categoriesLoading: boolean = true;
+
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private languageService: LanguageService,
+    private translateService: TranslateService,
+    private toastr: ToastrService,
+    private apiService: ApiService
+  ) {
     //get id
     this.activatedRoute.queryParamMap.subscribe((paramMap: Params) => {
       if (paramMap['get']('report')) {
@@ -19,7 +33,7 @@ export class CustomerReportsSidebarComponent implements OnInit {
       }
     });
 
-    this.reports = [
+    this.categories = [
       {
         id: 0,
         name: 'Spcial Hazard',
@@ -54,11 +68,38 @@ export class CustomerReportsSidebarComponent implements OnInit {
     ];
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    // this.getCategories();
+  }
 
   navigate(report: any) {
     this.router.navigate(['/modules/customers/hoodSystem'], {
       queryParams: { report: report?.name },
+    });
+  }
+
+  // get categories data
+  getCategories() {
+    this.apiService.get('reportCategories').subscribe({
+      next: (data: any) => {
+        console.log(data);
+        if (data?.isSuccess) {
+          this.categories = data?.value;
+          this.categoriesLoading = false;
+        }
+      },
+      error: (err) => {
+        console.log(err);
+        if (this.currentLanguage == 'ar') {
+          this.toastr.error('هناك شيء خاطئ', 'خطأ');
+        } else {
+          this.toastr.error('There Is Somthing Wrong', 'Error');
+        }
+        this.categoriesLoading = false;
+      },
+      complete: () => {
+        this.categoriesLoading = false;
+      },
     });
   }
 }

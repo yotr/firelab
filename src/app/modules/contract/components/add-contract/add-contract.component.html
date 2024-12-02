@@ -65,11 +65,14 @@
             id="teamId"
             formControlName="teamId"
           >
-            <option value="1">one</option>
-            <option value="2">two</option>
-            <!-- <option *ngIf="teamLoading" disabled>
-              loading
-            </option> -->
+            <ng-container *ngFor="let member of members">
+              <option [value]="member?.id">
+                {{ member?.firstName + " " + member?.lastName }}
+              </option>
+            </ng-container>
+            <option *ngIf="membersLoading" disabled>
+              {{ "loading" | translate }}
+            </option>
           </select>
         </div>
         <!-- errors -->
@@ -193,8 +196,8 @@
           </label>
           <select
             class="form-select form-control"
-            name="teamId"
-            id="teamId"
+            name="status"
+            id="status"
             formControlName="status"
           >
             <option value="true">Active</option>

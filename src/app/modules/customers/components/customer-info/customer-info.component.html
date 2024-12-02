@@ -53,19 +53,19 @@
             <input
               class="form-control"
               type="text"
-              formControlName="customerBusinessName"
+              formControlName="businessName"
             />
             <!-- errors -->
             <div
               *ngIf="
-                editForm.get('customerBusinessName')?.invalid &&
-                editForm.get('customerBusinessName')?.touched
+                editForm.get('businessName')?.invalid &&
+                editForm.get('businessName')?.touched
               "
             >
               <small
                 *ngIf="
-                  editForm.get('customerBusinessName')?.invalid &&
-                  editForm.get('customerBusinessName')?.touched
+                  editForm.get('businessName')?.invalid &&
+                  editForm.get('businessName')?.touched
                 "
                 class="text-danger"
               >
@@ -90,7 +90,7 @@
             <input
               class="form-control"
               type="text"
-              formControlName="customerContactName"
+              formControlName="contactName"
             />
           </div>
         </div>
@@ -103,7 +103,7 @@
             <input
               class="form-control"
               type="email"
-              formControlName="customerEmail"
+              formControlName="email"
             />
           </div>
         </div>
@@ -116,7 +116,7 @@
             <input
               class="form-control"
               type="text"
-              formControlName="customerCellPhone"
+              formControlName="cellPhone"
             />
           </div>
         </div>
@@ -132,7 +132,7 @@
             <input
               class="form-control"
               type="text"
-              formControlName="customerOfficePhone"
+              formControlName="officePhone"
             />
           </div>
         </div>
@@ -147,7 +147,7 @@
             <input
               class="form-control"
               type="text"
-              formControlName="customerContactFaxNumber"
+              formControlName="contactFaxNumber"
             />
           </div>
         </div>
@@ -160,7 +160,7 @@
             <input
               class="form-control"
               type="text"
-              formControlName="customerId"
+              formControlName="idAccount"
             />
           </div>
         </div>
@@ -176,7 +176,7 @@
             <input
               class="form-control"
               type="text"
-              formControlName="customerAddress1"
+              formControlName="address1"
             />
           </div>
         </div>
@@ -191,7 +191,7 @@
             <input
               class="form-control"
               type="text"
-              formControlName="customerAddress2"
+              formControlName="address2"
             />
           </div>
         </div>
@@ -206,7 +206,7 @@
             <input
               class="form-control"
               type="text"
-              formControlName="customerPostalCode"
+              formControlName="postalCode"
             />
           </div>
         </div>
@@ -219,7 +219,7 @@
             <input
               class="form-control"
               type="text"
-              formControlName="customerCity"
+              formControlName="city"
             />
           </div>
         </div>
@@ -245,3 +245,10 @@
     <app-customer-reports-sidebar></app-customer-reports-sidebar>
   </div>
 </div>
+
+
+<!-- loading section -->
+<div *ngIf="uploading">
+  <app-loading-section></app-loading-section>
+</div>
+<!-- /loading section -->

@@ -30,12 +30,12 @@
             <option disabled selected>
               {{ "select" | translate }}
             </option>
-            <ng-container *ngFor="let report of reports">
+            <ng-container *ngFor="let report of categories">
               <option [value]="report?.id">
                 {{ report?.name }}
               </option>
             </ng-container>
-            <option *ngIf="!reportsLoading && reports.length == 0" disabled>
+            <option *ngIf="!categoriesLoading && categories.length == 0" disabled>
               {{ "customers.import_devices.form.no_data" | translate }}
             </option>
           </select>

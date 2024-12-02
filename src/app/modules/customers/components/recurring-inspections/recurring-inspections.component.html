@@ -33,6 +33,11 @@
       [deleteModalTitle]="'customers.recurring_inspections.delete' | translate"
       [tableTitle]="'customers.recurring_inspections.table_title' | translate"
       editPagePath="/modules/customers/recurringInspections/edit"
+      (onPageChange)="onPaginate($event)"
+      (onDelete)="delete($event)"
+      (onSearch)="search($event)"
+      (onFilter)="handleFiltersSubmit($event)"
+      (onReset)="resetData()"
     ></app-recurring-inspections-module-table>
   </div>
 

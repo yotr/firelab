@@ -40,8 +40,10 @@
                   name="email[]"
                 />
                 <i
+                  data-bs-toggle="modal"
+                  data-bs-target="#delete"
                   class="pi pi-trash trash-icon"
-                  (click)="removeEmailItems(i)"
+                  (click)="removeEmailItems(i, item?.value)"
                 ></i>
               </div>
             </div>
@@ -78,3 +80,9 @@
   (onDelete)="deleteItem()"
 ></app-delete-modal>
 <!--/ delete modal -->
+
+<!-- loading section -->
+<div *ngIf="uploading">
+  <app-loading-section></app-loading-section>
+</div>
+<!-- /loading section -->

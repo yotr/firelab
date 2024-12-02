@@ -5,7 +5,7 @@
     </h4>
   </div>
   <div class="reports-types">
-    <ng-container *ngFor="let report of reports">
+    <ng-container *ngFor="let report of categories">
       <div
         class="report-type"
         [ngClass]="{ active: activeReport == report?.name }"

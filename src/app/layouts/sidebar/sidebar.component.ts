@@ -111,13 +111,16 @@ export class SidebarComponent implements OnInit, AfterViewInit {
 
   getActiveMenu() {
     let currentPath = this.router.url;
-    // get sidebar links list from services
-    this.sidebarService.getSidebarMenuEnglish().subscribe((sidebar) => {
-      let code = this.searchByPath(sidebar[0]?.menu, currentPath);
-      if (code) {
-        this.sidebarService.activateDropdown(code);
-      }
-    });
+    if (currentPath.includes('allCustomers')) {
+    } else {
+      // get sidebar links list from services
+      this.sidebarService.getSidebarMenuEnglish().subscribe((sidebar) => {
+        let code = this.searchByPath(sidebar[0]?.menu, currentPath);
+        if (code) {
+          this.sidebarService.activateDropdown(code);
+        }
+      });
+    }
   }
 
   searchByPath(menu: any, searchPath: string) {

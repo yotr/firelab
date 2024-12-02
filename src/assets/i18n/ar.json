@@ -415,6 +415,13 @@
       "clocked": "انتهت المدة",
       "miscellaneous": "متنوع",
       "total": "مجموع الساعات"
+    },
+    "status": {
+      "driving": "يقود",
+      "break": "يأخذ راحة",
+      "working": "يعمل",
+      "clocked": "خارج الخدمة",
+      "miscellaneous": "متنوع"
     }
   },
   "job_link": {

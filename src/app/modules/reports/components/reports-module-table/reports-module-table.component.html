@@ -203,11 +203,7 @@
                 <td *ngIf="key.active && key?.name != 'id'">
                   <!-- name -->
                   <ng-container>
-                    <div
-                      routerLink="/modules/customers/home"
-                      role="button"
-                      (click)="setActiveMenu()"
-                    >
+                    <div role="button">
                       {{ value[key?.name] }}
                     </div>
                   </ng-container>

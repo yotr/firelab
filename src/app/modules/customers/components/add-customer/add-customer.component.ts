@@ -181,6 +181,7 @@ export class AddCustomerComponent implements OnInit {
             } else {
               this.toastr.success('data added successfully...', 'Success');
             }
+            this.router.navigate(['/modules/customers/allCustomers']);
           }
         },
         error: (err: any) => {
@@ -193,7 +194,6 @@ export class AddCustomerComponent implements OnInit {
         },
         complete: () => {
           this.uploading = false;
-          this.router.navigate(['/modules/customers/allCustomers']);
         },
       });
     } else {

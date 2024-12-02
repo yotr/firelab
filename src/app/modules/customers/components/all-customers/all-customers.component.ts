@@ -36,17 +36,6 @@ export class AllCustomersComponent implements OnInit, AfterViewInit {
     private auth: AuthService,
     private sidebarService: SidebarService
   ) {
-    //   //get id
-    //   this.activatedRoute.queryParamMap.subscribe((paramMap: Params) => {
-    //     if (paramMap['get']('operationid')) {
-    //       this.operationId = paramMap['get']('operationid');
-    //     }
-    //   });
-    //   // get query parameters
-    //   this.activatedRoute.queryParams.subscribe((query) => {
-    //     this.view_type = query['view_type'];
-    //   });
-
     //   // turn on current language (trandlate)
     this.translateService.use(this.currentLanguage);
 
@@ -98,6 +87,8 @@ export class AllCustomersComponent implements OnInit, AfterViewInit {
     this.getLanguage();
     this.getTheme();
     this.getData();
+    this.deActiveMenu();
+
     //   this.getCurrentUserData();
   }
 
@@ -127,6 +118,11 @@ export class AllCustomersComponent implements OnInit, AfterViewInit {
       // turn on current language (trandlate)
       this.translateService.use(this.currentLanguage);
     });
+  }
+
+  //handle display submenu from list menu array by know which item active
+  deActiveMenu() {
+    this.sidebarService.deActivateDropdown('customers');
   }
 
   onAttachFiles(files: any): void {
@@ -179,7 +175,7 @@ export class AllCustomersComponent implements OnInit, AfterViewInit {
     //     pageSize ? pageSize : 10
     //   )
     //   .subscribe({
-    //     next: (data) => {
+    //     next: (data:any) => {
     //       console.log(data);
     //       if (data?.isSuccess) {
     //         this.data = data?.value;
@@ -207,10 +203,10 @@ export class AllCustomersComponent implements OnInit, AfterViewInit {
     if (event?.value != null && event.value?.trim() != '') {
       this.apiService
         .globalSearch('customers/globalsearch', event?.value, event?.column)
-        .subscribe((data) => {
+        .subscribe((data: any) => {
           console.log(data);
-          this.data = data;
-          this.totalItemsCount = data?.length;
+          this.data = data?.value;
+          this.totalItemsCount = data?.value?.length;
           this.loading = false;
         });
     } else {
@@ -220,9 +216,8 @@ export class AllCustomersComponent implements OnInit, AfterViewInit {
 
   delete(deleteId: any) {
     console.log(deleteId);
-    this.apiService.delete('clients', deleteId).subscribe({
+    this.apiService.delete('customers', deleteId).subscribe({
       next: (data) => {
-        // delete in client side when success
         this.data = this.data.filter((item: any) => item?.id !== deleteId);
 
         if (data?.isSuccess) {
@@ -317,16 +312,4 @@ export class AllCustomersComponent implements OnInit, AfterViewInit {
         },
       });
   }
-  // // check page || components permissions
-  // checkPageActions(action: string): boolean {
-  //   return this.permissionsService.checkPageActions(
-  //     this.auth.currentUserSignal()?.userData,
-  //     'Clients',
-  //     action
-  //   );
-  // }
-  //handle display submenu from list menu array by know which item active
-  // setActiveMenu() {
-  //   this.sidebarService.sendActiveDropdown('Customers');
-  // }
 }

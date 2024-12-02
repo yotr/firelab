@@ -1,4 +1,10 @@
-import { AfterViewChecked, Component, Input, OnInit } from '@angular/core';
+import {
+  AfterViewChecked,
+  AfterViewInit,
+  Component,
+  Input,
+  OnInit,
+} from '@angular/core';
 import {
   ActivatedRoute,
   Event,
@@ -7,6 +13,8 @@ import {
   Router,
 } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
+import { ApiService } from 'src/app/services/api/api.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { SidebarService } from 'src/app/services/sidebar/sidebar.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
@@ -16,20 +24,12 @@ import { ThemeService } from 'src/app/services/theme/theme.service';
   templateUrl: './system-info.component.html',
   styleUrls: ['./system-info.component.css'],
 })
-export class SystemInfoComponent implements OnInit, AfterViewChecked {
+export class SystemInfoComponent implements OnInit, AfterViewInit {
   @Input() isReportsActive: boolean = true;
   // current language
   currentLanguage: any = localStorage.getItem('lang');
   currentTheme: any;
-  data: any[] = [
-    {
-      id: 1,
-      reportType: 'Alarm',
-      system: 'Master Panel',
-      type: 'Bell',
-      quantity: '100',
-    },
-  ];
+  data: any[] = [];
   loading: boolean = false;
   totalItemsCount: number = 0;
   dataKeys: any[] = [];
@@ -43,7 +43,9 @@ export class SystemInfoComponent implements OnInit, AfterViewChecked {
     private languageService: LanguageService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private sidebarService: SidebarService
+    private sidebarService: SidebarService,
+    private toastr: ToastrService,
+    public apiService: ApiService
   ) {
     this.translateService.use(this.currentLanguage);
     //get id
@@ -93,14 +95,14 @@ export class SystemInfoComponent implements OnInit, AfterViewChecked {
       },
     ];
   }
-  ngAfterViewChecked(): void {
+  ngAfterViewInit(): void {
     this.getData();
   }
   ngOnInit() {
     this.getLanguage();
     this.getTheme();
     this.getCurrentCustomerId();
-    this.navigationHandler();
+    // this.navigationHandler();
   }
 
   getTheme() {
@@ -118,45 +120,35 @@ export class SystemInfoComponent implements OnInit, AfterViewChecked {
       this.translateService.use(this.currentLanguage);
     });
   }
+
   //handle display submenu from list menu array by know which item active
   setActiveMenu() {
     this.sidebarService.activateDropdown('customers');
   }
+
   getCurrentCustomerId() {
     this.sidebarService.getCurrentCustomerValue().subscribe((value: any) => {
       if (value) {
         this.customerId = value;
       }
     });
-    if (this.section == null) {
+    if (this.customerId != null) {
       this.setActiveMenu();
-
       // set querys to current page
       this.router.navigate([], {
         queryParams: { customerId: this.customerId },
       });
+    } else {
+      this.router.navigate(['/modules/customers/allCustomers']);
     }
   }
-  navigationHandler() {
-    this.router.events.subscribe((event: Event) => {
-      if (event instanceof NavigationEnd) {
-        if (
-          event.url.includes('/customers/home') ||
-          event.url.includes('/customers/owner') ||
-          event.url.includes('/customers/customerInfo') ||
-          event.url.includes('/customers/buildingInfo') ||
-          event.url.includes('/customers/systemInfo')
-        ) {
-          this.getCurrentCustomerId();
-        }
-      }
-    });
-  }
+
   navigateToAddPage() {
     this.router.navigate(['/modules/customers/systemInfo/add'], {
       queryParams: { customerId: this.customerId },
     });
   }
+
   //get data
   getData(
     page?: number,
@@ -167,127 +159,119 @@ export class SystemInfoComponent implements OnInit, AfterViewChecked {
     value1?: any,
     value2?: any
   ) {
-    this.loading = false;
-    this.totalItemsCount = this.data.length;
+    // api
     // this.apiService
-    //   .filterData(
-    //     `clients/getFilteredClients`,
+    //   ?.filterData(
+    //     'systemInformations/getFilteredSystemInformations',
     //     page ? page : 1,
     //     pageSize ? pageSize : 10
     //   )
-    //   .subscribe((data) => {
-    //     this.clients = data?.clientDto;
-    //     this.totalItemsCount = data?.totalCount;
-    //     this.loading = false;
-    //     // get dynamic columns keys
-    //     // this.getTableTabKeys(data);
+    //   .subscribe({
+    //     next: (data:any) => {
+    //       console.log(data);
+    //       if (data?.isSuccess) {
+    //         this.data = data?.value;
+    //         this.totalItemsCount = data?.totalCount;
+    //         this.loading = false;
+    //       }
+    //     },
+    //     error: (err: any) => {
+    //       this.loading = false;
+    //       if (this.currentLanguage == 'ar') {
+    //         this.toastr.error('هناك شيء خاطئ', 'خطأ');
+    //       } else {
+    //         this.toastr.error('There Is Somthing Wrong', 'Error');
+    //       }
+    //     },
+    //     complete: () => {},
     //   });
   }
 
-  // search(event: any) {
-  //   if (event?.value != null && event.value?.trim() != '') {
-  //     this.apiService
-  //       .globalSearch('clients/globalsearch', event?.value, event?.column)
-  //       .subscribe((data) => {
-  //         // console.log(data);
-  //         this.clients = data;
-  //         this.totalItemsCount = data?.length;
-  //         this.loading = false;
-  //       });
-  //   } else {
-  //     this.getClients();
-  //   }
-  // }
+  onPaginate(event: any) {
+    this.getData(event?.page, event?.itemsPerPage);
+  }
 
-  // delete(deleteId: any) {
-  //   console.log(deleteId);
-  //   this.apiService.delete('clients', deleteId).subscribe({
-  //     next: () => {
-  //       // delete in client side when success
-  //       this.clients = this.clients.filter((data) => data?.id !== deleteId);
-  //     },
-  //     error: (err) => {
-  //       console.log(err);
-  //     },
-  //     complete: () => {
-  //       //success message
-  //       this.toastr.success('Client', 'Deleted Successfully', {
-  //         timeOut: 3000,
-  //       });
-  //     },
-  //   });
-  // }
-  // //filters handle
-  // handleFiltersSubmit(event: any) {
-  //   this.loading = true;
-  //   // check if filters operator  contains selected
-  //   this.apiService
-  //     .filterData(
-  //       'clients/getFilteredClients',
-  //       1,
-  //       10,
-  //       event?.column,
-  //       event?.filters?.operator1,
-  //       event?.filters?.operator2,
-  //       event?.filters?.searchValue1,
-  //       event?.filters?.searchValue2
-  //     )
-  //     .subscribe((result) => {
-  //       this.clients = result?.clientDto;
-  //       this.totalItemsCount = result?.totalCount;
-  //       this.loading = false;
-  //     });
-  // }
-  // //delete selected
-  // deleteSelected() {
-  //   //success message
-  //   this.toastr.success('Client Deleted Successfully...', 'Success');
-  //   //in server side
-  // }
-  // resetData() {
-  //   this.getClients();
-  // }
-  // //change status
-  // onStatusChange(data: any) {
-  //   data.client.status = data.status;
-  //   data.client.checked = false;
-  //   // update status of leave
-  //   let formData: FormData = new FormData();
-  //   formData.append('email', data.client.email);
-  //   // formData.append('password', data.client.password);
-  //   // formData.append('confirmPassword', data.client.confirmPassword);
-  //   formData.append('firstName', data.client.firstName);
-  //   formData.append('lastName', data.client.lastName);
-  //   formData.append('clientId', data.client.clientId);
-  //   formData.append('mobile', data.client.phone);
-  //   formData.append('companyName', data.client.companyName);
-  //   // formData.append('permissions', JSON.stringify(data.client.permissions));
-  //   formData.append('status', data.client.status);
+  search(event: any) {
+    if (event?.value != null && event.value?.trim() != '') {
+      this.apiService
+        .globalSearch(
+          'systemInformations/globalsearch',
+          event?.value,
+          event?.column
+        )
+        .subscribe((data: any) => {
+          console.log(data);
+          this.data = data?.value;
+          this.totalItemsCount = data?.value?.length;
+          this.loading = false;
+        });
+    } else {
+      this.getData();
+    }
+  }
 
-  //   let updated = false;
-  //   this.apiService
-  //     .update('clients/update', data?.client?.id, formData)
-  //     .subscribe({
-  //       next: () => {
-  //         updated = true;
-  //       },
-  //       error: () => {
-  //         this.toastr.error('There Is Somthing Wrong', 'Error');
-  //       },
-  //       complete: () => {
-  //         if (updated) {
-  //           //success
-  //           this.toastr.success(`Status Changed Successfully...`, 'Success');
-  //         }
-  //       },
-  //     });
-  // }
-  // // check page || components permissions
-  // checkPageActions(action: string): boolean {
-  //   return this.permissionsService.checkPageActions(
-  //     this.auth.currentUserSignal()?.userData,
-  //     'Clients',
-  //     action
-  //   );
-  // }
+  delete(deleteId: any) {
+    console.log(deleteId);
+    this.apiService.delete('systemInformations', deleteId).subscribe({
+      next: (data) => {
+        this.data = this.data.filter((item: any) => item?.id !== deleteId);
+
+        if (data?.isSuccess) {
+          if (this.currentLanguage == 'ar') {
+            this.toastr.success('تم حذف العنصر بنجاح...');
+          } else {
+            this.toastr.success('item deleted successfully...');
+          }
+        }
+      },
+      error: (err) => {
+        console.log(err);
+        if (this.currentLanguage == 'ar') {
+          this.toastr.error('هناك شيء خاطئ', 'خطأ');
+        } else {
+          this.toastr.error('There Is Somthing Wrong', 'Error');
+        }
+      },
+      complete: () => {},
+    });
+  }
+  //filters handle
+  handleFiltersSubmit(event: any) {
+    this.loading = true;
+    // check if filters operator  contains selected
+    this.apiService
+      .filterData(
+        'systemInformations/getFilteredSystemInformations',
+        1,
+        10,
+        event?.column,
+        event?.filters?.operator1,
+        event?.filters?.operator2,
+        event?.filters?.searchValue1,
+        event?.filters?.searchValue2
+      )
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.data = data?.value;
+            this.totalItemsCount = data?.totalCount;
+            this.loading = false;
+          }
+        },
+        error: (err: any) => {
+          this.loading = false;
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {},
+      });
+  }
+
+  resetData() {
+    this.getData();
+  }
 }

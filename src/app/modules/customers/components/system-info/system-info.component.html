@@ -28,6 +28,11 @@
         [dataKeys]="dataKeys"
         [loading]="loading"
         editPagePath="/modules/customers/systemInfo/edit"
+        (onPageChange)="onPaginate($event)"
+        (onDelete)="delete($event)"
+        (onSearch)="search($event)"
+        (onFilter)="handleFiltersSubmit($event)"
+        (onReset)="resetData()"
       ></app-system-info-table>
     </div>
   </div>
