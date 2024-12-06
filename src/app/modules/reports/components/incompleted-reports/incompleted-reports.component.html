@@ -4,7 +4,9 @@
     class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
     [dir]="'dir' | translate"
   >
-    <app-breadcrumb title="Incompleted Reports"></app-breadcrumb>
+    <app-breadcrumb
+      [title]="'reports.incompleted.title' | translate"
+    ></app-breadcrumb>
   </div>
 
   <!-- /page header  -->
@@ -16,13 +18,11 @@
     [dataKeys]="dataKeys"
     [loading]="loading"
     [currentTheme]="currentTheme"
-    deleteModalTitle="Customer"
-    tableTitle="Customers Table"
-    editPagePath="/modules/customers/edit"
+    [deleteModalTitle]="'reports.incompleted.title' | translate"
+    [tableTitle]="'reports.incompleted.table_title' | translate"
+    editPagePath=""
   ></app-reports-module-table>
 </div>
-
-
 
 <!-- [users]="users"
     [totalItems]="totalItemsCount"

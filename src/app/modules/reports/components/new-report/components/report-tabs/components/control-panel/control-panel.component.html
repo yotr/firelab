@@ -13,7 +13,9 @@
       <div class="questions">
         <div class="question mb-3" *ngFor="let value of panel?.questions">
           <div class="question_details">
-            <span> Panel Type ?</span>
+            <span>
+              {{ "reports.new.tabs.panel_tab.panel_type" | translate }}</span
+            >
             <div class="answers">
               <div class="types">
                 <div class="form-check" *ngFor="let type of types">
@@ -34,7 +36,9 @@
           <div class="question_actions">
             <div class="action">
               <i class="pi pi-pen-to-square text-danger"></i>
-              <span>Notes</span>
+              <span>{{
+                "reports.new.tabs.monitoring_tab.delete" | translate
+              }}</span>
             </div>
           </div>
         </div>
@@ -45,22 +49,22 @@
               <!-- yes or no answer -->
               <div *ngIf="value?.type == 'yes_no'" class="answers-btns mt-2">
                 <button [ngClass]="{ active: value?.answer == 'yes' }">
-                  Yes
+                  {{ "reports.new.tabs.question.yes" | translate }}
                 </button>
                 <button [ngClass]="{ active: value?.answer == 'no' }">
-                  No
+                  {{ "reports.new.tabs.question.no" | translate }}
                 </button>
               </div>
               <!-- pass or fail or n/a answer -->
               <div *ngIf="value?.type == 'pass_fail'" class="answers-btns mt-2">
                 <button [ngClass]="{ active: value?.answer == 'pass' }">
-                  Pass
+                  {{ "reports.new.tabs.question.pass" | translate }}
                 </button>
                 <button [ngClass]="{ active: value?.answer == 'fail' }">
-                  Fail
+                  {{ "reports.new.tabs.question.fail" | translate }}
                 </button>
                 <button [ngClass]="{ active: value?.answer == 'n/a' }">
-                  N/A
+                  {{ "reports.new.tabs.question.an" | translate }}
                 </button>
               </div>
               <!-- input text answer -->
@@ -85,11 +89,11 @@
           <div class="question_actions">
             <div class="action">
               <i class="pi pi-pen-to-square text-danger"></i>
-              <span>Notes</span>
+              <span>{{ "reports.new.tabs.monitoring_tab.notes" | translate }}</span>
             </div>
             <div class="action">
               <i class="pi pi-trash"></i>
-              <span>Delete</span>
+              <span>{{ "reports.new.tabs.monitoring_tab.delete" | translate }}</span>
             </div>
           </div>
         </div>
@@ -99,13 +103,18 @@
         <div
           class="add-custom-btn"
           data-bs-toggle="modal"
-          data-bs-target="#add_panel_question_modal"
+          data-bs-target="#add_custom_question_modal"
         >
-          <div class="add"><i class="pi pi-plus"></i> Add Custom Question</div>
+          <div class="add">
+            <i class="pi pi-plus"></i>
+            {{ "reports.new.tabs.question.add_custom" | translate }}
+          </div>
         </div>
         <!-- Save -->
         <div class="save-btn">
-          <div class="save"><i class="pi pi-plus"></i> Save</div>
+          <div class="save">
+            <i class="pi pi-plus"></i> {{ "save" | translate }}
+          </div>
         </div>
       </div>
     </div>
@@ -115,9 +124,10 @@
 <!-- New Panel -->
 <div class="add-panel-btn">
   <div class="add" (click)="addPanel()">
-    <i class="pi pi-plus"></i> Add Panel
+    <i class="pi pi-plus"></i>
+    {{ "reports.new.tabs.panel_tab.add_btn" | translate }}
   </div>
 </div>
 
 <!-- add-question modal  -->
-<app-add-panel-question></app-add-panel-question>
+<!-- <app-add-panel-question></app-add-panel-question> -->

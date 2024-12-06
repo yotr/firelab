@@ -46,35 +46,44 @@ export class IncompletedReportsComponent implements OnInit {
 
     //   // turn on current language (trandlate)
     this.translateService.use(this.currentLanguage);
-    // this.translateService.instant('clients.client_table.client_id');
     this.dataKeys = [
       {
         name: 'CompanyName',
-        display: 'Company Name',
+        display: this.translateService.instant(
+          'reports.incompleted.table.company_name'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'Category',
-        display: 'Category',
+        display: this.translateService.instant(
+          'reports.incompleted.table.category'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'Type',
-        display: 'Type',
+        display: this.translateService.instant(
+          'reports.incompleted.table.type'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'StartDate',
-        display: 'Start Date',
+        display: this.translateService.instant(
+          'reports.incompleted.table.start_date'
+        ),
         type: 'string',
         active: true,
       },
       {
         name: 'ModifiedDate',
-        display: 'Modified Date',
+        display: this.translateService.instant(
+          'reports.incompleted.table.modified_date'
+        ),
         type: 'string',
         active: true,
       },

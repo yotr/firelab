@@ -230,6 +230,19 @@
     "system_info": {
       "title": "System Information",
       "add_btn": "Add System/Device",
+      "add_title": "Add System Info",
+      "update_title": "Update System Info",
+      "form": {
+        "no_data": "No Data Yet",
+        "reportCategory": "Report Category",
+        "reportCategory_required": "Report Category is required",
+        "system": "System",
+        "system_required": "System is required",
+        "type": "Type",
+        "type_required": "Type is required",
+        "quantity": "Quantity",
+        "quantity_required": "Quantity is required"
+      },
       "table": {
         "reportType": "Report type",
         "system": "System/Device",
@@ -685,6 +698,120 @@
           "id": "ID",
           "quantity": "Quantity"
         }
+      }
+    }
+  },
+  "reports": {
+    "new": {
+      "title": "New Report",
+      "customer": "Customer",
+      "type": "Type",
+      "report_category": "Report Category",
+      "office_number": "Office Number",
+      "cell_number": "Cell Number",
+      "address": "Address",
+      "add_new": "Add New Report",
+      "question_start": "Do you want start new or copy?",
+      "new": "New",
+      "copy": "Copy",
+      "start_report": "Start Report",
+      "start": "Start",
+      "confirmation": "Confirmation",
+      "confirmation_question": "Has the monitioring company been notified?",
+      "yes": "Yes",
+      "no": "No",
+      "cancel_report": "Cancel Report",
+      "cancel_line1": "Canceling the report will permanently delete any data you have entered.",
+      "cancel_line2": "Would you like to proceed with cancellation?",
+      "details_page": {
+        "add_new_btn": "Add New Report",
+        "cancel_btn": "Cancel Report",
+        "build_info": "Building Information",
+        "system_info": "System Information",
+        "images": "Images",
+        "frequency": "Frequency"
+      },
+      "tabs": {
+        "monitoring": "Monitoring",
+        "panel": "Control Panel",
+        "devices": "Devices",
+        "notes": "Notes",
+        "finish": "Finish",
+        "question": {
+          "add_custom": "Add Custom Question",
+          "what_question": "What will be the question?",
+          "what_type": "What type of question is this?",
+          "what_recurrence": "Please select recurrence of this question?"
+        },
+        "monitoring_tab": {
+          "yes": "Yes",
+          "no": "No",
+          "pass": "Pass",
+          "fail": "Fail",
+          "an": "N/A",
+          "notes": "Notes",
+          "hide": "Hide",
+          "delete": "Delete"
+        },
+        "panel_tab": {
+          "add_btn": "Add Panel",
+          "panel_type": "Panel Type ?"
+        },
+        "devices_tab": {
+          "no_devices": "No devices regestered for this report",
+          "add_devices": "Add Device",
+          "click_devices": "Click this button to add devices.",
+          "add_list": "Add Device List",
+          "click_list": "Click this button to add a list of devices.",
+          "legacy": "Import from legacy",
+          "click_import": "Click this button to import devices from a previous report completed on our old platform.",
+          "clear": "Clear Devices",
+          "clieck_clear": "Click this button to clear the devices from a previous inspection.",
+          "add_device": {
+            "add_btn": "Add Device",
+            "no_data": "No Data Yet",
+            "type": "Device Type",
+            "type_required": "Device Type is required",
+            "floor": "Device Floor",
+            "floor_required": "Device Floor is required",
+            "address": "Address",
+            "location": "Location",
+            "make": "Make",
+            "modal": "Modal",
+            "status": "status",
+            "pass": "Pass",
+            "fail": "Fail",
+            "an": "N/A",
+            "notes": "Notes"
+          },
+          "notes_modal": {
+            "note": "Note",
+            "notes": "Notes *",
+            "new": "Save and New"
+          }
+        }
+      }
+    },
+    "completed": {
+      "title": "Completed Reports",
+      "table_title": "Reports Table",
+      "table": {
+        "company_name": "Company Name",
+        "category": "Category",
+        "type": "Type",
+        "date": "Date",
+        "status": "Status"
+      }
+    },
+    "incompleted": {
+      "title": "Incompleted Reports",
+      "table_title": "Reports Table",
+      "table": {
+        "company_name": "Company Name",
+        "category": "Category",
+        "type": "Type",
+        "start_date": "Start Date",
+        "modified_date": "Modified Date"
       }
     }
   }

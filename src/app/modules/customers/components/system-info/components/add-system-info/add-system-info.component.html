@@ -6,7 +6,7 @@
     [dir]="'dir' | translate"
   >
     <!-- breadcrumb -->
-    <app-breadcrumb title="Add System Info"></app-breadcrumb>
+    <app-breadcrumb [title]="'customers.system_info.add_title' | translate "></app-breadcrumb>
   </div>
   <!-- /Page Header -->
 
@@ -17,7 +17,7 @@
       <div class="col-sm-6">
         <!-- Report Category -->
         <div class="form-group mt-2">
-          <label>Report Category <span class="text-danger">*</span></label>
+          <label>{{ "customers.system_info.form.reportCategory" | translate }} <span class="text-danger">*</span></label>
           <select
             class="form-select form-control"
             formControlName="reportCategory"
@@ -30,8 +30,11 @@
                 {{ report?.name }}
               </option>
             </ng-container>
-            <option *ngIf="!categoriesLoading && categories.length == 0" disabled>
-              No Data Yet
+            <option
+              *ngIf="!categoriesLoading && categories.length == 0"
+              disabled
+            >
+              {{ "customers.system_info.form.no_data" | translate }}
             </option>
           </select>
           <!-- errors -->
@@ -48,7 +51,7 @@
               "
               class="text-danger"
             >
-              Report Category Is Required</small
+              {{ "customers.system_info.form.reportCategory_required" | translate }}</small
             >
           </div>
           <!-- errors -->
@@ -57,7 +60,7 @@
       <div class="col-sm-6">
         <!-- System -->
         <div class="form-group mt-2">
-          <label>System <span class="text-danger">*</span></label>
+          <label>{{ "customers.system_info.form.system" | translate }} <span class="text-danger">*</span></label>
           <select class="form-select form-control" formControlName="system">
             <option disabled selected>
               {{ "select" | translate }}
@@ -68,7 +71,7 @@
               </option>
             </ng-container>
             <option *ngIf="!systemsLoading && systems.length == 0" disabled>
-              No Data Yet
+              {{ "customers.system_info.form.no_data" | translate }}
             </option>
           </select>
           <!-- errors -->
@@ -83,7 +86,7 @@
               "
               class="text-danger"
             >
-              System Is Required</small
+              {{ "customers.system_info.form.system_required" | translate }}</small
             >
           </div>
           <!-- errors -->
@@ -92,7 +95,7 @@
       <div class="col-sm-6">
         <!-- Type -->
         <div class="form-group mt-2">
-          <label>Type <span class="text-danger">*</span></label>
+          <label>{{ "customers.system_info.form.type" | translate }} <span class="text-danger">*</span></label>
           <select class="form-select form-control" formControlName="type">
             <option disabled selected>
               {{ "select" | translate }}
@@ -103,7 +106,7 @@
               </option>
             </ng-container>
             <option *ngIf="!typesLoading && types.length == 0" disabled>
-              No Data Yet
+              {{ "customers.system_info.form.no_data" | translate }}
             </option>
           </select>
           <!-- errors -->
@@ -116,7 +119,7 @@
               "
               class="text-danger"
             >
-              Type Is Required</small
+              {{ "customers.system_info.form.type_required" | translate }}</small
             >
           </div>
           <!-- errors -->
@@ -125,7 +128,7 @@
       <div class="col-sm-6">
         <!-- Quantity -->
         <div class="form-group mt-2">
-          <label>Quantity <span class="text-danger">*</span></label>
+          <label>{{ "customers.system_info.form.quantity_required" | translate }} <span class="text-danger">*</span></label>
           <input class="form-control" type="text" formControlName="quantity" />
           <!-- errors -->
           <div
@@ -141,7 +144,7 @@
               "
               class="text-danger"
             >
-              Quantity Is Required</small
+              {{ "customers.system_info.form.quantity_required" | translate }}</small
             >
           </div>
           <!-- errors -->
@@ -152,7 +155,7 @@
     <!-- submit -->
     <div class="save-btn text-center">
       <button type="submit" [disabled]="addForm.invalid" class="save mt-4">
-        Save
+        {{ "save" | translate }}
       </button>
     </div>
   </form>

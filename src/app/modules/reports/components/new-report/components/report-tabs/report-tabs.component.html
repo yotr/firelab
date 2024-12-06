@@ -6,7 +6,7 @@
       [ngClass]="{ 'active-tab': activeTab == 1 }"
       (click)="openTab(1)"
     >
-      <div class="active">Monitoring</div>
+      <div class="active">{{ "reports.new.tabs.monitoring" | translate }}</div>
       <div class="space"></div>
     </li>
     <li
@@ -14,7 +14,7 @@
       [ngClass]="{ 'active-tab': activeTab == 2 }"
       (click)="openTab(2)"
     >
-      <div class="active">Control Panel</div>
+      <div class="active">{{ "reports.new.tabs.panel" | translate }}</div>
       <div class="space"></div>
     </li>
     <li
@@ -22,7 +22,7 @@
       [ngClass]="{ 'active-tab': activeTab == 3 }"
       (click)="openTab(3)"
     >
-      <div class="active">Devices</div>
+      <div class="active">{{ "reports.new.tabs.devices" | translate }}</div>
       <div class="space"></div>
     </li>
     <li
@@ -30,7 +30,7 @@
       [ngClass]="{ 'active-tab': activeTab == 4 }"
       (click)="openTab(4)"
     >
-      <div class="active">Notes</div>
+      <div class="active">{{ "reports.new.tabs.notes" | translate }}</div>
       <div class="space"></div>
     </li>
     <li
@@ -38,7 +38,7 @@
       [ngClass]="{ 'active-tab': activeTab == 5 }"
       (click)="openTab(5)"
     >
-      <div class="active">Finish</div>
+      <div class="active">{{ "reports.new.tabs.finish" | translate }}</div>
       <div class="space"></div>
     </li>
   </ul>
@@ -77,3 +77,7 @@
     </div>
   </div>
 </div>
+
+<!-- custom question modal -->
+<app-add-custom-question></app-add-custom-question>
+<!-- /custom question modal -->

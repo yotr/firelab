@@ -8,7 +8,8 @@
         <!-- New -->
         <div class="add-report-btn">
           <div class="add" routerLink="/modules/reports/newReport">
-            <i class="pi pi-plus"></i> Add New Report
+            <i class="pi pi-plus"></i>
+            {{ "reports.new.details_page.add_new_btn" | translate }}
           </div>
         </div>
         <!-- Cancel -->
@@ -18,7 +19,7 @@
             data-bs-toggle="modal"
             data-bs-target="#cancel_report_modal"
           >
-            Cancel Report
+            {{ "reports.new.details_page.cancel_btn" | translate }}
           </div>
         </div>
       </div>
@@ -30,7 +31,7 @@
         <div class="profile-details">
           <img src="/assets/img/user.jpg" alt="profile" />
           <div class="title">
-            <h5 class="m-0 mb-2">Customer</h5>
+            <h5 class="m-0 mb-2">{{ "reports.new.customer" | translate }}</h5>
             <div class="d-flex">
               <!-- building/images/system information dropdown -->
 
@@ -53,19 +54,22 @@
                     class="dropdown-item"
                     role="button"
                     (click)="setActiveSection('building')"
-                    >Building Information</a
+                  >
+                    {{ "reports.new.details_page.build_info" | translate }}</a
                   >
                   <a
                     class="dropdown-item"
                     role="button"
                     (click)="setActiveSection('system')"
-                    >System Information</a
+                  >
+                    {{ "reports.new.details_page.system_info" | translate }}</a
                   >
                   <a
                     class="dropdown-item"
                     role="button"
                     (click)="setActiveSection('images')"
-                    >Images</a
+                  >
+                    {{ "reports.new.details_page.images" | translate }}</a
                   >
                 </div>
               </div>
@@ -83,7 +87,7 @@
           </div>
         </div>
         <div class="d-flex align-items-center gap-2 mt-4">
-          <span>Frequency :</span>
+          <span> {{ "reports.new.details_page.frequency" | translate }} :</span>
           <app-custom-dropdown
             height="40px"
             minWidth="180px"
@@ -96,15 +100,15 @@
         <ul>
           <li>
             <i class="pi pi-mobile"></i>
-            <p>Office Number: NA</p>
+            <p>{{ "reports.new.office_number" | translate }}: NA</p>
           </li>
           <li>
             <i class="pi pi-mobile"></i>
-            <p>Cell Number: NA</p>
+            <p>{{ "reports.new.cell_number" | translate }}: NA</p>
           </li>
           <li>
             <i class="pi pi-map-marker"></i>
-            <p>Address: Customer,test...</p>
+            <p>{{ "reports.new.address" | translate }}: Customer,test...</p>
           </li>
         </ul>
       </div>

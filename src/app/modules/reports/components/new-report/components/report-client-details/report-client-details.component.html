@@ -9,7 +9,7 @@
       <div class="profile">
         <img src="/assets/img/user.jpg" alt="profile" />
         <div class="title">
-          <h5 class="m-0">Customer</h5>
+          <h5 class="m-0">{{ "reports.new.customer" | translate }}</h5>
           <i class="pi pi-building fs-5 text-info"></i>
         </div>
       </div>
@@ -17,15 +17,15 @@
         <ul>
           <li>
             <i class="pi pi-mobile"></i>
-            <p>Office Number: NA</p>
+            <p>{{ "reports.new.office_number" | translate }}: NA</p>
           </li>
           <li>
             <i class="pi pi-mobile"></i>
-            <p>Cell Number: NA</p>
+            <p>{{ "reports.new.cell_number" | translate }}: NA</p>
           </li>
           <li>
             <i class="pi pi-map-marker"></i>
-            <p>Address: Customer,test...</p>
+            <p>{{ "reports.new.address" | translate }}: Customer,test...</p>
           </li>
         </ul>
       </div>
@@ -38,7 +38,7 @@
         data-bs-toggle="modal"
         data-bs-target="#new_copy_modal"
       >
-        Next
+        {{ "next" | translate }}
       </div>
     </div>
   </div>

@@ -5,7 +5,9 @@
     [dir]="'dir' | translate"
   >
     <!-- breadcrumb -->
-    <app-breadcrumb title="Add Device"></app-breadcrumb>
+    <app-breadcrumb
+      [title]="'reports.new.tabs.devices_tab.add_device.add_btn' | translate"
+    ></app-breadcrumb>
   </div>
   <!-- /Page Header -->
 
@@ -17,7 +19,7 @@
         <!-- Device Type -->
         <div class="form-group mt-2">
           <label>
-            Device Type
+            {{ "reports.new.tabs.devices_tab.add_device.type" | translate }}
             <span class="text-danger">*</span></label
           >
           <select class="form-select form-control" formControlName="device">
@@ -30,7 +32,9 @@
               </option>
             </ng-container>
             <option *ngIf="!typesLoading && types.length == 0" disabled>
-              No Data Yet
+              {{
+                "reports.new.tabs.devices_tab.add_device.no_data" | translate
+              }}
             </option>
           </select>
           <!-- errors -->
@@ -45,7 +49,10 @@
               "
               class="text-danger"
             >
-              Device Type is requierd
+              {{
+                "reports.new.tabs.devices_tab.add_device.type_required"
+                  | translate
+              }}
             </small>
           </div>
           <!-- errors -->
@@ -54,7 +61,10 @@
       <div class="col-sm-6">
         <!-- Device Floor -->
         <div class="form-group mt-2">
-          <label> Device Floor <span class="text-danger">*</span></label>
+          <label>
+            {{ "reports.new.tabs.devices_tab.add_device.floor" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <input class="form-control" type="text" formControlName="floor" />
           <!-- errors -->
           <div
@@ -68,7 +78,10 @@
               "
               class="text-danger"
             >
-              Device Floor is requierd</small
+              {{
+                "reports.new.tabs.devices_tab.add_device.floor_required"
+                  | translate
+              }}</small
             >
           </div>
           <!-- errors -->
@@ -77,54 +90,69 @@
       <div class="col-sm-6">
         <!-- address -->
         <div class="form-group mt-2">
-          <label> Address <span class="text-danger">*</span></label>
+          <label>
+            {{ "reports.new.tabs.devices_tab.add_device.address" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <input class="form-control" type="text" formControlName="address" />
         </div>
       </div>
       <div class="col-sm-6">
         <!-- location -->
         <div class="form-group mt-2">
-          <label> Location <span class="text-danger">*</span></label>
+          <label>
+            {{ "reports.new.tabs.devices_tab.add_device.location" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <input class="form-control" type="text" formControlName="location" />
         </div>
       </div>
       <div class="col-sm-6">
         <!-- make -->
         <div class="form-group mt-2">
-          <label> Make <span class="text-danger">*</span></label>
+          <label>
+            {{ "reports.new.tabs.devices_tab.add_device.make" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <input class="form-control" type="text" formControlName="make" />
         </div>
       </div>
       <div class="col-sm-6">
         <!-- modal -->
         <div class="form-group mt-2">
-          <label> Modal <span class="text-danger">*</span></label>
+          <label>
+            {{ "reports.new.tabs.devices_tab.add_device.modal" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <input class="form-control" type="text" formControlName="modal" />
         </div>
       </div>
       <div class="col-sm-6">
         <!-- status -->
         <div class="form-group mt-2">
-          <label> status <span class="text-danger">*</span></label>
+          <label>
+            {{ "reports.new.tabs.devices_tab.add_device.status" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <!-- pass or fail or n/a answer -->
           <div class="answers-btns mt-2">
             <button
               [ngClass]="{ active: activeStatus == true }"
               (click)="setStatus(true)"
             >
-              Pass
+              {{ "reports.new.tabs.devices_tab.add_device.pass" | translate }}
             </button>
             <button
               [ngClass]="{ active: activeStatus == false }"
               (click)="setStatus(false)"
             >
-              Fail
+              {{ "reports.new.tabs.devices_tab.add_device.fail" | translate }}
             </button>
             <button
               [ngClass]="{ active: activeStatus == null }"
               (click)="setStatus(null)"
             >
-              N/A
+              {{ "reports.new.tabs.devices_tab.add_device.an" | translate }}
             </button>
           </div>
         </div>
@@ -132,7 +160,10 @@
       <div class="col-sm-6">
         <!-- Describe Job -->
         <div class="form-group mt-2">
-          <label>Notes <span class="text-danger">*</span></label>
+          <label
+            >{{ "reports.new.tabs.devices_tab.add_device.notes" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <textarea
             class="form-control h-auto"
             formControlName="note"
@@ -145,7 +176,7 @@
     <!-- submit -->
     <div class="save-btn text-center">
       <button type="submit" [disabled]="addForm.invalid" class="save mt-4">
-        Save
+        {{ "save" | translate }}
       </button>
     </div>
   </form>

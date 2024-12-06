@@ -3,13 +3,12 @@
     <div class="modal-content">
       <div class="modal-body">
         <div class="form-header">
-          <h3>Cancel Report</h3>
+          <h3>{{ "reports.new.cancel_report" | translate }}</h3>
           <p class="m-0 text-center">
-            Canceling the report will permanently delete any data you have
-            entered.
+            {{ "reports.new.cancel_line1" | translate }}
           </p>
           <p class="m-0 text-center">
-            Would you like to proceed with cancellation?
+            {{ "reports.new.cancel_line2" | translate }}
           </p>
         </div>
         <div class="modal-btn">
@@ -17,13 +16,17 @@
             <div class="col-6">
               <!-- New -->
               <div class="yes-btn">
-                <div class="yes mt-4" (click)="yes()">yes</div>
+                <div class="yes mt-4" (click)="yes()">
+                  {{ "reports.new.yes" | translate }}
+                </div>
               </div>
             </div>
             <div class="col-6">
               <!-- Copy -->
               <div class="no-btn">
-                <div class="no mt-4" (click)="no()">no</div>
+                <div class="no mt-4" (click)="no()">
+                  {{ "reports.new.no" | translate }}
+                </div>
               </div>
             </div>
           </div>

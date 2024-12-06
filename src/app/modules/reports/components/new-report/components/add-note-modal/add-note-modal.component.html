@@ -3,8 +3,12 @@
     <div class="modal-content">
       <div class="modal-body">
         <div class="form-header">
-          <h3>Note</h3>
-          <p>Notes *</p>
+          <h3>
+            {{ "reports.new.tabs.devices_tab.notes_modal.note" | translate }}
+          </h3>
+          <p>
+            {{ "reports.new.tabs.devices_tab.notes_modal.notes" | translate }}
+          </p>
         </div>
         <textarea
           class="form-control h-auto"
@@ -17,13 +21,21 @@
             <div class="col-6">
               <!-- New -->
               <div class="new-btn">
-                <div class="new mt-4" (click)="saveAndNew()">Save and New</div>
+                <div class="new mt-4" (click)="saveAndNew()">
+                  {{
+                    "reports.new.tabs.devices_tab.notes_modal.new" | translate
+                  }}
+                </div>
               </div>
             </div>
             <div class="col-6">
               <!-- Copy -->
               <div class="save-btn">
-                <div class="save mt-4" (click)="save()">Save</div>
+                <div class="save mt-4" (click)="save()">
+                  {{
+                    "save" | translate
+                  }}
+                </div>
               </div>
             </div>
           </div>

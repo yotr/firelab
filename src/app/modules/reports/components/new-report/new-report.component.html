@@ -4,7 +4,9 @@
     class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
     [dir]="'dir' | translate"
   >
-    <app-breadcrumb title="New Report"></app-breadcrumb>
+    <app-breadcrumb
+      [title]="'reports.new.title' | translate"
+    ></app-breadcrumb>
   </div>
 
   <!-- /page header  -->
@@ -17,9 +19,12 @@
         <div class="card-body">
           <!-- customer -->
           <div class="form-group mt-2">
-            <label class="form-label">Customer</label>
+            <label class="form-label">{{
+              "reports.new.customer" | translate
+            }}</label>
             <app-custom-dropdown
-              title="Customer"
+              [translated]="true"
+              [title]="'reports.new.customer' | translate"
               [fixedHeight]="false"
               minWidth="100%"
               [filter]="true"
@@ -39,9 +44,12 @@
         <div class="card-body">
           <!-- type -->
           <div class="form-group mt-2">
-            <label class="form-label">Type</label>
+            <label class="form-label">{{
+              "reports.new.type" | translate
+            }}</label>
             <app-custom-dropdown
-              title="Customer"
+              [translated]="true"
+              [title]="'reports.new.type' | translate"
               [fixedHeight]="false"
               minWidth="100%"
               [data]="types"
@@ -60,9 +68,12 @@
         <div class="card-body">
           <!-- Report Category -->
           <div class="form-group mt-2">
-            <label class="form-label">Report Category</label>
+            <label class="form-label">{{
+              "reports.new.report_category" | translate
+            }}</label>
             <app-custom-dropdown
-              title="Customer"
+              [translated]="true"
+              [title]="'reports.new.report_category' | translate"
               [fixedHeight]="false"
               minWidth="100%"
               [data]="reports"
@@ -82,7 +93,7 @@
   <!-- next -->
   <div class="next-btn">
     <div class="next mt-4" routerLink="/modules/reports/reportClientDetail">
-      Next
+      {{ "next" | translate }}
     </div>
   </div>
 </div>

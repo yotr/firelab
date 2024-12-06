@@ -6,14 +6,24 @@
       <div class="answers">
         <!-- yes or no answer -->
         <div *ngIf="value?.type == 'yes_no'" class="answers-btns mt-2">
-          <button [ngClass]="{ active: value?.answer == 'yes' }">Yes</button>
-          <button [ngClass]="{ active: value?.answer == 'no' }">No</button>
+          <button [ngClass]="{ active: value?.answer == 'yes' }">
+            {{ "reports.new.tabs.monitoring_tab.yes" | translate }}
+          </button>
+          <button [ngClass]="{ active: value?.answer == 'no' }">
+            {{ "reports.new.tabs.monitoring_tab.no" | translate }}
+          </button>
         </div>
         <!-- pass or fail or n/a answer -->
         <div *ngIf="value?.type == 'pass_fail'" class="answers-btns mt-2">
-          <button [ngClass]="{ active: value?.answer == 'pass' }">Pass</button>
-          <button [ngClass]="{ active: value?.answer == 'fail' }">Fail</button>
-          <button [ngClass]="{ active: value?.answer == 'n/a' }">N/A</button>
+          <button [ngClass]="{ active: value?.answer == 'pass' }">
+            {{ "reports.new.tabs.monitoring_tab.pass" | translate }}
+          </button>
+          <button [ngClass]="{ active: value?.answer == 'fail' }">
+            {{ "reports.new.tabs.monitoring_tab.fail" | translate }}
+          </button>
+          <button [ngClass]="{ active: value?.answer == 'n/a' }">
+            {{ "reports.new.tabs.monitoring_tab.an" | translate }}
+          </button>
         </div>
         <!-- input text answer -->
         <div *ngIf="value?.type == 'input'" class="answers-btns mt-2">
@@ -37,15 +47,15 @@
     <div class="question_actions">
       <div class="action">
         <i class="pi pi-pen-to-square text-danger"></i>
-        <span>Notes</span>
+        <span>{{ "reports.new.tabs.monitoring_tab.notes" | translate }}</span>
       </div>
       <div class="action">
         <input type="checkbox" class="check-box" />
-        <span>Hide</span>
+        <span>{{ "reports.new.tabs.monitoring_tab.hide" | translate }}</span>
       </div>
       <div class="action">
         <i class="pi pi-trash"></i>
-        <span>Delete</span>
+        <span>{{ "reports.new.tabs.monitoring_tab.delete" | translate }}</span>
       </div>
     </div>
   </div>
@@ -56,8 +66,11 @@
   data-bs-toggle="modal"
   data-bs-target="#add_custom_question_modal"
 >
-  <div class="add"><i class="pi pi-plus"></i> Add Custom Question</div>
+  <div class="add">
+    <i class="pi pi-plus"></i>
+    {{ "reports.new.tabs.question.add_custom" | translate }}
+  </div>
 </div>
 
 <!-- add custom question -->
-<app-add-custom-question></app-add-custom-question>
+<!-- <app-add-custom-question></app-add-custom-question> -->

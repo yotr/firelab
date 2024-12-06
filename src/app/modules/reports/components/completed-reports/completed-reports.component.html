@@ -4,7 +4,7 @@
     class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
     [dir]="'dir' | translate"
   >
-    <app-breadcrumb title="Completed Reports"></app-breadcrumb>
+    <app-breadcrumb [title]="'reports.completed.title' | translate"></app-breadcrumb>
   </div>
 
   <!-- /page header  -->
@@ -16,9 +16,9 @@
     [dataKeys]="dataKeys"
     [loading]="loading"
     [currentTheme]="currentTheme"
-    deleteModalTitle="Customer"
-    tableTitle="Customers Table"
-    editPagePath="/modules/customers/edit"
+    [deleteModalTitle]="'reports.completed.title' | translate"
+    [tableTitle]="'reports.completed.table_title' | translate"
+    editPagePath=""
   ></app-reports-module-table>
 </div>
 

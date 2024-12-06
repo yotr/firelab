@@ -1,37 +1,54 @@
 <div class="devices">
-  <p class="mb-4 fw-bold">No devices regestered for this report</p>
+  <p class="mb-4 fw-bold">
+    {{ "reports.new.tabs.devices_tab.no_devices" | translate }}
+  </p>
 
   <div class="section">
     <!-- button -->
     <div class="add-custom-btn mt-4">
-      <div class="add" (click)="addDevices()"><i class="pi pi-plus" ></i> Add Device</div>
+      <div class="add" (click)="addDevices()">
+        <i class="pi pi-plus"></i>
+        {{ "reports.new.tabs.devices_tab.add_devices" | translate }}
+      </div>
     </div>
-    <div class="description">Click this button to add devices.</div>
+    <div class="description">
+      {{ "reports.new.tabs.devices_tab.click_devices" | translate }}
+    </div>
   </div>
   <div class="section">
     <!-- button -->
     <div class="add-custom-btn mt-4">
-      <div class="add"><i class="pi pi-plus"></i> Add Device List</div>
+      <div class="add">
+        <i class="pi pi-plus"></i>
+        {{ "reports.new.tabs.devices_tab.add_list" | translate }}
+      </div>
     </div>
-    <div class="description">Click this button to add a list of devices.</div>
+    <div class="description">
+      {{ "reports.new.tabs.devices_tab.click_list" | translate }}
+    </div>
   </div>
   <div class="section">
     <!-- button -->
     <div class="import-custom-btn mt-4">
-      <div class="import"><i class="pi pi-plus"></i> Import from legacy</div>
+      <div class="import">
+        <i class="pi pi-plus"></i>
+        {{ "reports.new.tabs.devices_tab.legacy" | translate }}
+      </div>
     </div>
     <div class="description">
-      Click this button to import devices from a previous report completed on
-      our old platform.
+      {{ "reports.new.tabs.devices_tab.click_import" | translate }}
     </div>
   </div>
   <div class="section">
     <!-- button -->
     <div class="clear-custom-btn mt-4">
-      <div class="clear"><i class="pi pi-plus"></i> Clear Devices</div>
+      <div class="clear">
+        <i class="pi pi-plus"></i>
+        {{ "reports.new.tabs.devices_tab.clear" | translate }}
+      </div>
     </div>
     <div class="description">
-      Click this button to clear the devices from a previous inspection.
+      {{ "reports.new.tabs.devices_tab.clieck_clear" | translate }}
     </div>
   </div>
 </div>

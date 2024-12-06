@@ -229,6 +229,19 @@
     "system_info": {
       "title": "معلومات النظام",
       "add_btn": "إضافة النظام/الجهاز",
+      "add_title": "إضافة معلومات النظام",
+      "update_title": "تحديث معلومات النظام",
+      "form": {
+        "no_data": "لا توجد بيانات حتى الآن",
+        "reportCategory": "فئة التقرير",
+        "reportCategory_required": "يجب تحديد فئة التقرير",
+        "system": "النظام",
+        "system_required": "النظام مطلوب",
+        "type": "النوع",
+        "type_required": "يجب تحديد النوع",
+        "quantity": "الكمية",
+        "quantity_required": "الكمية المطلوبة"
+      },
       "table": {
         "reportType": "نوع التقرير",
         "system": "النظام/الجهاز",
@@ -604,7 +617,7 @@
         "supplier_name": "اسم المورد",
         "email_id": "معرف البريد الإلكتروني",
         "contact_number": "رقم التواصل",
-        "status": "Status"
+        "status": "حالة"
       }
     },
     "tools": {
@@ -684,6 +697,120 @@
           "id": "معرف",
           "quantity": "كمية"
         }
+      }
+    }
+  },
+  "reports": {
+    "new": {
+      "title": "تقرير جديد",
+      "customer": "عميل",
+      "type": "نوع",
+      "report_category": "فئة التقرير",
+      "office_number": "رقم المكتب",
+      "cell_number": "رقم التلفون",
+      "address": "عنوان",
+      "add_new": "إضافة تقرير جديد",
+      "question_start": "هل تريد البدء من جديد أو نسخ؟",
+      "new": "جديد",
+      "copy": "نسخ",
+      "start_report": "بدء التقرير",
+      "start": "ابدأ",
+      "confirmation": "تأكيد",
+      "confirmation_question": "هل تم إخطار شركة المراقبة؟",
+      "yes": "نعم",
+      "no": "لا",
+      "cancel_report": "إلغاء التقرير",
+      "cancel_line1": "سيؤدي إلغاء التقرير إلى حذف أي بيانات أدخلتها بشكل دائم.",
+      "cancel_line2": "هل ترغب في المضي قدما في الإلغاء؟",
+      "details_page": {
+        "add_new_btn": "إضافة تقرير جديد",
+        "cancel_btn": "إلغاء التقرير",
+        "build_info": "معلومات المبنى",
+        "system_info": "معلومات النظام",
+        "images": "الصور",
+        "frequency": "تكرار"
+      },
+      "tabs": {
+        "monitoring": "المراقبة",
+        "panel": "لوحة التحكم",
+        "devices": "الأجهزة",
+        "notes": "ملحوظات",
+        "finish": "الانهاء",
+        "question": {
+          "add_custom": "إضافة سؤال مخصص",
+          "what_question": "ماذا سيكون السؤال؟",
+          "what_type": "ما نوع هذا السؤال؟",
+          "what_recurrence": "الرجاء تحديد تكرار هذا السؤال؟"
+        },
+        "monitoring_tab": {
+          "yes": "نعم",
+          "no": "لا",
+          "pass": "يمر",
+          "fail": "يفشل",
+          "an": "غير متاح",
+          "notes": "ملحوظات",
+          "hide": "اخفاء",
+          "delete": "حذف"
+        },
+        "panel_tab": {
+          "add_btn": "إضافة لوحة",
+          "panel_type": "نوع اللوحة ؟"
+        },
+        "devices_tab": {
+          "no_devices": "لم يتم تسجيل أي أجهزة لهذا التقرير",
+          "add_devices": "إضافة جهاز",
+          "click_devices": "انقر على هذا الزر لإضافة الأجهزة.",
+          "add_list": "إضافة قائمة الأجهزة",
+          "click_list": "انقر على هذا الزر لإضافة قائمة بالأجهزة.",
+          "legacy": "الاستيراد من الإصدار القديم",
+          "click_import": "انقر فوق هذا الزر لاستيراد الأجهزة من تقرير سابق تم إكماله على منصتنا القديمة.",
+          "clear": "مسح الأجهزة",
+          "clieck_clear": "انقر فوق هذا الزر لمسح الأجهزة من التفتيش السابق.",
+          "add_device": {
+            "add_btn": "إضافة جهاز",
+            "no_data": "لا توجد بيانات حتى الآن",
+            "type": "نوع الجهاز",
+            "type_required": "نوع الجهاز مطلوب",
+            "floor": "جهاز الارضية",
+            "floor_required": "مطلوب جهاز الارضية",
+            "address": "عنوان",
+            "location": "موقع",
+            "make": "صنع",
+            "modal": "نموذج",
+            "status": "حالة",
+            "pass": "يمر",
+            "fail": "يفشل",
+            "an": "غير متاح",
+            "notes": "ملحوظات"
+          },
+          "notes_modal": {
+            "note": "ملحوظة",
+            "notes": "ملحوظات *",
+            "new": "حفظ و جديد"
+          }
+        }
+      }
+    },
+    "completed": {
+      "title": "التقارير المكتملة",
+      "table_title": "جدول التقارير",
+      "table": {
+        "company_name": "اسم الشركة",
+        "category": "فئة",
+        "type": "نوع",
+        "date": "تاريخ",
+        "status": "حالة"
+      }
+    },
+    "incompleted": {
+      "title": "التقارير غير المكتملة",
+      "table_title": "جدول التقارير",
+      "table": {
+        "company_name": "اسم الشركة",
+        "category": "فئة",
+        "type": "نوع",
+        "start_date": "تاريخ البدء",
+        "modified_date": "تاريخ التعديل"
       }
     }
   }

@@ -7,11 +7,13 @@
     <div class="modal-content">
       <div class="modal-body">
         <div class="form-header">
-          <h3>Add Custom Question</h3>
+          <h3>{{ "reports.new.tabs.question.add_custom" | translate }}</h3>
         </div>
         <!-- question to add details -->
         <form>
-          <span>What will be the question?</span>
+          <span>{{
+            "reports.new.tabs.question.what_question" | translate
+          }}</span>
           <input
             type="text"
             name="question"
@@ -19,7 +21,7 @@
             class="form-control question-input my-3"
             placeholder="Input Here"
           />
-          <span>What type of question is this?</span>
+          <span>{{ "reports.new.tabs.question.what_type" | translate }}</span>
           <div class="types">
             <div class="form-check" *ngFor="let type of types">
               <input
@@ -34,7 +36,9 @@
               }}</label>
             </div>
           </div>
-          <span>Please select recurrence of this question?</span>
+          <span>{{
+            "reports.new.tabs.question.what_recurrence" | translate
+          }}</span>
           <div class="recurrences">
             <div class="form-check" *ngFor="let recurrence of recurrences">
               <input
@@ -55,7 +59,9 @@
               <div class="col-12">
                 <!-- save -->
                 <div class="save-btn">
-                  <button type="submit" class="save mt-4">Save</button>
+                  <button type="submit" class="save mt-4">
+                    {{ "save" | translate }}
+                  </button>
                 </div>
               </div>
             </div>
