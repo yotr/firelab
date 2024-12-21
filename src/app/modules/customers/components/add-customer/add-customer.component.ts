@@ -172,9 +172,10 @@ export class AddCustomerComponent implements OnInit {
       console.log(data);
       this.uploading = true;
       // api
-      this.apiService?.add('customers/add', data).subscribe({
+      this.apiService.add('customers/add', data).subscribe({
         next: (data) => {
           console.log(data);
+          // errors;
           if (data?.isSuccess) {
             if (this.currentLanguage == 'ar') {
               this.toastr.success('تمت إضافة البيانات بنجاح...');
@@ -185,10 +186,12 @@ export class AddCustomerComponent implements OnInit {
           }
         },
         error: (err: any) => {
+          console.log('Error:', err);
           if (this.currentLanguage == 'ar') {
             this.toastr.error('هناك شيء خاطئ', 'خطأ');
           } else {
-            this.toastr.error('There Is Somthing Wrong', 'Error');
+            // this.toastr.error('There Is Somthing Wrong', 'Error');
+            this.toastr.error(err?.error?.title, 'Error');
           }
           this.uploading = false;
         },

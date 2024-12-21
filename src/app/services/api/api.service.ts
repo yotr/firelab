@@ -24,7 +24,7 @@ export class ApiService {
   }
 
   //get
-  get(path: string): Observable<any[]> {
+  get(path: string): Observable<any[] | any> {
     // request
     return this.http
       .get<any[]>(`${environment.API}/api/${path}`)
@@ -46,7 +46,7 @@ export class ApiService {
         data,
         environment.HTTP_OPTIONS
       )
-      .pipe(retry(1), catchError(this.handleError));
+      // .pipe(retry(1), catchError(this.handleError));
   }
 
   // update
@@ -118,7 +118,11 @@ export class ApiService {
   }
 
   //search  globaly or by column
-  globalSearch(path: string, search: any, column?: any): Observable<any[]> {
+  globalSearch(
+    path: string,
+    search: any,
+    column?: any
+  ): Observable<any[] | any> {
     // request
     if (column != null) {
       return this.http
@@ -144,7 +148,7 @@ export class ApiService {
   }
 
   //handle function error
-  private handleError(error: HttpErrorResponse) {
+  private handleError(error: HttpErrorResponse): any {
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error);

@@ -6,7 +6,7 @@ import { HttpHeaders } from '@angular/common/http';
 
 export const environment = {
   production: false,
-  API: 'test',
+  API: 'http://localhost:5223',
 
   HTTP_OPTIONS: {
     headers: new HttpHeaders({
