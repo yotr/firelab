@@ -57,7 +57,7 @@ export class ApiService {
         data,
         environment.HTTP_OPTIONS
       )
-      .pipe(retry(1), catchError(this.handleError));
+      // .pipe(retry(1), catchError(this.handleError));
   }
 
   // delete

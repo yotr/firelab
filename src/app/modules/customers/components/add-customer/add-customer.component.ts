@@ -190,8 +190,8 @@ export class AddCustomerComponent implements OnInit {
           if (this.currentLanguage == 'ar') {
             this.toastr.error('هناك شيء خاطئ', 'خطأ');
           } else {
-            // this.toastr.error('There Is Somthing Wrong', 'Error');
-            this.toastr.error(err?.error?.title, 'Error');
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+            // this.toastr.error(err?.error?.title, 'Error');
           }
           this.uploading = false;
         },
