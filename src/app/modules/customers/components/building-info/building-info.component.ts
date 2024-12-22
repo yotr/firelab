@@ -122,6 +122,7 @@ export class BuildingInfoComponent implements OnInit, AfterViewInit {
         }
       },
       error: (err: any) => {
+        this.data = [];
         this.loading = false;
         if (this.currentLanguage == 'ar') {
           this.toastr.error('هناك شيء خاطئ', 'خطأ');

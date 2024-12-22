@@ -92,6 +92,7 @@
     "edit_action_text": "Edit",
     "delete_action_text": "Delete",
     "table_empty_text": "Table Is Empty",
+    "table_error_text": "Try Again",
     "of_text": "of"
   },
   "dragfiles_modal": {

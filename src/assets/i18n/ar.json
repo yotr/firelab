@@ -92,6 +92,7 @@
     "edit_action_text": "تحرير",
     "delete_action_text": "حذف",
     "table_empty_text": "الجدول فارغ",
+    "table_error_text": "حاول مره اخري",
     "of_text": "من"
   },
   "dragfiles_modal": {

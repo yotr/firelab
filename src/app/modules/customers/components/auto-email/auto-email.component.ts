@@ -149,7 +149,7 @@ export class AutoEmailComponent implements OnInit {
   getEmails() {
     this.autoEmails = [{ id: 1, email: 'email@example.com' }];
     this.addExistingEmailsItems(this.autoEmails);
-    // this.apiService.get('customerPortals').subscribe({
+    // this.apiService.get('autoEmails').subscribe({
     //   next: (data: any) => {
     //     console.log(data);
     //     if (data?.isSuccess) {
@@ -183,7 +183,7 @@ export class AutoEmailComponent implements OnInit {
         (item: any) => item?.id !== this.deleteId
       );
 
-      this.apiService.delete('customers', this.deleteId).subscribe({
+      this.apiService.delete('autoEmails', this.deleteId).subscribe({
         next: (data) => {
           if (data?.isSuccess) {
             if (this.currentLanguage == 'ar') {
@@ -226,7 +226,7 @@ export class AutoEmailComponent implements OnInit {
         console.log(data);
         this.uploading = true;
         // api
-        this.apiService?.add('customerPortals/add', data).subscribe({
+        this.apiService?.add('autoEmails/add', data).subscribe({
           next: (data) => {
             console.log(data);
             if (data?.isSuccess) {

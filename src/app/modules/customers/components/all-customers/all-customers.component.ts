@@ -18,6 +18,7 @@ export class AllCustomersComponent implements OnInit, AfterViewInit {
   currentLanguage: any = localStorage.getItem('lang');
   currentTheme: any;
   data: any[] = [] as any[];
+  getDataError: boolean = false;
   loading: boolean = true;
   totalItemsCount: number = 0;
   dataKeys: any[] = [];
@@ -41,7 +42,7 @@ export class AllCustomersComponent implements OnInit, AfterViewInit {
 
     this.dataKeys = [
       {
-        name: 'companyName',
+        name: 'businessName',
         display: this.translateService.instant(
           'customers.all_customers.customers_table.companyName'
         ),
@@ -49,7 +50,7 @@ export class AllCustomersComponent implements OnInit, AfterViewInit {
         active: true,
       },
       {
-        name: 'ID',
+        name: 'idAccount',
         display: this.translateService.instant(
           'customers.all_customers.customers_table.id'
         ),
@@ -57,7 +58,7 @@ export class AllCustomersComponent implements OnInit, AfterViewInit {
         active: true,
       },
       {
-        name: 'address',
+        name: 'address1',
         display: this.translateService.instant(
           'customers.all_customers.customers_table.address'
         ),
@@ -65,7 +66,7 @@ export class AllCustomersComponent implements OnInit, AfterViewInit {
         active: true,
       },
       {
-        name: 'phone',
+        name: 'cellPhone',
         display: this.translateService.instant(
           'customers.all_customers.customers_table.phone'
         ),
@@ -143,30 +144,14 @@ export class AllCustomersComponent implements OnInit, AfterViewInit {
     value1?: any,
     value2?: any
   ) {
+    this.loading = false;
+    this.totalItemsCount = this.data.length;
     this.data = [
       {
         id: 1,
-        companyName: 'Test Company One',
-        ID: 'Test',
-        address: 'Test Address',
-        phone: '7890574534',
-        status: false,
-        checked: false,
-      },
-      {
-        id: 2,
-        companyName: 'Test Company Two',
-        ID: 'Test',
-        address: 'Test Address',
-        phone: '7890574534',
-        status: false,
-        checked: false,
+        businessName: 'Customer',
       },
     ];
-
-    this.loading = false;
-    this.totalItemsCount = this.data.length;
-
     // api
     // this.apiService
     //   ?.filterData(
@@ -175,16 +160,21 @@ export class AllCustomersComponent implements OnInit, AfterViewInit {
     //     pageSize ? pageSize : 10
     //   )
     //   .subscribe({
-    //     next: (data:any) => {
+    //     next: (data: any) => {
     //       console.log(data);
     //       if (data?.isSuccess) {
     //         this.data = data?.value;
+    //         this.totalItemsCount = data?.totalCount;
+    //         this.loading = false;
+    //         this.getDataError = false;
+    //       } else {
     //         this.totalItemsCount = data?.totalCount;
     //         this.loading = false;
     //       }
     //     },
     //     error: (err: any) => {
     //       this.loading = false;
+    //       this.getDataError = true;
     //       if (this.currentLanguage == 'ar') {
     //         this.toastr.error('هناك شيء خاطئ', 'خطأ');
     //       } else {

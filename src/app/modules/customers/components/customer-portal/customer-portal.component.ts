@@ -87,7 +87,7 @@ export class CustomerPortalComponent implements OnInit {
   setActiveMenu() {
     this.sidebarService.activateDropdown('customers');
   }
-  
+
   getCurrentCustomerId() {
     this.sidebarService.getCurrentCustomerValue().subscribe((value: any) => {
       if (value) {
@@ -184,7 +184,7 @@ export class CustomerPortalComponent implements OnInit {
         (item: any) => item?.id !== this.deleteId
       );
 
-      this.apiService.delete('customers', this.deleteId).subscribe({
+      this.apiService.delete('customerPortals', this.deleteId).subscribe({
         next: (data) => {
           if (data?.isSuccess) {
             if (this.currentLanguage == 'ar') {

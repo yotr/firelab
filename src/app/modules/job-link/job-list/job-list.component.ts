@@ -45,6 +45,6 @@ export class JobListComponent implements OnInit {
     this.isActive = false;
   }
   onChangeFilterBy(event: any) {
-    this.activeFilter = event;
+    this.activeFilter = event?.id;
   }
 }

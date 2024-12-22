@@ -16,6 +16,7 @@ export class CustomersModuleTableComponent implements OnInit {
   @Input() data: any[] = [];
   @Input() dataKeys: any[] = [];
   @Input() loading: boolean = true;
+  @Input() getDataError: boolean = false;
   @Input() currentTheme: any;
   //  ================================================
   @Output() onDelete: EventEmitter<any> = new EventEmitter();
