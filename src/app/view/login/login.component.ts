@@ -25,28 +25,25 @@ export class LoginComponent implements OnInit {
     private translateService: TranslateService,
     private languageService: LanguageService,
     private toastr: ToastrService,
-    private auth: AuthService
-  ) // private apiService: ApiService
-  {
+    private auth: AuthService // private apiService: ApiService
+  ) {
     // login form group controls
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
   }
+  // convenience getter for easy access to form fields
+  get formValues() {
+    return this.loginForm.controls;
+  }
   ngAfterViewInit(): void {
     this.getCurrentLanguage();
   }
 
   ngOnInit(): void {
-    //initialize login form default values
-    // this.loginForm.setValue({
-    //   email: 'example@example.com',
-    //   password: '12345',
-    // });
     // set default theme
     this.themeService.setDefaultThemeSettings();
-    // console.log(this.currentLanguage);
   }
 
   getCurrentLanguage() {
@@ -63,50 +60,57 @@ export class LoginComponent implements OnInit {
     this.loading = true;
     // login data
     let loginData: any = {
-      // email: this.loginForm.get('email').value,
-      // password: this.loginForm.get('password').value,
+      ...this.loginForm.value,
+      confirmPassword: this.loginForm.get('password')?.value,
     };
 
     let isTokenExist = false;
-    this.router.navigate(['/modules/dashboard']);
+    // this.router.navigate(['/modules/dashboard']);
 
-    // this.auth.login('users/login', loginData).subscribe({
-    //   next: (data) => {
-    //     console.log(data);
-    //     // check if ther is token
-    //     if (data?.token && data?.userData) {
-    //       // store the token
-    //       localStorage.setItem('firelab-loginData', JSON.stringify(data));
-    //       // this.auth.currentUserSignal?.set(data);
-    //       isTokenExist = true;
-    //       this.auth.currentUserSignal?.set(data);
-    //     } else {
-    //       // show erroe message
-    //       this.toastr.error('The Email or Password Incorrect Please Try Again');
-    //     }
-    //   },
-    //   error: (err) => {
-    //     // show erroe message
-    //     this.toastr.error('There is something wrong with please try again');
-    //     // stop login btn loading
-    //     setTimeout(() => {
-    //       this.loading = false;
-    //       // this.loginForm.reset();
-    //     }, 2000);
-    //   },
-    //   complete: () => {
-    //     if (isTokenExist) {
-    //       //  navigate to login after 2 sec
-    //       setTimeout(() => {
-    //         // stop login btn loading
-    //         this.loading = false;
-    //         this.router.navigate(['/modules/dashboard/employee-dashboard']);
-    //         this.loginForm.reset();
-    //         this.toastr.success('User Successfully Logged In', 'Success');
-    //       }, 2000);
-    //     }
-    //   },
-    // });
+    this.auth.login('teamMembers/login', loginData).subscribe({
+      next: (data) => {
+        console.log(data);
+        if (data?.isSuccess) {
+          // check if ther is token
+          if (data?.value?.token && data?.value?.userData) {
+            // store the token
+            localStorage.setItem(
+              'firelab-loginData',
+              JSON.stringify(data?.value)
+            );
+            isTokenExist = true;
+            this.auth.currentUserSignal?.set(data);
+          } else {
+            // show erroe message
+            this.toastr.error(
+              'The Email or Password Incorrect Please Try Again'
+            );
+          }
+        } else {
+          this.toastr.error('There is something wrong with please try again');
+        }
+      },
+      error: (err) => {
+        // show erroe message
+        this.toastr.error('There is something wrong with please try again');
+        // stop login btn loading
+        setTimeout(() => {
+          this.loading = false;
+        }, 2000);
+      },
+      complete: () => {
+        if (isTokenExist) {
+          //  navigate to login after 2 sec
+          setTimeout(() => {
+            // stop login btn loading
+            this.loading = false;
+            this.router.navigate(['/modules/dashboard']);
+            this.loginForm.reset();
+            this.toastr.success('User Successfully Logged In', 'Success');
+          }, 2000);
+        }
+      },
+    });
   }
   openLink() {
     window.open('https://www.aktitec.com/');

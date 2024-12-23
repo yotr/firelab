@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth.service';
 // import { User } from 'src/app/models/user';
 // import { ApiService } from 'src/app/services/api/api.service';
 // import { AuthService } from 'src/app/services/auth/auth.service';
@@ -15,11 +16,7 @@ export class UserDropdownComponent implements OnInit {
   api: string = '';
   userImage: any = null;
 
-  constructor(
-    private router: Router,
-    // private auth: AuthService,
-    // private apiService: ApiService
-  ) {
+  constructor(private router: Router, private auth: AuthService) {
     // this.api = environment?.API;
   }
 
@@ -45,18 +42,16 @@ export class UserDropdownComponent implements OnInit {
       //       this.userImage = imageUrl;
       //       // console.log('Image URL is valid.');
       //     } else {
-
       //       this.userImage = 'assets/img/user.jpg';
       //       // console.log('Image URL is not valid.');
       //     }
       //   });
-      } else {
-        this.userImage = 'assets/img/user.jpg';
-      }
+    } else {
+      this.userImage = 'assets/img/user.jpg';
+    }
   }
   //logout
   Logout() {
-    // this.auth.logout();
+    this.auth.logout();
   }
 }
-

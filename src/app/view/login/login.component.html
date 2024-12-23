@@ -48,12 +48,16 @@
           "
         >
           <small
-            *ngIf="
-              loginForm.get('email')?.invalid && loginForm.get('email')?.touched
-            "
+            *ngIf="formValues['email'].getError('required')"
             class="text-danger"
           >
             {{ "register.email_required" | translate }}</small
+          >
+          <small
+            *ngIf="formValues['email'].getError('email')"
+            class="text-danger"
+          >
+            {{ "register.invalid_email" | translate }}</small
           >
         </div>
         <!-- errors -->
@@ -104,7 +108,7 @@
       <button
         type="submit"
         class="btn account-btn p-0"
-        [disabled]="!loginForm.invalid"
+        [disabled]="loginForm.invalid"
       >
         {{ "login.btn" | translate }}
         <!-- loading -->
