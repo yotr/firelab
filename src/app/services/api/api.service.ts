@@ -40,24 +40,22 @@ export class ApiService {
 
   // add
   add(path: string, data: any): Observable<any> {
-    return this.http
-      .post<any>(
-        `${environment.API}/api/${path}`,
-        data,
-        environment.HTTP_OPTIONS
-      )
-      // .pipe(retry(1), catchError(this.handleError));
+    return this.http.post<any>(
+      `${environment.API}/api/${path}`,
+      data,
+      environment.HTTP_OPTIONS
+    );
+    // .pipe(retry(1), catchError(this.handleError));
   }
 
   // update
   update(path: string, id: any, data: any): Observable<any> {
-    return this.http
-      .put<any>(
-        `${environment.API}/api/${path}/${id}`,
-        data,
-        environment.HTTP_OPTIONS
-      )
-      // .pipe(retry(1), catchError(this.handleError));
+    return this.http.put<any>(
+      `${environment.API}/api/${path}/${id}`,
+      data,
+      environment.HTTP_OPTIONS
+    );
+    // .pipe(retry(1), catchError(this.handleError));
   }
 
   // delete
@@ -109,6 +107,7 @@ export class ApiService {
         )
         .pipe(retry(5), catchError(this.handleError));
     } else {
+      console.log('Yes Started');
       return this.http
         .get<any>(
           `${environment.API}/api/${path}?page=${page}&pageSize=${pageSize}`
@@ -125,22 +124,22 @@ export class ApiService {
   ): Observable<any[] | any> {
     // request
     if (column != null) {
-      return this.http
-        .get<any[]>(
-          `${environment.API}/api/${path}?search=${search}&column=${column}`
-        )
-        .pipe(retry(5), catchError(this.handleError));
+      return this.http.get<any[]>(
+        `${environment.API}/api/${path}?search=${search}&column=${column}`
+      );
+      // .pipe(retry(5), catchError(this.handleError));
     } else {
-      return this.http
-        .get<any[]>(`${environment.API}/api/${path}?search=${search}`)
-        .pipe(retry(1), catchError(this.handleError));
+      return this.http.get<any[]>(
+        `${environment.API}/api/${path}?search=${search}`
+      );
+      // .pipe(retry(1), catchError(this.handleError));
     }
   }
 
-  statusChange(path: string, id: any, data?: any) {
+  statusChange(path: string, data?: any) {
     return this.http
       .put<any>(
-        `${environment.API}/api/${path}/${id}`,
+        `${environment.API}/api/${path}`,
         data,
         environment.HTTP_OPTIONS
       )

@@ -43,14 +43,19 @@ export class AddTeamComponent implements OnInit, AfterViewInit {
       {
         firstName: ['', [Validators.required]],
         lastName: ['', [Validators.required]],
-        email: [''],
-        contactNumber: [''],
-        billableHourlyRate: [''],
+        userName: ['', [Validators.required]],
+        email: ['', [Validators.email, Validators.required]],
+        password: ['', [Validators.required]],
+        contactNumber: ['', [Validators.required]],
+        billableHourlyRate: ['', [Validators.required]],
         position: [''],
-        divisions: [''],
+        division: [''],
       }
       // { validators: passwordMatch }
     );
+  }
+  get formValues() {
+    return this.addForm.controls;
   }
   ngAfterViewInit(): void {
     // this.getCategories();
@@ -134,6 +139,7 @@ export class AddTeamComponent implements OnInit, AfterViewInit {
     if (this.addForm.valid) {
       let data = {
         ...this.addForm.value,
+        // Username: this.addForm.get('userName')?.value,
       };
       console.log(data);
       this.uploading = true;
@@ -152,10 +158,12 @@ export class AddTeamComponent implements OnInit, AfterViewInit {
           }
         },
         error: (err: any) => {
+          console.log('Error:', err);
           if (this.currentLanguage == 'ar') {
             this.toastr.error('هناك شيء خاطئ', 'خطأ');
           } else {
             this.toastr.error('There Is Somthing Wrong', 'Error');
+            this.toastr.error(err?.error[0]?.message, 'Error');
           }
           this.uploading = false;
         },

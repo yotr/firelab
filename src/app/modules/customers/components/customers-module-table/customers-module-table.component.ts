@@ -51,9 +51,9 @@ export class CustomersModuleTableComponent implements OnInit {
   //pagination variables
   currentPage: number = 1;
   // count: number = 0;
-  itemsPerPage: number = 10;
+  itemsPerPage: number = 20;
   tableEntries: number[] = [
-    10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 100,
+    20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 100,
   ];
   printing: boolean = false;
   api: string = '';
@@ -73,15 +73,17 @@ export class CustomersModuleTableComponent implements OnInit {
     this.statusDropdown = [
       {
         id: 0,
-        value: this.translateService.instant(
+        title: this.translateService.instant(
           'customers.all_customers.status_options.active'
         ),
+        value: true,
       },
       {
         id: 1,
-        value: this.translateService.instant(
+        title: this.translateService.instant(
           'customers.all_customers.status_options.inactive'
         ),
+        value: false,
       },
     ];
   }

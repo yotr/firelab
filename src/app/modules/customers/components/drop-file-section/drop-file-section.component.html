@@ -43,6 +43,7 @@
                   ? truncateString(file?.name, 20)
                   : ("dragfiles_modal.SubTitle" | translate)
               }}
+              <span>{{formatBytes(file?.size)}}</span>
             </span>
           </div>
         </form>

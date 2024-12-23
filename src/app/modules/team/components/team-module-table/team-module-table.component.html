@@ -202,8 +202,16 @@
               <ng-container *ngFor="let key of dataKeys">
                 <td *ngIf="key.active && key?.name != 'id'">
                   <!-- name -->
-                  <ng-container *ngIf="key?.name != 'status'">
-                    {{ value[key?.name] }}
+                  <ng-container *ngIf="key?.name == 'firstName'">
+                    {{ value?.firstName + " " + value?.lastName }}
+                  </ng-container>
+                  <!-- email -->
+                  <ng-container *ngIf="key?.name == 'email'">
+                    {{ value?.email }}
+                  </ng-container>
+                  <!-- phone -->
+                  <ng-container *ngIf="key?.name == 'contactNumber'">
+                    {{ value?.contactNumber }}
                   </ng-container>
                   <!-- status -->
                   <ng-container *ngIf="key?.name == 'status'">
@@ -260,10 +268,17 @@
       </table>
       <!-- no data -->
       <h1
-        *ngIf="totalItems == 0 && loading == false"
+        *ngIf="totalItems == 0 && loading == false && getDataError == false"
         class="fs-3 my-4 text-center"
       >
         {{ "module_table.table_empty_text" | translate }}
+      </h1>
+      <!-- error -->
+      <h1
+        *ngIf="totalItems == 0 && loading == false && getDataError"
+        class="fs-3 my-4 text-center"
+      >
+        {{ "module_table.table_error_text" | translate }}
       </h1>
       <!-- load skeleton if there is no data -->
       <app-skeleton
@@ -313,11 +328,11 @@
 
 <!-- /module table  -->
 <!-- delete modal -->
-<!-- <app-delete-modal
+<app-delete-modal
   [title]="deleteModalTitle"
   [currentTheme]="currentTheme"
   (onDelete)="deleteItem()"
-></app-delete-modal> -->
+></app-delete-modal>
 <!--/ delete modal -->
 <!-- printing spinner -->
 <div class="printing" *ngIf="printing">

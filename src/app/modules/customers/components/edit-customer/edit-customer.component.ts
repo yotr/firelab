@@ -77,8 +77,14 @@ export class EditCustomerComponent implements OnInit, AfterViewInit {
       // { validators: passwordMatch }
     );
   }
+
+  // convenience getter for easy access to form fields
+  get formValues() {
+    return this.addForm.controls;
+  }
+
   ngAfterViewInit(): void {
-    // this.getCurrentData();
+    this.getCurrentData();
   }
 
   ngOnInit() {
@@ -122,29 +128,29 @@ export class EditCustomerComponent implements OnInit, AfterViewInit {
         console.log(data);
         this.addForm.patchValue({
           // customer
-          businessName: data?.businessName,
-          contactName: data?.contactName,
-          email: data?.email,
-          cellPhone: data?.cellPhone,
-          officePhone: data?.officePhone,
-          contactFaxNumber: data?.contactFaxNumber,
-          idAccount: data?.idAccount,
-          address1: data?.address1,
-          address2: data?.address2,
-          postalCode: data?.postalCode,
-          city: data?.city,
+          businessName: data?.value?.businessName,
+          contactName: data?.value?.contactName,
+          email: data?.value?.email,
+          cellPhone: data?.value?.cellPhone,
+          officePhone: data?.value?.officePhone,
+          contactFaxNumber: data?.value?.contactFaxNumber,
+          idAccount: data?.value?.idAccount,
+          address1: data?.value?.address1,
+          address2: data?.value?.address2,
+          postalCode: data?.value?.postalCode,
+          city: data?.value?.city,
           // owner
-          ownerBusinessName: data?.ownerBusinessName,
-          ownerContactName: data?.ownerContactName,
-          ownerEmail: data?.ownerEmail,
-          ownerCellPhone: data?.ownerCellPhone,
-          ownerOfficePhone: data?.ownerOfficePhone,
-          ownerContactFaxNumber: data?.ownerContactFaxNumber,
-          ownerId: data?.ownerId,
-          ownerAddress1: data?.ownerAddress1,
-          ownerAddress2: data?.ownerAddress2,
-          ownerPostalCode: data?.ownerPostalCode,
-          ownerCity: data?.ownerCity,
+          ownerBusinessName: data?.value?.ownerBusinessName,
+          ownerContactName: data?.value?.ownerContactName,
+          ownerEmail: data?.value?.ownerEmail,
+          ownerCellPhone: data?.value?.ownerCellPhone,
+          ownerOfficePhone: data?.value?.ownerOfficePhone,
+          ownerContactFaxNumber: data?.value?.ownerContactFaxNumber,
+          ownerId: data?.value?.ownerId,
+          ownerAddress1: data?.value?.ownerAddress1,
+          ownerAddress2: data?.value?.ownerAddress2,
+          ownerPostalCode: data?.value?.ownerPostalCode,
+          ownerCity: data?.value?.ownerCity,
         });
       },
       error: (error) => {
@@ -175,18 +181,18 @@ export class EditCustomerComponent implements OnInit, AfterViewInit {
         ownerCity: this.addForm.get('city')?.value,
       });
     } else {
-      this.addForm.patchValue({
-        ownerBusinessName: '',
-        ownerContactName: '',
-        ownerEmail: '',
-        ownerCellPhone: '',
-        ownerOfficePhone: '',
-        ownerContactFaxNumber: '',
-        ownerAddress1: '',
-        ownerAddress2: '',
-        ownerPostalCode: '',
-        ownerCity: '',
-      });
+      // this.addForm.patchValue({
+      //   ownerBusinessName: '',
+      //   ownerContactName: '',
+      //   ownerEmail: '',
+      //   ownerCellPhone: '',
+      //   ownerOfficePhone: '',
+      //   ownerContactFaxNumber: '',
+      //   ownerAddress1: '',
+      //   ownerAddress2: '',
+      //   ownerPostalCode: '',
+      //   ownerCity: '',
+      // });
     }
   }
   fillOwnerData() {
@@ -204,18 +210,18 @@ export class EditCustomerComponent implements OnInit, AfterViewInit {
         ownerCity: this.addForm.get('city')?.value,
       });
     } else {
-      this.addForm.patchValue({
-        ownerBusinessName: '',
-        ownerContactName: '',
-        ownerEmail: '',
-        ownerCellPhone: '',
-        ownerOfficePhone: '',
-        ownerContactFaxNumber: '',
-        ownerAddress1: '',
-        ownerAddress2: '',
-        ownerPostalCode: '',
-        ownerCity: '',
-      });
+      // this.addForm.patchValue({
+      //   ownerBusinessName: '',
+      //   ownerContactName: '',
+      //   ownerEmail: '',
+      //   ownerCellPhone: '',
+      //   ownerOfficePhone: '',
+      //   ownerContactFaxNumber: '',
+      //   ownerAddress1: '',
+      //   ownerAddress2: '',
+      //   ownerPostalCode: '',
+      //   ownerCity: '',
+      // });
     }
   }
 
@@ -233,9 +239,9 @@ export class EditCustomerComponent implements OnInit, AfterViewInit {
           console.log(data);
           if (data?.isSuccess) {
             if (this.currentLanguage == 'ar') {
-              this.toastr.success('تمت إضافة البيانات بنجاح...');
+              this.toastr.success('تمت تحديث البيانات بنجاح...');
             } else {
-              this.toastr.success('data added successfully...', 'Success');
+              this.toastr.success('data updated successfully...', 'Success');
             }
             this.router.navigate(['/modules/customers/allCustomers']);
           }

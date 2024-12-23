@@ -40,17 +40,14 @@ export class DropFileSectionComponent implements OnInit {
 
   // on attach files to be uploaded
   onAttachFiles() {
-    this.onAttach.emit(this.files);
-    $('#drag_documents_files').modal('hide');
-
-    console.log(this.excelData);
+    // console.log(this.excelData);
 
     if (this.excelData.length != 0) {
       let data = this.excelData;
 
       this.uploading = true;
       // api
-      this.apiService?.add('/customers/bulkCreate', data).subscribe({
+      this.apiService?.add('customers/bulkCreate', data).subscribe({
         next: (data) => {
           console.log(data);
           if (data?.isSuccess) {
@@ -59,6 +56,8 @@ export class DropFileSectionComponent implements OnInit {
             } else {
               this.toastr.success('data added successfully...', 'Success');
             }
+            this.onAttach.emit(this.excelData);
+            $('#drag_documents_files').modal('hide');
           }
         },
         error: (err: any) => {

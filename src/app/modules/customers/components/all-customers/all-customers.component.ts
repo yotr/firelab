@@ -126,12 +126,12 @@ export class AllCustomersComponent implements OnInit, AfterViewInit {
     this.sidebarService.deActivateDropdown('customers');
   }
 
-  onAttachFiles(files: any): void {
-    // this.attachedFiles = files;
-    // this.addFileForm.patchValue({
-    //   files: this.attachedFiles,
-    // });
-    console.log(files);
+  onAttachFiles(data: any[]): void {
+    console.log('From customers all Page : ', data);
+
+    for (let i = 0; i < data.length; i++) {
+      this.data.push(data[i]);
+    }
   }
 
   //get data
@@ -144,45 +144,34 @@ export class AllCustomersComponent implements OnInit, AfterViewInit {
     value1?: any,
     value2?: any
   ) {
-    this.loading = false;
-    this.totalItemsCount = this.data.length;
-    this.data = [
-      {
-        id: 1,
-        businessName: 'Customer',
-      },
-    ];
     // api
-    // this.apiService
-    //   ?.filterData(
-    //     'customers/getFilteredCustomers',
-    //     page ? page : 1,
-    //     pageSize ? pageSize : 10
-    //   )
-    //   .subscribe({
-    //     next: (data: any) => {
-    //       console.log(data);
-    //       if (data?.isSuccess) {
-    //         this.data = data?.value;
-    //         this.totalItemsCount = data?.totalCount;
-    //         this.loading = false;
-    //         this.getDataError = false;
-    //       } else {
-    //         this.totalItemsCount = data?.totalCount;
-    //         this.loading = false;
-    //       }
-    //     },
-    //     error: (err: any) => {
-    //       this.loading = false;
-    //       this.getDataError = true;
-    //       if (this.currentLanguage == 'ar') {
-    //         this.toastr.error('هناك شيء خاطئ', 'خطأ');
-    //       } else {
-    //         this.toastr.error('There Is Somthing Wrong', 'Error');
-    //       }
-    //     },
-    //     complete: () => {},
-    //   });
+    this.apiService
+      ?.filterData(
+        'customers/getFilteredCustomers',
+        page ? page : 1,
+        pageSize ? pageSize : 20
+      )
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.data = data?.value?.customerDto;
+            this.totalItemsCount = data?.value?.totalCount;
+            this.getDataError = false;
+          }
+          this.loading = false;
+        },
+        error: (err: any) => {
+          this.loading = false;
+          this.getDataError = true;
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {},
+      });
   }
 
   onPaginate(event: any) {
@@ -191,13 +180,26 @@ export class AllCustomersComponent implements OnInit, AfterViewInit {
 
   search(event: any) {
     if (event?.value != null && event.value?.trim() != '') {
+      this.loading = true;
       this.apiService
         .globalSearch('customers/globalsearch', event?.value, event?.column)
-        .subscribe((data: any) => {
-          console.log(data);
-          this.data = data?.value;
-          this.totalItemsCount = data?.value?.length;
-          this.loading = false;
+        .subscribe({
+          next: (data: any) => {
+            if (data?.isSuccess) {
+              console.log(data);
+              this.data = data?.value;
+              this.totalItemsCount = data?.value?.length;
+            }
+            this.loading = false;
+          },
+          error: (err: any) => {
+            this.loading = false;
+            if (this.currentLanguage == 'ar') {
+              this.toastr.error('هناك شيء خاطئ', 'خطأ');
+            } else {
+              this.toastr.error('There Is Somthing Wrong', 'Error');
+            }
+          },
         });
     } else {
       this.getData();
@@ -208,9 +210,9 @@ export class AllCustomersComponent implements OnInit, AfterViewInit {
     console.log(deleteId);
     this.apiService.delete('customers', deleteId).subscribe({
       next: (data) => {
-        this.data = this.data.filter((item: any) => item?.id !== deleteId);
-
+        console.log(data);
         if (data?.isSuccess) {
+          this.data = this.data.filter((item: any) => item?.id !== deleteId);
           if (this.currentLanguage == 'ar') {
             this.toastr.success('تم حذف العنصر بنجاح...');
           } else {
@@ -237,7 +239,7 @@ export class AllCustomersComponent implements OnInit, AfterViewInit {
       .filterData(
         'customers/getFilteredCustomers',
         1,
-        10,
+        20,
         event?.column,
         event?.filters?.operator1,
         event?.filters?.operator2,
@@ -245,13 +247,13 @@ export class AllCustomersComponent implements OnInit, AfterViewInit {
         event?.filters?.searchValue2
       )
       .subscribe({
-        next: (data) => {
+        next: (data: any) => {
           console.log(data);
           if (data?.isSuccess) {
-            this.data = data?.value;
-            this.totalItemsCount = data?.totalCount;
-            this.loading = false;
+            this.data = data?.value?.customerDto;
+            this.totalItemsCount = data?.value?.totalCount;
           }
+          this.loading = false;
         },
         error: (err: any) => {
           this.loading = false;
@@ -275,9 +277,10 @@ export class AllCustomersComponent implements OnInit, AfterViewInit {
 
     let updated = false;
     this.apiService
-      .statusChange(`customers/updateStatus?status=${status}`, id, {})
+      .statusChange(`customers/updateStatus/${id}?status=${status}`, {})
       .subscribe({
         next: (data) => {
+          console.log(data);
           if (data?.isSuccess) {
             if (this.currentLanguage == 'ar') {
               this.toastr.success('تم تغيير الحالة بنجاح...');

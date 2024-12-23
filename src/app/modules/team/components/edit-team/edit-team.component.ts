@@ -52,17 +52,22 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
       {
         firstName: ['', [Validators.required]],
         lastName: ['', [Validators.required]],
-        email: [''],
-        contactNumber: [''],
-        billableHourlyRate: [''],
+        userName: [''],
+        email: ['', [Validators.email, Validators.required]],
+        // password: [''],
+        contactNumber: ['', [Validators.required]],
+        billableHourlyRate: ['', [Validators.required]],
         position: [''],
-        divisions: [''],
+        division: [''],
       }
       // { validators: passwordMatch }
     );
   }
+  get formValues() {
+    return this.addForm.controls;
+  }
   ngAfterViewInit(): void {
-    // this.getCurrentData();
+    this.getCurrentData();
   }
 
   ngOnInit() {
@@ -106,17 +111,15 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
         //  set values
         console.log(data);
         this.addForm.patchValue({
-          contractReference: data?.contractReference,
-          teamId: data?.teamId,
-          salaryStructureType: data?.salaryStructureType,
-          contractStartDate: data?.contractStartDate,
-          contractEndDate: data?.contractEndDate,
-          jobPosition: data?.jobPosition,
-          contractSchedule: data?.contractSchedule,
-          contractType: data?.contractType,
-          wage: data?.wage,
-          notes: data?.notes,
-          status: data?.status,
+          firstName: data?.firstName,
+          lastName: data?.lastName,
+          userName: data?.userName,
+          email: data?.email,
+          // password: data?.password,
+          contactNumber: data?.contactNumber,
+          billableHourlyRate: data?.billableHourlyRate,
+          position: data?.position,
+          division: data?.division,
         });
       },
       error: (error) => {

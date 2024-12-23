@@ -67,6 +67,10 @@ export class AddCustomerComponent implements OnInit {
       // { validators: passwordMatch }
     );
   }
+  // convenience getter for easy access to form fields
+  get formValues() {
+    return this.addForm.controls;
+  }
   ngAfterViewInit(): void {}
 
   ngOnInit() {
@@ -176,7 +180,7 @@ export class AddCustomerComponent implements OnInit {
         next: (data) => {
           console.log(data);
           // errors;
-          if (data?.isSuccess) {
+          if (data?.result?.isSuccess) {
             if (this.currentLanguage == 'ar') {
               this.toastr.success('تمت إضافة البيانات بنجاح...');
             } else {

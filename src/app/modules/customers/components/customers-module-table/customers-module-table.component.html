@@ -218,9 +218,13 @@
                       [translated]="true"
                       minWidth="100%"
                       [fixedHeight]="false"
-                      [title]="statusDropdown[0].value"
+                      [title]="
+                        value['status']
+                          ? statusDropdown[0].title
+                          : statusDropdown[1].title
+                      "
                       [object]="true"
-                      objectKey="value"
+                      objectKey="title"
                       [data]="statusDropdown"
                       (onAction)="onTableStatusChange($event, value['id'])"
                     ></app-custom-dropdown>

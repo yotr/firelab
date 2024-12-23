@@ -82,6 +82,34 @@
         </div>
       </div>
       <div class="col-sm-6">
+        <!-- userName -->
+        <div class="form-group mt-2">
+          <label
+            >{{ "team.form.user_name" | translate }}
+            <span class="text-danger">*</span></label
+          >
+          <input class="form-control" type="text" formControlName="userName" />
+          <!-- errors -->
+          <div
+            *ngIf="
+              addForm.get('userName')?.invalid &&
+              addForm.get('userName')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('userName')?.invalid &&
+                addForm.get('userName')?.touched
+              "
+              class="text-danger"
+            >
+              {{ "team.form.user_name_required" | translate }}</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+      <div class="col-sm-6">
         <!-- Email -->
         <div class="form-group mt-2">
           <label
@@ -96,12 +124,49 @@
             "
           >
             <small
-              *ngIf="
-                addForm.get('email')?.invalid && addForm.get('email')?.touched
-              "
+              *ngIf="formValues['email'].getError('required')"
               class="text-danger"
             >
               {{ "team.form.email_required" | translate }}</small
+            >
+
+            <small
+              *ngIf="formValues['email'].getError('email')"
+              class="text-danger"
+            >
+              {{ "team.form.email_valid" | translate }}</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <!-- password -->
+        <div class="form-group mt-2">
+          <label
+            >{{ "team.form.password" | translate }}
+            <span class="text-danger">*</span></label
+          >
+          <input
+            class="form-control"
+            type="password"
+            formControlName="password"
+          />
+          <!-- errors -->
+          <div
+            *ngIf="
+              addForm.get('password')?.invalid &&
+              addForm.get('password')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('password')?.invalid &&
+                addForm.get('password')?.touched
+              "
+              class="text-danger"
+            >
+              {{ "team.form.password_required" | translate }}</small
             >
           </div>
           <!-- errors -->
@@ -184,9 +249,9 @@
           <label>{{ "team.form.divisions" | translate }} </label>
           <select
             class="form-select form-control"
-            name="Divisions"
-            id="Divisions"
-            formControlName="divisions"
+            name="division"
+            id="division"
+            formControlName="division"
           >
             <ng-container *ngFor="let category of categories">
               <option [value]="category?.id">{{ category?.name }}</option>

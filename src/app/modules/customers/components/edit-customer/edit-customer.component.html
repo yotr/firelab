@@ -90,6 +90,20 @@
             formControlName="email"
             (change)="fillOwnerData()"
           />
+          <!-- errors -->
+          <div
+            *ngIf="
+              addForm.get('email')?.invalid && addForm.get('email')?.touched
+            "
+          >
+            <small *ngIf="formValues['email'].getError('email')" class="text-danger">
+              {{
+                "customers.all_customers.customers_form.email_required"
+                  | translate
+              }}</small
+            >
+          </div>
+          <!-- errors -->
         </div>
       </div>
       <div class="col-sm-6">
@@ -301,6 +315,20 @@
             type="email"
             formControlName="ownerEmail"
           />
+          <!-- errors -->
+          <div
+            *ngIf="
+              addForm.get('ownerEmail')?.invalid && addForm.get('ownerEmail')?.touched
+            "
+          >
+            <small *ngIf="formValues['ownerEmail'].errors" class="text-danger">
+              {{
+                "customers.all_customers.customers_form.email_required"
+                  | translate
+              }}</small
+            >
+          </div>
+          <!-- errors -->
         </div>
       </div>
       <div class="col-sm-6">
