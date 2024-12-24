@@ -276,7 +276,6 @@ export class AllCustomersComponent implements OnInit, AfterViewInit {
     let id = data?.id;
     let status = data?.status == 0 ? true : false;
 
-    let updated = false;
     this.apiService
       .statusChange(`customers/updateStatus/${id}?status=${status}`, {})
       .subscribe({
@@ -298,12 +297,7 @@ export class AllCustomersComponent implements OnInit, AfterViewInit {
             this.toastr.error('There Is Somthing Wrong', 'Error');
           }
         },
-        complete: () => {
-          if (updated) {
-            //success
-            this.toastr.success(`Status Changed Successfully...`, 'Success');
-          }
-        },
+        complete: () => {},
       });
   }
 }

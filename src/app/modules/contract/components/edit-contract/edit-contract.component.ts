@@ -24,8 +24,12 @@ export class EditContractComponent implements OnInit, AfterViewInit {
   // members
   members: any[] = [];
   membersLoading: boolean = true;
+  totalItemsCount: number = 0;
+  getDataError: boolean = false;
   // defaultPermissions: Permission[];
   uploading: boolean = false;
+  currentTeamMember: any = null;
+
   updateId: any = null;
 
   constructor(
@@ -50,7 +54,7 @@ export class EditContractComponent implements OnInit, AfterViewInit {
     this.addForm = this.formBuilder.group(
       {
         contractReference: ['', [Validators.required]],
-        teamId: ['', [Validators.required]],
+        teamMemberId: [null, [Validators.required]],
         salaryStructureType: [''],
         contractStartDate: [''],
         contractEndDate: [''],
@@ -59,20 +63,20 @@ export class EditContractComponent implements OnInit, AfterViewInit {
         contractType: [''],
         wage: [''],
         notes: [''],
-        status: [''],
+        status: [false],
       }
       // { validators: passwordMatch }
     );
   }
   ngAfterViewInit(): void {
-    // this.getCurrentData();
+    this.getCurrentData();
   }
 
   ngOnInit() {
     this.getTheme();
     this.getCurrentLanguage();
+    this.getMembers();
     this.getCurrentActiveUser();
-    // this.getMembers();
   }
   // get theme from localStorage
   getTheme() {
@@ -104,13 +108,14 @@ export class EditContractComponent implements OnInit, AfterViewInit {
 
   // get current data
   getCurrentData() {
-    this.apiService.getById('customers', this.updateId).subscribe({
+    this.apiService.getById('contracts', this.updateId).subscribe({
       next: (data: any) => {
         //  set values
         console.log(data);
+        this.currentTeamMember = data?.value?.teamMember?.userName;
         this.addForm.patchValue({
           contractReference: data?.value?.contractReference,
-          teamId: data?.value?.teamId,
+          teamMemberId: data?.value?.teamMemberId,
           salaryStructureType: data?.value?.salaryStructureType,
           contractStartDate: data?.value?.contractStartDate,
           contractEndDate: data?.value?.contractEndDate,
@@ -133,25 +138,65 @@ export class EditContractComponent implements OnInit, AfterViewInit {
     });
   }
 
-  // get members data
-  getMembers() {
-    this.apiService.get('teamMembers').subscribe({
-      next: (data: any) => {
-        console.log(data);
-        if (data?.isSuccess) {
-          this.members = data?.value;
-        }
-      },
-      error: (err) => {
-        console.log(err);
-        if (this.currentLanguage == 'ar') {
-          this.toastr.error('هناك شيء خاطئ', 'خطأ');
-        } else {
-          this.toastr.error('There Is Somthing Wrong', 'Error');
-        }
-      },
-      complete: () => {},
+  // on selecte teamMember
+  onSelectTeamMember(teamMember: any) {
+    this.currentTeamMember = teamMember?.userName;
+    this.addForm.patchValue({
+      teamMemberId: teamMember?.id,
     });
+  }
+  // get members data
+  getMembers(page?: number, pageSize?: number) {
+    // api
+    this.apiService
+      ?.filterData(
+        'teamMembers/getFilteredTeamMembers',
+        page ? page : 1,
+        pageSize ? pageSize : 4
+      )
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.members = data?.value?.teamMemberDtos;
+            this.totalItemsCount = data?.value?.totalCount;
+            this.getDataError = false;
+          }
+          this.membersLoading = false;
+        },
+        error: (err: any) => {
+          this.membersLoading = false;
+          this.getDataError = true;
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {},
+      });
+  }
+  onFilterMembers(value: string) {
+    if (value != null && value?.trim() != '') {
+      this.apiService
+        .globalSearch('teamMembers/globalsearch', value, null)
+        .subscribe({
+          next: (data: any) => {
+            console.log(data);
+            if (data?.isSuccess) {
+              this.members = data?.value;
+              this.totalItemsCount = data?.value?.length;
+            }
+            this.membersLoading = false;
+          },
+          error: (err: any) => {
+            this.membersLoading = false;
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          },
+        });
+    } else {
+      this.getMembers();
+    }
   }
 
   //add a new
@@ -159,6 +204,11 @@ export class EditContractComponent implements OnInit, AfterViewInit {
     if (this.addForm.valid) {
       let data = {
         ...this.addForm.value,
+        status:
+          this.addForm.get('status')?.value == true ||
+          this.addForm.get('status')?.value == 'true'
+            ? true
+            : false,
       };
       console.log(data);
       this.uploading = true;

@@ -18,6 +18,7 @@ export class ContractComponent implements OnInit, AfterViewInit {
   currentTheme: any;
   dataKeys: any[] = [];
   data: any[] = [];
+  getDataError: boolean = false;
   totalItemsCount: number = 0;
   loading: boolean = true;
   // current logged in user
@@ -46,7 +47,7 @@ export class ContractComponent implements OnInit, AfterViewInit {
         active: true,
       },
       {
-        name: 'member',
+        name: 'teamMember',
         display: this.translateService.instant(
           'contracts.contract_table.member'
         ),
@@ -62,7 +63,7 @@ export class ContractComponent implements OnInit, AfterViewInit {
         active: true,
       },
       {
-        name: 'startDate',
+        name: 'contractStartDate',
         display: this.translateService.instant(
           'contracts.contract_table.startDate'
         ),
@@ -70,7 +71,7 @@ export class ContractComponent implements OnInit, AfterViewInit {
         active: true,
       },
       {
-        name: 'endDate',
+        name: 'contractEndDate',
         display: this.translateService.instant(
           'contracts.contract_table.endDate'
         ),
@@ -134,31 +135,34 @@ export class ContractComponent implements OnInit, AfterViewInit {
     value2?: any
   ) {
     // api
-    // this.apiService
-    //   ?.filterData(
-    //     'contracts/getFilteredContracts',
-    //     page ? page : 1,
-    //     pageSize ? pageSize : 10
-    //   )
-    //   .subscribe({
-    //     next: (data:any) => {
-    //       console.log(data);
-    //       if (data?.isSuccess) {
-    //         this.data = data?.value;
-    //         this.totalItemsCount = data?.totalCount;
-    //         this.loading = false;
-    //       }
-    //     },
-    //     error: (err: any) => {
-    //       this.loading = false;
-    //       if (this.currentLanguage == 'ar') {
-    //         this.toastr.error('هناك شيء خاطئ', 'خطأ');
-    //       } else {
-    //         this.toastr.error('There Is Somthing Wrong', 'Error');
-    //       }
-    //     },
-    //     complete: () => {},
-    //   });
+    this.loading = true;
+    this.apiService
+      ?.filterData(
+        'contracts/getFilteredContracts',
+        page ? page : 1,
+        pageSize ? pageSize : 10
+      )
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.data = data?.value?.contracts;
+            this.totalItemsCount = data?.value?.totalCount;
+            this.getDataError = false;
+          }
+          this.loading = false;
+        },
+        error: (err: any) => {
+          this.loading = false;
+          this.getDataError = true;
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {},
+      });
   }
 
   onPaginate(event: any) {
@@ -169,11 +173,23 @@ export class ContractComponent implements OnInit, AfterViewInit {
     if (event?.value != null && event.value?.trim() != '') {
       this.apiService
         .globalSearch('contracts/globalsearch', event?.value, event?.column)
-        .subscribe((data: any) => {
-          console.log(data);
-          this.data = data?.value;
-          this.totalItemsCount = data?.value?.length;
-          this.loading = false;
+        .subscribe({
+          next: (data: any) => {
+            if (data?.isSuccess) {
+              console.log(data);
+              this.data = data?.value;
+              this.totalItemsCount = data?.value?.length;
+            }
+            this.loading = false;
+          },
+          error: (err: any) => {
+            this.loading = false;
+            if (this.currentLanguage == 'ar') {
+              this.toastr.error('هناك شيء خاطئ', 'خطأ');
+            } else {
+              this.toastr.error('There Is Somthing Wrong', 'Error');
+            }
+          },
         });
     } else {
       this.getData();
@@ -184,9 +200,8 @@ export class ContractComponent implements OnInit, AfterViewInit {
     console.log(deleteId);
     this.apiService.delete('contracts', deleteId).subscribe({
       next: (data) => {
-        this.data = this.data.filter((item: any) => item?.id !== deleteId);
-
         if (data?.isSuccess) {
+          this.data = this.data.filter((item: any) => item?.id !== deleteId);
           if (this.currentLanguage == 'ar') {
             this.toastr.success('تم حذف العنصر بنجاح...');
           } else {
@@ -224,8 +239,8 @@ export class ContractComponent implements OnInit, AfterViewInit {
         next: (data) => {
           console.log(data);
           if (data?.isSuccess) {
-            this.data = data?.value;
-            this.totalItemsCount = data?.totalCount;
+            this.data = data?.value?.contracts;
+            this.totalItemsCount = data?.value?.totalCount;
             this.loading = false;
           }
         },
@@ -245,37 +260,31 @@ export class ContractComponent implements OnInit, AfterViewInit {
     this.getData();
   }
   //change status
-  // onStatusChange(data: any) {
-  //   let id = data?.id;
-  //   let status = data?.status == 0 ? true : false;
+  onStatusChange(data: any) {
+    let id = data?.id;
+    let status = data?.status ? true : false;
 
-  //   let updated = false;
-  //   this.apiService
-  //     .statusChange(`customers/updateStatus?status=${status}`, id, {})
-  //     .subscribe({
-  //       next: (data) => {
-  //         if (data?.isSuccess) {
-  //           if (this.currentLanguage == 'ar') {
-  //             this.toastr.success('تم تغيير الحالة بنجاح...');
-  //           } else {
-  //             this.toastr.success('status changed successfully...');
-  //           }
-  //         }
-  //       },
-  //       error: (err: any) => {
-  //         console.log(err);
-  //         if (this.currentLanguage == 'ar') {
-  //           this.toastr.error('هناك شيء خاطئ', 'خطأ');
-  //         } else {
-  //           this.toastr.error('There Is Somthing Wrong', 'Error');
-  //         }
-  //       },
-  //       complete: () => {
-  //         if (updated) {
-  //           //success
-  //           this.toastr.success(`Status Changed Successfully...`, 'Success');
-  //         }
-  //       },
-  //     });
-  // }
+    this.apiService
+      .statusChange(`contracts/updateStatus/${id}?status=${status}`, {})
+      .subscribe({
+        next: (data) => {
+          if (data?.isSuccess) {
+            if (this.currentLanguage == 'ar') {
+              this.toastr.success('تم تغيير الحالة بنجاح...');
+            } else {
+              this.toastr.success('status changed successfully...');
+            }
+          }
+        },
+        error: (err: any) => {
+          console.log(err);
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {},
+      });
+  }
 }

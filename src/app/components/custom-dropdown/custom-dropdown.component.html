@@ -27,25 +27,25 @@
       class="list"
       [ngClass]="{ 'fixed-list': fixedHeight, 'unfixed-list': !fixedHeight }"
     >
-      <ng-container *ngFor="let value of data | filter : searchText">
-        <!-- normal array -->
-        <div
-          *ngIf="!object"
-          class="item text-secondary"
-          (click)="action(value)"
-        >
-          {{ value }}
-        </div>
-        <!-- object of array -->
-        <div
-          *ngIf="object"
-          class="item text-secondary"
-          (click)="action(value, value[objectKey])"
-        >
-          {{ translated ? (value[objectKey] | translate) : value[objectKey]  }}
-        </div>
-      </ng-container>
+      <!-- filter from array -->
+        <ng-container *ngFor="let value of data | filter : searchText">
+          <!-- normal array -->
+          <div
+            *ngIf="!object"
+            class="item text-secondary"
+            (click)="action(value)"
+          >
+            {{ value }}
+          </div>
+          <!-- object of array -->
+          <div
+            *ngIf="object"
+            class="item text-secondary"
+            (click)="action(value, value[objectKey])"
+          >
+            {{ translated ? (value[objectKey] | translate) : value[objectKey] }}
+          </div>
+        </ng-container>
     </div>
-    <!-- <li *ngIf="data?.length == 0" class="text-secondary">No Data</li> -->
   </div>
 </div>

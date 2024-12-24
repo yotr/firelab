@@ -3,25 +3,23 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api/api.service';
 
 @Component({
-  selector: 'app-custom-dropdown',
-  templateUrl: './custom-dropdown.component.html',
-  styleUrls: ['./custom-dropdown.component.css'],
+  selector: 'app-custom-filter-dropdown',
+  templateUrl: './custom-filter-dropdown.component.html',
+  styleUrls: ['./custom-filter-dropdown.component.css'],
 })
-export class CustomDropdownComponent implements OnInit {
+export class CustomFilterDropdownComponent implements OnInit {
   @Input() translated: boolean = false;
   @Input() minWidth: string = '150px';
-  @Input() fixedHeight: boolean = true;
-  @Input() height: string = '50px';
   // filter
-  @Input() filter: boolean = false;
+  @Input() filterLoading: boolean = true;
+  @Input() filterTotal: number = 0;
+  @Output() onFilter: EventEmitter<any> = new EventEmitter();
   // others
   @Input() title: any = 'Select';
   @Input() data: any[] = [];
-  @Input() object: boolean = false;
   @Input() objectKey: any = null;
   @Output() onAction: EventEmitter<any> = new EventEmitter();
   isActive: boolean = false;
-  searchText: string = '';
 
   constructor(public apiService: ApiService, private toastr: ToastrService) {}
 
@@ -33,13 +31,12 @@ export class CustomDropdownComponent implements OnInit {
   close() {
     this.isActive = false;
   }
+  filterFunction(event: any) {
+    this.onFilter.emit(event?.target.value);
+  }
 
-  action(value: any, objectKey?: any) {
-    if (this.object) {
-      this.title = objectKey;
-    } else {
-      this.title = value;
-    }
+  action(value: any, objectKey: any) {
+    this.title = objectKey;
     this.onAction.emit(value);
     this.close();
   }

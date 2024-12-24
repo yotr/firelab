@@ -25,6 +25,7 @@
     [totalItems]="totalItemsCount"
     [dataKeys]="dataKeys"
     [loading]="loading"
+    [getDataError]="getDataError"
     [currentTheme]="currentTheme"
     [deleteModalTitle]="'contracts.title' | translate"
     [tableTitle]="'contracts.title' | translate"
@@ -34,6 +35,7 @@
     (onSearch)="search($event)"
     (onFilter)="handleFiltersSubmit($event)"
     (onReset)="resetData()"
+    (onStatusChange)="onStatusChange($event)"
   ></app-contract-module-table>
 </div>
 

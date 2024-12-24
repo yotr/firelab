@@ -33,6 +33,7 @@ import { SystemInfoTableComponent } from '../modules/customers/components/system
 import { SystemInfoComponent } from '../modules/customers/components/system-info/system-info.component';
 import { AddSystemInfoComponent } from '../modules/customers/components/system-info/components/add-system-info/add-system-info.component';
 import { EditSystemInfoComponent } from '../modules/customers/components/system-info/components/edit-system-info/edit-system-info.component';
+import { CustomFilterDropdownComponent } from '../components/custom-filter-dropdown/custom-filter-dropdown.component';
 
 export function httpTranslateLoaderfactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -69,6 +70,7 @@ export function httpTranslateLoaderfactory(http: HttpClient) {
     SystemInfoTableComponent,
     AddSystemInfoComponent,
     EditSystemInfoComponent,
+    CustomFilterDropdownComponent,
   ],
   imports: [
     CommonModule,
@@ -125,6 +127,7 @@ export function httpTranslateLoaderfactory(http: HttpClient) {
     SystemInfoTableComponent,
     AddSystemInfoComponent,
     EditSystemInfoComponent,
+    CustomFilterDropdownComponent,
   ],
   providers: [HttpClient],
 })
