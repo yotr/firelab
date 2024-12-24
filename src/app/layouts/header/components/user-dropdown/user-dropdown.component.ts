@@ -1,10 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
-// import { User } from 'src/app/models/user';
-// import { ApiService } from 'src/app/services/api/api.service';
-// import { AuthService } from 'src/app/services/auth/auth.service';
-// import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-user-dropdown',
@@ -13,12 +9,9 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class UserDropdownComponent implements OnInit {
   user: any = null;
-  api: string = '';
   userImage: any = null;
 
-  constructor(private router: Router, private auth: AuthService) {
-    // this.api = environment?.API;
-  }
+  constructor(private router: Router, private auth: AuthService) {}
 
   ngOnInit() {
     this.getCurrentUserData();
@@ -26,14 +19,15 @@ export class UserDropdownComponent implements OnInit {
 
   // get user
   isLoggedIn(): any {
-    // return this.auth.currentUserSignal() == undefined ? false : true;
+    return this.auth.currentUserSignal() == undefined ? false : true;
   }
 
   getCurrentUserData() {
     if (this.isLoggedIn()) {
-      // this.user = this.auth.currentUserSignal()?.userData;
-      // let currentUser = this.auth.currentUserSignal()?.userData;
-      // this.user = currentUser;
+      this.user = this.auth.currentUserSignal()?.userData;
+      let currentUser = this.auth.currentUserSignal()?.userData;
+      this.user = currentUser;
+      this.userImage = 'assets/img/user.jpg';
       // check image link
       // let imageUrl = this.api + '/' + currentUser?.image;
       // if (currentUser?.image !== null) {

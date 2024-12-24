@@ -107,7 +107,6 @@ export class ApiService {
         )
         .pipe(retry(5), catchError(this.handleError));
     } else {
-      console.log('Yes Started');
       return this.http
         .get<any>(
           `${environment.API}/api/${path}?page=${page}&pageSize=${pageSize}`

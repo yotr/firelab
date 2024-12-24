@@ -111,6 +111,7 @@ export class TeamComponent implements OnInit {
     value2?: any
   ) {
     // api
+    this.loading = true;
     this.apiService
       ?.filterData(
         'teamMembers/getFilteredTeamMembers',
@@ -129,6 +130,7 @@ export class TeamComponent implements OnInit {
         },
         error: (err: any) => {
           this.loading = false;
+          this.getDataError = true;
           if (this.currentLanguage == 'ar') {
             this.toastr.error('هناك شيء خاطئ', 'خطأ');
           } else {
@@ -236,9 +238,8 @@ export class TeamComponent implements OnInit {
   //change status
   onStatusChange(data: any) {
     let id = data?.id;
-    let status = data?.status == 0 ? true : false;
+    let status = data?.status;
 
-    let updated = false;
     this.apiService
       .statusChange(`teamMembers/updateStatus/${id}?status=${status}`, {})
       .subscribe({
@@ -259,12 +260,7 @@ export class TeamComponent implements OnInit {
             this.toastr.error('There Is Somthing Wrong', 'Error');
           }
         },
-        complete: () => {
-          if (updated) {
-            //success
-            this.toastr.success(`Status Changed Successfully...`, 'Success');
-          }
-        },
+        complete: () => {},
       });
   }
 }

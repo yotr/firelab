@@ -11,7 +11,7 @@ export class CustomDropdownComponent implements OnInit {
   @Input() fixedHeight: boolean = true;
   @Input() height: string = '50px';
   @Input() filter: boolean = false;
-  @Input() title: string = 'Select';
+  @Input() title: any = 'Select';
   @Input() data: any[] = [];
   @Input() object: boolean = false;
   @Input() objectKey: any = null;

@@ -50,6 +50,7 @@ export class AddTeamComponent implements OnInit, AfterViewInit {
         billableHourlyRate: ['', [Validators.required]],
         position: [''],
         division: [''],
+        status: ['clocked'],
       }
       // { validators: passwordMatch }
     );

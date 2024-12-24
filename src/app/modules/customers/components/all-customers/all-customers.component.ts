@@ -145,6 +145,7 @@ export class AllCustomersComponent implements OnInit, AfterViewInit {
     value2?: any
   ) {
     // api
+    this.loading = true;
     this.apiService
       ?.filterData(
         'customers/getFilteredCustomers',

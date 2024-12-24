@@ -13,7 +13,7 @@
       <!-- if user no exist -->
       <span>{{
         isLoggedIn() == true
-          ? user?.userName
+          ? user?.firstName + " " + user?.lastName
           : ("header.user_dropdown.admin" | translate)
       }}</span>
     </div>

@@ -101,6 +101,14 @@ export class TeamModuleTableComponent implements OnInit {
   ngOnInit() {
     this.getCurrentUserData();
   }
+  getIndex(value: any): any | number {
+    let index = this.statusDropdown.findIndex((v) => v.value == value?.status);
+    if (index === -1) {
+      return 3;
+    } else {
+      return index;
+    }
+  }
   // get user
   isLoggedIn(): boolean {
     return this.auth.currentUserSignal() == undefined ? false : true;
