@@ -61,6 +61,10 @@ const routes: Routes = [
         component: BuildingInfoComponent,
       },
       {
+        path: 'buildingInfo/add',
+        component: AddBuildingInfoModalComponent,
+      },
+      {
         path: 'buildingInfo/edit/:id',
         component: EditBuildingInfoModalComponent,
       },

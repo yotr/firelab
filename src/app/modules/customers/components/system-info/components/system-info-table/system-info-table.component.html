@@ -34,13 +34,18 @@
       {{ "module_table.bottom_header_text" | translate }}
     </div>
     <!-- actions icons -->
-    <!-- <div>
-      <i
+    <div>
+      <!-- <i
         class="pi pi-trash px-2 fs-6"
         role="button"
         (click)="deleteSelected()"
+      ></i> -->
+      <i
+        class="pi pi-refresh px-2 fs-6"
+        role="button"
+        (click)="resetData()"
       ></i>
-    </div> -->
+    </div>
   </div>
 </div>
 <div class="row mt-0">
@@ -174,7 +179,7 @@
           <ng-container>
             <tr
               *ngFor="
-                let client of data
+                let value of data
                   | sort : [sortingKey, sortingOrder]
                   | paginate
                     : {
@@ -184,7 +189,7 @@
                       }
               "
               [ngClass]="{
-                selected: client?.checked
+                selected: value?.checked
               }"
             >
               <!-- select checkbox -->
@@ -192,9 +197,9 @@
                 <span class="select-input">
                   <label
                     class="table-checkbox-container"
-                    (click)="checkOneCheckBox(client?.id)"
+                    (click)="checkOneCheckBox(value?.id)"
                   >
-                    <input type="checkbox" [(ngModel)]="client.checked" />
+                    <input type="checkbox" [(ngModel)]="value.checked" />
                     <div class="checkmark"></div>
                   </label>
                 </span>
@@ -203,9 +208,19 @@
                 <td *ngIf="key.active && key?.name != 'id'">
                   <!-- name -->
                   <ng-container
-                    *ngIf="key?.name != 'name' && key?.name != 'status'"
+                    *ngIf="
+                      key?.name != 'reportCategory' && key?.name != 'status'
+                    "
                   >
-                    {{ client[key?.name] }}
+                    {{ value[key?.name] }}
+                  </ng-container>
+                  <!-- reportCategory -->
+                  <ng-container *ngIf="key?.name == 'reportCategory'">
+                    {{
+                      currentLanguage == "ar"
+                        ? value?.reportCategory?.arabicName
+                        : value?.reportCategory?.name
+                    }}
                   </ng-container>
                 </td>
               </ng-container>
@@ -226,7 +241,7 @@
                     <a
                       class="dropdown-item"
                       role="button"
-                      (click)="navigate(editPagePath, client?.id)"
+                      (click)="navigate(editPagePath, value?.id)"
                       ><i class="pi pi-pencil mx-1"></i>
                       {{ "module_table.edit_action_text" | translate }}</a
                     >
@@ -235,7 +250,7 @@
                       data-bs-toggle="modal"
                       data-bs-target="#delete"
                       role="button"
-                      (click)="deleteId = client?.id"
+                      (click)="deleteId = value?.id"
                       ><i class="pi pi-trash mx-1"></i>
                       {{ "module_table.delete_action_text" | translate }}
                     </a>
@@ -249,10 +264,17 @@
       </table>
       <!-- no data -->
       <h1
-        *ngIf="totalItems == 0 && loading == false"
+        *ngIf="totalItems == 0 && loading == false && getDataError == false"
         class="fs-3 my-4 text-center"
       >
         {{ "module_table.table_empty_text" | translate }}
+      </h1>
+      <!-- error -->
+      <h1
+        *ngIf="totalItems == 0 && loading == false && getDataError"
+        class="fs-3 my-4 text-center"
+      >
+        {{ "module_table.table_error_text" | translate }}
       </h1>
       <!-- load skeleton if there is no data -->
       <app-skeleton
@@ -302,11 +324,11 @@
 
 <!-- /module table  -->
 <!-- delete modal -->
-<!-- <app-delete-modal
+<app-delete-modal
   [title]="deleteModalTitle"
   [currentTheme]="currentTheme"
   (onDelete)="deleteItem()"
-></app-delete-modal> -->
+></app-delete-modal>
 <!--/ delete modal -->
 <!-- printing spinner -->
 <div class="printing" *ngIf="printing">

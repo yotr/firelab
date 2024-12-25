@@ -10,6 +10,8 @@
   "add": "Add",
   "cancel": "Cancel",
   "next": "Next",
+  "no_data": "No data found",
+  "search":"Search..",
   "theme_settings": {
     "title": "Customizer",
     "title_dic": "Customize your overview Page layout",

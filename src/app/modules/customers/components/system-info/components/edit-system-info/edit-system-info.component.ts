@@ -32,12 +32,13 @@ export class EditSystemInfoComponent implements OnInit {
   // categories
   categories: any[] = [];
   categoriesLoading: boolean = true;
+  getDataError: boolean = false;
   // systems
   systems: any[] = [];
   systemsLoading: boolean = true;
 
   uploading: boolean = false;
-
+  updateId: any = null;
   customerId: any = null;
 
   constructor(
@@ -52,6 +53,12 @@ export class EditSystemInfoComponent implements OnInit {
     private sidebarService: SidebarService
   ) {
     //get id
+    this.activatedRoute.paramMap.subscribe((paramMap: Params) => {
+      if (paramMap['get']('id')) {
+        this.updateId = paramMap['get']('id');
+      }
+    });
+    // get customerId
     this.activatedRoute.queryParamMap.subscribe((paramMap: Params) => {
       if (paramMap['get']('customerId')) {
         this.customerId = paramMap['get']('customerId');
@@ -62,10 +69,10 @@ export class EditSystemInfoComponent implements OnInit {
     // Add form
     this.editForm = this.formBuilder.group(
       {
-        reportCategory: ['', [Validators.required]],
+        reportCategoryId: [null, [Validators.required]],
         system: ['', [Validators.required]],
         type: ['', [Validators.required]],
-        quantity: ['', [Validators.required]],
+        quantity: [0, [Validators.required]],
       }
       // { validators: passwordMatch }
     );
@@ -99,13 +106,14 @@ export class EditSystemInfoComponent implements OnInit {
     ];
   }
 
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void {
+    this.getCurrentData();
+  }
 
   ngOnInit() {
     this.getTheme();
     this.getCurrentCustomerId();
-    // this.navigationHandler();
-    this.getCurrentActiveUser();
+    this.getCategories();
   }
   // get theme from localStorage
   getTheme() {
@@ -147,6 +155,29 @@ export class EditSystemInfoComponent implements OnInit {
     } else {
     }
   }
+  // get current data
+  getCurrentData() {
+    this.apiService.getById('systemInformations', this.updateId).subscribe({
+      next: (data: any) => {
+        //  set values
+        console.log(data);
+        this.editForm.patchValue({
+          reportCategoryId: data?.value?.reportCategoryId,
+          system: data?.value?.system,
+          type: data?.value?.type,
+          quantity: data?.value?.quantity,
+        });
+      },
+      error: (error) => {
+        console.log(error);
+        if (this.currentLanguage == 'ar') {
+          this.toastr.error('هناك شيء خاطئ', 'خطأ');
+        } else {
+          this.toastr.error('There Is Somthing Wrong', 'Error');
+        }
+      },
+    });
+  }
 
   // get categories data
   getCategories() {
@@ -155,10 +186,14 @@ export class EditSystemInfoComponent implements OnInit {
         console.log(data);
         if (data?.isSuccess) {
           this.categories = data?.value;
-          this.categoriesLoading = false;
+          this.getDataError = false;
         }
+        this.categoriesLoading = false;
       },
       error: (err) => {
+        this.categories = [];
+        this.categoriesLoading = false;
+        this.getDataError = true;
         console.log(err);
         if (this.currentLanguage == 'ar') {
           this.toastr.error('هناك شيء خاطئ', 'خطأ');
@@ -172,6 +207,7 @@ export class EditSystemInfoComponent implements OnInit {
       },
     });
   }
+
   //add a new
   submit() {
     if (this.editForm.valid) {
@@ -183,7 +219,7 @@ export class EditSystemInfoComponent implements OnInit {
       this.uploading = true;
       // api
       this.apiService
-        ?.update('systemInformations', this.customerId, data)
+        ?.update('systemInformations', this.updateId, data)
         .subscribe({
           next: (data) => {
             console.log(data);

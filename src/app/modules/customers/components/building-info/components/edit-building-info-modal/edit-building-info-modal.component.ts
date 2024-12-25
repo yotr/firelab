@@ -68,7 +68,6 @@ export class EditBuildingInfoModalComponent implements OnInit {
     this.getTheme();
     this.getLanguage();
     this.getCurrentCustomerId();
-    // this.navigationHandler();
     this.getCurrentData();
   }
   // get theme from localStorage
@@ -111,14 +110,14 @@ export class EditBuildingInfoModalComponent implements OnInit {
 
   // get current data
   getCurrentData() {
-    this.apiService.getById(`CustomerBindingInfo`, this.updateId).subscribe({
+    this.apiService.getById(`customerBuildingInfo`, this.updateId).subscribe({
       next: (data: any) => {
         //  set values
         console.log(data);
         if (data?.isSuccess) {
           this.editForm.patchValue({
-            title: data?.title,
-            description: data?.description,
+            title: data?.value?.title,
+            description: data?.value?.description,
           });
         }
       },
@@ -143,7 +142,7 @@ export class EditBuildingInfoModalComponent implements OnInit {
       this.uploading = true;
       // api
       this.apiService
-        ?.update(`CustomerBindingInfo`, this.updateId, data)
+        ?.update(`customerBuildingInfo`, this.updateId, data)
         .subscribe({
           next: (data) => {
             console.log(data);

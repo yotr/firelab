@@ -26,16 +26,14 @@ export class ApiService {
   //get
   get(path: string): Observable<any[] | any> {
     // request
-    return this.http
-      .get<any[]>(`${environment.API}/api/${path}`)
-      .pipe(retry(1), catchError(this.handleError));
+    return this.http.get<any[]>(`${environment.API}/api/${path}`);
+    // .pipe(retry(1), catchError(this.handleError));
   }
   // get by id
   getById(path: string, id: any): Observable<any> {
     // request
-    return this.http
-      .get<any>(`${environment.API}/api/${path}/${id}`)
-      .pipe(retry(1), catchError(this.handleError));
+    return this.http.get<any>(`${environment.API}/api/${path}/${id}`);
+    // .pipe(retry(1), catchError(this.handleError));
   }
 
   // add
@@ -61,31 +59,28 @@ export class ApiService {
   // delete
 
   delete(path: string, id: any): Observable<any> {
-    return this.http
-      .delete(`${environment.API}/api/${path}/${id}`)
-      .pipe(retry(1), catchError(this.handleError));
+    return this.http.delete(`${environment.API}/api/${path}/${id}`);
+    // .pipe(retry(1), catchError(this.handleError));
   }
 
   // add multi data
   addFormData(path: string, data: any): Observable<any> {
-    return this.http
-      .post<any>(
-        `${environment.API}/api/${path}`,
-        data,
-        environment.MULTI_HTTP_OPTIONS
-      )
-      .pipe(retry(1), catchError(this.handleError));
+    return this.http.post<any>(
+      `${environment.API}/api/${path}`,
+      data,
+      environment.MULTI_HTTP_OPTIONS
+    );
+    // .pipe(retry(1), catchError(this.handleError));
   }
 
   // update multi data
   updateFormData(path: string, id: any, data: any): Observable<any> {
-    return this.http
-      .put<any>(
-        `${environment.API}/api/${path}/${id}`,
-        data,
-        environment.MULTI_HTTP_OPTIONS
-      )
-      .pipe(retry(1), catchError(this.handleError));
+    return this.http.put<any>(
+      `${environment.API}/api/${path}/${id}`,
+      data,
+      environment.MULTI_HTTP_OPTIONS
+    );
+    // .pipe(retry(1), catchError(this.handleError));
   }
 
   // get filtered data
@@ -101,17 +96,15 @@ export class ApiService {
   ): Observable<any> {
     // request
     if (column) {
-      return this.http
-        .get<any>(
-          `${environment.API}/api/${path}?column=${column}&value1=${value1}&value2=${value2}&operator1=${operator1}&operator2=${operator2}&page=${page}&pageSize=${pageSize}`
-        )
-        .pipe(retry(5), catchError(this.handleError));
+      return this.http.get<any>(
+        `${environment.API}/api/${path}?column=${column}&value1=${value1}&value2=${value2}&operator1=${operator1}&operator2=${operator2}&page=${page}&pageSize=${pageSize}`
+      );
+      // .pipe(retry(5), catchError(this.handleError));
     } else {
-      return this.http
-        .get<any>(
-          `${environment.API}/api/${path}?page=${page}&pageSize=${pageSize}`
-        )
-        .pipe(retry(1), catchError(this.handleError));
+      return this.http.get<any>(
+        `${environment.API}/api/${path}?page=${page}&pageSize=${pageSize}`
+      );
+      // .pipe(retry(1), catchError(this.handleError));
     }
   }
 
@@ -136,13 +129,12 @@ export class ApiService {
   }
 
   statusChange(path: string, data?: any) {
-    return this.http
-      .put<any>(
-        `${environment.API}/api/${path}`,
-        data,
-        environment.HTTP_OPTIONS
-      )
-      .pipe(retry(1), catchError(this.handleError));
+    return this.http.put<any>(
+      `${environment.API}/api/${path}`,
+      data,
+      environment.HTTP_OPTIONS
+    );
+    // .pipe(retry(1), catchError(this.handleError));
   }
 
   //handle function error

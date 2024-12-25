@@ -152,7 +152,7 @@ export class EditContractComponent implements OnInit, AfterViewInit {
       ?.filterData(
         'teamMembers/getFilteredTeamMembers',
         page ? page : 1,
-        pageSize ? pageSize : 4
+        pageSize ? pageSize : 10
       )
       .subscribe({
         next: (data: any) => {

@@ -32,6 +32,7 @@ export class AddSystemInfoComponent implements OnInit {
   // categories
   categories: any[] = [];
   categoriesLoading: boolean = true;
+  getDataError: boolean = false;
   // systems
   systems: any[] = [];
   systemsLoading: boolean = true;
@@ -62,13 +63,14 @@ export class AddSystemInfoComponent implements OnInit {
     // Add form
     this.addForm = this.formBuilder.group(
       {
-        reportCategory: ['', [Validators.required]],
+        reportCategoryId: [null, [Validators.required]],
         system: ['', [Validators.required]],
         type: ['', [Validators.required]],
-        quantity: ['', [Validators.required]],
+        quantity: [0, [Validators.required]],
       }
       // { validators: passwordMatch }
     );
+
     this.types = [
       {
         id: 0,
@@ -99,13 +101,14 @@ export class AddSystemInfoComponent implements OnInit {
     ];
   }
 
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void {
+    this.getCategories();
+  }
 
   ngOnInit() {
     this.getTheme();
     this.getCurrentCustomerId();
-    // this.navigationHandler();
-    this.getCurrentActiveUser();
+    // this.getCurrentActiveUser();
   }
   // get theme from localStorage
   getTheme() {
@@ -155,10 +158,14 @@ export class AddSystemInfoComponent implements OnInit {
         console.log(data);
         if (data?.isSuccess) {
           this.categories = data?.value;
-          this.categoriesLoading = false;
+          this.getDataError = false;
         }
+        this.categoriesLoading = false;
       },
       error: (err) => {
+        this.categories = [];
+        this.categoriesLoading = false;
+        this.getDataError = true;
         console.log(err);
         if (this.currentLanguage == 'ar') {
           this.toastr.error('هناك شيء خاطئ', 'خطأ');
@@ -198,6 +205,7 @@ export class AddSystemInfoComponent implements OnInit {
           }
         },
         error: (err: any) => {
+          console.log('Error:', err);
           if (this.currentLanguage == 'ar') {
             this.toastr.error('هناك شيء خاطئ', 'خطأ');
           } else {

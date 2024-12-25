@@ -105,6 +105,23 @@
               type="email"
               formControlName="ownerEmail"
             />
+            <!-- errors -->
+            <div
+              *ngIf="
+                editForm.get('ownerEmail')?.invalid && editForm.get('ownerEmail')?.touched
+              "
+            >
+              <small
+                *ngIf="formValues['ownerEmail'].getError('email')"
+                class="text-danger"
+              >
+                {{
+                  "customers.all_customers.customers_form.email_required"
+                    | translate
+                }}</small
+              >
+            </div>
+            <!-- errors -->
           </div>
         </div>
         <div class="col-sm-6">

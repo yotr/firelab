@@ -17,6 +17,7 @@ export class CustomerReportsSidebarComponent implements OnInit {
   // categories
   categories: any[] = [];
   categoriesLoading: boolean = true;
+  getDataError: boolean = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -33,43 +34,53 @@ export class CustomerReportsSidebarComponent implements OnInit {
       }
     });
 
-    this.categories = [
-      {
-        id: 0,
-        name: 'Spcial Hazard',
-        icon: 'pi-exclamation-triangle',
-        link: '',
-      },
-      {
-        id: 1,
-        name: 'Alarm',
-        icon: 'pi-exclamation-triangle',
-      },
-      {
-        id: 3,
-        name: 'Lighting',
-        icon: 'pi-exclamation-triangle',
-      },
-      {
-        id: 4,
-        name: 'Fire Door',
-        icon: 'pi-exclamation-triangle',
-      },
-      {
-        id: 5,
-        name: 'Doors',
-        icon: 'pi-exclamation-triangle',
-      },
-      {
-        id: 6,
-        name: 'Testing',
-        icon: 'pi-exclamation-triangle',
-      },
-    ];
+    // this.categories = [
+    //   {
+    //     id: 0,
+    //     name: 'Spcial Hazard',
+    //     icon: 'pi-exclamation-triangle',
+    //     link: '',
+    //   },
+    //   {
+    //     id: 1,
+    //     name: 'Alarm',
+    //     icon: 'pi-exclamation-triangle',
+    //   },
+    //   {
+    //     id: 3,
+    //     name: 'Lighting',
+    //     icon: 'pi-exclamation-triangle',
+    //   },
+    //   {
+    //     id: 4,
+    //     name: 'Fire Door',
+    //     icon: 'pi-exclamation-triangle',
+    //   },
+    //   {
+    //     id: 5,
+    //     name: 'Doors',
+    //     icon: 'pi-exclamation-triangle',
+    //   },
+    //   {
+    //     id: 6,
+    //     name: 'Testing',
+    //     icon: 'pi-exclamation-triangle',
+    //   },
+    // ];
   }
 
   ngOnInit() {
-    // this.getCategories();
+    this.getCategories();
+    this.getLanguage();
+  }
+
+  getLanguage() {
+    // get language from localStorage
+    this.languageService.getCurrentLanguage().subscribe((language) => {
+      this.currentLanguage = language;
+      // turn on current language (trandlate)
+      this.translateService.use(this.currentLanguage);
+    });
   }
 
   navigate(report: any) {
@@ -85,10 +96,14 @@ export class CustomerReportsSidebarComponent implements OnInit {
         console.log(data);
         if (data?.isSuccess) {
           this.categories = data?.value;
-          this.categoriesLoading = false;
+          this.getDataError = false;
         }
+        this.categoriesLoading = false;
       },
       error: (err) => {
+        this.categories = [];
+        this.categoriesLoading = false;
+        this.getDataError = true;
         console.log(err);
         if (this.currentLanguage == 'ar') {
           this.toastr.error('هناك شيء خاطئ', 'خطأ');

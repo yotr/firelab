@@ -1,83 +1,80 @@
 <!-- add_building_info_modal -->
-<div id="add_building_info_modal" class="modal custom-modal fade" role="dialog">
-  <div class="modal-dialog modal-dialog-centered modal-md" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">{{ "customers.building_info.form.add_title" | translate }}</h5>
-        <button
-          type="button"
-          class="close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
+<div id="add_building_info_modal">
+  <!-- Page Header -->
+  <div
+    class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
+    [dir]="'dir' | translate"
+  >
+    <!-- breadcrumb -->
+    <app-breadcrumb
+      [title]="'customers.building_info.form.add_title' | translate"
+    ></app-breadcrumb>
+  </div>
+  <!-- /Page Header -->
+
+  <app-back-button></app-back-button>
+
+  <div class="modal-body">
+    <form (ngSubmit)="submit()" [formGroup]="addForm">
+      <div class="row mt-4">
+        <div class="col-sm-12">
+          <!-- title -->
+          <div class="form-group mt-2">
+            <label
+              >{{ "customers.building_info.form.title" | translate }}
+              <span class="text-danger">*</span></label
+            >
+            <input
+              class="form-control"
+              type="text"
+              formControlName="title"
+              placeholder="title"
+            />
+            <!-- errors -->
+            <div
+              *ngIf="
+                addForm.get('title')?.invalid && addForm.get('title')?.touched
+              "
+            >
+              <small
+                *ngIf="
+                  addForm.get('title')?.invalid && addForm.get('title')?.touched
+                "
+                class="text-danger"
+              >
+                {{
+                  "customers.building_info.form.title_required" | translate
+                }}</small
+              >
+            </div>
+            <!-- errors -->
+          </div>
+        </div>
+        <div class="col-sm-12">
+          <!-- description -->
+          <div class="form-group mt-2">
+            <label
+              >{{ "customers.building_info.form.description" | translate }}
+            </label>
+            <textarea
+              rows="3"
+              placeholder="description"
+              formControlName="description"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- submit -->
+      <div class="save-btn text-center">
+        <button type="submit" [disabled]="addForm.invalid" class="save mt-4">
+          {{ "save" | translate }}
         </button>
       </div>
-      <div class="modal-body">
-        <form (ngSubmit)="submit()" [formGroup]="addForm">
-          <div class="row mt-4">
-            <div class="col-sm-12">
-              <!-- title -->
-              <div class="form-group mt-2">
-                <label>{{ "customers.building_info.form.title" | translate }} <span class="text-danger">*</span></label>
-                <input
-                  class="form-control"
-                  type="text"
-                  formControlName="title"
-                  placeholder="title"
-                />
-                <!-- errors -->
-                <div
-                  *ngIf="
-                    addForm.get('title')?.invalid &&
-                    addForm.get('title')?.touched
-                  "
-                >
-                  <small
-                    *ngIf="
-                      addForm.get('title')?.invalid &&
-                      addForm.get('title')?.touched
-                    "
-                    class="text-danger"
-                  >
-                    {{ "customers.building_info.form.title_required" | translate }}</small
-                  >
-                </div>
-                <!-- errors -->
-              </div>
-            </div>
-            <div class="col-sm-12">
-              <!-- description -->
-              <div class="form-group mt-2">
-                <label
-                  >{{ "customers.building_info.form.description" | translate }}
-                </label>
-                <textarea
-                  rows="3"
-                  placeholder="description"
-                  formControlName="description"
-                ></textarea>
-              </div>
-            </div>
-          </div>
-
-          <!-- submit -->
-          <div class="save-btn text-center">
-            <button
-              type="submit"
-              [disabled]="addForm.invalid"
-              class="save mt-4"
-            >
-              {{ "save" | translate }}
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
+    </form>
   </div>
 </div>
 <!-- /Drogfiles Modal -->
-
 
 <!-- loading section -->
 <div *ngIf="uploading">

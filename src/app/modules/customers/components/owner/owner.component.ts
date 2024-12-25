@@ -76,15 +76,19 @@ export class OwnerComponent implements OnInit, AfterViewInit {
     });
   }
 
+  // convenience getter for easy access to form fields
+  get formValues() {
+    return this.editForm.controls;
+  }
+
   ngAfterViewInit(): void {
-    // this.getCurrentData();
+    this.getCurrentData();
   }
 
   ngOnInit() {
     this.getTheme();
     this.getCurrentLanguage();
     this.getCurrentCustomerId();
-    // this.navigationHandler();
   }
   // get theme from localStorage
   getTheme() {

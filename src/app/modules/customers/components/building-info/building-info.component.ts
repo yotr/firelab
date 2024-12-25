@@ -30,6 +30,8 @@ export class BuildingInfoComponent implements OnInit, AfterViewInit {
   updatedData: any = null;
   data: any[] = [];
   loading: boolean = true;
+  getDataError: boolean = false;
+  totalItemsCount: number = 0;
 
   customerId: any = null;
 
@@ -60,13 +62,12 @@ export class BuildingInfoComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // this.getData()
+    this.getData();
   }
   ngOnInit() {
     this.getTheme();
     this.getLanguage();
     this.getCurrentCustomerId();
-    // this.navigationHandler();
   }
   // get theme from localStorage
   getTheme() {
@@ -106,39 +107,50 @@ export class BuildingInfoComponent implements OnInit, AfterViewInit {
     }
   }
 
-  navigate(id: any) {
-    this.router.navigate(['/modules/customers/buildingInfo/edit', id], {
-      queryParams: { customerId: this.customerId },
-    });
+  navigateTo(path: string, id?: any) {
+    if (id) {
+      this.router.navigate([path, id], {
+        queryParams: { customerId: this.customerId },
+      });
+    } else {
+      this.router.navigate([path], {
+        queryParams: { customerId: this.customerId },
+      });
+    }
   }
 
   getData() {
-    this.apiService?.get(`CustomerBindingInfo/${this.customerId}`).subscribe({
-      next: (data: any) => {
-        console.log(data);
-        if (data?.isSuccess) {
-          this.data = data?.value;
+    this.apiService
+      ?.get(`customerBuildingInfo/customer/${this.customerId}`)
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.data = data?.value;
+            this.getDataError = false;
+          }
           this.loading = false;
-        }
-      },
-      error: (err: any) => {
-        this.data = [];
-        this.loading = false;
-        if (this.currentLanguage == 'ar') {
-          this.toastr.error('هناك شيء خاطئ', 'خطأ');
-        } else {
-          this.toastr.error('There Is Somthing Wrong', 'Error');
-        }
-      },
-      complete: () => {},
-    });
+        },
+        error: (err: any) => {
+          this.data = [];
+          this.loading = false;
+          this.getDataError = true;
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {},
+      });
   }
   deleteItem() {
-    this.apiService.delete(`CustomerBindingInfo`, this.deleteId).subscribe({
+    this.apiService.delete(`customerBuildingInfo`, this.deleteId).subscribe({
       next: (data) => {
-        this.data = this.data.filter((item: any) => item?.id !== this.deleteId);
-
         if (data?.isSuccess) {
+          this.data = this.data.filter(
+            (item: any) => item?.id !== this.deleteId
+          );
           if (this.currentLanguage == 'ar') {
             this.toastr.success('تم حذف العنصر بنجاح...');
           } else {

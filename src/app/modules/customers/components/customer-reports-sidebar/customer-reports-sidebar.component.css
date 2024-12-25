@@ -7,7 +7,7 @@
 } */
 .reports-sidebar-header {
   height: 68px;
-  max-width: 325px;
+  width: 325px;
   color: white;
   background-color: var(--dark-theme-bg);
   display: flex;
@@ -16,7 +16,7 @@
 }
 
 .reports-types {
-  max-width: 325px;
+  width: 325px;
   padding: 20px 6px;
   display: flex;
   flex-wrap: wrap;

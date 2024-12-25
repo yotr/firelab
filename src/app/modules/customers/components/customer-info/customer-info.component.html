@@ -100,11 +100,24 @@
             <label>
               {{ "customers.all_customers.customers_form.email" | translate }}
             </label>
-            <input
-              class="form-control"
-              type="email"
-              formControlName="email"
-            />
+            <input class="form-control" type="email" formControlName="email" />
+            <!-- errors -->
+            <div
+              *ngIf="
+                editForm.get('email')?.invalid && editForm.get('email')?.touched
+              "
+            >
+              <small
+                *ngIf="formValues['email'].getError('email')"
+                class="text-danger"
+              >
+                {{
+                  "customers.all_customers.customers_form.email_required"
+                    | translate
+                }}</small
+              >
+            </div>
+            <!-- errors -->
           </div>
         </div>
         <div class="col-sm-6">
@@ -216,11 +229,7 @@
             <label>
               {{ "customers.all_customers.customers_form.city" | translate }}
             </label>
-            <input
-              class="form-control"
-              type="text"
-              formControlName="city"
-            />
+            <input class="form-control" type="text" formControlName="city" />
           </div>
         </div>
       </div>
@@ -245,7 +254,6 @@
     <app-customer-reports-sidebar></app-customer-reports-sidebar>
   </div>
 </div>
-
 
 <!-- loading section -->
 <div *ngIf="uploading">

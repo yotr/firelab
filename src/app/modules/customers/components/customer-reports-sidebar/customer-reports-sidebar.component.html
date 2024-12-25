@@ -11,9 +11,26 @@
         [ngClass]="{ active: activeReport == report?.name }"
         (click)="navigate(report)"
       >
-        <i class="pi + {{ report?.icon }} "></i>
-        <span>{{ report?.name }}</span>
+        <i class="pi pi-exclamation-triangle"></i>
+        <span>{{
+          currentLanguage == "ar" ? report?.arabicName : report?.name
+        }}</span>
       </div>
     </ng-container>
+    <!-- no data -->
+    <h1
+      *ngIf="
+        categoriesLoading == false &&
+        getDataError == false &&
+        categories?.length == 0
+      "
+      class="fs-3 my-4 text-center"
+    >
+      {{ "module_table.table_empty_text" | translate }}
+    </h1>
+    <!-- error -->
+    <h1 *ngIf="categoriesLoading == false && getDataError" class="fs-3 my-4 text-center">
+      {{ "module_table.table_error_text" | translate }}
+    </h1>
   </div>
 </div>

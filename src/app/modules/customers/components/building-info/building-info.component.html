@@ -20,60 +20,47 @@
       </div>
       <!-- notes -->
       <div class="building-notes mt-4">
-        <div class="note">
+        <div class="note" *ngFor="let value of data">
           <div class="title">
-            <div class="label">
-              What are the key steps involved in building a house?
-            </div>
+            <div class="label">{{ value?.title }}</div>
             <div class="actions">
               <i
                 class="pi pi-pencil text-danger mx-2 fs-5"
-                (click)="navigate(1)"
+                (click)="
+                  navigateTo('/modules/customers/buildingInfo/edit', value?.id)
+                "
               ></i>
               <i
                 class="pi pi-trash mx-2 fs-5"
                 data-bs-toggle="modal"
                 data-bs-target="#delete"
-                (click)="deleteId = 1"
+                (click)="deleteId = value?.id"
               ></i>
             </div>
           </div>
           <div class="note-input">
             <textarea
               rows="3"
-              placeholder="Planning and Design: Create architectural plans, secure necessar permits, and finalize the design of the house."
+              [placeholder]="value?.description"
               readonly
             ></textarea>
           </div>
         </div>
-        <div class="note">
-          <div class="title">
-            <div class="label">
-              What are the key steps involved in building a house?
-            </div>
-            <div class="actions">
-              <i class="pi pi-pencil text-danger mx-2 fs-5"></i>
-              <i class="pi pi-trash mx-2 fs-5"></i>
-            </div>
-          </div>
-          <div class="note-input">
-            <textarea
-              rows="3"
-              placeholder="Planning and Design: Create architectural plans, secure necessary permits, and finalize the design of the house."
-              readonly
-            ></textarea>
-          </div>
-        </div>
+        <!-- no data -->
+        <h1
+          *ngIf="loading == false && getDataError == false && data?.length == 0"
+          class="fs-3 my-4 text-center"
+        >
+          {{ "module_table.table_empty_text" | translate }}
+        </h1>
       </div>
 
-      <!-- submit -->
+      <!-- add -->
       <div class="submit-section text-start mb-4">
         <button
           class="btn submit-btn mx-2"
           [class]="currentTheme?.colorSchema?.background"
-          type="submit"
-          data-bs-toggle="modal"
-          data-bs-target="#add_building_info_modal"
+          (click)="navigateTo('/modules/customers/buildingInfo/add')"
         >
           <span [class]="currentTheme?.colorSchema?.color">{{
             "add" | translate
@@ -95,10 +82,3 @@
   (onDelete)="deleteItem()"
 ></app-delete-modal>
 <!--/ delete modal -->
-
-<!-- add modal -->
-<app-add-building-info-modal
-  [currentLanguage]="currentLanguage"
-  [customerId]="customerId"
-></app-add-building-info-modal>
-<!-- /add modal -->

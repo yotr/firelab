@@ -20,7 +20,7 @@
           <label>{{ "customers.system_info.form.reportCategory" | translate }} <span class="text-danger">*</span></label>
           <select
             class="form-select form-control"
-            formControlName="reportCategory"
+            formControlName="reportCategoryId"
           >
             <option disabled selected>
               {{ "select" | translate }}
@@ -40,14 +40,14 @@
           <!-- errors -->
           <div
             *ngIf="
-              addForm.get('reportCategory')?.invalid &&
-              addForm.get('reportCategory')?.touched
+              addForm.get('reportCategoryId')?.invalid &&
+              addForm.get('reportCategoryId')?.touched
             "
           >
             <small
               *ngIf="
-                addForm.get('reportCategory')?.invalid &&
-                addForm.get('reportCategory')?.touched
+                addForm.get('reportCategoryId')?.invalid &&
+                addForm.get('reportCategoryId')?.touched
               "
               class="text-danger"
             >
@@ -66,7 +66,7 @@
               {{ "select" | translate }}
             </option>
             <ng-container *ngFor="let system of systems">
-              <option [value]="system?.id">
+              <option [value]="system?.name">
                 {{ system?.name }}
               </option>
             </ng-container>
@@ -101,7 +101,7 @@
               {{ "select" | translate }}
             </option>
             <ng-container *ngFor="let type of types">
-              <option [value]="type?.id">
+              <option [value]="type?.name">
                 {{ type?.name }}
               </option>
             </ng-container>
@@ -129,7 +129,7 @@
         <!-- Quantity -->
         <div class="form-group mt-2">
           <label>{{ "customers.system_info.form.quantity_required" | translate }} <span class="text-danger">*</span></label>
-          <input class="form-control" type="text" formControlName="quantity" />
+          <input class="form-control" type="number" formControlName="quantity" />
           <!-- errors -->
           <div
             *ngIf="

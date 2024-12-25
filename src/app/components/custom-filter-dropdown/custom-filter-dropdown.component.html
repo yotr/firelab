@@ -16,14 +16,20 @@
   <div [hidden]="!isActive" id="myDropdown" class="dropdown-content">
     <input
       type="text"
-      placeholder="Search.."
+      [placeholder]="'search' | translate"
       id="myInput"
       (keydown)="filterFunction($event)"
     />
-    <ng-container *ngFor="let value of data">
-      <div class="list" (click)="action(value, value[objectKey])">
-        <span>{{ value[objectKey] }}</span>
-      </div>
-    </ng-container>
+    <div class="list">
+      <ng-container *ngFor="let value of data">
+        <div class="item" (click)="action(value, value[objectKey])">
+          <span>{{ value[objectKey] }}</span>
+        </div>
+      </ng-container>
+      <!-- no found -->
+      <p *ngIf="data.length == 0" class="fs-5 my-4 text-center">
+        {{ "no_data" | translate }}
+      </p>
+    </div>
   </div>
 </div>

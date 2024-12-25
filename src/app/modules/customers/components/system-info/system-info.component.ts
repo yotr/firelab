@@ -30,7 +30,8 @@ export class SystemInfoComponent implements OnInit, AfterViewInit {
   currentLanguage: any = localStorage.getItem('lang');
   currentTheme: any;
   data: any[] = [];
-  loading: boolean = false;
+  getDataError: boolean = false;
+  loading: boolean = true;
   totalItemsCount: number = 0;
   dataKeys: any[] = [];
 
@@ -62,7 +63,7 @@ export class SystemInfoComponent implements OnInit, AfterViewInit {
 
     this.dataKeys = [
       {
-        name: 'reportType',
+        name: 'reportCategory',
         display: this.translateService.instant(
           'customers.system_info.table.reportType'
         ),
@@ -90,7 +91,7 @@ export class SystemInfoComponent implements OnInit, AfterViewInit {
         display: this.translateService.instant(
           'customers.system_info.table.quantity'
         ),
-        type: 'string',
+        type: 'number',
         active: true,
       },
     ];
@@ -102,7 +103,6 @@ export class SystemInfoComponent implements OnInit, AfterViewInit {
     this.getLanguage();
     this.getTheme();
     this.getCurrentCustomerId();
-    // this.navigationHandler();
   }
 
   getTheme() {
@@ -160,31 +160,34 @@ export class SystemInfoComponent implements OnInit, AfterViewInit {
     value2?: any
   ) {
     // api
-    // this.apiService
-    //   ?.filterData(
-    //     'systemInformations/getFilteredSystemInformations',
-    //     page ? page : 1,
-    //     pageSize ? pageSize : 10
-    //   )
-    //   .subscribe({
-    //     next: (data:any) => {
-    //       console.log(data);
-    //       if (data?.isSuccess) {
-    //         this.data = data?.value;
-    //         this.totalItemsCount = data?.totalCount;
-    //         this.loading = false;
-    //       }
-    //     },
-    //     error: (err: any) => {
-    //       this.loading = false;
-    //       if (this.currentLanguage == 'ar') {
-    //         this.toastr.error('هناك شيء خاطئ', 'خطأ');
-    //       } else {
-    //         this.toastr.error('There Is Somthing Wrong', 'Error');
-    //       }
-    //     },
-    //     complete: () => {},
-    //   });
+    this.loading = true;
+    this.apiService
+      ?.filterData(
+        'systemInformations/getFilteredSystemInformations',
+        page ? page : 1,
+        pageSize ? pageSize : 20
+      )
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.data = data?.value?.systemInformationDto;
+            this.totalItemsCount = data?.value?.totalCount;
+            this.getDataError = false;
+          }
+          this.loading = false;
+        },
+        error: (err: any) => {
+          this.loading = false;
+          this.getDataError = true;
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {},
+      });
   }
 
   onPaginate(event: any) {
@@ -199,11 +202,23 @@ export class SystemInfoComponent implements OnInit, AfterViewInit {
           event?.value,
           event?.column
         )
-        .subscribe((data: any) => {
-          console.log(data);
-          this.data = data?.value;
-          this.totalItemsCount = data?.value?.length;
-          this.loading = false;
+        .subscribe({
+          next: (data: any) => {
+            if (data?.isSuccess) {
+              console.log(data);
+              this.data = data?.value;
+              this.totalItemsCount = data?.value?.length;
+            }
+            this.loading = false;
+          },
+          error: (err: any) => {
+            this.loading = false;
+            if (this.currentLanguage == 'ar') {
+              this.toastr.error('هناك شيء خاطئ', 'خطأ');
+            } else {
+              this.toastr.error('There Is Somthing Wrong', 'Error');
+            }
+          },
         });
     } else {
       this.getData();
@@ -214,9 +229,8 @@ export class SystemInfoComponent implements OnInit, AfterViewInit {
     console.log(deleteId);
     this.apiService.delete('systemInformations', deleteId).subscribe({
       next: (data) => {
-        this.data = this.data.filter((item: any) => item?.id !== deleteId);
-
         if (data?.isSuccess) {
+          this.data = this.data.filter((item: any) => item?.id !== deleteId);
           if (this.currentLanguage == 'ar') {
             this.toastr.success('تم حذف العنصر بنجاح...');
           } else {
@@ -243,10 +257,10 @@ export class SystemInfoComponent implements OnInit, AfterViewInit {
       .filterData(
         'systemInformations/getFilteredSystemInformations',
         1,
-        10,
+        20,
         event?.column,
         event?.filters?.operator1,
-        event?.filters?.operator2,
+        event?.filters?.operator2 ? event?.filters?.operator2 : null,
         event?.filters?.searchValue1,
         event?.filters?.searchValue2
       )
@@ -254,8 +268,8 @@ export class SystemInfoComponent implements OnInit, AfterViewInit {
         next: (data) => {
           console.log(data);
           if (data?.isSuccess) {
-            this.data = data?.value;
-            this.totalItemsCount = data?.totalCount;
+            this.data = data?.value?.systemInformationDto;
+            this.totalItemsCount = data?.value?.totalCount;
             this.loading = false;
           }
         },
