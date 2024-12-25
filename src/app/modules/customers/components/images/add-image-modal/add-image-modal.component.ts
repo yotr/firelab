@@ -1,4 +1,11 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
+import { ApiService } from 'src/app/services/api/api.service';
+import { LanguageService } from 'src/app/services/language/language.service';
+import { SidebarService } from 'src/app/services/sidebar/sidebar.service';
+import { ThemeService } from 'src/app/services/theme/theme.service';
 declare const $: any;
 
 @Component({
@@ -7,14 +14,76 @@ declare const $: any;
   styleUrls: ['./add-image-modal.component.css'],
 })
 export class AddImageModalComponent implements OnInit {
-  @Output() onAttach: EventEmitter<any> = new EventEmitter();
+  customerId: any = null;
+  currentTheme: any;
+  currentLanguage: any = localStorage.getItem('lang');
   file: any = null;
   fileURL: any = null;
   loading: boolean = true;
+  uploading: boolean = false;
 
-  constructor() {}
+  constructor(
+    private themeService: ThemeService,
+    public translateService: TranslateService,
+    private languageService: LanguageService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private sidebarService: SidebarService,
+    private toastr: ToastrService,
+    private apiService: ApiService
+  ) {
+    //get query
+    this.activatedRoute.queryParamMap.subscribe((paramMap: Params) => {
+      if (paramMap['get']('customerId')) {
+        this.customerId = paramMap['get']('customerId');
+        // activate current customer id so we can get in other pages after refresh
+        this.sidebarService.sendCurrentCustomer(paramMap['get']('customerId'));
+      }
+    });
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getTheme();
+    this.getLanguage();
+    this.getCurrentCustomerId();
+  }
+
+  // get theme from localStorage
+  getTheme() {
+    this.themeService.getCurrentTheme().subscribe((theme) => {
+      this.currentTheme = JSON.parse(theme);
+    });
+  }
+
+  getLanguage() {
+    // get language from localStorage
+    this.languageService.getCurrentLanguage().subscribe((language) => {
+      this.currentLanguage = language;
+      // turn on current language (trandlate)
+      this.translateService.use(this.currentLanguage);
+    });
+  }
+  //handle display submenu from list menu array by know which item active
+  setActiveMenu() {
+    this.sidebarService.activateDropdown('customers');
+  }
+
+  getCurrentCustomerId() {
+    this.sidebarService.getCurrentCustomerValue().subscribe((value: any) => {
+      if (value) {
+        this.customerId = value;
+      }
+    });
+    if (this.customerId != null) {
+      this.setActiveMenu();
+      // set querys to current page
+      this.router.navigate([], {
+        queryParams: { customerId: this.customerId },
+      });
+    } else {
+      this.router.navigate(['/modules/customers/allCustomers']);
+    }
+  }
 
   //get selected files form device
 
@@ -34,9 +103,59 @@ export class AddImageModalComponent implements OnInit {
   }
   // on attach files to be uploaded
   onAttachImage() {
-    this.onAttach.emit(this.fileURL);
-    $('#add_image').modal('hide');
-    this.file = null;
+    // this.onAttach.emit(this.fileURL);
+    // $('#add_image').modal('hide');
+    // this.file = null;
+
+    if (this.file) {
+      let data = {
+        customerId: this.customerId,
+        image: this.file,
+      };
+      console.log(data);
+      let formData = new FormData();
+      formData.append('CustomerId', data?.customerId);
+      formData.append('Image', this.file);
+      console.log(formData.get('Image'));
+
+      this.uploading = true;
+      // api
+      this.apiService.addFormData('imageCustomerInfo/add', formData).subscribe({
+        next: (data) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            if (this.currentLanguage == 'ar') {
+              this.toastr.success('تمت إضافة البيانات بنجاح...');
+            } else {
+              this.toastr.success('data added successfully...', 'Success');
+            }
+            this.router.navigate(['/modules/customers/images'], {
+              queryParams: { customerId: this.customerId },
+            });
+            // this.onAdd.emit(data);
+            // $('#add_building_info_modal').modal('hide');
+          }
+        },
+        error: (err: any) => {
+          console.log(err);
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+          this.uploading = false;
+        },
+        complete: () => {
+          this.uploading = false;
+        },
+      });
+    } else {
+      if (this.currentLanguage == 'ar') {
+        this.toastr.warning('الرجاء إدخال الحقول المطلوبة');
+      } else {
+        this.toastr.warning('Please enter the required fields');
+      }
+    }
   }
   cancel() {
     this.file = null;

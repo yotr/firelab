@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import {
+  HttpClient,
+  HttpErrorResponse,
+  HttpHeaders,
+  HttpRequest,
+} from '@angular/common/http';
 import { catchError, Observable, retry, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -64,13 +69,26 @@ export class ApiService {
   }
 
   // add multi data
-  addFormData(path: string, data: any): Observable<any> {
-    return this.http.post<any>(
-      `${environment.API}/api/${path}`,
-      data,
-      environment.MULTI_HTTP_OPTIONS
-    );
-    // .pipe(retry(1), catchError(this.handleError));
+  addFormData(path: string, data: FormData): Observable<any> {
+    return this.http
+      .post<any>(
+        `${environment.API}/api/${path}`,
+        data,
+        environment.Files_HTTP_OPTIONS
+      )
+      .pipe(retry(1), catchError(this.handleError));
+    // request
+    // const request = new HttpRequest(
+    //   'POST',
+    //   `${environment.API}/api/${path}`,
+    //   data,
+    //   {
+    //     headers: new HttpHeaders({ 'content-type': 'multipart/form-data' }),
+    //     reportProgress: false,
+    //     responseType:  'arraybuffer' || 'blob' || 'json' || 'text',
+    //   }
+    // );
+    // return this.http.request(request);
   }
 
   // update multi data

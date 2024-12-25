@@ -26,6 +26,7 @@ import { AutoEmailComponent } from './components/auto-email/auto-email.component
 import { AddJobComponent } from './components/add-job/add-job.component';
 import { HoodSystemComponent } from './components/hood-system/hood-system.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { AddImageModalComponent } from './components/images/add-image-modal/add-image-modal.component';
 
 const routes: Routes = [
   {
@@ -83,6 +84,10 @@ const routes: Routes = [
       {
         path: 'images',
         component: ImagesComponent,
+      },
+      {
+        path: 'images/add',
+        component: AddImageModalComponent,
       },
       {
         path: 'importDevices',

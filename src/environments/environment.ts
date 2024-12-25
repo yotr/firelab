@@ -23,5 +23,11 @@ export const environment = {
       // Authorization: 'my-auth-token',
     }),
   },
+  // Define your custom headers
+  Files_HTTP_OPTIONS: {
+    headers: new HttpHeaders({
+      Referer: 'http://localhost:5158',
+      Origin: 'http://localhost:5158',
+    }),
+  },
 };
-

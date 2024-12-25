@@ -10,8 +10,7 @@
           class="btn add-btn d-flex align-items-center {{
             currentTheme?.colorSchema?.background
           }} {{ currentTheme?.colorSchema?.color }}"
-          data-bs-toggle="modal"
-          data-bs-target="#add_image"
+          (click)="navigateTo('/modules/customers/images/add')"
         >
           <i class="pi pi-plus d-none d-sm-block"></i>
           {{ "customers.images.add_btn" | translate }}
@@ -32,14 +31,20 @@
       <div class="building-images mt-4">
         <div class="building-image" *ngFor="let img of data">
           <div class="image">
-            <i class="pi pi-trash trash"></i>
+            <i
+              data-bs-toggle="modal"
+              data-bs-target="#delete"
+              role="button"
+              class="pi pi-trash trash"
+              (click)="deleteId = img?.id"
+            ></i>
             <i
               class="pi pi-expand expand"
               data-bs-toggle="modal"
               data-bs-target="#view_image"
-              (click)="onView(img?.image)"
+              (click)="onView(img?.imagePath)"
             ></i>
-            <img [src]="img?.image" alt="image" />
+            <img [src]="img?.imagePath" alt="image" />
           </div>
           <div class="comment">
             <input
@@ -47,18 +52,25 @@
               type="text"
               [placeholder]="'customers.images.comment_placehoder' | translate"
               [value]="img?.comment"
+              (keyup)="onUpdateImage($event, img?.id)"
             />
           </div>
         </div>
       </div>
-
       <!-- no data -->
-      <h5
-        *ngIf="data.length == 0 && loading == false"
-        class="text-center text-danger bg-light m-0 py-2"
+      <h1
+        *ngIf="loading == false && getDataError == false && data.length == 0"
+        class="fs-3 my-4 text-center"
       >
-        {{ "customers.images.no_images" | translate }}
-      </h5>
+        {{ "module_table.table_empty_text" | translate }}
+      </h1>
+      <!-- error -->
+      <h1
+        *ngIf="loading == false && getDataError"
+        class="fs-3 my-4 text-center"
+      >
+        {{ "module_table.table_error_text" | translate }}
+      </h1>
     </div>
   </div>
 
@@ -68,9 +80,14 @@
   </div>
 </div>
 
-<!-- add-image-modal -->
-<app-add-image-modal (onAttach)="onUploadFile($event)"></app-add-image-modal>
-<!-- /add-image-modal -->
 <!-- view-image-modal -->
 <app-view-image-modal [image]="viewUrl"></app-view-image-modal>
 <!-- /view-image-modal -->
+
+<!-- delete modal -->
+<app-delete-modal
+  title="Image"
+  [currentTheme]="currentTheme"
+  (onDelete)="onDeleteFile()"
+></app-delete-modal>
+<!--/ delete modal -->
