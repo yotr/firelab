@@ -162,10 +162,11 @@ export class SystemInfoComponent implements OnInit, AfterViewInit {
     // api
     this.loading = true;
     this.apiService
-      ?.filterData(
+      ?.filterDataWithCustomerId(
         'systemInformations/getFilteredSystemInformations',
         page ? page : 1,
-        pageSize ? pageSize : 20
+        pageSize ? pageSize : 20,
+        this.customerId
       )
       .subscribe({
         next: (data: any) => {
@@ -197,8 +198,9 @@ export class SystemInfoComponent implements OnInit, AfterViewInit {
   search(event: any) {
     if (event?.value != null && event.value?.trim() != '') {
       this.apiService
-        .globalSearch(
+        .globalSearchWithCustomerId(
           'systemInformations/globalsearch',
+          this.customerId,
           event?.value,
           event?.column
         )

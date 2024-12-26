@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import {
   ActivatedRoute,
@@ -20,7 +20,7 @@ declare const $: any;
   templateUrl: './auto-email.component.html',
   styleUrls: ['./auto-email.component.css'],
 })
-export class AutoEmailComponent implements OnInit {
+export class AutoEmailComponent implements OnInit, AfterViewInit {
   addForm: FormGroup;
   currentTheme: any;
   deleteId: any = null;
@@ -34,6 +34,7 @@ export class AutoEmailComponent implements OnInit {
   // emails
   autoEmails: any[] = [];
   autoEmailsLoading: boolean = true;
+  getDataError: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -61,11 +62,13 @@ export class AutoEmailComponent implements OnInit {
       emails: this.formBuilder.array([]),
     });
   }
+  ngAfterViewInit(): void {
+    this.getEmails();
+  }
   ngOnInit() {
     this.getTheme();
     this.getCurrentLanguage();
     this.getCurrentCustomerId();
-    this.getEmails();
   }
   // get theme from localStorage
   getTheme() {
@@ -112,6 +115,7 @@ export class AutoEmailComponent implements OnInit {
   newItem(): FormGroup {
     return this.formBuilder.group({
       email: '',
+      customerId: '',
       id: -1,
     });
   }
@@ -141,48 +145,47 @@ export class AutoEmailComponent implements OnInit {
       let value = this.formBuilder.group({
         email: item?.email,
         id: item?.id,
+        customerId: item?.customerId,
       });
       this.emails.push(value);
     });
   }
 
   getEmails() {
-    this.autoEmails = [{ id: 1, email: 'email@example.com' }];
-    this.addExistingEmailsItems(this.autoEmails);
-    // this.apiService.get('autoEmails').subscribe({
-    //   next: (data: any) => {
-    //     console.log(data);
-    //     if (data?.isSuccess) {
-    //       this.autoEmails = data?.value;
-    //       this.autoEmailsLoading = false;
-    //     }
-    //   },
-    //   error: (err) => {
-    //     console.log(err);
-    //     if (this.currentLanguage == 'ar') {
-    //       this.toastr.error('هناك شيء خاطئ', 'خطأ');
-    //     } else {
-    //       this.toastr.error('There Is Somthing Wrong', 'Error');
-    //     }
-    //     this.autoEmailsLoading = false;
-    //   },
-    //   complete: () => {
-    //     this.autoEmailsLoading = false;
-    //   },
-    // });
+    this.apiService
+      .get(`autoEmails/getautoEmails/${this.customerId}`)
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.autoEmails = data?.value;
+            this.addExistingEmailsItems(data?.value);
+            this.getDataError = false;
+          }
+          this.autoEmailsLoading = false;
+        },
+        error: (err) => {
+          console.log(err);
+          this.autoEmailsLoading = false;
+          this.getDataError = true;
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {
+          this.autoEmailsLoading = false;
+        },
+      });
   }
   deleteItem() {
     console.log(this.deleteId);
     if (this.deleteId == -1) {
       this.emails.removeAt(this.deleteIndex);
+      this.deleteId = null;
+      this.deleteIndex = null;
     } else {
-      console.log(this.autoEmails);
-      console.log(this.emails.value);
-      this.emails.removeAt(this.deleteIndex);
-      this.autoEmails = this.autoEmails.filter(
-        (item: any) => item?.id !== this.deleteId
-      );
-
       this.apiService.delete('autoEmails', this.deleteId).subscribe({
         next: (data) => {
           if (data?.isSuccess) {
@@ -206,7 +209,10 @@ export class AutoEmailComponent implements OnInit {
             this.toastr.error('There Is Somthing Wrong', 'Error');
           }
         },
-        complete: () => {},
+        complete: () => {
+          this.deleteId = null;
+          this.deleteIndex = null;
+        },
       });
     }
   }
@@ -216,13 +222,15 @@ export class AutoEmailComponent implements OnInit {
       let data = {
         customerId: this.customerId,
         email: this.emails?.value[this.emails.length - 1]?.email,
-        id: this.uuidv4(),
       };
 
       if (this.autoEmails.length == this.emails?.length - 1) {
-        this.autoEmails.push({ id: data?.id, email: data?.email });
+        this.autoEmails.push({
+          id: -1,
+          email: data?.email,
+          customerId: data?.customerId,
+        });
         this.addForm.get('emails')?.setValue(this.autoEmails);
-        // this.addExistingEmailsItems([{ email: data?.email }]);
         console.log(data);
         this.uploading = true;
         // api
@@ -230,14 +238,17 @@ export class AutoEmailComponent implements OnInit {
           next: (data) => {
             console.log(data);
             if (data?.isSuccess) {
+              // update localy
+              this.emails.value[this.emails.length - 1].id = data.value.id;
+              // success message
               if (this.currentLanguage == 'ar') {
                 this.toastr.success('تمت إضافة البيانات بنجاح...');
               } else {
                 this.toastr.success('data added successfully...', 'Success');
               }
-              this.router.navigate(['/modules/customers/importDevices'], {
-                queryParams: { customerId: this.customerId },
-              });
+              // this.router.navigate(['/modules/customers/importDevices'], {
+              //   queryParams: { customerId: this.customerId },
+              // });
             }
           },
           error: (err: any) => {

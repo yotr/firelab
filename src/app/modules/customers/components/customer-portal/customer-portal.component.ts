@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import {
   ActivatedRoute,
@@ -20,7 +20,7 @@ declare const $: any;
   templateUrl: './customer-portal.component.html',
   styleUrls: ['./customer-portal.component.css'],
 })
-export class CustomerPortalComponent implements OnInit {
+export class CustomerPortalComponent implements OnInit, AfterViewInit {
   addForm: FormGroup;
   currentTheme: any;
   deleteId: any = null;
@@ -34,6 +34,7 @@ export class CustomerPortalComponent implements OnInit {
   // emails
   portalEmails: any[] = [];
   portalEmailsLoading: boolean = true;
+  getDataError: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -61,11 +62,13 @@ export class CustomerPortalComponent implements OnInit {
       emails: this.formBuilder.array([]),
     });
   }
+  ngAfterViewInit(): void {
+    this.getEmails();
+  }
   ngOnInit() {
     this.getTheme();
     this.getCurrentLanguage();
     this.getCurrentCustomerId();
-    this.getEmails();
   }
   // get theme from localStorage
   getTheme() {
@@ -112,6 +115,7 @@ export class CustomerPortalComponent implements OnInit {
   newItem(): FormGroup {
     return this.formBuilder.group({
       email: '',
+      customerId: '',
       id: -1,
     });
   }
@@ -139,51 +143,50 @@ export class CustomerPortalComponent implements OnInit {
     items?.map((item: any) => {
       // push item in items list data
       let value = this.formBuilder.group({
-        email: item?.email,
         id: item?.id,
+        email: item?.email,
+        customerId: item?.customerId,
       });
       this.emails.push(value);
     });
   }
 
   getEmails() {
-    this.portalEmails = [{ id: 1, email: 'email@example.com' }];
-    this.addExistingEmailsItems(this.portalEmails);
-    // this.apiService.get('customerPortals').subscribe({
-    //   next: (data: any) => {
-    //     console.log(data);
-    //     if (data?.isSuccess) {
-    //       this.portalEmails = data?.value;
-    //       this.portalEmailsLoading = false;
-    //     }
-    //   },
-    //   error: (err) => {
-    //     console.log(err);
-    //     if (this.currentLanguage == 'ar') {
-    //       this.toastr.error('هناك شيء خاطئ', 'خطأ');
-    //     } else {
-    //       this.toastr.error('There Is Somthing Wrong', 'Error');
-    //     }
-    //     this.portalEmailsLoading = false;
-    //   },
-    //   complete: () => {
-    //     this.portalEmailsLoading = false;
-    //   },
-    // });
+    this.apiService
+      .get(`customerPortals/getCustomerPortals/${this.customerId}`)
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.portalEmails = data?.value;
+            this.addExistingEmailsItems(data?.value);
+            this.getDataError = false;
+          }
+          this.portalEmailsLoading = false;
+        },
+        error: (err) => {
+          console.log(err);
+          this.portalEmailsLoading = false;
+          this.getDataError = true;
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {
+          this.portalEmailsLoading = false;
+        },
+      });
   }
 
   deleteItem() {
     console.log(this.deleteId);
     if (this.deleteId == -1) {
       this.emails.removeAt(this.deleteIndex);
+      this.deleteId = null;
+      this.deleteIndex = null;
     } else {
-      console.log(this.portalEmails);
-      console.log(this.emails.value);
-      this.emails.removeAt(this.deleteIndex);
-      this.portalEmails = this.portalEmails.filter(
-        (item: any) => item?.id !== this.deleteId
-      );
-
       this.apiService.delete('customerPortals', this.deleteId).subscribe({
         next: (data) => {
           if (data?.isSuccess) {
@@ -207,7 +210,10 @@ export class CustomerPortalComponent implements OnInit {
             this.toastr.error('There Is Somthing Wrong', 'Error');
           }
         },
-        complete: () => {},
+        complete: () => {
+          this.deleteId = null;
+          this.deleteIndex = null;
+        },
       });
     }
   }
@@ -217,28 +223,32 @@ export class CustomerPortalComponent implements OnInit {
       let data = {
         customerId: this.customerId,
         email: this.emails?.value[this.emails.length - 1]?.email,
-        id: this.uuidv4(),
       };
-
       if (this.portalEmails.length == this.emails?.length - 1) {
-        this.portalEmails.push({ id: data?.id, email: data?.email });
+        this.portalEmails.push({
+          id: -1,
+          email: data?.email,
+          customerId: data?.customerId,
+        });
         this.addForm.get('emails')?.setValue(this.portalEmails);
-        // this.addExistingEmailsItems([{ email: data?.email }]);
         console.log(data);
         this.uploading = true;
         // api
         this.apiService?.add('customerPortals/add', data).subscribe({
-          next: (data) => {
+          next: (data: any) => {
             console.log(data);
             if (data?.isSuccess) {
+              // update localy
+              this.emails.value[this.emails.length - 1].id = data.value.id;
+              // success message
               if (this.currentLanguage == 'ar') {
                 this.toastr.success('تمت إضافة البيانات بنجاح...');
               } else {
                 this.toastr.success('data added successfully...', 'Success');
               }
-              this.router.navigate(['/modules/customers/importDevices'], {
-                queryParams: { customerId: this.customerId },
-              });
+              // this.router.navigate(['/modules/customers/importDevices'], {
+              //   queryParams: { customerId: this.customerId },
+              // });
             }
           },
           error: (err: any) => {

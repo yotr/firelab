@@ -125,6 +125,51 @@ export class ApiService {
       // .pipe(retry(1), catchError(this.handleError));
     }
   }
+  // get filtered data
+  filterDataWithCustomerId(
+    path: string,
+    page: number,
+    pageSize: number,
+    customerId: any,
+    column?: string,
+    operator1?: string,
+    operator2?: string,
+    value1?: any,
+    value2?: any
+  ): Observable<any> {
+    // request
+    if (column) {
+      return this.http.get<any>(
+        `${environment.API}/api/${path}?customerId=${customerId}&column=${column}&value1=${value1}&value2=${value2}&operator1=${operator1}&operator2=${operator2}&page=${page}&pageSize=${pageSize}`
+      );
+      // .pipe(retry(5), catchError(this.handleError));
+    } else {
+      return this.http.get<any>(
+        `${environment.API}/api/${path}?customerId=${customerId}&page=${page}&pageSize=${pageSize}`
+      );
+      // .pipe(retry(1), catchError(this.handleError));
+    }
+  }
+  //search  globaly or by column
+  globalSearchWithCustomerId(
+    path: string,
+    customerId: any,
+    search: any,
+    column?: any
+  ): Observable<any[] | any> {
+    // request
+    if (column != null) {
+      return this.http.get<any[]>(
+        `${environment.API}/api/${path}?customerId=${customerId}&search=${search}&column=${column}`
+      );
+      // .pipe(retry(5), catchError(this.handleError));
+    } else {
+      return this.http.get<any[]>(
+        `${environment.API}/api/${path}?customerId=${customerId}&search=${search}`
+      );
+      // .pipe(retry(1), catchError(this.handleError));
+    }
+  }
 
   //search  globaly or by column
   globalSearch(

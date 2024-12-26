@@ -13,7 +13,7 @@ import { ThemeService } from 'src/app/services/theme/theme.service';
   templateUrl: './recurring-inspections.component.html',
   styleUrls: ['./recurring-inspections.component.css'],
 })
-export class RecurringInspectionsComponent implements OnInit {
+export class RecurringInspectionsComponent implements OnInit, AfterViewInit {
   // current language
   currentLanguage: any = localStorage.getItem('lang');
   currentTheme: any;
@@ -80,12 +80,13 @@ export class RecurringInspectionsComponent implements OnInit {
   ngOnInit() {
     this.getLanguage();
     this.getTheme();
-    this.getData();
     this.getCurrentCustomerId();
     //   this.getCurrentUserData();
   }
 
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void {
+    this.getData();
+  }
   // get user
   isLoggedIn(): boolean {
     return this.auth.currentUserSignal() == undefined ? false : true;
@@ -148,10 +149,11 @@ export class RecurringInspectionsComponent implements OnInit {
     // api
     this.loading = true;
     this.apiService
-      ?.filterData(
-        'recurringInspections/getFilteredRecurringInspections',
+      .filterDataWithCustomerId(
+        `recurringInspections/getFilteredRecurringInspections`,
         page ? page : 1,
-        pageSize ? pageSize : 20
+        pageSize ? pageSize : 20,
+        this.customerId
       )
       .subscribe({
         next: (data: any) => {
@@ -165,6 +167,7 @@ export class RecurringInspectionsComponent implements OnInit {
         },
         error: (err: any) => {
           this.loading = false;
+          this.getDataError = true;
           if (this.currentLanguage == 'ar') {
             this.toastr.error('هناك شيء خاطئ', 'خطأ');
           } else {
@@ -182,8 +185,9 @@ export class RecurringInspectionsComponent implements OnInit {
   search(event: any) {
     if (event?.value != null && event.value?.trim() != '') {
       this.apiService
-        .globalSearch(
+        .globalSearchWithCustomerId(
           'recurringInspections/globalsearch',
+          this.customerId,
           event?.value,
           event?.column
         )
@@ -214,7 +218,6 @@ export class RecurringInspectionsComponent implements OnInit {
     console.log(deleteId);
     this.apiService.delete('recurringInspections', deleteId).subscribe({
       next: (data) => {
-
         if (data?.isSuccess) {
           this.data = this.data.filter((item: any) => item?.id !== deleteId);
           if (this.currentLanguage == 'ar') {
@@ -240,10 +243,11 @@ export class RecurringInspectionsComponent implements OnInit {
     this.loading = true;
     // check if filters operator  contains selected
     this.apiService
-      .filterData(
+      .filterDataWithCustomerId(
         'recurringInspections/getFilteredRecurringInspections',
         1,
         20,
+        this.customerId,
         event?.column,
         event?.filters?.operator1,
         event?.filters?.operator2,
