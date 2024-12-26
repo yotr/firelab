@@ -26,7 +26,7 @@
           >
           <select
             class="form-select form-control"
-            formControlName="reportCategory"
+            formControlName="reportCategoryId"
           >
             <option disabled selected>
               {{ "select" | translate }}
@@ -43,14 +43,14 @@
           <!-- errors -->
           <div
             *ngIf="
-              addForm.get('reportCategory')?.invalid &&
-              addForm.get('reportCategory')?.touched
+              addForm.get('reportCategoryId')?.invalid &&
+              addForm.get('reportCategoryId')?.touched
             "
           >
             <small
               *ngIf="
-                addForm.get('reportCategory')?.invalid &&
-                addForm.get('reportCategory')?.touched
+                addForm.get('reportCategoryId')?.invalid &&
+                addForm.get('reportCategoryId')?.touched
               "
               class="text-danger"
             >
@@ -75,7 +75,7 @@
               {{ "select" | translate }}
             </option>
             <ng-container *ngFor="let frequency of frequencies">
-              <option [value]="frequency?.id">
+              <option [value]="frequency?.name">
                 {{ frequency?.name }}
               </option>
             </ng-container>
@@ -152,7 +152,7 @@
               }}
             </label>
             <input
-              type="text"
+              type="number"
               class="form-control"
               formControlName="firstPrice"
             />
@@ -164,7 +164,7 @@
               "customers.recurring_inspections.form.second_price" | translate
             }}</label>
             <input
-              type="text"
+              type="number"
               class="form-control"
               formControlName="secondPrice"
             />
@@ -178,7 +178,7 @@
               }}
             </label>
             <input
-              type="text"
+              type="number"
               class="form-control"
               formControlName="thirdPrice"
             />
@@ -192,7 +192,7 @@
               }}
             </label>
             <input
-              type="text"
+              type="number"
               class="form-control"
               formControlName="forthPrice"
             />
@@ -263,7 +263,7 @@
                   {{ "select" | translate }}
                 </option>
                 <ng-container *ngFor="let frequency of frequencies">
-                  <option [value]="frequency?.id">
+                  <option [value]="frequency?.name">
                     {{ frequency?.name }}
                   </option>
                 </ng-container>
@@ -302,7 +302,7 @@
 
     <!-- submit -->
     <div class="save-btn text-center">
-      <button type="submit" [disabled]="!addForm.invalid" class="save mt-4">
+      <button type="submit" [disabled]="addForm.invalid" class="save mt-4">
         {{ "save" | translate }}
       </button>
     </div>

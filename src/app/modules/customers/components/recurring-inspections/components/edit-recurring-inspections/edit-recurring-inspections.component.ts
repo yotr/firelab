@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -14,7 +14,9 @@ import { ThemeService } from 'src/app/services/theme/theme.service';
   templateUrl: './edit-recurring-inspections.component.html',
   styleUrls: ['./edit-recurring-inspections.component.css'],
 })
-export class EditRecurringInspectionsComponent implements OnInit {
+export class EditRecurringInspectionsComponent
+  implements OnInit, AfterViewInit
+{
   addForm: FormGroup;
   loading: boolean = true;
   currentTheme: any;
@@ -23,6 +25,7 @@ export class EditRecurringInspectionsComponent implements OnInit {
   // categories
   categories: any[] = [];
   categoriesLoading: boolean = true;
+  getDataError: boolean = false;
   // frequency
   frequencies: any[] = [];
   frequencyLoading: boolean = true;
@@ -32,6 +35,8 @@ export class EditRecurringInspectionsComponent implements OnInit {
   isTasksAdded: boolean = false;
   customerId: any = null;
   updateId: any = null;
+  deleteTaskId: any = null;
+  deleteTaskIndex: any = null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -46,7 +51,7 @@ export class EditRecurringInspectionsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private sidebarService: SidebarService
   ) {
-    //get id
+    //get customerId
     this.activatedRoute.queryParamMap.subscribe((paramMap: Params) => {
       if (paramMap['get']('customerId')) {
         this.customerId = paramMap['get']('customerId');
@@ -54,7 +59,6 @@ export class EditRecurringInspectionsComponent implements OnInit {
         this.sidebarService.sendCurrentCustomer(paramMap['get']('customerId'));
       }
     });
-
     //get id
     this.activatedRoute.paramMap.subscribe((paramMap: Params) => {
       if (paramMap['get']('id')) {
@@ -63,13 +67,13 @@ export class EditRecurringInspectionsComponent implements OnInit {
     });
     // Add form
     this.addForm = this.formBuilder.group({
-      reportCategory: ['', [Validators.required]],
+      reportCategoryId: [null, [Validators.required]],
       frequency: ['', [Validators.required]],
       year: ['', [Validators.required]],
-      firstPrice: [''],
-      secondPrice: [''],
-      thirdPrice: [''],
-      forthPrice: [''],
+      firstPrice: [0],
+      secondPrice: [0],
+      thirdPrice: [0],
+      forthPrice: [0],
       // tasks
       tasks: this.formBuilder.array([]),
     });
@@ -105,13 +109,15 @@ export class EditRecurringInspectionsComponent implements OnInit {
       },
     ];
   }
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void {
+    this.getCurrentData();
+  }
 
   ngOnInit() {
     this.getTheme();
     this.getCurrentActiveUser();
     this.getCurrentCustomerId();
-    // this.getCategories()
+    this.getCategories();
   }
   // get theme from localStorage
   getTheme() {
@@ -154,6 +160,35 @@ export class EditRecurringInspectionsComponent implements OnInit {
     }
   }
 
+  // get categories data
+  getCategories() {
+    this.apiService.get('reportCategories').subscribe({
+      next: (data: any) => {
+        console.log(data);
+        if (data?.isSuccess) {
+          this.categories = data?.value;
+          this.getDataError = false;
+        }
+        this.categoriesLoading = false;
+      },
+      error: (err) => {
+        this.categories = [];
+        this.categoriesLoading = false;
+        this.getDataError = true;
+        console.log(err);
+        if (this.currentLanguage == 'ar') {
+          this.toastr.error('هناك شيء خاطئ', 'خطأ');
+        } else {
+          this.toastr.error('There Is Somthing Wrong', 'Error');
+        }
+        this.categoriesLoading = false;
+      },
+      complete: () => {
+        this.categoriesLoading = false;
+      },
+    });
+  }
+
   togglePrices() {
     this.isPricesAdded = !this.isPricesAdded;
   }
@@ -164,6 +199,7 @@ export class EditRecurringInspectionsComponent implements OnInit {
 
   newTaskItem(): FormGroup {
     return this.formBuilder.group({
+      id: null,
       description: '',
       frequency: '',
       date: '',
@@ -179,6 +215,9 @@ export class EditRecurringInspectionsComponent implements OnInit {
   //removing rows from table
   removeTaskItems(i: any) {
     this.tasks.removeAt(i);
+    this.tasks.length > 0
+      ? (this.isTasksAdded = true)
+      : (this.isTasksAdded = false);
   }
   onCheck(event: any) {
     let value = event.target.checked;
@@ -198,36 +237,12 @@ export class EditRecurringInspectionsComponent implements OnInit {
     items?.map((item: any) => {
       // push item in items list data
       let value = this.formBuilder.group({
+        id: item?.id,
         description: item?.description,
         frequency: item?.frequency,
         date: item?.date,
       });
       this.tasks.push(value);
-    });
-  }
-
-  // get categories data
-  getCategories() {
-    this.apiService.get('reportCategories').subscribe({
-      next: (data: any) => {
-        console.log(data);
-        if (data?.isSuccess) {
-          this.categories = data?.value;
-          this.categoriesLoading = false;
-        }
-      },
-      error: (err) => {
-        console.log(err);
-        if (this.currentLanguage == 'ar') {
-          this.toastr.error('هناك شيء خاطئ', 'خطأ');
-        } else {
-          this.toastr.error('There Is Somthing Wrong', 'Error');
-        }
-        this.categoriesLoading = false;
-      },
-      complete: () => {
-        this.categoriesLoading = false;
-      },
     });
   }
 
@@ -237,19 +252,23 @@ export class EditRecurringInspectionsComponent implements OnInit {
       next: (data: any) => {
         //  set values
         console.log(data);
-        data?.value?.firstPrice! == null
-          ? (this.isPricesAdded = true)
-          : (this.isPricesAdded = false);
-        this.addForm.patchValue({
-          reportCategory: data?.value?.reportCategory,
-          frequency: data?.value?.frequency,
-          year: data?.value?.year,
-          firstPrice: data?.value?.firstPrice,
-          secondPrice: data?.value?.secondPrice,
-          thirdPrice: data?.value?.thirdPrice,
-          forthPrice: data?.value?.forthPrice,
-        });
-        this.addExistingTasksItems(data?.value?.tasks);
+        if (data?.isSuccess) {
+          this.isPricesAdded = true;
+          this.addForm.patchValue({
+            reportCategoryId: data?.value?.reportCategoryId,
+            frequency: data?.value?.frequency,
+            year: data?.value?.year,
+            firstPrice: data?.value?.firstPrice,
+            secondPrice: data?.value?.secondPrice,
+            thirdPrice: data?.value?.thirdPrice,
+            forthPrice: data?.value?.forthPrice,
+          });
+          // get tasks from data
+          if (data?.value?.recurringInspectionTask?.length > 0) {
+            this.isTasksAdded = true;
+            this.addExistingTasksItems(data?.value?.recurringInspectionTask);
+          }
+        }
       },
       error: (error) => {
         console.log(error);
@@ -261,18 +280,137 @@ export class EditRecurringInspectionsComponent implements OnInit {
       },
     });
   }
+  // set deleted task data
+  setDeleteTaskData(item: any, index: number) {
+    this.deleteTaskId = item?.value?.id;
+    this.deleteTaskIndex = index;
+    // console.log(item?.value?.id, index);
+  }
+  // add new task to data
+  addNewTask(itemValues: any) {
+    let data = {
+      description: itemValues?.description,
+      frequency: itemValues?.frequency,
+      date: itemValues?.date,
+      recurringInspectionId: this.updateId,
+    };
+    
+    if (itemValues?.id == null) {
+      // create new task
+      this.uploading = true;
+      // api
+      this.apiService.add('recurringInspections/task/add', data).subscribe({
+        next: (data) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            if (this.currentLanguage == 'ar') {
+              this.toastr.success('تمت إضافة البيانات بنجاح...');
+            } else {
+              this.toastr.success('data added successfully...', 'Success');
+            }
+            // this.router.navigate(['/modules/customers/recurringInspections'], {
+            //   queryParams: { customerId: this.customerId },
+            // });
+          }
+        },
+        error: (err: any) => {
+          console.log('Error:', err);
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+          this.uploading = false;
+        },
+        complete: () => {
+          this.uploading = false;
+        },
+      });
+    } else {
+      this.uploading = true;
+      // api
+      this.apiService
+        .update('recurringInspections/task', itemValues?.id, data)
+        .subscribe({
+          next: (data) => {
+            console.log(data);
+            if (data?.isSuccess) {
+              if (this.currentLanguage == 'ar') {
+                this.toastr.success('تمت إضافة البيانات بنجاح...');
+              } else {
+                this.toastr.success('data updated successfully...', 'Success');
+              }
+              // this.router.navigate(
+              //   ['/modules/customers/recurringInspections'],
+              //   {
+              //     queryParams: { customerId: this.customerId },
+              //   }
+              // );
+            }
+          },
+          error: (err: any) => {
+            console.log('Error:', err);
+            if (this.currentLanguage == 'ar') {
+              this.toastr.error('هناك شيء خاطئ', 'خطأ');
+            } else {
+              this.toastr.error('There Is Somthing Wrong', 'Error');
+            }
+            this.uploading = false;
+          },
+          complete: () => {
+            this.uploading = false;
+          },
+        });
+    }
+  }
+  // delete task to data
+  deleteTask() {
+    console.log(this.deleteTaskId);
+    if (this.deleteTaskId == null) {
+      this.removeTaskItems(this.deleteTaskIndex);
+    } else {
+      this.apiService
+        .delete('recurringInspections/task', this.deleteTaskId)
+        .subscribe({
+          next: (data) => {
+            if (data?.isSuccess) {
+              this.removeTaskItems(this.deleteTaskIndex);
+              // this.data = this.data.filter((item: any) => item?.id !== deleteId);
+              if (this.currentLanguage == 'ar') {
+                this.toastr.success('تم حذف العنصر بنجاح...');
+              } else {
+                this.toastr.success('item deleted successfully...');
+              }
+            }
+          },
+          error: (err) => {
+            console.log(err);
+            if (this.currentLanguage == 'ar') {
+              this.toastr.error('هناك شيء خاطئ', 'خطأ');
+            } else {
+              this.toastr.error('There Is Somthing Wrong', 'Error');
+            }
+          },
+          complete: () => {
+            this.deleteTaskId = null;
+            this.deleteTaskIndex = null;
+          },
+        });
+    }
+  }
 
-  //add a new
+  //update a new
   submit() {
     if (this.addForm.valid) {
       let data = {
         ...this.addForm.value,
+        customerId: this.customerId,
       };
       console.log(data);
       this.uploading = true;
       // api
       this.apiService
-        ?.update('recurringInspections', this.updateId, data)
+        .update('recurringInspections', this.updateId, data)
         .subscribe({
           next: (data) => {
             console.log(data);
@@ -291,6 +429,7 @@ export class EditRecurringInspectionsComponent implements OnInit {
             }
           },
           error: (err: any) => {
+            console.log('Error:', err);
             if (this.currentLanguage == 'ar') {
               this.toastr.error('هناك شيء خاطئ', 'خطأ');
             } else {

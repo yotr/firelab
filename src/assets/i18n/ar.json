@@ -310,7 +310,8 @@
         "forth_price": "السعر الرابع",
         "add_task": "هل تريد إضافة مهام متكررة ضمن عمليات التفتيش هذه؟",
         "describe_task": "وصف المهمة",
-        "add_another": "إضافة مهمة أخرى"
+        "add_another": "إضافة مهمة أخرى",
+        "save_another": "احفظ المهمة"
       }
     },
     "deficiencies": {

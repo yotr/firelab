@@ -26,7 +26,7 @@
           >
           <select
             class="form-select form-control"
-            formControlName="reportCategory"
+            formControlName="reportCategoryId"
           >
             <option disabled selected>
               {{ "select" | translate }}
@@ -36,21 +36,24 @@
                 {{ report?.name }}
               </option>
             </ng-container>
-            <option *ngIf="!categoriesLoading && categories.length == 0" disabled>
+            <option
+              *ngIf="!categoriesLoading && categories.length == 0"
+              disabled
+            >
               {{ "customers.recurring_inspections.form.no_data" | translate }}
             </option>
           </select>
           <!-- errors -->
           <div
             *ngIf="
-              addForm.get('reportCategory')?.invalid &&
-              addForm.get('reportCategory')?.touched
+              addForm.get('reportCategoryId')?.invalid &&
+              addForm.get('reportCategoryId')?.touched
             "
           >
             <small
               *ngIf="
-                addForm.get('reportCategory')?.invalid &&
-                addForm.get('reportCategory')?.touched
+                addForm.get('reportCategoryId')?.invalid &&
+                addForm.get('reportCategoryId')?.touched
               "
               class="text-danger"
             >
@@ -75,7 +78,7 @@
               {{ "select" | translate }}
             </option>
             <ng-container *ngFor="let frequency of frequencies">
-              <option [value]="frequency?.id">
+              <option [value]="frequency?.name">
                 {{ frequency?.name }}
               </option>
             </ng-container>
@@ -152,7 +155,7 @@
               }}
             </label>
             <input
-              type="text"
+              type="number"
               class="form-control"
               formControlName="firstPrice"
             />
@@ -164,7 +167,7 @@
               "customers.recurring_inspections.form.second_price" | translate
             }}</label>
             <input
-              type="text"
+              type="number"
               class="form-control"
               formControlName="secondPrice"
             />
@@ -178,7 +181,7 @@
               }}
             </label>
             <input
-              type="text"
+              type="number"
               class="form-control"
               formControlName="thirdPrice"
             />
@@ -192,7 +195,7 @@
               }}
             </label>
             <input
-              type="text"
+              type="number"
               class="form-control"
               formControlName="forthPrice"
             />
@@ -228,7 +231,13 @@
         [formGroupName]="i"
       >
         <div class="row mt-4 py-4" [ngStyle]="{ background: '#ccc' }">
-          <i class="pi pi-trash trash-icon" (click)="removeTaskItems(i)"></i>
+          <i
+            class="pi pi-trash trash-icon"
+            data-bs-toggle="modal"
+            data-bs-target="#delete"
+            role="button"
+            (click)="setDeleteTaskData(item, i)"
+          ></i>
           <div class="col-sm-6">
             <!-- Describe Task -->
             <div class="form-group mt-2">
@@ -263,7 +272,7 @@
                   {{ "select" | translate }}
                 </option>
                 <ng-container *ngFor="let frequency of frequencies">
-                  <option [value]="frequency?.id">
+                  <option [value]="frequency?.name">
                     {{ frequency?.name }}
                   </option>
                 </ng-container>
@@ -292,6 +301,19 @@
               />
             </div>
           </div>
+          <!-- save task btn -->
+          <div class="col-sm-6">
+            <p
+              class="mt-3 mb-0 w-100 h-100 d-flex justify-content-center align-items-center text-success"
+              role="button"
+              (click)="addNewTask(item?.value)"
+            >
+              <i class="pi pi-plus mx-2"></i>
+              <span class="m-0">{{
+                "customers.recurring_inspections.form.save_another" | translate
+              }}</span>
+            </p>
+          </div>
           <p class="mt-3 text-danger" role="button" (click)="addTaskItem()">
             <i class="pi pi-plus"></i>
             {{ "customers.recurring_inspections.form.add_another" | translate }}
@@ -302,7 +324,7 @@
 
     <!-- submit -->
     <div class="save-btn text-center">
-      <button type="submit" [disabled]="!addForm.invalid" class="save mt-4">
+      <button type="submit" [disabled]="addForm.invalid" class="save mt-4">
         {{ "save" | translate }}
       </button>
     </div>
@@ -315,3 +337,11 @@
   <app-loading-section></app-loading-section>
 </div>
 <!-- /loading section -->
+
+<!-- delete modal -->
+<app-delete-modal
+  title="Task"
+  [currentTheme]="currentTheme"
+  (onDelete)="deleteTask()"
+></app-delete-modal>
+<!--/ delete modal -->

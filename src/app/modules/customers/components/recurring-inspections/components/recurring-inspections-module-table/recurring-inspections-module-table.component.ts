@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { NgxPrintService, PrintOptions } from 'ngx-print';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { LanguageService } from 'src/app/services/language/language.service';
 import { SidebarService } from 'src/app/services/sidebar/sidebar.service';
 import { environment } from 'src/environments/environment';
 
@@ -14,6 +16,7 @@ export class RecurringInspectionsModuleTableComponent implements OnInit {
   @Input() data: any[] = [];
   @Input() dataKeys: any[] = [];
   @Input() loading: boolean = true;
+  @Input() getDataError: boolean = false;
   @Input() currentTheme: any;
   //  ================================================
   @Output() onDelete: EventEmitter<any> = new EventEmitter();
@@ -48,9 +51,9 @@ export class RecurringInspectionsModuleTableComponent implements OnInit {
   //pagination variables
   currentPage: number = 1;
   // count: number = 0;
-  itemsPerPage: number = 10;
+  itemsPerPage: number = 20;
   tableEntries: number[] = [
-    10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 100,
+    20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 100,
   ];
   printing: boolean = false;
   api: string = '';
@@ -62,7 +65,9 @@ export class RecurringInspectionsModuleTableComponent implements OnInit {
     private printService: NgxPrintService,
     private sidebarService: SidebarService,
     // private permissionsService: PermissionsService,
-    private auth: AuthService
+    private auth: AuthService,
+    public translateService: TranslateService,
+    private languageService: LanguageService
   ) {
     this.api = environment.API;
   }
@@ -71,6 +76,15 @@ export class RecurringInspectionsModuleTableComponent implements OnInit {
 
   ngOnInit() {
     this.getCurrentUserData();
+    this.getLanguage();
+  }
+  getLanguage() {
+    // get language from localStorage
+    this.languageService.getCurrentLanguage().subscribe((language) => {
+      this.currentLanguage = language;
+      // turn on current language (trandlate)
+      this.translateService.use(this.currentLanguage);
+    });
   }
   // get user
   isLoggedIn(): boolean {

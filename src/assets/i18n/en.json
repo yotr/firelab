@@ -311,7 +311,8 @@
         "forth_price": "4st Price",
         "add_task": "Do you want to add recurring tasks within this inspections?",
         "describe_task": "Describe Task",
-        "add_another": "Add Another Task"
+        "add_another": "Add Another Task",
+        "save_another": "Save Task"
       }
     },
     "deficiencies": {

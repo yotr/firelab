@@ -34,13 +34,18 @@
       {{ "module_table.bottom_header_text" | translate }}
     </div>
     <!-- actions icons -->
-    <!-- <div>
-      <i
+    <div>
+      <!-- <i
         class="pi pi-trash px-2 fs-6"
         role="button"
         (click)="deleteSelected()"
+      ></i> -->
+      <i
+        class="pi pi-refresh px-2 fs-6"
+        role="button"
+        (click)="resetData()"
       ></i>
-    </div> -->
+    </div>
   </div>
 </div>
 <div class="row mt-0">
@@ -202,24 +207,27 @@
               <ng-container *ngFor="let key of dataKeys">
                 <td *ngIf="key.active && key?.name != 'id'">
                   <!-- name -->
-                  <ng-container *ngIf="key?.name != 'status'">
-                    <div
-                      routerLink="/modules/customers/home"
-                      [queryParams]="{ customerId: value['id'] }"
-                      role="button"
-                      (click)="sendActiveCustomer(value['id'])"
-                    >
+                  <ng-container *ngIf="key?.name != 'reportCategory'">
+                    <div role="button">
                       {{ value[key?.name] }}
                     </div>
                   </ng-container>
+                  <!-- reportCategory -->
+                  <ng-container *ngIf="key?.name == 'reportCategory'">
+                    {{
+                      currentLanguage == "ar"
+                        ? value?.reportCategory?.arabicName
+                        : value?.reportCategory?.name
+                    }}
+                  </ng-container>
                   <!-- status -->
-                  <ng-container *ngIf="key?.name == 'status'">
+                  <!-- <ng-container *ngIf="key?.name == 'status'">
                     <app-custom-dropdown
                       minWidth="100%"
                       [title]="statusDropdown[0]"
                       [data]="statusDropdown"
                     ></app-custom-dropdown>
-                  </ng-container>
+                  </ng-container> -->
                 </td>
               </ng-container>
               <!-- actions -->

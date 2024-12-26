@@ -67,7 +67,7 @@ export class SystemInfoComponent implements OnInit, AfterViewInit {
         display: this.translateService.instant(
           'customers.system_info.table.reportType'
         ),
-        type: 'string',
+        type: 'object',
         active: true,
       },
       {

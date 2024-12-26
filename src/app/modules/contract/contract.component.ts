@@ -51,7 +51,7 @@ export class ContractComponent implements OnInit, AfterViewInit {
         display: this.translateService.instant(
           'contracts.contract_table.member'
         ),
-        type: 'string',
+        type: 'object',
         active: true,
       },
       {
@@ -140,7 +140,7 @@ export class ContractComponent implements OnInit, AfterViewInit {
       ?.filterData(
         'contracts/getFilteredContracts',
         page ? page : 1,
-        pageSize ? pageSize : 10
+        pageSize ? pageSize : 20
       )
       .subscribe({
         next: (data: any) => {
@@ -228,7 +228,7 @@ export class ContractComponent implements OnInit, AfterViewInit {
       .filterData(
         'contracts/getFilteredContracts',
         1,
-        10,
+        20,
         event?.column,
         event?.filters?.operator1,
         event?.filters?.operator2,

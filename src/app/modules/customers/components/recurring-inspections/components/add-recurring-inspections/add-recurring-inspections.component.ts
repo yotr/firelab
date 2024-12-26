@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -14,7 +14,7 @@ import { ThemeService } from 'src/app/services/theme/theme.service';
   templateUrl: './add-recurring-inspections.component.html',
   styleUrls: ['./add-recurring-inspections.component.css'],
 })
-export class AddRecurringInspectionsComponent implements OnInit {
+export class AddRecurringInspectionsComponent implements OnInit, AfterViewInit {
   addForm: FormGroup;
   loading: boolean = true;
   currentTheme: any;
@@ -23,6 +23,7 @@ export class AddRecurringInspectionsComponent implements OnInit {
   // categories
   categories: any[] = [];
   categoriesLoading: boolean = true;
+  getDataError: boolean = false;
   // frequency
   frequencies: any[] = [];
   frequencyLoading: boolean = true;
@@ -55,13 +56,13 @@ export class AddRecurringInspectionsComponent implements OnInit {
     });
     // Add form
     this.addForm = this.formBuilder.group({
-      reportCategory: ['', [Validators.required]],
+      reportCategoryId: [null, [Validators.required]],
       frequency: ['', [Validators.required]],
       year: ['', [Validators.required]],
-      firstPrice: [''],
-      secondPrice: [''],
-      thirdPrice: [''],
-      forthPrice: [''],
+      firstPrice: [0],
+      secondPrice: [0],
+      thirdPrice: [0],
+      forthPrice: [0],
       // tasks
       tasks: this.formBuilder.array([]),
     });
@@ -96,14 +97,15 @@ export class AddRecurringInspectionsComponent implements OnInit {
       },
     ];
   }
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void {
+    this.getCategories();
+  }
 
   ngOnInit() {
     this.getTheme();
     this.getCurrentLanguage();
     this.getCurrentActiveUser();
     this.getCurrentCustomerId();
-    // this.getCategories()
   }
   // get theme from localStorage
   getTheme() {
@@ -155,6 +157,35 @@ export class AddRecurringInspectionsComponent implements OnInit {
     }
   }
 
+  // get categories data
+  getCategories() {
+    this.apiService.get('reportCategories').subscribe({
+      next: (data: any) => {
+        console.log(data);
+        if (data?.isSuccess) {
+          this.categories = data?.value;
+          this.getDataError = false;
+        }
+        this.categoriesLoading = false;
+      },
+      error: (err) => {
+        this.categories = [];
+        this.categoriesLoading = false;
+        this.getDataError = true;
+        console.log(err);
+        if (this.currentLanguage == 'ar') {
+          this.toastr.error('هناك شيء خاطئ', 'خطأ');
+        } else {
+          this.toastr.error('There Is Somthing Wrong', 'Error');
+        }
+        this.categoriesLoading = false;
+      },
+      complete: () => {
+        this.categoriesLoading = false;
+      },
+    });
+  }
+
   togglePrices() {
     this.isPricesAdded = !this.isPricesAdded;
   }
@@ -193,36 +224,12 @@ export class AddRecurringInspectionsComponent implements OnInit {
     }
   }
 
-  // get categories data
-  getCategories() {
-    this.apiService.get('reportCategories').subscribe({
-      next: (data: any) => {
-        console.log(data);
-        if (data?.isSuccess) {
-          this.categories = data?.value;
-          this.categoriesLoading = false;
-        }
-      },
-      error: (err) => {
-        console.log(err);
-        if (this.currentLanguage == 'ar') {
-          this.toastr.error('هناك شيء خاطئ', 'خطأ');
-        } else {
-          this.toastr.error('There Is Somthing Wrong', 'Error');
-        }
-        this.categoriesLoading = false;
-      },
-      complete: () => {
-        this.categoriesLoading = false;
-      },
-    });
-  }
-
   //add a new
   submit() {
     if (this.addForm.valid) {
       let data = {
         ...this.addForm.value,
+        customerId: this.customerId,
       };
       console.log(data);
       this.uploading = true;
@@ -236,10 +243,13 @@ export class AddRecurringInspectionsComponent implements OnInit {
             } else {
               this.toastr.success('data added successfully...', 'Success');
             }
-            this.router.navigate(['/modules/contract']);
+            this.router.navigate(['/modules/customers/recurringInspections'], {
+              queryParams: { customerId: this.customerId },
+            });
           }
         },
         error: (err: any) => {
+          console.log('Error:', err);
           if (this.currentLanguage == 'ar') {
             this.toastr.error('هناك شيء خاطئ', 'خطأ');
           } else {

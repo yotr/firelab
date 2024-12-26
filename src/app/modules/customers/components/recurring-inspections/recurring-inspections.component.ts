@@ -20,6 +20,7 @@ export class RecurringInspectionsComponent implements OnInit {
   data: any[] = [] as any[];
   loading: boolean = true;
   totalItemsCount: number = 0;
+  getDataError: boolean = false;
   dataKeys: any[] = [];
   // current logged in user
   currentUser: any = {} as any;
@@ -54,7 +55,7 @@ export class RecurringInspectionsComponent implements OnInit {
         display: this.translateService.instant(
           'customers.recurring_inspections.table.reportCategory'
         ),
-        type: 'string',
+        type: 'object',
         active: true,
       },
       {
@@ -66,7 +67,7 @@ export class RecurringInspectionsComponent implements OnInit {
         active: true,
       },
       {
-        name: 'months',
+        name: 'year',
         display: this.translateService.instant(
           'customers.recurring_inspections.table.months'
         ),
@@ -144,34 +145,34 @@ export class RecurringInspectionsComponent implements OnInit {
     value1?: any,
     value2?: any
   ) {
-    this.loading = false;
-
     // api
-    // this.apiService
-    //   ?.filterData(
-    //     'recurringInspections/getFilteredRecurringInspections',
-    //     page ? page : 1,
-    //     pageSize ? pageSize : 10
-    //   )
-    //   .subscribe({
-    //     next: (data:any) => {
-    //       console.log(data);
-    //       if (data?.isSuccess) {
-    //         this.data = data?.value;
-    //         this.totalItemsCount = data?.totalCount;
-    //         this.loading = false;
-    //       }
-    //     },
-    //     error: (err: any) => {
-    //       this.loading = false;
-    //       if (this.currentLanguage == 'ar') {
-    //         this.toastr.error('هناك شيء خاطئ', 'خطأ');
-    //       } else {
-    //         this.toastr.error('There Is Somthing Wrong', 'Error');
-    //       }
-    //     },
-    //     complete: () => {},
-    //   });
+    this.loading = true;
+    this.apiService
+      ?.filterData(
+        'recurringInspections/getFilteredRecurringInspections',
+        page ? page : 1,
+        pageSize ? pageSize : 20
+      )
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.data = data?.value?.recurringInspectionDtos;
+            this.totalItemsCount = data?.value?.totalCount;
+            this.getDataError = false;
+          }
+          this.loading = false;
+        },
+        error: (err: any) => {
+          this.loading = false;
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {},
+      });
   }
 
   onPaginate(event: any) {
@@ -186,11 +187,23 @@ export class RecurringInspectionsComponent implements OnInit {
           event?.value,
           event?.column
         )
-        .subscribe((data: any) => {
-          console.log(data);
-          this.data = data?.value;
-          this.totalItemsCount = data?.value?.length;
-          this.loading = false;
+        .subscribe({
+          next: (data: any) => {
+            if (data?.isSuccess) {
+              console.log(data);
+              this.data = data?.value;
+              this.totalItemsCount = data?.value?.length;
+            }
+            this.loading = false;
+          },
+          error: (err: any) => {
+            this.loading = false;
+            if (this.currentLanguage == 'ar') {
+              this.toastr.error('هناك شيء خاطئ', 'خطأ');
+            } else {
+              this.toastr.error('There Is Somthing Wrong', 'Error');
+            }
+          },
         });
     } else {
       this.getData();
@@ -201,9 +214,9 @@ export class RecurringInspectionsComponent implements OnInit {
     console.log(deleteId);
     this.apiService.delete('recurringInspections', deleteId).subscribe({
       next: (data) => {
-        this.data = this.data.filter((item: any) => item?.id !== deleteId);
 
         if (data?.isSuccess) {
+          this.data = this.data.filter((item: any) => item?.id !== deleteId);
           if (this.currentLanguage == 'ar') {
             this.toastr.success('تم حذف العنصر بنجاح...');
           } else {
@@ -230,7 +243,7 @@ export class RecurringInspectionsComponent implements OnInit {
       .filterData(
         'recurringInspections/getFilteredRecurringInspections',
         1,
-        10,
+        20,
         event?.column,
         event?.filters?.operator1,
         event?.filters?.operator2,
@@ -241,8 +254,8 @@ export class RecurringInspectionsComponent implements OnInit {
         next: (data) => {
           console.log(data);
           if (data?.isSuccess) {
-            this.data = data?.value;
-            this.totalItemsCount = data?.totalCount;
+            this.data = data?.value?.recurringInspectionDtos;
+            this.totalItemsCount = data?.value?.totalCount;
             this.loading = false;
           }
         },
