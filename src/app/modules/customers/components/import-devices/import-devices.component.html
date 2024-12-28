@@ -9,7 +9,7 @@
       <app-breadcrumb
         [title]="'customers.import_devices.title' | translate"
       ></app-breadcrumb>
-      <div routerLink="/modules/customers/importDevices/add">
+      <div (click)="navigate('/modules/customers/importDevices/add')">
         <a
           class="btn add-btn d-flex align-items-center {{
             currentTheme?.colorSchema?.background

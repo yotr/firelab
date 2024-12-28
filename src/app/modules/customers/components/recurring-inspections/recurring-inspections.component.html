@@ -9,7 +9,7 @@
       <app-breadcrumb
         [title]="'customers.recurring_inspections.title' | translate"
       ></app-breadcrumb>
-      <div routerLink="/modules/customers/recurringInspections/add">
+      <div (click)="navigate('/modules/customers/recurringInspections/add')">
         <a
           class="btn add-btn d-flex align-items-center {{
             currentTheme?.colorSchema?.background

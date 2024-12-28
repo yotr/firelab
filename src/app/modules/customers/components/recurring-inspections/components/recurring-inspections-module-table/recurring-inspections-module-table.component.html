@@ -247,7 +247,7 @@
                     <a
                       class="dropdown-item"
                       role="button"
-                      [routerLink]="[editPagePath + '/' + value?.id]"
+                      (click)="navigate(editPagePath, value?.id)"
                       ><i class="pi pi-pencil mx-1"></i>
                       {{ "module_table.edit_action_text" | translate }}</a
                     >

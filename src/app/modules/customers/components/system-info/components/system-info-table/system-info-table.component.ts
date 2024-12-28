@@ -1,9 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NgxPrintService, PrintOptions } from 'ngx-print';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { LanguageService } from 'src/app/services/language/language.service';
+import { SidebarService } from 'src/app/services/sidebar/sidebar.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -61,15 +62,27 @@ export class SystemInfoTableComponent implements OnInit {
   // current logged in user
   currentUser: any = {} as any;
 
+  customerId: any = null;
+
   constructor(
     private printService: NgxPrintService,
     public translateService: TranslateService,
     private languageService: LanguageService,
     // private permissionsService: PermissionsService,
     private auth: AuthService,
-    private router: Router
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    private sidebarService: SidebarService
   ) {
     this.api = environment.API;
+     // get customerId
+        this.activatedRoute.queryParamMap.subscribe((paramMap: Params) => {
+          if (paramMap['get']('customerId')) {
+            this.customerId = paramMap['get']('customerId');
+            // activate current customer id so we can get in other pages after refresh
+            this.sidebarService.sendCurrentCustomer(paramMap['get']('customerId'));
+          }
+        });
   }
 
   // ================== \\  General Functions for all tables  \\ ==================
@@ -212,6 +225,8 @@ export class SystemInfoTableComponent implements OnInit {
     // );
   }
   navigate(path: any, id: any) {
-    this.router.navigate([path, id]);
+    this.router.navigate([path, id], {
+      queryParams: { customerId: this.customerId },
+    });
   }
 }

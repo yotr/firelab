@@ -42,9 +42,9 @@
               class="pi pi-expand expand"
               data-bs-toggle="modal"
               data-bs-target="#view_image"
-              (click)="onView(img?.imagePath)"
+              (click)="onView(api + '/images/' + img?.image)"
             ></i>
-            <img [src]="img?.imagePath" alt="image" />
+            <img [src]="api + '/images/' + img?.image"  alt="image" />
           </div>
           <div class="comment">
             <input

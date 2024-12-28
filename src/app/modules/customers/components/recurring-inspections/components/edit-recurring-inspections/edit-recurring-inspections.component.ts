@@ -140,9 +140,9 @@ export class EditRecurringInspectionsComponent
     if (this.customerId != null) {
       this.setActiveMenu();
       // set querys to current page
-      this.router.navigate([], {
-        queryParams: { customerId: this.customerId },
-      });
+      // this.router.navigate([], {
+      //   queryParams: { customerId: this.customerId },
+      // });
     } else {
       this.router.navigate(['/modules/customers/allCustomers']);
     }
@@ -294,7 +294,7 @@ export class EditRecurringInspectionsComponent
       date: itemValues?.date,
       recurringInspectionId: this.updateId,
     };
-    
+
     if (itemValues?.id == null) {
       // create new task
       this.uploading = true;

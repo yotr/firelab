@@ -60,17 +60,17 @@
                 >{{ "customers.add_job.date" | translate }}
                 <span class="text-danger">*</span></label
               >
-              <input class="form-control" type="date" formControlName="date" />
+              <input class="form-control" type="date" formControlName="dateTime" />
 
               <!-- errors -->
               <div
                 *ngIf="
-                  addForm.get('date')?.invalid && addForm.get('date')?.touched
+                  addForm.get('dateTime')?.invalid && addForm.get('dateTime')?.touched
                 "
               >
                 <small
                   *ngIf="
-                    addForm.get('date')?.invalid && addForm.get('date')?.touched
+                    addForm.get('dateTime')?.invalid && addForm.get('dateTime')?.touched
                   "
                   class="text-danger"
                 >
@@ -89,31 +89,31 @@
               >
               <select
                 class="form-select form-control"
-                formControlName="category"
+                formControlName="reportCategoryId"
               >
                 <option disabled selected>
                   {{ "select" | translate }}
                 </option>
-                <ng-container *ngFor="let report of reports">
-                  <option [value]="report?.id">
-                    {{ report?.name }}
+                <ng-container *ngFor="let category of categories">
+                  <option [value]="category?.id">
+                    {{ category?.name }}
                   </option>
                 </ng-container>
-                <option *ngIf="!reportsLoading && reports.length == 0" disabled>
+                <option *ngIf="!categoriesLoading && categories.length == 0" disabled>
                   {{ "customers.add_job.no_data" | translate }}
                 </option>
               </select>
               <!-- errors -->
               <div
                 *ngIf="
-                  addForm.get('category')?.invalid &&
-                  addForm.get('category')?.touched
+                  addForm.get('reportCategoryId')?.invalid &&
+                  addForm.get('reportCategoryId')?.touched
                 "
               >
                 <small
                   *ngIf="
-                    addForm.get('category')?.invalid &&
-                    addForm.get('category')?.touched
+                    addForm.get('reportCategoryId')?.invalid &&
+                    addForm.get('reportCategoryId')?.touched
                   "
                   class="text-danger"
                 >
@@ -187,3 +187,10 @@
     <app-customer-reports-sidebar></app-customer-reports-sidebar>
   </div>
 </div>
+
+
+<!-- loading section -->
+<div *ngIf="uploading">
+  <app-loading-section></app-loading-section>
+</div>
+<!-- /loading section -->

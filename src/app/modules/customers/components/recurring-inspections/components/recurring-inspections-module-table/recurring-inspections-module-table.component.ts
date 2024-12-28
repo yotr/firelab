@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NgxPrintService, PrintOptions } from 'ngx-print';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -61,15 +62,27 @@ export class RecurringInspectionsModuleTableComponent implements OnInit {
   currentUser: any = {} as any;
   statusDropdown: any[] = ['active', 'inactive'];
 
+  customerId: any = null;
+
   constructor(
     private printService: NgxPrintService,
     private sidebarService: SidebarService,
     // private permissionsService: PermissionsService,
     private auth: AuthService,
     public translateService: TranslateService,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private router: Router,
+    private activatedRoute: ActivatedRoute
   ) {
     this.api = environment.API;
+    // get customerId
+    this.activatedRoute.queryParamMap.subscribe((paramMap: Params) => {
+      if (paramMap['get']('customerId')) {
+        this.customerId = paramMap['get']('customerId');
+        // activate current customer id so we can get in other pages after refresh
+        this.sidebarService.sendCurrentCustomer(paramMap['get']('customerId'));
+      }
+    });
   }
 
   // ================== \\  General Functions for all tables  \\ ==================
@@ -215,5 +228,10 @@ export class RecurringInspectionsModuleTableComponent implements OnInit {
     //   'data',
     //   action
     // );
+  }
+  navigate(path: any, id: any) {
+    this.router.navigate([path, id], {
+      queryParams: { customerId: this.customerId },
+    });
   }
 }

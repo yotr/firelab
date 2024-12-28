@@ -257,4 +257,9 @@ export class ImportDevicesComponent implements OnInit, AfterViewInit {
   resetData() {
     this.getData();
   }
+  navigate(path: any) {
+    this.router.navigate([path], {
+      queryParams: { customerId: this.customerId },
+    });
+  }
 }

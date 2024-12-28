@@ -68,7 +68,7 @@ export class LoginComponent implements OnInit {
     // this.router.navigate(['/modules/dashboard']);
 
     this.auth.login('teamMembers/login', loginData).subscribe({
-      next: (data) => {
+      next: (data: any) => {
         console.log(data);
         if (data?.isSuccess) {
           // check if ther is token
@@ -87,12 +87,15 @@ export class LoginComponent implements OnInit {
             );
           }
         } else {
+          console.log(data);
           this.toastr.error('There is something wrong with please try again');
         }
       },
       error: (err) => {
+        console.log(err);
         // show erroe message
-        this.toastr.error('There is something wrong with please try again');
+        this.toastr.error(err?.error[0]?.message, 'Error');
+        // this.toastr.error('There is something wrong with please try again');
         // stop login btn loading
         setTimeout(() => {
           this.loading = false;

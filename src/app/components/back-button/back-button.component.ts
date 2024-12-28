@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ThemeService } from 'src/app/services/theme/theme.service';
 
 @Component({
@@ -7,6 +7,7 @@ import { ThemeService } from 'src/app/services/theme/theme.service';
   styleUrls: ['./back-button.component.css'],
 })
 export class BackButtonComponent implements OnInit {
+  @Input() isCustomerPage: boolean = false;
   currentTheme: any = null;
 
   constructor(private themeService: ThemeService) {}
@@ -19,6 +20,10 @@ export class BackButtonComponent implements OnInit {
   }
 
   back() {
-    window.history.back();
+    if (this.isCustomerPage) {
+      window.history.go(-2);
+    } else {
+      window.history.back();
+    }
   }
 }
