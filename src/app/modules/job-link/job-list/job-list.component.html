@@ -30,7 +30,7 @@
       [translated]="true"
       minWidth="100%"
       height="44px"
-      title="All"
+      [title]="filterBy[activeFilter].title"
       [object]="true"
       objectKey="title"
       [data]="filterBy"
@@ -40,42 +40,56 @@
       <div class="jobs-section" *ngIf="activeFilter == 0 || activeFilter == 3">
         <div class="title">{{ "job_link.list.missed" | translate }}</div>
         <div class="jobs-section-list">
-          <span
-            class="job"
-            data-bs-toggle="modal"
-            data-bs-target="#choose_modal"
-            >First Test Title</span
+          <ng-container *ngFor="let job of missedJobs">
+            <span
+              class="job"
+              data-bs-toggle="modal"
+              data-bs-target="#choose_modal"
+              >{{ truncateString(job?.description, 35) }}</span
+            >
+          </ng-container>
+          <p
+            *ngIf="missedJobs.length == 0 && missedLoading == false"
+            class="no-data text-danger text-center my-2"
           >
-          <span class="job">Job Test Title</span>
-          <span class="job">Job Test Title</span>
-          <span class="job">Job Test Title</span>
-          <span class="job">Job Test Title</span>
-          <span class="job">Job Test Title</span>
-          <span class="job">Job Test Title</span>
-          <span class="job">Job Test Title</span>
-          <span class="job">Job Test Title</span>
-          <span class="job">Job Test Title</span>
-          <span class="job">Job Test Title</span>
-          <span class="job">Job Test Title</span>
-          <span class="job">Job Test Title</span>
-          <span class="job">Job Test Title</span>
-          <span class="job">Job Test Title</span>
-          <span class="job">Job Test Title</span>
-          <span class="job">Job Test Title</span>
-          <span class="job">Last Test Title</span>
+            {{ "job_link.list.no_data" | translate }}
+          </p>
         </div>
       </div>
       <div class="jobs-section" *ngIf="activeFilter == 1 || activeFilter == 3">
         <div class="title">{{ "job_link.list.due_this" | translate }}</div>
         <div class="jobs-section-list">
-          <span class="job">Job Test Title</span>
-          <span class="job">Job Test Title</span>
+          <ng-container *ngFor="let job of thisMonthJobs">
+            <span
+              class="job"
+              data-bs-toggle="modal"
+              data-bs-target="#choose_modal"
+              >{{ truncateString(job?.description, 35) }}</span
+            >
+          </ng-container>
+          <p
+            *ngIf="thisMonthJobs.length == 0 && thisMonthLoading == false"
+            class="no-data text-danger text-center my-2"
+          >
+            {{ "job_link.list.no_data" | translate }}
+          </p>
         </div>
       </div>
       <div class="jobs-section" *ngIf="activeFilter == 2 || activeFilter == 3">
         <div class="title">{{ "job_link.list.due_next" | translate }}</div>
         <div class="jobs-section-list">
-          <p class="no-data text-danger text-center my-2">
+          <ng-container *ngFor="let job of nextMonthJobs">
+            <span
+              class="job"
+              data-bs-toggle="modal"
+              data-bs-target="#choose_modal"
+              >{{ truncateString(job?.description, 35) }}</span
+            >
+          </ng-container>
+          <p
+            *ngIf="nextMonthJobs.length == 0 && nextMonthLoading == false"
+            class="no-data text-danger text-center my-2"
+          >
             {{ "job_link.list.no_data" | translate }}
           </p>
         </div>

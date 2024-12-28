@@ -141,7 +141,7 @@ export class AddJobComponent implements OnInit, AfterViewInit {
       let data = {
         ...this.addForm.value,
         customerId: this.customerId,
-        name: this.addForm.get('name')?.value,
+        name: this.addForm.get('description')?.value,
       };
       console.log(data);
       this.uploading = true;
@@ -158,7 +158,11 @@ export class AddJobComponent implements OnInit, AfterViewInit {
             // this.router.navigate(['/modules/customers/addJob'], {
             //   queryParams: { customerId: this.customerId },
             // });
+
             this.addForm.reset();
+            this.addForm.patchValue({
+              action: 'notAssigned',
+            });
           }
         },
         error: (err: any) => {
