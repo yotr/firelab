@@ -261,8 +261,9 @@ export class ContractComponent implements OnInit, AfterViewInit {
   }
   //change status
   onStatusChange(data: any) {
+    console.log(data);
     let id = data?.id;
-    let status = data?.status ? true : false;
+    let status = data?.status?.value;
 
     this.apiService
       .statusChange(`contracts/updateStatus/${id}?status=${status}`, {})

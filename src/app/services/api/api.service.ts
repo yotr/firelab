@@ -150,6 +150,30 @@ export class ApiService {
       // .pipe(retry(1), catchError(this.handleError));
     }
   }
+  filterDataWithUserId(
+    path: string,
+    page: number,
+    pageSize: number,
+    userId: any,
+    column?: string,
+    operator1?: string,
+    operator2?: string,
+    value1?: any,
+    value2?: any
+  ): Observable<any> {
+    // request
+    if (column) {
+      return this.http.get<any>(
+        `${environment.API}/api/${path}/${userId}?column=${column}&value1=${value1}&value2=${value2}&operator1=${operator1}&operator2=${operator2}&page=${page}&pageSize=${pageSize}`
+      );
+      // .pipe(retry(5), catchError(this.handleError));
+    } else {
+      return this.http.get<any>(
+        `${environment.API}/api/${path}/${userId}?page=${page}&pageSize=${pageSize}`
+      );
+      // .pipe(retry(1), catchError(this.handleError));
+    }
+  }
   //search  globaly or by column
   globalSearchWithCustomerId(
     path: string,

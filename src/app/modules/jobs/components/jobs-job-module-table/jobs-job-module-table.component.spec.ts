@@ -3,21 +3,20 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { MyJobsModuleTableComponent } from './my-jobs-module-table.component';
+import { JobsJobModuleTableComponent } from './jobs-job-module-table.component';
 
-describe('MyJobsModuleTableComponent', () => {
-  let component: MyJobsModuleTableComponent;
-  let fixture: ComponentFixture<MyJobsModuleTableComponent>;
+describe('JobsJobModuleTableComponent', () => {
+  let component: JobsJobModuleTableComponent;
+  let fixture: ComponentFixture<JobsJobModuleTableComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MyJobsModuleTableComponent ]
-    })
-    .compileComponents();
+      declarations: [JobsJobModuleTableComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MyJobsModuleTableComponent);
+    fixture = TestBed.createComponent(JobsJobModuleTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

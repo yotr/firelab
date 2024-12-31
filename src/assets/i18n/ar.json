@@ -344,6 +344,9 @@
       "type_required": "النوع مطلوب",
       "job_id": "معرف الوظيفة"
     },
+    "edit_job": {
+      "title": "تحديث الوظيفة"
+    },
     "hood_system": {
       "title": "نظام الهود",
       "start": "ابدأ",

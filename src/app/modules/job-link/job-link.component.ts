@@ -5,6 +5,7 @@ import {
   DayPilotCalendarComponent,
   DayPilotNavigatorComponent,
 } from '@daypilot/daypilot-lite-angular';
+import { ToastrService } from 'ngx-toastr';
 import { DataService } from 'src/app/services/jobLink/data.service';
 
 @Component({
@@ -16,6 +17,7 @@ export class JobLinkComponent implements OnInit, AfterViewInit {
   @ViewChild('navigator') navigator!: DayPilotNavigatorComponent;
   @ViewChild('calendar') calendar!: DayPilotCalendarComponent;
   view: any = null;
+  currentLanguage: any = localStorage.getItem('lang');
 
   get date(): DayPilot.Date {
     return this.config.startDate as DayPilot.Date;
@@ -48,7 +50,8 @@ export class JobLinkComponent implements OnInit, AfterViewInit {
   constructor(
     private ds: DataService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {
     //get view
     this.activatedRoute.queryParamMap.subscribe((paramMap: Params) => {
@@ -82,26 +85,39 @@ export class JobLinkComponent implements OnInit, AfterViewInit {
   viewChange(): void {
     var from = this.calendar.control.visibleStart();
     var to = this.calendar.control.visibleEnd();
-    this.ds.getEvents(from, to).subscribe((result) => {
-      this.events = result;
-    });
+    this.getAssignedJobs(from, to);
   }
 
   navigatePrevious(event: any): void {
     event.preventDefault();
+    let endDate = this.config.startDate;
     this.config.startDate = (this.config.startDate as DayPilot.Date).addDays(
       -7
     );
+    console.log(this.config.startDate);
+    let startDate = this.config.startDate;
+    console.log('Start Date: ' + startDate + ', End Date: ' + endDate);
+    this.getAssignedJobs(startDate, endDate);
   }
 
   navigateNext(event: any): void {
     event.preventDefault();
     this.config.startDate = (this.config.startDate as DayPilot.Date).addDays(7);
+    console.log(this.config.startDate);
+    let startDate = this.config.startDate;
+    let endDate = (startDate as DayPilot.Date).addDays(7);
+    console.log('Start Date: ' + startDate + ', End Date: ' + endDate);
+    this.getAssignedJobs(startDate, endDate);
   }
 
   navigateToday(event: any): void {
     event.preventDefault();
     this.config.startDate = DayPilot.Date.today();
+    console.log(this.config.startDate);
+    let startDate = this.config.startDate;
+    let endDate = (this.config.startDate as DayPilot.Date).addDays(7);
+    console.log('Start Date: ' + startDate + ', End Date: ' + endDate);
+    this.getAssignedJobs(startDate, endDate);
   }
 
   setView(event: any): void {
@@ -116,5 +132,51 @@ export class JobLinkComponent implements OnInit, AfterViewInit {
       // reload page
       window.location.reload();
     }, 1000);
+  }
+
+  getAssignedJobs(from: any, to: any): void {
+    this.ds
+      .getEvents('assignedJobs/getAssignedJobsBetweenDates', from, to)
+      .subscribe({
+        next: (result: any) => {
+          if (result?.isSuccess) {
+            console.log(result.value);
+
+            // console.log((this.config.startDate as DayPilot.Date).addDays(7));
+            // item?.startDate;
+            // Modify the startDate in the array
+            const updatedData = result?.value.map((item: any) => {
+              // Create a new Date object from the startDate string
+              // let customStartDate = new Date(item?.startDate).toISOString();
+              let id = item?.id;
+              let newStart = (item?.startDate as DayPilot.Date);
+              let newEnd = item?.endDate ? item?.endDate : newStart;
+              let text = item?.job?.name;
+              // Return the updated object with the new startDate
+              return {
+                id: id,
+                start: newStart,
+                end: newEnd,
+                text: text,
+              };
+            });
+            this.events = updatedData;
+          }
+          //   {
+          //     id: '1',
+          //     start: DayPilot.Date.today().addHours(10),
+          //     end: DayPilot.Date.today().addHours(12),
+          //     text: 'Event 1 \n ibrahim abdelrahman',
+          //   },
+        },
+        error: (error) => {
+          console.log(error);
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+      });
   }
 }

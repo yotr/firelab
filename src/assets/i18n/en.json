@@ -11,7 +11,7 @@
   "cancel": "Cancel",
   "next": "Next",
   "no_data": "No data found",
-  "search":"Search..",
+  "search": "Search..",
   "theme_settings": {
     "title": "Customizer",
     "title_dic": "Customize your overview Page layout",
@@ -344,6 +344,9 @@
       "type": "Select Type",
       "type_required": "Type is required",
       "job_id": "Job Id"
+    },
+    "edit_job": {
+      "title": "Update Job"
     },
     "hood_system": {
       "title": "Hood System",

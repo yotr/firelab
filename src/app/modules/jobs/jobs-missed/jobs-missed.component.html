@@ -20,15 +20,22 @@
   <!-- /page header  -->
   <app-back-button></app-back-button>
   <!-- table -->
-  <app-jobs-missed-module-table
+  <app-jobs-job-module-table
+    [data]="data"
     [totalItems]="totalItemsCount"
     [dataKeys]="dataKeys"
     [loading]="loading"
+    [getDataError]="getDataError"
     [currentTheme]="currentTheme"
     [deleteModalTitle]="'jobs.jobs_missed.title' | translate"
-    [tableTitle]="'jobs.jobs_missed.table_title' | translate"
-    editPagePath=""
-  ></app-jobs-missed-module-table>
+    [tableTitle]="'jobs.jobs_due.table_title' | translate"
+    editPagePath="/modules/task/edit"
+    (onPageChange)="onPaginate($event)"
+    (onDelete)="delete($event)"
+    (onSearch)="search($event)"
+    (onFilter)="handleFiltersSubmit($event)"
+    (onReset)="resetData()"
+  ></app-jobs-job-module-table>
 </div>
 
 <!-- [users]="users"

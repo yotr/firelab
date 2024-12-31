@@ -20,15 +20,23 @@
   <!-- /page header  -->
   <app-back-button></app-back-button>
   <!-- table -->
-  <app-my-jobs-module-table
+  <app-jobs-job-module-table
+    [data]="data"
     [totalItems]="totalItemsCount"
     [dataKeys]="dataKeys"
     [loading]="loading"
+    [getDataError]="getDataError"
     [currentTheme]="currentTheme"
     [deleteModalTitle]="'jobs.my_jobs.title' | translate"
     [tableTitle]="'jobs.my_jobs.table_title' | translate"
-    editPagePath=""
-  ></app-my-jobs-module-table>
+    editPagePath="/modules/task/edit"
+    (onPageChange)="onPaginate($event)"
+    (onDelete)="delete($event)"
+    (onSearch)="search($event)"
+    (onFilter)="handleFiltersSubmit($event)"
+    (onReset)="resetData()"
+    [isMyJobs]="true"
+  ></app-jobs-job-module-table>
 </div>
 
 <!-- [users]="users"

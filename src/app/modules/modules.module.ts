@@ -35,9 +35,6 @@ import { GpsComponent } from './gps/gps.component';
 import { JobsDueComponent } from './jobs/jobs-due/jobs-due.component';
 import { MyJobsComponent } from './jobs/my-jobs/my-jobs.component';
 import { JobsMissedComponent } from './jobs/jobs-missed/jobs-missed.component';
-import { MyJobsModuleTableComponent } from './jobs/components/my-jobs-module-table/my-jobs-module-table.component';
-import { JobsMissedModuleTableComponent } from './jobs/components/jobs-missed-module-table/jobs-missed-module-table.component';
-import { JobsDueModuleTableComponent } from './jobs/components/jobs-due-module-table/jobs-due-module-table.component';
 import { ServiceRequestsComponent } from './service-requests/service-requests.component';
 import { ServiceRequestsModuleTableComponent } from './service-requests/components/service-requests-module-table/service-requests-module-table.component';
 import { DeficienciesComponent } from './deficiencies/deficiencies.component';
@@ -52,6 +49,7 @@ import { ChooseModalComponent } from './job-link/choose-modal/choose-modal.compo
 import { AssignJobComponent } from './job-link/assign-job/assign-job.component';
 import { EditAssignedJobComponent } from './job-link/edit-assigned-job/edit-assigned-job.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { JobsJobModuleTableComponent } from './jobs/components/jobs-job-module-table/jobs-job-module-table.component';
 
 @NgModule({
   declarations: [
@@ -83,9 +81,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MyJobsComponent,
     JobsMissedComponent,
     EditJobComponent,
-    MyJobsModuleTableComponent,
-    JobsMissedModuleTableComponent,
-    JobsDueModuleTableComponent,
+    JobsJobModuleTableComponent,
     ServiceRequestsComponent,
     ServiceRequestsModuleTableComponent,
     DeficienciesComponent,

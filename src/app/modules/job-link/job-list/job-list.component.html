@@ -45,6 +45,7 @@
               class="job"
               data-bs-toggle="modal"
               data-bs-target="#choose_modal"
+              (click)="selectJob(job?.id)"
               >{{ truncateString(job?.description, 35) }}</span
             >
           </ng-container>
@@ -64,6 +65,7 @@
               class="job"
               data-bs-toggle="modal"
               data-bs-target="#choose_modal"
+              (click)="selectJob(job?.id)"
               >{{ truncateString(job?.description, 35) }}</span
             >
           </ng-container>
@@ -83,6 +85,7 @@
               class="job"
               data-bs-toggle="modal"
               data-bs-target="#choose_modal"
+              (click)="selectJob(job?.id)"
               >{{ truncateString(job?.description, 35) }}</span
             >
           </ng-container>
@@ -100,4 +103,4 @@
 
 <!-- choose modal -->
 
-<app-choose-modal></app-choose-modal>
+<app-choose-modal [id]="selectedJobId"></app-choose-modal>

@@ -5,7 +5,9 @@
     [dir]="'dir' | translate"
   >
     <!-- breadcrumb -->
-    <app-breadcrumb title="Edit Job"></app-breadcrumb>
+    <app-breadcrumb
+      [title]="'customers.edit_job.title' | translate"
+    ></app-breadcrumb>
   </div>
   <!-- /Page Header -->
 
@@ -17,7 +19,10 @@
       <div class="col-sm-12">
         <!-- Describe Job -->
         <div class="form-group mt-2">
-          <label>Describe Job <span class="text-danger">*</span></label>
+          <label
+            >{{ "customers.add_job.description" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <textarea
             class="form-control h-auto"
             formControlName="description"
@@ -38,7 +43,7 @@
               "
               class="text-danger"
             >
-              Job Description Is Required</small
+              {{ "customers.add_job.description_required" | translate }}</small
             >
           </div>
           <!-- errors -->
@@ -47,20 +52,27 @@
       <div class="col-sm-6">
         <!-- Select Month -->
         <div class="form-group mt-2">
-          <label>Select Month <span class="text-danger">*</span></label>
-          <input class="form-control" type="date" formControlName="date" />
+          <label
+            >{{ "customers.add_job.date" | translate }}
+            <span class="text-danger">*</span></label
+          >
+          <input class="form-control" type="date" formControlName="dateTime" />
 
           <!-- errors -->
           <div
-            *ngIf="addForm.get('date')?.invalid && addForm.get('date')?.touched"
+            *ngIf="
+              addForm.get('dateTime')?.invalid &&
+              addForm.get('dateTime')?.touched
+            "
           >
             <small
               *ngIf="
-                addForm.get('date')?.invalid && addForm.get('date')?.touched
+                addForm.get('dateTime')?.invalid &&
+                addForm.get('dateTime')?.touched
               "
               class="text-danger"
             >
-              Date Is Required</small
+              {{ "customers.add_job.date_required" | translate }}</small
             >
           </div>
           <!-- errors -->
@@ -69,35 +81,44 @@
       <div class="col-sm-6">
         <!-- Select Category -->
         <div class="form-group mt-2">
-          <label>Select Category <span class="text-danger">*</span></label>
-          <select class="form-select form-control" formControlName="category">
+          <label
+            >{{ "customers.add_job.category" | translate }}
+            <span class="text-danger">*</span></label
+          >
+          <select
+            class="form-select form-control"
+            formControlName="reportCategoryId"
+          >
             <option disabled selected>
               {{ "select" | translate }}
             </option>
-            <ng-container *ngFor="let report of reports">
-              <option [value]="report?.id">
-                {{ report?.name }}
+            <ng-container *ngFor="let category of categories">
+              <option [value]="category?.id">
+                {{ category?.name }}
               </option>
             </ng-container>
-            <option *ngIf="!reportsLoading && reports.length == 0" disabled>
-              No Data Yet
+            <option
+              *ngIf="!categoriesLoading && categories.length == 0"
+              disabled
+            >
+              {{ "customers.add_job.no_data" | translate }}
             </option>
           </select>
           <!-- errors -->
           <div
             *ngIf="
-              addForm.get('category')?.invalid &&
-              addForm.get('category')?.touched
+              addForm.get('reportCategoryId')?.invalid &&
+              addForm.get('reportCategoryId')?.touched
             "
           >
             <small
               *ngIf="
-                addForm.get('category')?.invalid &&
-                addForm.get('category')?.touched
+                addForm.get('reportCategoryId')?.invalid &&
+                addForm.get('reportCategoryId')?.touched
               "
               class="text-danger"
             >
-              Category Is Required</small
+              {{ "customers.add_job.category_required" | translate }}</small
             >
           </div>
           <!-- errors -->
@@ -106,18 +127,21 @@
       <div class="col-sm-6">
         <!-- Type -->
         <div class="form-group mt-2">
-          <label>Select Type <span class="text-danger">*</span></label>
+          <label
+            >{{ "customers.add_job.type" | translate }}
+            <span class="text-danger">*</span></label
+          >
           <select class="form-select form-control" formControlName="type">
             <option disabled selected>
               {{ "select" | translate }}
             </option>
             <ng-container *ngFor="let type of types">
-              <option [value]="type?.id">
+              <option [value]="type?.name">
                 {{ type?.name }}
               </option>
             </ng-container>
             <option *ngIf="!typesLoading && types.length == 0" disabled>
-              No Data Yet
+              {{ "customers.add_job.type_required" | translate }}
             </option>
           </select>
           <!-- errors -->
@@ -130,7 +154,7 @@
               "
               class="text-danger"
             >
-              Type Is Required</small
+              {{ "customers.add_job.type" | translate }}</small
             >
           </div>
           <!-- errors -->
@@ -139,7 +163,7 @@
       <div class="col-sm-6">
         <!-- Job Id -->
         <div class="form-group mt-2">
-          <label>Job Id </label>
+          <label>{{ "customers.add_job.job_id" | translate }} </label>
           <input class="form-control" type="text" formControlName="jobId" />
         </div>
       </div>
@@ -147,7 +171,7 @@
 
     <!-- submit -->
     <div class="save-btn text-center">
-      <button type="submit" class="save mt-4">Save</button>
+      <button type="submit" class="save mt-4">{{ "save" | translate }}</button>
     </div>
   </form>
 </div>

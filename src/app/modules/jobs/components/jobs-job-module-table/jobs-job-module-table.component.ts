@@ -1,19 +1,23 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { NgxPrintService, PrintOptions } from 'ngx-print';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { LanguageService } from 'src/app/services/language/language.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-jobs-missed-module-table',
-  templateUrl: './jobs-missed-module-table.component.html',
-  styleUrls: ['./jobs-missed-module-table.component.css'],
+  selector: 'app-jobs-job-module-table',
+  templateUrl: './jobs-job-module-table.component.html',
+  styleUrls: ['./jobs-job-module-table.component.css'],
 })
-export class JobsMissedModuleTableComponent implements OnInit {
+export class JobsJobModuleTableComponent implements OnInit {
   //variables
   @Input() data: any[] = [];
   @Input() dataKeys: any[] = [];
   @Input() loading: boolean = true;
+  @Input() getDataError: boolean = false;
   @Input() currentTheme: any;
+  @Input() isMyJobs: boolean = false;
   //  ================================================
   @Output() onDelete: EventEmitter<any> = new EventEmitter();
   @Output() onFilter: EventEmitter<any> = new EventEmitter();
@@ -48,9 +52,9 @@ export class JobsMissedModuleTableComponent implements OnInit {
   //pagination variables
   currentPage: number = 1;
   // count: number = 0;
-  itemsPerPage: number = 10;
+  itemsPerPage: number = 20;
   tableEntries: number[] = [
-    10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 100,
+    20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 100,
   ];
   printing: boolean = false;
   api: string = '';
@@ -60,7 +64,9 @@ export class JobsMissedModuleTableComponent implements OnInit {
   constructor(
     private printService: NgxPrintService,
     // private permissionsService: PermissionsService,
-    private auth: AuthService
+    private auth: AuthService,
+    public translateService: TranslateService,
+    private languageService: LanguageService
   ) {
     this.api = environment.API;
   }
@@ -69,7 +75,17 @@ export class JobsMissedModuleTableComponent implements OnInit {
 
   ngOnInit() {
     this.getCurrentUserData();
+    this.getLanguage();
   }
+  getLanguage() {
+    // get language from localStorage
+    this.languageService.getCurrentLanguage().subscribe((language) => {
+      this.currentLanguage = language;
+      // turn on current language (trandlate)
+      this.translateService.use(this.currentLanguage);
+    });
+  }
+
   // get user
   isLoggedIn(): boolean {
     return this.auth.currentUserSignal() == undefined ? false : true;
@@ -167,8 +183,8 @@ export class JobsMissedModuleTableComponent implements OnInit {
   // ================== \\  Functions for scpcific tables  \\ ==================
 
   //change status
-  onTableStatusChange(status: any, client: any) {
-    this.onStatusChange.emit({ status, client });
+  onTableStatusChange(status: any, id: any) {
+    this.onStatusChange.emit({ status, id });
   }
 
   printAll() {

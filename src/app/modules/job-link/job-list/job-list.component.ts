@@ -21,6 +21,7 @@ export class JobListComponent implements OnInit {
   nextMonthLoading: boolean = true;
   thisMonthJobs: any[] = [];
   thisMonthLoading: boolean = true;
+  selectedJobId: any = null;
 
   constructor(
     public translateService: TranslateService,
@@ -49,6 +50,10 @@ export class JobListComponent implements OnInit {
 
   ngOnInit() {
     this.getJobs(1);
+  }
+
+  selectJob(jobId: any) {
+    this.selectedJobId = jobId;
   }
 
   toggle() {

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ApiService } from 'src/app/services/api/api.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
 
@@ -10,7 +11,7 @@ import { ThemeService } from 'src/app/services/theme/theme.service';
   templateUrl: './assign-job.component.html',
   styleUrls: ['./assign-job.component.css'],
 })
-export class AssignJobComponent implements OnInit {
+export class AssignJobComponent implements OnInit, AfterViewInit {
   addForm: FormGroup;
   loading: boolean = true;
   hours: any[] = [];
@@ -22,8 +23,12 @@ export class AssignJobComponent implements OnInit {
   // clientsLoading: boolean = true;
   defaultImgUrl: any = 'assets/img/camera.png';
   currentTheme: any;
+  currentLanguage: any = localStorage.getItem('lang');
   selectUserType: string = 'normal';
+  // members
   members: any[] = [];
+  membersLoading: boolean = true;
+  totalItemsCount: number = 0;
   selectedMembers: any[] = [];
 
   currentUser: any = null;
@@ -35,65 +40,48 @@ export class AssignJobComponent implements OnInit {
   isNoteActive: boolean = false;
   isInspectorNoteActive: boolean = false;
   isCustomerNoteActive: boolean = false;
+  jobId: any = null;
+
+  // for durationBy and end date
+  isDurationByHours: boolean = true;
 
   constructor(
     private formBuilder: FormBuilder,
     private themeService: ThemeService,
     private toastr: ToastrService,
     private router: Router,
-    // private apiService: ApiService,
+    private activatedRoute: ActivatedRoute,
+    private apiService: ApiService,
     // private permissionsService: PermissionsService,
     private auth: AuthService
   ) {
+    //get id
+    this.activatedRoute.paramMap.subscribe((paramMap: Params) => {
+      if (paramMap['get']('id')) {
+        this.jobId = paramMap['get']('id');
+      }
+    });
+
     // Add form
     this.addForm = this.formBuilder.group({
       startDate: ['', [Validators.required]],
-      durationBy: ['', [Validators.required]],
+      durationBy: ['Hours', [Validators.required]],
       hours: ['', [Validators.required]],
-      mintes: ['', [Validators.required]],
+      minutes: ['', [Validators.required]],
       meridiem: ['', [Validators.required]],
-      duration: [''],
+      duration: [0],
       endDate: [''],
       teamIds: [[], [Validators.required]],
-      inspectorNote: [[''], [Validators.required]],
-      customerNote: [[''], [Validators.required]],
+      inspectorNote: [['']],
+      customerNote: [['']],
     });
     this.hours = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     this.minutes = ['00', '30'];
     this.durations = Array.from({ length: 47 }, (_, index) => 1 + index * 0.5);
-
-    this.members = [
-      {
-        id: 0,
-        name: 'Member One',
-      },
-      {
-        id: 1,
-        name: 'Member Two',
-      },
-      {
-        id: 2,
-        name: 'Member Three',
-      },
-      {
-        id: 3,
-        name: 'Member Four',
-      },
-      {
-        id: 4,
-        name: 'Member Five',
-      },
-      {
-        id: 5,
-        name: 'Member Six',
-      },
-      {
-        id: 6,
-        name: 'Member Seven',
-      },
-    ];
   }
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void {
+    this.getMembers();
+  }
 
   ngOnInit() {
     this.getTheme();
@@ -126,6 +114,14 @@ export class AssignJobComponent implements OnInit {
     this.addForm.get('customerNote')?.setValue('');
     this.isCustomerNoteActive = false;
   }
+
+  onDurationChange(event: any) {
+    let value = event?.target?.value;
+
+    value === 'Hours'
+      ? (this.isDurationByHours = true)
+      : (this.isDurationByHours = false);
+  }
   // get current user
   getCurrentActiveUser() {
     // check local storage
@@ -138,17 +134,120 @@ export class AssignJobComponent implements OnInit {
     }
   }
 
-  getSelectedMembers(members: any[]) {
-    this.selectedMembers = members;
-    console.log(members);
+  // get members data
+  getMembers() {
+    // api
+    this.apiService.get('teamMembers').subscribe({
+      next: (data: any) => {
+        console.log(data);
+        if (data?.isSuccess) {
+          this.members = data?.value;
+          this.totalItemsCount = data?.value?.length;
+          // this.getDataError = false;
+        }
+        this.membersLoading = false;
+      },
+      error: (err: any) => {
+        this.membersLoading = false;
+        // this.getDataError = true;
+        if (this.currentLanguage == 'ar') {
+          this.toastr.error('هناك شيء خاطئ', 'خطأ');
+        } else {
+          this.toastr.error('There Is Somthing Wrong', 'Error');
+        }
+      },
+      complete: () => {},
+    });
   }
 
-  //add a new
+  getSelectedMembers(members: any[]) {
+    this.selectedMembers = members;
+    let ids = members.map((item) => item.id);
+    this.addForm.patchValue({ teamIds: ids });
+  }
+
+  trackFun(index: number, item: any): number {
+    return item.id;
+  }
+  back() {
+    this.router.navigate(['/modules/jobLink'], {
+      queryParams: { view: 'Week' },
+    });
+  }
+  delete() {
+    this.addForm.reset();
+  }
+
   submit() {
     let date = new Date();
     console.log(this.selectedMembers);
-  }
-  trackFun(index: number, item: any): number {
-    return item.id;
+    if (this.addForm.valid) {
+      let data = {
+        ...this.addForm.value,
+        startDate: new Date(
+          this.addForm.get('startDate')?.value
+        )?.toISOString(),
+        endDate: this.isDurationByHours
+          ? null
+          : new Date(this.addForm.get('endDate')?.value)?.toISOString(),
+        jobId: this.jobId,
+      };
+      console.log(data);
+      this.uploading = true;
+      let assigned = false;
+      // api
+      this.apiService.add('assignedJobs/add', data).subscribe({
+        next: (data) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            assigned = true;
+            if (this.currentLanguage == 'ar') {
+              this.toastr.success('تمت إضافة البيانات بنجاح...');
+            } else {
+              this.toastr.success('data added successfully...', 'Success');
+            }
+            this.router.navigate(['/modules/jobLink'], {
+              queryParams: { view: 'Week' },
+            });
+          }
+        },
+        error: (err: any) => {
+          console.log('Error:', err);
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+          this.uploading = false;
+        },
+        complete: () => {
+          this.uploading = false;
+          if (assigned) {
+            // update job to be assigned
+            this.apiService
+              .statusChange(`jobs/updateStatus/${this.jobId}?status=${true}`)
+              .subscribe({
+                next: (data) => {
+                  console.log(data);
+                },
+                error: (err: any) => {
+                  console.log('Error:', err);
+                  if (this.currentLanguage == 'ar') {
+                    this.toastr.error('هناك شيء خاطئ', 'خطأ');
+                  } else {
+                    this.toastr.error('There Is Somthing Wrong', 'Error');
+                  }
+                },
+              });
+          }
+        },
+      });
+    } else {
+      if (this.currentLanguage == 'ar') {
+        this.toastr.warning('الرجاء إدخال الحقول المطلوبة');
+      } else {
+        this.toastr.warning('Please enter the required fields');
+      }
+    }
   }
 }

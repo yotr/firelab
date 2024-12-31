@@ -142,6 +142,7 @@ export class AddJobComponent implements OnInit, AfterViewInit {
         ...this.addForm.value,
         customerId: this.customerId,
         name: this.addForm.get('description')?.value,
+        status: false,
       };
       console.log(data);
       this.uploading = true;

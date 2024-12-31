@@ -68,7 +68,6 @@ export class TeamComponent implements OnInit {
   ngOnInit() {
     this.getLanguage();
     this.getTheme();
-    //   this.getCurrentUserData();
     this.getData();
   }
 
