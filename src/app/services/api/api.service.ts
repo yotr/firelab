@@ -68,6 +68,10 @@ export class ApiService {
     // .pipe(retry(1), catchError(this.handleError));
   }
 
+  customDelete(path: string): Observable<any> {
+    return this.http.delete(`${environment.API}/api/${path}`);
+    // .pipe(retry(1), catchError(this.handleError));
+  }
   // add multi data
   addFormData(path: string, data: FormData): Observable<any> {
     return this.http

@@ -160,9 +160,9 @@ export class AssignJobComponent implements OnInit, AfterViewInit {
     });
   }
 
-  getSelectedMembers(members: any[]) {
-    this.selectedMembers = members;
-    let ids = members.map((item) => item.id);
+  getSelectedMembers(members: any) {
+    this.selectedMembers =  members?.checkedData;
+    let ids = members?.checkedData?.map((item: any) => item?.id);
     this.addForm.patchValue({ teamIds: ids });
   }
 

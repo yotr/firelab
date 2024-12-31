@@ -16,7 +16,7 @@ export class CustomMultiSelectDropdownComponent implements OnInit {
   @Output() onAction: EventEmitter<any> = new EventEmitter();
   isActive: boolean = false;
   searchText: string = '';
-  checkedData: any[] = [];
+  @Input() checkedData: any[] = [];
 
   constructor() {}
 
@@ -39,7 +39,11 @@ export class CustomMultiSelectDropdownComponent implements OnInit {
     });
     // get checked
     this.getCheckedData();
-    this.onAction.emit(this.checkedData);
+    this.onAction.emit({
+      checkedData: this.checkedData,
+      id: id,
+      checked: value,
+    });
   }
 
   getCheckedData(): any[] {

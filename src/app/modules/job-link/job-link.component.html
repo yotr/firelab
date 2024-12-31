@@ -50,6 +50,7 @@
         [events]="events"
         #calendar
         (viewChange)="viewChange()"
+        (onEventClick)="onEventClick($event)">
       ></daypilot-calendar>
     </div>
   </div>

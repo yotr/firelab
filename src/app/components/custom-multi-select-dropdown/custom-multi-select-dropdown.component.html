@@ -12,7 +12,7 @@
   >
     <span *ngIf="checkedData.length == 0">{{ title }}</span>
     <div class="checked-data" *ngIf="checkedData.length != 0">
-      <span *ngFor="let value of checkedData;let i = index"
+      <span *ngFor="let value of checkedData; let i = index"
         >{{ value[objectKey] }}
         <span [hidden]="checkedData.length === i + 1">,</span>
       </span>

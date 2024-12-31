@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ComponentRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import {
   DayPilot,
@@ -149,7 +149,7 @@ export class JobLinkComponent implements OnInit, AfterViewInit {
               // Create a new Date object from the startDate string
               // let customStartDate = new Date(item?.startDate).toISOString();
               let id = item?.id;
-              let newStart = (item?.startDate as DayPilot.Date);
+              let newStart = item?.startDate as DayPilot.Date;
               let newEnd = item?.endDate ? item?.endDate : newStart;
               let text = item?.job?.name;
               // Return the updated object with the new startDate
@@ -178,5 +178,28 @@ export class JobLinkComponent implements OnInit, AfterViewInit {
           }
         },
       });
+  }
+
+  // Handle the event click
+  onEventClick(e: any): void {
+    const eventData = e.data; // `data` contains the event details
+
+    // Access event properties
+    const eventId = eventData.id;
+    const eventStart = eventData.start;
+    const eventEnd = eventData.end;
+    const eventText = eventData.text;
+
+    // Log the clicked event's details
+    console.log('Event clicked:', eventData);
+    console.log(`Event ID: ${eventId}`);
+    console.log(`Start Date: ${eventStart}`);
+    console.log(`End Date: ${eventEnd}`);
+    console.log(`Text: ${eventText}`);
+
+    // You can display a modal, navigate to a detail page, etc.
+    DayPilot.Modal.alert(
+      `Event ID: ${eventId}\nStart: ${eventStart}\nEnd: ${eventEnd}\nText: ${eventText}`
+    );
   }
 }

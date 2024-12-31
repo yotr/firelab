@@ -15,7 +15,9 @@
   <div class="header">
     <ul class="left-section">
       <li>{{ "job_link.assign_job.contact_name" | translate }}: NA</li>
-      <li>{{ "job_link.assign_job.job_id" | translate }}: NA</li>
+      <li>
+        {{ "job_link.assign_job.job_id" | translate }}: {{ currentJob?.jobId }}
+      </li>
       <li>{{ "job_link.assign_job.email_id" | translate }}: NA</li>
     </ul>
     <ul class="right-section">
@@ -75,6 +77,7 @@
             name="durationBy"
             id="durationBy"
             formControlName="durationBy"
+            (change)="onDurationChange($event)"
           >
             <option ngDefaultControl>{{ "select" | translate }}</option>
             <option value="Hours">
@@ -152,7 +155,7 @@
             class="form-select form-control"
             name="mintes"
             id="mintes"
-            formControlName="mintes"
+            formControlName="minutes"
           >
             <option ngDefaultControl>{{ "select" | translate }}</option>
             <ng-container *ngFor="let minute of minutes">
@@ -163,12 +166,12 @@
         <!-- errors -->
         <div
           *ngIf="
-            addForm.get('mintes')?.invalid && addForm.get('mintes')?.touched
+            addForm.get('minutes')?.invalid && addForm.get('minutes')?.touched
           "
         >
           <small
             *ngIf="
-              addForm.get('mintes')?.invalid && addForm.get('mintes')?.touched
+              addForm.get('minutes')?.invalid && addForm.get('minutes')?.touched
             "
             class="text-danger"
           >
@@ -209,7 +212,8 @@
         </div>
         <!-- errors -->
       </div>
-      <div class="col-sm-2">
+      <div class="col-sm-2" [hidden]="isDurationByHours"></div>
+      <div class="col-sm-2" [hidden]="!isDurationByHours">
         <!-- duration -->
         <div class="form-group mt-2">
           <select
@@ -242,7 +246,8 @@
         </div>
         <!-- errors -->
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-4" [hidden]="!isDurationByHours"></div>
+      <div class="col-sm-4" [hidden]="isDurationByHours">
         <!-- endDate -->
         <div class="form-group mt-2">
           <input class="form-control" type="date" formControlName="endDate" />
@@ -274,8 +279,9 @@
             height="44px"
             title="Select Here"
             [object]="true"
-            objectKey="name"
+            objectKey="userName"
             [data]="members"
+            [checkedData]="members"
             [filter]="true"
             (onAction)="getSelectedMembers($event)"
           ></app-custom-multi-select-dropdown>
@@ -344,12 +350,12 @@
 
     <!-- submit -->
     <div class="btns">
-      <div class="delete-btn text-center">
+      <div class="delete-btn text-center" (click)="deleteAssignedJob()">
         <div class="delete mt-4">
           {{ "job_link.assign_job.delete" | translate }}
         </div>
       </div>
-      <div class="unassign-btn text-center">
+      <div class="unassign-btn text-center" (click)="unassignJob()">
         <div class="unassign mt-4">
           {{ "job_link.assign_job.unassign" | translate }}
         </div>
