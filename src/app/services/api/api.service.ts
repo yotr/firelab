@@ -100,7 +100,7 @@ export class ApiService {
     return this.http.put<any>(
       `${environment.API}/api/${path}/${id}`,
       data,
-      environment.MULTI_HTTP_OPTIONS
+      environment.Files_HTTP_OPTIONS
     );
     // .pipe(retry(1), catchError(this.handleError));
   }

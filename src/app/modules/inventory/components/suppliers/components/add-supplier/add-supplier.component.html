@@ -112,6 +112,25 @@
           <input class="form-control" type="text" formControlName="address" />
         </div>
       </div>
+      <!-- status -->
+      <div class="col-sm-4">
+        <div class="form-group mt-2">
+          <label>{{ "inventory.parts.form.status" | translate }} </label>
+          <select
+            class="form-select form-control"
+            name="status"
+            id="status"
+            formControlName="status"
+          >
+            <option value="true">
+              {{ "inventory.parts.form.inStock" | translate }}
+            </option>
+            <option value="false">
+              {{ "inventory.parts.form.outStock" | translate }}
+            </option>
+          </select>
+        </div>
+      </div>
     </div>
 
     <!-- submit -->

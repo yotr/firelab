@@ -39,10 +39,16 @@
     [totalItems]="totalItemsCount"
     [dataKeys]="dataKeys"
     [loading]="loading"
+    [getDataError]="getDataError"
     [currentTheme]="currentTheme"
     [deleteModalTitle]="'inventory.tools.title' | translate"
     [tableTitle]="'inventory.tools.table_title' | translate"
     editPagePath="/modules/inventory/tools/edit"
+    (onPageChange)="onPaginate($event)"
+    (onDelete)="delete($event)"
+    (onSearch)="search($event)"
+    (onFilter)="handleFiltersSubmit($event)"
+    (onReset)="resetData()"
   ></app-tools-module-table>
 </div>
 

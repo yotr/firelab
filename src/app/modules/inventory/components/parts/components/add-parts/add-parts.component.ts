@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ApiService } from 'src/app/services/api/api.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
 
@@ -10,17 +11,21 @@ import { ThemeService } from 'src/app/services/theme/theme.service';
   templateUrl: './add-parts.component.html',
   styleUrls: ['./add-parts.component.css'],
 })
-export class AddPartsComponent implements OnInit {
+export class AddPartsComponent implements OnInit, AfterViewInit {
   addForm: FormGroup;
   loading: boolean = true;
   currentTheme: any;
+  currentLanguage: any = localStorage.getItem('lang');
   currentUser: any = null;
-  // reports
-  reports: any[] = [];
-  reportsLoading: boolean = true;
+  // categories
+  categories: any[] = [];
+  categoriesLoading: boolean = true;
+  getDataError: boolean = false;
   // suppliers
   suppliers: any[] = [];
   suppliersLoading: boolean = true;
+  totalItemsCount: number = 0;
+  // getDataError: boolean = false;
   // defaultPermissions: Permission[];
   uploading: boolean = false;
   file: any = null;
@@ -30,39 +35,31 @@ export class AddPartsComponent implements OnInit {
     private themeService: ThemeService,
     private toastr: ToastrService,
     private router: Router,
-    // private apiService: ApiService,
+    private apiService: ApiService,
     // private permissionsService: PermissionsService,
     private auth: AuthService
   ) {
     // Add form
     this.addForm = this.formBuilder.group({
-      image: [''],
-      supplier: ['', [Validators.required]],
-      category: ['', [Validators.required]],
+      supplierId: [null, [Validators.required]],
+      reportCategoryId: [null, [Validators.required]],
       partName: ['', [Validators.required]],
       sku: [''],
       make: ['', [Validators.required]],
       model: ['', [Validators.required]],
-      cost: ['', [Validators.required]],
-      quantity: ['', [Validators.required]],
+      cost: [0, [Validators.required]],
+      quantity: [0, [Validators.required]],
+      status: ['InStock'],
     });
-
-    this.reports = [
-      {
-        id: 0,
-        name: 'Alarm',
-      },
-      {
-        id: 1,
-        name: 'Fire Door',
-      },
-    ];
   }
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void {
+    this.getCategories();
+  }
 
   ngOnInit() {
     this.getTheme();
     this.getCurrentActiveUser();
+    this.getSuppliers();
   }
   // get theme from localStorage
   getTheme() {
@@ -107,77 +104,160 @@ export class AddPartsComponent implements OnInit {
     return str;
   }
 
+  onSelectSuppliers(supplier: any) {
+    this.addForm.patchValue({
+      supplierId: supplier?.id,
+    });
+  }
+
+  // get categories data
+  getCategories() {
+    this.apiService.get('reportCategories').subscribe({
+      next: (data: any) => {
+        console.log(data);
+        if (data?.isSuccess) {
+          this.categories = data?.value;
+          this.getDataError = false;
+        }
+        this.categoriesLoading = false;
+      },
+      error: (err) => {
+        this.categories = [];
+        this.categoriesLoading = false;
+        this.getDataError = true;
+        console.log(err);
+        if (this.currentLanguage == 'ar') {
+          this.toastr.error('هناك شيء خاطئ', 'خطأ');
+        } else {
+          this.toastr.error('There Is Somthing Wrong', 'Error');
+        }
+        this.categoriesLoading = false;
+      },
+      complete: () => {
+        this.categoriesLoading = false;
+      },
+    });
+  }
+
+  // get Suppliers data
+  getSuppliers(page?: number, pageSize?: number) {
+    this.apiService
+      .filterData(
+        'suppliers/getFilteredSuppliers',
+        page ? page : 1,
+        pageSize ? pageSize : 10
+      )
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.suppliers = data?.value?.suppliers;
+            this.totalItemsCount = data?.value?.totalCount;
+            // this.getDataError = false;
+          }
+          this.suppliersLoading = false;
+        },
+        error: (err) => {
+          this.suppliers = [];
+          this.suppliersLoading = false;
+          this.getDataError = true;
+          console.log(err);
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+          this.suppliersLoading = false;
+        },
+        complete: () => {
+          this.suppliersLoading = false;
+        },
+      });
+  }
+
+  onFilterSuppliers(value: string) {
+    if (value != null && value?.trim() != '') {
+      this.apiService
+        .globalSearch('suppliers/globalsearch', value, null)
+        .subscribe({
+          next: (data: any) => {
+            console.log(data);
+            if (data?.isSuccess) {
+              this.suppliers = data?.value;
+              this.totalItemsCount = data?.value?.length;
+            }
+            this.suppliersLoading = false;
+          },
+          error: (err: any) => {
+            this.suppliersLoading = false;
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          },
+        });
+    } else {
+      this.getSuppliers();
+    }
+  }
+
   //add a new
   submit() {
-    let date = new Date();
-    // add the new date
-    // this.addUserForm.patchValue({
-    //   date: date.toLocaleDateString('en-CA'),
-    // });
+    if (this.addForm.valid) {
+      let data = {
+        ...this.addForm.value,
+      };
+      let formData = new FormData();
+      if (this.file != null) {
+        formData.append('file', this.file);
+      }
+      formData.append('supplierId', this.addForm.get('supplierId')?.value);
+      formData.append(
+        'reportCategoryId',
+        this.addForm.get('reportCategoryId')?.value
+      );
+      formData.append('partName', this.addForm.get('partName')?.value);
+      formData.append('sku', this.addForm.get('sku')?.value);
+      formData.append('make', this.addForm.get('make')?.value);
+      formData.append('model', this.addForm.get('model')?.value);
+      formData.append('cost', this.addForm.get('cost')?.value);
+      formData.append('quantity', this.addForm.get('quantity')?.value);
+      formData.append('status', this.addForm.get('status')?.value);
 
-    // // add to server
-    // if (this.addUserForm.valid) {
-    //   let formData: FormData = new FormData();
-    //   formData.append('firstName', this.addUserForm.get('firstName').value);
-    //   formData.append('lastName', this.addUserForm.get('lastName').value);
-    //   formData.append('userName', this.addUserForm.get('userName').value);
-    //   formData.append('email', this.addUserForm.get('email').value);
-    //   formData.append('password', this.addUserForm.get('password').value);
-    //   formData.append(
-    //     'confirmPassword',
-    //     this.addUserForm.get('confirmPassword').value
-    //   );
-    //   formData.append('phone', this.addUserForm.get('phone').value);
-    //   formData.append('role', this.addUserForm.get('role').value);
-    //   // formData.append('company', this.addUserForm.get('company').value);
-    //   if (this.addUserForm.get('employeeId').value !== null) {
-    //     formData.append('employeeId', this.addUserForm.get('employeeId').value);
-    //   }
-    //   if (this.addUserForm.get('clientId').value !== null) {
-    //     formData.append('clientId', this.addUserForm.get('clientId').value);
-    //   }
-
-    //   formData.append('date', this.addUserForm.get('date').value);
-    //   // formData.append('permissions', JSON.stringify(this.defaultPermissions));
-    //   if (this.addUserForm.get('image').value != null) {
-    //     formData.append('image', this.addUserForm.get('image').value);
-    //   }
-
-    //   let added = false;
-    //   this.uploading = true;
-    //   // send the data to server
-    //   this.apiService.addMultiData('users/create', formData).subscribe({
-    //     next: (data) => {
-    //       this.uploading = false;
-    //       added = true;
-    //     },
-    //     error: (error) => {
-    //       this.uploading = false;
-    //       this.toastr.error('there is something wrong', 'Error');
-    //     },
-    //     complete: () => {
-    //       if (added) {
-    //         this.uploading = false;
-    //         this.router.navigate(['/modules/users/all-users']);
-    //         this.toastr.success('User added Successfully');
-    //         this.addUserForm.reset();
-    //       }
-    //     },
-    //   });
-    // } else {
-    //   this.uploading = false;
-    //   this.toastr.error('', 'Please enter mandatory field!');
-    // }
+      console.log(data);
+      this.uploading = true;
+      // api
+      this.apiService.addFormData('parts/add', formData).subscribe({
+        next: (data) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            if (this.currentLanguage == 'ar') {
+              this.toastr.success('تمت إضافة البيانات بنجاح...');
+            } else {
+              this.toastr.success('data added successfully...', 'Success');
+            }
+            this.router.navigate(['/modules/inventory/parts']);
+          }
+        },
+        error: (err: any) => {
+          console.log('Error:', err);
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+          this.uploading = false;
+        },
+        complete: () => {
+          this.uploading = false;
+        },
+      });
+    } else {
+      if (this.currentLanguage == 'ar') {
+        this.toastr.warning('الرجاء إدخال الحقول المطلوبة');
+      } else {
+        this.toastr.warning('Please enter the required fields');
+      }
+    }
   }
   trackFun(index: number, item: any): number {
     return item.id;
-  }
-  // check page || components permissions
-  checkPageActions(): any {
-    // return this.permissionsService.checkPageActions(
-    //   this.auth.currentUserSignal()?.userData,
-    //   'Users',
-    //   'add'
-    // );
   }
 }

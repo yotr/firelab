@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
+import { ApiService } from 'src/app/services/api/api.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { SidebarService } from 'src/app/services/sidebar/sidebar.service';
@@ -19,6 +20,7 @@ export class VehiclesComponent implements OnInit, AfterViewInit {
   data: any[] = [] as any[];
   loading: boolean = true;
   totalItemsCount: number = 0;
+  getDataError: boolean = false;
   dataKeys: any[] = [];
   // current logged in user
   currentUser: any = {} as any;
@@ -30,23 +32,12 @@ export class VehiclesComponent implements OnInit, AfterViewInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private toastr: ToastrService,
-    // public apiService: ApiService,
+    public apiService: ApiService,
     // private permissionsService: PermissionsService,
     private auth: AuthService,
     private sidebarService: SidebarService
   ) {
-    //   //get id
-    //   this.activatedRoute.queryParamMap.subscribe((paramMap: Params) => {
-    //     if (paramMap['get']('operationid')) {
-    //       this.operationId = paramMap['get']('operationid');
-    //     }
-    //   });
-    //   // get query parameters
-    //   this.activatedRoute.queryParams.subscribe((query) => {
-    //     this.view_type = query['view_type'];
-    //   });
-
-    //   // turn on current language (trandlate)
+    // turn on current language (trandlate)
     this.translateService.use(this.currentLanguage);
     this.dataKeys = [
       {
@@ -58,27 +49,27 @@ export class VehiclesComponent implements OnInit, AfterViewInit {
         active: true,
       },
       {
-        name: 'assignedTechnician',
+        name: 'teamMember',
         display: this.translateService.instant(
           'inventory.vehicles.table.assigned_technician'
         ),
-        type: 'string',
+        type: 'object',
         active: true,
       },
       {
-        name: 'partsQuantity',
+        name: 'parts',
         display: this.translateService.instant(
           'inventory.vehicles.table.parts_quantity'
         ),
-        type: 'string',
+        type: 'object',
         active: true,
       },
       {
-        name: 'toolsQuantity',
+        name: 'tools',
         display: this.translateService.instant(
           'inventory.vehicles.table.tools_quantity'
         ),
-        type: 'string',
+        type: 'object',
         active: true,
       },
     ];
@@ -137,139 +128,158 @@ export class VehiclesComponent implements OnInit, AfterViewInit {
     value1?: any,
     value2?: any
   ) {
-    this.data = [
-      {
-        vehicleNumber: 7594398,
-        assignedTechnician: 'Test User',
-        partsQuantity: 3,
-        toolsQuantity: 1,
-      },
-    ];
-    this.loading = false;
-    this.totalItemsCount = this.data.length;
-    // this.apiService
-    //   .filterData(
-    //     `clients/getFilteredClients`,
-    //     page ? page : 1,
-    //     pageSize ? pageSize : 10
-    //   )
-    //   .subscribe((data) => {
-    //     this.clients = data?.clientDto;
-    //     this.totalItemsCount = data?.totalCount;
-    //     this.loading = false;
-    //     // get dynamic columns keys
-    //     // this.getTableTabKeys(data);
-    //   });
+    // api
+    this.loading = true;
+    this.apiService
+      ?.filterData(
+        'vehicles/getFilteredVehicles',
+        page ? page : 1,
+        pageSize ? pageSize : 20
+      )
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.data = data?.value?.vehicleDtos;
+            this.totalItemsCount = data?.value?.totalCount;
+            this.getDataError = false;
+          }
+          this.loading = false;
+        },
+        error: (err: any) => {
+          this.loading = false;
+          this.getDataError = true;
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {},
+      });
   }
 
-  // search(event: any) {
-  //   if (event?.value != null && event.value?.trim() != '') {
-  //     this.apiService
-  //       .globalSearch('clients/globalsearch', event?.value, event?.column)
-  //       .subscribe((data) => {
-  //         // console.log(data);
-  //         this.clients = data;
-  //         this.totalItemsCount = data?.length;
-  //         this.loading = false;
-  //       });
-  //   } else {
-  //     this.getClients();
-  //   }
-  // }
+  onPaginate(event: any) {
+    this.getData(event?.page, event?.itemsPerPage);
+  }
 
-  // delete(deleteId: any) {
-  //   console.log(deleteId);
-  //   this.apiService.delete('clients', deleteId).subscribe({
-  //     next: () => {
-  //       // delete in client side when success
-  //       this.clients = this.clients.filter((data) => data?.id !== deleteId);
-  //     },
-  //     error: (err) => {
-  //       console.log(err);
-  //     },
-  //     complete: () => {
-  //       //success message
-  //       this.toastr.success('Client', 'Deleted Successfully', {
-  //         timeOut: 3000,
-  //       });
-  //     },
-  //   });
-  // }
-  // //filters handle
-  // handleFiltersSubmit(event: any) {
-  //   this.loading = true;
-  //   // check if filters operator  contains selected
-  //   this.apiService
-  //     .filterData(
-  //       'clients/getFilteredClients',
-  //       1,
-  //       10,
-  //       event?.column,
-  //       event?.filters?.operator1,
-  //       event?.filters?.operator2,
-  //       event?.filters?.searchValue1,
-  //       event?.filters?.searchValue2
-  //     )
-  //     .subscribe((result) => {
-  //       this.clients = result?.clientDto;
-  //       this.totalItemsCount = result?.totalCount;
-  //       this.loading = false;
-  //     });
-  // }
-  // //delete selected
-  // deleteSelected() {
-  //   //success message
-  //   this.toastr.success('Client Deleted Successfully...', 'Success');
-  //   //in server side
-  // }
-  // resetData() {
-  //   this.getClients();
-  // }
-  // //change status
+  search(event: any) {
+    if (event?.value != null && event.value?.trim() != '') {
+      this.apiService
+        .globalSearch('vehicles/globalsearch', event?.value, event?.column)
+        .subscribe({
+          next: (data: any) => {
+            if (data?.isSuccess) {
+              console.log(data);
+              this.data = data?.value;
+              this.totalItemsCount = data?.value?.length;
+            }
+            this.loading = false;
+          },
+          error: (err: any) => {
+            this.loading = false;
+            if (this.currentLanguage == 'ar') {
+              this.toastr.error('هناك شيء خاطئ', 'خطأ');
+            } else {
+              this.toastr.error('There Is Somthing Wrong', 'Error');
+            }
+          },
+        });
+    } else {
+      this.getData();
+    }
+  }
+
+  delete(deleteId: any) {
+    console.log(deleteId);
+    this.apiService.delete('vehicles', deleteId).subscribe({
+      next: (data) => {
+        if (data?.isSuccess) {
+          this.data = this.data.filter((item: any) => item?.id !== deleteId);
+          if (this.currentLanguage == 'ar') {
+            this.toastr.success('تم حذف العنصر بنجاح...');
+          } else {
+            this.toastr.success('item deleted successfully...');
+          }
+        }
+      },
+      error: (err) => {
+        console.log(err);
+        if (this.currentLanguage == 'ar') {
+          this.toastr.error('هناك شيء خاطئ', 'خطأ');
+        } else {
+          this.toastr.error('There Is Somthing Wrong', 'Error');
+        }
+      },
+      complete: () => {},
+    });
+  }
+  //filters handle
+  handleFiltersSubmit(event: any) {
+    this.loading = true;
+    // check if filters operator  contains selected
+    this.apiService
+      .filterData(
+        'vehicles/getFilteredVehicles',
+        1,
+        20,
+        event?.column,
+        event?.filters?.operator1,
+        event?.filters?.operator2,
+        event?.filters?.searchValue1,
+        event?.filters?.searchValue2
+      )
+      .subscribe({
+        next: (data) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.data = data?.value?.VehicleDtos;
+            this.totalItemsCount = data?.value?.totalCount;
+            this.loading = false;
+          }
+        },
+        error: (err: any) => {
+          this.loading = false;
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {},
+      });
+  }
+
+  resetData() {
+    this.getData();
+  }
+  //change status
   // onStatusChange(data: any) {
-  //   data.client.status = data.status;
-  //   data.client.checked = false;
-  //   // update status of leave
-  //   let formData: FormData = new FormData();
-  //   formData.append('email', data.client.email);
-  //   // formData.append('password', data.client.password);
-  //   // formData.append('confirmPassword', data.client.confirmPassword);
-  //   formData.append('firstName', data.client.firstName);
-  //   formData.append('lastName', data.client.lastName);
-  //   formData.append('clientId', data.client.clientId);
-  //   formData.append('mobile', data.client.phone);
-  //   formData.append('companyName', data.client.companyName);
-  //   // formData.append('permissions', JSON.stringify(data.client.permissions));
-  //   formData.append('status', data.client.status);
+  //   console.log(data);
+  //   let id = data?.id;
+  //   let status = data?.status?.value;
 
-  //   let updated = false;
   //   this.apiService
-  //     .update('clients/update', data?.client?.id, formData)
+  //     .statusChange(`contracts/updateStatus/${id}?status=${status}`, {})
   //     .subscribe({
-  //       next: () => {
-  //         updated = true;
-  //       },
-  //       error: () => {
-  //         this.toastr.error('There Is Somthing Wrong', 'Error');
-  //       },
-  //       complete: () => {
-  //         if (updated) {
-  //           //success
-  //           this.toastr.success(`Status Changed Successfully...`, 'Success');
+  //       next: (data) => {
+  //         if (data?.isSuccess) {
+  //           if (this.currentLanguage == 'ar') {
+  //             this.toastr.success('تم تغيير الحالة بنجاح...');
+  //           } else {
+  //             this.toastr.success('status changed successfully...');
+  //           }
   //         }
   //       },
+  //       error: (err: any) => {
+  //         console.log(err);
+  //         if (this.currentLanguage == 'ar') {
+  //           this.toastr.error('هناك شيء خاطئ', 'خطأ');
+  //         } else {
+  //           this.toastr.error('There Is Somthing Wrong', 'Error');
+  //         }
+  //       },
+  //       complete: () => {},
   //     });
-  // }
-  // // check page || components permissions
-  // checkPageActions(action: string): boolean {
-  //   return this.permissionsService.checkPageActions(
-  //     this.auth.currentUserSignal()?.userData,
-  //     'Clients',
-  //     action
-  //   );
-  // }
-  //handle display submenu from list menu array by know which item active
-  // setActiveMenu() {
-  //   this.sidebarService.sendActiveDropdown('Customers');
   // }
 }

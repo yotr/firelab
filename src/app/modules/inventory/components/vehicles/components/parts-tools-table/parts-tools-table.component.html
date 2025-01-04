@@ -1,24 +1,90 @@
-<table class="table mt-4">
-  <thead
-    class="bg-dark {{ currentTheme?.colorSchema?.background }} {{
-      currentTheme?.colorSchema?.color
-    }}"
-  >
-    <tr>
-      <th class="text-light" *ngFor="let value of dataKeys">
-        <div class="head-value">{{ value?.display | translate }}</div>
-      </th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let value of data">
-      <th class="bg-light">1</th>
-      <td class="bg-light">Mark</td>
-      <td class="bg-light">Otto</td>
-      <td class="bg-light"></td>
-    </tr>
-  </tbody>
-</table>
+<!-- parts -->
+<ng-container *ngIf="isParts">
+  <table class="table mt-4">
+    <thead
+      class="bg-dark {{ currentTheme?.colorSchema?.background }} {{
+        currentTheme?.colorSchema?.color
+      }}"
+    >
+      <tr>
+        <th class="text-light" *ngFor="let value of dataKeys">
+          <div class="head-value">{{ value?.display | translate }}</div>
+        </th>
+        <th class="text-light"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let value of data">
+        <th class="bg-light text-center">
+          {{ value?.part?.partName }}
+        </th>
+        <td class="bg-light text-center">{{ value?.part?.sku }}</td>
+        <td class="bg-light text-center">{{ value?.quantity }}</td>
+        <td class="bg-light text-center">
+          <div
+            class="btn btn-outline-info"
+            data-bs-toggle="modal"
+            data-bs-target="#delete"
+            (click)="deleteId = value?.id"
+          >
+            {{ "unassign" | translate }}
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- delete modal -->
+  <app-delete-modal
+    [title]="deleteModalTitle"
+    [currentTheme]="currentTheme"
+    (onDelete)="unAssignParts(deleteId)"
+  ></app-delete-modal>
+  <!--/ delete modal -->
+</ng-container>
+<!-- tools -->
+<ng-container *ngIf="isTools">
+  <table class="table mt-4">
+    <thead
+      class="bg-dark {{ currentTheme?.colorSchema?.background }} {{
+        currentTheme?.colorSchema?.color
+      }}"
+    >
+      <tr>
+        <th class="text-light" *ngFor="let value of dataKeys">
+          <div class="head-value">{{ value?.display | translate }}</div>
+        </th>
+        <th class="text-light"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let value of data">
+        <th class="bg-light text-center">
+          {{ value?.tool?.toolName }}
+        </th>
+        <td class="bg-light text-center">{{ value?.tool?.idNumber }}</td>
+        <td class="bg-light text-center">{{ value?.quantity }}</td>
+        <td class="bg-light text-center">
+          <div
+            class="btn btn-outline-info"
+            data-bs-toggle="modal"
+            data-bs-target="#delete"
+            (click)="deleteId = value?.id"
+          >
+            {{ "unassign" | translate }}
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- delete modal -->
+  <app-delete-modal
+    [title]="deleteModalTitle"
+    [currentTheme]="currentTheme"
+    (onDelete)="unAssignTools(deleteId)"
+  ></app-delete-modal>
+  <!--/ delete modal -->
+</ng-container>
+
 <!-- no data -->
 <!-- <h5
   *ngIf="data.length == 0 && loading == false"

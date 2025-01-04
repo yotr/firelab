@@ -53,7 +53,9 @@
               "
               class="text-danger"
             >
-              {{ "inventory.vehicles.form.vehicle_number_required" | translate }}</small
+              {{
+                "inventory.vehicles.form.vehicle_number_required" | translate
+              }}</small
             >
           </div>
           <!-- errors -->
@@ -66,9 +68,16 @@
             >{{ "inventory.vehicles.form.assigned_technician" | translate }}
             <span class="text-danger">*</span></label
           >
-          <select
+          <app-custom-filter-dropdown
+            minWidth="100%"
+            objectKey="userName"
+            [data]="members"
+            (onAction)="onSelectTeamMember($event)"
+            (onFilter)="onFilterMembers($event)"
+          ></app-custom-filter-dropdown>
+          <!-- <select
             class="form-select form-control"
-            formControlName="assignedTechnician"
+            formControlName="teamMemberId"
           >
             <option disabled selected>
               {{ "select" | translate }}
@@ -81,22 +90,25 @@
             <option *ngIf="!usersLoading && users.length == 0" disabled>
               {{ "inventory.vehicles.form.no_data" | translate }}
             </option>
-          </select>
+          </select> -->
           <!-- errors -->
           <div
             *ngIf="
-              addForm.get('assignedTechnician')?.invalid &&
-              addForm.get('assignedTechnician')?.touched
+              addForm.get('teamMemberId')?.invalid &&
+              addForm.get('teamMemberId')?.touched
             "
           >
             <small
               *ngIf="
-                addForm.get('assignedTechnician')?.invalid &&
-                addForm.get('assignedTechnician')?.touched
+                addForm.get('teamMemberId')?.invalid &&
+                addForm.get('teamMemberId')?.touched
               "
               class="text-danger"
             >
-              {{ "inventory.vehicles.form.assigned_technician_required" | translate }}</small
+              {{
+                "inventory.vehicles.form.assigned_technician_required"
+                  | translate
+              }}</small
             >
           </div>
           <!-- errors -->

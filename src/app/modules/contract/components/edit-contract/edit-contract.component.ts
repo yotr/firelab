@@ -26,7 +26,6 @@ export class EditContractComponent implements OnInit, AfterViewInit {
   membersLoading: boolean = true;
   totalItemsCount: number = 0;
   getDataError: boolean = false;
-  // defaultPermissions: Permission[];
   uploading: boolean = false;
   currentTeamMember: any = null;
 

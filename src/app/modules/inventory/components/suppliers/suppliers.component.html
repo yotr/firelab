@@ -4,7 +4,9 @@
     class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
     [dir]="'dir' | translate"
   >
-    <app-breadcrumb [title]="'inventory.supplier.title' | translate"></app-breadcrumb>
+    <app-breadcrumb
+      [title]="'inventory.supplier.title' | translate"
+    ></app-breadcrumb>
     <div routerLink="/modules/inventory/suppliers/add">
       <a
         class="btn add-btn d-flex align-items-center {{
@@ -25,10 +27,16 @@
     [totalItems]="totalItemsCount"
     [dataKeys]="dataKeys"
     [loading]="loading"
+    [getDataError]="getDataError"
     [currentTheme]="currentTheme"
     [deleteModalTitle]="'inventory.supplier.title' | translate"
     [tableTitle]="'inventory.supplier.table_title' | translate"
     editPagePath="/modules/inventory/suppliers/edit"
+    (onPageChange)="onPaginate($event)"
+    (onDelete)="delete($event)"
+    (onSearch)="search($event)"
+    (onFilter)="handleFiltersSubmit($event)"
+    (onReset)="resetData()"
   ></app-supplier-module-table>
 </div>
 

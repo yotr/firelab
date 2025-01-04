@@ -12,6 +12,7 @@
   "next": "Next",
   "no_data": "No data found",
   "search": "Search..",
+  "unassign": "Unassign",
   "theme_settings": {
     "title": "Customizer",
     "title_dic": "Customize your overview Page layout",
@@ -583,7 +584,10 @@
         "cost": "Cost",
         "cost_required": "Cost is required",
         "quantity": "Quantity",
-        "quantity_required": "Quantity is required"
+        "quantity_required": "Quantity is required",
+        "status": "Status",
+        "inStock": "In Stock",
+        "outStock": "Out of Stock"
       },
       "table": {
         "part_name": "Part Name",

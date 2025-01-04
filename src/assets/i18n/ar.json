@@ -12,6 +12,7 @@
   "next": "التالي",
   "no_data": "لم يتم العثور على أي بيانات",
   "search": "بحث...",
+  "unassign": "إلغاء التعيين",
   "theme_settings": {
     "title": "أداة التخصيص",
     "title_dic": "تخصيص تخطيط صفحة النظرة العامة الخاصة بك",
@@ -582,7 +583,10 @@
         "cost": "التكلفة",
         "cost_required": "التكلفة مطلوبة",
         "quantity": "كمية",
-        "quantity_required": "الكمية المطلوبة"
+        "quantity_required": "الكمية المطلوبة",
+        "status": "حالة",
+        "inStock": "متاح",
+        "outStock": "غير متاح"
       },
       "table": {
         "part_name": "اسم القطعة",

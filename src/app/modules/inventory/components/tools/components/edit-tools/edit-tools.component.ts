@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ApiService } from 'src/app/services/api/api.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
 
@@ -10,39 +11,44 @@ import { ThemeService } from 'src/app/services/theme/theme.service';
   templateUrl: './edit-tools.component.html',
   styleUrls: ['./edit-tools.component.css'],
 })
-export class EditToolsComponent implements OnInit {
+export class EditToolsComponent implements OnInit, AfterViewInit {
   addForm: FormGroup;
   loading: boolean = true;
   currentTheme: any;
+  currentLanguage: any = localStorage.getItem('lang');
   currentUser: any = null;
-  // reports
-  reports: any[] = [];
-  reportsLoading: boolean = true;
-  // suppliers
-  suppliers: any[] = [];
-  suppliersLoading: boolean = true;
-  // defaultPermissions: Permission[];
   uploading: boolean = false;
   file: any = null;
+  updateId: any = null;
 
   constructor(
     private formBuilder: FormBuilder,
     private themeService: ThemeService,
     private toastr: ToastrService,
     private router: Router,
-    // private apiService: ApiService,
+    private activatedRoute: ActivatedRoute,
+    private apiService: ApiService,
     // private permissionsService: PermissionsService,
     private auth: AuthService
   ) {
+    //get id
+    this.activatedRoute.paramMap.subscribe((paramMap: Params) => {
+      if (paramMap['get']('id')) {
+        this.updateId = paramMap['get']('id');
+      }
+    });
     // Add form
     this.addForm = this.formBuilder.group({
       idNumber: ['', [Validators.required]],
       toolName: ['', [Validators.required]],
       quantity: ['', [Validators.required]],
       description: [''],
+      status: [''],
     });
   }
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void {
+    this.getCurrentData();
+  }
 
   ngOnInit() {
     this.getTheme();
@@ -91,77 +97,78 @@ export class EditToolsComponent implements OnInit {
     return str;
   }
 
+  // get current data
+  getCurrentData() {
+    this.apiService.getById('tools', this.updateId).subscribe({
+      next: (data: any) => {
+        //  set values
+        console.log(data);
+        if (data?.isSuccess) {
+          this.addForm.patchValue({
+            idNumber: data?.value?.idNumber,
+            toolName: data?.value?.toolName,
+            quantity: data?.value?.quantity,
+            description: data?.value?.description,
+            status: data?.value?.status,
+          });
+        }
+      },
+      error: (error) => {
+        console.log(error);
+        if (this.currentLanguage == 'ar') {
+          this.toastr.error('هناك شيء خاطئ', 'خطأ');
+        } else {
+          this.toastr.error('There Is Somthing Wrong', 'Error');
+        }
+      },
+    });
+  }
+
   //add a new
   submit() {
-    let date = new Date();
-    // add the new date
-    // this.addUserForm.patchValue({
-    //   date: date.toLocaleDateString('en-CA'),
-    // });
+    if (this.addForm.valid) {
+      let data = {
+        ...this.addForm.value,
+        // status: this.addForm.get('status')?.value == 'true' ? true : false,
+      };
 
-    // // add to server
-    // if (this.addUserForm.valid) {
-    //   let formData: FormData = new FormData();
-    //   formData.append('firstName', this.addUserForm.get('firstName').value);
-    //   formData.append('lastName', this.addUserForm.get('lastName').value);
-    //   formData.append('userName', this.addUserForm.get('userName').value);
-    //   formData.append('email', this.addUserForm.get('email').value);
-    //   formData.append('password', this.addUserForm.get('password').value);
-    //   formData.append(
-    //     'confirmPassword',
-    //     this.addUserForm.get('confirmPassword').value
-    //   );
-    //   formData.append('phone', this.addUserForm.get('phone').value);
-    //   formData.append('role', this.addUserForm.get('role').value);
-    //   // formData.append('company', this.addUserForm.get('company').value);
-    //   if (this.addUserForm.get('employeeId').value !== null) {
-    //     formData.append('employeeId', this.addUserForm.get('employeeId').value);
-    //   }
-    //   if (this.addUserForm.get('clientId').value !== null) {
-    //     formData.append('clientId', this.addUserForm.get('clientId').value);
-    //   }
-
-    //   formData.append('date', this.addUserForm.get('date').value);
-    //   // formData.append('permissions', JSON.stringify(this.defaultPermissions));
-    //   if (this.addUserForm.get('image').value != null) {
-    //     formData.append('image', this.addUserForm.get('image').value);
-    //   }
-
-    //   let added = false;
-    //   this.uploading = true;
-    //   // send the data to server
-    //   this.apiService.addMultiData('users/create', formData).subscribe({
-    //     next: (data) => {
-    //       this.uploading = false;
-    //       added = true;
-    //     },
-    //     error: (error) => {
-    //       this.uploading = false;
-    //       this.toastr.error('there is something wrong', 'Error');
-    //     },
-    //     complete: () => {
-    //       if (added) {
-    //         this.uploading = false;
-    //         this.router.navigate(['/modules/users/all-users']);
-    //         this.toastr.success('User added Successfully');
-    //         this.addUserForm.reset();
-    //       }
-    //     },
-    //   });
-    // } else {
-    //   this.uploading = false;
-    //   this.toastr.error('', 'Please enter mandatory field!');
-    // }
+      console.log(data);
+      this.uploading = true;
+      // api
+      this.apiService.update('tools', this.updateId, data).subscribe({
+        next: (data) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            if (this.currentLanguage == 'ar') {
+              this.toastr.success('تمت إضافة البيانات بنجاح...');
+            } else {
+              this.toastr.success('data added successfully...', 'Success');
+            }
+            this.router.navigate(['/modules/inventory/tools']);
+          }
+        },
+        error: (err: any) => {
+          console.log('Error:', err);
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+          this.uploading = false;
+        },
+        complete: () => {
+          this.uploading = false;
+        },
+      });
+    } else {
+      if (this.currentLanguage == 'ar') {
+        this.toastr.warning('الرجاء إدخال الحقول المطلوبة');
+      } else {
+        this.toastr.warning('Please enter the required fields');
+      }
+    }
   }
   trackFun(index: number, item: any): number {
     return item.id;
-  }
-  // check page || components permissions
-  checkPageActions(): any {
-    // return this.permissionsService.checkPageActions(
-    //   this.auth.currentUserSignal()?.userData,
-    //   'Users',
-    //   'add'
-    // );
   }
 }

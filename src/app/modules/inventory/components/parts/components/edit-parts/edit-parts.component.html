@@ -22,7 +22,9 @@
           <input id="files" type="file" (change)="getSelectedFiles($event)" />
           <i class="pi pi-cloud-upload fs-4"></i>
           <span class="upload-text mx-2">{{
-            file != null ? truncateString(file?.name, 20) : "Add Image"
+            file != null
+              ? truncateString(file?.name, 20)
+              : truncateString(currentFile, 20)
           }}</span>
         </div>
         <div class="clear my-2" (click)="clearImage()">
@@ -38,7 +40,15 @@
             >{{ "inventory.parts.form.supplier" | translate }}
             <span class="text-danger">*</span></label
           >
-          <select class="form-select form-control" formControlName="supplier">
+          <app-custom-filter-dropdown
+            minWidth="100%"
+            [title]="currentSupplier"
+            objectKey="supplierName"
+            [data]="suppliers"
+            (onAction)="onSelectSuppliers($event)"
+            (onFilter)="onFilterSuppliers($event)"
+          ></app-custom-filter-dropdown>
+          <!-- <select class="form-select form-control" formControlName="supplierId">
             <option disabled selected>
               {{ "select" | translate }}
             </option>
@@ -47,21 +57,21 @@
                 {{ supply?.name }}
               </option>
             </ng-container>
-            <option *ngIf="!reportsLoading && reports.length == 0" disabled>
+            <option *ngIf="!suppliersLoading && suppliers.length == 0" disabled>
               {{ "inventory.parts.form.no_data" | translate }}
             </option>
-          </select>
+          </select> -->
           <!-- errors -->
           <div
             *ngIf="
-              addForm.get('supplier')?.invalid &&
-              addForm.get('supplier')?.touched
+              addForm.get('supplierId')?.invalid &&
+              addForm.get('supplierId')?.touched
             "
           >
             <small
               *ngIf="
-                addForm.get('supplier')?.invalid &&
-                addForm.get('supplier')?.touched
+                addForm.get('supplierId')?.invalid &&
+                addForm.get('supplierId')?.touched
               "
               class="text-danger"
             >
@@ -78,30 +88,36 @@
             >{{ "inventory.parts.form.category" | translate }}
             <span class="text-danger">*</span></label
           >
-          <select class="form-select form-control" formControlName="category">
+          <select
+            class="form-select form-control"
+            formControlName="reportCategoryId"
+          >
             <option disabled selected>
               {{ "select" | translate }}
             </option>
-            <ng-container *ngFor="let report of reports">
+            <ng-container *ngFor="let report of categories">
               <option [value]="report?.id">
                 {{ report?.name }}
               </option>
             </ng-container>
-            <option *ngIf="!reportsLoading && reports.length == 0" disabled>
+            <option
+              *ngIf="!categoriesLoading && categories.length == 0"
+              disabled
+            >
               {{ "inventory.parts.form.no_data" | translate }}
             </option>
           </select>
           <!-- errors -->
           <div
             *ngIf="
-              addForm.get('category')?.invalid &&
-              addForm.get('category')?.touched
+              addForm.get('reportCategoryId')?.invalid &&
+              addForm.get('reportCategoryId')?.touched
             "
           >
             <small
               *ngIf="
-                addForm.get('category')?.invalid &&
-                addForm.get('category')?.touched
+                addForm.get('reportCategoryId')?.invalid &&
+                addForm.get('reportCategoryId')?.touched
               "
               class="text-danger"
             >
@@ -203,7 +219,7 @@
             >{{ "inventory.parts.form.cost" | translate }}
             <span class="text-danger">*</span></label
           >
-          <input class="form-control" type="text" formControlName="cost" />
+          <input class="form-control" type="number" formControlName="cost" />
           <!-- errors -->
           <div
             *ngIf="addForm.get('cost')?.invalid && addForm.get('cost')?.touched"
@@ -227,7 +243,11 @@
             >{{ "inventory.parts.form.quantity" | translate }}
             <span class="text-danger">*</span></label
           >
-          <input class="form-control" type="text" formControlName="quantity" />
+          <input
+            class="form-control"
+            type="number"
+            formControlName="quantity"
+          />
           <!-- errors -->
           <div
             *ngIf="
@@ -246,6 +266,25 @@
             >
           </div>
           <!-- errors -->
+        </div>
+      </div>
+      <!-- status -->
+      <div class="col-sm-4">
+        <div class="form-group mt-2">
+          <label>{{ "inventory.parts.form.status" | translate }} </label>
+          <select
+            class="form-select form-control"
+            name="status"
+            id="status"
+            formControlName="status"
+          >
+            <option value="InStock">
+              {{ "inventory.parts.form.inStock" | translate }}
+            </option>
+            <option value="OutStock">
+              {{ "inventory.parts.form.outStock" | translate }}
+            </option>
+          </select>
         </div>
       </div>
     </div>

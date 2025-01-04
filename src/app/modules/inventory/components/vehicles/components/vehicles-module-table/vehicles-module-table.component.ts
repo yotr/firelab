@@ -14,6 +14,7 @@ export class VehiclesModuleTableComponent implements OnInit {
   @Input() data: any[] = [];
   @Input() dataKeys: any[] = [];
   @Input() loading: boolean = true;
+  @Input() getDataError: boolean = false;
   @Input() currentTheme: any;
   //  ================================================
   @Output() onDelete: EventEmitter<any> = new EventEmitter();
@@ -48,9 +49,9 @@ export class VehiclesModuleTableComponent implements OnInit {
   //pagination variables
   currentPage: number = 1;
   // count: number = 0;
-  itemsPerPage: number = 10;
+  itemsPerPage: number = 20;
   tableEntries: number[] = [
-    10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 100,
+    20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 100,
   ];
   printing: boolean = false;
   api: string = '';
@@ -169,8 +170,8 @@ export class VehiclesModuleTableComponent implements OnInit {
   // ================== \\  Functions for scpcific tables  \\ ==================
 
   //change status
-  onTableStatusChange(status: any, client: any) {
-    this.onStatusChange.emit({ status, client });
+  onTableStatusChange(status: any, id: any) {
+    this.onStatusChange.emit({ status, id });
   }
 
   printAll() {

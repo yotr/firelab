@@ -34,13 +34,18 @@
       {{ "module_table.bottom_header_text" | translate }}
     </div>
     <!-- actions icons -->
-    <!-- <div>
-      <i
+    <div>
+      <!-- <i
         class="pi pi-trash px-2 fs-6"
         role="button"
         (click)="deleteSelected()"
+      ></i> -->
+      <i
+        class="pi pi-refresh px-2 fs-6"
+        role="button"
+        (click)="resetData()"
       ></i>
-    </div> -->
+    </div>
   </div>
 </div>
 <div class="row mt-0">
@@ -202,9 +207,35 @@
               <ng-container *ngFor="let key of dataKeys">
                 <td *ngIf="key.active && key?.name != 'id'">
                   <!-- name -->
-                  <ng-container *ngIf="key?.name != 'status'">
+                  <ng-container
+                    *ngIf="key?.name != 'parts' && key?.name != 'tools' && key?.name != 'teamMember'"
+                  >
                     <div role="button">
-                      {{ value[key?.name] }}
+                      {{ value[key?.name] ? value[key?.name] : "-" }}
+                    </div>
+                  </ng-container>
+                  <!-- teamMemberId -->
+                  <ng-container *ngIf="key?.name == 'teamMember'">
+                    {{
+                      value[key?.name]?.firstName +
+                        " " +
+                        value[key?.name]?.lastName
+                    }}
+                  </ng-container>
+                  <!-- parts -->
+                  <ng-container *ngIf="key?.name == 'parts' && key?.name != 'teamMember'">
+                    <div role="button">
+                      {{
+                        value?.parts?.length == 0 ? "-" : value?.parts?.length
+                      }}
+                    </div>
+                  </ng-container>
+                  <!-- tools -->
+                  <ng-container *ngIf="key?.name == 'tools' && key?.name != 'teamMember'">
+                    <div role="button">
+                      {{
+                        value?.tools?.length == 0 ? "-" : value?.parts?.length
+                      }}
                     </div>
                   </ng-container>
                 </td>

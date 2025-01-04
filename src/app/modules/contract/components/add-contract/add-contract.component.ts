@@ -104,7 +104,7 @@ export class AddContractComponent implements OnInit, AfterViewInit {
   getMembers(page?: number, pageSize?: number) {
     // api
     this.apiService
-      ?.filterData(
+      .filterData(
         'teamMembers/getFilteredTeamMembers',
         page ? page : 1,
         pageSize ? pageSize : 10

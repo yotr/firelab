@@ -39,10 +39,16 @@
     [totalItems]="totalItemsCount"
     [dataKeys]="dataKeys"
     [loading]="loading"
+    [getDataError]="getDataError"
     [currentTheme]="currentTheme"
     [deleteModalTitle]="'inventory.parts.title' | translate"
     [tableTitle]="'inventory.parts.table_title' | translate"
     editPagePath="/modules/inventory/parts/edit"
+    (onPageChange)="onPaginate($event)"
+    (onDelete)="delete($event)"
+    (onSearch)="search($event)"
+    (onFilter)="handleFiltersSubmit($event)"
+    (onReset)="resetData()"
   ></app-parts-module-table>
 </div>
 

@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { ApiService } from 'src/app/services/api/api.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
 
@@ -10,40 +11,38 @@ import { ThemeService } from 'src/app/services/theme/theme.service';
   templateUrl: './add-vehicle.component.html',
   styleUrls: ['./add-vehicle.component.css'],
 })
-export class AddVehicleComponent implements OnInit {
+export class AddVehicleComponent implements OnInit, AfterViewInit {
   addForm: FormGroup;
   loading: boolean = true;
   currentTheme: any;
+  currentLanguage: any = localStorage.getItem('lang');
   currentUser: any = null;
-  // users
-  users: any[] = [];
-  usersLoading: boolean = true;
-  // defaultPermissions: Permission[];
+  // members
+  members: any[] = [];
+  membersLoading: boolean = true;
+  totalItemsCount: number = 0;
+  getDataError: boolean = false;
+
   uploading: boolean = false;
-  file: any = null;
 
   constructor(
     private formBuilder: FormBuilder,
     private themeService: ThemeService,
     private toastr: ToastrService,
     private router: Router,
-    // private apiService: ApiService,
+    private apiService: ApiService,
     // private permissionsService: PermissionsService,
     private auth: AuthService
   ) {
     // Add form
     this.addForm = this.formBuilder.group({
       vehicleNumber: ['', [Validators.required]],
-      assignedTechnician: ['', [Validators.required]],
+      teamMemberId: [null, [Validators.required]],
     });
-    this.users = [
-      {
-        id:1,
-        name: "Test User",
-      }
-    ]
   }
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void {
+    this.getMembers();
+  }
 
   ngOnInit() {
     this.getTheme();
@@ -67,22 +66,12 @@ export class AddVehicleComponent implements OnInit {
     } else {
     }
   }
-  //get selected files form device
-  getSelectedFiles(event: any) {
-    if (event?.target?.files) {
-      this.file = event?.target?.files[0];
-      // this.onSelectFiles.emit(event?.target?.files);
-      // get files as url
-      // var reader = new FileReader();
-      // reader.readAsDataURL(event.target.files[0]);
-      // reader.onload = () => {
-      //   this.fileURL = reader.result;
-      //   this.uploadLoading = false;
-      // };
-    }
-  }
-  clearImage() {
-    this.file = null;
+
+  // on selecte teamMember
+  onSelectTeamMember(teamMember: any) {
+    this.addForm.patchValue({
+      teamMemberId: teamMember?.id,
+    });
   }
 
   truncateString(str: any, length: any, ending = '...') {
@@ -92,77 +81,103 @@ export class AddVehicleComponent implements OnInit {
     return str;
   }
 
+  // get members data
+  getMembers(page?: number, pageSize?: number) {
+    // api
+    this.apiService
+      .filterData(
+        'teamMembers/getFilteredTeamMembers',
+        page ? page : 1,
+        pageSize ? pageSize : 10
+      )
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.members = data?.value?.teamMemberDtos;
+            this.totalItemsCount = data?.value?.totalCount;
+            this.getDataError = false;
+          }
+          this.membersLoading = false;
+        },
+        error: (err: any) => {
+          this.membersLoading = false;
+          this.getDataError = true;
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {},
+      });
+  }
+  onFilterMembers(value: string) {
+    if (value != null && value?.trim() != '') {
+      this.apiService
+        .globalSearch('teamMembers/globalsearch', value, null)
+        .subscribe({
+          next: (data: any) => {
+            console.log(data);
+            if (data?.isSuccess) {
+              this.members = data?.value;
+              this.totalItemsCount = data?.value?.length;
+            }
+            this.membersLoading = false;
+          },
+          error: (err: any) => {
+            this.membersLoading = false;
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          },
+        });
+    } else {
+      this.getMembers();
+    }
+  }
+
   //add a new
   submit() {
-    let date = new Date();
-    // add the new date
-    // this.addUserForm.patchValue({
-    //   date: date.toLocaleDateString('en-CA'),
-    // });
-
-    // // add to server
-    // if (this.addUserForm.valid) {
-    //   let formData: FormData = new FormData();
-    //   formData.append('firstName', this.addUserForm.get('firstName').value);
-    //   formData.append('lastName', this.addUserForm.get('lastName').value);
-    //   formData.append('userName', this.addUserForm.get('userName').value);
-    //   formData.append('email', this.addUserForm.get('email').value);
-    //   formData.append('password', this.addUserForm.get('password').value);
-    //   formData.append(
-    //     'confirmPassword',
-    //     this.addUserForm.get('confirmPassword').value
-    //   );
-    //   formData.append('phone', this.addUserForm.get('phone').value);
-    //   formData.append('role', this.addUserForm.get('role').value);
-    //   // formData.append('company', this.addUserForm.get('company').value);
-    //   if (this.addUserForm.get('employeeId').value !== null) {
-    //     formData.append('employeeId', this.addUserForm.get('employeeId').value);
-    //   }
-    //   if (this.addUserForm.get('clientId').value !== null) {
-    //     formData.append('clientId', this.addUserForm.get('clientId').value);
-    //   }
-
-    //   formData.append('date', this.addUserForm.get('date').value);
-    //   // formData.append('permissions', JSON.stringify(this.defaultPermissions));
-    //   if (this.addUserForm.get('image').value != null) {
-    //     formData.append('image', this.addUserForm.get('image').value);
-    //   }
-
-    //   let added = false;
-    //   this.uploading = true;
-    //   // send the data to server
-    //   this.apiService.addMultiData('users/create', formData).subscribe({
-    //     next: (data) => {
-    //       this.uploading = false;
-    //       added = true;
-    //     },
-    //     error: (error) => {
-    //       this.uploading = false;
-    //       this.toastr.error('there is something wrong', 'Error');
-    //     },
-    //     complete: () => {
-    //       if (added) {
-    //         this.uploading = false;
-    //         this.router.navigate(['/modules/users/all-users']);
-    //         this.toastr.success('User added Successfully');
-    //         this.addUserForm.reset();
-    //       }
-    //     },
-    //   });
-    // } else {
-    //   this.uploading = false;
-    //   this.toastr.error('', 'Please enter mandatory field!');
-    // }
+    if (this.addForm.valid) {
+      let data = {
+        ...this.addForm.value,
+      };
+      console.log(data);
+      this.uploading = true;
+      // api
+      this.apiService?.add('vehicles/add', data).subscribe({
+        next: (data) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            if (this.currentLanguage == 'ar') {
+              this.toastr.success('تمت إضافة البيانات بنجاح...');
+            } else {
+              this.toastr.success('data added successfully...', 'Success');
+            }
+            this.router.navigate(['/modules/inventory/vehicles']);
+          }
+        },
+        error: (err: any) => {
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+            this.toastr.error(err?.error[0]?.message, 'Error');
+          }
+          this.uploading = false;
+        },
+        complete: () => {
+          this.uploading = false;
+        },
+      });
+    } else {
+      if (this.currentLanguage == 'ar') {
+        this.toastr.warning('الرجاء إدخال الحقول المطلوبة');
+      } else {
+        this.toastr.warning('Please enter the required fields');
+      }
+    }
   }
   trackFun(index: number, item: any): number {
     return item.id;
-  }
-  // check page || components permissions
-  checkPageActions(): any {
-    // return this.permissionsService.checkPageActions(
-    //   this.auth.currentUserSignal()?.userData,
-    //   'Users',
-    //   'add'
-    // );
   }
 }
