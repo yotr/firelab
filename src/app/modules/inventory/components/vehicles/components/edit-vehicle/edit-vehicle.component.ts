@@ -18,6 +18,7 @@ export class EditVehicleComponent implements OnInit, AfterViewInit {
   currentTheme: any;
   currentLanguage: any = localStorage.getItem('lang');
   currentUser: any = null;
+  deleteModalTitle: string = '';
   // members
   members: any[] = [];
   membersLoading: boolean = true;
@@ -36,6 +37,9 @@ export class EditVehicleComponent implements OnInit, AfterViewInit {
 
   updateId: any = null;
 
+  unassignId: any = null;
+  unassignTable: string = '';
+
   constructor(
     private formBuilder: FormBuilder,
     public translateService: TranslateService,
@@ -43,7 +47,7 @@ export class EditVehicleComponent implements OnInit, AfterViewInit {
     private toastr: ToastrService,
     private router: Router,
     private apiService: ApiService,
-        private activatedRoute: ActivatedRoute,
+    private activatedRoute: ActivatedRoute,
     // private permissionsService: PermissionsService,
     private auth: AuthService
   ) {
@@ -273,5 +277,71 @@ export class EditVehicleComponent implements OnInit, AfterViewInit {
         this.toastr.warning('Please enter the required fields');
       }
     }
+  }
+
+  onDeletePartsOrTools(event: any) {
+    this.unassignId = event?.id;
+    this.unassignTable = event?.table;
+  }
+
+  unAssign() {
+    if (this.unassignTable == 'parts') {
+      this.unAssignParts(this.unassignId);
+    } else {
+      this.unAssignTools(this.unassignId);
+    }
+  }
+
+  unAssignParts(id: any) {
+    this.apiService.delete('assignedParts', id).subscribe({
+      next: (data) => {
+        if (data?.isSuccess) {
+          this.parts = this.parts.filter((item: any) => item?.id !== id);
+          if (this.currentLanguage == 'ar') {
+            this.toastr.success('تم حذف العنصر بنجاح...');
+          } else {
+            this.toastr.success('item deleted successfully...');
+          }
+        }
+      },
+      error: (err) => {
+        console.log(err);
+        if (this.currentLanguage == 'ar') {
+          this.toastr.error('هناك شيء خاطئ', 'خطأ');
+        } else {
+          this.toastr.error('There Is Somthing Wrong', 'Error');
+        }
+      },
+      complete: () => {
+        this.unassignId = null;
+        this.unassignTable = '';
+      },
+    });
+  }
+  unAssignTools(id: any) {
+    this.apiService.delete('assignedTools', id).subscribe({
+      next: (data) => {
+        if (data?.isSuccess) {
+          this.tools = this.tools.filter((item: any) => item?.id !== id);
+          if (this.currentLanguage == 'ar') {
+            this.toastr.success('تم حذف العنصر بنجاح...');
+          } else {
+            this.toastr.success('item deleted successfully...');
+          }
+        }
+      },
+      error: (err) => {
+        console.log(err);
+        if (this.currentLanguage == 'ar') {
+          this.toastr.error('هناك شيء خاطئ', 'خطأ');
+        } else {
+          this.toastr.error('There Is Somthing Wrong', 'Error');
+        }
+      },
+      complete: () => {
+        this.unassignId = null;
+        this.unassignTable = '';
+      },
+    });
   }
 }

@@ -25,7 +25,7 @@
             class="btn btn-outline-info"
             data-bs-toggle="modal"
             data-bs-target="#delete"
-            (click)="deleteId = value?.id"
+            (click)="unAssign(value?.id, 'parts')"
           >
             {{ "unassign" | translate }}
           </div>
@@ -33,13 +33,6 @@
       </tr>
     </tbody>
   </table>
-  <!-- delete modal -->
-  <app-delete-modal
-    [title]="deleteModalTitle"
-    [currentTheme]="currentTheme"
-    (onDelete)="unAssignParts(deleteId)"
-  ></app-delete-modal>
-  <!--/ delete modal -->
 </ng-container>
 <!-- tools -->
 <ng-container *ngIf="isTools">
@@ -68,7 +61,7 @@
             class="btn btn-outline-info"
             data-bs-toggle="modal"
             data-bs-target="#delete"
-            (click)="deleteId = value?.id"
+            (click)="unAssign(value?.id,'tools')"
           >
             {{ "unassign" | translate }}
           </div>
@@ -76,14 +69,9 @@
       </tr>
     </tbody>
   </table>
-  <!-- delete modal -->
-  <app-delete-modal
-    [title]="deleteModalTitle"
-    [currentTheme]="currentTheme"
-    (onDelete)="unAssignTools(deleteId)"
-  ></app-delete-modal>
-  <!--/ delete modal -->
 </ng-container>
+
+
 
 <!-- no data -->
 <!-- <h5

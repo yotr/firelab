@@ -5,29 +5,18 @@ import { LanguageService } from 'src/app/services/language/language.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
 
 @Component({
-  selector: 'app-parts-tools-table',
-  templateUrl: './parts-tools-table.component.html',
-  styleUrls: ['./parts-tools-table.component.css'],
+  selector: 'app-assigned-tools-table',
+  templateUrl: './assigned-tools-table.component.html',
+  styleUrls: ['./assigned-tools-table.component.css'],
 })
-export class PartsToolsTableComponent implements OnInit {
+export class AssignedToolsTableComponent implements OnInit {
   //current language
   currentLanguage: any = localStorage.getItem('lang');
   currentTheme: any;
   @Input() data: any[] = [];
   @Input() dataKeys: any[] = [];
-  @Input() loading: boolean = true;
-  @Input() isParts: boolean = false;
-  @Input() isTools: boolean = false;
-  // pagination
-  @Input() totalItems: number = 0;
-  @Output() onPageChange: EventEmitter<any> = new EventEmitter();
-  @Output() onDelete: EventEmitter<any> = new EventEmitter();
-  //pagination variables
-  currentPage: number = 1;
-  // count: number = 0;
-  itemsPerPage: number = 10;
-  deleteId: any = null;
-  deleteFrom: string = '';
+  @Input() deleteModalTitle: string = '';
+  @Output() onRemove: EventEmitter<any> = new EventEmitter();
 
   constructor(
     private languageService: LanguageService,
@@ -47,7 +36,7 @@ export class PartsToolsTableComponent implements OnInit {
     });
   }
 
-  unAssign(id: any, table: string) {
-    this.onDelete.emit({ id, table });
+  onRemoveTool(id: any) {
+    this.onRemove.emit(id);
   }
 }

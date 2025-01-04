@@ -125,6 +125,7 @@
           [data]="parts"
           [dataKeys]="partsKeys"
           [loading]="partsLoading"
+          (onDelete)="onDeletePartsOrTools($event)"
         ></app-parts-tools-table>
       </div>
       <div class="col-sm-6">
@@ -133,6 +134,7 @@
           [data]="tools"
           [dataKeys]="toolsKeys"
           [loading]="toolsLoading"
+          (onDelete)="onDeletePartsOrTools($event)"
         ></app-parts-tools-table>
       </div>
     </div>
@@ -150,3 +152,11 @@
   <app-loading-section></app-loading-section>
 </div>
 <!-- /loading section -->
+
+<!-- delete modal -->
+<app-delete-modal
+  [title]="deleteModalTitle"
+  [currentTheme]="currentTheme"
+  (onDelete)="unAssign()"
+></app-delete-modal>
+<!--/ delete modal -->

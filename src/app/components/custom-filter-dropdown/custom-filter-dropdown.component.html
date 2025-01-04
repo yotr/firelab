@@ -27,7 +27,7 @@
         </div>
       </ng-container>
       <!-- no found -->
-      <p *ngIf="data.length == 0" class="fs-5 my-4 text-center">
+      <p *ngIf="data?.length == 0" class="fs-5 my-4 text-center">
         {{ "no_data" | translate }}
       </p>
     </div>

@@ -673,7 +673,7 @@
         },
         "add_modal": {
           "tool": "Tool",
-          "quantity": "Quantity (Max .Quantity: 9 )"
+          "quantity": "Quantity (Max .Quantity: "
         }
       }
     },

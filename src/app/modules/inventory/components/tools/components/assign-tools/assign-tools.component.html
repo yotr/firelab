@@ -31,14 +31,14 @@
         <!-- Vehicle Number -->
         <div class="form-group mt-2">
           <label>{{ "inventory.tools.assign.vehicle_no" | translate }} </label>
-          <app-custom-dropdown
-            title="Select Here"
+          <app-custom-filter-dropdown
             minWidth="100%"
-            [filter]="true"
-            [object]="true"
-            objectKey="name"
+            title="Select Here"
+            objectKey="vehicleNumber"
             [data]="vehicles"
-          ></app-custom-dropdown>
+            (onFilter)="onFilterVehicles($event)"
+            (onAction)="onSelectVehicle($event)"
+          ></app-custom-filter-dropdown>
           <!-- <select
             class="form-select form-control"
             formControlName="vehicleNumber"
@@ -81,14 +81,13 @@
           <label
             >{{ "inventory.tools.assign.assigned_technician" | translate }}
           </label>
-          <app-custom-dropdown
-            title="Select Here"
+          <app-custom-filter-dropdown
             minWidth="100%"
-            [filter]="true"
-            [object]="true"
-            objectKey="name"
-            [data]="users"
-          ></app-custom-dropdown>
+            [title]="TeamMemberName"
+            objectKey="userName"
+            [data]="members"
+            (onFilter)="onFilterMembers($event)"
+          ></app-custom-filter-dropdown>
           <!-- <select
             class="form-select form-control"
             formControlName="assignedTechnician"
@@ -130,11 +129,11 @@
     <div class="row mt-4">
       <!-- parts -->
       <div class="col-sm-12">
-        <app-parts-tools-table
-          [data]="parts"
-          [dataKeys]="partsKeys"
-          [loading]="partsLoading"
-        ></app-parts-tools-table>
+        <app-assigned-tools-table
+          [data]="tools"
+          [dataKeys]="toolsKeys"
+          (onRemove)="onRemoveTool($event)"
+        ></app-assigned-tools-table>
       </div>
     </div>
 
@@ -168,4 +167,4 @@
 </div>
 <!-- /loading section -->
 <!-- assign tool modal -->
-<app-assign-tools-modal></app-assign-tools-modal>
+<app-assign-tools-modal (onAdd)="onAddTool($event)"></app-assign-tools-modal>

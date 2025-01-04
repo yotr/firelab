@@ -1,7 +1,5 @@
 table {
   border: 1px solid #ccc;
-  /* height: 250px;
-  overflow-y: auto; */
 }
 
 table thead tr th .head-value {
@@ -13,8 +11,11 @@ table thead tr th .head-value {
 }
 
 table tbody tr td {
+  height: 25px;
   background-color: white;
 }
 
-/* table tbody {
-} */
+.tools-table-body {
+  max-height: 250px;
+  overflow-y: auto;
+}

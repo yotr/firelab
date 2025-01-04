@@ -6,7 +6,7 @@
           <h3>{{ "inventory.tools.add_btn" | translate }}</h3>
         </div>
         <!-- add tools-->
-        <form>
+        <form (ngSubmit)="submit()" [formGroup]="addForm">
           <div class="row">
             <!-- Suppliers -->
             <div class="col-sm-12">
@@ -15,26 +15,32 @@
                   >{{ "inventory.tools.assign.add_modal.tool" | translate }}
                   <span class="text-danger">*</span></label
                 >
-                <app-custom-dropdown
-                  title="Select Here"
+                <app-custom-filter-dropdown
                   minWidth="100%"
-                  [filter]="true"
-                  [object]="true"
-                  objectKey="value"
+                  objectKey="toolName"
                   [data]="tools"
-                ></app-custom-dropdown>
+                  (onAction)="onSelectTool($event)"
+                  (onFilter)="onFilterTools($event)"
+                ></app-custom-filter-dropdown>
               </div>
             </div>
             <!-- Quantity -->
             <div class="col-sm-12">
               <div class="form-group mt-2">
                 <label
-                  >{{
-                    "inventory.tools.assign.add_modal.quantity" | translate
-                  }}
+                  >{{ "inventory.tools.assign.add_modal.quantity" | translate }}
+                  <span [hidden]="selectedTool == null">{{
+                    selectedTool?.quantity -
+                      addForm.get("quantity")?.value +
+                      " ) "
+                  }}</span>
                   <span class="text-danger">*</span></label
                 >
-                <input type="number" class="form-control" />
+                <input
+                  type="number"
+                  class="form-control"
+                  formControlName="quantity"
+                />
               </div>
             </div>
           </div>
@@ -49,3 +55,9 @@
     </div>
   </div>
 </div>
+
+<!-- loading section -->
+<div *ngIf="uploading">
+  <app-loading-section></app-loading-section>
+</div>
+<!-- /loading section -->
