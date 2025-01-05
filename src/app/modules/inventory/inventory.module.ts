@@ -30,6 +30,7 @@ import { PartsToolsTableComponent } from './components/vehicles/components/parts
 import { AssignPartsModalComponent } from './components/parts/components/assign-parts-modal/assign-parts-modal.component';
 import { AssignToolsModalComponent } from './components/tools/components/assign-tools-modal/assign-tools-modal.component';
 import { AssignedToolsTableComponent } from './components/tools/components/assigned-tools-table/assigned-tools-table.component';
+import { AssignedPartsTableComponent } from './components/parts/components/assigned-parts-table/assigned-parts-table.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { AssignedToolsTableComponent } from './components/tools/components/assig
     AssignPartsModalComponent,
     AssignToolsModalComponent,
     AssignedToolsTableComponent,
+    AssignedPartsTableComponent
   ],
   imports: [CommonModule, InventoryRoutingModule, SharedModule],
   bootstrap: [InventoryComponent],

@@ -611,7 +611,7 @@
           "suppliers": "Suppliers",
           "report_category": "Report Category",
           "part": "Part",
-          "quantity": "Quantity (Max .Quantity: 9 )"
+          "quantity": "Quantity (Max .Quantity: "
         }
       }
     },

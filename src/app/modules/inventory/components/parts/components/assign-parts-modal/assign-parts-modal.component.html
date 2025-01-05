@@ -3,74 +3,122 @@
     <div class="modal-content">
       <div class="modal-body">
         <div class="form-header">
-          <h3>Add Parts</h3>
+          <h3>{{ "inventory.parts.add_btn" | translate }}</h3>
         </div>
         <!-- add parts-->
-        <form>
+        <form (ngSubmit)="submit()" [formGroup]="addForm">
           <div class="row">
             <!-- Suppliers -->
             <div class="col-sm-12">
               <div class="form-group mt-2">
-                <label>Suppliers <span class="text-danger">*</span></label>
-                <app-custom-dropdown
+                <label
+                  >{{
+                    "inventory.parts.assign.add_modal.suppliers" | translate
+                  }}
+                  <span class="text-danger">*</span></label
+                >
+                <app-custom-filter-dropdown
+                  minWidth="100%"
+                  objectKey="supplierName"
+                  [data]="suppliers"
+                  (onAction)="onSelectSupplier($event)"
+                  (onFilter)="onFilterSuppliers($event)"
+                ></app-custom-filter-dropdown>
+                <!-- <app-custom-dropdown
                   title="Select Here"
                   minWidth="100%"
                   [filter]="true"
                   [object]="true"
                   objectKey="value"
                   [data]="suppliers"
-                ></app-custom-dropdown>
+                ></app-custom-dropdown> -->
               </div>
             </div>
             <!-- Reports -->
             <div class="col-sm-12">
               <div class="form-group mt-2">
                 <label
-                  >Report Category <span class="text-danger">*</span></label
+                  >{{
+                    "inventory.parts.assign.add_modal.report_category"
+                      | translate
+                  }}
+                  <span class="text-danger">*</span></label
                 >
-                <app-custom-dropdown
+                <app-custom-filter-dropdown
+                  minWidth="100%"
+                  objectKey="name"
+                  [data]="categories"
+                  (onAction)="onSelectCategory($event)"
+                  (onFilter)="onFilterCategories($event)"
+                ></app-custom-filter-dropdown>
+                <!-- <app-custom-dropdown
                   title="Select Here"
                   minWidth="100%"
                   [filter]="true"
                   [object]="true"
                   objectKey="value"
                   [data]="reports"
-                ></app-custom-dropdown>
+                ></app-custom-dropdown> -->
               </div>
             </div>
             <!-- Parts -->
             <div class="col-sm-12">
               <div class="form-group mt-2">
                 <label
-                  >Part <span class="text-danger">*</span></label
+                  >{{ "inventory.parts.assign.add_modal.part" | translate }}
+                  <span class="text-danger">*</span></label
                 >
-                <app-custom-dropdown
+                <app-custom-filter-dropdown
+                  minWidth="100%"
+                  objectKey="partName"
+                  [data]="parts"
+                  (onAction)="onSelectPart($event)"
+                  (onFilter)="onFilterParts($event)"
+                ></app-custom-filter-dropdown>
+                <!-- <app-custom-dropdown
                   title="Select Here"
                   minWidth="100%"
                   [filter]="true"
                   [object]="true"
                   objectKey="value"
                   [data]="parts"
-                ></app-custom-dropdown>
+                ></app-custom-dropdown> -->
               </div>
             </div>
             <!-- Quantity -->
             <div class="col-sm-12">
               <div class="form-group mt-2">
                 <label
-                  >Quantity (Max .Quantity: 9 )
+                  >{{ "inventory.parts.assign.add_modal.quantity" | translate }}
+                  <span [hidden]="selectedPart == null">{{
+                    selectedPart?.quantity -
+                      addForm.get("quantity")?.value +
+                      " ) "
+                  }}</span>
                   <span class="text-danger">*</span></label
                 >
-                <input type="number" class="form-control" />
+                <input
+                  type="number"
+                  class="form-control"
+                  formControlName="quantity"
+                />
               </div>
             </div>
           </div>
           <!-- submit -->
           <div class="save-btn">
-            <button type="submit" class="save mt-4">Save</button>
+            <button type="submit" class="save mt-4">
+              {{ "save" | translate }}
+            </button>
           </div>
         </form>
       </div>
     </div>
   </div>
 </div>
+
+<!-- loading section -->
+<div *ngIf="uploading">
+  <app-loading-section></app-loading-section>
+</div>
+<!-- /loading section -->

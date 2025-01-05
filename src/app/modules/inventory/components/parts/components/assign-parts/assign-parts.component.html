@@ -32,17 +32,15 @@
       <div class="col-sm-4">
         <!-- Vehicle Number -->
         <div class="form-group mt-2">
-          <label
-            >{{ "inventory.parts.assign.vehicle_no" | translate }}
-          </label>
-          <app-custom-dropdown
-            title="Select Here"
+          <label>{{ "inventory.parts.assign.vehicle_no" | translate }} </label>
+          <app-custom-filter-dropdown
             minWidth="100%"
-            [filter]="true"
-            [object]="true"
-            objectKey="name"
+            title="Select Here"
+            objectKey="vehicleNumber"
             [data]="vehicles"
-          ></app-custom-dropdown>
+            (onFilter)="onFilterVehicles($event)"
+            (onAction)="onSelectVehicle($event)"
+          ></app-custom-filter-dropdown>
           <!-- <select
             class="form-select form-control"
             formControlName="vehicleNumber"
@@ -85,14 +83,13 @@
           <label
             >{{ "inventory.parts.assign.assigned_technician" | translate }}
           </label>
-          <app-custom-dropdown
-            title="Select Here"
+          <app-custom-filter-dropdown
             minWidth="100%"
-            [filter]="true"
-            [object]="true"
-            objectKey="name"
-            [data]="users"
-          ></app-custom-dropdown>
+            [title]="TeamMemberName"
+            objectKey="userName"
+            [data]="members"
+            (onFilter)="onFilterMembers($event)"
+          ></app-custom-filter-dropdown>
           <!-- <select
             class="form-select form-control"
             formControlName="assignedTechnician"
@@ -134,11 +131,11 @@
     <div class="row mt-4">
       <!-- parts -->
       <div class="col-sm-12">
-        <app-parts-tools-table
+        <app-assigned-parts-table
           [data]="parts"
           [dataKeys]="partsKeys"
-          [loading]="partsLoading"
-        ></app-parts-tools-table>
+          (onRemove)="onRemovePart($event)"
+        ></app-assigned-parts-table>
       </div>
     </div>
 
@@ -172,4 +169,4 @@
 </div>
 <!-- /loading section -->
 <!-- assign parts modal -->
-<app-assign-parts-modal></app-assign-parts-modal>
+<app-assign-parts-modal (onAdd)="onAddPart($event)"></app-assign-parts-modal>
