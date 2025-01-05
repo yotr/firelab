@@ -35,17 +35,6 @@
   display: flex;
   align-items: center;
 }
-.search .form-control {
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-}
-.search .search-icon {
-  padding: 6px 25px;
-  background-color: var(--dark-theme-bg);
-  color: white;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-}
 .table-bg {
   background-color: var(--dark-theme-bg);
   color: white;
@@ -72,4 +61,35 @@
 
 #map {
   height: 100%;
+}
+
+.my-label {
+  font-size: small;
+  color: red;
+}
+
+/* dirctions */
+
+.gps[dir="rtl"] .search .form-control {
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.gps[dir="rtl"] .search .search-icon {
+  padding: 6px 25px;
+  background-color: var(--dark-theme-bg);
+  color: white;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.gps[dir="ltr"] .search .form-control {
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.gps[dir="ltr"] .search .search-icon {
+  padding: 6px 25px;
+  background-color: var(--dark-theme-bg);
+  color: white;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }

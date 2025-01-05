@@ -1,15 +1,21 @@
-<div class="gps">
+<div class="gps" [dir]="'dir' | translate">
   <div class="header">
     <!-- Team Member list dropdown  -->
-    <div class="dropdown-list">
+    <div class="dropdown-list" ClickOutside (clickOutside)="close()">
       <div class="title" (click)="toggleDropdown()">
         <i class="pi pi-angle-double-up fs-5"></i>
-        Team Member list
+        {{ "gps.list" | translate }}
       </div>
       <div class="list" [ngClass]="{ active: isDropdownActive }">
         <!-- search -->
         <div class="search">
-          <input type="text" class="h-auto form-control" placeholder="Search" />
+          <input
+            type="text"
+            class="h-auto form-control"
+            placeholder="{{ 'header.searchText' | translate }}"
+            name="searchText"
+            [(ngModel)]="searchText"
+          />
           <div class="search-icon">
             <i class="pi pi-search"></i>
           </div>
@@ -18,21 +24,33 @@
         <table class="table mt-4">
           <thead class="table-bg">
             <tr class="border border-1">
-              <th>Member Name</th>
-              <th>GPS Status</th>
-              <th>Last Updated</th>
+              <th>{{ "gps.name" | translate }}</th>
+              <th>{{ "gps.status" | translate }}</th>
+              <th>{{ "gps.update" | translate }}</th>
               <th></th>
             </tr>
           </thead>
           <tbody class="border border-1">
-            <tr [style]="{ background: 'rgb(231, 231, 231)' }">
-              <td class="text-muted">ibrahim abdelrahman</td>
-              <td class="text-danger">Disabled</td>
-              <td></td>
-              <td>
-                <i class="pi pi-refresh text-info fs-4" role="button"></i>
-              </td>
-            </tr>
+            <ng-container
+              *ngFor="let member of teamMembers | filter : searchText"
+            >
+              <tr [style]="{ background: 'rgb(231, 231, 231)' }">
+                <td class="text-muted">
+                  {{ member?.firstName + " " + member?.lastName }}
+                </td>
+                <td class="text-danger">
+                  {{ member?.updatedAt ? "updated" : "_" }}
+                </td>
+                <td>{{ member?.updatedAt | date : "dd MMM yyyy HH:mm a" }}</td>
+                <td>
+                  <i
+                    class="pi pi-refresh text-info fs-4"
+                    role="button"
+                    (click)="refresh()"
+                  ></i>
+                </td>
+              </tr>
+            </ng-container>
           </tbody>
         </table>
       </div>

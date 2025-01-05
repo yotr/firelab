@@ -2,25 +2,34 @@ import { Component, OnInit } from '@angular/core';
 import { SidebarService } from '../services/sidebar/sidebar.service';
 import { ThemeService } from '../services/theme/theme.service';
 import { Router } from '@angular/router';
+import { LocationService } from '../services/location/location.service';
+import { AuthService } from '../services/auth/auth.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-modules',
   templateUrl: './modules.component.html',
-  styleUrls: ['./modules.component.css']
+  styleUrls: ['./modules.component.css'],
 })
 export class ModulesComponent implements OnInit {
-//variables
+  //variables
+  // current language
+  currentLanguage: any = localStorage.getItem('lang');
   isSidebarClosed: boolean = false;
   currentTheme: any;
-
   currentUser: any = {} as any;
+
+  latitude: number = 0;
+  longitude: number = 0;
+  errorMessage: string = '';
 
   constructor(
     private sidebarStatusService: SidebarService,
     private themeService: ThemeService,
-    // private signalingService: SignalingService,
+    private locationService: LocationService,
     private router: Router,
-    // private authService: AuthService
+    private auth: AuthService,
+    private toastr: ToastrService
   ) {
     this.sidebarStatusService.getSidebarStatus().subscribe((sidebarStatus) => {
       this.isSidebarClosed = sidebarStatus;
@@ -37,32 +46,63 @@ export class ModulesComponent implements OnInit {
     this.getCurrentUser();
   }
   ngAfterViewInit(): void {
-    this.whenCallMsgComeing();
+    this.getUserLocation();
   }
 
+  // get user
+  isLoggedIn(): boolean {
+    return this.auth.currentUserSignal() == undefined ? false : true;
+  }
   // get current user
   getCurrentUser() {
-    // this.currentUser = this.authService.currentUserSignal()?.userData;
+    let user = localStorage.getItem('firelab-loginData');
+    if (user && this.isLoggedIn()) {
+      let data = JSON?.parse(user);
+      this.currentUser = data?.userData;
+    }
   }
 
-  // connect users to socket and generate random ids
-  public whenCallMsgComeing(): void {
-    // this.signalingService.getCallData().subscribe((data) => {
-    //   console.log(data);
-    //   if (data?.receiver === this.currentUser?.email) {
-    //     // calling this user
-    //     if (data?.type == 'video-call' || data?.type == 'audio-call') {
-    //       // if video or audio call comeing
-    //       this.router.navigate(['/modules/apps/calls/incoming'], {
-    //         queryParams: {
-    //           type: data?.type,
-    //           room: data?.room,
-    //           sender: data?.sender,
-    //         },
-    //       });
-    //     }
-    //   }
-    // });
+  // Get user's geolocation
+  getUserLocation() {
+    if (this.isLoggedIn()) {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            this.latitude = position.coords.latitude;
+            this.longitude = position.coords.longitude;
+            this.updateLocation();
+          },
+          (error) => {
+            this.errorMessage = `Error getting location: ${error.message}`;
+          }
+        );
+      } else {
+        this.errorMessage = 'Geolocation is not supported by this browser.';
+      }
+    }
+  }
+
+  // Optionally, you can also update the location later
+  updateLocation() {
+    let data = {
+      latitude: this.latitude,
+      longitude: this.longitude,
+    };
+
+    this.locationService
+      .updateLocation('teamMembers/location', this.currentUser?.id, data)
+      .subscribe({
+        next: (response) => {
+          // console.log('Location updated successfully:', response);
+        },
+        error: (error) => {
+          console.error('Error updating location:', error);
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+      });
   }
 }
-

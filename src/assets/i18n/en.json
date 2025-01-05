@@ -13,6 +13,12 @@
   "no_data": "No data found",
   "search": "Search..",
   "unassign": "Unassign",
+  "gps": {
+    "list": "Team Member list",
+    "name": "Member Name",
+    "status": "GPS Status",
+    "update": "Last Updated"
+  },
   "theme_settings": {
     "title": "Customizer",
     "title_dic": "Customize your overview Page layout",
