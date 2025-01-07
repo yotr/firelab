@@ -50,6 +50,12 @@ import { AssignJobComponent } from './job-link/assign-job/assign-job.component';
 import { EditAssignedJobComponent } from './job-link/edit-assigned-job/edit-assigned-job.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { JobsJobModuleTableComponent } from './jobs/components/jobs-job-module-table/jobs-job-module-table.component';
+import { PermissionsComponent } from './permissions/permissions.component';
+import { AddPermissionComponent } from './permissions/components/add-permission/add-permission.component';
+import { EditPermissionComponent } from './permissions/components/edit-permission/edit-permission.component';
+import { PermissionsModuleTableComponent } from './permissions/components/permissions-module-table/permissions-module-table.component';
+import { ModuleSectionComponent } from './permissions/components/module-section/module-section.component';
+import { EditModuleSectionComponent } from './permissions/components/edit-module-section/edit-module-section.component';
 
 @NgModule({
   declarations: [
@@ -90,7 +96,13 @@ import { JobsJobModuleTableComponent } from './jobs/components/jobs-job-module-t
     JobListComponent,
     ChooseModalComponent,
     AssignJobComponent,
-    EditAssignedJobComponent
+    EditAssignedJobComponent,
+    PermissionsComponent,
+    AddPermissionComponent,
+    EditPermissionComponent,
+    PermissionsModuleTableComponent,
+    ModuleSectionComponent,
+    EditModuleSectionComponent
   ],
   imports: [
     CommonModule,

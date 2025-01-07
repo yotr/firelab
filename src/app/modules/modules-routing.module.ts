@@ -20,6 +20,9 @@ import { JobLinkComponent } from './job-link/job-link.component';
 import { EditJobComponent } from './jobs/components/edit-job/edit-job.component';
 import { AssignJobComponent } from './job-link/assign-job/assign-job.component';
 import { EditAssignedJobComponent } from './job-link/edit-assigned-job/edit-assigned-job.component';
+import { PermissionsComponent } from './permissions/permissions.component';
+import { AddPermissionComponent } from './permissions/components/add-permission/add-permission.component';
+import { EditPermissionComponent } from './permissions/components/edit-permission/edit-permission.component';
 
 const routes: Routes = [
   {
@@ -133,6 +136,19 @@ const routes: Routes = [
         path: 'inventory',
         loadChildren: () =>
           import('./inventory/inventory.module').then((m) => m.InventoryModule),
+      },
+      // permissions
+      {
+        path: 'permissions',
+        component: PermissionsComponent,
+      },
+      {
+        path: 'permissions/add',
+        component: AddPermissionComponent,
+      },
+      {
+        path: 'permissions/edit/:id',
+        component: EditPermissionComponent,
       },
     ],
   },

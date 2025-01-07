@@ -211,6 +211,13 @@
         "code": "deficiencies",
         "icon": "pi-info-circle",
         "path": "/modules/deficiencies"
+      },
+      {
+        "id": 10,
+        "title": "الأذونات",
+        "code": "permissions",
+        "icon": "pi-shield",
+        "path": "/modules/permissions"
       }
     ]
   }

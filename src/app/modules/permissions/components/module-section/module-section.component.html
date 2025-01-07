@@ -1,0 +1,230 @@
+<div
+  class="roles-modules-section"
+  [ngStyle]="{ height: isModuleOpened ? '100%' : '75px' }"
+>
+  <!-- module name -->
+  <div class="roles-module">
+    <div class="module-header">
+      <!-- select checkbox -->
+      <td>
+        <span class="select-input">
+          <label class="table-checkbox-container">
+            <input
+              type="checkbox"
+              [checked]="module?.checked"
+              [value]="module?.checked"
+              (change)="onObjectCheckBox($event, module)"
+            />
+            <div class="checkmark"></div>
+          </label>
+        </span>
+      </td>
+      <!-- /select checkbox -->
+      <div class="module-name">
+        {{
+          currentLanguage === "ar"
+            ? module?.arabicName
+              ? module?.arabicName
+              : module?.name
+            : module?.name
+        }}
+      </div>
+    </div>
+    <div class="module-empry-area w-100" (click)="toggleModule()">
+      <div></div>
+      <div class="module-open-icon">
+        <i class="pi pi-angle-down"></i>
+      </div>
+    </div>
+  </div>
+  <!-- pages -->
+  <!-- <ng-container *ngFor="let page of module?.pages; let subIndex = index"> -->
+  <div class="table-responsive mt-4">
+    <table class="table table-striped custom-table">
+      <thead>
+        <tr>
+          <th>
+            <div class="text-center">{{ "select" | translate }}</div>
+          </th>
+          <th>
+            {{ "permissions.form.roles.module_permission" | translate }}
+          </th>
+          <th class="text-center">
+            <div class="role-page-action">
+              {{ "permissions.form.roles.read" | translate }}
+              <!-- select checkbox allRead -->
+              <!-- <td>
+                  <span class="select-input">
+                    <label class="table-checkbox-container">
+                      <input
+                        type="checkbox"
+                        [checked]="page.allRead"
+                        [(ngModel)]="page.allRead"
+                        (change)="markAllAsRead(page?.allRead, page?.id)"
+                      />
+                      <div class="checkmark"></div>
+                    </label>
+                  </span>
+                </td> -->
+              <!-- /select checkbox -->
+            </div>
+          </th>
+          <th class="text-center">
+            <div class="role-page-action">
+              {{ "permissions.form.roles.write" | translate }}
+              <!-- select checkbox allEdit -->
+              <!-- <td>
+                  <span class="select-input">
+                    <label class="table-checkbox-container">
+                      <input
+                        type="checkbox"
+                        [checked]="page.allEdit"
+                        [(ngModel)]="page.allEdit"
+                        [disabled]="!page.allRead"
+                        (change)="markAllAsEdit(page?.allEdit, page?.id)"
+                      />
+                      <div class="checkmark"></div>
+                    </label>
+                  </span>
+                </td> -->
+              <!-- /select checkbox -->
+            </div>
+          </th>
+          <th class="text-center">
+            <div class="role-page-action">
+              {{ "permissions.form.roles.create" | translate }}
+              <!-- select checkbox allAdd -->
+              <!-- <td>
+                  <span class="select-input">
+                    <label class="table-checkbox-container">
+                      <input
+                        type="checkbox"
+                        [checked]="page.allAdd"
+                        [(ngModel)]="page.allAdd"
+                        [disabled]="!page.allRead"
+                        (change)="markAllAsAdd(page?.allAdd, page?.id)"
+                      />
+                      <div class="checkmark"></div>
+                    </label>
+                  </span>
+                </td> -->
+              <!-- /select checkbox -->
+            </div>
+          </th>
+          <th class="text-center">
+            <div class="role-page-action">
+              {{ "permissions.form.roles.delete" | translate }}
+              <!-- select checkbox allDelete -->
+              <!-- <td>
+                  <span class="select-input">
+                    <label class="table-checkbox-container">
+                      <input
+                        type="checkbox"
+                        [checked]="page.allDelete"
+                        [(ngModel)]="page.allDelete"
+                        [disabled]="!page.allRead"
+                        (change)="markAllAsDelete(page?.allDelete, page?.id)"
+                      />
+                      <div class="checkmark"></div>
+                    </label>
+                  </span>
+                </td> -->
+              <!-- /select checkbox -->
+            </div>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let page of module?.pages; let i = index">
+          <tr>
+            <td class="text-capitalize">
+              <!-- select checkbox -->
+              <span class="select-input">
+                <label class="table-checkbox-container">
+                  <input
+                    type="checkbox"
+                    [checked]="page?.checked"
+                    [(ngModel)]="page.checked"
+                    (change)="onPageCheckBox(page.checked, page?.code, i)"
+                  />
+                  <div class="checkmark"></div>
+                </label>
+              </span>
+              <!-- /select checkbox -->
+            </td>
+            <td class="text-capitalize">
+              {{
+                currentLanguage === "ar"
+                  ? page?.arabicName
+                    ? page?.arabicName
+                    : page?.name
+                  : page?.name
+              }}
+            </td>
+            <td class="text-center">
+              <!-- select checkbox read -->
+              <span class="select-input">
+                <label class="table-checkbox-container">
+                  <input
+                    type="checkbox"
+                    [checked]="page?.read"
+                    [(ngModel)]="page.read"
+                    (change)="removeSelectedPageActionInRow(page?.read, page?.id)"
+                  />
+                  <div class="checkmark"></div>
+                </label>
+              </span>
+              <!-- /select checkbox -->
+            </td>
+            <td class="text-center">
+              <!-- select checkbox edit -->
+              <span class="select-input">
+                <label class="table-checkbox-container">
+                  <input
+                    type="checkbox"
+                    [checked]="page?.update"
+                    [(ngModel)]="page.update"
+                    [disabled]="!page?.read"
+                  />
+                  <div class="checkmark"></div>
+                </label>
+              </span>
+              <!-- /select checkbox -->
+            </td>
+            <td class="text-center">
+              <!-- select checkbox add -->
+              <span class="select-input">
+                <label class="table-checkbox-container">
+                  <input
+                    type="checkbox"
+                    [checked]="page?.create"
+                    [(ngModel)]="page.create"
+                    [disabled]="!page?.read"
+                  />
+                  <div class="checkmark"></div>
+                </label>
+              </span>
+              <!-- /select checkbox -->
+            </td>
+            <td class="text-center">
+              <!-- select checkbox delete -->
+              <span class="select-input">
+                <label class="table-checkbox-container">
+                  <input
+                    type="checkbox"
+                    [checked]="page?.delete"
+                    [(ngModel)]="page.delete"
+                    [disabled]="!page?.read"
+                  />
+                  <div class="checkmark"></div>
+                </label>
+              </span>
+              <!-- /select checkbox -->
+            </td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+  <!-- </ng-container> -->
+</div>

@@ -1,0 +1,113 @@
+<!-- Add  Modal -->
+<div class="add-page">
+  <!-- Page Header -->
+  <div
+    class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
+    [dir]="'dir' | translate"
+  >
+    <!-- breadcrumb -->
+    <app-breadcrumb
+      [title]="'permissions.update_title' | translate"
+    ></app-breadcrumb>
+  </div>
+  <!-- /Page Header -->
+
+  <app-back-button></app-back-button>
+  <!-- content -->
+  <form (ngSubmit)="submit()" [formGroup]="addForm">
+    <div class="row">
+      <div class="col-sm-6">
+        <!-- name -->
+        <div class="form-group mt-2">
+          <label
+            >{{ "permissions.form.name" | translate }}
+            <span class="text-danger">*</span></label
+          >
+          <input class="form-control" type="text" formControlName="name" />
+          <!-- errors -->
+          <div
+            *ngIf="addForm.get('name')?.invalid && addForm.get('name')?.touched"
+          >
+            <small
+              *ngIf="
+                addForm.get('name')?.invalid && addForm.get('name')?.touched
+              "
+              class="text-danger"
+            >
+              {{ "permissions.form.name_required" | translate }}</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <!-- Arabic Name -->
+        <div class="form-group mt-2">
+          <label
+            >{{ "permissions.form.ar_name" | translate }}
+            <span class="text-danger">*</span></label
+          >
+          <input
+            class="form-control"
+            type="text"
+            formControlName="arabicName"
+          />
+          <!-- errors -->
+          <div
+            *ngIf="
+              addForm.get('arabicName')?.invalid &&
+              addForm.get('arabicName')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('arabicName')?.invalid &&
+                addForm.get('arabicName')?.touched
+              "
+              class="text-danger"
+            >
+              {{ "permissions.form.ar_name_required" | translate }}</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+
+      <div class="col-sm-12">
+        <!-- roles modules sections -->
+        <div class="form-group mt-4">
+          <div class="modules-sections">
+            <ng-container *ngFor="let module of modules; let i = index">
+              <ng-container>
+                <app-edit-module-section
+                  [isModuleOpened]="true"
+                  [module]="module"
+                  (onChange)="onPermissionsChange($event)"
+                ></app-edit-module-section>
+              </ng-container>
+            </ng-container>
+          </div>
+
+          <!-- /roles modules sections -->
+          <!-- loading -->
+          <p *ngIf="modulesLoading" class="text-center mt-4">
+            {{ "loading" | translate }}
+          </p>
+          <!-- /loading -->
+        </div>
+      </div>
+    </div>
+
+    <!-- submit -->
+    <div class="save-btn text-center">
+      <button type="submit" class="save mt-4">{{ "save" | translate }}</button>
+    </div>
+  </form>
+</div>
+
+<!-- loading section -->
+<div *ngIf="uploading">
+  <app-loading-section></app-loading-section>
+</div>
+<!-- /loading section -->

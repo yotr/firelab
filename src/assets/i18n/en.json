@@ -838,5 +838,37 @@
         "modified_date": "Modified Date"
       }
     }
+  },
+  "permissions": {
+    "title": "Permissions & Roles",
+    "table_title": "Roles Table",
+    "add_btn": "Add Role",
+    "update_title": "Update Role",
+    "form": {
+      "no_data": "No Data Yet",
+      "name": "Name",
+      "name_required": "Name is required",
+      "ar_name": "Arabic Name",
+      "ar_name_required": "Arabic Name is required",
+      "roles": {
+        "title": "Roles & Permissions",
+        "add_role": "Add Role",
+        "edit_btn": "edit",
+        "delete_btn": "delete",
+        "module_access": "Modules Access",
+        "module_permission": "Page",
+        "read": "Read",
+        "write": "Update",
+        "create": "Add",
+        "delete": "Delete",
+        "import": "Import",
+        "export": "Export",
+        "add": "Add"
+      }
+    },
+    "table": {
+      "name": "Name",
+      "ar_name": "Arabic Name"
+    }
   }
 }

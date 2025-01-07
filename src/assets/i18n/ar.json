@@ -837,5 +837,35 @@
         "modified_date": "تاريخ التعديل"
       }
     }
+  },
+  "permissions": {
+    "title": "الأذونات والأدوار",
+    "table_title": "جدول الأدوار",
+    "add_btn": "إضافة دور",
+    "update_title": "تحديث الدور",
+    "form": {
+      "no_data": "لا توجد بيانات حتى الآن",
+      "name": "اسم",
+      "name_required": "الاسم مطلوب",
+      "ar_name": "الاسم العربي",
+      "ar_name_required": "الاسم العربي مطلوب",
+      "roles": {
+        "title": "الأدوار والأذونات",
+        "add_role": "إضافة دور",
+        "edit_btn": "تعديل",
+        "delete_btn": "حذف",
+        "module_access": "الوصول إلى الوحدات النمطية",
+        "module_permission": "صفحة",
+        "read": "قراءة",
+        "write": "تعديل",
+        "create": "إنشاء",
+        "delete": "حذف",
+        "add": "إضافة"
+      }
+    },
+    "table": {
+      "name": "الاسم",
+      "ar_name": "الاسم العربي"
+    }
   }
 }

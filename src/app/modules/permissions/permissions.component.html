@@ -1,0 +1,40 @@
+<div>
+  <!-- page header  -->
+  <div
+    class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
+    [dir]="'dir' | translate"
+  >
+    <app-breadcrumb [title]="'permissions.title' | translate"></app-breadcrumb>
+    <div routerLink="/modules/permissions/add">
+      <a
+        class="btn add-btn d-flex align-items-center {{
+          currentTheme?.colorSchema?.background
+        }} {{ currentTheme?.colorSchema?.color }}"
+      >
+        <i class="pi pi-plus d-none d-sm-block"></i>
+        {{ "permissions.add_btn" | translate }}
+      </a>
+    </div>
+  </div>
+
+  <!-- /page header  -->
+  <app-back-button></app-back-button>
+  <!-- table -->
+  <app-permissions-module-table
+    [data]="data"
+    [totalItems]="totalItemsCount"
+    [dataKeys]="dataKeys"
+    [loading]="loading"
+    [getDataError]="getDataError"
+    [currentTheme]="currentTheme"
+    [deleteModalTitle]="'permissions.title' | translate"
+    [tableTitle]="'permissions.title' | translate"
+    editPagePath="/modules/permissions/edit"
+    (onPageChange)="onPaginate($event)"
+    (onDelete)="delete($event)"
+    (onSearch)="search($event)"
+    (onFilter)="handleFiltersSubmit($event)"
+    (onReset)="resetData()"
+  ></app-permissions-module-table>
+</div>
+
