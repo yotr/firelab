@@ -13,6 +13,7 @@
   "no_data": "No data found",
   "search": "Search..",
   "unassign": "Unassign",
+  "no_role": "No role for you, ask your manager to give you a role.",
   "gps": {
     "list": "Team Member list",
     "name": "Member Name",

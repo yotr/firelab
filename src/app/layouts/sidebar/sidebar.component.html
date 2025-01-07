@@ -27,13 +27,15 @@
               [list]="list"
               [currentLanguage]="currentLanguage"
             ></app-sidebar-dropdown>
-            <app-sidebar-link
-              *ngIf="list?.path"
-              [page]="list?.title"
-              [path]="list?.path"
-              [icon]="list?.icon"
-              [query]="list?.query"
-            ></app-sidebar-link>
+            <ng-container>
+              <app-sidebar-link
+                *ngIf="list?.path"
+                [page]="list?.title"
+                [path]="list?.path"
+                [icon]="list?.icon"
+                [query]="list?.query"
+              ></app-sidebar-link>
+            </ng-container>
           </ng-container>
         </ng-container>
       </ng-container>

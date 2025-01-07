@@ -95,17 +95,16 @@ export class SidebarDropdownComponent implements OnInit {
     return item.id;
   }
   // check permissions of user to access page in submodule of sidebar menu
-  checkPagePermissions(name: string) {
-    // let modules = this.currentUser?.role;
-    // for (const module of modules) {
-    //   for (const subModule of module?.subModuleDto) {
-    //     for (const page of subModule?.pageDto) {
-    //       if (page?.name === name) {
-    //         return true;
-    //       }
+  checkPagePermissions(code: string) {
+    // this.sidebarService.getRoles().subscribe((role: any) => {
+    //   let pages: any[] = role?.permissions;
+    //   pages.forEach((value: any) => {
+    //     if (value?.page?.code === code) {
+    //       return true;
+    //     } else {
+    //       return false;
     //     }
-    //   }
-    // }
-    return true; // Return false if not found
+    //   });
+    // });
   }
 }

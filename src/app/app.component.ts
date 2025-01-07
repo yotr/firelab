@@ -1,16 +1,17 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { LanguageService } from './services/language/language.service';
 import { TranslateService } from '@ngx-translate/core';
 import { ThemeService } from './services/theme/theme.service';
 import { AuthService } from './services/auth/auth.service';
+import { SidebarService } from './services/sidebar/sidebar.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit, AfterViewInit {
   title = 'firelab';
   currentTheme: any;
   // current language
@@ -21,7 +22,8 @@ export class AppComponent {
     private translateService: TranslateService,
     private languageService: LanguageService,
     private auth: AuthService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private sidebarService: SidebarService
   ) {
     // turn on current language (trandlate)
     this.translateService.use(this.currentLanguage);
@@ -49,6 +51,7 @@ export class AppComponent {
   }
 
   ngAfterViewInit(): void {
+    // this.getUserRoles();
     // this.whenCallMsgComeing();
   }
   getCurrentLanguage() {
@@ -69,4 +72,5 @@ export class AppComponent {
     } else {
     }
   }
+
 }

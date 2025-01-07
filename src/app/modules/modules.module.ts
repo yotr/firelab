@@ -56,6 +56,7 @@ import { EditPermissionComponent } from './permissions/components/edit-permissio
 import { PermissionsModuleTableComponent } from './permissions/components/permissions-module-table/permissions-module-table.component';
 import { ModuleSectionComponent } from './permissions/components/module-section/module-section.component';
 import { EditModuleSectionComponent } from './permissions/components/edit-module-section/edit-module-section.component';
+import { NoRoleComponent } from './no-role/no-role.component';
 
 @NgModule({
   declarations: [
@@ -102,7 +103,8 @@ import { EditModuleSectionComponent } from './permissions/components/edit-module
     EditPermissionComponent,
     PermissionsModuleTableComponent,
     ModuleSectionComponent,
-    EditModuleSectionComponent
+    EditModuleSectionComponent,
+    NoRoleComponent
   ],
   imports: [
     CommonModule,

@@ -22,6 +22,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   // current language
   currentLanguage: any = localStorage.getItem('lang');
   currentUser: any = null;
+  role: any = null;
 
   sidebarMenus = {
     default: true,
@@ -38,12 +39,12 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     //call sidebar menus changes
     this.handleSidebarMenuChanges();
     //current language
-    this.getCurrentLanguage();
+    // this.getCurrentLanguage();
   }
   ngAfterViewInit(): void {
     // get active dropdown
     this.getActiveMenu();
-    this.getUserRoles();
+    // this.getCurrentLanguage();
   }
 
   ngOnInit(): void {
@@ -57,6 +58,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     });
     // get user
     this.getCurrentActiveUser();
+    this.getUserRoles();
   }
 
   // get current user
@@ -102,15 +104,68 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   //get sidebar menu en
   getSidebarMenuInEnglish() {
     // get sidebar links list from services
-    this.sidebarService.getSidebarMenuEnglish().subscribe((menu) => {
-      this.sidebarLinks = menu;
+    this.sidebarService.getSidebarMenuEnglish().subscribe((value: any[]) => {
+      // console.log(menu);
+      if (this.currentUser?.isManager) {
+        this.sidebarLinks = value;
+      } else {
+        let newMenu: any[] = value[0]?.menu?.filter((link: any) => {
+          if (link?.code != undefined) {
+            let isMatch = this.checkPagePermission(link?.code);
+            if (isMatch) {
+              return link;
+            }
+          } else if (link?.list != undefined) {
+            link?.list?.filter((item: any) => {
+              let isMatch = this.checkPagePermission(item?.code);
+              if (isMatch) {
+                return link;
+              }
+            });
+          }
+        });
+
+        let newSidebar: any[] = [
+          {
+            menu: newMenu,
+          },
+        ];
+        this.sidebarLinks = newSidebar;
+      }
     });
   }
   //get sidebar menu ar
   getSidebarMenuInArabic() {
     // get sidebar links list from services
-    this.sidebarService.getSidebarMenuArabic().subscribe((menu) => {
-      this.sidebarLinks = menu;
+    this.sidebarService.getSidebarMenuArabic().subscribe((value: any[]) => {
+      // console.log(menu);
+      if (this.currentUser?.isManager) {
+        this.sidebarLinks = value;
+      } else {
+        let newMenu: any[] = value[0]?.menu?.filter((link: any) => {
+          if (link?.code != undefined) {
+            let isMatch = this.checkPagePermission(link?.code);
+            if (isMatch) {
+              return link;
+            }
+          } else if (link?.list != undefined) {
+            link?.list?.filter((item: any) => {
+              let isMatch = this.checkPagePermission(item?.code);
+              if (isMatch) {
+                return link;
+              }
+            });
+          }
+        });
+
+        let newSidebar: any[] = [
+          {
+            menu: newMenu,
+          },
+        ];
+
+        this.sidebarLinks = newSidebar;
+      }
     });
   }
 
@@ -144,64 +199,55 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   }
 
   getUserRoles() {
-    this.apiService
-      .getById('teamMembers/roles', this.currentUser?.id)
-      .subscribe({
-        next: (data: any) => {
-          //  set values
-          console.log(data);
-        },
-        error: (error) => {
-          console.log(error);
-          if (this.currentLanguage == 'ar') {
-            this.toastr.error('هناك شيء خاطئ', 'خطأ');
-          } else {
-            this.toastr.error('There Is Somthing Wrong', 'Error');
-          }
-        },
-      });
+    if (this.currentUser?.isManager) {
+      this.getCurrentLanguage();
+      // nothing to do here
+    } else {
+      this.apiService
+        .getById('teamMembers/roles', this.currentUser?.id)
+        .subscribe({
+          next: (data: any) => {
+            //  set values
+            console.log(data);
+            if (data.isSuccess) {
+              this.sidebarService.sendRoles(data?.value?.role);
+              this.role = data?.value?.role;
+            } else {
+              this.router.navigate(['/modules/no-role']);
+            }
+          },
+          error: (error) => {
+            console.log(error);
+            this.router.navigate(['/modules/no-role']);
+            if (this.currentLanguage == 'ar') {
+              this.toastr.error('هناك شيء خاطئ', 'خطأ');
+            } else {
+              this.toastr.error('There Is Somthing Wrong', 'Error');
+            }
+          },
+          complete: () => {
+            this.getCurrentLanguage();
+          },
+        });
+    }
   }
 
   // to enhance performance of loop when u remove or update item not render all items when changes happen
   trackFun(index: number, item: any): number {
     return item.id;
   }
-  // check permissions of user to access module sidebar menu
-  checkModulePermissions(name: string) {
-    // let module = this.currentUser?.role?.find(
-    //   (module) => module?.name === name
-    // );
-    // if (module == undefined) {
-    //   return false;
-    // } else {
-    //   return true;
-    // }
-    return true; // Return false if not found
-  }
-  // check permissions of user to access submodule sidebar menu
-  checkSubModulePermissions(name: string) {
-    // let modules = this.currentUser?.role;
-    // for (const module of modules) {
-    //   for (const subModule of module?.subModuleDto) {
-    //     if (subModule?.name === name) {
-    //       return true;
-    //     }
-    //   }
-    // }
-    return true; // Return false if not found
-  }
   // check permissions of user to access page in submodule of sidebar menu
-  checkPagePermissions(name: string) {
-    // let modules = this.currentUser?.role;
-    // for (const module of modules) {
-    //   for (const subModule of module?.subModuleDto) {
-    //     for (const page of subModule?.pageDto) {
-    //       if (page?.name === name) {
-    //         return true;
-    //       }
-    //     }
-    //   }
-    // }
-    return true; // Return false if not found
+  checkPagePermission(code: string): boolean {
+    let pages: any[] = this.role?.permissions;
+    if (pages != undefined) {
+      let isExist = pages?.find((v) => v?.page?.code == code);
+      if (isExist === undefined) {
+        return false;
+      } else {
+        return true;
+      }
+    } else {
+      return false;
+    }
   }
 }

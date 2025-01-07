@@ -1,0 +1,20 @@
+
+
+.container {
+  text-align: center;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+
+.message {
+  font-size: 18px;
+  color: #333;
+  margin-bottom: 20px;
+}
+.refresh {
+  width: 20px;
+}

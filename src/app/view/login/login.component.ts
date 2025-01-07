@@ -5,6 +5,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { LanguageService } from 'src/app/services/language/language.service';
+import { SidebarService } from 'src/app/services/sidebar/sidebar.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
 
 @Component({
@@ -25,6 +26,7 @@ export class LoginComponent implements OnInit {
     private translateService: TranslateService,
     private languageService: LanguageService,
     private toastr: ToastrService,
+    private sidebarService: SidebarService,
     private auth: AuthService // private apiService: ApiService
   ) {
     // login form group controls
@@ -103,6 +105,7 @@ export class LoginComponent implements OnInit {
       },
       complete: () => {
         if (isTokenExist) {
+          this.getUserRoles();
           //  navigate to login after 2 sec
           setTimeout(() => {
             // stop login btn loading
@@ -117,5 +120,17 @@ export class LoginComponent implements OnInit {
   }
   openLink() {
     window.open('https://www.aktitec.com/');
+  }
+
+  getUserRoles() {
+    this.sidebarService.getRoles().subscribe({
+      next: (role: any) => {
+        console.log(role);
+      },
+      error: (err: any) => {
+        console.log(err);
+      },
+      complete: () => {},
+    });
   }
 }

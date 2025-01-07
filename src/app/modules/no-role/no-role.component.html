@@ -1,0 +1,13 @@
+<div class="container">
+  <p class="message">{{ "no_role" | translate }}</p>
+
+  <div class="refresh" role="button" (click)="refresh()">
+    <a
+      class="btn add-btn d-flex align-items-center  {{
+        currentTheme?.colorSchema?.background
+      }} {{ currentTheme?.colorSchema?.color }}"
+    >
+      <i class="pi pi-refresh fs-4"></i>
+    </a>
+  </div>
+</div>

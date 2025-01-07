@@ -17,7 +17,7 @@ export class HeaderSearchComponent implements OnInit, AfterViewInit {
   //variables
   @Input() currentLanguage: any = localStorage.getItem('lang');
   data: any[] = [];
-  results: any[] = [];
+  role: any = null;
   currentTheme: any;
   // current language
   searchText: string = '';
@@ -28,10 +28,9 @@ export class HeaderSearchComponent implements OnInit, AfterViewInit {
     private sidebarService: SidebarService,
     private router: Router,
     private translateService: TranslateService,
-    private languageService: LanguageService,
-    // private auth: AuthService
+    private languageService: LanguageService // private auth: AuthService
   ) {
-    this.getCurrentLanguage();
+    // this.getCurrentLanguage();
     // turn on current language (trandlate)
     // this.translateService.use(this.currentLanguage);
     // get user
@@ -39,7 +38,7 @@ export class HeaderSearchComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    // this.getCurrentLanguage();
+    this.getCurrentLanguage();
   }
 
   // get current user
@@ -63,9 +62,9 @@ export class HeaderSearchComponent implements OnInit, AfterViewInit {
     this.themeService.getCurrentTheme().subscribe((theme) => {
       this.currentTheme = JSON.parse(theme);
     });
+    this.getUserRoles();
 
     // this.getSidebarDataByLanguage();
-
     // turn on current language (trandlate)
   }
 
@@ -94,15 +93,80 @@ export class HeaderSearchComponent implements OnInit, AfterViewInit {
   //get sidebar menu en
   getSidebarMenuInEnglish() {
     // get sidebar links list from services
-    this.sidebarService.getSidebarMenuEnglish().subscribe((menu) => {
-      this.data = menu;
+    this.sidebarService.getSidebarMenuEnglish().subscribe((value: any[]) => {
+      // console.log(menu);
+      if (this.currentUser?.isManager) {
+        this.data = value;
+      } else {
+        let newMenu: any[] = value[0]?.menu?.filter((link: any) => {
+          if (link?.code != undefined) {
+            let isMatch = this.checkPagePermission(link?.code);
+            if (isMatch) {
+              return link;
+            }
+          } else if (link?.list != undefined) {
+            link?.list?.filter((item: any) => {
+              let isMatch = this.checkPagePermission(item?.code);
+              if (isMatch) {
+                return link;
+              }
+            });
+          }
+        });
+
+        let newSidebar: any[] = [
+          {
+            menu: newMenu,
+          },
+        ];
+        this.data = newSidebar;
+      }
     });
   }
   //get sidebar menu ar
   getSidebarMenuInArabic() {
     // get sidebar links list from services
-    this.sidebarService.getSidebarMenuArabic().subscribe((menu) => {
-      this.data = menu;
+    this.sidebarService.getSidebarMenuArabic().subscribe((value: any[]) => {
+      // console.log(menu);
+      if (this.currentUser?.isManager) {
+        this.data = value;
+      } else {
+        let newMenu: any[] = value[0]?.menu?.filter((link: any) => {
+          if (link?.code != undefined) {
+            let isMatch = this.checkPagePermission(link?.code);
+            if (isMatch) {
+              return link;
+            }
+          } else if (link?.list != undefined) {
+            link?.list?.filter((item: any) => {
+              let isMatch = this.checkPagePermission(item?.code);
+              if (isMatch) {
+                return link;
+              }
+            });
+          }
+        });
+
+        let newSidebar: any[] = [
+          {
+            menu: newMenu,
+          },
+        ];
+
+        this.data = newSidebar;
+      }
+    });
+  }
+  getUserRoles() {
+    this.sidebarService.getRoles().subscribe({
+      next: (role: any) => {
+        this.role = role;
+        console.log(role);
+      },
+      error: (err: any) => {
+        console.log(err);
+      },
+      complete: () => {},
     });
   }
 
@@ -115,21 +179,17 @@ export class HeaderSearchComponent implements OnInit, AfterViewInit {
     return item.id;
   }
   // check permissions of user to access page in submodule of sidebar menu
-  checkPagePermissions(name: string) {
-    let modules = this.currentUser?.role;
-    if (this.currentUser?.isAdmin) {
-      return true;
-    } else {
-      for (const module of modules) {
-        for (const subModule of module?.subModuleDto) {
-          for (const page of subModule?.pageDto) {
-            if (page?.name === name) {
-              return true;
-            }
-          }
-        }
+  checkPagePermission(code: string): boolean {
+    let pages: any[] = this.role?.permissions;
+    if (pages != undefined) {
+      let isExist = pages?.find((v) => v?.page?.code == code);
+      if (isExist === undefined) {
+        return false;
+      } else {
+        return true;
       }
-      return false; // Return false if not found
+    } else {
+      return false;
     }
   }
 }

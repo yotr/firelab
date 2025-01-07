@@ -23,6 +23,7 @@ import { EditAssignedJobComponent } from './job-link/edit-assigned-job/edit-assi
 import { PermissionsComponent } from './permissions/permissions.component';
 import { AddPermissionComponent } from './permissions/components/add-permission/add-permission.component';
 import { EditPermissionComponent } from './permissions/components/edit-permission/edit-permission.component';
+import { NoRoleComponent } from './no-role/no-role.component';
 
 const routes: Routes = [
   {
@@ -149,6 +150,11 @@ const routes: Routes = [
       {
         path: 'permissions/edit/:id',
         component: EditPermissionComponent,
+      },
+      // not role permissions
+      {
+        path: 'no-role',
+        component: NoRoleComponent,
       },
     ],
   },
