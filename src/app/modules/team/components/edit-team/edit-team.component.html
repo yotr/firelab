@@ -258,13 +258,38 @@
           </select>
         </div>
       </div>
+      <div class="col-sm-6">
+        <!-- roles -->
+        <div class="form-group mt-2">
+          <label>{{ "team.form.permissons" | translate }} </label>
+          <select
+            class="form-select form-control"
+            name="roleId"
+            id="roleId"
+            formControlName="roleId"
+          >
+            <option selected *ngIf="assignedRole == null">
+              {{ "select" | translate }}
+            </option>
+            <ng-container *ngFor="let role of roles">
+              <option [value]="role?.id">
+                {{ currentLanguage == "ar" ? role?.arabicName : role?.name }}
+              </option>
+            </ng-container>
+
+            <option *ngIf="rolesLoading" disabled>
+              {{ "loading" | translate }}
+            </option>
+          </select>
+        </div>
+      </div>
     </div>
     <!-- next -->
-    <div class="next-btn" [hidden]="secondStep">
+    <!-- <div class="next-btn" [hidden]="secondStep">
       <div class="next mt-4" (click)="nextStep()">{{ "next" | translate }}</div>
-    </div>
+    </div> -->
     <!-- step 2 -->
-    <div class="form-step">
+    <!-- <div class="form-step">
       <span class="step-no" [ngClass]="{ active: secondStep }">2</span>
       <div
         class="form-step-btn"
@@ -273,11 +298,25 @@
       >
         {{ "team.form.permissons" | translate }}
       </div>
-    </div>
-    <div class="row" [hidden]="firstStep">Permissons</div>
+    </div> -->
+    <!-- <div class="row" [hidden]="firstStep">
+      <div class="col-sm-4">
+        <div class="form-group mt-2">
+          <label>{{ "inventory.parts.assign.vehicle_no" | translate }} </label>
+          <app-custom-filter-dropdown
+            minWidth="100%"
+            title="Select Here"
+            [objectKey]="currentLanguage == 'ar' ? 'arabicName' : 'name'"
+            [data]="roles"
+            (onFilter)="onFilterRoles($event)"
+            (onAction)="onSelectRoles($event)"
+          ></app-custom-filter-dropdown>
+        </div>
+      </div>
+    </div> -->
 
     <!-- submit -->
-    <div [hidden]="!secondStep" class="save-btn text-center">
+    <div class="save-btn text-center">
       <button type="submit" class="save mt-4">{{ "save" | translate }}</button>
     </div>
   </form>

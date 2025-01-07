@@ -27,7 +27,10 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
   // defaultPermissions: Permission[];
   uploading: boolean = false;
   updateId: any = null;
-
+  // roles
+  roles: any[] = [];
+  rolesLoading: boolean = true;
+  assignedRole: any = null;
   constructor(
     private formBuilder: FormBuilder,
     private themeService: ThemeService,
@@ -59,6 +62,7 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
         billableHourlyRate: ['', [Validators.required]],
         position: [''],
         division: [''],
+        roleId: [null],
       }
       // { validators: passwordMatch }
     );
@@ -74,6 +78,7 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
     this.getTheme();
     this.getCurrentLanguage();
     this.getCurrentActiveUser();
+    this.getRoles();
     // this.getCategories();
   }
   // get theme from localStorage
@@ -120,7 +125,9 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
           billableHourlyRate: data?.billableHourlyRate,
           position: data?.position,
           division: data?.division,
+          roleId: data?.roleId,
         });
+        this.assignedRole = data?.roleId;
       },
       error: (error) => {
         console.log(error);
@@ -171,6 +178,61 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
         this.categoriesLoading = false;
       },
     });
+  }
+
+  onSelectRoles(event: any) {
+    console.log(event);
+    this.addForm.patchValue({
+      roleId: event?.id,
+    });
+  }
+
+  // get Roles data
+  getRoles(page?: number, pageSize?: number) {
+    // api
+    this.apiService.get('roles').subscribe({
+      next: (data: any) => {
+        console.log(data);
+        if (data?.isSuccess) {
+          this.roles = data?.value;
+          // this.totalItemsCount = data?.value?.totalCount;
+          // this.getDataError = false;
+        }
+        this.rolesLoading = false;
+      },
+      error: (err: any) => {
+        this.rolesLoading = false;
+        // this.getDataError = true;
+        if (this.currentLanguage == 'ar') {
+          this.toastr.error('هناك شيء خاطئ', 'خطأ');
+        } else {
+          this.toastr.error('There Is Somthing Wrong', 'Error');
+        }
+      },
+      complete: () => {},
+    });
+  }
+  onFilterRoles(value: string) {
+    if (value != null && value?.trim() != '') {
+      this.apiService
+        .globalSearch('Roles/globalsearch', value, null)
+        .subscribe({
+          next: (data: any) => {
+            console.log(data);
+            if (data?.isSuccess) {
+              this.roles = data?.value;
+              // this.totalItemsCount = data?.value?.length;
+            }
+            this.rolesLoading = false;
+          },
+          error: (err: any) => {
+            this.rolesLoading = false;
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          },
+        });
+    } else {
+      this.getRoles();
+    }
   }
 
   //add a new
