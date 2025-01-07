@@ -14,6 +14,8 @@ export class SidebarService {
   private activeDropdown: BehaviorSubject<string>;
   // for customer pages
   private currentCustomerId: BehaviorSubject<any>;
+  // for user roles
+  private roles: BehaviorSubject<any>;
   sidebarLinks: any = [];
 
   constructor(private http: HttpClient) {
@@ -22,6 +24,7 @@ export class SidebarService {
     this.activeDropdown = new BehaviorSubject<string>('');
     // for customer pages
     this.currentCustomerId = new BehaviorSubject<any>('');
+    this.roles = new BehaviorSubject<any>({});
     this.http
       .get<any>(`${this.apiurl}/sidebar-en.json`)
       .subscribe((response: any) => {
@@ -84,5 +87,14 @@ export class SidebarService {
 
   sendActiveDropdownPage(value: any) {
     this.activeDropdown.next(value);
+  }
+
+  // for roles pages
+  sendRoles(value: any) {
+    this.roles.next(value);
+  }
+  //get active as observable
+  getRoles(): Observable<string> {
+    return this.roles.asObservable();
   }
 }

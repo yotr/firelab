@@ -31,6 +31,7 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
   roles: any[] = [];
   rolesLoading: boolean = true;
   assignedRole: any = null;
+  
   constructor(
     private formBuilder: FormBuilder,
     private themeService: ThemeService,

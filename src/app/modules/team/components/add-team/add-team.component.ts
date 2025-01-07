@@ -27,6 +27,10 @@ export class AddTeamComponent implements OnInit, AfterViewInit {
   // defaultPermissions: Permission[];
   uploading: boolean = false;
 
+  // roles
+  roles: any[] = [];
+  rolesLoading: boolean = true;
+
   constructor(
     private formBuilder: FormBuilder,
     private themeService: ThemeService,
@@ -51,6 +55,7 @@ export class AddTeamComponent implements OnInit, AfterViewInit {
         position: [''],
         division: [''],
         status: ['clocked'],
+        roleId: [null],
       }
       // { validators: passwordMatch }
     );
@@ -60,6 +65,7 @@ export class AddTeamComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit(): void {
     // this.getCategories();
+    this.getRoles();
   }
 
   ngOnInit() {
@@ -132,6 +138,38 @@ export class AddTeamComponent implements OnInit, AfterViewInit {
       complete: () => {
         this.categoriesLoading = false;
       },
+    });
+  }
+
+  onSelectRoles(event: any) {
+    console.log(event);
+    this.addForm.patchValue({
+      roleId: event?.id,
+    });
+  }
+  // get Roles data
+  getRoles(page?: number, pageSize?: number) {
+    // api
+    this.apiService.get('roles').subscribe({
+      next: (data: any) => {
+        console.log(data);
+        if (data?.isSuccess) {
+          this.roles = data?.value;
+          // this.totalItemsCount = data?.value?.totalCount;
+          // this.getDataError = false;
+        }
+        this.rolesLoading = false;
+      },
+      error: (err: any) => {
+        this.rolesLoading = false;
+        // this.getDataError = true;
+        if (this.currentLanguage == 'ar') {
+          this.toastr.error('هناك شيء خاطئ', 'خطأ');
+        } else {
+          this.toastr.error('There Is Somthing Wrong', 'Error');
+        }
+      },
+      complete: () => {},
     });
   }
 

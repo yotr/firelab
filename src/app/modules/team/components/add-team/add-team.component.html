@@ -278,7 +278,17 @@
         {{ "team.form.permissons" | translate }}
       </div>
     </div>
-    <div class="row" [hidden]="firstStep">Permissons</div>
+    <div class="row" [hidden]="firstStep">
+      <app-custom-dropdown
+        minWidth="50%"
+        [fixedHeight]="true"
+        [object]="true"
+        [objectKey]="currentLanguage == 'ar' ? 'arabicName' : 'name'"
+        [data]="roles"
+        [filter]="true"
+        (onAction)="onSelectRoles($event)"
+      ></app-custom-dropdown>
+    </div>
 
     <!-- submit -->
     <div [hidden]="!secondStep" class="save-btn text-center">

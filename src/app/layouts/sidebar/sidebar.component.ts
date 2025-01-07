@@ -1,6 +1,8 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Event, NavigationEnd, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { ToastrService } from 'ngx-toastr';
+import { ApiService } from 'src/app/services/api/api.service';
 // import { AuthService } from 'src/app/services/auth/auth.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 //services
@@ -29,6 +31,8 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     private sidebarService: SidebarService,
     private themeService: ThemeService,
     private languageService: LanguageService,
+    private apiService: ApiService,
+    private toastr: ToastrService,
     private router: Router // private auth: AuthService
   ) {
     //call sidebar menus changes
@@ -39,6 +43,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   ngAfterViewInit(): void {
     // get active dropdown
     this.getActiveMenu();
+    this.getUserRoles();
   }
 
   ngOnInit(): void {
@@ -137,6 +142,26 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     }
     return null; // Return null if no matching path is found
   }
+
+  getUserRoles() {
+    this.apiService
+      .getById('teamMembers/roles', this.currentUser?.id)
+      .subscribe({
+        next: (data: any) => {
+          //  set values
+          console.log(data);
+        },
+        error: (error) => {
+          console.log(error);
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+      });
+  }
+
   // to enhance performance of loop when u remove or update item not render all items when changes happen
   trackFun(index: number, item: any): number {
     return item.id;
