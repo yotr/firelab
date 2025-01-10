@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
@@ -12,7 +12,7 @@ import { ThemeService } from 'src/app/services/theme/theme.service';
   templateUrl: './team.component.html',
   styleUrls: ['./team.component.css'],
 })
-export class TeamComponent implements OnInit {
+export class TeamComponent implements OnInit, AfterViewInit {
   // current language
   currentLanguage: any = localStorage.getItem('lang');
   currentTheme: any;
@@ -68,10 +68,12 @@ export class TeamComponent implements OnInit {
   ngOnInit() {
     this.getLanguage();
     this.getTheme();
-    this.getData();
+    this.getCurrentUserData();
   }
 
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void {
+    this.getData();
+  }
   // get user
   isLoggedIn(): boolean {
     return this.auth.currentUserSignal() == undefined ? false : true;

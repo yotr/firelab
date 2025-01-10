@@ -31,7 +31,7 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
   roles: any[] = [];
   rolesLoading: boolean = true;
   assignedRole: any = null;
-  
+
   constructor(
     private formBuilder: FormBuilder,
     private themeService: ThemeService,
@@ -245,7 +245,7 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
       console.log(data);
       this.uploading = true;
       // api
-      this.apiService?.update('teamMembers', this.updateId, data).subscribe({
+      this.apiService.update('teamMembers', this.updateId, data).subscribe({
         next: (data) => {
           console.log(data);
           if (data?.isSuccess) {

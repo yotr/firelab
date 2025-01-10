@@ -19,6 +19,7 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
     // Retrieve the token from a service or storage
     let user: any = localStorage.getItem('firelab-loginData');
     const token: string = JSON.parse(user)?.token;
+    const companyId: string = JSON.parse(user)?.userData?.companyId;
     // console.log(token);
     // const token = 'YOUR_ACCESS_TOKEN_HERE';
 
@@ -26,6 +27,7 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
     const authReq = request.clone({
       setHeaders: {
         Authorization: `Bearer ${token}`,
+        CompanyId: `${companyId}`,
       },
     });
 

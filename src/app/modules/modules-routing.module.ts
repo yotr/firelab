@@ -24,7 +24,6 @@ import { PermissionsComponent } from './permissions/permissions.component';
 import { AddPermissionComponent } from './permissions/components/add-permission/add-permission.component';
 import { EditPermissionComponent } from './permissions/components/edit-permission/edit-permission.component';
 import { NoRoleComponent } from './no-role/no-role.component';
-import { roleGuard } from '../guards/role.guard';
 import { CompaniesComponent } from './companies/companies.component';
 import { AddCompanyComponent } from './companies/components/add-company/add-company.component';
 import { EditCompanyComponent } from './companies/components/edit-company/edit-company.component';
@@ -160,7 +159,6 @@ const routes: Routes = [
       {
         path: 'no-role',
         component: NoRoleComponent,
-        canActivate: [roleGuard],
       },
       //company
       {
@@ -174,7 +172,7 @@ const routes: Routes = [
         canActivate: [companyGuard],
       },
       {
-        path: 'companies/edit:id',
+        path: 'companies/edit/:id',
         component: EditCompanyComponent,
         canActivate: [companyGuard],
       },

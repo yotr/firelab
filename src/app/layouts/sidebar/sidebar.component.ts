@@ -217,12 +217,12 @@ export class SidebarComponent implements OnInit, AfterViewInit {
             }
           },
           error: (error) => {
-            console.log(error);
+            console.log("Roles Error",error);
             this.router.navigate(['/modules/no-role']);
             if (this.currentLanguage == 'ar') {
               this.toastr.error('هناك شيء خاطئ', 'خطأ');
             } else {
-              this.toastr.error('There Is Somthing Wrong', 'Error');
+              this.toastr.error(error?.error[0]?.message, 'Error');
             }
           },
           complete: () => {

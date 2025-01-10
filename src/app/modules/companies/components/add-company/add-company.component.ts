@@ -150,52 +150,67 @@ export class AddCompanyComponent implements OnInit {
   }
   //add a new
   submit() {
-    // add to server
     if (this.addForm.valid) {
-      let newData = {
-        company: {
-          companyName: this.addForm.get('companyName')?.value,
-          address: this.addForm.get('address')?.value,
-          phone: this.addForm.get('phone')?.value,
-          website: this.addForm.get('website')?.value,
-          fax: this.addForm.get('fax')?.value,
-          country: this.addForm.get('country')?.value,
-          city: this.addForm.get('city')?.value,
-          state: this.addForm.get('state')?.value,
-          postal: this.addForm.get('postal')?.value,
-          contact: this.addForm.get('contact')?.value,
-          email: this.addForm.get('companyEmail')?.value,
-        },
+      let data = {
+        companyName: this.addForm.get('companyName')?.value,
+        address: this.addForm.get('address')?.value,
+        phone: this.addForm.get('phone')?.value,
+        website: this.addForm.get('website')?.value,
+        fax: this.addForm.get('fax')?.value,
+        country: this.addForm.get('country')?.value,
+        city: this.addForm.get('city')?.value,
+        state: this.addForm.get('state')?.value,
+        postal: this.addForm.get('postal')?.value,
+        contact: this.addForm.get('contact')?.value,
+        email: this.addForm.get('companyEmail')?.value,
         manager: {
           firstName: this.addForm.get('firstName')?.value,
           lastName: this.addForm.get('lastName')?.value,
           userName: this.addForm.get('userName')?.value,
-          email: this.addForm.get('managerEmail')?.value,
+          email: this.addForm.get('email')?.value,
           password: this.addForm.get('password')?.value,
+          contactNumber: this.addForm.get('contactNumber')?.value,
+          billableHourlyRate: this.addForm.get('billableHourlyRate')?.value,
+          position: this.addForm.get('position')?.value,
+          division: this.addForm.get('division')?.value,
+          status: this.addForm.get('status')?.value,
+          roleId: this.addForm.get('roleId')?.value,
         },
       };
-
-      console.log(newData);
-
-      let added = false;
-      // send the data to server
-      this.apiService.add('companies/create', newData).subscribe({
+      console.log(data);
+      this.uploading = true;
+      // api
+      this.apiService?.add('companies/add', data).subscribe({
         next: (data) => {
-          added = true;
+          console.log(data);
+          if (data?.isSuccess) {
+            if (this.currentLanguage == 'ar') {
+              this.toastr.success('تمت إضافة البيانات بنجاح...');
+            } else {
+              this.toastr.success('data added successfully...', 'Success');
+            }
+            this.router.navigate(['/modules/companies']);
+          }
         },
-        error: (error) => {
-          this.toastr.error('there is something wrong', 'Error');
+        error: (err: any) => {
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+            this.toastr.error(err?.error[0]?.message, 'Error');
+          }
+          this.uploading = false;
         },
         complete: () => {
-          if (added) {
-            this.toastr.success('Company added', 'Success');
-            this.addForm.reset();
-            this.router.navigate(['/modules/companies/all-companies']);
-          }
+          this.uploading = false;
         },
       });
     } else {
-      this.toastr.error('', 'Please enter mandatory field!');
+      if (this.currentLanguage == 'ar') {
+        this.toastr.warning('الرجاء إدخال الحقول المطلوبة');
+      } else {
+        this.toastr.warning('Please enter the required fields');
+      }
     }
   }
 

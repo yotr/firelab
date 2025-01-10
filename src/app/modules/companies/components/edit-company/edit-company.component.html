@@ -1,3 +1,495 @@
-<p>
-  edit-company works!
-</p>
+<!-- Add  Modal -->
+<div class="add-page">
+  <!-- Page Header -->
+  <div
+    class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
+    [dir]="'dir' | translate"
+  >
+    <!-- breadcrumb -->
+    <app-breadcrumb
+      [title]="'companies.update_title' | translate"
+    ></app-breadcrumb>
+  </div>
+  <!-- /Page Header -->
+
+  <app-back-button></app-back-button>
+  <!-- content -->
+  <form (ngSubmit)="submit()" [formGroup]="addForm">
+    <!-- tabs -->
+    <nav class="my-4">
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <div
+          class="nav-link"
+          [ngClass]="{ active: isCompanySectionActive }"
+          role="button"
+          (click)="activeCompanySection()"
+        >
+          {{ "companies.form.companySection" | translate }}
+        </div>
+        <div
+          class="nav-link"
+          [ngClass]="{ active: !isCompanySectionActive }"
+          role="button"
+          (click)="activeManagerSection()"
+        >
+          {{ "companies.form.managerSection" | translate }}
+        </div>
+      </div>
+    </nav>
+    <!-- /tabs -->
+    <!-- tabs content -->
+    <div class="tab-content" id="nav-tabContent">
+      <div
+        class="tab-pane fade"
+        [ngClass]="{
+          active: isCompanySectionActive,
+          show: isCompanySectionActive
+        }"
+        id="nav-home"
+        role="tabpanel"
+        aria-labelledby="nav-home-tab"
+      >
+        <!-- company section content -->
+        <div class="row">
+          <h2 class="py-2">
+            {{ "companies.form.companySection" | translate }}
+          </h2>
+          <div class="col-sm-6">
+            <!-- company Name -->
+            <div class="form-group mt-2">
+              <label
+                >{{ "companies.form.companyName" | translate }}
+                <span class="text-danger">*</span></label
+              >
+              <input
+                class="form-control"
+                type="text"
+                formControlName="companyName"
+              />
+              <!-- errors -->
+              <div
+                *ngIf="
+                  addForm.get('companyName')?.invalid &&
+                  addForm.get('companyName')?.touched
+                "
+              >
+                <small
+                  *ngIf="
+                    addForm.get('companyName')?.invalid &&
+                    addForm.get('companyName')?.touched
+                  "
+                  class="text-danger"
+                >
+                  {{ "companies.form.companyName_required" | translate }}
+                </small>
+              </div>
+              <!-- errors -->
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <!-- address -->
+            <div class="form-group mt-2">
+              <label> {{ "companies.form.address" | translate }}</label>
+              <input
+                class="form-control"
+                type="text"
+                formControlName="address"
+              />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <!-- phone -->
+            <div class="form-group mt-2">
+              <label> {{ "companies.form.phone" | translate }}</label>
+              <input class="form-control" type="text" formControlName="phone" />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <!-- fax -->
+            <div class="form-group mt-2">
+              <label> {{ "companies.form.fax" | translate }}</label>
+              <input class="form-control" type="text" formControlName="fax" />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <!-- country -->
+            <div class="form-group mt-2">
+              <label> {{ "companies.form.country" | translate }}</label>
+              <input
+                class="form-control"
+                type="text"
+                formControlName="country"
+              />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <!-- city -->
+            <div class="form-group mt-2">
+              <label> {{ "companies.form.city" | translate }}</label>
+              <input class="form-control" type="text" formControlName="city" />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <!-- state -->
+            <div class="form-group mt-2">
+              <label> {{ "companies.form.state" | translate }}</label>
+              <input class="form-control" type="text" formControlName="state" />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <!-- postal -->
+            <div class="form-group mt-2">
+              <label> {{ "companies.form.postal" | translate }}</label>
+              <input
+                class="form-control"
+                type="text"
+                formControlName="postal"
+              />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <!-- contact -->
+            <div class="form-group mt-2">
+              <label> {{ "companies.form.contact" | translate }}</label>
+              <input
+                class="form-control"
+                type="text"
+                formControlName="contact"
+              />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <!-- companyEmail -->
+            <div class="form-group mt-2">
+              <label> {{ "companies.form.companyEmail" | translate }}</label>
+              <input
+                class="form-control"
+                type="text"
+                formControlName="companyEmail"
+              />
+            </div>
+          </div>
+        </div>
+        <!-- /company section content -->
+        <!-- next -->
+        <div
+          class="submit-section mb-4"
+          *ngIf="addForm?.get('companyName')?.value?.trim() != ''"
+        >
+          <div class="next-btn" (click)="activeManagerSection()">
+            <div class="next mt-4">{{ "next" | translate }}</div>
+          </div>
+        </div>
+        <!-- /next -->
+      </div>
+      <div
+        class="tab-pane fade"
+        [ngClass]="{
+          active: !isCompanySectionActive,
+          show: !isCompanySectionActive
+        }"
+        id="nav-profile"
+        role="tabpanel"
+        aria-labelledby="nav-profile-tab"
+      >
+        <!-- manager section content-->
+        <div class="row">
+          <h2 class="py-2">
+            {{ "companies.form.managerSection" | translate }}
+          </h2>
+          <div class="col-sm-6">
+            <!-- First Name -->
+            <div class="form-group mt-2">
+              <label
+                >{{ "team.form.first_name" | translate }}
+                <span class="text-danger">*</span></label
+              >
+              <input
+                class="form-control"
+                type="text"
+                formControlName="firstName"
+              />
+              <!-- errors -->
+              <div
+                *ngIf="
+                  addForm.get('firstName')?.invalid &&
+                  addForm.get('firstName')?.touched
+                "
+              >
+                <small
+                  *ngIf="
+                    addForm.get('firstName')?.invalid &&
+                    addForm.get('firstName')?.touched
+                  "
+                  class="text-danger"
+                >
+                  {{ "team.form.first_name_required" | translate }}</small
+                >
+              </div>
+              <!-- errors -->
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <!-- Last Name -->
+            <div class="form-group mt-2">
+              <label
+                >{{ "team.form.last_name" | translate }}
+                <span class="text-danger">*</span></label
+              >
+              <input
+                class="form-control"
+                type="text"
+                formControlName="lastName"
+              />
+              <!-- errors -->
+              <div
+                *ngIf="
+                  addForm.get('lastName')?.invalid &&
+                  addForm.get('lastName')?.touched
+                "
+              >
+                <small
+                  *ngIf="
+                    addForm.get('lastName')?.invalid &&
+                    addForm.get('lastName')?.touched
+                  "
+                  class="text-danger"
+                >
+                  {{ "team.form.last_name_required" | translate }}</small
+                >
+              </div>
+              <!-- errors -->
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <!-- userName -->
+            <div class="form-group mt-2">
+              <label
+                >{{ "team.form.user_name" | translate }}
+                <span class="text-danger">*</span></label
+              >
+              <input
+                class="form-control"
+                type="text"
+                formControlName="userName"
+              />
+              <!-- errors -->
+              <div
+                *ngIf="
+                  addForm.get('userName')?.invalid &&
+                  addForm.get('userName')?.touched
+                "
+              >
+                <small
+                  *ngIf="
+                    addForm.get('userName')?.invalid &&
+                    addForm.get('userName')?.touched
+                  "
+                  class="text-danger"
+                >
+                  {{ "team.form.user_name_required" | translate }}</small
+                >
+              </div>
+              <!-- errors -->
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <!-- Email -->
+            <div class="form-group mt-2">
+              <label
+                >{{ "team.form.email" | translate }}
+                <span class="text-danger">*</span></label
+              >
+              <input
+                class="form-control"
+                type="email"
+                formControlName="email"
+              />
+              <!-- errors -->
+              <div
+                *ngIf="
+                  addForm.get('email')?.invalid && addForm.get('email')?.touched
+                "
+              >
+                <small
+                  *ngIf="formValues['email'].getError('required')"
+                  class="text-danger"
+                >
+                  {{ "team.form.email_required" | translate }}</small
+                >
+
+                <small
+                  *ngIf="formValues['email'].getError('email')"
+                  class="text-danger"
+                >
+                  {{ "team.form.email_valid" | translate }}</small
+                >
+              </div>
+              <!-- errors -->
+            </div>
+          </div>
+          <!-- password -->
+          <!-- <div class="col-sm-6">
+            <div class="form-group mt-2">
+              <label
+                >{{ "team.form.password" | translate }}
+                <span class="text-danger">*</span></label
+              >
+              <input
+                class="form-control"
+                type="password"
+                formControlName="password"
+              />
+              <div
+                *ngIf="
+                  addForm.get('password')?.invalid &&
+                  addForm.get('password')?.touched
+                "
+              >
+                <small
+                  *ngIf="
+                    addForm.get('password')?.invalid &&
+                    addForm.get('password')?.touched
+                  "
+                  class="text-danger"
+                >
+                  {{ "team.form.password_required" | translate }}</small
+                >
+              </div>
+            </div>
+          </div> -->
+          <div class="col-sm-6">
+            <!-- Contact Number -->
+            <div class="form-group mt-2">
+              <label
+                >{{ "team.form.contact_number" | translate }}
+                <span class="text-danger">*</span></label
+              >
+              <input
+                class="form-control"
+                type="text"
+                formControlName="contactNumber"
+              />
+              <!-- errors -->
+              <div
+                *ngIf="
+                  addForm.get('contactNumber')?.invalid &&
+                  addForm.get('contactNumber')?.touched
+                "
+              >
+                <small
+                  *ngIf="
+                    addForm.get('contactNumber')?.invalid &&
+                    addForm.get('contactNumber')?.touched
+                  "
+                  class="text-danger"
+                >
+                  {{ "team.form.contact_number_required" | translate }}</small
+                >
+              </div>
+              <!-- errors -->
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <!-- Billable Hourly Rate -->
+            <div class="form-group mt-2">
+              <label
+                >{{ "team.form.billable_rate" | translate }}
+                <span class="text-danger">*</span></label
+              >
+              <input
+                class="form-control"
+                type="text"
+                formControlName="billableHourlyRate"
+              />
+              <!-- errors -->
+              <div
+                *ngIf="
+                  addForm.get('billableHourlyRate')?.invalid &&
+                  addForm.get('billableHourlyRate')?.touched
+                "
+              >
+                <small
+                  *ngIf="
+                    addForm.get('billableHourlyRate')?.invalid &&
+                    addForm.get('billableHourlyRate')?.touched
+                  "
+                  class="text-danger"
+                >
+                  {{ "team.form.billable_rate_required" | translate }}</small
+                >
+              </div>
+              <!-- errors -->
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <!-- Position -->
+            <div class="form-group mt-2">
+              <label>{{ "team.form.position" | translate }} </label>
+              <input
+                class="form-control"
+                type="text"
+                formControlName="position"
+              />
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <!-- Divisions -->
+            <div class="form-group mt-2">
+              <label>{{ "team.form.divisions" | translate }} </label>
+              <select
+                class="form-select form-control"
+                name="division"
+                id="division"
+                formControlName="division"
+              >
+                <ng-container *ngFor="let category of categories">
+                  <option [value]="category?.id">{{ category?.name }}</option>
+                </ng-container>
+                <option *ngIf="categoriesLoading" disabled>
+                  {{ "loading" | translate }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <!-- roles -->
+          <!-- <div class="col-sm-6">
+            <div class="form-group mt-2">
+              <label>{{ "team.form.permissons" | translate }} </label>
+              <app-custom-dropdown
+                minWidth="100%"
+                [fixedHeight]="true"
+                [object]="true"
+                [objectKey]="currentLanguage == 'ar' ? 'arabicName' : 'name'"
+                [data]="roles"
+                [filter]="true"
+                (onAction)="onSelectRoles($event)"
+              ></app-custom-dropdown>
+            </div>
+          </div> -->
+        </div>
+        <!-- /manager section content-->
+        <!-- submit -->
+        <div class="d-flex justify-content-center align-items-center mb-4">
+          <!-- <button
+            class="btn submit-btn mx-2"
+            [class]="currentTheme?.colorSchema?.background"
+            type="submit"
+            [disabled]="addForm.invalid"
+          >
+            <span [class]="currentTheme?.colorSchema?.color">{{
+              "users.add_page.add_btn" | translate
+            }}</span>
+          </button> -->
+
+          <button class="save-btn" type="submit" [disabled]="addForm.invalid">
+            <div class="save mt-4">{{ "save" | translate }}</div>
+          </button>
+        </div>
+        <!-- /submit -->
+      </div>
+    </div>
+    <!-- /tabs content -->
+  </form>
+</div>
+<!-- /Add  Modal -->

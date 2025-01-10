@@ -45,6 +45,7 @@
   justify-content: center;
   outline: none;
   border: none;
+  background-color: transparent;
 }
 
 .save {
