@@ -82,7 +82,6 @@
       {
         "id": 2,
         "title": "Team",
-        "code": "team",
         "icon": "pi-users",
         "link": "/modules/team/allTeam",
         "list": [
@@ -116,7 +115,6 @@
       {
         "id": 5,
         "title": "Reports",
-        "code": "reports",
         "icon": "pi-file",
         "list": [
           {
@@ -139,7 +137,6 @@
       {
         "id": 6,
         "title": "Jobs",
-        "code": "jobs",
         "icon": "pi-list",
         "list": [
           {
@@ -169,7 +166,6 @@
       {
         "id": 8,
         "title": "Inventory",
-        "code": "inventory",
         "icon": "pi-warehouse",
         "list": [
           {

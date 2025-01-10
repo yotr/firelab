@@ -178,7 +178,7 @@ export class AddTeamComponent implements OnInit, AfterViewInit {
     if (this.addForm.valid) {
       let data = {
         ...this.addForm.value,
-        // Username: this.addForm.get('userName')?.value,
+        CompanyId: this.currentUser?.companyId,
       };
       console.log(data);
       this.uploading = true;

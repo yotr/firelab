@@ -108,7 +108,7 @@ export class CustomerInfoComponent implements OnInit, AfterViewInit {
 
   //handle display submenu from list menu array by know which item active
   setActiveMenu() {
-    this.sidebarService.activateDropdown('customers');
+    this.sidebarService.activateDropdown('1');
   }
 
   getCurrentCustomerId() {

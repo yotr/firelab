@@ -57,6 +57,10 @@ import { PermissionsModuleTableComponent } from './permissions/components/permis
 import { ModuleSectionComponent } from './permissions/components/module-section/module-section.component';
 import { EditModuleSectionComponent } from './permissions/components/edit-module-section/edit-module-section.component';
 import { NoRoleComponent } from './no-role/no-role.component';
+import { CompaniesComponent } from './companies/companies.component';
+import { AddCompanyComponent } from './companies/components/add-company/add-company.component';
+import { EditCompanyComponent } from './companies/components/edit-company/edit-company.component';
+import { CompanyModuleTableComponent } from './companies/components/company-module-table/company-module-table.component';
 
 @NgModule({
   declarations: [
@@ -104,6 +108,10 @@ import { NoRoleComponent } from './no-role/no-role.component';
     PermissionsModuleTableComponent,
     ModuleSectionComponent,
     EditModuleSectionComponent,
+    CompaniesComponent,
+    AddCompanyComponent,
+    EditCompanyComponent,
+    CompanyModuleTableComponent,
     NoRoleComponent
   ],
   imports: [

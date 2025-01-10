@@ -14,6 +14,7 @@
   "search": "Search..",
   "unassign": "Unassign",
   "no_role": "No role for you, ask your manager to give you a role.",
+  "companies_page":"Companies",
   "gps": {
     "list": "Team Member list",
     "name": "Member Name",
@@ -870,6 +871,48 @@
     "table": {
       "name": "Name",
       "ar_name": "Arabic Name"
+    }
+  },
+  "companies": {
+    "title": "Companies",
+    "table_title": "Companies Table",
+    "add_btn": "Add Company",
+    "update_title": "Update Companies",
+    "table": {
+      "companyName": "Company Name",
+      "address": "Address",
+      "phone": "Phone Number",
+      "email": "Email Address"
+    },
+    "form": {
+      "add_path": "Add Company",
+      "edit_path": "Edit Company",
+      "companySection": "Company Section",
+      "managerSection": "Manager Section",
+      "companyName": "Company Name",
+      "companyName_required": "Company Name is required",
+      "address": "Address",
+      "phone": "Phone",
+      "fax": "Fax",
+      "country": "Country",
+      "city": "City",
+      "state": "State",
+      "postal": "Postal",
+      "contact": "Contact",
+      "companyEmail": "Company Email",
+      "next": "Next",
+      "firstName": "First Name",
+      "firstName_required": "First Name is required",
+      "lastName": "Last Name",
+      "lastName_required": "Last Name is required",
+      "userName": "User Name",
+      "userName_required": "User Name is required",
+      "managerEmail": "Manager Email",
+      "managerEmail_required": "Manager Email is required",
+      "validEmail": "please enter valid email",
+      "vaildPassword": "Password must be at least 8 characters.",
+      "add_btn": "Add",
+      "save_btn": "Save"
     }
   }
 }

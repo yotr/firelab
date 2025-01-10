@@ -1,35 +1,28 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import {
-  ActivatedRoute,
-  Event,
-  NavigationEnd,
-  Params,
-  Router,
-} from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api/api.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { LanguageService } from 'src/app/services/language/language.service';
-import { SidebarService } from 'src/app/services/sidebar/sidebar.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
 
 @Component({
-  selector: 'app-import-devices',
-  templateUrl: './import-devices.component.html',
-  styleUrls: ['./import-devices.component.css'],
+  selector: 'app-companies',
+  templateUrl: './companies.component.html',
+  styleUrls: ['./companies.component.css'],
 })
-export class ImportDevicesComponent implements OnInit, AfterViewInit {
+export class CompaniesComponent implements OnInit {
   // current language
   currentLanguage: any = localStorage.getItem('lang');
   currentTheme: any;
-  data: any[] = [] as any[];
-  loading: boolean = true;
-  totalItemsCount: number = 0;
   dataKeys: any[] = [];
+  data: any[] = [];
+  getDataError: boolean = false;
+  totalItemsCount: number = 0;
+  loading: boolean = true;
   // current logged in user
   currentUser: any = {} as any;
-  customerId: any = null;
 
   constructor(
     private themeService: ThemeService,
@@ -40,35 +33,32 @@ export class ImportDevicesComponent implements OnInit, AfterViewInit {
     private toastr: ToastrService,
     public apiService: ApiService,
     // private permissionsService: PermissionsService,
-    private auth: AuthService,
-    private sidebarService: SidebarService
+    private auth: AuthService
   ) {
-    //get id
-    this.activatedRoute.queryParamMap.subscribe((paramMap: Params) => {
-      if (paramMap['get']('customerId')) {
-        this.customerId = paramMap['get']('customerId');
-        // activate current customer id so we can get in other pages after refresh
-        this.sidebarService.sendCurrentCustomer(paramMap['get']('customerId'));
-      }
-    });
-
-    //   // turn on current language (trandlate)
+    // turn on current language (trandlate)
     this.translateService.use(this.currentLanguage);
-
     this.dataKeys = [
       {
-        name: 'reportCategory',
-        display: this.translateService.instant(
-          'customers.import_devices.table.reportCategory'
-        ),
+        display: this.translateService.instant('companies.table.companyName'),
+        name: 'companyName',
         type: 'string',
         active: true,
       },
       {
-        name: 'listName',
-        display: this.translateService.instant(
-          'customers.import_devices.table.listName'
-        ),
+        display: this.translateService.instant('companies.table.address'),
+        name: 'address',
+        type: 'string',
+        active: true,
+      },
+      {
+        display: this.translateService.instant('companies.table.phone'),
+        name: 'phone',
+        type: 'string',
+        active: true,
+      },
+      {
+        display: this.translateService.instant('companies.table.email'),
+        name: 'email',
         type: 'string',
         active: true,
       },
@@ -79,7 +69,6 @@ export class ImportDevicesComponent implements OnInit, AfterViewInit {
     this.getLanguage();
     this.getTheme();
     this.getData();
-    this.getCurrentCustomerId();
     //   this.getCurrentUserData();
   }
 
@@ -111,28 +100,6 @@ export class ImportDevicesComponent implements OnInit, AfterViewInit {
     });
   }
 
-  //handle display submenu from list menu array by know which item active
-  setActiveMenu() {
-    this.sidebarService.activateDropdown('1');
-  }
-
-  getCurrentCustomerId() {
-    this.sidebarService.getCurrentCustomerValue().subscribe((value: any) => {
-      if (value) {
-        this.customerId = value;
-      }
-    });
-    if (this.customerId != null) {
-      this.setActiveMenu();
-      // set querys to current page
-      this.router.navigate([], {
-        queryParams: { customerId: this.customerId },
-      });
-    } else {
-      this.router.navigate(['/modules/customers/allCustomers']);
-    }
-  }
-
   //get data
   getData(
     page?: number,
@@ -143,35 +110,35 @@ export class ImportDevicesComponent implements OnInit, AfterViewInit {
     value1?: any,
     value2?: any
   ) {
-    this.loading = false;
-    this.totalItemsCount = this.data.length;
-
     // api
-    // this.apiService
-    //   ?.filterData(
-    //     'devices/getFilteredDevices',
-    //     page ? page : 1,
-    //     pageSize ? pageSize : 10
-    //   )
-    //   .subscribe({
-    //     next: (data:any) => {
-    //       console.log(data);
-    //       if (data?.isSuccess) {
-    //         this.data = data?.value;
-    //         this.totalItemsCount = data?.totalCount;
-    //         this.loading = false;
-    //       }
-    //     },
-    //     error: (err: any) => {
-    //       this.loading = false;
-    //       if (this.currentLanguage == 'ar') {
-    //         this.toastr.error('هناك شيء خاطئ', 'خطأ');
-    //       } else {
-    //         this.toastr.error('There Is Somthing Wrong', 'Error');
-    //       }
-    //     },
-    //     complete: () => {},
-    //   });
+    this.loading = true;
+    this.apiService
+      ?.filterData(
+        'Companies/getFilteredCompanies',
+        page ? page : 1,
+        pageSize ? pageSize : 20
+      )
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.data = data?.value?.companies;
+            this.totalItemsCount = data?.value?.totalCount;
+            this.getDataError = false;
+          }
+          this.loading = false;
+        },
+        error: (err: any) => {
+          this.loading = false;
+          this.getDataError = true;
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {},
+      });
   }
 
   onPaginate(event: any) {
@@ -181,12 +148,24 @@ export class ImportDevicesComponent implements OnInit, AfterViewInit {
   search(event: any) {
     if (event?.value != null && event.value?.trim() != '') {
       this.apiService
-        .globalSearch('devices/globalsearch', event?.value, event?.column)
-        .subscribe((data: any) => {
-          console.log(data);
-          this.data = data?.value;
-          this.totalItemsCount = data?.value?.length;
-          this.loading = false;
+        .globalSearch('Companies/globalsearch', event?.value, event?.column)
+        .subscribe({
+          next: (data: any) => {
+            if (data?.isSuccess) {
+              console.log(data);
+              this.data = data?.value;
+              this.totalItemsCount = data?.value?.length;
+            }
+            this.loading = false;
+          },
+          error: (err: any) => {
+            this.loading = false;
+            if (this.currentLanguage == 'ar') {
+              this.toastr.error('هناك شيء خاطئ', 'خطأ');
+            } else {
+              this.toastr.error('There Is Somthing Wrong', 'Error');
+            }
+          },
         });
     } else {
       this.getData();
@@ -195,11 +174,10 @@ export class ImportDevicesComponent implements OnInit, AfterViewInit {
 
   delete(deleteId: any) {
     console.log(deleteId);
-    this.apiService.delete('devices', deleteId).subscribe({
+    this.apiService.delete('Companies', deleteId).subscribe({
       next: (data) => {
-        this.data = this.data.filter((item: any) => item?.id !== deleteId);
-
         if (data?.isSuccess) {
+          this.data = this.data.filter((item: any) => item?.id !== deleteId);
           if (this.currentLanguage == 'ar') {
             this.toastr.success('تم حذف العنصر بنجاح...');
           } else {
@@ -224,9 +202,9 @@ export class ImportDevicesComponent implements OnInit, AfterViewInit {
     // check if filters operator  contains selected
     this.apiService
       .filterData(
-        'devices/getFilteredDevices',
+        'Companies/getFilteredCompanies',
         1,
-        10,
+        20,
         event?.column,
         event?.filters?.operator1,
         event?.filters?.operator2,
@@ -237,8 +215,8 @@ export class ImportDevicesComponent implements OnInit, AfterViewInit {
         next: (data) => {
           console.log(data);
           if (data?.isSuccess) {
-            this.data = data?.value;
-            this.totalItemsCount = data?.totalCount;
+            this.data = data?.value?.companies;
+            this.totalItemsCount = data?.value?.totalCount;
             this.loading = false;
           }
         },
@@ -256,10 +234,5 @@ export class ImportDevicesComponent implements OnInit, AfterViewInit {
 
   resetData() {
     this.getData();
-  }
-  navigate(path: any) {
-    this.router.navigate([path], {
-      queryParams: { customerId: this.customerId },
-    });
   }
 }

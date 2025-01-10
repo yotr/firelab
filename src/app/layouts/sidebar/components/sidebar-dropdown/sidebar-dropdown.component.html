@@ -3,7 +3,7 @@
   <a
     class="dropdown-header"
     role="button"
-    (click)="list?.code == 'customers' ? null : handleActiveMenu(list?.code)"
+    (click)="list?.id == '1' ? null : handleActiveMenu(list?.id)"
     [ngClass]="{ 'dropdown-active': activeMenu.value == list?.title }"
     [routerLink]="list?.link"
     routerLinkActive="active-title"
@@ -30,9 +30,9 @@
   <div
     class="dropdown-submenu"
     [ngStyle]="{
-      maxHeight: activeMenu.value == list?.code ? '1000px' : 0,
+      maxHeight: activeMenu.value == list?.id ? '1000px' : 0,
     }"
-    [@toggle-animation]="activeMenu.value == list?.code ? 'opened' : 'closed'"
+    [@toggle-animation]="activeMenu.value == list?.id ? 'opened' : 'closed'"
   >
     <ng-container *ngFor="let link of list?.list">
       <li

@@ -37,6 +37,17 @@
               ></app-sidebar-link>
             </ng-container>
           </ng-container>
+          <!-- companies page -->
+          <ng-container
+            *ngIf="currentUser?.isManager && currentUser?.company?.isSystem"
+          >
+            <app-sidebar-link
+              [page]="'companies_page' | translate"
+              path="/modules/companies"
+              icon="pi-compass"
+            ></app-sidebar-link>
+          </ng-container>
+          <!-- /companies page -->
         </ng-container>
       </ng-container>
     </div>

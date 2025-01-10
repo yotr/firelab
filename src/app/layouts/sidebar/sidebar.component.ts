@@ -175,9 +175,9 @@ export class SidebarComponent implements OnInit, AfterViewInit {
     } else {
       // get sidebar links list from services
       this.sidebarService.getSidebarMenuEnglish().subscribe((sidebar) => {
-        let code = this.searchByPath(sidebar[0]?.menu, currentPath);
-        if (code) {
-          this.sidebarService.activateDropdown(code);
+        let id = this.searchByPath(sidebar[0]?.menu, currentPath);
+        if (id) {
+          this.sidebarService.activateDropdown(id);
         }
       });
     }
@@ -190,7 +190,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
       if (item?.list) {
         for (let subItem of item.list) {
           if (subItem.path && subItem.path === searchPath) {
-            return item?.code;
+            return item?.id;
           }
         }
       }
@@ -235,6 +235,14 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   // to enhance performance of loop when u remove or update item not render all items when changes happen
   trackFun(index: number, item: any): number {
     return item.id;
+  }
+  // check permissions of user to access page in submodule of sidebar menu
+  checkCompaniesAccess(): boolean {
+    if (this.currentUser?.isManager && this.currentUser?.company?.isSystem) {
+      return true;
+    } else {
+      return false;
+    }
   }
   // check permissions of user to access page in submodule of sidebar menu
   checkPagePermission(code: string): boolean {

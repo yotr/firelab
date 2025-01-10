@@ -14,6 +14,7 @@
   "search": "بحث...",
   "unassign": "إلغاء التعيين",
   "no_role": "ليس هناك دور لك، اطلب من مديرك أن يعطيك دورا.",
+  "companies_page":"الشركات",
   "gps": {
     "list": "قائمة أعضاء الفريق",
     "name": "اسم العضو",
@@ -867,6 +868,48 @@
     "table": {
       "name": "الاسم",
       "ar_name": "الاسم العربي"
+    }
+  },
+  "companies": {
+    "title": "شركات",
+    "table_title": "جدول الشركات",
+    "add_btn": "إضفة شركة",
+    "update_title": "تحديث شركة",
+    "table": {
+      "companyName": "اسم الشركة",
+      "address": "عنوان",
+      "phone": "رقم التليفون",
+      "email": "عنوان البريد الإلكتروني"
+    },
+    "form": {
+      "add_path": "إضافة فرع",
+      "edit_path": "تعديل الشركة",
+      "companySection": "قسم الشركة",
+      "managerSection": "قسم المدير",
+      "companyName": "اسم الشركة",
+      "companyName_required": "اسم الشركة مطلوب",
+      "address": "العنوان",
+      "phone": "الهاتف",
+      "fax": "فاكس",
+      "country": "دولة",
+      "city": "مدينة",
+      "state": "ولاية",
+      "postal": "البريد",
+      "contact": "رقم الهاتف",
+      "companyEmail": "البريد الإلكتروني للشركة",
+      "next": "التالي",
+      "firstName": "الاسم الأول",
+      "firstName_required": "الاسم الأول مطلوب",
+      "lastName": "اسم العائلة",
+      "lastName_required": "الاسم الأخير مطلوب",
+      "userName": "اسم المستخدم",
+      "userName_required": "اسم المستخدم مطلوب",
+      "managerEmail": "البريد الإلكتروني للمدير",
+      "managerEmail_required": "مطلوب البريد الإلكتروني للمدير",
+      "validEmail": "الرجاء إدخال بريد إلكتروني صالح",
+      "vaildPassword": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل.",
+      "add_btn": "اضافة",
+      "save_btn": "حفظ"
     }
   }
 }
