@@ -14,6 +14,7 @@ export class GpsComponent implements OnInit, AfterViewInit {
   isDropdownActive = false;
   private map: any;
   private centroid: L.LatLngExpression = [42.3601, -71.0589]; //
+  markers: L.Marker[] = []; // Array to store markers
   teamMembers: any[] = [];
   searchText: string = '';
 
@@ -34,19 +35,25 @@ export class GpsComponent implements OnInit, AfterViewInit {
     );
 
     for (var i = 0; i < teamMembers?.length; i++) {
-      var marker = L.marker(
-        [teamMembers[i]['latitude'], teamMembers[i]['longitude']],
-        {
-          opacity: 0.01,
-        }
-      )
-        .bindTooltip(teamMembers[i]['userName'], {
-          permanent: true,
-          className: 'my-label',
-          offset: [0, 0],
-        })
-        .bindPopup(teamMembers[i]['userName'])
-        .addTo(this.map);
+      if (
+        teamMembers[i]['latitude'] != null ||
+        teamMembers[i]['longitude'] != null
+      ) {
+        var marker = L.marker(
+          [teamMembers[i]['latitude'], teamMembers[i]['longitude']],
+          {
+            opacity: 0.01,
+          }
+        )
+          .bindTooltip(teamMembers[i]['userName'], {
+            permanent: true,
+            className: 'my-label',
+            offset: [0, 0],
+          })
+          .bindPopup(teamMembers[i]['userName'])
+          .addTo(this.map);
+        this.markers.push(marker); // Store the marker in the array
+      }
     }
 
     tiles.addTo(this.map);
@@ -85,22 +92,39 @@ export class GpsComponent implements OnInit, AfterViewInit {
     this.isDropdownActive = false;
   }
 
-  showOnMap(teamMembers: any): void {
+  showOnMap(teamMembers: any[]): void {
+    const tiles = L.tileLayer(
+      'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+      {
+        maxZoom: 18,
+        minZoom: 3,
+        attribution:
+          '&copy; <a href="https://www.aktitec.com/">Aktitec Open Street Map</a>',
+      }
+    );
+
     for (var i = 0; i < teamMembers?.length; i++) {
-      var marker = L.marker(
-        [teamMembers[i]['latitude'], teamMembers[i]['longitude']],
-        {
-          opacity: 0.01,
-        }
-      )
-        .bindTooltip(teamMembers[i]['userName'], {
-          permanent: true,
-          className: 'my-label',
-          offset: [0, 0],
-        })
-        .bindPopup(teamMembers[i]['userName'])
-        .addTo(this.map);
+      if (
+        teamMembers[i]['latitude'] != null ||
+        teamMembers[i]['longitude'] != null
+      ) {
+        var marker = L.marker(
+          [teamMembers[i]['latitude'], teamMembers[i]['longitude']],
+          {
+            opacity: 0.01,
+          }
+        )
+          .bindTooltip(teamMembers[i]['userName'], {
+            permanent: true,
+            className: 'my-label',
+            offset: [0, 0],
+          })
+          .bindPopup(teamMembers[i]['userName'])
+          .addTo(this.map);
+        this.markers.push(marker); // Store the marker in the array
+      }
     }
+    tiles.addTo(this.map);
   }
 
   // get locations
@@ -110,7 +134,6 @@ export class GpsComponent implements OnInit, AfterViewInit {
         console.log(data);
         if (data?.isSuccess) {
           this.teamMembers = data?.value;
-          this.initMap(data?.value);
         } else {
           this.toastr.warning('Failed to get locations', 'Warning');
         }
@@ -123,10 +146,14 @@ export class GpsComponent implements OnInit, AfterViewInit {
           this.toastr.error('There Is Somthing Wrong', 'Error');
         }
       },
+      complete: () => {
+        this.initMap(this.teamMembers);
+      },
     });
   }
   // get locations
-  refresh() {
+  async refresh() {
+    await this.removeMarkers();
     this.locationService.getLocations('teamMembers/locations').subscribe({
       next: (data: any) => {
         console.log(data);
@@ -148,5 +175,15 @@ export class GpsComponent implements OnInit, AfterViewInit {
         this.showOnMap(this.teamMembers);
       },
     });
+  }
+
+  removeMarkers(): void {
+    // Loop through the markers array and remove each marker
+    this.markers.forEach((marker) => {
+      this.map.removeLayer(marker); // Removes the marker from the map
+    });
+
+    // Optionally clear the markers array to free up memory
+    this.markers = [];
   }
 }
