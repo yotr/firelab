@@ -29,6 +29,7 @@ export class AddPartsComponent implements OnInit, AfterViewInit {
   // defaultPermissions: Permission[];
   uploading: boolean = false;
   file: any = null;
+  defaultImgUrl: any = 'assets/img/camera.png';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -85,16 +86,17 @@ export class AddPartsComponent implements OnInit, AfterViewInit {
       this.file = event?.target?.files[0];
       // this.onSelectFiles.emit(event?.target?.files);
       // get files as url
-      // var reader = new FileReader();
-      // reader.readAsDataURL(event.target.files[0]);
-      // reader.onload = () => {
-      //   this.fileURL = reader.result;
-      //   this.uploadLoading = false;
-      // };
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = () => {
+        this.defaultImgUrl = reader.result;
+        // this.uploadLoading = false;
+      };
     }
   }
   clearImage() {
     this.file = null;
+    this.defaultImgUrl = 'assets/img/camera.png';
   }
 
   truncateString(str: any, length: any, ending = '...') {

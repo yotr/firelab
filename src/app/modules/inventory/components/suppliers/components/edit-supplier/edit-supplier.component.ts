@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api/api.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-edit-supplier',
@@ -21,6 +22,7 @@ export class EditSupplierComponent implements OnInit, AfterViewInit {
   file: any = null;
   currentFile: string = 'Add Image';
   updateId: any = null;
+  defaultImgUrl: any = 'assets/img/camera.png';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -81,12 +83,12 @@ export class EditSupplierComponent implements OnInit, AfterViewInit {
       this.file = event?.target?.files[0];
       // this.onSelectFiles.emit(event?.target?.files);
       // get files as url
-      // var reader = new FileReader();
-      // reader.readAsDataURL(event.target.files[0]);
-      // reader.onload = () => {
-      //   this.fileURL = reader.result;
-      //   this.uploadLoading = false;
-      // };
+      var reader = new FileReader();
+      reader.readAsDataURL(event.target.files[0]);
+      reader.onload = () => {
+        this.defaultImgUrl = reader.result;
+        // this.uploadLoading = false;
+      };
     }
   }
   clearImage() {
@@ -108,6 +110,8 @@ export class EditSupplierComponent implements OnInit, AfterViewInit {
         console.log(data);
         if (data?.isSuccess) {
           this.currentFile = data?.value?.logo;
+          this.defaultImgUrl =
+            environment.API + '/images/' + data?.value?.logo;
           this.addForm.patchValue({
             supplierName: data?.value?.supplierName,
             website: data?.value?.website,
