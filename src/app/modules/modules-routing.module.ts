@@ -28,6 +28,7 @@ import { CompaniesComponent } from './companies/companies.component';
 import { AddCompanyComponent } from './companies/components/add-company/add-company.component';
 import { EditCompanyComponent } from './companies/components/edit-company/edit-company.component';
 import { companyGuard } from '../guards/company.guard';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const routes: Routes = [
   {
@@ -175,6 +176,10 @@ const routes: Routes = [
         path: 'companies/edit/:id',
         component: EditCompanyComponent,
         canActivate: [companyGuard],
+      },
+      {
+        path: 'change-password',
+        component: ChangePasswordComponent,
       },
     ],
   },

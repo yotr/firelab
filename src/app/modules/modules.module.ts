@@ -61,6 +61,7 @@ import { CompaniesComponent } from './companies/companies.component';
 import { AddCompanyComponent } from './companies/components/add-company/add-company.component';
 import { EditCompanyComponent } from './companies/components/edit-company/edit-company.component';
 import { CompanyModuleTableComponent } from './companies/components/company-module-table/company-module-table.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -112,7 +113,8 @@ import { CompanyModuleTableComponent } from './companies/components/company-modu
     AddCompanyComponent,
     EditCompanyComponent,
     CompanyModuleTableComponent,
-    NoRoleComponent
+    NoRoleComponent,
+    ChangePasswordComponent,
   ],
   imports: [
     CommonModule,

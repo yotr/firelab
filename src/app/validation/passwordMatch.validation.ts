@@ -4,7 +4,7 @@ import { AbstractControl, ValidatorFn } from '@angular/forms';
 export const passwordMatch: ValidatorFn = (
   control: AbstractControl<any, any>
 ): { [key: string]: any } | null => {
-  let passControl = control.get('password');
+  let passControl = control.get('newPassword');
   let confirmPassControl = control.get('confirmPassword');
   return passControl?.value == confirmPassControl?.value
     ? null

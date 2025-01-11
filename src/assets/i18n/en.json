@@ -14,7 +14,7 @@
   "search": "Search..",
   "unassign": "Unassign",
   "no_role": "No role for you, ask your manager to give you a role.",
-  "companies_page":"Companies",
+  "companies_page": "Companies",
   "gps": {
     "list": "Team Member list",
     "name": "Member Name",
@@ -913,6 +913,17 @@
       "vaildPassword": "Password must be at least 8 characters.",
       "add_btn": "Add",
       "save_btn": "Save"
+    }
+  },
+  "changePassword": {
+    "title": "change Password",
+    "form": {
+      "old_password": "Old Password",
+      "old_password_required": "Old Password is required",
+      "new_password": "New Password",
+      "new_password_required": "New Password is required",
+      "confirm_password": "Confirm Password",
+      "confirm_password_required": "Password doesn't match"
     }
   }
 }

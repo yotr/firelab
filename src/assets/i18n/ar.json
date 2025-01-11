@@ -14,7 +14,7 @@
   "search": "بحث...",
   "unassign": "إلغاء التعيين",
   "no_role": "ليس هناك دور لك، اطلب من مديرك أن يعطيك دورا.",
-  "companies_page":"الشركات",
+  "companies_page": "الشركات",
   "gps": {
     "list": "قائمة أعضاء الفريق",
     "name": "اسم العضو",
@@ -910,6 +910,17 @@
       "vaildPassword": "يجب أن تتكون كلمة المرور من 8 أحرف على الأقل.",
       "add_btn": "اضافة",
       "save_btn": "حفظ"
+    }
+  },
+  "changePassword": {
+    "title": "تغيير كلمة المرور",
+    "form": {
+      "old_password": "كلمة المرور القديمة",
+      "old_password_required": "مطلوب كلمة المرور القديمة",
+      "new_password": "كلمة المرور الجديدة",
+      "new_password_required": "مطلوب كلمة مرور جديدة",
+      "confirm_password": "تأكيد كلمة المرور",
+      "confirm_password_required": "كلمة المرور لا تتطابق"
     }
   }
 }
