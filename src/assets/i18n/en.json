@@ -916,7 +916,7 @@
     }
   },
   "changePassword": {
-    "title": "change Password",
+    "title": "Change Password",
     "form": {
       "old_password": "Old Password",
       "old_password_required": "Old Password is required",
