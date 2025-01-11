@@ -116,7 +116,10 @@ export class AssignToolsModalComponent implements OnInit {
   //add a new
   submit() {
     if (this.addForm.valid) {
-      if (this.selectedTool?.quantity >= this.addForm.get('quantity')?.value) {
+      if (
+        this.selectedTool?.quantity - this.selectedTool?.vehicleQty >=
+        this.addForm.get('quantity')?.value
+      ) {
         let addData = {
           ...this.selectedTool,
           ...this.addForm.value,

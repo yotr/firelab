@@ -35,7 +35,7 @@ export class AddToolsComponent implements OnInit {
       toolName: ['', [Validators.required]],
       quantity: ['', [Validators.required]],
       description: [''],
-      status: [''],
+      status: ['InStock'],
     });
   }
   ngAfterViewInit(): void {}

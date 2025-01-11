@@ -13,11 +13,11 @@
     <i [hidden]="!isActive" class="pi pi-angle-up text-secondary"></i>
     <i [hidden]="isActive" class="pi pi-angle-down text-secondary"></i>
   </div>
-  <div [hidden]="!isActive" id="myDropdown" class="dropdown-content">
+  <div [hidden]="!isActive" class="dropdown-content">
     <input
       type="text"
       [placeholder]="'search' | translate"
-      id="myInput"
+      class="myInput"
       (keydown)="filterFunction($event)"
     />
     <div class="list">

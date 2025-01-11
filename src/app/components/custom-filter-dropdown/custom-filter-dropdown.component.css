@@ -42,7 +42,7 @@
   background-color: #3e8e41;
 }
 
-#myInput {
+.myInput {
   box-sizing: border-box;
   /* background-image: url('searchicon.png'); */
   background-position: 14px 12px;
@@ -54,7 +54,7 @@
   width: 100%;
 }
 
-#myInput:focus {
+.myInput:focus {
   outline: 3px solid #ddd;
 }
 

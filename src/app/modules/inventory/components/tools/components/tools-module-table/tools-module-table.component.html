@@ -207,9 +207,17 @@
               <ng-container *ngFor="let key of dataKeys">
                 <td *ngIf="key.active && key?.name != 'id'">
                   <!-- name -->
-                  <ng-container *ngIf="key?.name != 'status'">
+                  <ng-container
+                    *ngIf="key?.name != 'status' && key?.name != 'quantity'"
+                  >
                     <div role="button">
-                      {{ value[key?.name] ? value[key?.name] : '-' }}
+                      {{ value[key?.name] ? value[key?.name] : "-" }}
+                    </div>
+                  </ng-container>
+                  <!-- quantity -->
+                  <ng-container *ngIf="key?.name == 'quantity'">
+                    <div role="button">
+                      {{ value["quantity"] ? value["quantity"] - value["vehicleQty"] : "-" }}
                     </div>
                   </ng-container>
                   <!-- status -->
@@ -260,10 +268,17 @@
       </table>
       <!-- no data -->
       <h1
-        *ngIf="totalItems == 0 && loading == false"
+        *ngIf="totalItems == 0 && loading == false && getDataError == false"
         class="fs-3 my-4 text-center"
       >
         {{ "module_table.table_empty_text" | translate }}
+      </h1>
+      <!-- error -->
+      <h1
+        *ngIf="totalItems == 0 && loading == false && getDataError"
+        class="fs-3 my-4 text-center"
+      >
+        {{ "module_table.table_error_text" | translate }}
       </h1>
       <!-- load skeleton if there is no data -->
       <app-skeleton

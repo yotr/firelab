@@ -43,7 +43,7 @@ export class EditToolsComponent implements OnInit, AfterViewInit {
       toolName: ['', [Validators.required]],
       quantity: ['', [Validators.required]],
       description: [''],
-      status: [''],
+      status: ['InStock'],
     });
   }
   ngAfterViewInit(): void {
