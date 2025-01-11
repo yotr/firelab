@@ -209,10 +209,8 @@
                   <!-- name -->
                   <ng-container *ngIf="key?.name != 'status'">
                     <div
-                      routerLink="/modules/customers/home"
-                      [queryParams]="{ customerId: value['id'] }"
                       role="button"
-                      (click)="sendActiveCustomer(value['id'])"
+                      (click)="navigateToCustomer(value['id'])"
                     >
                       {{ value[key?.name] }}
                     </div>
@@ -251,6 +249,7 @@
                     class="dropdown-menu dropdown-menu-right"
                   >
                     <a
+                      *ngIf="checkPageActions('update')"
                       class="dropdown-item"
                       role="button"
                       [routerLink]="[editPagePath + '/' + value?.id]"
@@ -258,6 +257,7 @@
                       {{ "module_table.edit_action_text" | translate }}</a
                     >
                     <a
+                      *ngIf="checkPageActions('delete')"
                       class="dropdown-item"
                       data-bs-toggle="modal"
                       data-bs-target="#delete"

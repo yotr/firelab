@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api/api.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { LanguageService } from 'src/app/services/language/language.service';
+import { PermissionsService } from 'src/app/services/permissions/permissions.service';
 import { SidebarService } from 'src/app/services/sidebar/sidebar.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
 
@@ -33,7 +34,7 @@ export class AllCustomersComponent implements OnInit, AfterViewInit {
     private activatedRoute: ActivatedRoute,
     private toastr: ToastrService,
     public apiService: ApiService,
-    // private permissionsService: PermissionsService,
+    private permissionsService: PermissionsService,
     private auth: AuthService,
     private sidebarService: SidebarService
   ) {
@@ -93,7 +94,9 @@ export class AllCustomersComponent implements OnInit, AfterViewInit {
     //   this.getCurrentUserData();
   }
 
-  ngAfterViewInit(): void {}
+  ngAfterViewInit(): void {
+
+  }
   // get user
   isLoggedIn(): boolean {
     return this.auth.currentUserSignal() == undefined ? false : true;
@@ -299,5 +302,14 @@ export class AllCustomersComponent implements OnInit, AfterViewInit {
         },
         complete: () => {},
       });
+  }
+
+  // check page || components permissions
+  checkPageActions(action: string): boolean {
+    return this.permissionsService.checkPageActions(
+      this.auth.currentUserSignal()?.userData,
+      'CRMM2P1',
+      action
+    );
   }
 }

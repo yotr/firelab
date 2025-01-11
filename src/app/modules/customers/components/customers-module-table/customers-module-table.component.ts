@@ -1,8 +1,10 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NgxPrintService, PrintOptions } from 'ngx-print';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { LanguageService } from 'src/app/services/language/language.service';
+import { PermissionsService } from 'src/app/services/permissions/permissions.service';
 import { SidebarService } from 'src/app/services/sidebar/sidebar.service';
 import { environment } from 'src/environments/environment';
 
@@ -64,6 +66,8 @@ export class CustomersModuleTableComponent implements OnInit {
   constructor(
     private printService: NgxPrintService,
     private sidebarService: SidebarService,
+    private permissionsService: PermissionsService,
+    private router: Router,
     private languageService: LanguageService,
     private auth: AuthService,
     public translateService: TranslateService
@@ -222,5 +226,25 @@ export class CustomersModuleTableComponent implements OnInit {
   //handle display submenu from list menu array by know which item active
   sendActiveCustomer(id: any) {
     this.sidebarService.sendCurrentCustomer(id);
+  }
+
+  navigateToCustomer(customerId: any) {
+    var isAllowed = this.checkPageActions('update');
+    if (isAllowed) {
+
+      this.router.navigate(['/modules/customers/home'], {
+        queryParams: { customerId: customerId },
+      });
+      this.sendActiveCustomer(customerId);
+
+    }
+  }
+  // check page || components permissions
+  checkPageActions(action: string): boolean {
+    return this.permissionsService.checkPageActions(
+      this.auth.currentUserSignal()?.userData,
+      'CRMM2P1',
+      action
+    );
   }
 }

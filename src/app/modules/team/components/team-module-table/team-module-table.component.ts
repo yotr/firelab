@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { NgxPrintService, PrintOptions } from 'ngx-print';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { PermissionsService } from 'src/app/services/permissions/permissions.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -62,7 +63,7 @@ export class TeamModuleTableComponent implements OnInit {
 
   constructor(
     private printService: NgxPrintService,
-    // private permissionsService: PermissionsService,
+    private permissionsService: PermissionsService,
     private auth: AuthService,
     public translateService: TranslateService
   ) {
@@ -227,11 +228,11 @@ export class TeamModuleTableComponent implements OnInit {
     }, 1000);
   }
   // check page || components permissions
-  checkPageActions(action: string): any {
-    // return this.permissionsService.checkPageActions(
-    //   this.auth.currentUserSignal()?.userData,
-    //   'data',
-    //   action
-    // );
+  checkPageActions(action: string): boolean {
+    return this.permissionsService.checkPageActions(
+      this.auth.currentUserSignal()?.userData,
+      'CRMM2P1',
+      action
+    );
   }
 }

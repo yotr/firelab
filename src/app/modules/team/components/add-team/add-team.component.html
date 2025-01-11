@@ -253,6 +253,9 @@
             id="division"
             formControlName="division"
           >
+            <option selected>
+              {{ "select" | translate }}
+            </option>
             <ng-container *ngFor="let category of categories">
               <option [value]="category?.id">{{ category?.name }}</option>
             </ng-container>

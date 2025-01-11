@@ -64,7 +64,7 @@ export class AddTeamComponent implements OnInit, AfterViewInit {
     return this.addForm.controls;
   }
   ngAfterViewInit(): void {
-    // this.getCategories();
+    this.getCategories();
     this.getRoles();
   }
 

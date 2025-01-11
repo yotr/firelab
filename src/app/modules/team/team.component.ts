@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api/api.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { LanguageService } from 'src/app/services/language/language.service';
+import { PermissionsService } from 'src/app/services/permissions/permissions.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
 
 @Component({
@@ -32,7 +33,7 @@ export class TeamComponent implements OnInit, AfterViewInit {
     private activatedRoute: ActivatedRoute,
     private toastr: ToastrService,
     public apiService: ApiService,
-    // private permissionsService: PermissionsService,
+    private permissionsService: PermissionsService,
     private auth: AuthService
   ) {
     //   // turn on current language (trandlate)
@@ -264,4 +265,5 @@ export class TeamComponent implements OnInit, AfterViewInit {
         complete: () => {},
       });
   }
+
 }

@@ -80,7 +80,7 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
     this.getCurrentLanguage();
     this.getCurrentActiveUser();
     this.getRoles();
-    // this.getCategories();
+    this.getCategories();
   }
   // get theme from localStorage
   getTheme() {
