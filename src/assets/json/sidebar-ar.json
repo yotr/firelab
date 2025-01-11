@@ -13,6 +13,7 @@
       {
         "id": 1,
         "title": "العملاء",
+        "code": "CRMM2P1",
         "icon": "pi-address-book",
         "link": "/modules/customers/allCustomers",
         "list": [
