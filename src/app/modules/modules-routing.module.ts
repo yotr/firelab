@@ -29,6 +29,7 @@ import { AddCompanyComponent } from './companies/components/add-company/add-comp
 import { EditCompanyComponent } from './companies/components/edit-company/edit-company.component';
 import { companyGuard } from '../guards/company.guard';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { customersGuard } from '../guards/customers.page.guard';
 
 const routes: Routes = [
   {
@@ -50,6 +51,7 @@ const routes: Routes = [
         path: 'customers',
         loadChildren: () =>
           import('./customers/customers.module').then((m) => m.CustomersModule),
+        canActivate: [customersGuard],
       },
       // contract
       {

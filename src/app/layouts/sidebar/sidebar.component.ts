@@ -212,12 +212,17 @@ export class SidebarComponent implements OnInit, AfterViewInit {
             if (data.isSuccess) {
               this.sidebarService.sendRoles(data?.value?.role);
               this.role = data?.value?.role;
+              // store the token
+              localStorage.setItem(
+                'firelab-roles',
+                JSON.stringify(data?.value?.role)
+              );
             } else {
               this.router.navigate(['/modules/no-role']);
             }
           },
           error: (error) => {
-            console.log("Roles Error",error);
+            console.log('Roles Error', error);
             this.router.navigate(['/modules/no-role']);
             if (this.currentLanguage == 'ar') {
               this.toastr.error('هناك شيء خاطئ', 'خطأ');

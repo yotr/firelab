@@ -34,4 +34,22 @@ export class PermissionsService {
       }
     }
   }
+
+  checkPage(currentUser: any, code: string): boolean {
+    if (currentUser?.isManager) {
+      return true;
+    } else {
+      let roles: any = localStorage.getItem('firelab-roles');
+      let permissions: any[] = JSON.parse(roles)?.permissions;
+      // check action if true
+      let isAllowed = permissions?.find(
+        (p: any) => p?.page?.code === code && p['read'] === true
+      );
+      if (isAllowed) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
 }
