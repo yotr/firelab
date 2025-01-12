@@ -174,7 +174,16 @@
     "lte": "أقل من ويساوي",
     "lt": "اقل من"
   },
-  "dashboard": {},
+  "dashboard": {
+    "dashboard": "لوحة القيادة",
+    "income_chart": "مخطط الدخل",
+    "revenue_of": "إيرادات",
+    "due_jobs": "الوظائف المستحقة هذا الشهر",
+    "select": "الشهر المحدد",
+    "total_job_due_month": "إجمالي الوظائف المستحقة هذا الشهر",
+    "total_project_revenue_month": "الإيرادات المتوقعة لهذا الشهر",
+    "jobs_this_month": "الوظائف المقررة لهذا الشهر"
+  },
   "customers": {
     "all_customers": {
       "title": "عملاء",

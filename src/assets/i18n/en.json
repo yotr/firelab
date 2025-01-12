@@ -175,7 +175,16 @@
     "lte": "is less than and equal",
     "lt": "is less than"
   },
-  "dashboard": {},
+  "dashboard": {
+    "dashboard": "Dashboard",
+    "income_chart": "Income Chart",
+    "revenue_of": "Revenue of",
+    "due_jobs": "Due Jobs thus month",
+    "select": "Selected Month",
+    "total_job_due_month": "Total Jobs Due this month",
+    "total_project_revenue_month": "Projected Revenue for this month",
+    "jobs_this_month": "Jobs Scheduled for this month"
+  },
   "customers": {
     "all_customers": {
       "title": "Customers",

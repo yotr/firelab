@@ -1,16 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+import { ApiService } from 'src/app/services/api/api.service';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, AfterViewInit {
   months: any[] = [];
   years: any[] = [];
   currentMonth: string = '';
 
-  constructor() {
+  // current language
+  currentLanguage: any = localStorage.getItem('lang');
+  totalJobsDueItemsCount: number = 0;
+  thisMonthJobsTotal: number = 0;
+
+  constructor(private toastr: ToastrService, public apiService: ApiService) {
     this.months = [
       'January',
       'February',
@@ -25,6 +32,10 @@ export class DashboardComponent implements OnInit {
       'November',
       'December',
     ];
+  }
+  ngAfterViewInit(): void {
+    this.getDataDueAssignedJobs();
+    this.getThisMonthJobs();
   }
 
   ngOnInit() {
@@ -53,5 +64,53 @@ export class DashboardComponent implements OnInit {
 
     const current = new Date().getMonth(); // getMonth() returns a 0-indexed month
     this.currentMonth = monthNames[current];
+  }
+
+  //get data
+  getDataDueAssignedJobs(page?: number, pageSize?: number) {
+    // api
+    this.apiService
+      .filterData(
+        'assignedJobs/getFilteredDueAssignedJobs',
+        page ? page : 1,
+        pageSize ? pageSize : 1
+      )
+      .subscribe({
+        next: (data: any) => {
+          // console.log(data);
+          if (data?.isSuccess) {
+            this.totalJobsDueItemsCount = data?.value?.totalCount;
+          }
+        },
+        error: (err: any) => {
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {},
+      });
+  }
+
+  getThisMonthJobs() {
+    // api missed
+    this.apiService.get(`jobs/thisMonth`).subscribe({
+      next: (data: any) => {
+        // console.log(data);
+        if (data?.isSuccess) {
+          this.thisMonthJobsTotal = data?.value?.length;
+        }
+      },
+      error: (err: any) => {
+        console.log(err);
+        if (this.currentLanguage == 'ar') {
+          this.toastr.error('هناك شيء خاطئ', 'خطأ');
+        } else {
+          this.toastr.error('There Is Somthing Wrong', 'Error');
+        }
+      },
+      complete: () => {},
+    });
   }
 }

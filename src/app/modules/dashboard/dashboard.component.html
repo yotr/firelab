@@ -1,20 +1,26 @@
 <div class="dashboard">
   <div class="bg"></div>
-  <div class="title fs-2 text-light mb-3">Dashboard</div>
+  <div class="title fs-2 text-light mb-3">
+    {{ "dashboard.dashboard" | translate }}
+  </div>
   <div class="income-chart">
-    <span class="fs-5">Income Chart (2024)</span>
+    <span class="fs-5">{{ "dashboard.income_chart" | translate }} (2025)</span>
     <div class="d-flex justify-content-between align-items-center mt-4">
       <div class="d-flex align-items-center gap-2">
         <div class="box"></div>
-        <p class="m-0 text-muted">2024</p>
+        <p class="m-0 text-muted">2025</p>
       </div>
-      <div>Revenue of 2024: <span class="fw-bold"> $0</span></div>
+      <div>
+        {{ "dashboard.revenue_of" | translate }} 2025:
+        <span class="fw-bold"> $0</span>
+      </div>
     </div>
   </div>
   <div class="filters mt-4">
-    <p class="m-0 text-muted">Due Jobs thus month</p>
+    <p class="m-0 text-muted">{{ "dashboard.due_jobs" | translate }}</p>
     <p class="m-0 text-muted">
-      Selected Month: <span class="fw-bold">{{ currentMonth }}</span>
+      {{ "dashboard.select" | translate }}:
+      <span class="fw-bold">{{ currentMonth }}</span>
     </p>
     <div class="filters-dropdowns">
       <!-- months -->
@@ -37,8 +43,8 @@
   </div>
   <div class="boxs-charts">
     <div class="jobs-due">
-      <h2>0</h2>
-      <span>Total Jobs Due this month</span>
+      <h2>{{ totalJobsDueItemsCount }}</h2>
+      <span>{{ "dashboard.total_job_due_month" | translate }}</span>
     </div>
     <div class="other-jobs">
       <div class="top-charts">
@@ -48,11 +54,11 @@
       <div class="bottom-charts">
         <div class="project-revenue">
           <h2>0</h2>
-          <span>Projected Revenue for this month</span>
+          <span>{{ "dashboard.total_project_revenue_month" | translate }}</span>
         </div>
         <div class="jobs-scheduled">
-          <h2>0</h2>
-          <span>Jobs Scheduled for this month</span>
+          <h2>{{ thisMonthJobsTotal }}</h2>
+          <span>{{ "dashboard.jobs_this_month" | translate }}</span>
         </div>
       </div>
     </div>
