@@ -207,15 +207,21 @@
               <ng-container *ngFor="let key of dataKeys">
                 <td *ngIf="key.active && key?.name != 'id'">
                   <!-- name -->
-                  <ng-container *ngIf="key?.name != 'status' && key?.name != 'quantity'">
+                  <ng-container
+                    *ngIf="key?.name != 'status' && key?.name != 'quantity'"
+                  >
                     <div role="button">
-                      {{ value[key?.name] ? value[key?.name] : '-' }}
+                      {{ value[key?.name] ? value[key?.name] : "-" }}
                     </div>
                   </ng-container>
                   <!-- quantity -->
                   <ng-container *ngIf="key?.name == 'quantity'">
                     <div role="button">
-                      {{ value["quantity"] ? value["quantity"] - value["vehicleQty"] : "-" }}
+                      {{
+                        value["quantity"]
+                          ? value["quantity"] - value["vehicleQty"]
+                          : "-"
+                      }}
                     </div>
                   </ng-container>
                   <!-- status -->
@@ -248,6 +254,7 @@
                       {{ "module_table.edit_action_text" | translate }}</a
                     >
                     <a
+                      *ngIf="checkPageActions('delete')"
                       class="dropdown-item"
                       data-bs-toggle="modal"
                       data-bs-target="#delete"

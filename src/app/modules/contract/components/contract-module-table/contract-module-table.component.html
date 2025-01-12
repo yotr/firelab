@@ -214,7 +214,11 @@
                   </ng-container>
                   <!-- teamMemberId -->
                   <ng-container *ngIf="key?.name == 'teamMember'">
-                    {{ value[key?.name]?.firstName + ' ' + value[key?.name]?.lastName }}
+                    {{
+                      value[key?.name]?.firstName +
+                        " " +
+                        value[key?.name]?.lastName
+                    }}
                   </ng-container>
                   <!-- status -->
                   <ng-container *ngIf="key?.name == 'status'">
@@ -257,6 +261,7 @@
                       {{ "module_table.edit_action_text" | translate }}</a
                     >
                     <a
+                      *ngIf="checkPageActions('delete')"
                       class="dropdown-item"
                       data-bs-toggle="modal"
                       data-bs-target="#delete"

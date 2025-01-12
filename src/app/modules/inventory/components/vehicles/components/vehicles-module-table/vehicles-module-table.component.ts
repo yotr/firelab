@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgxPrintService, PrintOptions } from 'ngx-print';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { PermissionsService } from 'src/app/services/permissions/permissions.service';
 import { SidebarService } from 'src/app/services/sidebar/sidebar.service';
 import { environment } from 'src/environments/environment';
 
@@ -62,7 +63,7 @@ export class VehiclesModuleTableComponent implements OnInit {
   constructor(
     private printService: NgxPrintService,
     private sidebarService: SidebarService,
-    // private permissionsService: PermissionsService,
+    private permissionsService: PermissionsService,
     private auth: AuthService
   ) {
     this.api = environment.API;
@@ -196,11 +197,11 @@ export class VehiclesModuleTableComponent implements OnInit {
   }
 
   // check page || components permissions
-  checkPageActions(action: string): any {
-    // return this.permissionsService.checkPageActions(
-    //   this.auth.currentUserSignal()?.userData,
-    //   'data',
-    //   action
-    // );
+  checkPageActions(action: string): boolean {
+    return this.permissionsService.checkPageActions(
+      this.auth.currentUserSignal()?.userData,
+      'CRMM9P6',
+      action
+    );
   }
 }

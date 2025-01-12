@@ -1,0 +1,168 @@
+<div class="profile d-flex gap-4 justify-content-between">
+  <div class="profile-image mt-4">
+    <img [src]="userImage" alt="profile" />
+  </div>
+
+  <!-- content -->
+  <div class="content w-100">
+    <!-- header -->
+    <div
+      class="form-header pe-4 ps-4 mt-4 {{
+        currentTheme?.colorSchema?.background
+      }} {{ currentTheme?.colorSchema?.color }}"
+    >
+      <div class="d-flex justify-content-between align-items-center w-100">
+        <h4 class="m-0">
+          {{ "edit_profile" | translate }}
+        </h4>
+      </div>
+    </div>
+    <form (ngSubmit)="submit()" [formGroup]="addForm">
+      <div class="row mt-4 content-form">
+        <div class="col-sm-6">
+          <!-- First Name -->
+          <div class="form-group mt-2">
+            <label
+              >{{ "team.form.first_name" | translate }}
+              <span class="text-danger">*</span></label
+            >
+            <input
+              class="form-control"
+              type="text"
+              formControlName="firstName"
+              readonly
+            />
+            <!-- errors -->
+            <div
+              *ngIf="
+                addForm.get('firstName')?.invalid &&
+                addForm.get('firstName')?.touched
+              "
+            >
+              <small
+                *ngIf="
+                  addForm.get('firstName')?.invalid &&
+                  addForm.get('firstName')?.touched
+                "
+                class="text-danger"
+              >
+                {{ "team.form.first_name_required" | translate }}</small
+              >
+            </div>
+            <!-- errors -->
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <!-- Last Name -->
+          <div class="form-group mt-2">
+            <label
+              >{{ "team.form.last_name" | translate }}
+              <span class="text-danger">*</span></label
+            >
+            <input
+              class="form-control"
+              type="text"
+              formControlName="lastName"
+              readonly
+            />
+            <!-- errors -->
+            <div
+              *ngIf="
+                addForm.get('lastName')?.invalid &&
+                addForm.get('lastName')?.touched
+              "
+            >
+              <small
+                *ngIf="
+                  addForm.get('lastName')?.invalid &&
+                  addForm.get('lastName')?.touched
+                "
+                class="text-danger"
+              >
+                {{ "team.form.last_name_required" | translate }}</small
+              >
+            </div>
+            <!-- errors -->
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <!-- userName -->
+          <div class="form-group mt-2">
+            <label
+              >{{ "team.form.user_name" | translate }}
+              <span class="text-danger">*</span></label
+            >
+            <input
+              class="form-control"
+              type="text"
+              formControlName="userName"
+              readonly
+            />
+            <!-- errors -->
+            <div
+              *ngIf="
+                addForm.get('userName')?.invalid &&
+                addForm.get('userName')?.touched
+              "
+            >
+              <small
+                *ngIf="
+                  addForm.get('userName')?.invalid &&
+                  addForm.get('userName')?.touched
+                "
+                class="text-danger"
+              >
+                {{ "team.form.user_name_required" | translate }}</small
+              >
+            </div>
+            <!-- errors -->
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <!-- Email -->
+          <div class="form-group mt-2">
+            <label
+              >{{ "team.form.email" | translate }}
+              <span class="text-danger">*</span></label
+            >
+            <input
+              class="form-control"
+              type="email"
+              formControlName="email"
+              readonly
+            />
+            <!-- errors -->
+            <div
+              *ngIf="
+                addForm.get('email')?.invalid && addForm.get('email')?.touched
+              "
+            >
+              <small
+                *ngIf="formValues['email'].getError('required')"
+                class="text-danger"
+              >
+                {{ "team.form.email_required" | translate }}</small
+              >
+
+              <small
+                *ngIf="formValues['email'].getError('email')"
+                class="text-danger"
+              >
+                {{ "team.form.email_valid" | translate }}</small
+              >
+            </div>
+            <!-- errors -->
+          </div>
+        </div>
+      </div>
+
+      <!-- submit -->
+    </form>
+  </div>
+</div>
+
+<!-- loading section -->
+<div *ngIf="uploading">
+  <app-loading-section></app-loading-section>
+</div>
+<!-- /loading section -->

@@ -29,7 +29,9 @@ import { AddCompanyComponent } from './companies/components/add-company/add-comp
 import { EditCompanyComponent } from './companies/components/edit-company/edit-company.component';
 import { companyGuard } from '../guards/company.guard';
 import { ChangePasswordComponent } from './change-password/change-password.component';
-import { customersGuard } from '../guards/customers.page.guard';
+import { pageGuard } from '../guards/page.guard';
+import { authGuard } from '../guards/auth.guard';
+import { ProfileComponent } from './profile/profile.component';
 
 const routes: Routes = [
   {
@@ -45,66 +47,91 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM1P1', action: 'read' },
       },
       // customers
       {
         path: 'customers',
         loadChildren: () =>
           import('./customers/customers.module').then((m) => m.CustomersModule),
-        canActivate: [customersGuard],
       },
       // contract
       {
         path: 'contract',
         component: ContractComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM4P1', action: 'read' },
       },
       {
         path: 'contract/add',
         component: AddContractComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM4P1', action: 'create' },
       },
       {
         path: 'contract/edit/:id',
         component: EditContractComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM4P1', action: 'update' },
       },
       // team
       {
         path: 'team/allTeam',
         component: TeamComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM3P1', action: 'read' },
       },
       {
         path: 'team/add',
         component: AddTeamComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM3P1', action: 'create' },
       },
       {
         path: 'team/edit/:id',
         component: EditTeamComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM3P1', action: 'update' },
       },
       // timeCard
       {
         path: 'team/timeCard',
         component: TimeCardComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM3P2', action: 'read' },
       },
       {
         path: 'team/timeCard/:id',
         component: TimeCardDateRangeComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM3P2', action: 'update' },
       },
       // gps
       {
         path: 'team/gps',
         component: GpsComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM3P3', action: 'read' },
       },
       // jobLink
       {
         path: 'jobLink',
         component: JobLinkComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM5P1', action: 'read' },
       },
       {
         path: 'jobLink/assignJob/:id',
         component: AssignJobComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM5P1', action: 'create' },
       },
       {
         path: 'jobLink/edit/:id',
         component: EditAssignedJobComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM5P1', action: 'update' },
       },
       // reports
       {
@@ -116,28 +143,40 @@ const routes: Routes = [
       {
         path: 'task/due',
         component: JobsDueComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM7P1', action: 'read' },
       },
       {
         path: 'task/missed',
         component: JobsMissedComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM7P2', action: 'read' },
       },
       {
         path: 'task/myJobs',
         component: MyJobsComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM7P3', action: 'read' },
       },
       {
         path: 'task/edit/:id',
         component: EditJobComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM7P1', action: 'update' },
       },
       // services requests
       {
         path: 'serviceRequests',
         component: ServiceRequestsComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM8P1', action: 'read' },
       },
       // Deficiencies
       {
         path: 'deficiencies',
         component: DeficienciesComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM10P1', action: 'read' },
       },
       // reports
       {
@@ -149,14 +188,20 @@ const routes: Routes = [
       {
         path: 'permissions',
         component: PermissionsComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM11P1', action: 'read' },
       },
       {
         path: 'permissions/add',
         component: AddPermissionComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM11P1', action: 'create' },
       },
       {
         path: 'permissions/edit/:id',
         component: EditPermissionComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM11P1', action: 'update' },
       },
       // not role permissions
       {
@@ -182,6 +227,11 @@ const routes: Routes = [
       {
         path: 'change-password',
         component: ChangePasswordComponent,
+      },
+      {
+        path: 'profile',
+        component: ProfileComponent,
+        canActivate: [authGuard],
       },
     ],
   },

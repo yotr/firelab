@@ -13,7 +13,7 @@ export const unauthGuard: CanActivateFn = (route, state) => {
   if (!isLoggedIn) {
     return true;
   } else {
-    router.navigate(['/modules/dashboard']);
+    router.navigate(['/modules/profile']);
     return false;
   }
 };

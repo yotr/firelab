@@ -208,7 +208,11 @@
                 <td *ngIf="key.active && key?.name != 'id'">
                   <!-- name -->
                   <ng-container
-                    *ngIf="key?.name != 'parts' && key?.name != 'tools' && key?.name != 'teamMember'"
+                    *ngIf="
+                      key?.name != 'parts' &&
+                      key?.name != 'tools' &&
+                      key?.name != 'teamMember'
+                    "
                   >
                     <div role="button">
                       {{ value[key?.name] ? value[key?.name] : "-" }}
@@ -223,7 +227,9 @@
                     }}
                   </ng-container>
                   <!-- parts -->
-                  <ng-container *ngIf="key?.name == 'parts' && key?.name != 'teamMember'">
+                  <ng-container
+                    *ngIf="key?.name == 'parts' && key?.name != 'teamMember'"
+                  >
                     <div role="button">
                       {{
                         value?.parts?.length == 0 ? "-" : value?.parts?.length
@@ -231,7 +237,9 @@
                     </div>
                   </ng-container>
                   <!-- tools -->
-                  <ng-container *ngIf="key?.name == 'tools' && key?.name != 'teamMember'">
+                  <ng-container
+                    *ngIf="key?.name == 'tools' && key?.name != 'teamMember'"
+                  >
                     <div role="button">
                       {{
                         value?.tools?.length == 0 ? "-" : value?.tools?.length
@@ -262,6 +270,7 @@
                       {{ "module_table.edit_action_text" | translate }}</a
                     >
                     <a
+                      *ngIf="checkPageActions('delete')"
                       class="dropdown-item"
                       data-bs-toggle="modal"
                       data-bs-target="#delete"

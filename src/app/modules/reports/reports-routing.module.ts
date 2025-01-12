@@ -8,31 +8,44 @@ import { ReportClientDetailsComponent } from './components/new-report/components
 import { ReportDetailsComponent } from './components/new-report/components/report-details/report-details.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AddReportDeviceModalComponent } from './components/new-report/components/add-report-device-modal/add-report-device-modal.component';
+import { pageGuard } from 'src/app/guards/page.guard';
 
 const routes: Routes = [
   {
     path: 'newReport',
     component: NewReportComponent,
+    canActivate: [pageGuard],
+    data: { code: 'CRMM6P2', action: 'read' },
   },
   {
     path: 'completedReports',
     component: CompletedReportsComponent,
+    canActivate: [pageGuard],
+    data: { code: 'CRMM6P3', action: 'read' },
   },
   {
     path: 'incompletedReports',
     component: IncompletedReportsComponent,
+    canActivate: [pageGuard],
+    data: { code: 'CRMM6P4', action: 'read' },
   },
   {
     path: 'reportClientDetail',
     component: ReportClientDetailsComponent,
+    canActivate: [pageGuard],
+    data: { code: 'CRMM6P2', action: 'create' },
   },
   {
     path: 'reportDetail/:id',
     component: ReportDetailsComponent,
+    canActivate: [pageGuard],
+    data: { code: 'CRMM6P2', action: 'update' },
   },
   {
     path: 'addReportDevice/:id',
     component: AddReportDeviceModalComponent,
+    canActivate: [pageGuard],
+    data: { code: 'CRMM6P2', action: 'create' },
   },
 ];
 

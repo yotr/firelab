@@ -231,7 +231,7 @@ export class TeamModuleTableComponent implements OnInit {
   checkPageActions(action: string): boolean {
     return this.permissionsService.checkPageActions(
       this.auth.currentUserSignal()?.userData,
-      'CRMM2P1',
+      'CRMM3P1',
       action
     );
   }

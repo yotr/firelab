@@ -13,68 +13,80 @@
       {
         "id": 1,
         "title": "Customers",
-        "code":"CRMM2P1",
+        "code": "CRMM2P1",
         "icon": "pi-address-book",
         "link": "/modules/customers/allCustomers",
         "list": [
           {
             "id": 0,
             "page": "Home",
+            "code": "CRMM2P2",
             "path": "/modules/customers/home"
           },
           {
             "id": 1,
             "page": "Customer Info",
+            "code": "CRMM2P3",
             "path": "/modules/customers/customerInfo"
           },
           {
             "id": 2,
             "page": "Owner/Agent Info",
+            "code": "CRMM2P4",
             "path": "/modules/customers/owner"
           },
           {
             "id": 3,
             "page": "Building Info",
+            "code": "CRMM2P5",
             "path": "/modules/customers/buildingInfo"
           },
           {
             "id": 4,
             "page": "System Info",
+            "code": "CRMM2P6",
             "path": "/modules/customers/systemInfo"
           },
           {
             "id": 5,
             "page": "Images",
+            "code": "CRMM2P7",
             "path": "/modules/customers/images"
           },
           {
             "id": 6,
             "page": "Import Devices",
+            "code": "CRMM2P8",
             "path": "/modules/customers/importDevices"
           },
           {
             "id": 7,
             "page": "Recurring Inspections",
+            "code": "CRMM2P9",
             "path": "/modules/customers/recurringInspections"
           },
           {
             "id": 8,
             "page": "Deficiencies",
+            "code": "CRMM2P10",
             "path": "/modules/customers/customerDeficiencies"
           },
           {
             "id": 9,
             "page": "Customer Portal",
+            "code": "CRMM2P11",
             "path": "/modules/customers/customerPortal"
           },
           {
             "id": 10,
             "page": "Add Job",
+            "code": "CRMM2P12",
             "path": "/modules/customers/addJob"
           },
           {
             "id": 11,
             "page": "Auto Email",
+            "code": "CRMM2P13",
             "path": "/modules/customers/autoEmail"
           }
         ]
@@ -83,17 +95,20 @@
       {
         "id": 2,
         "title": "Team",
+        "code": "CRMM3P1",
         "icon": "pi-users",
         "link": "/modules/team/allTeam",
         "list": [
           {
             "id": 0,
             "page": "TimeCard",
+            "code": "CRMM3P2",
             "path": "/modules/team/timeCard"
           },
           {
             "id": 1,
             "page": "GPS",
+            "code": "CRMM3P3",
             "path": "/modules/team/gps"
           }
         ]
@@ -108,7 +123,7 @@
       {
         "id": 4,
         "title": "JobLink",
-        "code": "jobLink",
+        "code": "CRMM5P1",
         "icon": "pi-paperclip",
         "path": "/modules/jobLink",
         "query": { "view": "Week" }
@@ -121,16 +136,19 @@
           {
             "id": 0,
             "page": "New",
+            "code": "CRMM6P2",
             "path": "/modules/reports/newReport"
           },
           {
             "id": 1,
             "page": "Completed",
+            "code": "CRMM6P3",
             "path": "/modules/reports/completedReports"
           },
           {
             "id": 2,
             "page": "Incompleted",
+            "code": "CRMM6P4",
             "path": "/modules/reports/incompletedReports"
           }
         ]
@@ -142,17 +160,20 @@
         "list": [
           {
             "id": 0,
-            "page": "Job Due",
+            "page": "Jobs Due",
+            "code": "CRMM7P1",
             "path": "/modules/task/due"
           },
           {
             "id": 1,
             "page": "Jobs Missed",
+            "code": "CRMM7P2",
             "path": "/modules/task/missed"
           },
           {
             "id": 2,
             "page": "My Jobs",
+            "code": "CRMM7P3",
             "path": "/modules/task/myJobs"
           }
         ]
@@ -160,7 +181,7 @@
       {
         "id": 7,
         "title": "Service Requests",
-        "code": "serviceRequests",
+        "code": "CRMM8P1",
         "icon": "pi-wrench",
         "path": "/modules/serviceRequests"
       },
@@ -172,31 +193,37 @@
           {
             "id": 0,
             "page": "Home",
+            "code": "CRMM9P1",
             "path": "/modules/inventory/home"
           },
           {
             "id": 1,
             "page": "Parts",
+            "code": "CRMM9P2",
             "path": "/modules/inventory/parts"
           },
           {
             "id": 2,
             "page": "Suppliers",
+            "code": "CRMM9P3",
             "path": "/modules/inventory/suppliers"
           },
           {
             "id": 3,
             "page": "Tools",
+            "code": "CRMM9P4",
             "path": "/modules/inventory/tools"
           },
           {
             "id": 4,
             "page": "Transactions",
+            "code": "CRMM9P5",
             "path": "/modules/inventory/transactions"
           },
           {
             "id": 5,
             "page": "Vehicle Inventory",
+            "code": "CRMM9P6",
             "path": "/modules/inventory/vehicles"
           }
         ]
@@ -204,14 +231,14 @@
       {
         "id": 9,
         "title": "Deficiencies",
-        "code": "deficiencies",
+        "code": "CRMM10P1",
         "icon": "pi-info-circle",
         "path": "/modules/deficiencies"
       },
       {
         "id": 10,
         "title": "Permissions",
-        "code": "permissions",
+        "code": "CRMM11P1",
         "icon": "pi-shield",
         "path": "/modules/permissions"
       }

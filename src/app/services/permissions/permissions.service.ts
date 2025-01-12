@@ -35,7 +35,7 @@ export class PermissionsService {
     }
   }
 
-  checkPage(currentUser: any, code: string): boolean {
+  checkPage(currentUser: any, code: string, action: string): boolean {
     if (currentUser?.isManager) {
       return true;
     } else {
@@ -43,7 +43,7 @@ export class PermissionsService {
       let permissions: any[] = JSON.parse(roles)?.permissions;
       // check action if true
       let isAllowed = permissions?.find(
-        (p: any) => p?.page?.code === code && p['read'] === true
+        (p: any) => p?.page?.code === code && p[action] === true
       );
       if (isAllowed) {
         return true;

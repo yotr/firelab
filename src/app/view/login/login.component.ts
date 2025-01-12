@@ -110,7 +110,7 @@ export class LoginComponent implements OnInit {
           setTimeout(() => {
             // stop login btn loading
             this.loading = false;
-            this.router.navigate(['/modules/dashboard']);
+            this.router.navigate(['/modules/profile']);
             this.loginForm.reset();
             this.toastr.success('User Successfully Logged In', 'Success');
           }, 2000);

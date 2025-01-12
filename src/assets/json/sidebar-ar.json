@@ -20,61 +20,73 @@
           {
             "id": 0,
             "page": "الرئيسية",
+            "code": "CRMM2P2",
             "path": "/modules/customers/home"
           },
           {
             "id": 1,
             "page": "معلومات العميل",
+            "code": "CRMM2P3",
             "path": "/modules/customers/customerInfo"
           },
           {
             "id": 2,
             "page": "معلومات المالك/الوكيل",
+            "code": "CRMM2P4",
             "path": "/modules/customers/owner"
           },
           {
             "id": 3,
             "page": "معلومات المبنى",
+            "code": "CRMM2P5",
             "path": "/modules/customers/buildingInfo"
           },
           {
             "id": 4,
             "page": "معلومات النظام",
+            "code": "CRMM2P6",
             "path": "/modules/customers/systemInfo"
           },
           {
             "id": 5,
             "page": "الصور",
+            "code": "CRMM2P7",
             "path": "/modules/customers/images"
           },
           {
             "id": 6,
             "page": "إضافة الأجهزة",
+            "code": "CRMM2P8",
             "path": "/modules/customers/importDevices"
           },
           {
             "id": 7,
             "page": "التفتيشات المتكررة",
+            "code": "CRMM2P9",
             "path": "/modules/customers/recurringInspections"
           },
           {
             "id": 8,
             "page": "النقائص",
+            "code": "CRMM2P10",
             "path": "/modules/customers/customerDeficiencies"
           },
           {
             "id": 9,
             "page": "بوابة العملاء",
+            "code": "CRMM2P11",
             "path": "/modules/customers/customerPortal"
           },
           {
             "id": 10,
             "page": "إضافة وظيفة",
+            "code": "CRMM2P12",
             "path": "/modules/customers/addJob"
           },
           {
             "id": 11,
             "page": "البريد الإلكتروني التلقائي",
+            "code": "CRMM2P13",
             "path": "/modules/customers/autoEmail"
           }
         ]
@@ -83,17 +95,20 @@
       {
         "id": 2,
         "title": "فريق العمل",
+        "code": "CRMM3P1",
         "icon": "pi-users",
         "link": "/modules/team/allTeam",
         "list": [
           {
             "id": 0,
             "page": "بطاقة الوقت",
+            "code": "CRMM3P2",
             "path": "/modules/team/timeCard"
           },
           {
             "id": 1,
             "page": "جي بي اس",
+            "code": "CRMM3P3",
             "path": "/modules/team/gps"
           }
         ]
@@ -108,7 +123,7 @@
       {
         "id": 4,
         "title": "تعيين وظيفة",
-        "code": "jobLink",
+        "code": "CRMM5P1",
         "icon": "pi-paperclip",
         "path": "/modules/jobLink",
         "query": { "view": "Week" }
@@ -121,16 +136,19 @@
           {
             "id": 0,
             "page": "جديد",
+            "code": "CRMM6P2",
             "path": "/modules/reports/newReport"
           },
           {
             "id": 1,
             "page": "مكتملة",
+            "code": "CRMM6P3",
             "path": "/modules/reports/completedReports"
           },
           {
             "id": 2,
             "page": "غير مكتملة",
+            "code": "CRMM6P4",
             "path": "/modules/reports/incompletedReports"
           }
         ]
@@ -143,16 +161,19 @@
           {
             "id": 0,
             "page": "الوظيفة المستحقة",
+            "code": "CRMM7P1",
             "path": "/modules/task/due"
           },
           {
             "id": 1,
             "page": "الوظائف المفقودة",
+            "code": "CRMM7P2",
             "path": "/modules/task/missed"
           },
           {
             "id": 2,
             "page": "وظائفي",
+            "code": "CRMM7P3",
             "path": "/modules/task/myJobs"
           }
         ]
@@ -160,7 +181,7 @@
       {
         "id": 7,
         "title": "طلبات الخدمة",
-        "code": "serviceRequests",
+        "code": "CRMM8P1",
         "icon": "pi-wrench",
         "path": "/modules/serviceRequests"
       },
@@ -172,31 +193,37 @@
           {
             "id": 0,
             "page": "الرئيسية",
+            "code": "CRMM9P1",
             "path": "/modules/inventory/home"
           },
           {
             "id": 1,
             "page": "أجزاء",
+            "code": "CRMM9P2",
             "path": "/modules/inventory/parts"
           },
           {
             "id": 2,
             "page": "الموردين",
+            "code": "CRMM9P3",
             "path": "/modules/inventory/suppliers"
           },
           {
             "id": 3,
             "page": "أدوات",
+            "code": "CRMM9P4",
             "path": "/modules/inventory/tools"
           },
           {
             "id": 4,
             "page": "المعاملات",
+            "code": "CRMM9P5",
             "path": "/modules/inventory/transactions"
           },
           {
             "id": 5,
             "page": "مخزون المركبات",
+            "code": "CRMM9P6",
             "path": "/modules/inventory/vehicles"
           }
         ]
@@ -204,14 +231,14 @@
       {
         "id": 9,
         "title": "النقائص",
-        "code": "deficiencies",
+        "code": "CRMM10P1",
         "icon": "pi-info-circle",
         "path": "/modules/deficiencies"
       },
       {
         "id": 10,
         "title": "الأذونات",
-        "code": "permissions",
+        "code": "CRMM11P1",
         "icon": "pi-shield",
         "path": "/modules/permissions"
       }

@@ -14,7 +14,7 @@ export const companyGuard: CanActivateFn = (route, state) => {
   if (isLoggedIn && user?.isManager && user?.company?.isSystem) {
     return true;
   } else {
-    router.navigate(['/modules/dashboard']);
+    router.navigate(['/modules/profile']);
     return false;
   }
 };

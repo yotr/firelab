@@ -255,6 +255,7 @@
                       {{ "module_table.edit_action_text" | translate }}</a
                     >
                     <a
+                      *ngIf="checkPageActions('delete')"
                       class="dropdown-item"
                       data-bs-toggle="modal"
                       data-bs-target="#delete"

@@ -18,6 +18,7 @@ import { TransactionDetailsComponent } from './components/transactions/transacti
 import { AddVehicleComponent } from './components/vehicles/components/add-vehicle/add-vehicle.component';
 import { EditVehicleComponent } from './components/vehicles/components/edit-vehicle/edit-vehicle.component';
 import { VehiclesComponent } from './components/vehicles/vehicles.component';
+import { pageGuard } from 'src/app/guards/page.guard';
 
 const routes: Routes = [
   {
@@ -27,75 +28,109 @@ const routes: Routes = [
       {
         path: 'home',
         component: HomeInventoryComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM9P1', action: 'read' },
       },
       // parts
       {
         path: 'parts',
         component: PartsComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM9P2', action: 'read' },
       },
       {
         path: 'parts/add',
         component: AddPartsComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM9P2', action: 'create' },
       },
       {
         path: 'parts/edit/:id',
         component: EditPartsComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM9P2', action: 'update' },
       },
       {
         path: 'parts/assign',
         component: AssignPartsComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM9P2', action: 'create' },
       },
       // suppliers
       {
         path: 'suppliers',
         component: SuppliersComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM9P3', action: 'read' },
       },
       {
         path: 'suppliers/add',
         component: AddSupplierComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM9P3', action: 'create' },
       },
       {
         path: 'suppliers/edit/:id',
         component: EditSupplierComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM9P3', action: 'update' },
       },
       // tools
       {
         path: 'tools',
         component: ToolsComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM9P4', action: 'read' },
       },
       {
         path: 'tools/add',
         component: AddToolsComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM9P4', action: 'create' },
       },
       {
         path: 'tools/edit/:id',
         component: EditToolsComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM9P4', action: 'update' },
       },
       {
         path: 'tools/assign',
         component: AssignToolsComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM9P4', action: 'create' },
       },
       // transactions
       {
         path: 'transactions',
         component: TransactionsComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM9P5', action: 'read' },
       },
       {
         path: 'transactionDetails',
         component: TransactionDetailsComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM9P5', action: 'read' },
       },
       // vehicles
       {
         path: 'vehicles',
         component: VehiclesComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM9P6', action: 'read' },
       },
       {
         path: 'vehicles/add',
         component: AddVehicleComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM9P6', action: 'create' },
       },
       {
         path: 'vehicles/edit/:id',
         component: EditVehicleComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM9P6', action: 'update' },
       },
     ],
   },

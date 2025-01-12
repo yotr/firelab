@@ -27,6 +27,7 @@ import { AddJobComponent } from './components/add-job/add-job.component';
 import { HoodSystemComponent } from './components/hood-system/hood-system.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { AddImageModalComponent } from './components/images/add-image-modal/add-image-modal.component';
+import { pageGuard } from 'src/app/guards/page.guard';
 
 const routes: Routes = [
   {
@@ -36,98 +37,146 @@ const routes: Routes = [
       {
         path: 'allCustomers',
         component: AllCustomersComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM2P1', action: 'read' },
       },
       {
         path: 'add',
         component: AddCustomerComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM2P1', action: 'create' },
       },
       {
         path: 'edit/:id',
         component: EditCustomerComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM2P1', action: 'update' },
       },
       {
         path: 'home',
         component: CustomerHomeComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM2P2', action: 'read' },
       },
       {
         path: 'customerInfo',
         component: CustomerInfoComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM2P3', action: 'read' },
       },
       {
         path: 'owner',
         component: OwnerComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM2P4', action: 'read' },
       },
       {
         path: 'buildingInfo',
         component: BuildingInfoComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM2P5', action: 'read' },
       },
       {
         path: 'buildingInfo/add',
         component: AddBuildingInfoModalComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM2P5', action: 'create' },
       },
       {
         path: 'buildingInfo/edit/:id',
         component: EditBuildingInfoModalComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM2P5', action: 'update' },
       },
       {
         path: 'systemInfo',
         component: SystemInfoComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM2P6', action: 'read' },
       },
       {
         path: 'systemInfo/add',
         component: AddSystemInfoComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM2P6', action: 'create' },
       },
       {
         path: 'systemInfo/edit/:id',
         component: EditSystemInfoComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM2P6', action: 'update' },
       },
       {
         path: 'images',
         component: ImagesComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM2P7', action: 'read' },
       },
       {
         path: 'images/add',
         component: AddImageModalComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM2P7', action: 'create' },
       },
       {
         path: 'importDevices',
         component: ImportDevicesComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM2P8', action: 'read' },
       },
       {
         path: 'importDevices/add',
         component: AddDeviceComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM2P8', action: 'create' },
       },
       {
         path: 'importDevices/edit/:id',
         component: EditDeviceComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM2P8', action: 'update' },
       },
       {
         path: 'recurringInspections',
         component: RecurringInspectionsComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM2P9', action: 'read' },
       },
       {
         path: 'recurringInspections/add',
         component: AddRecurringInspectionsComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM2P9', action: 'create' },
       },
       {
         path: 'recurringInspections/edit/:id',
         component: EditRecurringInspectionsComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM2P9', action: 'update' },
       },
       {
         path: 'customerDeficiencies',
         component: CustomersDeficienciesComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM2P10', action: 'read' },
       },
       {
         path: 'customerPortal',
         component: CustomerPortalComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM2P11', action: 'read' },
       },
       {
         path: 'addJob',
         component: AddJobComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM2P12', action: 'read' },
       },
       {
         path: 'autoEmail',
         component: AutoEmailComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM2P13', action: 'read' },
       },
       {
         path: 'hoodSystem',
