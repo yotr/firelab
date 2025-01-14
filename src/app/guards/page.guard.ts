@@ -27,7 +27,7 @@ export const pageGuard: CanActivateFn = (route, state) => {
     } else {
       toastr.warning("you can't access this page");
     }
-    // router.navigate(['/login']);
+    router.navigate(['/login']);
     return false;
   }
 };

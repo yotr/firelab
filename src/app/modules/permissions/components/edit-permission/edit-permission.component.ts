@@ -120,16 +120,26 @@ export class EditPermissionComponent implements OnInit, AfterViewInit {
 
   // get current data
   getCurrentData() {
+    this.uploading = true;
     this.apiService.getById('roles', this.updateId).subscribe({
       next: (data: any) => {
         if (data?.isSuccess) {
+          setTimeout(() => {
+            this.uploading = false;
+
+            // check permissions pages and submodules to be true
+            let checkedPermissions = this.setCheckedToTrue(
+              data?.value?.permissions
+            );
+            // assign new role permissions data in permissions array
+            this.mergeArrays(this.modules, checkedPermissions);
+            console.log(data);
+            this.addForm.patchValue({
+              name: data?.value?.name,
+              arabicName: data?.value?.arabicName,
+            });
+          }, 2000);
           // this.selectedRole = data;
-          // check permissions pages and submodules to be true
-          let checkedPermissions = this.setCheckedToTrue(
-            data?.value?.permissions
-          );
-          // assign new role permissions data in permissions array
-          this.mergeArrays(this.modules, checkedPermissions);
 
           // // check existed permissions using checkbox
           // let newPermissions = this.permissions?.map((module, index) => {
@@ -144,14 +154,10 @@ export class EditPermissionComponent implements OnInit, AfterViewInit {
           // this.selectedRoleLoading = false;
 
           //  set values
-          console.log(data);
-          this.addForm.patchValue({
-            name: data?.value?.name,
-            arabicName: data?.value?.arabicName,
-          });
         }
       },
       error: (error) => {
+        this.uploading = false;
         console.log(error);
         if (this.currentLanguage == 'ar') {
           this.toastr.error('هناك شيء خاطئ', 'خطأ');

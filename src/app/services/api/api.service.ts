@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { AuthService } from '../auth/auth.service';
 import {
   HttpClient,
@@ -8,14 +8,20 @@ import {
 } from '@angular/common/http';
 import { catchError, Observable, retry, throwError } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ApiService {
   currentUser: any = {};
+  currentUserSignal = signal<any | null | undefined>(undefined);
 
-  constructor(private http: HttpClient, private auth: AuthService) {}
+  constructor(
+    private http: HttpClient,
+    private auth: AuthService,
+    private router: Router
+  ) {}
 
   // get user
   isLoggedIn(): boolean {
@@ -31,46 +37,52 @@ export class ApiService {
   //get
   get(path: string): Observable<any[] | any> {
     // request
-    return this.http.get<any[]>(`${environment.API}/api/${path}`);
-    // .pipe(retry(1), catchError(this.handleError));
+    return this.http
+      .get<any[]>(`${environment.API}/api/${path}`)
+      .pipe(retry(1), catchError(this.handleError));
   }
   // get by id
   getById(path: string, id: any): Observable<any> {
     // request
-    return this.http.get<any>(`${environment.API}/api/${path}/${id}`);
-    // .pipe(retry(1), catchError(this.handleError));
+    return this.http
+      .get<any>(`${environment.API}/api/${path}/${id}`)
+      .pipe(retry(1), catchError(this.handleError));
   }
 
   // add
   add(path: string, data: any): Observable<any> {
-    return this.http.post<any>(
-      `${environment.API}/api/${path}`,
-      data,
-      environment.HTTP_OPTIONS
-    );
-    // .pipe(retry(1), catchError(this.handleError));
+    return this.http
+      .post<any>(
+        `${environment.API}/api/${path}`,
+        data,
+        environment.HTTP_OPTIONS
+      )
+      .pipe(retry(1), catchError(this.handleError));
   }
 
   // update
   update(path: string, id: any, data: any): Observable<any> {
-    return this.http.put<any>(
-      `${environment.API}/api/${path}/${id}`,
-      data,
-      environment.HTTP_OPTIONS
-    );
-    // .pipe(retry(1), catchError(this.handleError));
+    return this.http
+      .put<any>(
+        `${environment.API}/api/${path}/${id}`,
+        data,
+        environment.HTTP_OPTIONS
+      )
+      .pipe(retry(1), catchError(this.handleError));
   }
 
   // delete
 
   delete(path: string, id: any): Observable<any> {
-    return this.http.delete(`${environment.API}/api/${path}/${id}`);
-    // .pipe(retry(1), catchError(this.handleError));
+    return this.http
+      .delete(`${environment.API}/api/${path}/${id}`)
+      .pipe(retry(1), catchError(this.handleError));
   }
 
   customDelete(path: string): Observable<any> {
-    return this.http.delete(`${environment.API}/api/${path}`);
-    // .pipe(retry(1), catchError(this.handleError));
+    return this.http
+      .delete(`${environment.API}/api/${path}`)
+      .pipe(retry(1), catchError(this.handleError));
   }
   // add multi data
   addFormData(path: string, data: FormData): Observable<any> {
@@ -97,12 +109,13 @@ export class ApiService {
 
   // update multi data
   updateFormData(path: string, id: any, data: any): Observable<any> {
-    return this.http.put<any>(
-      `${environment.API}/api/${path}/${id}`,
-      data,
-      environment.Files_HTTP_OPTIONS
-    );
-    // .pipe(retry(1), catchError(this.handleError));
+    return this.http
+      .put<any>(
+        `${environment.API}/api/${path}/${id}`,
+        data,
+        environment.Files_HTTP_OPTIONS
+      )
+      .pipe(retry(1), catchError(this.handleError));
   }
 
   // get filtered data
@@ -118,15 +131,17 @@ export class ApiService {
   ): Observable<any> {
     // request
     if (column) {
-      return this.http.get<any>(
-        `${environment.API}/api/${path}?column=${column}&value1=${value1}&value2=${value2}&operator1=${operator1}&operator2=${operator2}&page=${page}&pageSize=${pageSize}`
-      );
-      // .pipe(retry(5), catchError(this.handleError));
+      return this.http
+        .get<any>(
+          `${environment.API}/api/${path}?column=${column}&value1=${value1}&value2=${value2}&operator1=${operator1}&operator2=${operator2}&page=${page}&pageSize=${pageSize}`
+        )
+        .pipe(retry(1), catchError(this.handleError));
     } else {
-      return this.http.get<any>(
-        `${environment.API}/api/${path}?page=${page}&pageSize=${pageSize}`
-      );
-      // .pipe(retry(1), catchError(this.handleError));
+      return this.http
+        .get<any>(
+          `${environment.API}/api/${path}?page=${page}&pageSize=${pageSize}`
+        )
+        .pipe(retry(1), catchError(this.handleError));
     }
   }
   // get filtered data
@@ -143,15 +158,17 @@ export class ApiService {
   ): Observable<any> {
     // request
     if (column) {
-      return this.http.get<any>(
-        `${environment.API}/api/${path}?customerId=${customerId}&column=${column}&value1=${value1}&value2=${value2}&operator1=${operator1}&operator2=${operator2}&page=${page}&pageSize=${pageSize}`
-      );
-      // .pipe(retry(5), catchError(this.handleError));
+      return this.http
+        .get<any>(
+          `${environment.API}/api/${path}?customerId=${customerId}&column=${column}&value1=${value1}&value2=${value2}&operator1=${operator1}&operator2=${operator2}&page=${page}&pageSize=${pageSize}`
+        )
+        .pipe(retry(1), catchError(this.handleError));
     } else {
-      return this.http.get<any>(
-        `${environment.API}/api/${path}?customerId=${customerId}&page=${page}&pageSize=${pageSize}`
-      );
-      // .pipe(retry(1), catchError(this.handleError));
+      return this.http
+        .get<any>(
+          `${environment.API}/api/${path}?customerId=${customerId}&page=${page}&pageSize=${pageSize}`
+        )
+        .pipe(retry(1), catchError(this.handleError));
     }
   }
   filterDataWithUserId(
@@ -167,15 +184,17 @@ export class ApiService {
   ): Observable<any> {
     // request
     if (column) {
-      return this.http.get<any>(
-        `${environment.API}/api/${path}/${userId}?column=${column}&value1=${value1}&value2=${value2}&operator1=${operator1}&operator2=${operator2}&page=${page}&pageSize=${pageSize}`
-      );
-      // .pipe(retry(5), catchError(this.handleError));
+      return this.http
+        .get<any>(
+          `${environment.API}/api/${path}/${userId}?column=${column}&value1=${value1}&value2=${value2}&operator1=${operator1}&operator2=${operator2}&page=${page}&pageSize=${pageSize}`
+        )
+        .pipe(retry(1), catchError(this.handleError));
     } else {
-      return this.http.get<any>(
-        `${environment.API}/api/${path}/${userId}?page=${page}&pageSize=${pageSize}`
-      );
-      // .pipe(retry(1), catchError(this.handleError));
+      return this.http
+        .get<any>(
+          `${environment.API}/api/${path}/${userId}?page=${page}&pageSize=${pageSize}`
+        )
+        .pipe(retry(1), catchError(this.handleError));
     }
   }
   //search  globaly or by column
@@ -187,15 +206,17 @@ export class ApiService {
   ): Observable<any[] | any> {
     // request
     if (column != null) {
-      return this.http.get<any[]>(
-        `${environment.API}/api/${path}?customerId=${customerId}&search=${search}&column=${column}`
-      );
-      // .pipe(retry(5), catchError(this.handleError));
+      return this.http
+        .get<any[]>(
+          `${environment.API}/api/${path}?customerId=${customerId}&search=${search}&column=${column}`
+        )
+        .pipe(retry(1), catchError(this.handleError));
     } else {
-      return this.http.get<any[]>(
-        `${environment.API}/api/${path}?customerId=${customerId}&search=${search}`
-      );
-      // .pipe(retry(1), catchError(this.handleError));
+      return this.http
+        .get<any[]>(
+          `${environment.API}/api/${path}?customerId=${customerId}&search=${search}`
+        )
+        .pipe(retry(1), catchError(this.handleError));
     }
   }
 
@@ -207,32 +228,52 @@ export class ApiService {
   ): Observable<any[] | any> {
     // request
     if (column != null) {
-      return this.http.get<any[]>(
-        `${environment.API}/api/${path}?search=${search}&column=${column}`
-      );
-      // .pipe(retry(5), catchError(this.handleError));
+      return this.http
+        .get<any[]>(
+          `${environment.API}/api/${path}?search=${search}&column=${column}`
+        )
+        .pipe(retry(1), catchError(this.handleError));
     } else {
-      return this.http.get<any[]>(
-        `${environment.API}/api/${path}?search=${search}`
-      );
-      // .pipe(retry(1), catchError(this.handleError));
+      return this.http
+        .get<any[]>(`${environment.API}/api/${path}?search=${search}`)
+        .pipe(retry(1), catchError(this.handleError));
     }
   }
 
   statusChange(path: string, data?: any) {
-    return this.http.put<any>(
-      `${environment.API}/api/${path}`,
-      data,
-      environment.HTTP_OPTIONS
-    );
-    // .pipe(retry(1), catchError(this.handleError));
+    return this.http
+      .put<any>(
+        `${environment.API}/api/${path}`,
+        data,
+        environment.HTTP_OPTIONS
+      )
+      .pipe(retry(1), catchError(this.handleError));
   }
 
   //handle function error
-  private handleError(error: HttpErrorResponse): any {
+  public handleError(error: HttpErrorResponse): any {
     if (error.status === 0) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error);
+    } else if (error.status === 401) {
+      // Handle Unauthorized error
+      // get user if exist
+      let isLoggedIn = localStorage.getItem('firelab-loginData');
+
+      if (isLoggedIn) {
+        // remove uset from storage
+        localStorage.removeItem('firelab-loginData');
+        localStorage.removeItem('firelab-roles');
+        // navigate to login page
+        this.router?.navigate(['/login']);
+      } else {
+        // navigate to login page
+        this.router?.navigate(['/login']);
+      }
+
+      return console.error(
+        'Unauthorized request. Please check your credentials.'
+      );
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong.
@@ -240,10 +281,33 @@ export class ApiService {
         `Backend returned code ${error.status}, body was: `,
         error.error
       );
+      return error;
     }
     // Return an observable with a user-facing error message.
     return throwError(
       () => new Error('Something bad happened; please try again later.')
+    );
+  }
+
+  public logUserOut(): any {
+    // get user if exist
+    let isLoggedIn = localStorage.getItem('firelab-loginData');
+
+    if (isLoggedIn) {
+      // remove uset from storage
+      localStorage.removeItem('firelab-loginData');
+      localStorage.removeItem('firelab-roles');
+      // make current user signal undefined
+      this.currentUserSignal.set(undefined);
+      // navigate to login page
+      this.router.navigate(['/login']);
+    } else {
+      // navigate to login page
+      this.router.navigate(['/login']);
+    }
+
+    return console.error(
+      'Unauthorized request. Please check your credentials.'
     );
   }
 }
