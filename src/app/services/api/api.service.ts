@@ -79,6 +79,11 @@ export class ApiService {
       .pipe(retry(1), catchError(this.handleError));
   }
 
+  deleteMulti(path: string, ids: any[]): Observable<any> {
+    return this.http
+      .post(`${environment.API}/api/${path}`, ids)
+      .pipe(retry(1), catchError(this.handleError));
+  }
   customDelete(path: string): Observable<any> {
     return this.http
       .delete(`${environment.API}/api/${path}`)
@@ -258,6 +263,7 @@ export class ApiService {
     } else if (error.status === 401) {
       // Handle Unauthorized error
       // get user if exist
+      window.location.reload();
       let isLoggedIn = localStorage.getItem('firelab-loginData');
 
       if (isLoggedIn) {
@@ -271,9 +277,9 @@ export class ApiService {
         this.router?.navigate(['/login']);
       }
 
-      return console.error(
-        'Unauthorized request. Please check your credentials.'
-      );
+      // return console.error(
+      //   'Unauthorized request. Please check your credentials.'
+      // );
     } else {
       // The backend returned an unsuccessful response code.
       // The response body may contain clues as to what went wrong.

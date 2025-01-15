@@ -35,11 +35,13 @@
     </div>
     <!-- actions icons -->
     <div>
-      <!-- <i
+      <i
         class="pi pi-trash px-2 fs-6"
         role="button"
+        data-bs-toggle="modal"
+        data-bs-target="#delete"
         (click)="deleteSelected()"
-      ></i> -->
+      ></i>
       <i
         class="pi pi-refresh px-2 fs-6"
         role="button"
@@ -338,7 +340,7 @@
 <app-delete-modal
   [title]="deleteModalTitle"
   [currentTheme]="currentTheme"
-  (onDelete)="deleteItem()"
+  (onDelete)="deleteItems()"
 ></app-delete-modal>
 <!--/ delete modal -->
 <!-- printing spinner -->

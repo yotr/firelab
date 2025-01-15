@@ -2,6 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NgxPrintService, PrintOptions } from 'ngx-print';
+import { ToastrService } from 'ngx-toastr';
+import { ApiService } from 'src/app/services/api/api.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { LanguageService } from 'src/app/services/language/language.service';
 import { PermissionsService } from 'src/app/services/permissions/permissions.service';
@@ -62,6 +64,7 @@ export class CustomersModuleTableComponent implements OnInit {
   // current logged in user
   currentUser: any = {} as any;
   statusDropdown: any[] = [];
+  deletedData: any[] = [];
 
   constructor(
     private printService: NgxPrintService,
@@ -70,7 +73,9 @@ export class CustomersModuleTableComponent implements OnInit {
     private router: Router,
     private languageService: LanguageService,
     private auth: AuthService,
-    public translateService: TranslateService
+    public translateService: TranslateService,
+    public apiService: ApiService,
+    private toastr: ToastrService
   ) {
     this.translateService.use(this.currentLanguage);
     this.api = environment.API;
@@ -185,19 +190,49 @@ export class CustomersModuleTableComponent implements OnInit {
     this.onReset.emit();
   }
   // delete
-  deleteItem() {
-    //client side
-    this.data = this.data?.filter((d) => d?.id != this.deleteId);
-    // server side
-    this.onDelete.emit(this.deleteId);
+  deleteItems() {
+    if (this.deleteId != null && this.deletedData.length == 0) {
+      // server side
+      this.onDelete.emit(this.deleteId);
+      //client side
+      this.data = this.data?.filter((d) => d?.id != this.deleteId);
+    }
+    if (this.deletedData.length > 0) {
+      // api
+      this.apiService
+        .deleteMulti(`customers/delete-multi`, this.deletedData)
+        .subscribe({
+          next: (data) => {
+            console.log(data);
+            if (data?.isSuccess) {
+              if (this.currentLanguage == 'ar') {
+                this.toastr.success('تم حذف العناصر بنجاح');
+              } else {
+                this.toastr.success('Items Delete Successfully');
+              }
+              this.data = this.data.filter((item: any) => item.checked != true);
+            }
+          },
+          error: (err: any) => {
+            console.log(err);
+            if (this.currentLanguage == 'ar') {
+              this.toastr.error('هناك شيء خاطئ', 'خطأ');
+            } else {
+              this.toastr.error('There Is Somthing Wrong', 'Error');
+            }
+          },
+          complete: () => {},
+        });
+    }
   }
   //delete selected
   deleteSelected() {
     //client side
-    this.data = this.data.filter((result) => result.checked != true);
+    this.deletedData = this.data
+      .filter((result) => result.checked == true)
+      .map((d) => d?.id);
     //in server side
-    this.onDeleteSelected.emit(this.data);
-    // api
+    // this.onDeleteSelected.emit(deletedData);
   }
 
   // ================== \\  Functions for scpcific tables  \\ ==================
@@ -231,12 +266,10 @@ export class CustomersModuleTableComponent implements OnInit {
   navigateToCustomer(customerId: any) {
     var isAllowed = this.checkPageActions('update');
     if (isAllowed) {
-
       this.router.navigate(['/modules/customers/home'], {
         queryParams: { customerId: customerId },
       });
       this.sendActiveCustomer(customerId);
-
     }
   }
   // check page || components permissions

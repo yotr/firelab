@@ -8,7 +8,7 @@ import { LanguageService } from 'src/app/services/language/language.service';
 import { PermissionsService } from 'src/app/services/permissions/permissions.service';
 import { SidebarService } from 'src/app/services/sidebar/sidebar.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
-
+declare const $: any;
 @Component({
   selector: 'app-all-customers',
   templateUrl: './all-customers.component.html',
@@ -94,9 +94,7 @@ export class AllCustomersComponent implements OnInit, AfterViewInit {
     //   this.getCurrentUserData();
   }
 
-  ngAfterViewInit(): void {
-
-  }
+  ngAfterViewInit(): void {}
   // get user
   isLoggedIn(): boolean {
     return this.auth.currentUserSignal() == undefined ? false : true;
