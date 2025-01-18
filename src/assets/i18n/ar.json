@@ -334,8 +334,8 @@
       }
     },
     "deficiencies": {
-      "title": "النقائص",
-      "table_title": "جدول النواقص",
+      "title": "الأعطال",
+      "table_title": "جدول الأعطال",
       "table": {
         "category": "فئة",
         "date": "تاريخ",
@@ -527,7 +527,17 @@
   "service_requests": {
     "title": "طلبات الخدمة",
     "table_title": "جدول طلبات الخدمة",
+    "add_btn": "إضافة خدمة",
+    "update_title": "تحديث خدمة",
+    "form": {
+      "name": "اسم الخدمة",
+      "name_required": "اسم الخدمة مطلوب",
+      "cost": "التكلفة",
+      "cost_required": "التكلفة مطلوبة"
+    },
     "table": {
+      "name": "اسم الخدمة",
+      "cost": "التكلفة",
       "sr_no": "Sr. رقم",
       "customer": "عميل",
       "report_category": "فئة التقرير",
@@ -536,14 +546,37 @@
     }
   },
   "deficiencies": {
-    "title": "النقائص",
-    "table_title": "جدول النواقص",
+    "title": "الأعطال",
+    "table_title": "جدول الأعطال",
+    "add_btn": "إضافة عطل",
+    "update_title": "تحديث عطل",
+    "form": {
+      "name": "اسم العطل",
+      "name_required": "اسم العطل مطلوب"
+    },
     "table": {
+      "name": "اسم العطل",
       "customer_name": "اسم العميل",
       "category": "فئة",
       "date": "تاريخ",
       "description": "وصف",
       "status": "حالة"
+    }
+  },
+  "categories": {
+    "title": "فئات",
+    "table_title": "جدول الفئات",
+    "add_btn": "إضافة فئة",
+    "update_title": "تحديث الفئة",
+    "form": {
+      "name": "اسم الفئة",
+      "name_required": "اسم الفئة مطلوب",
+      "ar_name": "الاسم العربي",
+      "ar_name_required": "اسم الفئة مطلوب"
+    },
+    "table": {
+      "name": "اسم الفئة",
+      "ar_name": "الاسم العربي"
     }
   },
   "jobs": {

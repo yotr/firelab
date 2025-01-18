@@ -1,6 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { NgxPrintService, PrintOptions } from 'ngx-print';
+import { ToastrService } from 'ngx-toastr';
+import { ApiService } from 'src/app/services/api/api.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { LanguageService } from 'src/app/services/language/language.service';
+import { PermissionsService } from 'src/app/services/permissions/permissions.service';
+import { SidebarService } from 'src/app/services/sidebar/sidebar.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -13,6 +20,7 @@ export class ServiceRequestsModuleTableComponent implements OnInit {
   @Input() data: any[] = [];
   @Input() dataKeys: any[] = [];
   @Input() loading: boolean = true;
+  @Input() getDataError: boolean = false;
   @Input() currentTheme: any;
   //  ================================================
   @Output() onDelete: EventEmitter<any> = new EventEmitter();
@@ -48,19 +56,26 @@ export class ServiceRequestsModuleTableComponent implements OnInit {
   //pagination variables
   currentPage: number = 1;
   // count: number = 0;
-  itemsPerPage: number = 10;
+  itemsPerPage: number = 20;
   tableEntries: number[] = [
-    10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 100,
+    20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 100,
   ];
   printing: boolean = false;
   api: string = '';
   // current logged in user
   currentUser: any = {} as any;
+  deletedData: any[] = [];
 
   constructor(
     private printService: NgxPrintService,
-    // private permissionsService: PermissionsService,
-    private auth: AuthService
+    private sidebarService: SidebarService,
+    private permissionsService: PermissionsService,
+    private router: Router,
+    private languageService: LanguageService,
+    private auth: AuthService,
+    public translateService: TranslateService,
+    public apiService: ApiService,
+    private toastr: ToastrService
   ) {
     this.api = environment.API;
   }
@@ -68,7 +83,16 @@ export class ServiceRequestsModuleTableComponent implements OnInit {
   // ================== \\  General Functions for all tables  \\ ==================
 
   ngOnInit() {
+    this.getLanguage();
     this.getCurrentUserData();
+  }
+  getLanguage() {
+    // get language from localStorage
+    this.languageService.getCurrentLanguage().subscribe((language) => {
+      this.currentLanguage = language;
+      // turn on current language (trandlate)
+      this.translateService.use(this.currentLanguage);
+    });
   }
   // get user
   isLoggedIn(): boolean {
@@ -149,19 +173,49 @@ export class ServiceRequestsModuleTableComponent implements OnInit {
     this.onReset.emit();
   }
   // delete
-  deleteItem() {
-    //client side
-    this.data = this.data?.filter((d) => d?.id != this.deleteId);
-    // server side
-    this.onDelete.emit(this.deleteId);
+  deleteItems() {
+    if (this.deleteId != null && this.deletedData.length == 0) {
+      // server side
+      this.onDelete.emit(this.deleteId);
+      //client side
+      this.data = this.data?.filter((d) => d?.id != this.deleteId);
+    }
+    if (this.deletedData.length > 0) {
+      // api
+      this.apiService
+        .deleteMulti(`services/delete-multi`, this.deletedData)
+        .subscribe({
+          next: (data) => {
+            console.log(data);
+            if (data?.isSuccess) {
+              if (this.currentLanguage == 'ar') {
+                this.toastr.success('تم حذف العناصر بنجاح');
+              } else {
+                this.toastr.success('Items Delete Successfully');
+              }
+              this.data = this.data.filter((item: any) => item.checked != true);
+            }
+          },
+          error: (err: any) => {
+            console.log(err);
+            if (this.currentLanguage == 'ar') {
+              this.toastr.error('هناك شيء خاطئ', 'خطأ');
+            } else {
+              this.toastr.error('There Is Somthing Wrong', 'Error');
+            }
+          },
+          complete: () => {},
+        });
+    }
   }
   //delete selected
   deleteSelected() {
     //client side
-    this.data = this.data.filter((result) => result.checked != true);
+    this.deletedData = this.data
+      .filter((result) => result.checked == true)
+      .map((d) => d?.id);
     //in server side
-    this.onDeleteSelected.emit(this.data);
-    // api
+    // this.onDeleteSelected.emit(deletedData);
   }
 
   // ================== \\  Functions for scpcific tables  \\ ==================
@@ -187,11 +241,11 @@ export class ServiceRequestsModuleTableComponent implements OnInit {
     }, 1000);
   }
   // check page || components permissions
-  checkPageActions(action: string): any {
-    // return this.permissionsService.checkPageActions(
-    //   this.auth.currentUserSignal()?.userData,
-    //   'data',
-    //   action
-    // );
+  checkPageActions(action: string): boolean {
+    return this.permissionsService.checkPageActions(
+      this.auth.currentUserSignal()?.userData,
+      'CRMM10P1',
+      action
+    );
   }
 }

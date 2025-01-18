@@ -528,7 +528,17 @@
   "service_requests": {
     "title": "Service Requests",
     "table_title": "Service Requests Table",
+    "add_btn": "Add Service",
+    "update_title": "Update Service",
+    "form": {
+      "name": "Name",
+      "name_required": "Name is required",
+      "cost": "Cost",
+      "cost_required": "Cost is required"
+    },
     "table": {
+      "name": "Name",
+      "cost": "Cost",
       "sr_no": "Sr. No",
       "customer": "Customer",
       "report_category": "Report Category",
@@ -539,12 +549,35 @@
   "deficiencies": {
     "title": "Deficiencies",
     "table_title": "Deficiencies Table",
+    "add_btn": "Add Deficiency",
+    "update_title": "Update Deficiency",
+    "form": {
+      "name": "Name",
+      "name_required": "Name is required"
+    },
     "table": {
+      "name": "Name",
       "customer_name": "Customer Name",
       "category": "Category",
       "date": "Date",
       "description": "Description",
       "status": "Status"
+    }
+  },
+  "categories": {
+    "title": "Categories",
+    "table_title": "Categories Table",
+    "add_btn": "Add Category",
+    "update_title": "Update Category",
+    "form": {
+      "name": "Name",
+      "name_required": "Name is required",
+      "ar_name": "Arabic Name",
+      "ar_name_required": "Arabic Name is required"
+    },
+    "table": {
+      "name": "Name",
+      "ar_name": "Arabic Name"
     }
   },
   "jobs": {

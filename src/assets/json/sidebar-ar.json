@@ -67,7 +67,7 @@
           },
           {
             "id": 8,
-            "page": "النقائص",
+            "page": "الأعطال",
             "code": "CRMM2P10",
             "path": "/modules/customers/customerDeficiencies"
           },
@@ -230,7 +230,7 @@
       },
       {
         "id": 9,
-        "title": "النقائص",
+        "title": "الأعطال",
         "code": "CRMM10P1",
         "icon": "pi-info-circle",
         "path": "/modules/deficiencies"
@@ -241,6 +241,13 @@
         "code": "CRMM11P1",
         "icon": "pi-shield",
         "path": "/modules/permissions"
+      },
+      {
+        "id": 11,
+        "title": "الفئات",
+        "code": "CRMM12P1",
+        "icon": "pi-bars",
+        "path": "/modules/categories"
       }
     ]
   }

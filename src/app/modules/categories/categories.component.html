@@ -5,16 +5,16 @@
     [dir]="'dir' | translate"
   >
     <app-breadcrumb
-      [title]="'service_requests.title' | translate"
+      [title]="'categories.title' | translate"
     ></app-breadcrumb>
-    <div routerLink="/modules/serviceRequests/add">
+    <div routerLink="/modules/categories/add">
       <a
         class="btn add-btn d-flex align-items-center {{
           currentTheme?.colorSchema?.background
         }} {{ currentTheme?.colorSchema?.color }}"
       >
         <i class="pi pi-plus d-none d-sm-block"></i>
-        {{ "service_requests.add_btn" | translate }}
+        {{ "categories.add_btn" | translate }}
       </a>
     </div>
   </div>
@@ -22,20 +22,20 @@
   <!-- /page header  -->
   <app-back-button></app-back-button>
   <!-- table -->
-  <app-service-requests-module-table
+  <app-category-module-table
     [data]="data"
     [totalItems]="totalItemsCount"
     [dataKeys]="dataKeys"
     [loading]="loading"
     [getDataError]="getDataError"
     [currentTheme]="currentTheme"
-    [deleteModalTitle]="'service_requests.title' | translate"
-    [tableTitle]="'service_requests.table_title' | translate"
-    editPagePath="/modules/serviceRequests/edit"
+    [deleteModalTitle]="'categories.title' | translate"
+    [tableTitle]="'categories.table_title' | translate"
+    editPagePath="/modules/categories/edit"
     (onPageChange)="onPaginate($event)"
     (onDelete)="delete($event)"
     (onSearch)="search($event)"
     (onFilter)="handleFiltersSubmit($event)"
     (onReset)="resetData()"
-  ></app-service-requests-module-table>
+  ></app-category-module-table>
 </div>

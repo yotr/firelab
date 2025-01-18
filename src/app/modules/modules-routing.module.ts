@@ -32,6 +32,13 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { pageGuard } from '../guards/page.guard';
 import { authGuard } from '../guards/auth.guard';
 import { ProfileComponent } from './profile/profile.component';
+import { AddDeficiencyComponent } from './deficiencies/components/add-deficiency/add-deficiency.component';
+import { EditDeficiencyComponent } from './deficiencies/components/edit-deficiency/edit-deficiency.component';
+import { AddServiceComponent } from './service-requests/components/add-service/add-service.component';
+import { EditServiceComponent } from './service-requests/components/edit-service/edit-service.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { AddCategoryComponent } from './categories/components/add-category/add-category.component';
+import { EditCategoryComponent } from './categories/components/edit-category/edit-category.component';
 
 const routes: Routes = [
   {
@@ -171,12 +178,55 @@ const routes: Routes = [
         canActivate: [pageGuard],
         data: { code: 'CRMM8P1', action: 'read' },
       },
+      {
+        path: 'serviceRequests/add',
+        component: AddServiceComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM8P1', action: 'create' },
+      },
+      {
+        path: 'serviceRequests/edit/:id',
+        component: EditServiceComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM8P1', action: 'update' },
+      },
       // Deficiencies
       {
         path: 'deficiencies',
         component: DeficienciesComponent,
         canActivate: [pageGuard],
         data: { code: 'CRMM10P1', action: 'read' },
+      },
+      {
+        path: 'deficiencies/add',
+        component: AddDeficiencyComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM10P1', action: 'create' },
+      },
+      {
+        path: 'deficiencies/edit/:id',
+        component: EditDeficiencyComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM10P1', action: 'update' },
+      },
+      // Categories
+      {
+        path: 'categories',
+        component: CategoriesComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM12P1', action: 'read' },
+      },
+      {
+        path: 'categories/add',
+        component: AddCategoryComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM12P1', action: 'create' },
+      },
+      {
+        path: 'categories/edit/:id',
+        component: EditCategoryComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM12P1', action: 'update' },
       },
       // reports
       {

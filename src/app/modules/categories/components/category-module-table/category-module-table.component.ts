@@ -11,12 +11,12 @@ import { SidebarService } from 'src/app/services/sidebar/sidebar.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-deficiencies-module-table',
-  templateUrl: './deficiencies-module-table.component.html',
-  styleUrls: ['./deficiencies-module-table.component.css'],
+  selector: 'app-category-module-table',
+  templateUrl: './category-module-table.component.html',
+  styleUrls: ['./category-module-table.component.css'],
 })
-export class DeficienciesModuleTableComponent implements OnInit {
-  //variables
+export class CategoryModuleTableComponent implements OnInit {
+ //variables
   @Input() data: any[] = [];
   @Input() dataKeys: any[] = [];
   @Input() loading: boolean = true;
@@ -183,7 +183,7 @@ export class DeficienciesModuleTableComponent implements OnInit {
     if (this.deletedData.length > 0) {
       // api
       this.apiService
-        .deleteMulti(`deficiencies/delete-multi`, this.deletedData)
+        .deleteMulti(`reportCategories/delete-multi`, this.deletedData)
         .subscribe({
           next: (data) => {
             console.log(data);
@@ -244,7 +244,7 @@ export class DeficienciesModuleTableComponent implements OnInit {
   checkPageActions(action: string): boolean {
     return this.permissionsService.checkPageActions(
       this.auth.currentUserSignal()?.userData,
-      'CRMM10P1',
+      'CRMM12P1',
       action
     );
   }

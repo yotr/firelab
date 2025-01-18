@@ -241,6 +241,13 @@
         "code": "CRMM11P1",
         "icon": "pi-shield",
         "path": "/modules/permissions"
+      },
+      {
+        "id": 11,
+        "title": "Categories",
+        "code": "CRMM12P1",
+        "icon": "pi-bars",
+        "path": "/modules/categories"
       }
     ]
   }

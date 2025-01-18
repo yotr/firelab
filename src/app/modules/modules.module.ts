@@ -63,6 +63,14 @@ import { EditCompanyComponent } from './companies/components/edit-company/edit-c
 import { CompanyModuleTableComponent } from './companies/components/company-module-table/company-module-table.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AddDeficiencyComponent } from './deficiencies/components/add-deficiency/add-deficiency.component';
+import { EditDeficiencyComponent } from './deficiencies/components/edit-deficiency/edit-deficiency.component';
+import { AddServiceComponent } from './service-requests/components/add-service/add-service.component';
+import { EditServiceComponent } from './service-requests/components/edit-service/edit-service.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { AddCategoryComponent } from './categories/components/add-category/add-category.component';
+import { EditCategoryComponent } from './categories/components/edit-category/edit-category.component';
+import { CategoryModuleTableComponent } from './categories/components/category-module-table/category-module-table.component';
 
 @NgModule({
   declarations: [
@@ -117,6 +125,14 @@ import { ProfileComponent } from './profile/profile.component';
     NoRoleComponent,
     ChangePasswordComponent,
     ProfileComponent,
+    AddDeficiencyComponent,
+    EditDeficiencyComponent,
+    AddServiceComponent,
+    EditServiceComponent,
+    CategoriesComponent,
+    AddCategoryComponent,
+    EditCategoryComponent,
+    CategoryModuleTableComponent
   ],
   imports: [
     CommonModule,

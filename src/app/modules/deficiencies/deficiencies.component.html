@@ -4,45 +4,37 @@
     class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
     [dir]="'dir' | translate"
   >
-    <app-breadcrumb
-      [title]="'deficiencies.title' | translate"
-    ></app-breadcrumb>
-    <!-- <div routerLink="/modules/contract/add">
+    <app-breadcrumb [title]="'deficiencies.title' | translate"></app-breadcrumb>
+    <div routerLink="/modules/deficiencies/add">
       <a
         class="btn add-btn d-flex align-items-center {{
           currentTheme?.colorSchema?.background
         }} {{ currentTheme?.colorSchema?.color }}"
       >
         <i class="pi pi-plus d-none d-sm-block"></i>
-        Add Contract
+        {{ "deficiencies.add_btn" | translate }}
       </a>
-    </div> -->
+    </div>
   </div>
 
   <!-- /page header  -->
   <app-back-button></app-back-button>
   <!-- table -->
   <app-deficiencies-module-table
+    [data]="data"
     [totalItems]="totalItemsCount"
     [dataKeys]="dataKeys"
     [loading]="loading"
+    [getDataError]="getDataError"
     [currentTheme]="currentTheme"
     [deleteModalTitle]="'deficiencies.title' | translate"
     [tableTitle]="'deficiencies.table_title' | translate"
-  ></app-deficiencies-module-table>
-</div>
-
-<!-- [users]="users"
-    [totalItems]="totalItemsCount"
-    [dataKeys]="dataKeys"
-    [loading]="loading"
-    [currentTheme]="currentTheme"
-    deleteModalTitle="Users"
-    tableTitle="Users Table"
-    editPagePath="/modules/users/edit"
+    editPagePath="/modules/deficiencies/edit"
     (onPageChange)="onPaginate($event)"
     (onDelete)="delete($event)"
     (onSearch)="search($event)"
     (onFilter)="handleFiltersSubmit($event)"
-    (onDeleteSelected)="deleteSelected()"
-    (onReset)="resetData()" -->
+    (onReset)="resetData()"
+  ></app-deficiencies-module-table>
+</div>
+

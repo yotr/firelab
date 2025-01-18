@@ -11,11 +11,11 @@ import { ThemeService } from 'src/app/services/theme/theme.service';
 declare const $: any;
 
 @Component({
-  selector: 'app-service-requests',
-  templateUrl: './service-requests.component.html',
-  styleUrls: ['./service-requests.component.css'],
+  selector: 'app-categories',
+  templateUrl: './categories.component.html',
+  styleUrls: ['./categories.component.css'],
 })
-export class ServiceRequestsComponent implements OnInit, AfterViewInit {
+export class CategoriesComponent implements OnInit {
   // current language
   currentLanguage: any = localStorage.getItem('lang');
   currentTheme: any;
@@ -44,13 +44,13 @@ export class ServiceRequestsComponent implements OnInit, AfterViewInit {
     this.dataKeys = [
       {
         name: 'name',
-        display: this.translateService.instant('service_requests.table.name'),
+        display: this.translateService.instant('categories.table.name'),
         type: 'string',
         active: true,
       },
       {
-        name: 'cost',
-        display: this.translateService.instant('service_requests.table.cost'),
+        name: 'arabicName',
+        display: this.translateService.instant('categories.table.ar_name'),
         type: 'string',
         active: true,
       },
@@ -105,7 +105,7 @@ export class ServiceRequestsComponent implements OnInit, AfterViewInit {
     this.loading = true;
     this.apiService
       ?.filterData(
-        'services/getFilteredServices',
+        'reportCategories/getFilteredReportCategory',
         page ? page : 1,
         pageSize ? pageSize : 20
       )
@@ -113,7 +113,7 @@ export class ServiceRequestsComponent implements OnInit, AfterViewInit {
         next: (data: any) => {
           console.log(data);
           if (data?.isSuccess) {
-            this.data = data?.value?.services;
+            this.data = data?.value?.reportCategoryDto;
             this.totalItemsCount = data?.value?.totalCount;
             this.getDataError = false;
           }
@@ -140,7 +140,11 @@ export class ServiceRequestsComponent implements OnInit, AfterViewInit {
     if (event?.value != null && event.value?.trim() != '') {
       this.loading = true;
       this.apiService
-        .globalSearch('services/globalsearch', event?.value, event?.column)
+        .globalSearch(
+          'reportCategories/globalsearch',
+          event?.value,
+          event?.column
+        )
         .subscribe({
           next: (data: any) => {
             if (data?.isSuccess) {
@@ -166,7 +170,7 @@ export class ServiceRequestsComponent implements OnInit, AfterViewInit {
 
   delete(deleteId: any) {
     console.log(deleteId);
-    this.apiService.delete('services', deleteId).subscribe({
+    this.apiService.delete('reportCategories', deleteId).subscribe({
       next: (data) => {
         console.log(data);
         if (data?.isSuccess) {
@@ -195,7 +199,7 @@ export class ServiceRequestsComponent implements OnInit, AfterViewInit {
     // check if filters operator  contains selected
     this.apiService
       .filterData(
-        'services/getFilteredServices',
+        'reportCategories/getFilteredReportCategory',
         1,
         20,
         event?.column,
@@ -208,7 +212,7 @@ export class ServiceRequestsComponent implements OnInit, AfterViewInit {
         next: (data: any) => {
           console.log(data);
           if (data?.isSuccess) {
-            this.data = data?.value?.services;
+            this.data = data?.value?.reportCategoryDto;
             this.totalItemsCount = data?.value?.totalCount;
           }
           this.loading = false;
@@ -233,7 +237,7 @@ export class ServiceRequestsComponent implements OnInit, AfterViewInit {
   checkPageActions(action: string): boolean {
     return this.permissionsService.checkPageActions(
       this.auth.currentUserSignal()?.userData,
-      'CRMM8P1',
+      'CRMM12P1',
       action
     );
   }
