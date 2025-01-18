@@ -248,6 +248,13 @@
         "code": "CRMM12P1",
         "icon": "pi-bars",
         "path": "/modules/categories"
+      },
+      {
+        "id": 12,
+        "title": "Warranty",
+        "code": "CRMM13P1",
+        "icon": "pi-barcode",
+        "path": "/modules/warranty"
       }
     ]
   }

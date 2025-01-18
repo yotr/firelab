@@ -39,6 +39,9 @@ import { EditServiceComponent } from './service-requests/components/edit-service
 import { CategoriesComponent } from './categories/categories.component';
 import { AddCategoryComponent } from './categories/components/add-category/add-category.component';
 import { EditCategoryComponent } from './categories/components/edit-category/edit-category.component';
+import { WarrantyComponent } from './warranty/warranty.component';
+import { AddWarrantyComponent } from './warranty/components/add-warranty/add-warranty.component';
+import { EditWarrantyComponent } from './warranty/components/edit-warranty/edit-warranty.component';
 
 const routes: Routes = [
   {
@@ -227,6 +230,25 @@ const routes: Routes = [
         component: EditCategoryComponent,
         canActivate: [pageGuard],
         data: { code: 'CRMM12P1', action: 'update' },
+      },
+      // warranty
+      {
+        path: 'warranty',
+        component: WarrantyComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM13P1', action: 'read' },
+      },
+      {
+        path: 'warranty/add',
+        component: AddWarrantyComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM13P1', action: 'create' },
+      },
+      {
+        path: 'warranty/edit/:id',
+        component: EditWarrantyComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM13P1', action: 'update' },
       },
       // reports
       {

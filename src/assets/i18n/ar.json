@@ -579,6 +579,31 @@
       "ar_name": "الاسم العربي"
     }
   },
+  "warranty": {
+    "title": "ضمان",
+    "table_title": "جدول الضمان",
+    "add_btn": "إضافة الضمان",
+    "update_title": "تحديث الضمان",
+    "form": {
+      "name": "الاسم",
+      "name_required": "الاسم مطلوب",
+      "period": "(بلأيام) فترة",
+      "period_required": "الفترة مطلوبة",
+      "type": "النوع",
+      "type_required": "النوع مطلوب",
+      "tolerance": "نسبة التسامح مع العملاء",
+      "tolerance_required": "التسامح مطلوب",
+      "item": "غرض",
+      "service": "خدمة",
+      "item_and_service": "غرض وخدمة"
+    },
+    "table": {
+      "name": "الاسم",
+      "period": "الفترة",
+      "type": "النوع",
+      "tolerance": "نسبة التسامح"
+    }
+  },
   "jobs": {
     "jobs_due": {
       "title": "الوظائف المستحقة",

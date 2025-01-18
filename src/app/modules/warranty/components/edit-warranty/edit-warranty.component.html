@@ -1,0 +1,151 @@
+<!-- Add  Modal -->
+<div class="add-page">
+  <!-- Page Header -->
+  <div
+    class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
+    [dir]="'dir' | translate"
+  >
+    <!-- breadcrumb -->
+    <app-breadcrumb [title]="'warranty.add_btn' | translate"></app-breadcrumb>
+  </div>
+  <!-- /Page Header -->
+
+  <app-back-button></app-back-button>
+  <!-- content -->
+  <form (ngSubmit)="submit()" [formGroup]="addForm">
+    <div class="row">
+      <div class="col-sm-6">
+        <!-- name -->
+        <div class="form-group mt-2">
+          <label
+            >{{ "warranty.form.name" | translate }}
+            <span class="text-danger">*</span></label
+          >
+          <input class="form-control" type="text" formControlName="name" />
+          <!-- errors -->
+          <div
+            *ngIf="addForm.get('name')?.invalid && addForm.get('name')?.touched"
+          >
+            <small
+              *ngIf="
+                addForm.get('name')?.invalid && addForm.get('name')?.touched
+              "
+              class="text-danger"
+            >
+              {{ "warranty.form.name_required" | translate }}</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <!-- period -->
+        <div class="form-group mt-2">
+          <label
+            >{{ "warranty.form.period" | translate }}
+            <span class="text-danger">*</span></label
+          >
+          <input class="form-control" type="text" formControlName="period" />
+          <!-- errors -->
+          <div
+            *ngIf="
+              addForm.get('period')?.invalid && addForm.get('period')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('period')?.invalid && addForm.get('period')?.touched
+              "
+              class="text-danger"
+            >
+              {{ "warranty.form.period_required" | translate }}</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <!-- type -->
+        <div class="form-group mt-2">
+          <label
+            >{{ "warranty.form.type" | translate }}
+            <span class="text-danger">*</span></label
+          >
+          <select class="form-select" formControlName="type">
+            <option selected>
+              {{ "select" | translate }}
+            </option>
+            <option value="item">
+              {{ "warranty.form.item" | translate }}
+            </option>
+            <option value="service">
+              {{ "warranty.form.service" | translate }}
+            </option>
+            <option value="item and service">
+              {{ "warranty.form.item_and_service" | translate }}
+            </option>
+          </select>
+          <!-- <input class="form-control" type="text" formControlName="type" /> -->
+          <!-- errors -->
+          <div
+            *ngIf="addForm.get('type')?.invalid && addForm.get('type')?.touched"
+          >
+            <small
+              *ngIf="
+                addForm.get('type')?.invalid && addForm.get('type')?.touched
+              "
+              class="text-danger"
+            >
+              {{ "warranty.form.type_required" | translate }}</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <!-- tolerance -->
+        <div class="form-group mt-2">
+          <label
+            >{{ "warranty.form.tolerance" | translate }}
+            <span class="text-danger">*</span></label
+          >
+          <input
+            class="form-control"
+            type="number"
+            formControlName="tolerance"
+          />
+          <!-- errors -->
+          <div
+            *ngIf="
+              addForm.get('tolerance')?.invalid &&
+              addForm.get('tolerance')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('tolerance')?.invalid &&
+                addForm.get('tolerance')?.touched
+              "
+              class="text-danger"
+            >
+              {{ "warranty.form.tolerance_required" | translate }}</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+    </div>
+
+    <!-- submit -->
+    <div class="save-btn text-center">
+      <button type="submit" class="save mt-4">{{ "save" | translate }}</button>
+    </div>
+  </form>
+</div>
+<!-- /Add  Modal -->
+
+<!-- loading section -->
+<div *ngIf="uploading">
+  <app-loading-section></app-loading-section>
+</div>
+<!-- /loading section -->

@@ -11,11 +11,11 @@ import { SidebarService } from 'src/app/services/sidebar/sidebar.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-service-requests-module-table',
-  templateUrl: './service-requests-module-table.component.html',
-  styleUrls: ['./service-requests-module-table.component.css'],
+  selector: 'app-warranty-module-table',
+  templateUrl: './warranty-module-table.component.html',
+  styleUrls: ['./warranty-module-table.component.css'],
 })
-export class ServiceRequestsModuleTableComponent implements OnInit {
+export class WarrantyModuleTableComponent implements OnInit {
   //variables
   @Input() data: any[] = [];
   @Input() dataKeys: any[] = [];
@@ -183,7 +183,7 @@ export class ServiceRequestsModuleTableComponent implements OnInit {
     if (this.deletedData.length > 0) {
       // api
       this.apiService
-        .deleteMulti(`services/delete-multi`, this.deletedData)
+        .deleteMulti(`warranty/delete-multi`, this.deletedData)
         .subscribe({
           next: (data) => {
             console.log(data);
@@ -244,7 +244,7 @@ export class ServiceRequestsModuleTableComponent implements OnInit {
   checkPageActions(action: string): boolean {
     return this.permissionsService.checkPageActions(
       this.auth.currentUserSignal()?.userData,
-      'CRMM8P1',
+      'CRMM13P1',
       action
     );
   }

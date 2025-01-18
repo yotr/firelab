@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -9,22 +9,17 @@ import { LanguageService } from 'src/app/services/language/language.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
 
 @Component({
-  selector: 'app-add-permission',
-  templateUrl: './add-permission.component.html',
-  styleUrls: ['./add-permission.component.css'],
+  selector: 'app-add-warranty',
+  templateUrl: './add-warranty.component.html',
+  styleUrls: ['./add-warranty.component.css'],
 })
-export class AddPermissionComponent implements OnInit, AfterViewInit {
+export class AddWarrantyComponent implements OnInit {
   addForm: FormGroup;
   loading: boolean = true;
   currentTheme: any;
   currentLanguage: any = localStorage.getItem('lang');
   currentUser: any = null;
   uploading: boolean = false;
-
-  // modules
-  modules: any[] = [];
-  modulesLoading: boolean = true;
-  getDataError: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -37,17 +32,13 @@ export class AddPermissionComponent implements OnInit, AfterViewInit {
     private auth: AuthService
   ) {
     // Add form
-    this.addForm = this.formBuilder.group(
-      {
-        name: ['', [Validators.required]],
-        arabicName: ['', [Validators.required]],
-      }
-    );
+    this.addForm = this.formBuilder.group({
+      name: ['', [Validators.required]],
+      period: ['', [Validators.required]],
+      type: ['', [Validators.required]],
+      tolerance: [0, [Validators.required]],
+    });
   }
-  ngAfterViewInit(): void {
-    this.getModules();
-  }
-
   ngOnInit() {
     this.getTheme();
     this.getCurrentLanguage();
@@ -81,61 +72,17 @@ export class AddPermissionComponent implements OnInit, AfterViewInit {
     }
   }
 
-  // get Modules data
-  getModules() {
-    this.apiService.get('modules').subscribe({
-      next: (data: any) => {
-        console.log(data);
-        if (data?.isSuccess) {
-          this.modules = data?.value;
-          this.getDataError = false;
-        }
-        this.modulesLoading = false;
-      },
-      error: (err) => {
-        this.modules = [];
-        this.modulesLoading = false;
-        this.getDataError = true;
-        console.log(err);
-        if (this.currentLanguage == 'ar') {
-          this.toastr.error('هناك شيء خاطئ', 'خطأ');
-        } else {
-          this.toastr.error('There Is Somthing Wrong', 'Error');
-        }
-        this.modulesLoading = false;
-      },
-      complete: () => {
-        this.modulesLoading = false;
-      },
-    });
-  }
-
   //add a new
   submit() {
-    // selected pages in modules
-    const selectedPages = this.modules.flatMap((module: any) =>
-      module?.pages
-        .filter((page: any) => page.read)
-        .map((page: any) => ({
-          pageId: page?.id,
-          read: page?.read,
-          create: page?.create,
-          update: page?.update,
-          delete: page?.delete,
-        }))
-    );
-
-    if (this.addForm.valid && selectedPages.length > 0) {
+    if (this.addForm.valid) {
       let data = {
         ...this.addForm.value,
-        permissions: selectedPages,
       };
-
       console.log(data);
       this.uploading = true;
       // api
-      this.apiService.add('roles/add', data).subscribe({
-        next: (data: any) => {
+      this.apiService.add('warranty/add', data).subscribe({
+        next: (data) => {
           console.log(data);
           if (data?.isSuccess) {
             if (this.currentLanguage == 'ar') {
@@ -143,7 +90,7 @@ export class AddPermissionComponent implements OnInit, AfterViewInit {
             } else {
               this.toastr.success('data added successfully...', 'Success');
             }
-            this.router.navigate(['/modules/permissions']);
+            this.router.navigate(['/modules/warranty']);
           }
         },
         error: (err: any) => {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
@@ -13,7 +13,7 @@ import { ThemeService } from 'src/app/services/theme/theme.service';
   templateUrl: './edit-service.component.html',
   styleUrls: ['./edit-service.component.css'],
 })
-export class EditServiceComponent implements OnInit {
+export class EditServiceComponent implements OnInit, AfterViewInit {
   addForm: FormGroup;
   loading: boolean = true;
   currentTheme: any;

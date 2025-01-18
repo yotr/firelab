@@ -71,6 +71,10 @@ import { CategoriesComponent } from './categories/categories.component';
 import { AddCategoryComponent } from './categories/components/add-category/add-category.component';
 import { EditCategoryComponent } from './categories/components/edit-category/edit-category.component';
 import { CategoryModuleTableComponent } from './categories/components/category-module-table/category-module-table.component';
+import { WarrantyComponent } from './warranty/warranty.component';
+import { WarrantyModuleTableComponent } from './warranty/components/warranty-module-table/warranty-module-table.component';
+import { AddWarrantyComponent } from './warranty/components/add-warranty/add-warranty.component';
+import { EditWarrantyComponent } from './warranty/components/edit-warranty/edit-warranty.component';
 
 @NgModule({
   declarations: [
@@ -132,7 +136,11 @@ import { CategoryModuleTableComponent } from './categories/components/category-m
     CategoriesComponent,
     AddCategoryComponent,
     EditCategoryComponent,
-    CategoryModuleTableComponent
+    CategoryModuleTableComponent,
+    WarrantyComponent,
+    WarrantyModuleTableComponent,
+    AddWarrantyComponent,
+    EditWarrantyComponent,
   ],
   imports: [
     CommonModule,

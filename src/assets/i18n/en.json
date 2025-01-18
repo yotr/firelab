@@ -580,6 +580,31 @@
       "ar_name": "Arabic Name"
     }
   },
+  "warranty": {
+    "title": "Warranty",
+    "table_title": "Warranty Table",
+    "add_btn": "Add Warranty",
+    "update_title": "Update Warranty",
+    "form": {
+      "name": "Name",
+      "name_required": "Name is required",
+      "period": "Period (In Days)",
+      "period_required": "Period is required",
+      "type": "Type",
+      "type_required": "Type is required",
+      "tolerance": "Customer Tolerance",
+      "tolerance_required": "Tolerance is required",
+      "item": "Item",
+      "service": "Service",
+      "item_and_service": "Item and Service"
+    },
+    "table": {
+      "name": "Name",
+      "period": "Period",
+      "type": "Type",
+      "tolerance": "Tolerance"
+    }
+  },
   "jobs": {
     "jobs_due": {
       "title": "Jobs Due",
