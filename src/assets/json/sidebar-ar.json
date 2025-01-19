@@ -175,6 +175,12 @@
             "page": "وظائفي",
             "code": "CRMM7P3",
             "path": "/modules/task/myJobs"
+          },
+          {
+            "id": 3,
+            "page": "الوظائف",
+            "code": "CRMM7P4",
+            "path": "/modules/task/jobs"
           }
         ]
       },

@@ -362,7 +362,14 @@
       "category_required": "Category is required",
       "type": "Select Type",
       "type_required": "Type is required",
-      "job_id": "Job Id"
+      "job_id": "Job Id",
+      "warranty_status": "Warranty Status",
+      "enabled": "Enabled",
+      "warranty_template": "Warranty Template",
+      "warranty_start_date": "Warranty Start Date",
+      "deficiencies": "Deficiencies",
+      "deficiency": "Deficiency",
+      "add_row": "Add Row"
     },
     "edit_job": {
       "title": "Update Job"
@@ -478,6 +485,18 @@
     "next": "Next",
     "day": "Day",
     "week": "Week",
+    "table": {
+      "job": "Job",
+      "startDate": "Start Date",
+      "endDate": "End Date",
+      "hours": "Hours",
+      "minutes": "Minutes",
+      "meridiem": "Meridiem",
+      "external": "External/Internal",
+      "status": "Status",
+      "completed": "Completed",
+      "uncompleted": "uncompleted"
+    },
     "list": {
       "all": "All",
       "title": "Job List",
@@ -522,7 +541,13 @@
       "add_note": "Add Note",
       "customer_note": "Customer's Note",
       "delete": "Delete",
-      "unassign": "Unassign"
+      "unassign": "Unassign",
+      "schedule": "Schedule",
+      "approval": "Approval To Add Items",
+      "internal": "Internal",
+      "external": "External",
+      "customer_review": "Customer Review First",
+      "approved": "Approved"
     }
   },
   "service_requests": {
@@ -606,6 +631,7 @@
     }
   },
   "jobs": {
+    "title": "Jobs",
     "jobs_due": {
       "title": "Jobs Due",
       "table_title": "Jobs Due Table"

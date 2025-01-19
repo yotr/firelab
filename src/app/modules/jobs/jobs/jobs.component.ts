@@ -8,11 +8,11 @@ import { LanguageService } from 'src/app/services/language/language.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
 
 @Component({
-  selector: 'app-jobs-missed',
-  templateUrl: './jobs-missed.component.html',
-  styleUrls: ['./jobs-missed.component.css'],
+  selector: 'app-jobs',
+  templateUrl: './jobs.component.html',
+  styleUrls: ['./jobs.component.css'],
 })
-export class JobsMissedComponent implements OnInit {
+export class JobsComponent implements OnInit {
   // current language
   currentLanguage: any = localStorage.getItem('lang');
   currentTheme: any;
@@ -35,20 +35,8 @@ export class JobsMissedComponent implements OnInit {
     // private permissionsService: PermissionsService,
     private auth: AuthService
   ) {
-    //   //get id
-    //   this.activatedRoute.queryParamMap.subscribe((paramMap: Params) => {
-    //     if (paramMap['get']('operationid')) {
-    //       this.operationId = paramMap['get']('operationid');
-    //     }
-    //   });
-    //   // get query parameters
-    //   this.activatedRoute.queryParams.subscribe((query) => {
-    //     this.view_type = query['view_type'];
-    //   });
-
-    //   // turn on current language (trandlate)
+    // turn on current language (trandlate)
     this.translateService.use(this.currentLanguage);
-    // this.translateService.instant('clients.client_table.client_id');
     this.dataKeys = [
       {
         name: 'jobId',
@@ -80,12 +68,12 @@ export class JobsMissedComponent implements OnInit {
         type: 'string',
         active: true,
       },
-      // {
-      //   name: 'type',
-      //   display: this.translateService.instant('jobs.table.type'),
-      //   type: 'string',
-      //   active: true,
-      // },
+      {
+        name: 'type',
+        display: this.translateService.instant('jobs.table.type'),
+        type: 'string',
+        active: true,
+      },
     ];
   }
 
@@ -138,7 +126,7 @@ export class JobsMissedComponent implements OnInit {
     this.loading = true;
     this.apiService
       ?.filterData(
-        'assignedJobs/getFilteredMissedAssignedJobs',
+        'jobs/getFilteredJobs',
         page ? page : 1,
         pageSize ? pageSize : 20
       )
@@ -146,7 +134,7 @@ export class JobsMissedComponent implements OnInit {
         next: (data: any) => {
           console.log(data);
           if (data?.isSuccess) {
-            this.data = data?.value?.jobsDtos;
+            this.data = data?.value?.jobDto;
             this.totalItemsCount = data?.value?.totalCount;
             this.getDataError = false;
           }
@@ -170,30 +158,30 @@ export class JobsMissedComponent implements OnInit {
   }
 
   search(event: any) {
-    // if (event?.value != null && event.value?.trim() != '') {
-    //   this.apiService
-    //     .globalSearch('assignedJobs/globalsearch', event?.value, event?.column)
-    //     .subscribe({
-    //       next: (data: any) => {
-    //         if (data?.isSuccess) {
-    //           console.log(data);
-    //           this.data = data?.value;
-    //           this.totalItemsCount = data?.value?.length;
-    //         }
-    //         this.loading = false;
-    //       },
-    //       error: (err: any) => {
-    //         this.loading = false;
-    //         if (this.currentLanguage == 'ar') {
-    //           this.toastr.error('هناك شيء خاطئ', 'خطأ');
-    //         } else {
-    //           this.toastr.error('There Is Somthing Wrong', 'Error');
-    //         }
-    //       },
-    //     });
-    // } else {
-    //   this.getData();
-    // }
+    if (event?.value != null && event.value?.trim() != '') {
+      this.apiService
+        .globalSearch('jobs/globalsearch', event?.value, event?.column)
+        .subscribe({
+          next: (data: any) => {
+            if (data?.isSuccess) {
+              console.log(data);
+              this.data = data?.value;
+              this.totalItemsCount = data?.value?.length;
+            }
+            this.loading = false;
+          },
+          error: (err: any) => {
+            this.loading = false;
+            if (this.currentLanguage == 'ar') {
+              this.toastr.error('هناك شيء خاطئ', 'خطأ');
+            } else {
+              this.toastr.error('There Is Somthing Wrong', 'Error');
+            }
+          },
+        });
+    } else {
+      this.getData();
+    }
   }
 
   delete(deleteId: any) {
@@ -226,7 +214,7 @@ export class JobsMissedComponent implements OnInit {
     // check if filters operator  contains selected
     this.apiService
       .filterData(
-        'assignedJobs/getFilteredMissedAssignedJobs',
+        'jobs/getFilteredJobs',
         1,
         20,
         event?.column,
@@ -239,7 +227,7 @@ export class JobsMissedComponent implements OnInit {
         next: (data: any) => {
           console.log(data);
           if (data?.isSuccess) {
-            this.data = data?.value?.jobsDtos;
+            this.data = data?.value?.jobDto;
             this.totalItemsCount = data?.value?.totalCount;
             this.loading = false;
           }
@@ -288,4 +276,3 @@ export class JobsMissedComponent implements OnInit {
   //     });
   // }
 }
-

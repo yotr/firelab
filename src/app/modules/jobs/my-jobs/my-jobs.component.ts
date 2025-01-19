@@ -79,12 +79,12 @@ export class MyJobsComponent implements OnInit, AfterViewInit {
         type: 'string',
         active: true,
       },
-      {
-        name: 'type',
-        display: this.translateService.instant('jobs.table.type'),
-        type: 'string',
-        active: true,
-      },
+      // {
+      //   name: 'type',
+      //   display: this.translateService.instant('jobs.table.type'),
+      //   type: 'string',
+      //   active: true,
+      // },
     ];
   }
   ngAfterViewInit(): void {

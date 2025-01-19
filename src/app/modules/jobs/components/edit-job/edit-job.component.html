@@ -125,48 +125,132 @@
         </div>
       </div>
       <div class="col-sm-6">
-        <!-- Type -->
-        <div class="form-group mt-2">
-          <label
-            >{{ "customers.add_job.type" | translate }}
-            <span class="text-danger">*</span></label
-          >
-          <select class="form-select form-control" formControlName="type">
-            <option disabled selected>
-              {{ "select" | translate }}
-            </option>
-            <ng-container *ngFor="let type of types">
-              <option [value]="type?.name">
-                {{ type?.name }}
-              </option>
-            </ng-container>
-            <option *ngIf="!typesLoading && types.length == 0" disabled>
-              {{ "customers.add_job.type_required" | translate }}
-            </option>
-          </select>
-          <!-- errors -->
-          <div
-            *ngIf="addForm.get('type')?.invalid && addForm.get('type')?.touched"
-          >
-            <small
-              *ngIf="
-                addForm.get('type')?.invalid && addForm.get('type')?.touched
-              "
-              class="text-danger"
-            >
-              {{ "customers.add_job.type" | translate }}</small
-            >
-          </div>
-          <!-- errors -->
-        </div>
-      </div>
-      <div class="col-sm-6">
         <!-- Job Id -->
         <div class="form-group mt-2">
           <label>{{ "customers.add_job.job_id" | translate }} </label>
           <input class="form-control" type="text" formControlName="jobId" />
         </div>
       </div>
+      <div class="col-sm-6">
+        <!-- warranty_status -->
+        <div class="form-group mt-2">
+          <label>{{ "customers.add_job.warranty_status" | translate }} </label>
+          <select
+            class="form-select form-control"
+            formControlName="warrantyStatus"
+          >
+            <option [value]="false" selected>
+              {{ "select" | translate }}
+            </option>
+            <option [value]="true">
+              {{ "customers.add_job.enabled" | translate }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div
+        [hidden]="formValues['warrantyStatus'].value == 'false'"
+        class="col-sm-6"
+      >
+        <!-- warrantyId -->
+        <div class="form-group mt-2">
+          <label
+            >{{ "customers.add_job.warranty_template" | translate }}
+          </label>
+          <select class="form-select form-control" formControlName="warrantyId">
+            <option selected>
+              {{ "select" | translate }}
+            </option>
+            <ng-container *ngFor="let warranty of warranties">
+              <option [value]="warranty?.id">
+                {{ warranty?.name }}
+              </option>
+            </ng-container>
+            <option
+              *ngIf="!warrantiesLoading && warranties.length == 0"
+              disabled
+            >
+              {{ "customers.add_job.no_data" | translate }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div
+        [hidden]="formValues['warrantyStatus'].value == 'false'"
+        class="col-sm-6"
+      >
+        <!-- Select Warranty Start Date -->
+        <div class="form-group mt-2">
+          <label
+            >{{ "customers.add_job.warranty_start_date" | translate }}
+          </label>
+          <input
+            class="form-control"
+            type="date"
+            formControlName="warrantyStartDate"
+          />
+        </div>
+      </div>
+      <!-- deficiencies -->
+      <div class="col-sm-12">
+        <div class="form-group mt-2">
+          <label>{{ "customers.add_job.deficiencies" | translate }} </label>
+          <table class="table table-bordered">
+            <thead>
+              <tr class="table-active">
+                <th scope="col">#</th>
+                <th scope="col">
+                  {{ "customers.add_job.deficiency" | translate }}
+                </th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- no data -->
+              <tr>
+                <td colspan="3" [hidden]="deficiencyIds.length != 0">
+                  <div class="text-muted text-center">
+                    {{ "customers.add_job.no_data" | translate }}
+                  </div>
+                </td>
+              </tr>
+              <!-- rows -->
+              <ng-container formArrayName="deficiencyIds">
+                <tr
+                  *ngFor="let item of deficiencyIds.controls; let i = index"
+                  [formGroupName]="i"
+                >
+                  <th scope="row">{{ i }}</th>
+                  <td>{{ formValues["deficiencyIds"].value[i]?.name }}</td>
+                  <td>
+                    <div class="text-center">
+                      <i
+                        class="pi pi-trash"
+                        role="button"
+                        (click)="
+                          removeItem(
+                            i,
+                            formValues['deficiencyIds'].value[i]?.id
+                          )
+                        "
+                      ></i>
+                    </div>
+                  </td>
+                </tr>
+              </ng-container>
+              <!-- add row -->
+              <tr>
+                <td colspan="3">
+                  <div class="add-row" role="button" (click)="addRow()">
+                    {{ "customers.add_job.add_row" | translate }}
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- /deficiencies -->
     </div>
 
     <!-- submit -->
@@ -175,3 +259,11 @@
     </div>
   </form>
 </div>
+
+<!-- loading section -->
+<div *ngIf="uploading">
+  <app-loading-section></app-loading-section>
+</div>
+<!-- /loading section -->
+<!-- add deficiency modal -->
+<app-add-deficiency-modal (onAdd)="addItem($event)"></app-add-deficiency-modal>

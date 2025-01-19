@@ -14,15 +14,27 @@
   <app-back-button></app-back-button>
   <div class="header">
     <ul class="left-section">
-      <li>{{ "job_link.assign_job.contact_name" | translate }}: NA</li>
+      <li>
+        {{ "job_link.assign_job.contact_name" | translate }}:
+        {{ currentJob?.customer?.contactName }}
+      </li>
       <li>
         {{ "job_link.assign_job.job_id" | translate }}: {{ currentJob?.jobId }}
       </li>
-      <li>{{ "job_link.assign_job.email_id" | translate }}: NA</li>
+      <li>
+        {{ "job_link.assign_job.email_id" | translate }}:
+        {{ currentJob?.customer?.email }}
+      </li>
     </ul>
     <ul class="right-section">
-      <li>{{ "job_link.assign_job.office_number" | translate }}: NA</li>
-      <li>{{ "job_link.assign_job.address" | translate }}: NA</li>
+      <li>
+        {{ "job_link.assign_job.office_number" | translate }}:
+        {{ currentJob?.customer?.officePhone }}
+      </li>
+      <li>
+        {{ "job_link.assign_job.address" | translate }}:
+        {{ currentJob?.customer?.address1 }}
+      </li>
     </ul>
   </div>
   <form (ngSubmit)="submit()" [formGroup]="addForm">
@@ -271,9 +283,7 @@
       </div>
       <div class="col-sm-6 mt-2">
         <div class="form-group mt-2">
-          <label for="">{{
-            "job_link.assign_job.add_technicians" | translate
-          }}</label>
+          <label>{{ "job_link.assign_job.add_technicians" | translate }}</label>
           <app-custom-multi-select-dropdown
             minWidth="100%"
             height="44px"
@@ -281,16 +291,52 @@
             [object]="true"
             objectKey="userName"
             [data]="members"
-            [checkedData]="members"
+            [checkedData]="checkedMembers"
             [filter]="true"
             (onAction)="getSelectedMembers($event)"
           ></app-custom-multi-select-dropdown>
         </div>
       </div>
     </div>
-
+    <!-- deficiencies -->
+    <div class="col-sm-12">
+      <div class="form-group mt-2">
+        <label>{{ "customers.add_job.deficiencies" | translate }} </label>
+        <table class="table table-bordered">
+          <thead>
+            <tr class="table-active">
+              <th scope="col">#</th>
+              <th scope="col">
+                {{ "customers.add_job.deficiency" | translate }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- no data -->
+            <tr>
+              <td colspan="2" [hidden]="deficiencyIds.length != 0">
+                <div class="text-muted text-center">
+                  {{ "customers.add_job.no_data" | translate }}
+                </div>
+              </td>
+            </tr>
+            <!-- rows -->
+            <ng-container formArrayName="deficiencyIds">
+              <tr
+                *ngFor="let item of deficiencyIds.controls; let i = index"
+                [formGroupName]="i"
+              >
+                <th scope="row">{{ i }}</th>
+                <td>{{ formValues["deficiencyIds"].value[i]?.name }}</td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- /deficiencies -->
     <!-- notes -->
-    <div class="row">
+    <!-- <div class="row">
       <div class="col-sm-12">
         <div class="notes my-4">
           <div
@@ -346,7 +392,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <!-- submit -->
     <div class="btns">

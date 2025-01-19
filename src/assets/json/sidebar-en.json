@@ -175,6 +175,12 @@
             "page": "My Jobs",
             "code": "CRMM7P3",
             "path": "/modules/task/myJobs"
+          },
+          {
+            "id": 3,
+            "page": "Jobs",
+            "code": "CRMM7P4",
+            "path": "/modules/task/jobs"
           }
         ]
       },

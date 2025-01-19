@@ -80,12 +80,12 @@ export class JobsDueComponent implements OnInit {
         type: 'string',
         active: true,
       },
-      {
-        name: 'type',
-        display: this.translateService.instant('jobs.table.type'),
-        type: 'string',
-        active: true,
-      },
+      // {
+      //   name: 'type',
+      //   display: this.translateService.instant('jobs.table.type'),
+      //   type: 'string',
+      //   active: true,
+      // },
     ];
   }
 

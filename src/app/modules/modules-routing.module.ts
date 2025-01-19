@@ -42,6 +42,7 @@ import { EditCategoryComponent } from './categories/components/edit-category/edi
 import { WarrantyComponent } from './warranty/warranty.component';
 import { AddWarrantyComponent } from './warranty/components/add-warranty/add-warranty.component';
 import { EditWarrantyComponent } from './warranty/components/edit-warranty/edit-warranty.component';
+import { JobsComponent } from './jobs/jobs/jobs.component';
 
 const routes: Routes = [
   {
@@ -172,7 +173,13 @@ const routes: Routes = [
         path: 'task/edit/:id',
         component: EditJobComponent,
         canActivate: [pageGuard],
-        data: { code: 'CRMM7P1', action: 'update' },
+        data: { code: 'CRMM7P4', action: 'update' },
+      },
+      {
+        path: 'task/jobs',
+        component: JobsComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM7P4', action: 'read' },
       },
       // services requests
       {

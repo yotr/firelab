@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api/api.service';
@@ -46,6 +46,7 @@ export class EditAssignedJobComponent implements OnInit, AfterViewInit {
 
   // for durationBy and end date
   isDurationByHours: boolean = true;
+  checkedMembers: any[] = [];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -75,13 +76,37 @@ export class EditAssignedJobComponent implements OnInit, AfterViewInit {
       endDate: [''],
       teamIds: [[], [Validators.required]],
       jobId: [''],
+      external: ['false'],
+      customerApproved: ['false'],
       inspectorNote: [['']],
       customerNote: [['']],
+      deficiencyIds: this.formBuilder.array([]),
     });
     this.hours = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     this.minutes = ['00', '30'];
     this.durations = Array.from({ length: 47 }, (_, index) => 1 + index * 0.5);
   }
+
+  get formValues() {
+    return this.addForm.controls;
+  }
+
+  get deficiencyIds(): FormArray {
+    return this.addForm.get('deficiencyIds') as FormArray;
+  }
+
+  // get items comeing from data
+  addExistingItems(items: any[]): void {
+    items?.map((item: any) => {
+      // push item in items list data
+      let value = this.formBuilder.group({
+        id: item?.id,
+        name: item?.deficiency?.name,
+      });
+      this.deficiencyIds.push(value);
+    });
+  }
+
   ngAfterViewInit(): void {
     this.getCurrentData();
   }
@@ -221,10 +246,10 @@ export class EditAssignedJobComponent implements OnInit, AfterViewInit {
           });
           this.currentJob = data?.value?.job;
           this.deleteId = data?.value?.id;
+          this.addExistingItems(data?.value?.job?.assignedDeficiencies);
 
-          this.members = this.getCheckedMembers(ids);
-          console.log(ids);
-          console.log(this.getCheckedMembers(ids));
+          this.members = this.getWithCheckedMembers(ids);
+          this.checkedMembers = this.getCheckedMembers(ids);
           // check durationBy and set isDurationByHours
           data?.value?.durationBy == 'Hours'
             ? this.isDurationByHours == true
@@ -241,7 +266,7 @@ export class EditAssignedJobComponent implements OnInit, AfterViewInit {
       },
     });
   }
-  getCheckedMembers(teamIds: string[]): any[] {
+  getWithCheckedMembers(teamIds: string[]): any[] {
     return this.members.map((m: any) => {
       if (teamIds.includes(m?.id)) {
         return { ...m, checked: true };
@@ -249,6 +274,16 @@ export class EditAssignedJobComponent implements OnInit, AfterViewInit {
       return m;
     });
   }
+  getCheckedMembers(teamIds: string[]): any[] {
+    let checkedData: any[] = [];
+    this.members.map((m: any) => {
+      if (teamIds.includes(m?.id)) {
+        checkedData.push({ ...m, checked: true });
+      }
+    });
+    return checkedData;
+  }
+
   submit() {
     let date = new Date();
     console.log(this.selectedMembers);
@@ -261,6 +296,9 @@ export class EditAssignedJobComponent implements OnInit, AfterViewInit {
         endDate: this.isDurationByHours
           ? null
           : new Date(this.addForm.get('endDate')?.value)?.toISOString(),
+        external: this.addForm.get('external')?.value == 'true' ? true : false,
+        customerApproved:
+          this.addForm.get('customerApproved')?.value == 'true' ? true : false,
       };
       console.log(data);
       this.uploading = true;
@@ -327,29 +365,29 @@ export class EditAssignedJobComponent implements OnInit, AfterViewInit {
       },
       complete: () => {
         if (assigned) {
-          // update job to be assigned
-          this.apiService
-            .statusChange(
-              `jobs/updateStatus/${
-                this.addForm.get('jobId')?.value
-              }?status=${true}`
-            )
-            .subscribe({
-              next: (data) => {
-                console.log(data);
-                this.router.navigate(['/modules/jobLink'], {
-                  queryParams: { view: 'Week' },
-                });
-              },
-              error: (err: any) => {
-                console.log('Error:', err);
-                if (this.currentLanguage == 'ar') {
-                  this.toastr.error('هناك شيء خاطئ', 'خطأ');
-                } else {
-                  this.toastr.error('There Is Somthing Wrong', 'Error');
-                }
-              },
-            });
+          // // update job to be assigned
+          // this.apiService
+          //   .statusChange(
+          //     `jobs/updateStatus/${
+          //       this.addForm.get('jobId')?.value
+          //     }?status=${true}`
+          //   )
+          //   .subscribe({
+          //     next: (data) => {
+          //       console.log(data);
+          //       this.router.navigate(['/modules/jobLink'], {
+          //         queryParams: { view: 'Week' },
+          //       });
+          //     },
+          //     error: (err: any) => {
+          //       console.log('Error:', err);
+          //       if (this.currentLanguage == 'ar') {
+          //         this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          //       } else {
+          //         this.toastr.error('There Is Somthing Wrong', 'Error');
+          //       }
+          //     },
+          //   });
         }
       },
     });

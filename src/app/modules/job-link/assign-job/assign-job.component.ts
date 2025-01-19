@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api/api.service';
@@ -40,6 +40,7 @@ export class AssignJobComponent implements OnInit, AfterViewInit {
   isNoteActive: boolean = false;
   isInspectorNoteActive: boolean = false;
   isCustomerNoteActive: boolean = false;
+  currentJob: any = null;
   jobId: any = null;
 
   // for durationBy and end date
@@ -72,13 +73,37 @@ export class AssignJobComponent implements OnInit, AfterViewInit {
       duration: [0],
       endDate: [''],
       teamIds: [[], [Validators.required]],
+      external: ['false'],
+      customerApproved: ['false'],
       inspectorNote: [['']],
       customerNote: [['']],
+      deficiencyIds: this.formBuilder.array([]),
     });
     this.hours = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     this.minutes = ['00', '30'];
     this.durations = Array.from({ length: 47 }, (_, index) => 1 + index * 0.5);
   }
+
+  get formValues() {
+    return this.addForm.controls;
+  }
+
+  get deficiencyIds(): FormArray {
+    return this.addForm.get('deficiencyIds') as FormArray;
+  }
+
+  // get items comeing from data
+  addExistingItems(items: any[]): void {
+    items?.map((item: any) => {
+      // push item in items list data
+      let value = this.formBuilder.group({
+        id: item?.id,
+        name: item?.deficiency?.name,
+      });
+      this.deficiencyIds.push(value);
+    });
+  }
+
   ngAfterViewInit(): void {
     this.getMembers();
   }
@@ -86,6 +111,7 @@ export class AssignJobComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.getTheme();
     this.getCurrentActiveUser();
+    this.getCurrentJob();
   }
   // get theme from localStorage
   getTheme() {
@@ -161,9 +187,31 @@ export class AssignJobComponent implements OnInit, AfterViewInit {
   }
 
   getSelectedMembers(members: any) {
-    this.selectedMembers =  members?.checkedData;
+    this.selectedMembers = members?.checkedData;
     let ids = members?.checkedData?.map((item: any) => item?.id);
     this.addForm.patchValue({ teamIds: ids });
+  }
+
+  // get current data
+  getCurrentJob() {
+    this.apiService.getById('jobs', this.jobId).subscribe({
+      next: (data: any) => {
+        console.log(data);
+        if (data?.isSuccess) {
+          //  set values
+          this.currentJob = data?.value;
+          this.addExistingItems(data?.value?.assignedDeficiencies);
+        }
+      },
+      error: (error) => {
+        console.log(error);
+        if (this.currentLanguage == 'ar') {
+          this.toastr.error('هناك شيء خاطئ', 'خطأ');
+        } else {
+          this.toastr.error('There Is Somthing Wrong', 'Error');
+        }
+      },
+    });
   }
 
   trackFun(index: number, item: any): number {
@@ -191,6 +239,8 @@ export class AssignJobComponent implements OnInit, AfterViewInit {
           ? null
           : new Date(this.addForm.get('endDate')?.value)?.toISOString(),
         jobId: this.jobId,
+        external: this.addForm.get('external')?.value == 'true' ? true : false,
+        customerApproved: this.addForm.get('customerApproved')?.value == 'true' ? true : false,
       };
       console.log(data);
       this.uploading = true;
@@ -222,24 +272,24 @@ export class AssignJobComponent implements OnInit, AfterViewInit {
         },
         complete: () => {
           this.uploading = false;
-          if (assigned) {
-            // update job to be assigned
-            this.apiService
-              .statusChange(`jobs/updateStatus/${this.jobId}?status=${true}`)
-              .subscribe({
-                next: (data) => {
-                  console.log(data);
-                },
-                error: (err: any) => {
-                  console.log('Error:', err);
-                  if (this.currentLanguage == 'ar') {
-                    this.toastr.error('هناك شيء خاطئ', 'خطأ');
-                  } else {
-                    this.toastr.error('There Is Somthing Wrong', 'Error');
-                  }
-                },
-              });
-          }
+          // if (assigned) {
+          //   // update job to be assigned
+          //   this.apiService
+          //     .statusChange(`jobs/updateStatus/${this.jobId}?status=${true}`)
+          //     .subscribe({
+          //       next: (data) => {
+          //         console.log(data);
+          //       },
+          //       error: (err: any) => {
+          //         console.log('Error:', err);
+          //         if (this.currentLanguage == 'ar') {
+          //           this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          //         } else {
+          //           this.toastr.error('There Is Somthing Wrong', 'Error');
+          //         }
+          //       },
+          //     });
+          // }
         },
       });
     } else {

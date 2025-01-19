@@ -361,7 +361,14 @@
       "category_required": "الفئة مطلوبة",
       "type": "حدد النوع",
       "type_required": "النوع مطلوب",
-      "job_id": "معرف الوظيفة"
+      "job_id": "معرف الوظيفة",
+      "warranty_status": "حالة الضمان",
+      "enabled": "مُمَكَّن",
+      "warranty_template": "نموذج الضمان",
+      "warranty_start_date": "تاريخ بدء الضمان",
+      "deficiencies": "أعطال",
+      "deficiency": "العطل",
+      "add_row": "أضف صف"
     },
     "edit_job": {
       "title": "تحديث الوظيفة"
@@ -477,6 +484,18 @@
     "next": "التالي",
     "day": "يوم",
     "week": "أسبوع",
+    "table": {
+      "job": "الوظيفة",
+      "startDate": "تاريخ البدء",
+      "endDate": "تاريخ النهاية",
+      "hours": "ساعات",
+      "minutes": "دقائق",
+      "meridiem": "صباحا/ ومساء",
+      "external": "خارجي/داخلي",
+      "status": "حالة",
+      "completed": "مكتمل",
+      "uncompleted": "غير مكتمل"
+    },
     "list": {
       "all": "كل",
       "title": "قائمة الوظائف",
@@ -521,7 +540,13 @@
       "add_note": "أضف ملاحظة",
       "customer_note": "ملاحظة العميل",
       "delete": "حذف",
-      "unassign": "إلغاء التعيين"
+      "unassign": "إلغاء التعيين",
+      "schedule": "منطقة العمل",
+      "approval": "الموافقة على إضافة عناصر",
+      "internal": "داخلي",
+      "external": "خارجي",
+      "customer_review": "مراجعة العميل أولاً",
+      "approved": "موافقة"
     }
   },
   "service_requests": {
@@ -605,6 +630,7 @@
     }
   },
   "jobs": {
+    "title":"الوظائف",
     "jobs_due": {
       "title": "الوظائف المستحقة",
       "table_title": "جدول الوظائف المستحقة"
