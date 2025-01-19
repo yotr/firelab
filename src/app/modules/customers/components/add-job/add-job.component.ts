@@ -96,17 +96,19 @@ export class AddJobComponent implements OnInit, AfterViewInit {
   addItem(data: any) {
     $('#add_deficiency_modal').modal('hide');
     if (data != null && data?.id && data?.name) {
-      this.deficiencyIds.value?.map((d: any) => {
-        if (d.id == data.id) {
-          if (this.currentLanguage == 'ar') {
-            this.toastr.warning('هذا العنصر موجود بالفعل');
-          } else {
-            this.toastr.warning('this item already exist');
-          }
+      let isExist = this.deficiencyIds.value?.find(
+        (d: any) => d.id == data?.id
+      );
+
+      if (isExist != undefined) {
+        if (this.currentLanguage == 'ar') {
+          this.toastr.warning('هذا العنصر موجود بالفعل');
         } else {
-          this.deficiencyIds.push(this.newItem(data));
+          this.toastr.warning('this item already exist');
         }
-      });
+      } else {
+        this.deficiencyIds.push(this.newItem(data));
+      }
     }
   }
   //removing rows from table

@@ -244,7 +244,6 @@ export class EditPermissionComponent implements OnInit, AfterViewInit {
             this.uploading = false;
           },
           complete: () => {
-            this.uploading = false;
             // if (roleUpdated) {
             //   this.createNewPermissions(selectedPages, this.updateId);
             // }
@@ -309,7 +308,7 @@ export class EditPermissionComponent implements OnInit, AfterViewInit {
     this.apiService.add(`permissions/add`, data).subscribe({
       next: (data: any) => {
         console.log(data);
-        if (data?.isSuccess) {
+        if (data?.result?.isSuccess) {
           if (this.currentLanguage == 'ar') {
             this.toastr.success('تمت إضافة البيانات بنجاح...');
           } else {
@@ -327,9 +326,7 @@ export class EditPermissionComponent implements OnInit, AfterViewInit {
         }
         this.uploading = false;
       },
-      complete: () => {
-        this.uploading = false;
-      },
+      complete: () => {},
     });
   }
 
@@ -364,9 +361,7 @@ export class EditPermissionComponent implements OnInit, AfterViewInit {
         }
         this.uploading = false;
       },
-      complete: () => {
-        this.uploading = false;
-      },
+      complete: () => {},
     });
   }
   deletePermissions(id: any) {
@@ -391,9 +386,7 @@ export class EditPermissionComponent implements OnInit, AfterViewInit {
         }
         this.uploading = false;
       },
-      complete: () => {
-        this.uploading = false;
-      },
+      complete: () => {},
     });
   }
   // //
