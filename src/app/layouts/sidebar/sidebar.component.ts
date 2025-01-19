@@ -116,12 +116,15 @@ export class SidebarComponent implements OnInit, AfterViewInit {
               return link;
             }
           } else if (link?.list != undefined) {
-            link?.list?.filter((item: any) => {
+            var newList = link.list?.filter((item: any) => {
               let isMatch = this.checkPagePermission(item?.code);
               if (isMatch) {
-                return link;
+                return item;
               }
             });
+            if (newList.length > 0) {
+              return newList;
+            }
           }
         });
 
@@ -149,12 +152,15 @@ export class SidebarComponent implements OnInit, AfterViewInit {
               return link;
             }
           } else if (link?.list != undefined) {
-            link?.list?.filter((item: any) => {
+            var newList = link.list?.filter((item: any) => {
               let isMatch = this.checkPagePermission(item?.code);
               if (isMatch) {
-                return link;
+                return item;
               }
             });
+            if (newList.length > 0) {
+              return newList;
+            }
           }
         });
 
