@@ -213,7 +213,7 @@
                       key?.name != 'reportCategory' && key?.name != 'dateTime'
                     "
                   >
-                    {{ value[key?.name] }}
+                    {{ value[key?.name] ? value[key?.name] : '_' }}
                   </ng-container>
                   <!-- reportCategory -->
                   <ng-container *ngIf="key?.name == 'reportCategory'">

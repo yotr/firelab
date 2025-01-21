@@ -12,6 +12,31 @@
   <!-- /Page Header -->
 
   <app-back-button></app-back-button>
+  <div class="header">
+    <ul class="left-section">
+      <li>
+        {{ "job_link.assign_job.contact_name" | translate }}:
+        {{ currentJob?.customer?.contactName }}
+      </li>
+      <li>
+        {{ "job_link.assign_job.job_id" | translate }}: {{ currentJob?.jobId }}
+      </li>
+      <li>
+        {{ "job_link.assign_job.email_id" | translate }}:
+        {{ currentJob?.customer?.email }}
+      </li>
+    </ul>
+    <ul class="right-section">
+      <li>
+        {{ "job_link.assign_job.office_number" | translate }}:
+        {{ currentJob?.customer?.officePhone }}
+      </li>
+      <li>
+        {{ "job_link.assign_job.address" | translate }}:
+        {{ currentJob?.customer?.address1 }}
+      </li>
+    </ul>
+  </div>
   <!-- content -->
 
   <form (ngSubmit)="submit()" [formGroup]="addForm">

@@ -237,7 +237,8 @@ export class AssignPartsModalComponent implements OnInit, AfterViewInit {
     if (this.addForm.valid) {
       if (
         this.selectedPart?.quantity - this.selectedPart?.vehicleQty >=
-        this.addForm.get('quantity')?.value
+          this.addForm.get('quantity')?.value &&
+        this.addForm.get('qty')?.value != 0
       ) {
         let addData = {
           ...this.selectedPart,

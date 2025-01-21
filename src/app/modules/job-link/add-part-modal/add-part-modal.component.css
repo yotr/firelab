@@ -1,29 +1,3 @@
-.header {
-  display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  padding-top: 20px;
-  border-bottom: 2px dashed #ccc;
-  margin-bottom: 20px;
-}
-
-.left-section,
-.right-section {
-  flex: 1;
-  padding: 0;
-  margin: 0;
-}
-.left-section li,
-.right-section li {
-  margin-bottom: 20px;
-}
-
-.btns {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .save-btn {
   display: flex;
   justify-content: center;
@@ -54,11 +28,4 @@
 
 .form-control {
   background-color: #fafafacc;
-}
-
-.trash-icon {
-  cursor: pointer;
-  font-size: larger;
-  position: absolute;
-  right: 15px;
 }

@@ -551,7 +551,14 @@
       "services": "Services",
       "service": "Service",
       "cost": "Cost",
-      "service_total": "Service Total"
+      "service_total": "Service Total",
+      "parts": "Parts",
+      "part": "Part",
+      "qty": "Qty",
+      "rate": "Rate",
+      "amount": "Amount",
+      "parts_total": "Parts Total",
+      "grand_total": "Grand Total"
     }
   },
   "service_requests": {

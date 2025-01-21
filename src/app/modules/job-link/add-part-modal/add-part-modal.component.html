@@ -1,0 +1,72 @@
+<div class="modal custom-modal fade" id="add_part_modal" role="dialog">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="form-header">
+          <h3>{{ "job_link.assign_job.parts" | translate }}</h3>
+        </div>
+        <form [formGroup]="addForm">
+          <div class="row">
+            <!-- deficiencies -->
+            <div class="col-sm-12">
+              <div class="form-group mt-2">
+                <label
+                  >{{ "job_link.assign_job.part" | translate }}
+                  <span class="text-danger">*</span></label
+                >
+                <app-custom-filter-dropdown
+                  minWidth="100%"
+                  objectKey="partName"
+                  [data]="parts"
+                  (onAction)="onSelect($event)"
+                  (onFilter)="onFilter($event)"
+                ></app-custom-filter-dropdown>
+              </div>
+            </div>
+            <!-- Quantity -->
+            <div class="col-sm-12">
+              <div class="form-group mt-2">
+                <label
+                  >{{ "job_link.assign_job.qty" | translate }}
+                  <span [hidden]="selectedParts == null">{{
+                    selectedParts?.quantity -
+                      selectedParts?.vehicleQty -
+                      addForm.get("qty")?.value +
+                      " ) "
+                  }}</span>
+                  <span class="text-danger">*</span></label
+                >
+                <input
+                  type="number"
+                  class="form-control"
+                  formControlName="qty"
+                />
+              </div>
+            </div>
+            <!-- Quantity -->
+            <div class="col-sm-12">
+              <div class="form-group mt-2">
+                <label
+                  >{{ "job_link.assign_job.rate" | translate }}
+                  {{ " egp or $" }}
+                </label>
+                <input
+                  type="number"
+                  class="form-control"
+                  formControlName="rate"
+                  readonly
+                />
+              </div>
+            </div>
+          </div>
+          <!-- submit -->
+          <div class="save-btn">
+            <button class="save mt-4" (click)="submit()">
+              {{ "add" | translate }}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

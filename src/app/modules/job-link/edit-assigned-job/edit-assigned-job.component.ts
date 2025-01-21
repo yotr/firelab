@@ -49,6 +49,7 @@ export class EditAssignedJobComponent implements OnInit, AfterViewInit {
   isDurationByHours: boolean = true;
   checkedMembers: any[] = [];
   servicesTotal: any = '00.00';
+  partsTotal: any = '00.00';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -83,6 +84,7 @@ export class EditAssignedJobComponent implements OnInit, AfterViewInit {
       customerNote: [['']],
       deficiencyIds: this.formBuilder.array([]),
       services: this.formBuilder.array([]),
+      parts: this.formBuilder.array([]),
     });
     this.hours = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     this.minutes = ['00', '30'];
@@ -100,6 +102,11 @@ export class EditAssignedJobComponent implements OnInit, AfterViewInit {
   get services(): FormArray {
     return this.addForm.get('services') as FormArray;
   }
+  get parts(): FormArray {
+    return this.addForm.get('parts') as FormArray;
+  }
+
+  // service
   newServiceItem(id: any, data: any): FormGroup {
     return this.formBuilder.group({
       id: id,
@@ -111,7 +118,9 @@ export class EditAssignedJobComponent implements OnInit, AfterViewInit {
     $('#add_service_modal').modal('hide');
     if (data != null && data?.id && data?.name && data?.cost) {
       let isExistById = this.services.value?.find((d: any) => d.id == data?.id);
-      let isExistByName = this.services.value?.find((d: any) => d.name == data?.name);
+      let isExistByName = this.services.value?.find(
+        (d: any) => d.name == data?.name
+      );
 
       if (isExistByName != undefined) {
         if (this.currentLanguage == 'ar') {
@@ -130,6 +139,44 @@ export class EditAssignedJobComponent implements OnInit, AfterViewInit {
   }
   addServiceRow() {
     $('#add_service_modal').modal('show');
+  }
+  // part
+  newPartItem(id: any, data: any): FormGroup {
+    return this.formBuilder.group({
+      id: id,
+      name: data.name,
+      qty: data.qty,
+      rate: data.rate,
+      quantity: data.quantity,
+      partId: data.partId,
+    });
+  }
+  addPartItem(data: any) {
+    console.log(data);
+    $('#add_part_modal').modal('hide');
+    if (data != null && data?.partId && data?.qty && data?.rate && data?.name) {
+      let isExistById = this.parts.value?.find((d: any) => d.id == data?.id);
+      let isExistByName = this.parts.value?.find(
+        (d: any) => d.name == data?.name
+      );
+
+      if (isExistByName != undefined) {
+        if (this.currentLanguage == 'ar') {
+          this.toastr.warning('هذا العنصر موجود بالفعل');
+        } else {
+          this.toastr.warning('this item already exist');
+        }
+      } else {
+        this.addPart(data);
+      }
+    }
+  }
+  //removing rows from table
+  removeParItem(i: any, part: any): void {
+    this.deletePart(part, i);
+  }
+  addPartRow() {
+    $('#add_part_modal').modal('show');
   }
 
   // get Deficiencies coming from data
@@ -162,6 +209,30 @@ export class EditAssignedJobComponent implements OnInit, AfterViewInit {
       0
     );
     this.servicesTotal = totalCost;
+  }
+
+  // get Parts coming from data
+  addExistingPartsItems(items: any[]): void {
+    items?.map((item: any) => {
+      // push item in items list data
+      let value = this.formBuilder.group({
+        id: item?.id,
+        name: item?.part?.partName,
+        qty: item?.qty,
+        rate: item?.rate,
+        quantity: item?.part?.quantity,
+        partId: item?.part?.id,
+      });
+      this.parts.push(value);
+    });
+
+    // get parts totall cost
+    const totalCost = this.parts.value?.reduce(
+      (sum: any, item: any) => sum + item?.rate * item?.qty,
+      0
+    );
+
+    this.partsTotal = totalCost;
   }
 
   ngAfterViewInit(): void {
@@ -307,6 +378,7 @@ export class EditAssignedJobComponent implements OnInit, AfterViewInit {
             data?.value?.job?.assignedDeficiencies
           );
           this.addExistingServicesItems(data?.value?.assignedServices);
+          this.addExistingPartsItems(data?.value?.assignedJobsParts);
           this.members = this.getWithCheckedMembers(ids);
           this.checkedMembers = this.getCheckedMembers(ids);
           // check durationBy and set isDurationByHours
@@ -344,61 +416,68 @@ export class EditAssignedJobComponent implements OnInit, AfterViewInit {
   }
 
   submit() {
-    let date = new Date();
-    console.log(this.selectedMembers);
-    if (this.addForm.valid) {
-      let data = {
-        ...this.addForm.value,
-        startDate: new Date(
-          this.addForm.get('startDate')?.value
-        )?.toISOString(),
-        endDate: this.isDurationByHours
-          ? null
-          : new Date(this.addForm.get('endDate')?.value)?.toISOString(),
-        external: this.addForm.get('external')?.value == 'true' ? true : false,
-        customerApproved:
-          this.addForm.get('customerApproved')?.value == 'true' ? true : false,
-      };
-      console.log(data);
-      this.uploading = true;
-      let assigned = false;
-      // api
-      this.apiService
-        .update('assignedJobs', this.assignedJobId, data)
-        .subscribe({
-          next: (data) => {
-            console.log(data);
-            if (data?.isSuccess) {
-              assigned = true;
-              if (this.currentLanguage == 'ar') {
-                this.toastr.success('تمت إضافة البيانات بنجاح...');
-              } else {
-                this.toastr.success('data added successfully...', 'Success');
+    const isFormChanged = this.addForm.dirty;
+
+    if (isFormChanged) {
+      if (this.addForm.valid) {
+        let data = {
+          ...this.addForm.value,
+          startDate: new Date(
+            this.addForm.get('startDate')?.value
+          )?.toISOString(),
+          endDate: this.isDurationByHours
+            ? null
+            : new Date(this.addForm.get('endDate')?.value)?.toISOString(),
+          external:
+            this.addForm.get('external')?.value == 'true' ? true : false,
+          customerApproved:
+            this.addForm.get('customerApproved')?.value == 'true'
+              ? true
+              : false,
+        };
+        console.log(data);
+        this.uploading = true;
+        let assigned = false;
+        // api
+        this.apiService
+          .update('assignedJobs', this.assignedJobId, data)
+          .subscribe({
+            next: (data) => {
+              console.log(data);
+              if (data?.isSuccess) {
+                assigned = true;
+                if (this.currentLanguage == 'ar') {
+                  this.toastr.success('تمت إضافة البيانات بنجاح...');
+                } else {
+                  this.toastr.success('data added successfully...', 'Success');
+                }
+                this.router.navigate(['/modules/jobLink'], {
+                  queryParams: { view: 'Week' },
+                });
               }
-              this.router.navigate(['/modules/jobLink'], {
-                queryParams: { view: 'Week' },
-              });
-            }
-          },
-          error: (err: any) => {
-            console.log('Error:', err);
-            if (this.currentLanguage == 'ar') {
-              this.toastr.error('هناك شيء خاطئ', 'خطأ');
-            } else {
-              this.toastr.error('There Is Somthing Wrong', 'Error');
-            }
-            this.uploading = false;
-          },
-          complete: () => {
-            this.uploading = false;
-          },
-        });
-    } else {
-      if (this.currentLanguage == 'ar') {
-        this.toastr.warning('الرجاء إدخال الحقول المطلوبة');
+            },
+            error: (err: any) => {
+              console.log('Error:', err);
+              if (this.currentLanguage == 'ar') {
+                this.toastr.error('هناك شيء خاطئ', 'خطأ');
+              } else {
+                this.toastr.error('There Is Somthing Wrong', 'Error');
+              }
+              this.uploading = false;
+            },
+            complete: () => {
+              this.uploading = false;
+            },
+          });
       } else {
-        this.toastr.warning('Please enter the required fields');
+        if (this.currentLanguage == 'ar') {
+          this.toastr.warning('الرجاء إدخال الحقول المطلوبة');
+        } else {
+          this.toastr.warning('Please enter the required fields');
+        }
       }
+    } else {
+      history.back();
     }
   }
   unassignJob() {
@@ -629,6 +708,116 @@ export class EditAssignedJobComponent implements OnInit, AfterViewInit {
         );
         this.servicesTotal = totalCost;
       },
+    });
+  }
+
+  //add Part
+  addPart(value: any): void {
+    let newData = {
+      partId: value.partId,
+      assignedJobId: this.assignedJobId,
+      qty: value.qty,
+      rate: value.rate,
+    };
+    // api
+    this.apiService.add('assignedJobsParts/add', newData).subscribe({
+      next: (data) => {
+        console.log(data);
+        if (data?.isSuccess) {
+          this.parts.push(this.newPartItem(data?.value?.id, value));
+          if (this.currentLanguage == 'ar') {
+            this.toastr.success('تمت إضافة البيانات بنجاح...');
+          } else {
+            this.toastr.success('data added successfully...', 'Success');
+          }
+
+          let newQty = value?.quantity - newData?.qty;
+          this.updatePartQuantity(newData?.partId, newQty);
+        }
+      },
+      error: (err: any) => {
+        console.log('Error:', err);
+        if (this.currentLanguage == 'ar') {
+          this.toastr.error('هناك شيء خاطئ', 'خطأ');
+        } else {
+          this.toastr.error('There Is Somthing Wrong', 'Error');
+        }
+        this.uploading = false;
+      },
+      complete: () => {
+        this.uploading = false;
+        // get parts totall cost
+        const totalCost = this.parts.value?.reduce(
+          (sum: any, item: any) => sum + item?.rate * item?.qty,
+          0
+        );
+        this.partsTotal = totalCost;
+      },
+    });
+  }
+
+  //add Part
+  deletePart(part: any, i: number) {
+    // api
+    this.apiService.delete('assignedJobsParts', part?.id).subscribe({
+      next: (data) => {
+        console.log(data);
+        if (data?.isSuccess) {
+          this.parts.removeAt(i);
+          if (this.currentLanguage == 'ar') {
+            this.toastr.success('تمت حذف البيانات بنجاح...');
+          } else {
+            this.toastr.success('data deleted successfully...', 'Success');
+          }
+          let qty = part?.quantity + part?.qty;
+          // console.log(qty);
+          this.updatePartQuantity(part?.partId, qty);
+        }
+      },
+      error: (err: any) => {
+        console.log('Error:', err);
+        if (this.currentLanguage == 'ar') {
+          this.toastr.error('هناك شيء خاطئ', 'خطأ');
+        } else {
+          this.toastr.error('There Is Somthing Wrong', 'Error');
+        }
+        this.uploading = false;
+      },
+      complete: () => {
+        this.uploading = false;
+        const totalCost = this.parts.value?.reduce(
+          (sum: any, item: any) => sum + item?.rate * item?.qty,
+          0
+        );
+        this.partsTotal = totalCost;
+      },
+    });
+  }
+
+  updatePartQuantity(id: any, qty: number) {
+    let newQty = {
+      qty: qty,
+    };
+    // update
+    this.apiService.update(`parts/updateQty`, id, newQty).subscribe({
+      next: (data) => {
+        if (data?.isSuccess) {
+          if (this.currentLanguage == 'ar') {
+            this.toastr.success('تم تحديث العنصر بنجاح...');
+          } else {
+            this.toastr.success('item updated successfully...');
+          }
+        }
+      },
+      error: (err: any) => {
+        console.log('Error:', err);
+        if (this.currentLanguage == 'ar') {
+          this.toastr.error('هناك شيء خاطئ', 'خطأ');
+        } else {
+          this.toastr.error('There Is Somthing Wrong', 'Error');
+        }
+      },
+      complete: () => {},
     });
   }
 }

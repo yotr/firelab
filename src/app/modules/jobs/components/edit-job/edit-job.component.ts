@@ -27,6 +27,7 @@ export class EditJobComponent implements OnInit, AfterViewInit {
   warranties: any[] = [];
   warrantiesLoading: boolean = true;
   warrantiesGetDataError: boolean = false;
+  currentJob: any = null;
 
   updateId: any = null;
   uploading: boolean = false;
@@ -229,8 +230,12 @@ export class EditJobComponent implements OnInit, AfterViewInit {
             name: data?.value?.name,
             customerId: data?.value?.customerId,
             status: data?.value?.status,
+            warrantyStatus: data?.value?.warrantyStatus,
+            warrantyId: data?.value?.warrantyId,
+            warrantyStartDate: this.formatDate(data?.value?.warrantyStartDate),
           });
 
+          this.currentJob = data?.value;
           this.addExistingItems(data?.value?.assignedDeficiencies);
         }
       },
@@ -246,51 +251,58 @@ export class EditJobComponent implements OnInit, AfterViewInit {
   }
 
   submit() {
-    if (this.addForm.valid) {
-      let data = {
-        ...this.addForm.value,
-        name: this.addForm.get('description')?.value,
-        warrantyStatus:
-          this.formValues['warrantyStatus'].value == 'true' ? true : false,
-        deficiencyIds: null,
-      };
-      console.log(data);
-      this.uploading = true;
-      // api
-      this.apiService.update('jobs', this.updateId, data).subscribe({
-        next: (data) => {
-          console.log(data);
-          if (data?.isSuccess) {
-            if (this.currentLanguage == 'ar') {
-              this.toastr.success('تمت إضافة البيانات بنجاح...');
-            } else {
-              this.toastr.success('data added successfully...', 'Success');
+    const isFormChanged = this.addForm.dirty;
+
+    if (isFormChanged) {
+      if (this.addForm.valid) {
+        let data = {
+          ...this.addForm.value,
+          name: this.addForm.get('description')?.value,
+          warrantyStatus:
+            this.formValues['warrantyStatus'].value == 'true' ? true : false,
+          deficiencyIds: null,
+        };
+        console.log(data);
+        this.uploading = true;
+        // api
+        this.apiService.update('jobs', this.updateId, data).subscribe({
+          next: (data) => {
+            console.log(data);
+            if (data?.isSuccess) {
+              if (this.currentLanguage == 'ar') {
+                this.toastr.success('تمت إضافة البيانات بنجاح...');
+              } else {
+                this.toastr.success('data added successfully...', 'Success');
+              }
+              window.history.back();
+              // this.router.navigate(['/modules/customers/addJob'], {
+              //   queryParams: { customerId: this.customerId },
+              // });
             }
-            window.history.back();
-            // this.router.navigate(['/modules/customers/addJob'], {
-            //   queryParams: { customerId: this.customerId },
-            // });
-          }
-        },
-        error: (err: any) => {
-          console.log('Error:', err);
-          if (this.currentLanguage == 'ar') {
-            this.toastr.error('هناك شيء خاطئ', 'خطأ');
-          } else {
-            this.toastr.error('There Is Somthing Wrong', 'Error');
-          }
-          this.uploading = false;
-        },
-        complete: () => {
-          this.uploading = false;
-        },
-      });
-    } else {
-      if (this.currentLanguage == 'ar') {
-        this.toastr.warning('الرجاء إدخال الحقول المطلوبة');
+          },
+          error: (err: any) => {
+            console.log('Error:', err);
+            if (this.currentLanguage == 'ar') {
+              this.toastr.error('هناك شيء خاطئ', 'خطأ');
+            } else {
+              this.toastr.error('There Is Somthing Wrong', 'Error');
+            }
+            this.uploading = false;
+          },
+          complete: () => {
+            this.uploading = false;
+          },
+        });
       } else {
-        this.toastr.warning('Please enter the required fields');
+        if (this.currentLanguage == 'ar') {
+          this.toastr.warning('الرجاء إدخال الحقول المطلوبة');
+        } else {
+          this.toastr.warning('Please enter the required fields');
+        }
       }
+    } else {
+      console.log('No changes in the form');
+      history.back();
     }
   }
 

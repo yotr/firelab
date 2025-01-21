@@ -550,7 +550,14 @@
       "services": "الخدمات",
       "service": "الخدمة",
       "cost": "التكلفة",
-      "service_total": "مجموع الخدمات"
+      "service_total": "مجموع الخدمات",
+      "parts": "أجزاء",
+      "part": "جزء",
+      "qty": "الكمية",
+      "rate": "سعر",
+      "amount": "المجموع",
+      "parts_total": "مجموع الاجزاء",
+      "grand_total": "المجموع الإجمالي"
     }
   },
   "service_requests": {
@@ -634,7 +641,7 @@
     }
   },
   "jobs": {
-    "title":"الوظائف",
+    "title": "الوظائف",
     "jobs_due": {
       "title": "الوظائف المستحقة",
       "table_title": "جدول الوظائف المستحقة"

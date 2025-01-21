@@ -428,6 +428,123 @@
     </div>
     <!-- /srvices total -->
 
+    <!-- parts -->
+    <div class="col-sm-12">
+      <div class="form-group mt-2">
+        <label>{{ "job_link.assign_job.parts" | translate }} </label>
+        <table class="table table-bordered">
+          <thead>
+            <tr class="table-active">
+              <th scope="col">#</th>
+              <th scope="col">
+                {{ "job_link.assign_job.part" | translate }}
+              </th>
+              <th scope="col">
+                {{ "job_link.assign_job.qty" | translate }}
+              </th>
+              <th scope="col">
+                {{ "job_link.assign_job.rate" | translate }}
+              </th>
+              <th scope="col">
+                {{ "job_link.assign_job.amount" | translate }}
+              </th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- no data -->
+            <tr>
+              <td colspan="5" [hidden]="parts.length != 0">
+                <div class="text-muted text-center">
+                  {{ "customers.add_job.no_data" | translate }}
+                </div>
+              </td>
+            </tr>
+            <!-- rows -->
+            <ng-container formArrayName="parts">
+              <tr
+                *ngFor="let item of parts.controls; let i = index"
+                [formGroupName]="i"
+              >
+                <th scope="row">{{ i }}</th>
+                <td>{{ formValues["parts"].value[i]?.name }}</td>
+                <td>{{ formValues["parts"].value[i]?.qty }}</td>
+                <td>{{ formValues["parts"].value[i]?.rate }}</td>
+                <td>
+                  {{
+                    formValues["parts"].value[i]?.rate *
+                      formValues["parts"].value[i]?.qty
+                  }}
+                </td>
+                <td>
+                  <div class="text-center">
+                    <i
+                      class="pi pi-trash"
+                      role="button"
+                      (click)="removeParItem(i, formValues['parts'].value[i])"
+                    ></i>
+                  </div>
+                </td>
+              </tr>
+            </ng-container>
+            <!-- add row -->
+            <tr>
+              <td colspan="3">
+                <div class="add-row" role="button" (click)="addPartRow()">
+                  {{ "customers.add_job.add_row" | translate }}
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- /parts -->
+    <!-- parts total -->
+    <div class="row">
+      <!-- total parts -->
+      <div class="col-sm-6">
+        <div class="form-group mt-2">
+          <label> {{ "job_link.assign_job.parts" | translate }} </label>
+          <input
+            class="form-control bg-secondary"
+            type="text"
+            [value]="parts.length"
+            readonly
+          />
+        </div>
+      </div>
+      <!-- total cost -->
+      <div class="col-sm-6">
+        <div class="form-group mt-2">
+          <label> {{ "job_link.assign_job.parts_total" | translate }} </label>
+          <input
+            class="form-control bg-secondary"
+            type="text"
+            [value]="partsTotal + ' egp or $'"
+            readonly
+          />
+        </div>
+      </div>
+    </div>
+    <!-- /parts total -->
+    <!-- grand total -->
+    <div class="row">
+      <!-- total -->
+      <div class="col-sm-6">
+        <div class="form-group mt-2">
+          <label> {{ "job_link.assign_job.grand_total" | translate }} </label>
+          <input
+            class="form-control bg-secondary"
+            type="text"
+            [value]="servicesTotal + partsTotal + ' egp or $'"
+            readonly
+          />
+        </div>
+      </div>
+    </div>
+    <!-- /grand total -->
+
     <!-- notes -->
     <!-- <div class="row">
       <div class="col-sm-12">
@@ -509,3 +626,5 @@
 </div>
 <!-- add service modal -->
 <app-add-service-modal (onAdd)="addServiceItem($event)"></app-add-service-modal>
+<!-- add parts modal -->
+<app-add-part-modal (onAdd)="addPartItem($event)"></app-add-part-modal>

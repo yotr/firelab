@@ -401,52 +401,59 @@ export class EditRecurringInspectionsComponent
 
   //update a new
   submit() {
-    if (this.addForm.valid) {
-      let data = {
-        ...this.addForm.value,
-        customerId: this.customerId,
-      };
-      console.log(data);
-      this.uploading = true;
-      // api
-      this.apiService
-        .update('recurringInspections', this.updateId, data)
-        .subscribe({
-          next: (data) => {
-            console.log(data);
-            if (data?.isSuccess) {
-              if (this.currentLanguage == 'ar') {
-                this.toastr.success('تمت إضافة البيانات بنجاح...');
-              } else {
-                this.toastr.success('data added successfully...', 'Success');
-              }
-              this.router.navigate(
-                ['/modules/customers/recurringInspections'],
-                {
-                  queryParams: { customerId: this.customerId },
+    const isFormChanged = this.addForm.dirty;
+
+    if (isFormChanged) {
+      if (this.addForm.valid) {
+        let data = {
+          ...this.addForm.value,
+          customerId: this.customerId,
+        };
+        console.log(data);
+        this.uploading = true;
+        // api
+        this.apiService
+          .update('recurringInspections', this.updateId, data)
+          .subscribe({
+            next: (data) => {
+              console.log(data);
+              if (data?.isSuccess) {
+                if (this.currentLanguage == 'ar') {
+                  this.toastr.success('تمت إضافة البيانات بنجاح...');
+                } else {
+                  this.toastr.success('data added successfully...', 'Success');
                 }
-              );
-            }
-          },
-          error: (err: any) => {
-            console.log('Error:', err);
-            if (this.currentLanguage == 'ar') {
-              this.toastr.error('هناك شيء خاطئ', 'خطأ');
-            } else {
-              this.toastr.error('There Is Somthing Wrong', 'Error');
-            }
-            this.uploading = false;
-          },
-          complete: () => {
-            this.uploading = false;
-          },
-        });
-    } else {
-      if (this.currentLanguage == 'ar') {
-        this.toastr.warning('الرجاء إدخال الحقول المطلوبة');
+                this.router.navigate(
+                  ['/modules/customers/recurringInspections'],
+                  {
+                    queryParams: { customerId: this.customerId },
+                  }
+                );
+              }
+            },
+            error: (err: any) => {
+              console.log('Error:', err);
+              if (this.currentLanguage == 'ar') {
+                this.toastr.error('هناك شيء خاطئ', 'خطأ');
+              } else {
+                this.toastr.error('There Is Somthing Wrong', 'Error');
+              }
+              this.uploading = false;
+            },
+            complete: () => {
+              this.uploading = false;
+            },
+          });
       } else {
-        this.toastr.warning('Please enter the required fields');
+        if (this.currentLanguage == 'ar') {
+          this.toastr.warning('الرجاء إدخال الحقول المطلوبة');
+        } else {
+          this.toastr.warning('Please enter the required fields');
+        }
       }
+    } else {
+      console.log('No changes in the form');
+      history.back();
     }
   }
 }

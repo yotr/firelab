@@ -78,6 +78,7 @@ import { EditWarrantyComponent } from './warranty/components/edit-warranty/edit-
 import { JobLinkModuleTableComponent } from './job-link/job-link-module-table/job-link-module-table.component';
 import { JobsComponent } from './jobs/jobs/jobs.component';
 import { AddServiceModalComponent } from './job-link/add-service-modal/add-service-modal.component';
+import { AddPartModalComponent } from './job-link/add-part-modal/add-part-modal.component';
 
 @NgModule({
   declarations: [
@@ -146,7 +147,8 @@ import { AddServiceModalComponent } from './job-link/add-service-modal/add-servi
     EditWarrantyComponent,
     JobLinkModuleTableComponent,
     JobsComponent,
-    AddServiceModalComponent
+    AddServiceModalComponent,
+    AddPartModalComponent
   ],
   imports: [
     CommonModule,
