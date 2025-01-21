@@ -335,6 +335,99 @@
       </div>
     </div>
     <!-- /deficiencies -->
+    <!-- services -->
+    <div class="col-sm-12">
+      <div class="form-group mt-2">
+        <label>{{ "job_link.assign_job.services" | translate }} </label>
+        <table class="table table-bordered">
+          <thead>
+            <tr class="table-active">
+              <th scope="col">#</th>
+              <th scope="col">
+                {{ "job_link.assign_job.service" | translate }}
+              </th>
+              <th scope="col">
+                {{ "job_link.assign_job.cost" | translate }}
+              </th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- no data -->
+            <tr>
+              <td colspan="3" [hidden]="services.length != 0">
+                <div class="text-muted text-center">
+                  {{ "customers.add_job.no_data" | translate }}
+                </div>
+              </td>
+            </tr>
+            <!-- rows -->
+            <ng-container formArrayName="services">
+              <tr
+                *ngFor="let item of services.controls; let i = index"
+                [formGroupName]="i"
+              >
+                <th scope="row">{{ i }}</th>
+                <td>{{ formValues["services"].value[i]?.name }}</td>
+                <td>{{ formValues["services"].value[i]?.cost }}</td>
+                <td>
+                  <div class="text-center">
+                    <i
+                      class="pi pi-trash"
+                      role="button"
+                      (click)="
+                        removeServiceItem(
+                          i,
+                          formValues['services'].value[i]?.id
+                        )
+                      "
+                    ></i>
+                  </div>
+                </td>
+              </tr>
+            </ng-container>
+            <!-- add row -->
+            <tr>
+              <td colspan="3">
+                <div class="add-row" role="button" (click)="addServiceRow()">
+                  {{ "customers.add_job.add_row" | translate }}
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- /services -->
+    <!-- srvices total -->
+    <div class="row">
+      <!-- total services -->
+      <div class="col-sm-6">
+        <div class="form-group mt-2">
+          <label> {{ "job_link.assign_job.services" | translate }} </label>
+          <input
+            class="form-control bg-secondary"
+            type="text"
+            [value]="services.length"
+            readonly
+          />
+        </div>
+      </div>
+      <!-- total cost -->
+      <div class="col-sm-6">
+        <div class="form-group mt-2">
+          <label> {{ "job_link.assign_job.service_total" | translate }} </label>
+          <input
+            class="form-control bg-secondary"
+            type="text"
+            [value]="servicesTotal + ' egp or $'"
+            readonly
+          />
+        </div>
+      </div>
+    </div>
+    <!-- /srvices total -->
+
     <!-- notes -->
     <!-- <div class="row">
       <div class="col-sm-12">
@@ -414,3 +507,5 @@
     </div>
   </form>
 </div>
+<!-- add service modal -->
+<app-add-service-modal (onAdd)="addServiceItem($event)"></app-add-service-modal>

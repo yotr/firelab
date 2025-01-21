@@ -112,8 +112,7 @@ export class EditJobComponent implements OnInit, AfterViewInit {
   }
   //removing rows from table
   removeItem(i: any, id: any): void {
-    this.deleteDeficency(id);
-    this.deficiencyIds.removeAt(i);
+    this.deleteDeficency(id, i);
   }
   addRow() {
     $('#add_deficiency_modal').modal('show');
@@ -330,7 +329,7 @@ export class EditJobComponent implements OnInit, AfterViewInit {
   }
 
   //add deficency
-  deleteDeficency(deficiencyId: any) {
+  deleteDeficency(deficiencyId: any, i: number): void {
     // api
     this.apiService
       .delete('jobs/assignedDeficiencies/delete', deficiencyId)
@@ -338,10 +337,11 @@ export class EditJobComponent implements OnInit, AfterViewInit {
         next: (data) => {
           console.log(data);
           if (data?.isSuccess) {
+            this.deficiencyIds.removeAt(i);
             if (this.currentLanguage == 'ar') {
-              this.toastr.success('تمت إضافة البيانات بنجاح...');
+              this.toastr.success('تمت حذف البيانات بنجاح...');
             } else {
-              this.toastr.success('data added successfully...', 'Success');
+              this.toastr.success('data deleted successfully...', 'Success');
             }
           }
         },

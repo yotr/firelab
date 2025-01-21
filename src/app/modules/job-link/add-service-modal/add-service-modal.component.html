@@ -1,0 +1,32 @@
+<div class="modal custom-modal fade" id="add_service_modal" role="dialog">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="form-header">
+          <h3>{{ "job_link.assign_job.services" | translate }}</h3>
+        </div>
+        <div class="row">
+          <!-- deficiencies -->
+          <div class="col-sm-12">
+            <div class="form-group mt-2">
+              <label>{{ "job_link.assign_job.service" | translate }} </label>
+              <app-custom-filter-dropdown
+                minWidth="100%"
+                objectKey="name"
+                [data]="services"
+                (onAction)="onSelect($event)"
+                (onFilter)="onFilter($event)"
+              ></app-custom-filter-dropdown>
+            </div>
+          </div>
+        </div>
+        <!-- submit -->
+        <div class="save-btn">
+          <button class="save mt-4" (click)="submit()">
+            {{ "add" | translate }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api/api.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
+declare const $: any;
 
 @Component({
   selector: 'app-edit-assigned-job',
@@ -47,6 +48,7 @@ export class EditAssignedJobComponent implements OnInit, AfterViewInit {
   // for durationBy and end date
   isDurationByHours: boolean = true;
   checkedMembers: any[] = [];
+  servicesTotal: any = '00.00';
 
   constructor(
     private formBuilder: FormBuilder,
@@ -55,7 +57,6 @@ export class EditAssignedJobComponent implements OnInit, AfterViewInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private apiService: ApiService,
-    // private permissionsService: PermissionsService,
     private auth: AuthService
   ) {
     //get id
@@ -81,6 +82,7 @@ export class EditAssignedJobComponent implements OnInit, AfterViewInit {
       inspectorNote: [['']],
       customerNote: [['']],
       deficiencyIds: this.formBuilder.array([]),
+      services: this.formBuilder.array([]),
     });
     this.hours = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     this.minutes = ['00', '30'];
@@ -95,8 +97,43 @@ export class EditAssignedJobComponent implements OnInit, AfterViewInit {
     return this.addForm.get('deficiencyIds') as FormArray;
   }
 
-  // get items comeing from data
-  addExistingItems(items: any[]): void {
+  get services(): FormArray {
+    return this.addForm.get('services') as FormArray;
+  }
+  newServiceItem(id: any, data: any): FormGroup {
+    return this.formBuilder.group({
+      id: id,
+      name: data.name,
+      cost: data.cost,
+    });
+  }
+  addServiceItem(data: any) {
+    $('#add_service_modal').modal('hide');
+    if (data != null && data?.id && data?.name && data?.cost) {
+      let isExistById = this.services.value?.find((d: any) => d.id == data?.id);
+      let isExistByName = this.services.value?.find((d: any) => d.name == data?.name);
+
+      if (isExistByName != undefined) {
+        if (this.currentLanguage == 'ar') {
+          this.toastr.warning('هذا العنصر موجود بالفعل');
+        } else {
+          this.toastr.warning('this item already exist');
+        }
+      } else {
+        this.addService(data?.id, data);
+      }
+    }
+  }
+  //removing rows from table
+  removeServiceItem(i: any, id: any): void {
+    this.deleteService(id, i);
+  }
+  addServiceRow() {
+    $('#add_service_modal').modal('show');
+  }
+
+  // get Deficiencies coming from data
+  addExistingDeficienciesItems(items: any[]): void {
     items?.map((item: any) => {
       // push item in items list data
       let value = this.formBuilder.group({
@@ -105,6 +142,26 @@ export class EditAssignedJobComponent implements OnInit, AfterViewInit {
       });
       this.deficiencyIds.push(value);
     });
+  }
+
+  // get Services coming from data
+  addExistingServicesItems(items: any[]): void {
+    items?.map((item: any) => {
+      // push item in items list data
+      let value = this.formBuilder.group({
+        id: item?.id,
+        name: item?.services?.name,
+        cost: item?.services?.cost,
+      });
+      this.services.push(value);
+    });
+
+    // get Services totall cost
+    const totalCost = this.services.value?.reduce(
+      (sum: any, item: any) => sum + item?.cost,
+      0
+    );
+    this.servicesTotal = totalCost;
   }
 
   ngAfterViewInit(): void {
@@ -246,8 +303,10 @@ export class EditAssignedJobComponent implements OnInit, AfterViewInit {
           });
           this.currentJob = data?.value?.job;
           this.deleteId = data?.value?.id;
-          this.addExistingItems(data?.value?.job?.assignedDeficiencies);
-
+          this.addExistingDeficienciesItems(
+            data?.value?.job?.assignedDeficiencies
+          );
+          this.addExistingServicesItems(data?.value?.assignedServices);
           this.members = this.getWithCheckedMembers(ids);
           this.checkedMembers = this.getCheckedMembers(ids);
           // check durationBy and set isDurationByHours
@@ -496,5 +555,80 @@ export class EditAssignedJobComponent implements OnInit, AfterViewInit {
           }
         },
       });
+  }
+  //add Service
+  addService(id: any, value: any): void {
+    let newData = {
+      servicesId: id,
+      assignedJobId: this.assignedJobId,
+    };
+    // api
+    this.apiService.add('assignedServices/add', newData).subscribe({
+      next: (data) => {
+        console.log(data);
+        if (data?.isSuccess) {
+          this.services.push(this.newServiceItem(data?.value?.id, value));
+          if (this.currentLanguage == 'ar') {
+            this.toastr.success('تمت إضافة البيانات بنجاح...');
+          } else {
+            this.toastr.success('data added successfully...', 'Success');
+          }
+        }
+      },
+      error: (err: any) => {
+        console.log('Error:', err);
+        if (this.currentLanguage == 'ar') {
+          this.toastr.error('هناك شيء خاطئ', 'خطأ');
+        } else {
+          this.toastr.error('There Is Somthing Wrong', 'Error');
+        }
+        this.uploading = false;
+      },
+      complete: () => {
+        this.uploading = false;
+        // get Services totall cost
+        const totalCost = this.services.value?.reduce(
+          (sum: any, item: any) => sum + item?.cost,
+          0
+        );
+        this.servicesTotal = totalCost;
+      },
+    });
+  }
+
+  //add Service
+  deleteService(id: any, i: number) {
+    // api
+    this.apiService.delete('assignedServices', id).subscribe({
+      next: (data) => {
+        console.log(data);
+        if (data?.isSuccess) {
+          this.services.removeAt(i);
+          if (this.currentLanguage == 'ar') {
+            this.toastr.success('تمت حذف البيانات بنجاح...');
+          } else {
+            this.toastr.success('data deleted successfully...', 'Success');
+          }
+        }
+      },
+      error: (err: any) => {
+        console.log('Error:', err);
+        if (this.currentLanguage == 'ar') {
+          this.toastr.error('هناك شيء خاطئ', 'خطأ');
+        } else {
+          this.toastr.error('There Is Somthing Wrong', 'Error');
+        }
+        this.uploading = false;
+      },
+      complete: () => {
+        this.uploading = false;
+        // get Services totall cost
+        const totalCost = this.services.value?.reduce(
+          (sum: any, item: any) => sum + item?.cost,
+          0
+        );
+        this.servicesTotal = totalCost;
+      },
+    });
   }
 }

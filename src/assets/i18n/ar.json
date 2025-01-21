@@ -546,7 +546,11 @@
       "internal": "داخلي",
       "external": "خارجي",
       "customer_review": "مراجعة العميل أولاً",
-      "approved": "موافقة"
+      "approved": "موافقة",
+      "services": "الخدمات",
+      "service": "الخدمة",
+      "cost": "التكلفة",
+      "service_total": "مجموع الخدمات"
     }
   },
   "service_requests": {

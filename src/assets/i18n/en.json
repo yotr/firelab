@@ -547,7 +547,11 @@
       "internal": "Internal",
       "external": "External",
       "customer_review": "Customer Review First",
-      "approved": "Approved"
+      "approved": "Approved",
+      "services": "Services",
+      "service": "Service",
+      "cost": "Cost",
+      "service_total": "Service Total"
     }
   },
   "service_requests": {
