@@ -62,7 +62,7 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
         contactNumber: ['', [Validators.required]],
         billableHourlyRate: ['', [Validators.required]],
         position: [''],
-        division: [''],
+        reportCategoryId: [null],
         roleId: [null],
       }
       // { validators: passwordMatch }

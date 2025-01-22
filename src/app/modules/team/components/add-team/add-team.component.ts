@@ -47,13 +47,13 @@ export class AddTeamComponent implements OnInit, AfterViewInit {
       {
         firstName: ['', [Validators.required]],
         lastName: ['', [Validators.required]],
-        userName: ['', [Validators.required]],
+        // userName: ['', [Validators.required]],
         email: ['', [Validators.email, Validators.required]],
         password: ['', [Validators.required]],
         contactNumber: ['', [Validators.required]],
         billableHourlyRate: ['', [Validators.required]],
         position: [''],
-        division: [''],
+        reportCategoryId: [null],
         status: ['clocked'],
         roleId: [null],
       }
@@ -176,8 +176,12 @@ export class AddTeamComponent implements OnInit, AfterViewInit {
   //add a new
   submit() {
     if (this.addForm.valid) {
+      let fName = this.addForm.get('firstName')?.value;
+      let lName = this.addForm.get('lastName')?.value;
+      let username = fName + '_' + lName;
       let data = {
         ...this.addForm.value,
+        userName: username,
         CompanyId: this.currentUser?.companyId,
       };
       console.log(data);
@@ -194,6 +198,18 @@ export class AddTeamComponent implements OnInit, AfterViewInit {
             }
 
             this.router.navigate(['/modules/team/allTeam']);
+          } else {
+            this.uploading = false;
+            if (this.currentLanguage == 'ar') {
+              this.toastr.error(
+                'يجب ألا تكون هناك مسافات فارغه ف الاسم الاول والاخير'
+              );
+            } else {
+              this.toastr.error(
+                'There should be no space in the first and last name.',
+                'Error'
+              );
+            }
           }
         },
         error: (err: any) => {

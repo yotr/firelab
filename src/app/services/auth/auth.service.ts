@@ -49,4 +49,20 @@ export class AuthService {
       this.router.navigate(['/login']);
     }
   }
+
+  forgotPassword(path: string, data: any): Observable<any> {
+    return this.http.post<any>(
+      `${environment.API}/api/${path}`,
+      data,
+      environment.HTTP_OPTIONS
+    );
+  }
+
+  resetPassword(path: string, data: any): Observable<any> {
+    return this.http.post<any>(
+      `${environment.API}/api/${path}`,
+      data,
+      environment.HTTP_OPTIONS
+    );
+  }
 }

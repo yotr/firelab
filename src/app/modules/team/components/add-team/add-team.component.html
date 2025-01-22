@@ -81,15 +81,14 @@
           <!-- errors -->
         </div>
       </div>
-      <div class="col-sm-6">
-        <!-- userName -->
+      <!-- userName -->
+      <!-- <div class="col-sm-6">
         <div class="form-group mt-2">
           <label
             >{{ "team.form.user_name" | translate }}
             <span class="text-danger">*</span></label
           >
           <input class="form-control" type="text" formControlName="userName" />
-          <!-- errors -->
           <div
             *ngIf="
               addForm.get('userName')?.invalid &&
@@ -106,9 +105,8 @@
               {{ "team.form.user_name_required" | translate }}</small
             >
           </div>
-          <!-- errors -->
         </div>
-      </div>
+      </div> -->
       <div class="col-sm-6">
         <!-- Email -->
         <div class="form-group mt-2">
@@ -249,9 +247,9 @@
           <label>{{ "team.form.divisions" | translate }} </label>
           <select
             class="form-select form-control"
-            name="division"
-            id="division"
-            formControlName="division"
+            name="reportCategoryId"
+            id="reportCategoryId"
+            formControlName="reportCategoryId"
           >
             <option selected>
               {{ "select" | translate }}
