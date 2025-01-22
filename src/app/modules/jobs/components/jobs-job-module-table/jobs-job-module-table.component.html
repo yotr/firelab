@@ -165,7 +165,7 @@
             </ng-container>
             <!-- action -->
             <th
-               *ngIf="!isEditable"
+              *ngIf="!isEditable"
               class="text-center no-sort actions-table"
               [ngClass]="{
                 default: currentTheme?.colorSchema?.title != 'Dark'
@@ -206,14 +206,17 @@
                 </span>
               </td>
               <ng-container *ngFor="let key of dataKeys">
-                <td *ngIf="key.active && key?.name != 'id'">
+                <td
+                  *ngIf="key.active && key?.name != 'id'"
+                  (click)="isMyJobs ? navigateToJobDetails(value?.id) : null"
+                >
                   <!-- name -->
                   <ng-container
                     *ngIf="
                       key?.name != 'reportCategory' && key?.name != 'dateTime'
                     "
                   >
-                    {{ value[key?.name] ? value[key?.name] : '_' }}
+                    {{ value[key?.name] ? value[key?.name] : "_" }}
                   </ng-container>
                   <!-- reportCategory -->
                   <ng-container *ngIf="key?.name == 'reportCategory'">
@@ -234,10 +237,7 @@
                 </td>
               </ng-container>
               <!-- actions -->
-              <td
-                class="actions-table"
-                *ngIf="!isEditable"
-              >
+              <td class="actions-table" *ngIf="!isEditable">
                 <div class="dropdown dropdown-action">
                   <a
                     class="action-icon dropdown-toggle h-auto text-secondary fw-bold"

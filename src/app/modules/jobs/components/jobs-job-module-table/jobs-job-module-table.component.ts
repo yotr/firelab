@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { NgxPrintService, PrintOptions } from 'ngx-print';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -19,6 +20,7 @@ export class JobsJobModuleTableComponent implements OnInit {
   @Input() getDataError: boolean = false;
   @Input() currentTheme: any;
   @Input() isEditable: boolean = false;
+  @Input() isMyJobs: boolean = false;
   //  ================================================
   @Output() onDelete: EventEmitter<any> = new EventEmitter();
   @Output() onFilter: EventEmitter<any> = new EventEmitter();
@@ -67,7 +69,8 @@ export class JobsJobModuleTableComponent implements OnInit {
     private permissionsService: PermissionsService,
     private auth: AuthService,
     public translateService: TranslateService,
-    private languageService: LanguageService
+    private languageService: LanguageService,
+    private router: Router
   ) {
     this.api = environment.API;
   }
@@ -210,5 +213,9 @@ export class JobsJobModuleTableComponent implements OnInit {
       'CRMM7P4',
       action
     );
+  }
+
+  navigateToJobDetails(id: any): void {
+    this.router.navigate(['/modules/task/myJobs', id]);
   }
 }

@@ -241,19 +241,26 @@
                   </ng-container>
                   <ng-container *ngIf="key?.name == 'external'">
                     <div class="text-uppercase text-center">
-                      {{ value[key?.name] ? value[key?.name] : "_" }}
+                      {{
+                        value[key?.name]
+                          ? ("job_link.assign_job.external" | translate)
+                          : ("job_link.assign_job.internal" | translate)
+                      }}
                     </div>
                   </ng-container>
                   <!-- status -->
-                  <ng-container *ngIf="key?.name == 'status'">
+                  <ng-container *ngIf="key?.name == 'complete'">
                     <div
-                      *ngIf="value?.job?.status"
+                      *ngIf="value?.job?.complete"
                       class="text-uppercase text-center text-success"
                     >
                       {{ "job_link.table.completed" | translate }}
                     </div>
                     <div
-                      *ngIf="value?.job?.status == false"
+                      *ngIf="
+                        value?.job?.complete == false ||
+                        value?.job?.complete == null
+                      "
                       class="text-uppercase text-center text-danger"
                     >
                       {{ "job_link.table.uncompleted" | translate }}

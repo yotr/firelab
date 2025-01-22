@@ -557,7 +557,9 @@
       "rate": "سعر",
       "amount": "المجموع",
       "parts_total": "مجموع الاجزاء",
-      "grand_total": "المجموع الإجمالي"
+      "grand_total": "المجموع الإجمالي",
+      "complete": "انهاء",
+      "uncomplete": "غير مكتمل"
     }
   },
   "service_requests": {

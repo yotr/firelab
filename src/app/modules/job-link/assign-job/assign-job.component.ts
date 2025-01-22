@@ -240,7 +240,8 @@ export class AssignJobComponent implements OnInit, AfterViewInit {
           : new Date(this.addForm.get('endDate')?.value)?.toISOString(),
         jobId: this.jobId,
         external: this.addForm.get('external')?.value == 'true' ? true : false,
-        customerApproved: this.addForm.get('customerApproved')?.value == 'true' ? true : false,
+        customerApproved:
+          this.addForm.get('customerApproved')?.value == 'true' ? true : false,
       };
       console.log(data);
       this.uploading = true;
@@ -272,24 +273,24 @@ export class AssignJobComponent implements OnInit, AfterViewInit {
         },
         complete: () => {
           this.uploading = false;
-          // if (assigned) {
-          //   // update job to be assigned
-          //   this.apiService
-          //     .statusChange(`jobs/updateStatus/${this.jobId}?status=${true}`)
-          //     .subscribe({
-          //       next: (data) => {
-          //         console.log(data);
-          //       },
-          //       error: (err: any) => {
-          //         console.log('Error:', err);
-          //         if (this.currentLanguage == 'ar') {
-          //           this.toastr.error('هناك شيء خاطئ', 'خطأ');
-          //         } else {
-          //           this.toastr.error('There Is Somthing Wrong', 'Error');
-          //         }
-          //       },
-          //     });
-          // }
+          if (assigned) {
+            // update job to be assigned
+            this.apiService
+              .statusChange(`jobs/updateStatus/${this.jobId}?status=${true}`)
+              .subscribe({
+                next: (data) => {
+                  console.log(data);
+                },
+                error: (err: any) => {
+                  console.log('Error:', err);
+                  if (this.currentLanguage == 'ar') {
+                    this.toastr.error('هناك شيء خاطئ', 'خطأ');
+                  } else {
+                    this.toastr.error('There Is Somthing Wrong', 'Error');
+                  }
+                },
+              });
+          }
         },
       });
     } else {

@@ -136,7 +136,7 @@
   background-color: rgb(106, 161, 78);
 }
 
-.add-row {
+.complete {
   width: fit-content;
   padding: 4px;
   border: none;
@@ -154,7 +154,7 @@
   -o-transition: all 0.2s ease-in-out;
 }
 
-.add-row:hover {
+.complete:hover {
   transform: scale(1.1);
   -webkit-transform: scale(1.1);
   -moz-transform: scale(1.1);

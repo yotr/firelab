@@ -79,6 +79,7 @@ import { JobLinkModuleTableComponent } from './job-link/job-link-module-table/jo
 import { JobsComponent } from './jobs/jobs/jobs.component';
 import { AddServiceModalComponent } from './job-link/add-service-modal/add-service-modal.component';
 import { AddPartModalComponent } from './job-link/add-part-modal/add-part-modal.component';
+import { AssignedJobViewComponent } from './jobs/components/assigned-job-view/assigned-job-view.component';
 
 @NgModule({
   declarations: [
@@ -148,7 +149,8 @@ import { AddPartModalComponent } from './job-link/add-part-modal/add-part-modal.
     JobLinkModuleTableComponent,
     JobsComponent,
     AddServiceModalComponent,
-    AddPartModalComponent
+    AddPartModalComponent,
+    AssignedJobViewComponent
   ],
   imports: [
     CommonModule,

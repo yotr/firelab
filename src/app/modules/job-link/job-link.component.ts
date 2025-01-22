@@ -133,9 +133,9 @@ export class JobLinkComponent implements OnInit, AfterViewInit {
         active: true,
       },
       {
-        name: 'status',
+        name: 'complete',
         display: this.translateService.instant('job_link.table.status'),
-        type: 'object',
+        type: 'boolean',
         active: true,
       },
     ];

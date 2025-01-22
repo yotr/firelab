@@ -43,6 +43,7 @@ import { WarrantyComponent } from './warranty/warranty.component';
 import { AddWarrantyComponent } from './warranty/components/add-warranty/add-warranty.component';
 import { EditWarrantyComponent } from './warranty/components/edit-warranty/edit-warranty.component';
 import { JobsComponent } from './jobs/jobs/jobs.component';
+import { AssignedJobViewComponent } from './jobs/components/assigned-job-view/assigned-job-view.component';
 
 const routes: Routes = [
   {
@@ -166,6 +167,12 @@ const routes: Routes = [
       {
         path: 'task/myJobs',
         component: MyJobsComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM7P3', action: 'read' },
+      },
+      {
+        path: 'task/myJobs/:id',
+        component: AssignedJobViewComponent,
         canActivate: [pageGuard],
         data: { code: 'CRMM7P3', action: 'read' },
       },

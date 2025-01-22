@@ -558,7 +558,9 @@
       "rate": "Rate",
       "amount": "Amount",
       "parts_total": "Parts Total",
-      "grand_total": "Grand Total"
+      "grand_total": "Grand Total",
+      "complete": "Complete",
+      "uncomplete": "Uncomplete"
     }
   },
   "service_requests": {
