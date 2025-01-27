@@ -59,8 +59,8 @@ const routes: Routes = [
       {
         path: 'dashboard',
         component: DashboardComponent,
-        canActivate: [pageGuard],
-        data: { code: 'CRMM1P1', action: 'read' },
+        // canActivate: [pageGuard],
+        // data: { code: 'CRMM1P1', action: 'read' },
       },
       // customers
       {

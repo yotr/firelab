@@ -36,7 +36,7 @@ header {
   font-size: 26px;
   line-height: 70px;
   padding: 0 5px;
-  display: none;
+  display: block;
 }
 #toggle_btn .bar-icon {
   display: inline-block;
@@ -79,7 +79,7 @@ header[dir="rtl"] #toggle_btn {
   .header-logo {
     display: none;
   }
-  #toggle_btn {
+  /* #toggle_btn {
     display: block;
-  }
+  } */
 }

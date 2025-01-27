@@ -14,7 +14,8 @@
 /* page wrapper when sidebar closed */
 .wrapperSidebarClosed {
   position: relative;
-  margin-left: 60px;
+  /* margin-left: 60px; */
+  margin-left: 0px;
   margin-top: 60px;
   /* padding: 30px; */
   transition: all 0.2s ease-in-out;
@@ -37,7 +38,8 @@
 }
 
 .wrapperSidebarClosed[dir="rtl"] {
-  margin-right: 60px;
+  /* margin-right: 60px; */
+  margin-right: 0px;
   margin-left: 0px;
 }
 

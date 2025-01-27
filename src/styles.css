@@ -112,7 +112,8 @@
   /* variables */
   --header-height: 60px;
   --sidebar-width: 230px;
-  --sidebar-closed-width: 50px;
+  /* --sidebar-closed-width: 50px; */
+  --sidebar-closed-width: 0px;
   /* themes */
   --dark-theme-bg: #292c36;
   --red-theme-color: rgb(183, 27, 27);
@@ -347,7 +348,8 @@ input[type="checkbox"] {
   font-size: 20px;
 }
 .sidbarClosed {
-  width: 60px;
+  /* width: 60px; */
+  width: 0px;
 }
 .sidbarOpened {
   width: 280px;

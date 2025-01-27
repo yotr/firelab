@@ -18,6 +18,9 @@ export class LoginComponent implements OnInit {
   loading: boolean = false;
   // current language
   currentLanguage: any = localStorage.getItem('lang');
+  showPassword: boolean = false;
+  error: boolean = false;
+  errorText: string = '';
 
   constructor(
     private themeService: ThemeService,
@@ -87,16 +90,22 @@ export class LoginComponent implements OnInit {
             this.toastr.error(
               'The Email or Password Incorrect Please Try Again'
             );
+            this.error = true;
+            this.errorText = 'The Email or Password Incorrect Please Try Again';
           }
         } else {
           console.log(data);
           this.toastr.error('There is something wrong with please try again');
+          this.error = true;
+          this.errorText = 'There is something wrong with please try again';
         }
       },
       error: (err) => {
         console.log(err);
         // show erroe message
         this.toastr.error(err?.error[0]?.message, 'Error');
+        this.error = true;
+        this.errorText = err?.error[0]?.message;
         // this.toastr.error('There is something wrong with please try again');
         // stop login btn loading
         setTimeout(() => {
@@ -110,7 +119,7 @@ export class LoginComponent implements OnInit {
           setTimeout(() => {
             // stop login btn loading
             this.loading = false;
-            this.router.navigate(['/modules/profile']);
+            this.router.navigate(['/modules/dashboard']);
             this.loginForm.reset();
             this.toastr.success('User Successfully Logged In', 'Success');
           }, 2000);

@@ -266,7 +266,7 @@ export class CustomersModuleTableComponent implements OnInit {
   navigateToCustomer(customerId: any) {
     var isAllowed = this.checkPageActions('update');
     if (isAllowed) {
-      this.router.navigate(['/modules/customers/home'], {
+      this.router.navigate(['/modules/customers/customerInfo'], {
         queryParams: { customerId: customerId },
       });
       this.sendActiveCustomer(customerId);

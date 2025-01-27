@@ -108,7 +108,8 @@
             <!-- errors -->
             <div
               *ngIf="
-                editForm.get('ownerEmail')?.invalid && editForm.get('ownerEmail')?.touched
+                editForm.get('ownerEmail')?.invalid &&
+                editForm.get('ownerEmail')?.touched
               "
             >
               <small
@@ -244,9 +245,9 @@
     </form>
   </div>
   <!-- /content page -->
-  <div class="reports-sidebar">
+  <!-- <div class="reports-sidebar">
     <app-customer-reports-sidebar></app-customer-reports-sidebar>
-  </div>
+  </div> -->
 </div>
 
 <!-- loading section -->

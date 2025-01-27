@@ -1,0 +1,50 @@
+[
+  {
+    "id": 0,
+    "page": "الرئيسية",
+    "code": "CRMM2P2",
+    "path": "/modules/customers/home"
+  },
+  {
+    "id": 0,
+    "page": "Home",
+    "code": "CRMM2P2",
+    "path": "/modules/customers/home"
+  },
+  {
+    "id": 6,
+    "page": "Import Devices",
+    "code": "CRMM2P8",
+    "path": "/modules/customers/importDevices"
+  },
+  {
+    "id": 7,
+    "page": "Recurring Inspections",
+    "code": "CRMM2P9",
+    "path": "/modules/customers/recurringInspections"
+  },
+  {
+    "id": 8,
+    "page": "Deficiencies",
+    "code": "CRMM2P10",
+    "path": "/modules/customers/customerDeficiencies"
+  },
+  {
+    "id": 6,
+    "page": "إضافة الأجهزة",
+    "code": "CRMM2P8",
+    "path": "/modules/customers/importDevices"
+  },
+  {
+    "id": 7,
+    "page": "التفتيشات المتكررة",
+    "code": "CRMM2P9",
+    "path": "/modules/customers/recurringInspections"
+  },
+  {
+    "id": 8,
+    "page": "الأعطال",
+    "code": "CRMM2P10",
+    "path": "/modules/customers/customerDeficiencies"
+  }
+]

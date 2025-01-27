@@ -57,7 +57,7 @@ export class NoRoleComponent implements OnInit, AfterViewInit {
     this.sidebarService.getRoles().subscribe((role) => {
       role = role;
       if (role != null) {
-        this.router.navigate(['/modules/profile']);
+        this.router.navigate(['/modules/dashboard']);
       }
     });
   }

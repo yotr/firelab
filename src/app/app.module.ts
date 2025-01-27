@@ -52,7 +52,10 @@ export function httpTranslateLoaderfactory(http: HttpClient) {
       useClass: TokenInterceptorInterceptor,
       multi: true,
     },
-    provideToastr(),
+    provideToastr({
+      positionClass: 'toast-bottom-left',
+      preventDuplicates: true,
+    }),
     provideAnimations(), // required animations providers
   ],
   bootstrap: [AppComponent],
