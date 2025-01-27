@@ -44,6 +44,9 @@ import { AddWarrantyComponent } from './warranty/components/add-warranty/add-war
 import { EditWarrantyComponent } from './warranty/components/edit-warranty/edit-warranty.component';
 import { JobsComponent } from './jobs/jobs/jobs.component';
 import { AssignedJobViewComponent } from './jobs/components/assigned-job-view/assigned-job-view.component';
+import { WarrantyContractComponent } from './warranty-contract/warranty-contract.component';
+import { AddWarrantyContractComponent } from './warranty-contract/components/add-warranty-contract/add-warranty-contract.component';
+import { EditWarrantyContractComponent } from './warranty-contract/components/edit-warranty-contract/edit-warranty-contract.component';
 
 const routes: Routes = [
   {
@@ -263,6 +266,25 @@ const routes: Routes = [
         component: EditWarrantyComponent,
         canActivate: [pageGuard],
         data: { code: 'CRMM13P1', action: 'update' },
+      },
+      // warranty contract
+      {
+        path: 'warranty-contract',
+        component: WarrantyContractComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM14P1', action: 'read' },
+      },
+      {
+        path: 'warranty-contract/add',
+        component: AddWarrantyContractComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM14P1', action: 'create' },
+      },
+      {
+        path: 'warranty-contract/edit/:id',
+        component: EditWarrantyContractComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM14P1', action: 'update' },
       },
       // reports
       {

@@ -237,6 +237,13 @@
         "code": "CRMM13P1",
         "icon": "pi-barcode",
         "path": "/modules/warranty"
+      },
+      {
+        "id": 13,
+        "title": "عقد الضمان",
+        "code": "CRMM14P1",
+        "icon": "pi-verified",
+        "path": "/modules/warranty-contract"
       }
     ]
   }

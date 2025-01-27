@@ -36,8 +36,8 @@
     "sidebar_dic": "Choose a color of Sidebar."
   },
   "active_status": {
-    "active": "active",
-    "inactive": "inactive"
+    "active": "Active",
+    "inactive": "Inactive"
   },
   "login": {
     "title": "Login",
@@ -641,6 +641,31 @@
       "period": "Period",
       "type": "Type",
       "tolerance": "Tolerance"
+    }
+  },
+  "warrantyContract": {
+    "title": "Warranty Contract",
+    "table_title": "Warranty Contract Table",
+    "add_btn": "Add Warranty Contract",
+    "update_title": "Update Warranty Contract",
+    "form": {
+      "name": "Name",
+      "name_required": "Name is required",
+      "status": "Status",
+      "status_required": "Status is required",
+      "customer": "Customer",
+      "customer_required": "Customer is required",
+      "warranty": "Warranty",
+      "warranty_required": "Warranty is required",
+      "item": "Item",
+      "cost": "Cost",
+      "quantity": "Quantity"
+    },
+    "table": {
+      "name": "Name",
+      "date": "Date & Time",
+      "customer": "Customer",
+      "template": "Warranty Template"
     }
   },
   "jobs": {

@@ -1,0 +1,66 @@
+
+
+.save-btn {
+  display: flex;
+  justify-content: center;
+}
+
+.save {
+  color: rgb(106, 161, 78);
+  border: 1px solid rgb(106, 161, 78);
+  background-color: white;
+  padding: 6px 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  width: 155px;
+  font-weight: bold;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.save:hover {
+  cursor: pointer;
+  color: white;
+  background-color: rgb(106, 161, 78);
+}
+
+.form-control {
+  background-color: #fafafacc;
+}
+
+.trash-icon {
+  cursor: pointer;
+  font-size: larger;
+  position: absolute;
+  right: 15px;
+}
+
+.add-row {
+  width: fit-content;
+  padding: 4px;
+  border: none;
+  outline: none;
+  background-color: #CDCECF;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  -moz-transition: all 0.2s ease-in-out;
+  -ms-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+}
+
+.add-row:hover {
+  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+  -o-transform: scale(1.1);
+}

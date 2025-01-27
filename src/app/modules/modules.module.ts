@@ -80,6 +80,11 @@ import { JobsComponent } from './jobs/jobs/jobs.component';
 import { AddServiceModalComponent } from './job-link/add-service-modal/add-service-modal.component';
 import { AddPartModalComponent } from './job-link/add-part-modal/add-part-modal.component';
 import { AssignedJobViewComponent } from './jobs/components/assigned-job-view/assigned-job-view.component';
+import { WarrantyContractComponent } from './warranty-contract/warranty-contract.component';
+import { WarrantyContractModuleTableComponent } from './warranty-contract/components/warranty-contract-module-table/warranty-contract-module-table.component';
+import { AddWarrantyContractComponent } from './warranty-contract/components/add-warranty-contract/add-warranty-contract.component';
+import { EditWarrantyContractComponent } from './warranty-contract/components/edit-warranty-contract/edit-warranty-contract.component';
+import { AddItemModalComponent } from './warranty-contract/components/add-item-modal/add-item-modal.component';
 
 @NgModule({
   declarations: [
@@ -150,7 +155,12 @@ import { AssignedJobViewComponent } from './jobs/components/assigned-job-view/as
     JobsComponent,
     AddServiceModalComponent,
     AddPartModalComponent,
-    AssignedJobViewComponent
+    AssignedJobViewComponent,
+    WarrantyContractComponent,
+    WarrantyContractModuleTableComponent,
+    AddWarrantyContractComponent,
+    EditWarrantyContractComponent,
+    AddItemModalComponent
   ],
   imports: [
     CommonModule,

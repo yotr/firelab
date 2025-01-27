@@ -642,6 +642,31 @@
       "tolerance": "نسبة التسامح"
     }
   },
+  "warrantyContract": {
+    "title": "عقد الضمان",
+    "table_title": "جدول عقد الضمان",
+    "add_btn": "إضافة عقد الضمان",
+    "update_title": "تحديث عقد الضمان",
+    "form": {
+      "name": "الاسم",
+      "name_required": "الاسم مطلوب",
+      "status": "حالة",
+      "status_required": "الحالة مطلوبة",
+      "customer": "عميل",
+      "customer_required": "العميل مطلوب",
+      "warranty": "ضمان",
+      "warranty_required": "الضمان مطلوب",
+      "item": "العنصر",
+      "cost": "التكلفة",
+      "quantity": "الكمية"
+    },
+    "table": {
+      "name": "الاسم",
+      "date": "التاريخ والوقت",
+      "customer": "العميل",
+      "template": "نموذج الضمان"
+    }
+  },
   "jobs": {
     "title": "الوظائف",
     "jobs_due": {
