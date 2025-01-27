@@ -354,6 +354,8 @@
     "add_job": {
       "title": "Add Job",
       "no_data": "No Data Yet",
+      "name": "Name",
+      "name_required":"Name is required",
       "description": "Describe Job",
       "description_required": "Describe Job is required",
       "date": "Select Month",
@@ -365,7 +367,7 @@
       "job_id": "Job Id",
       "warranty_status": "Warranty Status",
       "enabled": "Enabled",
-      "warranty_template": "Warranty Template",
+      "warranty_template": "Warranty Contract Template",
       "warranty_start_date": "Warranty Start Date",
       "deficiencies": "Deficiencies",
       "deficiency": "Deficiency",
@@ -560,7 +562,9 @@
       "parts_total": "Parts Total",
       "grand_total": "Grand Total",
       "complete": "Complete",
-      "uncomplete": "Uncomplete"
+      "uncomplete": "Uncomplete",
+      "items": "Items",
+      "items_total": "Items Total"
     }
   },
   "service_requests": {
@@ -701,7 +705,6 @@
       "title": "My Jobs",
       "table_title": "My Jobs Table"
     },
-
     "table": {
       "job_id": "Job Id",
       "name": "Name",

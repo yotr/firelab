@@ -350,6 +350,79 @@
       </div>
     </div>
     <!-- /deficiencies -->
+    <!-- items -->
+    <div class="col-sm-12">
+      <div class="form-group mt-2">
+        <label>{{ "warrantyContract.form.item" | translate }} </label>
+        <table class="table table-bordered">
+          <thead>
+            <tr class="table-active">
+              <th scope="col">#</th>
+              <th scope="col">
+                {{ "warrantyContract.form.item" | translate }}
+              </th>
+              <th scope="col">
+                {{ "warrantyContract.form.cost" | translate }}
+              </th>
+              <th scope="col">
+                {{ "warrantyContract.form.quantity" | translate }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- no data -->
+            <tr>
+              <td colspan="4" [hidden]="items.length != 0">
+                <div class="text-muted text-center">
+                  {{ "customers.add_job.no_data" | translate }}
+                </div>
+              </td>
+            </tr>
+            <!-- rows -->
+            <ng-container formArrayName="items">
+              <tr
+                *ngFor="let item of items.controls; let i = index"
+                [formGroupName]="i"
+              >
+                <th scope="row">{{ i }}</th>
+                <td>{{ formValues["items"].value[i]?.name }}</td>
+                <td>{{ formValues["items"].value[i]?.cost }}</td>
+                <td>{{ formValues["items"].value[i]?.qty }}</td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- /items -->
+    <!-- items total -->
+    <div class="row">
+      <!-- total items -->
+      <div class="col-sm-6">
+        <div class="form-group mt-2">
+          <label> {{ "job_link.assign_job.items" | translate }} </label>
+          <input
+            class="form-control bg-secondary"
+            type="text"
+            [value]="items.length"
+            readonly
+          />
+        </div>
+      </div>
+      <!-- total cost -->
+      <div class="col-sm-6">
+        <div class="form-group mt-2">
+          <label> {{ "job_link.assign_job.items_total" | translate }} </label>
+          <input
+            class="form-control bg-secondary"
+            type="text"
+            [value]="itemsTotal + ' egp or $'"
+            readonly
+          />
+        </div>
+      </div>
+    </div>
+    <!-- /items total -->
     <!-- services -->
     <div class="col-sm-12">
       <div class="form-group mt-2">
@@ -511,7 +584,7 @@
           <input
             class="form-control bg-secondary"
             type="text"
-            [value]="servicesTotal + partsTotal + ' egp or $'"
+            [value]="servicesTotal + partsTotal + itemsTotal + ' egp or $'"
             readonly
           />
         </div>

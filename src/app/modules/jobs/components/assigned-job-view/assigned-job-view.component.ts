@@ -45,6 +45,9 @@ export class AssignedJobViewComponent implements OnInit {
   checkedMembers: any[] = [];
   servicesTotal: any = '00.00';
   partsTotal: any = '00.00';
+  itemsTotal: any = '00.00';
+
+  currentWarrantyContract: any = null;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -80,6 +83,7 @@ export class AssignedJobViewComponent implements OnInit {
       deficiencyIds: this.formBuilder.array([]),
       services: this.formBuilder.array([]),
       parts: this.formBuilder.array([]),
+      items: this.formBuilder.array([]),
     });
     this.hours = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
     this.minutes = ['00', '30'];
@@ -99,6 +103,9 @@ export class AssignedJobViewComponent implements OnInit {
   }
   get parts(): FormArray {
     return this.addForm.get('parts') as FormArray;
+  }
+  get items(): FormArray {
+    return this.addForm.get('items') as FormArray;
   }
 
   // get Deficiencies coming from data
@@ -155,6 +162,28 @@ export class AssignedJobViewComponent implements OnInit {
     );
 
     this.partsTotal = totalCost;
+  }
+  // get items comeing from data
+  addExistingItems(items: any[]): void {
+    items?.map((item: any) => {
+      // push item in items list data
+      let value = this.formBuilder.group({
+        id: item?.id,
+        name: item?.item?.name,
+        cost: item?.item?.cost,
+        quantity: item?.item?.quantity,
+        qty: item?.quantity,
+        itemId: item?.item?.id,
+      });
+      this.items.push(value);
+    });
+    // get parts totall cost
+    const totalCost = this.items.value?.reduce(
+      (sum: any, item: any) => sum + item?.cost * item?.qty,
+      0
+    );
+
+    this.itemsTotal = totalCost;
   }
 
   ngAfterViewInit(): void {
@@ -277,6 +306,11 @@ export class AssignedJobViewComponent implements OnInit {
             this.toastr.error('There Is Somthing Wrong', 'Error');
           }
         },
+        complete: () => {
+          if (this.currentJob?.warrantyContractId != null) {
+            this.getWarrantyContract(this.currentJob?.warrantyContractId);
+          }
+        },
       });
   }
   getWithCheckedMembers(teamIds: string[]): any[] {
@@ -297,6 +331,26 @@ export class AssignedJobViewComponent implements OnInit {
     return checkedData;
   }
 
+  // get current data
+  getWarrantyContract(id: any) {
+    this.apiService.getById('warrantyContract', id).subscribe({
+      next: (data: any) => {
+        console.log(data);
+        if (data?.isSuccess) {
+          this.currentWarrantyContract = data?.value;
+          this.addExistingItems(data?.value?.items);
+        }
+      },
+      error: (error) => {
+        console.log(error);
+        if (this.currentLanguage == 'ar') {
+          this.toastr.error('هناك شيء خاطئ', 'خطأ');
+        } else {
+          this.toastr.error('There Is Somthing Wrong', 'Error');
+        }
+      },
+    });
+  }
   completeJob(): void {
     // update job to be completed
     this.apiService

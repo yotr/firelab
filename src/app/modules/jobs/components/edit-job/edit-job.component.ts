@@ -23,11 +23,12 @@ export class EditJobComponent implements OnInit, AfterViewInit {
   categories: any[] = [];
   categoriesLoading: boolean = true;
   getDataError: boolean = false;
-  // warranties
-  warranties: any[] = [];
-  warrantiesLoading: boolean = true;
-  warrantiesGetDataError: boolean = false;
+  // warrantyContracts
+  warrantyContracts: any[] = [];
+  warrantyContractsLoading: boolean = true;
+
   currentJob: any = null;
+  currentWarrantyContract: any = null;
 
   updateId: any = null;
   uploading: boolean = false;
@@ -50,6 +51,7 @@ export class EditJobComponent implements OnInit, AfterViewInit {
 
     // Add form
     this.addForm = this.formBuilder.group({
+      name: ['', [Validators.required]],
       customerId: [null],
       description: ['', [Validators.required]],
       reportCategoryId: [null, [Validators.required]],
@@ -57,9 +59,8 @@ export class EditJobComponent implements OnInit, AfterViewInit {
       type: [''],
       jobId: [''],
       action: ['notAssigned'],
-      name: [''],
       warrantyStatus: ['false'],
-      warrantyId: [null],
+      warrantyContractId: [null],
       warrantyStartDate: [null],
       deficiencyIds: this.formBuilder.array([]),
     });
@@ -120,7 +121,7 @@ export class EditJobComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit(): void {
     this.getCategories();
-    this.getWarranties();
+    this.getWarrantyContacts();
   }
 
   ngOnInit() {
@@ -163,35 +164,61 @@ export class EditJobComponent implements OnInit, AfterViewInit {
     });
   }
 
-  // get warranties data
-  getWarranties() {
-    this.apiService.get('warranty').subscribe({
-      next: (data: any) => {
-        console.log(data);
-        if (data?.isSuccess) {
-          this.warranties = data?.value;
-          this.warrantiesGetDataError = false;
-        }
-        this.warrantiesLoading = false;
-      },
-      error: (err) => {
-        this.warranties = [];
-        this.warrantiesLoading = false;
-        this.warrantiesGetDataError = true;
-        console.log(err);
-        if (this.currentLanguage == 'ar') {
-          this.toastr.error('هناك شيء خاطئ', 'خطأ');
-        } else {
-          this.toastr.error('There Is Somthing Wrong', 'Error');
-        }
-        this.warrantiesLoading = false;
-      },
-      complete: () => {
-        this.warrantiesLoading = false;
-      },
+  // on select warranty
+  onSelectWarrantyContract(data: any) {
+    this.addForm.patchValue({
+      warrantyContractId: data?.id,
     });
   }
-
+  // get data
+  getWarrantyContacts(page?: number, pageSize?: number) {
+    // api
+    this.apiService
+      .filterData(
+        'warrantyContract/getFilteredWarrantyContracts',
+        page ? page : 1,
+        pageSize ? pageSize : 10
+      )
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.warrantyContracts = data?.value?.warrantyContracts;
+          }
+          this.warrantyContractsLoading = false;
+        },
+        error: (err: any) => {
+          this.warrantyContractsLoading = false;
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {},
+      });
+  }
+  onFilterWarrantyContract(value: string) {
+    if (value != null && value?.trim() != '') {
+      this.apiService
+        .globalSearch('warrantyContract/globalsearch', value, null)
+        .subscribe({
+          next: (data: any) => {
+            console.log(data);
+            if (data?.isSuccess) {
+              this.warrantyContracts = data?.value;
+            }
+            this.warrantyContractsLoading = false;
+          },
+          error: (err: any) => {
+            this.warrantyContractsLoading = false;
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          },
+        });
+    } else {
+      this.getWarrantyContacts();
+    }
+  }
   formatDate(date: string): any {
     var newDate: Date = new Date(date); // Parse the input date string
 
@@ -231,12 +258,16 @@ export class EditJobComponent implements OnInit, AfterViewInit {
             customerId: data?.value?.customerId,
             status: data?.value?.status,
             warrantyStatus: data?.value?.warrantyStatus,
-            warrantyId: data?.value?.warrantyId,
+            warrantyContractId: data?.value?.warrantyContractId,
             warrantyStartDate: this.formatDate(data?.value?.warrantyStartDate),
           });
 
           this.currentJob = data?.value;
           this.addExistingItems(data?.value?.assignedDeficiencies);
+
+          if (data?.value?.warrantyContractId != null) {
+            this.getWarrantyContract(data?.value?.warrantyContractId);
+          }
         }
       },
       error: (error) => {
@@ -257,7 +288,6 @@ export class EditJobComponent implements OnInit, AfterViewInit {
       if (this.addForm.valid) {
         let data = {
           ...this.addForm.value,
-          name: this.addForm.get('description')?.value,
           warrantyStatus:
             this.formValues['warrantyStatus'].value == 'true' ? true : false,
           deficiencyIds: null,
@@ -370,5 +400,25 @@ export class EditJobComponent implements OnInit, AfterViewInit {
           this.uploading = false;
         },
       });
+  }
+
+  // get current data
+  getWarrantyContract(id: any) {
+    this.apiService.getById('warrantyContract', id).subscribe({
+      next: (data: any) => {
+        console.log(data);
+        if (data?.isSuccess) {
+          this.currentWarrantyContract = data?.value;
+        }
+      },
+      error: (error) => {
+        console.log(error);
+        if (this.currentLanguage == 'ar') {
+          this.toastr.error('هناك شيء خاطئ', 'خطأ');
+        } else {
+          this.toastr.error('There Is Somthing Wrong', 'Error');
+        }
+      },
+    });
   }
 }

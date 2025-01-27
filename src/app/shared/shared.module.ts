@@ -35,6 +35,7 @@ import { AddSystemInfoComponent } from '../modules/customers/components/system-i
 import { EditSystemInfoComponent } from '../modules/customers/components/system-info/components/edit-system-info/edit-system-info.component';
 import { CustomFilterDropdownComponent } from '../components/custom-filter-dropdown/custom-filter-dropdown.component';
 import { AddDeficiencyModalComponent } from '../components/add-deficiency-modal/add-deficiency-modal.component';
+import { AddItemModalComponent } from '../modules/warranty-contract/components/add-item-modal/add-item-modal.component';
 
 export function httpTranslateLoaderfactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -73,6 +74,7 @@ export function httpTranslateLoaderfactory(http: HttpClient) {
     EditSystemInfoComponent,
     CustomFilterDropdownComponent,
     AddDeficiencyModalComponent,
+    AddItemModalComponent,
   ],
   imports: [
     CommonModule,
@@ -131,6 +133,7 @@ export function httpTranslateLoaderfactory(http: HttpClient) {
     EditSystemInfoComponent,
     CustomFilterDropdownComponent,
     AddDeficiencyModalComponent,
+    AddItemModalComponent,
   ],
   providers: [HttpClient],
 })

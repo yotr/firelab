@@ -23,10 +23,10 @@ export class AddJobComponent implements OnInit, AfterViewInit {
   categories: any[] = [];
   categoriesLoading: boolean = true;
   getDataError: boolean = false;
-  // warranties
-  warranties: any[] = [];
-  warrantiesLoading: boolean = true;
-  warrantiesGetDataError: boolean = false;
+  // warrantyContracts
+  warrantyContracts: any[] = [];
+  warrantyContractsLoading: boolean = true;
+  currentWarrantyContracts: any = null;
 
   customerId: any = null;
   uploading: boolean = false;
@@ -51,17 +51,18 @@ export class AddJobComponent implements OnInit, AfterViewInit {
 
     // Add form
     this.addForm = this.formBuilder.group({
+      name: ['', [Validators.required]],
       description: ['', [Validators.required]],
       reportCategoryId: [null, [Validators.required]],
       dateTime: ['', [Validators.required]],
       type: [''],
       jobId: [''],
       action: ['notAssigned'],
-      name: [''],
       warrantyStatus: ['false'],
-      warrantyId: [null],
+      warrantyContractId: [null],
       warrantyStartDate: [null],
       deficiencyIds: this.formBuilder.array([]),
+      items: this.formBuilder.array([]),
     });
 
     // this.types = [
@@ -86,6 +87,9 @@ export class AddJobComponent implements OnInit, AfterViewInit {
 
   get deficiencyIds(): FormArray {
     return this.addForm.get('deficiencyIds') as FormArray;
+  }
+  get items(): FormArray {
+    return this.addForm.get('items') as FormArray;
   }
   newItem(data: any): FormGroup {
     return this.formBuilder.group({
@@ -118,9 +122,59 @@ export class AddJobComponent implements OnInit, AfterViewInit {
   addRow() {
     $('#add_deficiency_modal').modal('show');
   }
+
+  newWarrantyContractItem(data: any, id: any): FormGroup {
+    return this.formBuilder.group({
+      id: id,
+      name: data.name,
+      cost: data.cost,
+      quantity: data.quantity,
+      qty: data.qty,
+      itemId: data.itemId,
+    });
+  }
+  addWarrantyContractItem(data: any) {
+    $('#add_items_modal').modal('hide');
+    if (data != null && data?.itemId && data?.name) {
+      let isExist = this.items.value?.find((d: any) => d.name == data?.name);
+
+      if (isExist != undefined) {
+        if (this.currentLanguage == 'ar') {
+          this.toastr.warning('هذا العنصر موجود بالفعل');
+        } else {
+          this.toastr.warning('this item already exist');
+        }
+      } else {
+        this.assignItem(data?.itemId, this.currentWarrantyContracts?.id, data);
+      }
+    }
+  }
+  //removing rows from table
+  removeWarrantyContractItem(i: any, data: any): void {
+    this.deleteItem(data, i);
+  }
+  addWarrantyContractRow() {
+    $('#add_items_modal').modal('show');
+  }
+  // get items comeing from data
+  addExistingWarrantyContractItems(items: any[]): void {
+    items?.map((item: any) => {
+      // push item in items list data
+      let value = this.formBuilder.group({
+        id: item?.id,
+        name: item?.item?.name,
+        cost: item?.item?.cost,
+        quantity: item?.item?.quantity,
+        qty: item?.quantity,
+        itemId: item?.item?.id,
+      });
+      this.items.push(value);
+    });
+  }
+
   ngAfterViewInit(): void {
     this.getCategories();
-    this.getWarranties();
+    this.getWarrantyContacts();
   }
   ngOnInit() {
     this.getTheme();
@@ -180,33 +234,65 @@ export class AddJobComponent implements OnInit, AfterViewInit {
       },
     });
   }
-  // get warranties data
-  getWarranties() {
-    this.apiService.get('warranty').subscribe({
-      next: (data: any) => {
-        console.log(data);
-        if (data?.isSuccess) {
-          this.warranties = data?.value;
-          this.warrantiesGetDataError = false;
-        }
-        this.warrantiesLoading = false;
-      },
-      error: (err) => {
-        this.warranties = [];
-        this.warrantiesLoading = false;
-        this.warrantiesGetDataError = true;
-        console.log(err);
-        if (this.currentLanguage == 'ar') {
-          this.toastr.error('هناك شيء خاطئ', 'خطأ');
-        } else {
-          this.toastr.error('There Is Somthing Wrong', 'Error');
-        }
-        this.warrantiesLoading = false;
-      },
-      complete: () => {
-        this.warrantiesLoading = false;
-      },
+
+  // on select warranty
+  onSelectWarrantyContract(data: any) {
+    this.items.clear();
+    this.currentWarrantyContracts = data;
+    // console.log(data);
+    this.addExistingWarrantyContractItems(data?.items);
+    this.addForm.patchValue({
+      warrantyContractId: data?.id,
     });
+  }
+  // get data
+  getWarrantyContacts(page?: number, pageSize?: number) {
+    // api
+    this.apiService
+      .filterData(
+        'warrantyContract/getFilteredWarrantyContracts',
+        page ? page : 1,
+        pageSize ? pageSize : 10
+      )
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.warrantyContracts = data?.value?.warrantyContracts;
+          }
+          this.warrantyContractsLoading = false;
+        },
+        error: (err: any) => {
+          this.warrantyContractsLoading = false;
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {},
+      });
+  }
+  onFilterWarrantyContract(value: string) {
+    if (value != null && value?.trim() != '') {
+      this.apiService
+        .globalSearch('warrantyContract/globalsearch', value, null)
+        .subscribe({
+          next: (data: any) => {
+            console.log(data);
+            if (data?.isSuccess) {
+              this.warrantyContracts = data?.value;
+            }
+            this.warrantyContractsLoading = false;
+          },
+          error: (err: any) => {
+            this.warrantyContractsLoading = false;
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          },
+        });
+    } else {
+      this.getWarrantyContacts();
+    }
   }
   submit() {
     if (this.addForm.valid) {
@@ -214,7 +300,6 @@ export class AddJobComponent implements OnInit, AfterViewInit {
       let data = {
         ...this.addForm.value,
         customerId: this.customerId,
-        name: this.addForm.get('description')?.value,
         status: false,
         warrantyStatus:
           this.formValues['warrantyStatus'].value == 'true' ? true : false,
@@ -232,13 +317,14 @@ export class AddJobComponent implements OnInit, AfterViewInit {
             } else {
               this.toastr.success('data added successfully...', 'Success');
             }
-            // this.router.navigate(['/modules/customers/addJob'], {
-            //   queryParams: { customerId: this.customerId },
-            // });
 
             this.addForm.reset();
             this.addForm.patchValue({
               action: 'notAssigned',
+            });
+
+            this.router.navigate(['/modules/jobLink'], {
+              queryParams: { view: 'Week' },
             });
           }
         },
@@ -261,6 +347,109 @@ export class AddJobComponent implements OnInit, AfterViewInit {
       } else {
         this.toastr.warning('Please enter the required fields');
       }
+    }
+  }
+
+  //add item
+  assignItem(id: any, warrantyContractId: any, value: any): void {
+    let newData = {
+      warrantyContractId: warrantyContractId,
+      ItemsId: id,
+      quantity: value?.qty,
+    };
+    // api
+    this.apiService.add('assignedItems/add', newData).subscribe({
+      next: (data: any) => {
+        console.log(data);
+        if (data?.isSuccess) {
+          this.items.push(this.newWarrantyContractItem(value, data?.value?.id));
+          if (this.currentLanguage == 'ar') {
+            this.toastr.success('تمت إضافة البيانات بنجاح...');
+          } else {
+            this.toastr.success('data added successfully...', 'Success');
+          }
+          let newQty = value?.quantity - value?.qty;
+          this.updateItemQuantity(id, newQty);
+        }
+      },
+      error: (err: any) => {
+        console.log('Error:', err);
+        if (this.currentLanguage == 'ar') {
+          this.toastr.error('هناك شيء خاطئ', 'خطأ');
+        } else {
+          this.toastr.error('There Is Somthing Wrong', 'Error');
+        }
+        this.uploading = false;
+      },
+      complete: () => {
+        this.uploading = false;
+      },
+    });
+  }
+
+  //add item
+  deleteItem(item: any, i: number): void {
+    // api
+    this.apiService.delete('assignedItems', item?.id).subscribe({
+      next: (data) => {
+        console.log(data);
+        if (data?.isSuccess) {
+          this.items.removeAt(i);
+          if (this.currentLanguage == 'ar') {
+            this.toastr.success('تمت حذف البيانات بنجاح...');
+          } else {
+            this.toastr.success('data deleted successfully...', 'Success');
+          }
+          let qty = item?.quantity + item?.qty;
+          this.updateItemQuantity(item?.itemId, qty);
+        }
+      },
+      error: (err: any) => {
+        console.log('Error:', err);
+        if (this.currentLanguage == 'ar') {
+          this.toastr.error('هناك شيء خاطئ', 'خطأ');
+        } else {
+          this.toastr.error('There Is Somthing Wrong', 'Error');
+        }
+        this.uploading = false;
+      },
+      complete: () => {
+        this.uploading = false;
+      },
+    });
+  }
+
+  updateItemQuantity(id: any, qty: number) {
+    let newQty = {
+      qty: qty,
+    };
+    // update
+    this.apiService.update(`items/updateQty`, id, newQty).subscribe({
+      next: (data) => {
+        if (data?.isSuccess) {
+          if (this.currentLanguage == 'ar') {
+            this.toastr.success('تم تحديث العنصر بنجاح...');
+          } else {
+            this.toastr.success('item updated successfully...');
+          }
+        }
+      },
+      error: (err: any) => {
+        console.log('Error:', err);
+        if (this.currentLanguage == 'ar') {
+          this.toastr.error('هناك شيء خاطئ', 'خطأ');
+        } else {
+          this.toastr.error('There Is Somthing Wrong', 'Error');
+        }
+      },
+      complete: () => {},
+    });
+  }
+  onWarrantyStatusChange(event: any): void {
+    if (event.target.value == 'false') {
+      this.addForm.patchValue({
+        warrantyContractId: null,
+      });
     }
   }
 }

@@ -353,6 +353,8 @@
     "add_job": {
       "title": "إضافة وظيفة",
       "no_data": "لا توجد بيانات حتى الآن",
+      "name":"الاسم",
+      "name_required":"الاسم مطلوب",
       "description": "وصف الوظيفة",
       "description_required": "وصف الوظيفة المطلوبة",
       "date": "حدد الشهر",
@@ -364,7 +366,7 @@
       "job_id": "معرف الوظيفة",
       "warranty_status": "حالة الضمان",
       "enabled": "مُمَكَّن",
-      "warranty_template": "نموذج الضمان",
+      "warranty_template": "نموذج عقد الضمان",
       "warranty_start_date": "تاريخ بدء الضمان",
       "deficiencies": "أعطال",
       "deficiency": "العطل",
@@ -559,7 +561,9 @@
       "parts_total": "مجموع الاجزاء",
       "grand_total": "المجموع الإجمالي",
       "complete": "انهاء",
-      "uncomplete": "غير مكتمل"
+      "uncomplete": "غير مكتمل",
+      "items": "العناصر",
+      "items_total": "مجموع العناصر"
     }
   },
   "service_requests": {

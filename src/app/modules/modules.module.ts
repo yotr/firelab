@@ -84,7 +84,6 @@ import { WarrantyContractComponent } from './warranty-contract/warranty-contract
 import { WarrantyContractModuleTableComponent } from './warranty-contract/components/warranty-contract-module-table/warranty-contract-module-table.component';
 import { AddWarrantyContractComponent } from './warranty-contract/components/add-warranty-contract/add-warranty-contract.component';
 import { EditWarrantyContractComponent } from './warranty-contract/components/edit-warranty-contract/edit-warranty-contract.component';
-import { AddItemModalComponent } from './warranty-contract/components/add-item-modal/add-item-modal.component';
 
 @NgModule({
   declarations: [
@@ -160,7 +159,7 @@ import { AddItemModalComponent } from './warranty-contract/components/add-item-m
     WarrantyContractModuleTableComponent,
     AddWarrantyContractComponent,
     EditWarrantyContractComponent,
-    AddItemModalComponent
+
   ],
   imports: [
     CommonModule,

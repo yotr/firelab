@@ -22,6 +22,33 @@
             <!-- Describe Job -->
             <div class="form-group mt-2">
               <label
+                >{{ "customers.add_job.name" | translate }}
+                <span class="text-danger">*</span></label
+              >
+              <input class="form-control" type="text" formControlName="name" />
+
+              <!-- errors -->
+              <div
+                *ngIf="
+                  addForm.get('name')?.invalid && addForm.get('name')?.touched
+                "
+              >
+                <small
+                  *ngIf="
+                    addForm.get('name')?.invalid && addForm.get('name')?.touched
+                  "
+                  class="text-danger"
+                >
+                  {{ "customers.add_job.name_required" | translate }}</small
+                >
+              </div>
+              <!-- errors -->
+            </div>
+          </div>
+          <div class="col-sm-12">
+            <!-- Describe Job -->
+            <div class="form-group mt-2">
+              <label
                 >{{ "customers.add_job.description" | translate }}
                 <span class="text-danger">*</span></label
               >
@@ -147,6 +174,7 @@
               </label>
               <select
                 class="form-select form-control"
+                (change)="onWarrantyStatusChange($event)"
                 formControlName="warrantyStatus"
               >
                 <option [value]="false" selected>
@@ -167,9 +195,16 @@
               <label
                 >{{ "customers.add_job.warranty_template" | translate }}
               </label>
-              <select
+              <app-custom-filter-dropdown
+                minWidth="100%"
+                objectKey="name"
+                [data]="warrantyContracts"
+                (onAction)="onSelectWarrantyContract($event)"
+                (onFilter)="onFilterWarrantyContract($event)"
+              ></app-custom-filter-dropdown>
+              <!-- <select
                 class="form-select form-control"
-                formControlName="warrantyId"
+                formControlName="warrantyContractId"
               >
                 <option selected>
                   {{ "select" | translate }}
@@ -185,7 +220,7 @@
                 >
                   {{ "customers.add_job.no_data" | translate }}
                 </option>
-              </select>
+              </select> -->
             </div>
           </div>
           <div
@@ -204,6 +239,81 @@
               />
             </div>
           </div>
+          <!-- items -->
+          <div
+            class="col-sm-12"
+            [hidden]="formValues['warrantyStatus'].value == 'false'"
+          >
+            <div class="form-group mt-2">
+              <label>{{ "warrantyContract.form.item" | translate }} </label>
+              <table class="table table-bordered">
+                <thead>
+                  <tr class="table-active">
+                    <th scope="col">#</th>
+                    <th scope="col">
+                      {{ "warrantyContract.form.item" | translate }}
+                    </th>
+                    <th scope="col">
+                      {{ "warrantyContract.form.cost" | translate }}
+                    </th>
+                    <th scope="col">
+                      {{ "warrantyContract.form.quantity" | translate }}
+                    </th>
+                    <th scope="col"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <!-- no data -->
+                  <tr>
+                    <td colspan="5" [hidden]="items.length != 0">
+                      <div class="text-muted text-center">
+                        {{ "customers.add_job.no_data" | translate }}
+                      </div>
+                    </td>
+                  </tr>
+                  <!-- rows -->
+                  <ng-container formArrayName="items">
+                    <tr
+                      *ngFor="let item of items.controls; let i = index"
+                      [formGroupName]="i"
+                    >
+                      <th scope="row">{{ i }}</th>
+                      <td>{{ formValues["items"].value[i]?.name }}</td>
+                      <td>{{ formValues["items"].value[i]?.cost }}</td>
+                      <td>{{ formValues["items"].value[i]?.qty }}</td>
+                      <td>
+                        <div class="text-center">
+                          <i
+                            class="pi pi-trash"
+                            role="button"
+                            (click)="
+                              removeWarrantyContractItem(
+                                i,
+                                formValues['items'].value[i]
+                              )
+                            "
+                          ></i>
+                        </div>
+                      </td>
+                    </tr>
+                  </ng-container>
+                  <!-- add row -->
+                  <tr *ngIf="currentWarrantyContracts != null">
+                    <td colspan="5">
+                      <div
+                        class="add-row"
+                        role="button"
+                        (click)="addWarrantyContractRow()"
+                      >
+                        {{ "customers.add_job.add_row" | translate }}
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- /items -->
           <!-- deficiencies -->
           <div class="col-sm-12">
             <div class="form-group mt-2">
@@ -286,3 +396,8 @@
 <!-- /loading section -->
 <!-- add deficiency modal -->
 <app-add-deficiency-modal (onAdd)="addItem($event)"></app-add-deficiency-modal>
+
+<!-- add Items modal -->
+<app-add-item-modal
+  (onAdd)="addWarrantyContractItem($event)"
+></app-add-item-modal>

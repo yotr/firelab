@@ -157,7 +157,7 @@
             <tbody>
               <!-- no data -->
               <tr>
-                <td colspan="3" [hidden]="items.length != 0">
+                <td colspan="5" [hidden]="items.length != 0">
                   <div class="text-muted text-center">
                     {{ "customers.add_job.no_data" | translate }}
                   </div>
@@ -188,7 +188,7 @@
               </ng-container>
               <!-- add row -->
               <tr>
-                <td colspan="3">
+                <td colspan="5">
                   <div class="add-row" role="button" (click)="addRow()">
                     {{ "customers.add_job.add_row" | translate }}
                   </div>

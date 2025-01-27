@@ -45,6 +45,31 @@
         <!-- Describe Job -->
         <div class="form-group mt-2">
           <label
+            >{{ "customers.add_job.name" | translate }}
+            <span class="text-danger">*</span></label
+          >
+          <input class="form-control" type="text" formControlName="name" />
+
+          <!-- errors -->
+          <div
+            *ngIf="addForm.get('name')?.invalid && addForm.get('name')?.touched"
+          >
+            <small
+              *ngIf="
+                addForm.get('name')?.invalid && addForm.get('name')?.touched
+              "
+              class="text-danger"
+            >
+              {{ "customers.add_job.name_required" | translate }}</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+      <div class="col-sm-12">
+        <!-- Describe Job -->
+        <div class="form-group mt-2">
+          <label
             >{{ "customers.add_job.description" | translate }}
             <span class="text-danger">*</span></label
           >
@@ -174,7 +199,7 @@
         </div>
       </div>
       <div
-        [hidden]="formValues['warrantyStatus'].value == 'false'"
+        [hidden]="formValues['warrantyStatus'].value == false"
         class="col-sm-6"
       >
         <!-- warrantyId -->
@@ -182,7 +207,15 @@
           <label
             >{{ "customers.add_job.warranty_template" | translate }}
           </label>
-          <select class="form-select form-control" formControlName="warrantyId">
+          <app-custom-filter-dropdown
+            minWidth="100%"
+            [title]="currentWarrantyContract?.name"
+            objectKey="name"
+            [data]="warrantyContracts"
+            (onAction)="onSelectWarrantyContract($event)"
+            (onFilter)="onFilterWarrantyContract($event)"
+          ></app-custom-filter-dropdown>
+          <!-- <select class="form-select form-control" formControlName="warrantyId">
             <option selected>
               {{ "select" | translate }}
             </option>
@@ -197,11 +230,11 @@
             >
               {{ "customers.add_job.no_data" | translate }}
             </option>
-          </select>
+          </select> -->
         </div>
       </div>
       <div
-        [hidden]="formValues['warrantyStatus'].value == 'false'"
+        [hidden]="formValues['warrantyStatus'].value == false"
         class="col-sm-6"
       >
         <!-- Select Warranty Start Date -->
