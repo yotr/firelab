@@ -19,6 +19,9 @@ import { AddVehicleComponent } from './components/vehicles/components/add-vehicl
 import { EditVehicleComponent } from './components/vehicles/components/edit-vehicle/edit-vehicle.component';
 import { VehiclesComponent } from './components/vehicles/vehicles.component';
 import { pageGuard } from 'src/app/guards/page.guard';
+import { ItemsComponent } from './components/items/items.component';
+import { AddItemComponent } from './components/items/components/add-item/add-item.component';
+import { EditItemComponent } from './components/items/components/edit-item/edit-item.component';
 
 const routes: Routes = [
   {
@@ -131,6 +134,25 @@ const routes: Routes = [
         component: EditVehicleComponent,
         canActivate: [pageGuard],
         data: { code: 'CRMM9P6', action: 'update' },
+      },
+      // items
+      {
+        path: 'items',
+        component: ItemsComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM9P7', action: 'read' },
+      },
+      {
+        path: 'items/add',
+        component: AddItemComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM9P7', action: 'create' },
+      },
+      {
+        path: 'items/edit/:id',
+        component: EditItemComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM9P7', action: 'update' },
       },
     ],
   },

@@ -1,35 +1,52 @@
-<div
-  class="modal custom-modal fade"
-  id="add_items_modal"
-  role="dialog"
->
+<div class="modal custom-modal fade" id="add_items_modal" role="dialog">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-body">
         <div class="form-header">
           <h3>{{ "warrantyContract.form.item" | translate }}</h3>
         </div>
-        <div class="row">
-          <!-- deficiencies -->
-          <div class="col-sm-12">
-            <div class="form-group mt-2">
-              <label>{{ "warrantyContract.form.item" | translate }} </label>
-              <app-custom-filter-dropdown
-                minWidth="100%"
-                objectKey="name"
-                [data]="items"
-                (onAction)="onSelect($event)"
-                (onFilter)="onFilter($event)"
-              ></app-custom-filter-dropdown>
+        <form [formGroup]="addForm">
+          <div class="row">
+            <!-- items -->
+            <div class="col-sm-12">
+              <div class="form-group mt-2">
+                <label>{{ "warrantyContract.form.item" | translate }} </label>
+                <app-custom-filter-dropdown
+                  minWidth="100%"
+                  objectKey="name"
+                  [data]="items"
+                  (onAction)="onSelect($event)"
+                  (onFilter)="onFilter($event)"
+                ></app-custom-filter-dropdown>
+              </div>
+            </div>
+            <!-- Quantity -->
+            <div class="col-sm-12">
+              <div class="form-group mt-2">
+                <label
+                  >{{ "warrantyContract.form.quantity" | translate }}
+                  <span [hidden]="selectedData == null">{{
+                    selectedData?.quantity -
+                      addForm.get("qty")?.value +
+                      " ) "
+                  }}</span>
+                  <span class="text-danger">*</span></label
+                >
+                <input
+                  type="number"
+                  class="form-control"
+                  formControlName="qty"
+                />
+              </div>
             </div>
           </div>
-        </div>
-        <!-- submit -->
-        <div class="save-btn">
-          <button class="save mt-4" (click)="submit()">
-            {{ "add" | translate }}
-          </button>
-        </div>
+          <!-- submit -->
+          <div class="save-btn">
+            <button class="save mt-4" (click)="submit()">
+              {{ "add" | translate }}
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

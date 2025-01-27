@@ -1,0 +1,41 @@
+<div>
+  <!-- page header  -->
+  <div
+    class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
+    [dir]="'dir' | translate"
+  >
+    <app-breadcrumb
+      [title]="'items.title' | translate"
+    ></app-breadcrumb>
+    <div routerLink="/modules/inventory/items/add">
+      <a
+        class="btn add-btn d-flex align-items-center {{
+          currentTheme?.colorSchema?.background
+        }} {{ currentTheme?.colorSchema?.color }}"
+      >
+        <i class="pi pi-plus d-none d-sm-block"></i>
+        {{ "items.add_btn" | translate }}
+      </a>
+    </div>
+  </div>
+
+  <!-- /page header  -->
+  <app-back-button></app-back-button>
+  <!-- table -->
+  <app-item-module-table
+    [data]="data"
+    [totalItems]="totalItemsCount"
+    [dataKeys]="dataKeys"
+    [loading]="loading"
+    [getDataError]="getDataError"
+    [currentTheme]="currentTheme"
+    [deleteModalTitle]="'items.title' | translate"
+    [tableTitle]="'items.table_title' | translate"
+    editPagePath="/modules/inventory/items/edit"
+    (onPageChange)="onPaginate($event)"
+    (onDelete)="delete($event)"
+    (onSearch)="search($event)"
+    (onFilter)="handleFiltersSubmit($event)"
+    (onReset)="resetData()"
+  ></app-item-module-table>
+</div>

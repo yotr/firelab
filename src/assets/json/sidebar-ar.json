@@ -207,6 +207,12 @@
             "page": "مخزون المركبات",
             "code": "CRMM9P6",
             "path": "/modules/inventory/vehicles"
+          },
+          {
+            "id": 6,
+            "page": "أغراض",
+            "code": "CRMM9P7",
+            "path": "/modules/inventory/items"
           }
         ]
       },

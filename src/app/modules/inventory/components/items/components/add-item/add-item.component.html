@@ -1,0 +1,111 @@
+<!-- Add  Modal -->
+<div class="add-page">
+  <!-- Page Header -->
+  <div
+    class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
+    [dir]="'dir' | translate"
+  >
+    <!-- breadcrumb -->
+    <app-breadcrumb [title]="'items.add_btn' | translate"></app-breadcrumb>
+  </div>
+  <!-- /Page Header -->
+
+  <app-back-button></app-back-button>
+  <!-- content -->
+  <form (ngSubmit)="submit()" [formGroup]="addForm">
+    <div class="row">
+      <div class="col-sm-6">
+        <!-- name -->
+        <div class="form-group mt-2">
+          <label
+            >{{ "items.form.name" | translate }}
+            <span class="text-danger">*</span></label
+          >
+          <input class="form-control" type="text" formControlName="name" />
+          <!-- errors -->
+          <div
+            *ngIf="addForm.get('name')?.invalid && addForm.get('name')?.touched"
+          >
+            <small
+              *ngIf="
+                addForm.get('name')?.invalid && addForm.get('name')?.touched
+              "
+              class="text-danger"
+            >
+              {{ "items.form.name_required" | translate }}</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+      <!-- cost -->
+      <div class="col-sm-6">
+        <div class="form-group mt-2">
+          <label
+            >{{ "items.form.cost" | translate }}
+            <span class="text-danger">*</span></label
+          >
+          <input class="form-control" type="number" formControlName="cost" />
+          <!-- errors -->
+          <div
+            *ngIf="addForm.get('cost')?.invalid && addForm.get('cost')?.touched"
+          >
+            <small
+              *ngIf="
+                addForm.get('cost')?.invalid && addForm.get('cost')?.touched
+              "
+              class="text-danger"
+            >
+              {{ "items.form.cost_required" | translate }}</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+      <!-- quantity -->
+      <div class="col-sm-6">
+        <div class="form-group mt-2">
+          <label
+            >{{ "items.form.quantity" | translate }}
+            <span class="text-danger">*</span></label
+          >
+          <input
+            class="form-control"
+            type="number"
+            formControlName="quantity"
+          />
+          <!-- errors -->
+          <div
+            *ngIf="
+              addForm.get('quantity')?.invalid &&
+              addForm.get('quantity')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('quantity')?.invalid &&
+                addForm.get('quantity')?.touched
+              "
+              class="text-danger"
+            >
+              {{ "items.form.quantity_required" | translate }}</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+    </div>
+
+    <!-- submit -->
+    <div class="save-btn text-center">
+      <button type="submit" class="save mt-4">{{ "save" | translate }}</button>
+    </div>
+  </form>
+</div>
+<!-- /Add  Modal -->
+
+<!-- loading section -->
+<div *ngIf="uploading">
+  <app-loading-section></app-loading-section>
+</div>
+<!-- /loading section -->

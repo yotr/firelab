@@ -208,6 +208,12 @@
             "page": "Vehicle Inventory",
             "code": "CRMM9P6",
             "path": "/modules/inventory/vehicles"
+          },
+          {
+            "id": 6,
+            "page": "Items",
+            "code": "CRMM9P7",
+            "path": "/modules/inventory/items"
           }
         ]
       },

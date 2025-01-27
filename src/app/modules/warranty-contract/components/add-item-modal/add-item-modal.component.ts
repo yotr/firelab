@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api/api.service';
@@ -11,6 +12,7 @@ import { ThemeService } from 'src/app/services/theme/theme.service';
   styleUrls: ['./add-item-modal.component.css'],
 })
 export class AddItemModalComponent implements OnInit {
+  addForm: FormGroup;
   currentTheme: any;
   currentLanguage: any = localStorage.getItem('lang');
   @Output() onAdd: EventEmitter<any> = new EventEmitter();
@@ -23,15 +25,25 @@ export class AddItemModalComponent implements OnInit {
 
   uploading: boolean = false;
 
-  selectedDeficiency: any = null;
+  selectedData: any = null;
 
   constructor(
+    private formBuilder: FormBuilder,
     private themeService: ThemeService,
     private languageService: LanguageService,
     private translateService: TranslateService,
     private toastr: ToastrService,
     private apiService: ApiService
-  ) {}
+  ) {
+    // Add form
+    this.addForm = this.formBuilder.group({
+      itemId: [null, [Validators.required]],
+      name: ['', [Validators.required]],
+      cost: [0, [Validators.required]],
+      quantity: [0, [Validators.required]],
+      qty: [0, [Validators.required]],
+    });
+  }
 
   ngOnInit() {
     this.getItems();
@@ -40,7 +52,13 @@ export class AddItemModalComponent implements OnInit {
   // on selecte teamMember
   onSelect(event: any) {
     console.log(event);
-    this.selectedDeficiency = event;
+    this.selectedData = event;
+    this.addForm.patchValue({
+      itemId: event?.id,
+      name: event?.name,
+      cost: event?.cost,
+      quantity: event?.quantity,
+    });
   }
   // get data
   getItems(page?: number, pageSize?: number) {
@@ -97,7 +115,25 @@ export class AddItemModalComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.selectedDeficiency);
-    this.onAdd.emit(this.selectedDeficiency);
+    if (this.selectedData != null) {
+      if (
+        this.selectedData?.quantity >= this.addForm.get('qty')?.value &&
+        this.addForm.get('qty')?.value != 0
+      ) {
+        this.onAdd.emit({ ...this.addForm.value });
+      } else {
+        if (this.currentLanguage == 'ar') {
+          this.toastr.warning('الرجاء إدخال الكمية الصحيحة');
+        } else {
+          this.toastr.warning('Please enter valid quantity');
+        }
+      }
+    } else {
+      if (this.currentLanguage == 'ar') {
+        this.toastr.warning('الرجاء إدخال الحقول المطلوبة');
+      } else {
+        this.toastr.warning('Please enter the required fields');
+      }
+    }
   }
 }

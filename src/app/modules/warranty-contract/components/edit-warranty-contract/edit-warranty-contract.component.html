@@ -145,6 +145,12 @@
                 <th scope="col">
                   {{ "warrantyContract.form.item" | translate }}
                 </th>
+                <th scope="col">
+                  {{ "warrantyContract.form.cost" | translate }}
+                </th>
+                <th scope="col">
+                  {{ "warrantyContract.form.quantity" | translate }}
+                </th>
                 <th scope="col"></th>
               </tr>
             </thead>
@@ -165,16 +171,15 @@
                 >
                   <th scope="row">{{ i }}</th>
                   <td>{{ formValues["items"].value[i]?.name }}</td>
+                  <td>{{ formValues["items"].value[i]?.cost }}</td>
+                  <td>{{ formValues["items"].value[i]?.qty }}</td>
                   <td>
                     <div class="text-center">
                       <i
                         class="pi pi-trash"
                         role="button"
                         (click)="
-                          removeItem(
-                            i,
-                            formValues['items'].value[i]?.id
-                          )
+                          removeItem(i, formValues['items'].value[i])
                         "
                       ></i>
                     </div>

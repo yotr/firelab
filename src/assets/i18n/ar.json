@@ -667,6 +667,25 @@
       "template": "نموذج الضمان"
     }
   },
+  "items": {
+    "title": "العناصر",
+    "table_title": "جدول العناصر",
+    "add_btn": "إضافة عناصر",
+    "update_title": "تحديث العناصر",
+    "form": {
+      "name": "الاسم",
+      "name_required": "الاسم مطلوب",
+      "cost": "التكلفة",
+      "cost_required": "التكلفة مطلوبة",
+      "quantity": "الكمية",
+      "quantity_required": "الكمية المطلوبة"
+    },
+    "table": {
+      "name": "الاسم",
+      "cost": "التكلفة",
+      "quantity": "الكمية"
+    }
+  },
   "jobs": {
     "title": "الوظائف",
     "jobs_due": {

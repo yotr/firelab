@@ -71,12 +71,16 @@ export class EditWarrantyContractComponent implements OnInit {
     return this.formBuilder.group({
       id: id,
       name: data.name,
+      cost: data.cost,
+      quantity: data.quantity,
+      qty: data.qty,
+      itemId: data.itemId,
     });
   }
   addItem(data: any) {
     $('#add_items_modal').modal('hide');
-    if (data != null && data?.id && data?.name) {
-      let isExist = this.items.value?.find((d: any) => d.id == data?.id);
+    if (data != null && data?.itemId && data?.name) {
+      let isExist = this.items.value?.find((d: any) => d.name == data?.name);
 
       if (isExist != undefined) {
         if (this.currentLanguage == 'ar') {
@@ -85,13 +89,13 @@ export class EditWarrantyContractComponent implements OnInit {
           this.toastr.warning('this item already exist');
         }
       } else {
-        this.assignItem(data?.id, data);
+        this.assignItem(data?.itemId, data);
       }
     }
   }
   //removing rows from table
-  removeItem(i: any, id: any): void {
-    this.deleteItem(id, i);
+  removeItem(i: any, data: any): void {
+    this.deleteItem(data, i);
   }
   addRow() {
     $('#add_items_modal').modal('show');
@@ -103,6 +107,10 @@ export class EditWarrantyContractComponent implements OnInit {
       let value = this.formBuilder.group({
         id: item?.id,
         name: item?.item?.name,
+        cost: item?.item?.cost,
+        quantity: item?.item?.quantity,
+        qty: item?.quantity,
+        itemId: item?.item?.id,
       });
       this.items.push(value);
     });
@@ -360,18 +368,21 @@ export class EditWarrantyContractComponent implements OnInit {
     let newData = {
       warrantyContractId: this.updateId,
       ItemsId: id,
+      quantity: value?.qty,
     };
     // api
     this.apiService.add('assignedItems/add', newData).subscribe({
       next: (data) => {
         console.log(data);
         if (data?.isSuccess) {
-          this.items.push(this.newItem(value, data?.value));
+          this.items.push(this.newItem(value, data?.value?.id));
           if (this.currentLanguage == 'ar') {
             this.toastr.success('تمت إضافة البيانات بنجاح...');
           } else {
             this.toastr.success('data added successfully...', 'Success');
           }
+          let newQty = value?.quantity - value?.qty;
+          this.updateItemQuantity(id, newQty);
         }
       },
       error: (err: any) => {
@@ -390,9 +401,9 @@ export class EditWarrantyContractComponent implements OnInit {
   }
 
   //add item
-  deleteItem(id: any, i: number): void {
+  deleteItem(item: any, i: number): void {
     // api
-    this.apiService.delete('assignedItems/delete', id).subscribe({
+    this.apiService.delete('assignedItems', item?.id).subscribe({
       next: (data) => {
         console.log(data);
         if (data?.isSuccess) {
@@ -402,6 +413,8 @@ export class EditWarrantyContractComponent implements OnInit {
           } else {
             this.toastr.success('data deleted successfully...', 'Success');
           }
+          let qty = item?.quantity + item?.qty;
+          this.updateItemQuantity(item?.itemId, qty);
         }
       },
       error: (err: any) => {
@@ -416,6 +429,33 @@ export class EditWarrantyContractComponent implements OnInit {
       complete: () => {
         this.uploading = false;
       },
+    });
+  }
+
+  updateItemQuantity(id: any, qty: number) {
+    let newQty = {
+      qty: qty,
+    };
+    // update
+    this.apiService.update(`items/updateQty`, id, newQty).subscribe({
+      next: (data) => {
+        if (data?.isSuccess) {
+          if (this.currentLanguage == 'ar') {
+            this.toastr.success('تم تحديث العنصر بنجاح...');
+          } else {
+            this.toastr.success('item updated successfully...');
+          }
+        }
+      },
+      error: (err: any) => {
+        console.log('Error:', err);
+        if (this.currentLanguage == 'ar') {
+          this.toastr.error('هناك شيء خاطئ', 'خطأ');
+        } else {
+          this.toastr.error('There Is Somthing Wrong', 'Error');
+        }
+      },
+      complete: () => {},
     });
   }
 }
