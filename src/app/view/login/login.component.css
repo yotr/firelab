@@ -892,7 +892,36 @@ img {
   display: flex;
   justify-content: center;
 }
+.apps {
+  position: absolute;
+  top: 10px;
+  right: 50px;
+  z-index: 3;
+}
+.apps .content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.apps .content .app {
+  height: 60px;
+  width: 60px;
+  border: 1px solid #ffffff;
+  margin: 8px 0.45rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: #ffffff;
+  font-size: 1.1rem;
+  border-radius: 50%;
+  transition: all 0.5s;
+}
 
+.apps .content .app.active {
+  border: 3px solid #ffffff;
+  font-weight: bold;
+}
 /*.buttons {
     margin-bottom: 100px
 }*/

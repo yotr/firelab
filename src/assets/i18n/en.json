@@ -47,7 +47,8 @@
     "forgot_password": "Do you forgot password?",
     "register": "Register",
     "no_account": "Don't have an account yet?",
-    "btn": "Login"
+    "btn": "Login",
+    "des":"Technological solutions to facilitate the development of the work of various organizations"
   },
   "register": {
     "title": "Register",
