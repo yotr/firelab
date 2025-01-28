@@ -1,5 +1,9 @@
 <div class="dashboard">
-  <div class="bg"></div>
+  <div
+    class="bg {{ currentTheme?.colorSchema?.background }} {{
+      currentTheme?.colorSchema?.color
+    }}"
+  ></div>
   <div class="title fs-2 text-light mb-3">
     {{ "dashboard.dashboard" | translate }}
   </div>

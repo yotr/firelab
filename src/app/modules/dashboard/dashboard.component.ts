@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api/api.service';
+import { ThemeService } from 'src/app/services/theme/theme.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,13 +12,18 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   months: any[] = [];
   years: any[] = [];
   currentMonth: string = '';
+  currentTheme: any;
 
   // current language
   currentLanguage: any = localStorage.getItem('lang');
   totalJobsDueItemsCount: number = 0;
   thisMonthJobsTotal: number = 0;
 
-  constructor(private toastr: ToastrService, public apiService: ApiService) {
+  constructor(
+    private toastr: ToastrService,
+    public apiService: ApiService,
+    private themeService: ThemeService
+  ) {
     this.months = [
       'January',
       'February',
@@ -41,6 +47,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   ngOnInit() {
     this.getYears();
     this.getCurrentMonthName();
+    // get theme from localStorage
+    this.themeService.getCurrentTheme().subscribe((theme) => {
+      this.currentTheme = JSON.parse(theme);
+    });
   }
   getYears() {
     const currentYear = new Date().getFullYear(); // Get the current year

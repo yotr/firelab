@@ -224,6 +224,13 @@
                   </button>
                   <!-- end ngIf: showdata || !hideButton -->
                 </div>
+                <p
+                  class="forget-password text-muted mt-3 mb-0"
+                  routerLink="/forget-password"
+                  role="button"
+                >
+                  {{ "login.forgot_password" | translate }}
+                </p>
 
                 <div [hidden]="!error" class="alert alert-danger">
                   {{ errorText }}
