@@ -84,6 +84,9 @@ import { WarrantyContractComponent } from './warranty-contract/warranty-contract
 import { WarrantyContractModuleTableComponent } from './warranty-contract/components/warranty-contract-module-table/warranty-contract-module-table.component';
 import { AddWarrantyContractComponent } from './warranty-contract/components/add-warranty-contract/add-warranty-contract.component';
 import { EditWarrantyContractComponent } from './warranty-contract/components/edit-warranty-contract/edit-warranty-contract.component';
+import { InvoicesComponent } from './invoices/invoices.component';
+import { EditInvoiceComponent } from './invoices/components/edit-invoice/edit-invoice.component';
+import { InvoiceModuleTableComponent } from './invoices/components/invoice-module-table/invoice-module-table.component';
 
 @NgModule({
   declarations: [
@@ -159,6 +162,9 @@ import { EditWarrantyContractComponent } from './warranty-contract/components/ed
     WarrantyContractModuleTableComponent,
     AddWarrantyContractComponent,
     EditWarrantyContractComponent,
+    InvoicesComponent,
+    EditInvoiceComponent,
+    InvoiceModuleTableComponent
 
   ],
   imports: [

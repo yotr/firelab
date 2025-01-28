@@ -48,7 +48,7 @@
     "register": "Register",
     "no_account": "Don't have an account yet?",
     "btn": "Login",
-    "des":"Technological solutions to facilitate the development of the work of various organizations"
+    "des": "Technological solutions to facilitate the development of the work of various organizations"
   },
   "register": {
     "title": "Register",
@@ -356,7 +356,7 @@
       "title": "Add Job",
       "no_data": "No Data Yet",
       "name": "Name",
-      "name_required":"Name is required",
+      "name_required": "Name is required",
       "description": "Describe Job",
       "description_required": "Describe Job is required",
       "date": "Select Month",
@@ -690,6 +690,33 @@
       "name": "Name",
       "cost": "Cost",
       "quantity": "Quantity"
+    }
+  },
+  "invoices": {
+    "title": "Invoices",
+    "table_title": "Invoices Table",
+    "add_btn": "Add Invoice",
+    "update_title": "Update Invoice",
+    "form": {
+      "customer": "Customer",
+      "customer_required": "Customer is required",
+      "billingAddress": "BillingAddress",
+      "billingAddress_required": "BillingAddress is required",
+      "invoiceNumber": "InvoiceNumber",
+      "invoiceNumber_required": "InvoiceNumber is required",
+      "invoiceDate": "InvoiceDate",
+      "invoiceDate_required": "InvoiceDate is required",
+      "dueDate": "DueDate",
+      "dueDate_required": "DueDate is required",
+      "job": "Job",
+      "job_required": "Job is required"
+    },
+    "table": {
+      "customer": "Customer",
+      "invoiceNumber": "Invoice Number",
+      "InvoiceDate": "Date & Time",
+      "tax": "Tax",
+      "totalAmount": "Total Amount"
     }
   },
   "jobs": {

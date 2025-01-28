@@ -47,6 +47,8 @@ import { AssignedJobViewComponent } from './jobs/components/assigned-job-view/as
 import { WarrantyContractComponent } from './warranty-contract/warranty-contract.component';
 import { AddWarrantyContractComponent } from './warranty-contract/components/add-warranty-contract/add-warranty-contract.component';
 import { EditWarrantyContractComponent } from './warranty-contract/components/edit-warranty-contract/edit-warranty-contract.component';
+import { InvoicesComponent } from './invoices/invoices.component';
+import { EditInvoiceComponent } from './invoices/components/edit-invoice/edit-invoice.component';
 
 const routes: Routes = [
   {
@@ -285,6 +287,25 @@ const routes: Routes = [
         component: EditWarrantyContractComponent,
         canActivate: [pageGuard],
         data: { code: 'CRMM14P1', action: 'update' },
+      },
+      // invoices
+      {
+        path: 'invoices',
+        component: InvoicesComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM15P1', action: 'read' },
+      },
+      // {
+      //   path: 'invoices/add',
+      //   component: AddWarrantyComponent,
+      //   canActivate: [pageGuard],
+      //   data: { code: 'CRMM15P1', action: 'create' },
+      // },
+      {
+        path: 'invoices/edit/:id',
+        component: EditInvoiceComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM15P1', action: 'update' },
       },
       // reports
       {

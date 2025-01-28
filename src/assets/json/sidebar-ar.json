@@ -250,6 +250,13 @@
         "code": "CRMM14P1",
         "icon": "pi-verified",
         "path": "/modules/warranty-contract"
+      },
+      {
+        "id": 14,
+        "title": "الفواتير",
+        "code": "CRMM15P1",
+        "icon": "pi-receipt",
+        "path": "/modules/invoices"
       }
     ]
   }

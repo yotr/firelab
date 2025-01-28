@@ -1,0 +1,39 @@
+<div>
+  <!-- page header  -->
+  <div
+    class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
+    [dir]="'dir' | translate"
+  >
+    <app-breadcrumb [title]="'invoices.title' | translate"></app-breadcrumb>
+    <!-- <div routerLink="/modules/invoices/add">
+      <a
+        class="btn add-btn d-flex align-items-center {{
+          currentTheme?.colorSchema?.background
+        }} {{ currentTheme?.colorSchema?.color }}"
+      >
+        <i class="pi pi-plus d-none d-sm-block"></i>
+        {{ "invoices.add_btn" | translate }}
+      </a>
+    </div> -->
+  </div>
+
+  <!-- /page header  -->
+  <app-back-button></app-back-button>
+  <!-- table -->
+  <app-invoice-module-table
+    [data]="data"
+    [totalItems]="totalItemsCount"
+    [dataKeys]="dataKeys"
+    [loading]="loading"
+    [getDataError]="getDataError"
+    [currentTheme]="currentTheme"
+    [deleteModalTitle]="'invoices.title' | translate"
+    [tableTitle]="'invoices.table_title' | translate"
+    editPagePath="/modules/invoices/edit"
+    (onPageChange)="onPaginate($event)"
+    (onDelete)="delete($event)"
+    (onSearch)="search($event)"
+    (onFilter)="handleFiltersSubmit($event)"
+    (onReset)="resetData()"
+  ></app-invoice-module-table>
+</div>

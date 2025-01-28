@@ -672,6 +672,33 @@
       "template": "نموذج الضمان"
     }
   },
+  "invoices": {
+    "title": "الفواتير",
+    "table_title": "جدول الفواتير",
+    "add_btn": "إضافة الفاتورة",
+    "update_title": "تحديث الفاتورة",
+    "form": {
+      "customer": "العميل",
+      "customer_required": "العميل مطلوب",
+      "billingAddress": "عنوان الفاتورة",
+      "billingAddress_required": "عنوان الفاتورة مطلوب",
+      "invoiceNumber": "رقم الفاتورة",
+      "invoiceNumber_required": "رقم الفاتورة مطلوب",
+      "invoiceDate": "تاريخ الفاتورة",
+      "invoiceDate_required": "مطلوب تاريخ الفاتورة",
+      "dueDate": "تاريخ الاستحقاق",
+      "dueDate_required": "تاريخ الاستحقاق مطلوب",
+      "job": "الوظيفة المخصصة",
+      "job_required": "الوظيفة المطلوبة"
+    },
+    "table": {
+      "customer": "العميل",
+      "invoiceNumber": "رقم الفاتورة",
+      "InvoiceDate": "التاريخ والوقت",
+      "tax": "الضريبة",
+      "totalAmount": "المبلغ الإجمالي"
+    }
+  },
   "items": {
     "title": "العناصر",
     "table_title": "جدول العناصر",

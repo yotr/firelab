@@ -9,13 +9,12 @@ import { PermissionsService } from 'src/app/services/permissions/permissions.ser
 import { SidebarService } from 'src/app/services/sidebar/sidebar.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
 declare const $: any;
-
 @Component({
-  selector: 'app-warranty',
-  templateUrl: './warranty.component.html',
-  styleUrls: ['./warranty.component.css'],
+  selector: 'app-invoices',
+  templateUrl: './invoices.component.html',
+  styleUrls: ['./invoices.component.css'],
 })
-export class WarrantyComponent implements OnInit, AfterViewInit {
+export class InvoicesComponent implements OnInit, AfterViewInit {
   // current language
   currentLanguage: any = localStorage.getItem('lang');
   currentTheme: any;
@@ -43,26 +42,32 @@ export class WarrantyComponent implements OnInit, AfterViewInit {
     this.translateService.use(this.currentLanguage);
     this.dataKeys = [
       {
-        name: 'name',
-        display: this.translateService.instant('warranty.table.name'),
+        name: 'invoiceNumber',
+        display: this.translateService.instant('invoices.table.invoiceNumber'),
         type: 'string',
         active: true,
       },
       {
-        name: 'period',
-        display: this.translateService.instant('warranty.table.period'),
+        name: 'customer',
+        display: this.translateService.instant('invoices.table.customer'),
+        type: 'object',
+        active: true,
+      },
+      {
+        name: 'InvoiceDate',
+        display: this.translateService.instant('invoices.table.InvoiceDate'),
         type: 'string',
         active: true,
       },
       {
-        name: 'type',
-        display: this.translateService.instant('warranty.table.type'),
-        type: 'string',
+        name: 'tax',
+        display: this.translateService.instant('invoices.table.tax'),
+        type: 'number',
         active: true,
       },
       {
-        name: 'tolerance',
-        display: this.translateService.instant('warranty.table.tolerance'),
+        name: 'totalAmount',
+        display: this.translateService.instant('invoices.table.totalAmount'),
         type: 'number',
         active: true,
       },
@@ -117,7 +122,7 @@ export class WarrantyComponent implements OnInit, AfterViewInit {
     this.loading = true;
     this.apiService
       ?.filterData(
-        'warranty/getFilteredWarranties',
+        'invoices/getFilteredInvoices',
         page ? page : 1,
         pageSize ? pageSize : 20
       )
@@ -125,7 +130,7 @@ export class WarrantyComponent implements OnInit, AfterViewInit {
         next: (data: any) => {
           console.log(data);
           if (data?.isSuccess) {
-            this.data = data?.value?.warranty;
+            this.data = data?.value?.invoices;
             this.totalItemsCount = data?.value?.totalCount;
             this.getDataError = false;
           }
@@ -152,7 +157,7 @@ export class WarrantyComponent implements OnInit, AfterViewInit {
     if (event?.value != null && event.value?.trim() != '') {
       this.loading = true;
       this.apiService
-        .globalSearch('warranty/globalsearch', event?.value, event?.column)
+        .globalSearch('invoices/globalsearch', event?.value, event?.column)
         .subscribe({
           next: (data: any) => {
             if (data?.isSuccess) {
@@ -178,7 +183,7 @@ export class WarrantyComponent implements OnInit, AfterViewInit {
 
   delete(deleteId: any) {
     console.log(deleteId);
-    this.apiService.delete('warranty', deleteId).subscribe({
+    this.apiService.delete('invoices', deleteId).subscribe({
       next: (data) => {
         console.log(data);
         if (data?.isSuccess) {
@@ -207,7 +212,7 @@ export class WarrantyComponent implements OnInit, AfterViewInit {
     // check if filters operator  contains selected
     this.apiService
       .filterData(
-        'warranty/getFilteredWarranties',
+        'invoices/getFilteredInvoices',
         1,
         20,
         event?.column,
@@ -220,7 +225,7 @@ export class WarrantyComponent implements OnInit, AfterViewInit {
         next: (data: any) => {
           console.log(data);
           if (data?.isSuccess) {
-            this.data = data?.value?.warranty;
+            this.data = data?.value?.invoices;
             this.totalItemsCount = data?.value?.totalCount;
           }
           this.loading = false;
@@ -245,7 +250,7 @@ export class WarrantyComponent implements OnInit, AfterViewInit {
   checkPageActions(action: string): boolean {
     return this.permissionsService.checkPageActions(
       this.auth.currentUserSignal()?.userData,
-      'CRMM13P1',
+      'CRMM15P1',
       action
     );
   }
