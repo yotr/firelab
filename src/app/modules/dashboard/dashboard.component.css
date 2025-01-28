@@ -1,6 +1,3 @@
-.dashboard {
-}
-
 .dashboard .bg {
   position: absolute;
   top: 0;
@@ -12,6 +9,7 @@
 }
 
 .dashboard .income-chart {
+  position: relative;
   background-color: white;
   padding: 20px;
   height: 400px;
@@ -21,6 +19,11 @@
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
+}
+.dashboard .income-chart .dashboard-chart,
+#line-chart {
+  width: 100vw;
+  height: 300px;
 }
 .box {
   width: 20px;

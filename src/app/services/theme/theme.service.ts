@@ -103,6 +103,12 @@ export class ThemeService implements OnInit {
           background: 'sidebar-gradient-theme',
           color: 'sidebar-gradient-theme-color',
         },
+        // {
+        //   title: 'Red',
+        //   title_ar: 'أحمر',
+        //   background: 'red-theme',
+        //   color: 'red-theme-color',
+        // },
       ],
       sidebarPosition: ['fixed', 'absolute'],
     };

@@ -2,6 +2,8 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api/api.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
+import { Chart, registerables } from 'chart.js';
+Chart.register(...registerables);
 
 @Component({
   selector: 'app-dashboard',
@@ -18,6 +20,10 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   currentLanguage: any = localStorage.getItem('lang');
   totalJobsDueItemsCount: number = 0;
   thisMonthJobsTotal: number = 0;
+
+  // charts data
+  chartBarLabels: any[] = [];
+  chartBarData: any[] = [];
 
   constructor(
     private toastr: ToastrService,
@@ -51,6 +57,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     this.themeService.getCurrentTheme().subscribe((theme) => {
       this.currentTheme = JSON.parse(theme);
     });
+    this.getData();
   }
   getYears() {
     const currentYear = new Date().getFullYear(); // Get the current year
@@ -122,5 +129,125 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       },
       complete: () => {},
     });
+  }
+
+  lineChart(labels: any[], data1: any[], data2?: any[]) {
+    const chart = new Chart('line-chart', {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'Invoices',
+            data: data1,
+            backgroundColor: [
+              'rgba(183, 27, 27, 0.9)',
+              'rgba(255, 155, 68, 0.9)',
+            ],
+            borderColor: ['rgba(183, 27, 27)', 'rgba(255, 155, 68)'],
+            borderWidth: 1,
+            tension: 0.4,
+          },
+          // {
+          //   label: 'Expenses',
+          //   data: data2,
+          //   backgroundColor: [
+          //     'rgba(255, 155, 68, 0.9)',
+          //     'rgba(252, 96, 117, 0.9)',
+          //   ],
+          //   borderColor: ['rgba(255, 155, 68)', 'rgba(252, 96, 117)'],
+          //   borderWidth: 1,
+          //   tension: 0.4,
+          // },
+        ],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    });
+  }
+  // barChart(labels: any[], data: any[]) {
+  //   const chart = new Chart('line-chart', {
+  //     type: 'line',
+  //     data: {
+  //       labels: labels,
+  //       datasets: [
+  //         {
+  //           label: 'Revenue',
+  //           data: data,
+  //           backgroundColor: [
+  //             'rgba(255, 155, 68, 0.9)',
+  //             'rgba(252, 96, 117, 0.9)',
+  //             'rgba(255, 155, 68, 0.9)',
+  //             'rgba(252, 96, 117, 0.9)',
+  //             'rgba(255, 155, 68, 0.9)',
+  //             'rgba(252, 96, 117, 0.9)',
+  //             'rgba(255, 155, 68, 0.9)',
+  //             'rgba(252, 96, 117, 0.9)',
+  //             'rgba(255, 155, 68, 0.9)',
+  //             'rgba(252, 96, 117, 0.9)',
+  //           ],
+  //           borderColor: [
+  //             'rgba(255, 155, 68)',
+  //             'rgba(252, 96, 117)',
+  //             'rgba(255, 155, 68)',
+  //             'rgba(252, 96, 117)',
+  //             'rgba(255, 155, 68)',
+  //             'rgba(252, 96, 117)',
+  //             'rgba(255, 155, 68)',
+  //             'rgba(252, 96, 117)',
+  //             'rgba(255, 155, 68)',
+  //             'rgba(252, 96, 117)',
+  //           ],
+  //           borderWidth: 1,
+  //         },
+  //       ],
+  //     },
+  //     options: {
+  //       scales: {
+  //         y: {
+  //           beginAtZero: true,
+  //         },
+  //       },
+  //     },
+  //   });
+  // }
+
+  // get revenue
+  getData() {
+    let data = [
+      { date: '2024-01-01', amount: 500 },
+      { date: '2024-02-01', amount: 600 },
+      { date: '2024-03-01', amount: 700 },
+      { date: '2024-04-01', amount: 800 },
+      { date: '2024-05-01', amount: 900 },
+      { date: '2024-06-01', amount: 1000 },
+      { date: '2024-07-01', amount: 1100 },
+      { date: '2024-08-01', amount: 1200 },
+      { date: '2024-09-01', amount: 1300 },
+      { date: '2024-10-01', amount: 1400 },
+    ];
+    // this.apiService.get(`BudgetsRevenues`).subscribe({
+    //   next: (data) => {
+    //     // get chart keys from revenue data
+    this.getChartBarKeys(data);
+    //   },
+    //   error: (err: any) => {
+    //     console.log(err);
+    //   },
+    // });
+  }
+  // get revenue data
+  getChartBarKeys(data: any[]) {
+    // get data keys and values
+    this.chartBarLabels = data?.map((value) => value?.date);
+    this.chartBarData = data?.map((value) => value?.amount);
+
+    this.lineChart(this.chartBarLabels, this.chartBarData);
+    // console.log(this.chartBarData);
   }
 }

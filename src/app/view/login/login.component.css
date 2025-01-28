@@ -904,8 +904,8 @@ img {
   align-items: center;
 }
 .apps .content .app {
-  height: 60px;
-  width: 60px;
+  height: 50px;
+  width: 50px;
   border: 1px solid #ffffff;
   margin: 8px 0.45rem;
   display: flex;
@@ -913,7 +913,7 @@ img {
   align-items: center;
   text-decoration: none;
   color: #ffffff;
-  font-size: 1.1rem;
+  font-size: 1rem;
   border-radius: 50%;
   transition: all 0.5s;
 }
