@@ -313,6 +313,7 @@
         </div>
       </div>
     </div>
+    <hr />
     <!-- deficiencies -->
     <div class="col-sm-12">
       <div class="form-group mt-2">
@@ -350,6 +351,7 @@
       </div>
     </div>
     <!-- /deficiencies -->
+    <hr />
     <!-- items -->
     <div class="col-sm-12">
       <div class="form-group mt-2">
@@ -395,6 +397,7 @@
       </div>
     </div>
     <!-- /items -->
+    <hr />
     <!-- items total -->
     <div class="row">
       <!-- total items -->
@@ -402,7 +405,7 @@
         <div class="form-group mt-2">
           <label> {{ "job_link.assign_job.items" | translate }} </label>
           <input
-            class="form-control bg-secondary"
+            class="form-control total-text"
             type="text"
             [value]="items.length"
             readonly
@@ -414,7 +417,7 @@
         <div class="form-group mt-2">
           <label> {{ "job_link.assign_job.items_total" | translate }} </label>
           <input
-            class="form-control bg-secondary"
+            class="form-control total-text"
             type="text"
             [value]="itemsTotal + ' egp or $'"
             readonly
@@ -423,6 +426,7 @@
       </div>
     </div>
     <!-- /items total -->
+    <hr />
     <!-- services -->
     <div class="col-sm-12">
       <div class="form-group mt-2">
@@ -464,6 +468,7 @@
       </div>
     </div>
     <!-- /services -->
+    <hr />
     <!-- srvices total -->
     <div class="row">
       <!-- total services -->
@@ -471,7 +476,7 @@
         <div class="form-group mt-2">
           <label> {{ "job_link.assign_job.services" | translate }} </label>
           <input
-            class="form-control bg-secondary"
+            class="form-control total-text"
             type="text"
             [value]="services.length"
             readonly
@@ -483,7 +488,7 @@
         <div class="form-group mt-2">
           <label> {{ "job_link.assign_job.service_total" | translate }} </label>
           <input
-            class="form-control bg-secondary"
+            class="form-control total-text"
             type="text"
             [value]="servicesTotal + ' egp or $'"
             readonly
@@ -492,7 +497,7 @@
       </div>
     </div>
     <!-- /srvices total -->
-
+    <hr />
     <!-- parts -->
     <div class="col-sm-12">
       <div class="form-group mt-2">
@@ -547,6 +552,7 @@
       </div>
     </div>
     <!-- /parts -->
+    <hr />
     <!-- parts total -->
     <div class="row">
       <!-- total parts -->
@@ -554,7 +560,7 @@
         <div class="form-group mt-2">
           <label> {{ "job_link.assign_job.parts" | translate }} </label>
           <input
-            class="form-control bg-secondary"
+            class="form-control total-text"
             type="text"
             [value]="parts.length"
             readonly
@@ -566,7 +572,7 @@
         <div class="form-group mt-2">
           <label> {{ "job_link.assign_job.parts_total" | translate }} </label>
           <input
-            class="form-control bg-secondary"
+            class="form-control total-text"
             type="text"
             [value]="partsTotal + ' egp or $'"
             readonly
@@ -575,6 +581,7 @@
       </div>
     </div>
     <!-- /parts total -->
+    <hr />
     <!-- grand total -->
     <div class="row">
       <!-- total -->
@@ -582,7 +589,7 @@
         <div class="form-group mt-2">
           <label> {{ "job_link.assign_job.grand_total" | translate }} </label>
           <input
-            class="form-control bg-secondary"
+            class="form-control total-text"
             type="text"
             [value]="servicesTotal + partsTotal + itemsTotal + ' egp or $'"
             readonly
@@ -591,14 +598,15 @@
       </div>
     </div>
     <!-- /grand total -->
+    <hr />
 
-    <!-- submit -->
-    <!-- <div class="btns">
+    <!-- create Invoice -->
+    <div class="btns" *ngIf="!currentJob?.complete">
       <div class="save-btn text-center">
-        <button type="submit" class="save mt-4">
-          {{ "save" | translate }}
-        </button>
+        <div class="save mt-4" (click)="createInvoice()">
+          {{ "invoice_btn" | translate }}
+        </div>
       </div>
-    </div> -->
+    </div>
   </form>
 </div>

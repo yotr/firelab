@@ -1,3 +1,459 @@
-<p>
-  edit-invoice works!
-</p>
+<div class="invoice">
+  <!-- Page Header -->
+  <div
+    class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
+    [dir]="'dir' | translate"
+  >
+    <!-- breadcrumb -->
+    <app-breadcrumb
+      [title]="'invoices.update_title' | translate"
+    ></app-breadcrumb>
+    <p
+      class="fw-bold fs-6 text-uppercase"
+      [ngStyle]="{
+        color: formValues['status'].value == 'unpaid' ? 'red' : 'green'
+      }"
+    >
+      {{ formValues["status"].value }}
+    </p>
+  </div>
+  <!-- /Page Header -->
+
+  <app-back-button></app-back-button>
+  <div class="header">
+    <ul class="left-section">
+      <li>
+        {{ "job_link.assign_job.contact_name" | translate }}:
+        {{ currentJob?.customer?.contactName }}
+      </li>
+      <li>
+        {{ "job_link.assign_job.customer" | translate }}:
+        {{ currentJob?.customer?.businessName }}
+      </li>
+      <li>
+        {{ "job_link.assign_job.email_id" | translate }}:
+        {{ currentJob?.customer?.email }}
+      </li>
+    </ul>
+    <ul class="right-section">
+      <li>
+        {{ "job_link.assign_job.office_number" | translate }}:
+        {{ currentJob?.customer?.officePhone }}
+      </li>
+      <li>
+        {{ "job_link.assign_job.address" | translate }}:
+        {{ currentJob?.customer?.address1 }}
+      </li>
+      <li>
+        {{ "job_link.assign_job.job_id" | translate }}: {{ currentJob?.jobId }}
+      </li>
+    </ul>
+  </div>
+  <form [formGroup]="addForm" (ngSubmit)="submit()">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="form-group mt-2">
+          <label
+            >{{ "invoices.form.invoiceNumber" | translate }}
+            <span class="text-danger">*</span></label
+          >
+          <input
+            class="form-control"
+            type="text"
+            formControlName="invoiceNumber"
+          />
+          <div
+            *ngIf="
+              addForm.get('invoiceNumber')?.invalid &&
+              addForm.get('invoiceNumber')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('invoiceNumber')?.invalid &&
+                addForm.get('invoiceNumber')?.touched
+              "
+              class="text-danger"
+            >
+              {{ "invoices.form.invoiceNumber_required" | translate }}</small
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group mt-2">
+          <label
+            >{{ "invoices.form.billingAddress" | translate }}
+            <span class="text-danger">*</span></label
+          >
+          <input
+            class="form-control"
+            type="text"
+            formControlName="billingAddress"
+          />
+          <div
+            *ngIf="
+              addForm.get('billingAddress')?.invalid &&
+              addForm.get('billingAddress')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('billingAddress')?.invalid &&
+                addForm.get('billingAddress')?.touched
+              "
+              class="text-danger"
+            >
+              {{ "invoices.form.billingAddress_required" | translate }}</small
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group mt-2">
+          <label
+            >{{ "invoices.form.invoiceDate" | translate }}
+            <span class="text-danger">*</span></label
+          >
+          <input
+            class="form-control"
+            type="date"
+            formControlName="invoiceDate"
+          />
+          <div
+            *ngIf="
+              addForm.get('invoiceDate')?.invalid &&
+              addForm.get('invoiceDate')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('invoiceDate')?.invalid &&
+                addForm.get('invoiceDate')?.touched
+              "
+              class="text-danger"
+            >
+              {{ "invoices.form.invoiceDate_required" | translate }}</small
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="form-group mt-2">
+          <label
+            >{{ "invoices.form.dueDate" | translate }}
+            <span class="text-danger">*</span></label
+          >
+          <input class="form-control" type="date" formControlName="dueDate" />
+          <div
+            *ngIf="
+              addForm.get('dueDate')?.invalid && addForm.get('dueDate')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('dueDate')?.invalid &&
+                addForm.get('dueDate')?.touched
+              "
+              class="text-danger"
+            >
+              {{ "invoices.form.dueDate_required" | translate }}</small
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="p-1">
+      <hr />
+      <!-- items -->
+      <div class="col-sm-12">
+        <div class="form-group mt-2">
+          <label>{{ "warrantyContract.form.item" | translate }} </label>
+          <table class="table table-bordered">
+            <thead>
+              <tr class="table-active">
+                <th scope="col">#</th>
+                <th scope="col">
+                  {{ "warrantyContract.form.item" | translate }}
+                </th>
+                <th scope="col">
+                  {{ "warrantyContract.form.cost" | translate }}
+                </th>
+                <th scope="col">
+                  {{ "warrantyContract.form.quantity" | translate }}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- no data -->
+              <tr>
+                <td colspan="4" [hidden]="items.length != 0">
+                  <div class="text-muted text-center">
+                    {{ "customers.add_job.no_data" | translate }}
+                  </div>
+                </td>
+              </tr>
+              <!-- rows -->
+              <ng-container formArrayName="items">
+                <tr
+                  *ngFor="let item of items.controls; let i = index"
+                  [formGroupName]="i"
+                >
+                  <th scope="row">{{ i }}</th>
+                  <td>{{ formValues["items"].value[i]?.name }}</td>
+                  <td>{{ formValues["items"].value[i]?.cost }}</td>
+                  <td>{{ formValues["items"].value[i]?.qty }}</td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <hr />
+      <!-- /items -->
+      <!-- items total -->
+      <div class="row">
+        <!-- total items -->
+        <div class="col-sm-6">
+          <div class="form-group mt-2">
+            <label> {{ "job_link.assign_job.items" | translate }} </label>
+            <input
+              class="form-control total-text"
+              type="text"
+              [value]="items.length"
+              readonly
+            />
+          </div>
+        </div>
+        <!-- total cost -->
+        <div class="col-sm-6">
+          <div class="form-group mt-2">
+            <label> {{ "job_link.assign_job.items_total" | translate }} </label>
+            <input
+              class="form-control total-text"
+              type="text"
+              [value]="itemsTotal + ' egp or $'"
+              readonly
+            />
+          </div>
+        </div>
+      </div>
+      <!-- /items total -->
+      <hr />
+      <!-- services -->
+      <div class="col-sm-12">
+        <div class="form-group mt-2">
+          <label>{{ "job_link.assign_job.services" | translate }} </label>
+          <table class="table table-bordered">
+            <thead>
+              <tr class="table-active">
+                <th scope="col">#</th>
+                <th scope="col">
+                  {{ "job_link.assign_job.service" | translate }}
+                </th>
+                <th scope="col">
+                  {{ "job_link.assign_job.cost" | translate }}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- no data -->
+              <tr>
+                <td colspan="3" [hidden]="services.length != 0">
+                  <div class="text-muted text-center">
+                    {{ "customers.add_job.no_data" | translate }}
+                  </div>
+                </td>
+              </tr>
+              <!-- rows -->
+              <ng-container formArrayName="services">
+                <tr
+                  *ngFor="let item of services.controls; let i = index"
+                  [formGroupName]="i"
+                >
+                  <th scope="row">{{ i }}</th>
+                  <td>{{ formValues["services"].value[i]?.name }}</td>
+                  <td>{{ formValues["services"].value[i]?.cost }}</td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- /services -->
+      <hr />
+      <!-- srvices total -->
+      <div class="row">
+        <!-- total services -->
+        <div class="col-sm-6">
+          <div class="form-group mt-2">
+            <label> {{ "job_link.assign_job.services" | translate }} </label>
+            <input
+              class="form-control total-text"
+              type="text"
+              [value]="services.length"
+              readonly
+            />
+          </div>
+        </div>
+        <!-- total cost -->
+        <div class="col-sm-6">
+          <div class="form-group mt-2">
+            <label>
+              {{ "job_link.assign_job.service_total" | translate }}
+            </label>
+            <input
+              class="form-control total-text"
+              type="text"
+              [value]="servicesTotal + ' egp or $'"
+              readonly
+            />
+          </div>
+        </div>
+      </div>
+      <!-- /srvices total -->
+      <hr />
+      <!-- parts -->
+      <div class="col-sm-12">
+        <div class="form-group mt-2">
+          <label>{{ "job_link.assign_job.parts" | translate }} </label>
+          <table class="table table-bordered">
+            <thead>
+              <tr class="table-active">
+                <th scope="col">#</th>
+                <th scope="col">
+                  {{ "job_link.assign_job.part" | translate }}
+                </th>
+                <th scope="col">
+                  {{ "job_link.assign_job.qty" | translate }}
+                </th>
+                <th scope="col">
+                  {{ "job_link.assign_job.rate" | translate }}
+                </th>
+                <th scope="col">
+                  {{ "job_link.assign_job.amount" | translate }}
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- no data -->
+              <tr>
+                <td colspan="5" [hidden]="parts.length != 0">
+                  <div class="text-muted text-center">
+                    {{ "customers.add_job.no_data" | translate }}
+                  </div>
+                </td>
+              </tr>
+              <!-- rows -->
+              <ng-container formArrayName="parts">
+                <tr
+                  *ngFor="let item of parts.controls; let i = index"
+                  [formGroupName]="i"
+                >
+                  <th scope="row">{{ i }}</th>
+                  <td>{{ formValues["parts"].value[i]?.name }}</td>
+                  <td>{{ formValues["parts"].value[i]?.qty }}</td>
+                  <td>{{ formValues["parts"].value[i]?.rate }}</td>
+                  <td>
+                    {{
+                      formValues["parts"].value[i]?.rate *
+                        formValues["parts"].value[i]?.qty
+                    }}
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- /parts -->
+      <hr />
+      <!-- parts total -->
+      <div class="row">
+        <!-- total parts -->
+        <div class="col-sm-6">
+          <div class="form-group mt-2">
+            <label> {{ "job_link.assign_job.parts" | translate }} </label>
+            <input
+              class="form-control total-text"
+              type="text"
+              [value]="parts.length"
+              readonly
+            />
+          </div>
+        </div>
+        <!-- total cost -->
+        <div class="col-sm-6">
+          <div class="form-group mt-2">
+            <label> {{ "job_link.assign_job.parts_total" | translate }} </label>
+            <input
+              class="form-control total-text"
+              type="text"
+              [value]="partsTotal + ' egp or $'"
+              readonly
+            />
+          </div>
+        </div>
+      </div>
+      <!-- /parts total -->
+      <hr />
+      <!-- grand total -->
+      <div class="row">
+        <!-- total -->
+        <div class="col-sm-6">
+          <div class="form-group mt-2">
+            <label> {{ "invoices.form.total" | translate }} </label>
+            <input
+              class="form-control total-text"
+              type="text"
+              [value]="formValues['totalAmount'].value + ' egp or $'"
+              readonly
+            />
+          </div>
+        </div>
+        <div class="col-sm-6"></div>
+        <!-- tax -->
+        <div class="col-sm-6">
+          <div class="form-group mt-2">
+            <label> {{ "invoices.form.tax" | translate }} </label>
+            <input
+              class="form-control"
+              type="number"
+              (change)="onTaxChange($event)"
+              formControlName="tax"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- grand total -->
+      <div class="col-sm-6">
+        <div class="form-group mt-2">
+          <label> {{ "invoices.form.grand" | translate }} </label>
+          <input
+            class="form-control total-text"
+            type="text"
+            [value]="grandTotal + ' egp or $'"
+            readonly
+          />
+        </div>
+      </div>
+      <!-- /grand total -->
+      <hr />
+    </div>
+
+    <!-- submit -->
+    <div class="btns">
+      <div class="save-btn text-center">
+        <button type="submit" class="save mt-4">
+          {{ "save" | translate }}
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- loading section -->
+<div *ngIf="uploading">
+  <app-loading-section></app-loading-section>
+</div>
+<!-- /loading section -->

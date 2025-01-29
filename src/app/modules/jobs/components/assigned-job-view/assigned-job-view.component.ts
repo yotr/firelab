@@ -49,6 +49,8 @@ export class AssignedJobViewComponent implements OnInit {
 
   currentWarrantyContract: any = null;
 
+  assignedDataId: any = null;
+
   constructor(
     private formBuilder: FormBuilder,
     private themeService: ThemeService,
@@ -272,6 +274,7 @@ export class AssignedJobViewComponent implements OnInit {
               (item: any) => item?.teamMemberId
             );
             //  set values
+            this.assignedDataId = data?.value?.id;
             this.addForm.patchValue({
               startDate: this.formatDate(data?.value?.startDate),
               durationBy: data?.value?.durationBy,
@@ -374,6 +377,9 @@ export class AssignedJobViewComponent implements OnInit {
             this.toastr.error('There Is Somthing Wrong', 'Error');
           }
         },
+        complete: () => {
+          // this.createInvoice();
+        },
       });
   }
   uncompleteJob(): void {
@@ -404,4 +410,72 @@ export class AssignedJobViewComponent implements OnInit {
         },
       });
   }
+
+  createInvoice() {
+    let total = this.servicesTotal + this.partsTotal + this.itemsTotal;
+    let data = {
+      // BillingAddress:,
+      invoiceDate: new Date(),
+      status: 'unpaid',
+      totalAmount: total,
+      customerId: this.currentJob?.customer?.id,
+      assignedJobId: this.assignedDataId,
+    };
+    // api
+    this.apiService.add('invoices/add', data).subscribe({
+      next: (data: any) => {
+        console.log(data);
+        if (data?.isSuccess) {
+          if (this.currentLanguage == 'ar') {
+            this.toastr.success('تمت إضافة البيانات بنجاح...');
+          } else {
+            this.toastr.success('data added successfully...', 'Success');
+          }
+        }
+      },
+      error: (err: any) => {
+        console.log('Error:', err);
+        if (this.currentLanguage == 'ar') {
+          this.toastr.error('هناك شيء خاطئ', 'خطأ');
+        } else {
+          this.toastr.error('There Is Somthing Wrong', 'Error');
+        }
+        this.uploading = false;
+      },
+      complete: () => {
+        this.uploading = false;
+      },
+    });
+  }
+
+  // deleteInvoice(deficiencyId: any, i: number): void {
+  //   // api
+  //   this.apiService
+  //     .delete('jobs/assignedDeficiencies/delete', deficiencyId)
+  //     .subscribe({
+  //       next: (data) => {
+  //         console.log(data);
+  //         if (data?.isSuccess) {
+  //           this.deficiencyIds.removeAt(i);
+  //           if (this.currentLanguage == 'ar') {
+  //             this.toastr.success('تمت حذف البيانات بنجاح...');
+  //           } else {
+  //             this.toastr.success('data deleted successfully...', 'Success');
+  //           }
+  //         }
+  //       },
+  //       error: (err: any) => {
+  //         console.log('Error:', err);
+  //         if (this.currentLanguage == 'ar') {
+  //           this.toastr.error('هناك شيء خاطئ', 'خطأ');
+  //         } else {
+  //           this.toastr.error('There Is Somthing Wrong', 'Error');
+  //         }
+  //         this.uploading = false;
+  //       },
+  //       complete: () => {
+  //         this.uploading = false;
+  //       },
+  //     });
+  // }
 }

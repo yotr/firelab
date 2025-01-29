@@ -54,7 +54,7 @@ export class InvoicesComponent implements OnInit, AfterViewInit {
         active: true,
       },
       {
-        name: 'InvoiceDate',
+        name: 'invoiceDate',
         display: this.translateService.instant('invoices.table.InvoiceDate'),
         type: 'string',
         active: true,

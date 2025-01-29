@@ -208,9 +208,27 @@
               </td>
               <ng-container *ngFor="let key of dataKeys">
                 <td *ngIf="key.active && key?.name != 'id'">
-                  <!-- name -->
-                  <ng-container>
-                    {{ value[key?.name] }}
+                  <!-- id -->
+                  <ng-container *ngIf="key?.name == 'invoiceNumber'">
+                    {{ value[key?.name] ? value[key?.name] : "_" }}
+                  </ng-container>
+                  <!-- customer -->
+                  <ng-container *ngIf="key?.name == 'customer'">
+                    {{
+                      value[key?.name] ? value[key?.name]?.businessName : "_"
+                    }}
+                  </ng-container>
+                  <!-- invoiceDate -->
+                  <ng-container *ngIf="key?.name == 'invoiceDate'">
+                    {{ value[key?.name] ? (value[key?.name] | date) : "_" }}
+                  </ng-container>
+                  <!-- tax -->
+                  <ng-container *ngIf="key?.name == 'tax'">
+                    {{ value[key?.name] ? value[key?.name] + " %" : "_" }}
+                  </ng-container>
+                  <!-- totalAmount -->
+                  <ng-container *ngIf="key?.name == 'totalAmount'">
+                    {{ value[key?.name] ? value[key?.name] + " (egp or $)" : "_" }}
                   </ng-container>
                 </td>
               </ng-container>
