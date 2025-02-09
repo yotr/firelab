@@ -40,7 +40,7 @@ export class AddPermissionComponent implements OnInit, AfterViewInit {
     this.addForm = this.formBuilder.group(
       {
         name: ['', [Validators.required]],
-        arabicName: ['', [Validators.required]],
+        // arabicName: ['', [Validators.required]],
       }
     );
   }

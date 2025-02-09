@@ -16,7 +16,7 @@
   <!-- content -->
   <form (ngSubmit)="submit()" [formGroup]="addForm">
     <div class="row">
-      <div class="col-sm-6">
+      <div class="col-sm-12">
         <!-- name -->
         <div class="form-group mt-2">
           <label
@@ -41,8 +41,8 @@
         </div>
       </div>
 
-      <div class="col-sm-6">
-        <!-- Arabic Name -->
+      <!-- Arabic Name -->
+      <!-- <div class="col-sm-6">
         <div class="form-group mt-2">
           <label
             >{{ "permissions.form.ar_name" | translate }}
@@ -53,7 +53,6 @@
             type="text"
             formControlName="arabicName"
           />
-          <!-- errors -->
           <div
             *ngIf="
               addForm.get('arabicName')?.invalid &&
@@ -70,9 +69,8 @@
               {{ "permissions.form.ar_name_required" | translate }}</small
             >
           </div>
-          <!-- errors -->
         </div>
-      </div>
+      </div> -->
 
       <div class="col-sm-12">
         <!-- roles modules sections -->

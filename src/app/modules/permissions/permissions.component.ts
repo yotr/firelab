@@ -44,12 +44,12 @@ export class PermissionsComponent implements OnInit, AfterViewInit {
         type: 'string',
         active: true,
       },
-      {
-        name: 'arabicName',
-        display: this.translateService.instant('permissions.table.ar_name'),
-        type: 'string',
-        active: true,
-      },
+      // {
+      //   name: 'arabicName',
+      //   display: this.translateService.instant('permissions.table.ar_name'),
+      //   type: 'string',
+      //   active: true,
+      // },
     ];
   }
 

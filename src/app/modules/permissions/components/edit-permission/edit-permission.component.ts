@@ -48,7 +48,7 @@ export class EditPermissionComponent implements OnInit, AfterViewInit {
     // Add form
     this.addForm = this.formBuilder.group({
       name: ['', [Validators.required]],
-      arabicName: ['', [Validators.required]],
+      // arabicName: ['', [Validators.required]],
     });
   }
   ngAfterViewInit(): void {
@@ -120,13 +120,11 @@ export class EditPermissionComponent implements OnInit, AfterViewInit {
 
   // get current data
   getCurrentData() {
-    this.uploading = true;
     this.apiService.getById('roles', this.updateId).subscribe({
       next: (data: any) => {
+        this.uploading = true;
         if (data?.isSuccess) {
           setTimeout(() => {
-            this.uploading = false;
-
             // check permissions pages and submodules to be true
             let checkedPermissions = this.setCheckedToTrue(
               data?.value?.permissions
@@ -136,8 +134,9 @@ export class EditPermissionComponent implements OnInit, AfterViewInit {
             console.log(data);
             this.addForm.patchValue({
               name: data?.value?.name,
-              arabicName: data?.value?.arabicName,
+              // arabicName: data?.value?.arabicName,
             });
+            this.uploading = false;
           }, 2000);
           // this.selectedRole = data;
 
@@ -165,6 +164,9 @@ export class EditPermissionComponent implements OnInit, AfterViewInit {
           this.toastr.error('There Is Somthing Wrong', 'Error');
         }
       },
+      complete: () => {
+        // this.uploading = false;
+      },
     });
   }
 
@@ -178,6 +180,7 @@ export class EditPermissionComponent implements OnInit, AfterViewInit {
 
   // Function to merge array2 into array1
   mergeArrays(array1: any[], array2: any[]) {
+    console.log(array1, array2);
     // Merge arr2 into arr1
     array1.forEach((item1: any) => {
       item1?.pages?.forEach((page: any) => {
@@ -187,7 +190,14 @@ export class EditPermissionComponent implements OnInit, AfterViewInit {
 
         if (existingItem) {
           // Assign values from page2 to page1
-          Object.assign(page, existingItem); // Merge properties
+          // Object.assign(page, existingItem); // Merge properties
+          // Manually assign values
+          page.pageId = page?.id;
+          page.read = existingItem?.read ?? page.read;
+          page.create = existingItem?.create ?? page.create;
+          page.update = existingItem?.update ?? page.update;
+          page.delete = existingItem?.delete ?? page.delete;
+          page.checked = existingItem?.checked ?? page.checked;
         }
       });
     });
@@ -198,7 +208,7 @@ export class EditPermissionComponent implements OnInit, AfterViewInit {
     // selected pages in modules
     const selectedPages = this.modules.flatMap((module: any) =>
       module?.pages
-        .filter((page: any) => page.read)
+        .filter((page: any) => page?.read)
         .map((page: any) => ({
           pageId: page?.id,
           read: page?.read,
@@ -235,21 +245,23 @@ export class EditPermissionComponent implements OnInit, AfterViewInit {
             }
           },
           error: (err: any) => {
+            this.uploading = false;
             if (this.currentLanguage == 'ar') {
               this.toastr.error('هناك شيء خاطئ', 'خطأ');
             } else {
               this.toastr.error('There Is Somthing Wrong', 'Error');
               this.toastr.error(err?.error[0]?.message, 'Error');
             }
-            this.uploading = false;
           },
           complete: () => {
+            this.uploading = false;
             // if (roleUpdated) {
             //   this.createNewPermissions(selectedPages, this.updateId);
             // }
           },
         });
       }, 1000);
+      // this.uploading = false;
     } else {
       if (this.currentLanguage == 'ar') {
         this.toastr.warning('الرجاء إدخال الحقول المطلوبة');
@@ -260,27 +272,25 @@ export class EditPermissionComponent implements OnInit, AfterViewInit {
   }
 
   onPermissionsChange(event: any) {
-    let id = event?.id;
-    let status = event?.status;
-    let action = event?.action;
-    let data = event?.data;
-
-    console.log('id: ', id);
-    console.log('status: ', status);
-    console.log('action: ', action);
-    console.log('data: ', data);
-
-    if (status && action == 'all' && data != undefined) {
-      this.createPermissions(data, action);
-    } else if (status == false && action == 'all' && data != undefined) {
-      this.deletePermissions(data?.id);
-    } else if (status && action == 'read' && data != undefined) {
-      this.createPermissions(data, action);
-    } else if (status == false && action == 'read' && data != undefined) {
-      this.deletePermissions(data?.id);
-    } else if (action == 'update' || action == 'create' || action == 'delete') {
-      this.updatePermissions(data?.id, data);
-    }
+    // let id = event?.id;
+    // let status = event?.status;
+    // let action = event?.action;
+    // let data = event?.data;
+    // console.log('id: ', id);
+    // console.log('status: ', status);
+    // console.log('action: ', action);
+    // console.log('data: ', data);
+    // if (status && action == 'all' && data != undefined) {
+    //   this.createPermissions(data, action);
+    // } else if (status == false && action == 'all' && data != undefined) {
+    //   this.deletePermissions(data?.id);
+    // } else if (status && action == 'read' && data != undefined) {
+    //   this.createPermissions(data, action);
+    // } else if (status == false && action == 'read' && data != undefined) {
+    //   this.deletePermissions(data?.id);
+    // } else if (action == 'update' || action == 'create' || action == 'delete') {
+    //   this.updatePermissions(data?.id, data);
+    // }
   }
 
   createPermissions(values: any, action: string) {
