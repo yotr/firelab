@@ -35,14 +35,15 @@
     [@toggle-animation]="activeMenu.value == list?.id ? 'opened' : 'closed'"
   >
     <ng-container *ngFor="let link of list?.list">
-      <li
+      <a
+        class="submenu-link"
         [routerLink]="link?.path"
         [queryParams]="link?.query"
         routerLinkActive="active"
         role="button"
       >
         <a class="{{ currentTheme?.sidebarColor?.color }}">{{ link?.page }}</a>
-      </li>
+      </a>
     </ng-container>
   </div>
 </div>
