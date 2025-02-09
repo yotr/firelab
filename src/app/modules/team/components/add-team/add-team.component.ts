@@ -49,12 +49,20 @@ export class AddTeamComponent implements OnInit, AfterViewInit {
         lastName: ['', [Validators.required]],
         // userName: ['', [Validators.required]],
         email: ['', [Validators.email, Validators.required]],
-        password: ['', [Validators.required]],
+        password: [
+          '',
+          [
+            Validators.required,
+            Validators.pattern(
+              /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+            ),
+          ],
+        ],
         contactNumber: ['', [Validators.required]],
         billableHourlyRate: ['', [Validators.required]],
         position: [''],
         reportCategoryId: [null],
-        status: ['clocked'],
+        status: [3],
         roleId: [null],
       }
       // { validators: passwordMatch }
@@ -185,10 +193,11 @@ export class AddTeamComponent implements OnInit, AfterViewInit {
         CompanyId: this.currentUser?.companyId,
       };
       console.log(data);
-      this.uploading = true;
+
       // api
       this.apiService?.add('teamMembers/add', data).subscribe({
         next: (data) => {
+          this.uploading = true;
           console.log(data);
           if (data?.isSuccess) {
             if (this.currentLanguage == 'ar') {
@@ -211,8 +220,10 @@ export class AddTeamComponent implements OnInit, AfterViewInit {
               );
             }
           }
+          this.uploading = false;
         },
         error: (err: any) => {
+          this.uploading = false;
           console.log('Error:', err);
           if (this.currentLanguage == 'ar') {
             this.toastr.error('هناك شيء خاطئ', 'خطأ');
@@ -220,7 +231,6 @@ export class AddTeamComponent implements OnInit, AfterViewInit {
             this.toastr.error('There Is Somthing Wrong', 'Error');
             this.toastr.error(err?.error[0]?.message, 'Error');
           }
-          this.uploading = false;
         },
         complete: () => {
           this.uploading = false;

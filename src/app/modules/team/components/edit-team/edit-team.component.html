@@ -276,7 +276,7 @@
             </option>
             <ng-container *ngFor="let role of roles">
               <option [value]="role?.id">
-                {{ currentLanguage == "ar" ? role?.arabicName : role?.name }}
+                {{ role?.name }}
               </option>
             </ng-container>
 
@@ -319,7 +319,10 @@
     </div> -->
 
     <!-- submit -->
-    <div class="save-btn text-center">
+    <div
+      *ngIf="isManager == false || isManager == null"
+      class="save-btn text-center"
+    >
       <button type="submit" class="save mt-4">{{ "save" | translate }}</button>
     </div>
   </form>

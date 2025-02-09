@@ -218,6 +218,22 @@
                   <ng-container *ngIf="key?.name == 'contactNumber'">
                     {{ value?.contactNumber }}
                   </ng-container>
+                  <!-- postion -->
+                  <ng-container *ngIf="key?.name == 'postion'">
+                    <span
+                      [innerHTML]="
+                        value?.isManager
+                          ? '<span class=\'text-danger\'>' +
+                            ('team.table.manager' | translate) +
+                            '</span>'
+                          : value?.position?.trim() === ''
+                          ? '_'
+                          : value?.position
+                      "
+                    >
+                    </span>
+                    <!-- {{ value?.isManager == true ? "<span class='text-danger'>" + ("team.table.manager" | translate) +"</span>" : value?.position?.trim() == "" ? "_" : value?.position}} -->
+                  </ng-container>
                   <!-- status -->
                   <ng-container *ngIf="key?.name == 'status'">
                     <app-custom-dropdown
@@ -246,6 +262,7 @@
                   <div
                     [dir]="'dir' | translate"
                     class="dropdown-menu dropdown-menu-right"
+                    [hidden]="value?.isManager"
                   >
                     <a
                       class="dropdown-item"

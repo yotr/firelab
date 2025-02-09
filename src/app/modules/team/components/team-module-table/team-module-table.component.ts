@@ -103,7 +103,7 @@ export class TeamModuleTableComponent implements OnInit {
     this.getCurrentUserData();
   }
   getIndex(value: any): any | number {
-    let index = this.statusDropdown.findIndex((v) => v.value == value?.status);
+    let index = this.statusDropdown.findIndex((v) => v.id == value?.status);
     if (index === -1) {
       return 3;
     } else {
@@ -209,7 +209,7 @@ export class TeamModuleTableComponent implements OnInit {
   //change status
   onTableStatusChange(event: any, id: any) {
     console.log(event);
-    this.onStatusChange.emit({ status: event?.value, id });
+    this.onStatusChange.emit({ status: event?.id, id });
   }
 
   printAll() {

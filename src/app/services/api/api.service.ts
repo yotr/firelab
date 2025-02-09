@@ -262,37 +262,42 @@ export class ApiService {
       console.error('An error occurred:', error.error);
     } else if (error.status === 401) {
       // Handle Unauthorized error
-      // get user if exist
-      window.location.reload();
       let isLoggedIn = localStorage.getItem('firelab-loginData');
 
       if (isLoggedIn) {
-        // remove uset from storage
+        // Remove user from storage
         localStorage.removeItem('firelab-loginData');
         localStorage.removeItem('firelab-roles');
-        // navigate to login page
-        this.router?.navigate(['/login']);
-      } else {
-        // navigate to login page
-        this.router?.navigate(['/login']);
       }
+
+      // Navigate to login page
+      this.router.navigate(['/login']);
+
+      // Reload page (only after navigating)
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
 
       // return console.error(
       //   'Unauthorized request. Please check your credentials.'
       // );
     } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong.
+      // Handle other backend errors
       console.error(
-        `Backend returned code ${error.status}, body was: `,
+        `Backend returned code ${error.status}, body was:`,
         error.error
       );
-      return error;
+
+      var errorMessage = `${error?.error[0].message}`;
+      throwError(() => new Error(errorMessage));
     }
-    // Return an observable with a user-facing error message.
-    return throwError(
-      () => new Error('Something bad happened; please try again later.')
-    );
+    // Return an observable with a user-facing error message
+    var errorMessage = `${error?.error[0].message}`;
+    if (error?.error[0]?.message) {
+      return throwError(() => new Error(errorMessage));
+    } else {
+    }
+    return throwError(() => new Error(error?.error));
   }
 
   public logUserOut(): any {

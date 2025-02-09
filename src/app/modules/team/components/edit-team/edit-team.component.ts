@@ -31,6 +31,7 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
   roles: any[] = [];
   rolesLoading: boolean = true;
   assignedRole: any = null;
+  isManager: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -127,8 +128,10 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
           position: data?.position,
           division: data?.division,
           roleId: data?.roleId,
+          reportCategoryId: data?.reportCategoryId,
         });
         this.assignedRole = data?.roleId;
+        this.isManager = data?.isManager;
       },
       error: (error) => {
         console.log(error);
@@ -262,10 +265,12 @@ export class EditTeamComponent implements OnInit, AfterViewInit {
             }
           },
           error: (err: any) => {
+            console.log('Error: ' + err);
             if (this.currentLanguage == 'ar') {
               this.toastr.error('هناك شيء خاطئ', 'خطأ');
             } else {
               this.toastr.error('There Is Somthing Wrong', 'Error');
+              this.toastr.error(err);
             }
             this.uploading = false;
           },

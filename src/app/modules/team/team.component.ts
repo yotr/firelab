@@ -58,6 +58,12 @@ export class TeamComponent implements OnInit, AfterViewInit {
         active: true,
       },
       {
+        name: 'postion',
+        display: this.translateService.instant('team.table.postion'),
+        type: 'boolean',
+        active: true,
+      },
+      {
         name: 'status',
         display: this.translateService.instant('team.table.status'),
         type: 'string',

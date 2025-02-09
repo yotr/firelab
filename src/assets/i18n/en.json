@@ -16,7 +16,7 @@
   "no_role": "No role for you, ask your manager to give you a role.",
   "companies_page": "Companies",
   "edit_profile": "Edit Profile",
-  "invoice_btn":"Create Invoice",
+  "invoice_btn": "Create Invoice",
   "gps": {
     "list": "Team Member list",
     "name": "Member Name",
@@ -445,6 +445,7 @@
       "email_valid": "Email is not valid",
       "password": "Password",
       "password_required": "Password is required",
+      "password_pattern": "Password must contain at least 8 characters, one uppercase, one lowercase, one number, and one special character",
       "contact_number": "Contact Number",
       "contact_number_required": "Contact Number is required",
       "billable_rate": "Billable Hourly Rate",
@@ -457,7 +458,9 @@
       "name": "Name",
       "email_id": "Email Id",
       "phone": "Phone",
-      "status": "Status"
+      "status": "Status",
+      "postion": "Postion",
+      "manager":"Manager"
     },
     "time_card": {
       "name": "Name",
@@ -519,7 +522,7 @@
       "title": "Assign Job",
       "update_title": "Update Assigned Job",
       "contact_name": "Contact Name",
-      "customer":"Customer",
+      "customer": "Customer",
       "job_id": "Job Id Number",
       "email_id": "Email Id",
       "office_number": "Office Number",

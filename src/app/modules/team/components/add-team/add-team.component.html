@@ -158,14 +158,19 @@
             "
           >
             <small
-              *ngIf="
-                addForm.get('password')?.invalid &&
-                addForm.get('password')?.touched
-              "
+              *ngIf="addForm.get('password')?.errors?.['required']"
               class="text-danger"
             >
               {{ "team.form.password_required" | translate }}</small
             >
+            <small
+              *ngIf="addForm.get('password')?.errors?.['pattern']"
+              class="text-danger"
+            >
+              {{ "team.form.password_pattern" | translate }}
+              <!-- Password must contain at least 8 characters, one uppercase, one
+              lowercase, one number, and one special character (@$!%*?&). -->
+            </small>
           </div>
           <!-- errors -->
         </div>
@@ -284,7 +289,7 @@
         minWidth="50%"
         [fixedHeight]="true"
         [object]="true"
-        [objectKey]="currentLanguage == 'ar' ? 'arabicName' : 'name'"
+        objectKey="name"
         [data]="roles"
         [filter]="true"
         (onAction)="onSelectRoles($event)"
