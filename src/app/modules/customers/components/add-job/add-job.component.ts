@@ -30,6 +30,7 @@ export class AddJobComponent implements OnInit, AfterViewInit {
 
   customerId: any = null;
   uploading: boolean = false;
+  isJobIdDisabled: boolean = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -63,6 +64,7 @@ export class AddJobComponent implements OnInit, AfterViewInit {
       warrantyStartDate: [null],
       deficiencyIds: this.formBuilder.array([]),
       items: this.formBuilder.array([]),
+      autoJobId: [false],
     });
 
     // this.types = [
@@ -91,6 +93,19 @@ export class AddJobComponent implements OnInit, AfterViewInit {
   get items(): FormArray {
     return this.addForm.get('items') as FormArray;
   }
+
+  onJobIdAutoChange() {
+    let isAuto = this.formValues['autoJobId'].value;
+    if (isAuto) {
+      this.isJobIdDisabled = true;
+      this.addForm.patchValue({
+        jobId: '',
+      });
+    } else {
+      this.isJobIdDisabled = false;
+    }
+  }
+
   newItem(data: any): FormGroup {
     return this.formBuilder.group({
       id: data.id,
@@ -250,7 +265,7 @@ export class AddJobComponent implements OnInit, AfterViewInit {
     // api
     this.apiService
       .filterData(
-        'warrantyContract/getFilteredWarrantyContracts',
+        `warrantyContract/getFilteredWarrantyContractsOfCustomer/${this.customerId}`,
         page ? page : 1,
         pageSize ? pageSize : 10
       )
@@ -276,7 +291,11 @@ export class AddJobComponent implements OnInit, AfterViewInit {
   onFilterWarrantyContract(value: string) {
     if (value != null && value?.trim() != '') {
       this.apiService
-        .globalSearch('warrantyContract/globalsearch', value, null)
+        .globalSearch(
+          `warrantyContract/globalSearchOfCustomer/${this.customerId}`,
+          value,
+          null
+        )
         .subscribe({
           next: (data: any) => {
             console.log(data);
@@ -329,11 +348,11 @@ export class AddJobComponent implements OnInit, AfterViewInit {
           }
         },
         error: (err: any) => {
-          console.log('Error:', err);
           if (this.currentLanguage == 'ar') {
             this.toastr.error('هناك شيء خاطئ', 'خطأ');
           } else {
             this.toastr.error('There Is Somthing Wrong', 'Error');
+            this.toastr.error(err);
           }
           this.uploading = false;
         },

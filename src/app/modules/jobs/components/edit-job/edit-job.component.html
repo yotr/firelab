@@ -178,7 +178,12 @@
         <!-- Job Id -->
         <div class="form-group mt-2">
           <label>{{ "customers.add_job.job_id" | translate }} </label>
-          <input class="form-control" type="text" formControlName="jobId" />
+          <input
+            class="form-control bg-secondary text-white"
+            type="text"
+            formControlName="jobId"
+            readonly
+          />
         </div>
       </div>
       <div class="col-sm-6">

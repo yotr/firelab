@@ -73,7 +73,7 @@ form {
   padding: 4px;
   border: none;
   outline: none;
-  background-color: #CDCECF;
+  background-color: #cdcecf;
   border-radius: 5px;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -92,4 +92,18 @@ form {
   -moz-transform: scale(1.1);
   -ms-transform: scale(1.1);
   -o-transform: scale(1.1);
+}
+
+.select-input {
+  display: grid;
+  place-content: center;
+}
+
+.table-checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.table-checkbox-container span {
+  font-size: 14px;
 }

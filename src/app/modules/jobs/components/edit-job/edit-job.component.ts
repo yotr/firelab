@@ -28,6 +28,7 @@ export class EditJobComponent implements OnInit, AfterViewInit {
   warrantyContractsLoading: boolean = true;
 
   currentJob: any = null;
+  currentCustomerId: any = null;
   currentWarrantyContract: any = null;
 
   updateId: any = null;
@@ -121,7 +122,6 @@ export class EditJobComponent implements OnInit, AfterViewInit {
   }
   ngAfterViewInit(): void {
     this.getCategories();
-    this.getWarrantyContacts();
   }
 
   ngOnInit() {
@@ -175,7 +175,7 @@ export class EditJobComponent implements OnInit, AfterViewInit {
     // api
     this.apiService
       .filterData(
-        'warrantyContract/getFilteredWarrantyContracts',
+        `warrantyContract/getFilteredWarrantyContractsOfCustomer/${this.currentCustomerId}`,
         page ? page : 1,
         pageSize ? pageSize : 10
       )
@@ -201,7 +201,11 @@ export class EditJobComponent implements OnInit, AfterViewInit {
   onFilterWarrantyContract(value: string) {
     if (value != null && value?.trim() != '') {
       this.apiService
-        .globalSearch('warrantyContract/globalsearch', value, null)
+        .globalSearch(
+          `warrantyContract/globalSearchOfCustomer/${this.currentCustomerId}`,
+          value,
+          null
+        )
         .subscribe({
           next: (data: any) => {
             console.log(data);
@@ -263,6 +267,7 @@ export class EditJobComponent implements OnInit, AfterViewInit {
           });
 
           this.currentJob = data?.value;
+          this.currentCustomerId = data?.value?.customerId;
           this.addExistingItems(data?.value?.assignedDeficiencies);
 
           if (data?.value?.warrantyContractId != null) {
@@ -277,6 +282,9 @@ export class EditJobComponent implements OnInit, AfterViewInit {
         } else {
           this.toastr.error('There Is Somthing Wrong', 'Error');
         }
+      },
+      complete: () => {
+        this.getWarrantyContacts();
       },
     });
   }

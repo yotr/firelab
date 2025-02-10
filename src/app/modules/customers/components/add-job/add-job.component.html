@@ -162,8 +162,29 @@
           <div class="col-sm-6">
             <!-- Job Id -->
             <div class="form-group mt-2">
-              <label>{{ "customers.add_job.job_id" | translate }} </label>
-              <input class="form-control" type="text" formControlName="jobId" />
+              <label class="d-flex align-items-center gap-1"
+                >{{ "customers.add_job.job_id" | translate }}
+                <div class="fw-bold">(</div>
+                <span class="select-input">
+                  <div class="table-checkbox-container">
+                    <input
+                      type="checkbox"
+                      id="exampleCheck1"
+                      formControlName="autoJobId"
+                      (change)="onJobIdAutoChange()"
+                    />
+                    <div class="checkmark"></div>
+                    <span class="m-0 fw-bold">auto</span>
+                  </div>
+                </span>
+                <div class="fw-bold">)</div>
+              </label>
+              <input
+                [readOnly]="formValues['autoJobId'].value"
+                class="form-control"
+                type="text"
+                formControlName="jobId"
+              />
             </div>
           </div>
           <div class="col-sm-6">

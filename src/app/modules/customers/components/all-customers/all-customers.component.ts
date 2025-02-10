@@ -133,6 +133,15 @@ export class AllCustomersComponent implements OnInit, AfterViewInit {
     for (let i = 0; i < data.length; i++) {
       this.data.push(data[i]);
     }
+
+    // Refresh using Angular Router
+    this.router
+      .navigateByUrl('/modules/customers/allCustomers', {
+        skipLocationChange: true,
+      })
+      .then(() => {
+        this.router.navigate([this.router.url]);
+      });
   }
 
   //get data

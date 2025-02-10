@@ -59,6 +59,7 @@ export class DropFileSectionComponent implements OnInit {
             this.onAttach.emit(this.excelData);
             $('#drag_documents_files').modal('hide');
           }
+          this.uploading = false;
         },
         error: (err: any) => {
           if (this.currentLanguage == 'ar') {
