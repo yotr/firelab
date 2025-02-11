@@ -98,7 +98,7 @@
 
     <!-- submit -->
     <div class="save-btn text-center">
-      <button type="submit" class="save mt-4">{{ "save" | translate }}</button>
+      <button [disabled]="addForm.invalid" type="submit" class="save mt-4">{{ "save" | translate }}</button>
     </div>
   </form>
 </div>

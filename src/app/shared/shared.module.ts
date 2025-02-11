@@ -40,7 +40,7 @@ import {
   OwlDateTimeModule,
   OwlNativeDateTimeModule,
 } from '@danielmoncada/angular-datetime-picker';
-
+import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 export function httpTranslateLoaderfactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
 }
@@ -100,6 +100,7 @@ export function httpTranslateLoaderfactory(http: HttpClient) {
     }),
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
+    InfiniteScrollDirective,
   ],
   exports: [
     CommonModule,
@@ -142,6 +143,7 @@ export function httpTranslateLoaderfactory(http: HttpClient) {
     AddItemModalComponent,
     OwlDateTimeModule,
     OwlNativeDateTimeModule,
+    InfiniteScrollDirective,
   ],
   providers: [HttpClient],
 })

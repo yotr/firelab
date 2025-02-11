@@ -22,6 +22,7 @@ export class AddItemModalComponent implements OnInit {
   itemsLoading: boolean = true;
   totalItemsCount: number = 0;
   getDataError: boolean = false;
+  currentPage: number = 1;
 
   uploading: boolean = false;
 
@@ -62,6 +63,8 @@ export class AddItemModalComponent implements OnInit {
   }
   // get data
   getItems(page?: number, pageSize?: number) {
+    this.currentPage = 1;
+    this.itemsLoading = true;
     // api
     this.apiService
       .filterData(
@@ -88,8 +91,49 @@ export class AddItemModalComponent implements OnInit {
             this.toastr.error('There Is Somthing Wrong', 'Error');
           }
         },
-        complete: () => {},
+        complete: () => {
+          this.itemsLoading = false;
+        },
       });
+  }
+
+  // get data
+  getItemsEnd(page?: number, pageSize?: number) {
+    this.itemsLoading = true;
+    // api
+    this.apiService
+      .filterData(
+        'Items/getFilteredItems',
+        page ? page : 1,
+        pageSize ? pageSize : 10
+      )
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.items = [...this.items, ...data?.value?.items];
+            this.totalItemsCount = data?.value?.totalCount;
+            this.getDataError = false;
+          }
+          this.itemsLoading = false;
+        },
+        error: (err: any) => {
+          this.itemsLoading = false;
+          this.getDataError = true;
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {
+          this.itemsLoading = false;
+        },
+      });
+  }
+  loadMore() {
+    this.currentPage++;
+    this.getItemsEnd(this.currentPage);
   }
   onFilter(value: string) {
     if (value != null && value?.trim() != '') {

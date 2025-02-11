@@ -15,8 +15,11 @@
                   minWidth="100%"
                   objectKey="name"
                   [data]="items"
+                  [loading]="itemsLoading"
                   (onAction)="onSelect($event)"
                   (onFilter)="onFilter($event)"
+                  (onLoadMore)="loadMore()"
+                  (onRefresh)="getItems()"
                 ></app-custom-filter-dropdown>
               </div>
             </div>
@@ -26,9 +29,7 @@
                 <label
                   >{{ "warrantyContract.form.quantity" | translate }}
                   <span [hidden]="selectedData == null">{{
-                    selectedData?.quantity -
-                      addForm.get("qty")?.value +
-                      " ) "
+                    selectedData?.quantity - addForm.get("qty")?.value + " ) "
                   }}</span>
                   <span class="text-danger">*</span></label
                 >

@@ -73,7 +73,7 @@ export class AddItemComponent implements OnInit {
 
   //add a new
   submit() {
-    if (this.addForm.valid) {
+    if (this.addForm.valid && this.addForm.get('quantity')?.value != 0) {
       let data = {
         ...this.addForm.value,
       };
@@ -91,15 +91,16 @@ export class AddItemComponent implements OnInit {
             }
             this.router.navigate(['/modules/inventory/items']);
           }
+          this.uploading = false;
         },
         error: (err: any) => {
+          this.uploading = false;
           if (this.currentLanguage == 'ar') {
             this.toastr.error('هناك شيء خاطئ', 'خطأ');
           } else {
             this.toastr.error('There Is Somthing Wrong', 'Error');
             this.toastr.error(err?.error[0]?.message, 'Error');
           }
-          this.uploading = false;
         },
         complete: () => {
           this.uploading = false;
