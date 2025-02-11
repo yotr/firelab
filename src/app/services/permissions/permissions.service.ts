@@ -45,7 +45,7 @@ export class PermissionsService {
       let isAllowed = permissions?.find(
         (p: any) => p?.page?.code === code && p[action] === true
       );
-      console.log(isAllowed);
+      // console.log(isAllowed);
       if (isAllowed) {
         // store page code
         localStorage.setItem(

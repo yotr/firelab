@@ -86,49 +86,49 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   //get data
   getDataDueAssignedJobs(page?: number, pageSize?: number) {
     // api
-    this.apiService
-      .filterData(
-        'assignedJobs/getFilteredDueAssignedJobs',
-        page ? page : 1,
-        pageSize ? pageSize : 1
-      )
-      .subscribe({
-        next: (data: any) => {
-          // console.log(data);
-          if (data?.isSuccess) {
-            this.totalJobsDueItemsCount = data?.value?.totalCount;
-          }
-        },
-        error: (err: any) => {
-          if (this.currentLanguage == 'ar') {
-            this.toastr.error('هناك شيء خاطئ', 'خطأ');
-          } else {
-            this.toastr.error('There Is Somthing Wrong', 'Error');
-          }
-        },
-        complete: () => {},
-      });
+    // this.apiService
+    //   .filterData(
+    //     'assignedJobs/getFilteredDueAssignedJobs',
+    //     page ? page : 1,
+    //     pageSize ? pageSize : 1
+    //   )
+    //   .subscribe({
+    //     next: (data: any) => {
+    //       // console.log(data);
+    //       if (data?.isSuccess) {
+    //         this.totalJobsDueItemsCount = data?.value?.totalCount;
+    //       }
+    //     },
+    //     error: (err: any) => {
+    //       if (this.currentLanguage == 'ar') {
+    //         this.toastr.error('هناك شيء خاطئ', 'خطأ');
+    //       } else {
+    //         this.toastr.error('There Is Somthing Wrong', 'Error');
+    //       }
+    //     },
+    //     complete: () => {},
+    //   });
   }
 
   getThisMonthJobs() {
     // api missed
-    this.apiService.get(`jobs/thisMonth`).subscribe({
-      next: (data: any) => {
-        // console.log(data);
-        if (data?.isSuccess) {
-          this.thisMonthJobsTotal = data?.value?.length;
-        }
-      },
-      error: (err: any) => {
-        console.log(err);
-        if (this.currentLanguage == 'ar') {
-          this.toastr.error('هناك شيء خاطئ', 'خطأ');
-        } else {
-          this.toastr.error('There Is Somthing Wrong', 'Error');
-        }
-      },
-      complete: () => {},
-    });
+    // this.apiService.get(`jobs/thisMonth`).subscribe({
+    //   next: (data: any) => {
+    //     // console.log(data);
+    //     if (data?.isSuccess) {
+    //       this.thisMonthJobsTotal = data?.value?.length;
+    //     }
+    //   },
+    //   error: (err: any) => {
+    //     console.log(err);
+    //     if (this.currentLanguage == 'ar') {
+    //       this.toastr.error('هناك شيء خاطئ', 'خطأ');
+    //     } else {
+    //       this.toastr.error('There Is Somthing Wrong', 'Error');
+    //     }
+    //   },
+    //   complete: () => {},
+    // });
   }
 
   lineChart(labels: any[], data1: any[], data2?: any[]) {

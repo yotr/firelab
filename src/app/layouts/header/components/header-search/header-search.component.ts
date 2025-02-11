@@ -161,7 +161,7 @@ export class HeaderSearchComponent implements OnInit, AfterViewInit {
     this.sidebarService.getRoles().subscribe({
       next: (role: any) => {
         this.role = role;
-        console.log(role);
+        // console.log(role);
       },
       error: (err: any) => {
         console.log(err);

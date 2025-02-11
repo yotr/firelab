@@ -21,6 +21,7 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
     let pageIdJson: any = localStorage.getItem('mms-pageId');
     const token: string = JSON.parse(user)?.token;
     const companyId: string = JSON.parse(user)?.userData?.companyId;
+    const isManager: string = JSON.parse(user)?.userData?.isManager;
     const userId: string = JSON.parse(user)?.userData?.id;
     const roleId: string = JSON.parse(user)?.userData?.roleId;
     const pageId: string = JSON.parse(pageIdJson);
@@ -35,6 +36,7 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
         UserId: `${userId}`,
         RoleId: `${roleId}`,
         PageId: `${pageId}`,
+        IsManager: `${isManager}`,
       },
     });
 
