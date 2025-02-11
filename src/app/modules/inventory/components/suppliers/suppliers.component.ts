@@ -64,14 +64,14 @@ export class SuppliersComponent implements OnInit, AfterViewInit {
         type: 'string',
         active: true,
       },
-      {
-        name: 'status',
-        display: this.translateService.instant(
-          'inventory.supplier.table.status'
-        ),
-        type: 'boolean',
-        active: true,
-      },
+      // {
+      //   name: 'status',
+      //   display: this.translateService.instant(
+      //     'inventory.supplier.table.status'
+      //   ),
+      //   type: 'boolean',
+      //   active: true,
+      // },
     ];
   }
 

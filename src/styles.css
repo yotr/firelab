@@ -1,3 +1,4 @@
+@import "@danielmoncada/angular-datetime-picker/assets/style/picker.min.css";
 /* You can add global styles to this file, and also import other style files */
 /* angular-cli file: src/styles.css */
 /* primicon instlation */
@@ -118,9 +119,9 @@
   --dark-theme-bg: #292c36;
   --red-theme-color: rgb(183, 27, 27);
 }
-.body-bg {
+/* .body-bg { */
   /* background-color: #e4e5e6; */
-}
+/* } */
 /*-----------------------
 	4. Themes Colors
 -----------------------*/

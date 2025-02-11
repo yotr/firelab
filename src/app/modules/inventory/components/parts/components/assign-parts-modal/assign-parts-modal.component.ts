@@ -53,63 +53,63 @@ export class AssignPartsModalComponent implements OnInit, AfterViewInit {
     this.addForm = this.formBuilder.group({
       id: [null, [Validators.required]],
       quantity: [0, [Validators.required]],
-      supplierId: [null, [Validators.required]],
-      reportCategoryId: [null, [Validators.required]],
+      // supplierId: [null, [Validators.required]],
+      // reportCategoryId: [null, [Validators.required]],
     });
   }
   ngAfterViewInit(): void {
-    this.getSuppliers();
+    // this.getSuppliers();
   }
 
   ngOnInit() {
-    this.getCategories();
+    // this.getCategories();
     this.getParts();
   }
 
-  getCategories() {
-    this.apiService.get('reportCategories').subscribe({
-      next: (data: any) => {
-        console.log(data);
-        if (data?.isSuccess) {
-          this.categories = data?.value;
-          this.CategoriesGetDataError = false;
-        }
-        this.categoriesLoading = false;
-      },
-      error: (err) => {
-        this.categories = [];
-        this.categoriesLoading = false;
-        this.CategoriesGetDataError = true;
-        console.log(err);
-        if (this.currentLanguage == 'ar') {
-          this.toastr.error('هناك شيء خاطئ', 'خطأ');
-        } else {
-          this.toastr.error('There Is Somthing Wrong', 'Error');
-        }
-        this.categoriesLoading = false;
-      },
-      complete: () => {
-        this.categoriesLoading = false;
-      },
-    });
-  }
+  // getCategories() {
+  //   this.apiService.get('reportCategories').subscribe({
+  //     next: (data: any) => {
+  //       console.log(data);
+  //       if (data?.isSuccess) {
+  //         this.categories = data?.value;
+  //         this.CategoriesGetDataError = false;
+  //       }
+  //       this.categoriesLoading = false;
+  //     },
+  //     error: (err) => {
+  //       this.categories = [];
+  //       this.categoriesLoading = false;
+  //       this.CategoriesGetDataError = true;
+  //       console.log(err);
+  //       if (this.currentLanguage == 'ar') {
+  //         this.toastr.error('هناك شيء خاطئ', 'خطأ');
+  //       } else {
+  //         this.toastr.error('There Is Somthing Wrong', 'Error');
+  //       }
+  //       this.categoriesLoading = false;
+  //     },
+  //     complete: () => {
+  //       this.categoriesLoading = false;
+  //     },
+  //   });
+  // }
 
   // on select
-  onSelectCategory(event: any) {
-    console.log(event);
-    this.addForm.patchValue({
-      reportCategoryId: event?.id,
-    });
-  }
-  onFilterCategories(value: string) {
-    if (value != null && value?.trim() != '') {
-      this.categories = this.categories.filter((item) =>
-        item.name.toLowerCase().includes(value.toLowerCase())
-      );
-    } else {
-      this.getCategories();
-    }
-  }
+  // onSelectCategory(event: any) {
+  //   console.log(event);
+  //   this.addForm.patchValue({
+  //     reportCategoryId: event?.id,
+  //   });
+  // }
+  // onFilterCategories(value: string) {
+  //   if (value != null && value?.trim() != '') {
+  //     this.categories = this.categories.filter((item) =>
+  //       item.name.toLowerCase().includes(value.toLowerCase())
+  //     );
+  //   } else {
+  //     this.getCategories();
+  //   }
+  // }
   // on select
   onSelectPart(event: any) {
     console.log(event);
@@ -172,65 +172,65 @@ export class AssignPartsModalComponent implements OnInit, AfterViewInit {
     }
   }
   // on select
-  onSelectSupplier(event: any) {
-    console.log(event);
-    this.addForm.patchValue({
-      supplierId: event?.id,
-    });
-  }
+  // onSelectSupplier(event: any) {
+  //   console.log(event);
+  //   this.addForm.patchValue({
+  //     supplierId: event?.id,
+  //   });
+  // }
   // get Suppliers data
-  getSuppliers(page?: number, pageSize?: number) {
-    // api
-    this.apiService
-      .filterData(
-        'Suppliers/getFilteredSuppliers',
-        page ? page : 1,
-        pageSize ? pageSize : 10
-      )
-      .subscribe({
-        next: (data: any) => {
-          console.log(data);
-          if (data?.isSuccess) {
-            this.suppliers = data?.value?.suppliers;
-            // this.totalItemsCount = data?.value?.totalCount;
-            // this.partsGetDataError = false;
-          }
-          this.suppliersLoading = false;
-        },
-        error: (err: any) => {
-          this.suppliersLoading = false;
-          // this.partsGetDataError = true;
-          if (this.currentLanguage == 'ar') {
-            this.toastr.error('هناك شيء خاطئ', 'خطأ');
-          } else {
-            this.toastr.error('There Is Somthing Wrong', 'Error');
-          }
-        },
-        complete: () => {},
-      });
-  }
-  onFilterSuppliers(value: string) {
-    if (value != null && value?.trim() != '') {
-      this.apiService
-        .globalSearch('Suppliers/globalsearch', value, null)
-        .subscribe({
-          next: (data: any) => {
-            console.log(data);
-            if (data?.isSuccess) {
-              this.suppliers = data?.value;
-              // this.totalItemsCount = data?.value?.length;
-            }
-            this.suppliersLoading = false;
-          },
-          error: (err: any) => {
-            this.suppliersLoading = false;
-            this.toastr.error('There Is Somthing Wrong', 'Error');
-          },
-        });
-    } else {
-      this.getSuppliers();
-    }
-  }
+  // getSuppliers(page?: number, pageSize?: number) {
+  //   // api
+  //   this.apiService
+  //     .filterData(
+  //       'Suppliers/getFilteredSuppliers',
+  //       page ? page : 1,
+  //       pageSize ? pageSize : 10
+  //     )
+  //     .subscribe({
+  //       next: (data: any) => {
+  //         console.log(data);
+  //         if (data?.isSuccess) {
+  //           this.suppliers = data?.value?.suppliers;
+  //           // this.totalItemsCount = data?.value?.totalCount;
+  //           // this.partsGetDataError = false;
+  //         }
+  //         this.suppliersLoading = false;
+  //       },
+  //       error: (err: any) => {
+  //         this.suppliersLoading = false;
+  //         // this.partsGetDataError = true;
+  //         if (this.currentLanguage == 'ar') {
+  //           this.toastr.error('هناك شيء خاطئ', 'خطأ');
+  //         } else {
+  //           this.toastr.error('There Is Somthing Wrong', 'Error');
+  //         }
+  //       },
+  //       complete: () => {},
+  //     });
+  // }
+  // onFilterSuppliers(value: string) {
+  //   if (value != null && value?.trim() != '') {
+  //     this.apiService
+  //       .globalSearch('Suppliers/globalsearch', value, null)
+  //       .subscribe({
+  //         next: (data: any) => {
+  //           console.log(data);
+  //           if (data?.isSuccess) {
+  //             this.suppliers = data?.value;
+  //             // this.totalItemsCount = data?.value?.length;
+  //           }
+  //           this.suppliersLoading = false;
+  //         },
+  //         error: (err: any) => {
+  //           this.suppliersLoading = false;
+  //           this.toastr.error('There Is Somthing Wrong', 'Error');
+  //         },
+  //       });
+  //   } else {
+  //     this.getSuppliers();
+  //   }
+  // }
 
   //add a new
   submit() {

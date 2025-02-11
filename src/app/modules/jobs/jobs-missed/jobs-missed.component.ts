@@ -68,12 +68,12 @@ export class JobsMissedComponent implements OnInit {
         type: 'object',
         active: true,
       },
-      {
-        name: 'frequency',
-        display: this.translateService.instant('jobs.table.frequency'),
-        type: 'string',
-        active: true,
-      },
+      // {
+      //   name: 'frequency',
+      //   display: this.translateService.instant('jobs.table.frequency'),
+      //   type: 'string',
+      //   active: true,
+      // },
       {
         name: 'dateTime',
         display: this.translateService.instant('jobs.table.date'),

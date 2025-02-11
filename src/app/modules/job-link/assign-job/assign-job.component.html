@@ -56,7 +56,15 @@
             >{{ "job_link.assign_job.start_date" | translate }}
             <span class="text-danger">*</span></label
           >
-          <input class="form-control" type="date" formControlName="startDate" />
+
+          <input
+            class="form-control"
+            [owlDateTimeTrigger]="startDate"
+            [owlDateTime]="startDate"
+            formControlName="startDate"
+          />
+          <owl-date-time #startDate></owl-date-time>
+          <!-- <input class="form-control" type="date" formControlName="startDate" /> -->
           <!-- errors -->
           <div
             *ngIf="
@@ -119,7 +127,7 @@
         </div>
         <!-- errors -->
       </div>
-      <div class="col-sm-6">
+      <!-- <div class="col-sm-6">
         <div class="mt-2">
           {{ "job_link.assign_job.start_time" | translate }}
         </div>
@@ -129,9 +137,43 @@
       </div>
       <div class="col-sm-4">
         <div class="mt-2">{{ "job_link.assign_job.end_date" | translate }}</div>
+      </div> -->
+      <!-- Start Time -->
+      <div class="col-sm-6">
+        <div class="form-group mt-2">
+          <label
+            >{{ "job_link.assign_job.start_time" | translate }}
+            <span class="text-danger">*</span></label
+          >
+          <input
+            class="form-control"
+            [owlDateTimeTrigger]="startTime"
+            [owlDateTime]="startTime"
+            formControlName="startTime"
+          />
+          <owl-date-time #startTime></owl-date-time>
+        </div>
+        <!-- errors -->
+        <div
+          *ngIf="
+            addForm.get('startTime')?.invalid &&
+            addForm.get('startTime')?.touched
+          "
+        >
+          <small
+            *ngIf="
+              addForm.get('startTime')?.invalid &&
+              addForm.get('startTime')?.touched
+            "
+            class="text-danger"
+          >
+            {{ "job_link.assign_job.start_time_required" | translate }}</small
+          >
+        </div>
+        <!-- errors -->
       </div>
-      <div class="col-sm-2">
-        <!-- hours -->
+      <!-- hours -->
+      <!-- <div class="col-sm-2">
         <div class="form-group mt-2">
           <select
             class="form-select form-control"
@@ -145,7 +187,6 @@
             </ng-container>
           </select>
         </div>
-        <!-- errors -->
         <div
           *ngIf="addForm.get('hours')?.invalid && addForm.get('hours')?.touched"
         >
@@ -158,10 +199,9 @@
             {{ "job_link.assign_job.hours_required" | translate }}</small
           >
         </div>
-        <!-- errors -->
-      </div>
-      <div class="col-sm-2">
-        <!-- mintes -->
+      </div> -->
+      <!-- mintes -->
+      <!-- <div class="col-sm-2">
         <div class="form-group mt-2">
           <select
             class="form-select form-control"
@@ -175,7 +215,6 @@
             </ng-container>
           </select>
         </div>
-        <!-- errors -->
         <div
           *ngIf="
             addForm.get('minutes')?.invalid && addForm.get('minutes')?.touched
@@ -190,10 +229,9 @@
             {{ "job_link.assign_job.mintes_required" | translate }}</small
           >
         </div>
-        <!-- errors -->
-      </div>
-      <div class="col-sm-2">
-        <!-- time -->
+      </div> -->
+      <!-- time -->
+      <!-- <div class="col-sm-2">
         <div class="form-group mt-2">
           <select
             class="form-select form-control"
@@ -206,7 +244,6 @@
             <option value="pm">PM</option>
           </select>
         </div>
-        <!-- errors -->
         <div
           *ngIf="
             addForm.get('meridiem')?.invalid && addForm.get('meridiem')?.touched
@@ -222,12 +259,12 @@
             {{ "job_link.assign_job.pm_am_required" | translate }}</small
           >
         </div>
-        <!-- errors -->
-      </div>
-      <div class="col-sm-2" [hidden]="isDurationByHours"></div>
+      </div> -->
+      <!-- <div class="col-sm-2" [hidden]="isDurationByHours"></div> -->
       <div class="col-sm-2" [hidden]="!isDurationByHours">
         <!-- duration -->
         <div class="form-group mt-2">
+          <label>{{ "job_link.assign_job.duration" | translate }} </label>
           <select
             class="form-select form-control"
             name="duration"
@@ -258,11 +295,19 @@
         </div>
         <!-- errors -->
       </div>
-      <div class="col-sm-4" [hidden]="!isDurationByHours"></div>
+      <!-- <div class="col-sm-4" [hidden]="!isDurationByHours"></div> -->
       <div class="col-sm-4" [hidden]="isDurationByHours">
         <!-- endDate -->
         <div class="form-group mt-2">
-          <input class="form-control" type="date" formControlName="endDate" />
+          <label>{{ "job_link.assign_job.end_date" | translate }} </label>
+          <input
+            class="form-control"
+            [owlDateTimeTrigger]="endDate"
+            [owlDateTime]="endDate"
+            formControlName="endDate"
+          />
+          <owl-date-time #endDate></owl-date-time>
+          <!-- <input class="form-control" type="date" formControlName="endDate" /> -->
         </div>
         <!-- errors -->
         <div

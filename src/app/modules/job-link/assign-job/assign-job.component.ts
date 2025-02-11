@@ -67,9 +67,10 @@ export class AssignJobComponent implements OnInit, AfterViewInit {
     this.addForm = this.formBuilder.group({
       startDate: ['', [Validators.required]],
       durationBy: ['Hours', [Validators.required]],
-      hours: ['', [Validators.required]],
-      minutes: ['', [Validators.required]],
-      meridiem: ['', [Validators.required]],
+      startTime: ['', [Validators.required]],
+      // hours: ['', [Validators.required]],
+      // minutes: ['', [Validators.required]],
+      // meridiem: ['', [Validators.required]],
       duration: [0],
       endDate: [''],
       teamIds: [[], [Validators.required]],

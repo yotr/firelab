@@ -109,23 +109,29 @@ export class JobLinkComponent implements OnInit, AfterViewInit {
         active: true,
       },
       {
-        name: 'hours',
-        display: this.translateService.instant('job_link.table.hours'),
+        name: 'startTime',
+        display: this.translateService.instant('job_link.table.startTime'),
         type: 'string',
         active: true,
       },
-      {
-        name: 'minutes',
-        display: this.translateService.instant('job_link.table.minutes'),
-        type: 'string',
-        active: true,
-      },
-      {
-        name: 'meridiem',
-        display: this.translateService.instant('job_link.table.meridiem'),
-        type: 'string',
-        active: true,
-      },
+      // {
+      //   name: 'hours',
+      //   display: this.translateService.instant('job_link.table.hours'),
+      //   type: 'string',
+      //   active: true,
+      // },
+      // {
+      //   name: 'minutes',
+      //   display: this.translateService.instant('job_link.table.minutes'),
+      //   type: 'string',
+      //   active: true,
+      // },
+      // {
+      //   name: 'meridiem',
+      //   display: this.translateService.instant('job_link.table.meridiem'),
+      //   type: 'string',
+      //   active: true,
+      // },
       {
         name: 'external',
         display: this.translateService.instant('job_link.table.external'),

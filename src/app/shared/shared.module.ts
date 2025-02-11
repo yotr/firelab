@@ -36,6 +36,10 @@ import { EditSystemInfoComponent } from '../modules/customers/components/system-
 import { CustomFilterDropdownComponent } from '../components/custom-filter-dropdown/custom-filter-dropdown.component';
 import { AddDeficiencyModalComponent } from '../components/add-deficiency-modal/add-deficiency-modal.component';
 import { AddItemModalComponent } from '../modules/warranty-contract/components/add-item-modal/add-item-modal.component';
+import {
+  OwlDateTimeModule,
+  OwlNativeDateTimeModule,
+} from '@danielmoncada/angular-datetime-picker';
 
 export function httpTranslateLoaderfactory(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -94,6 +98,8 @@ export function httpTranslateLoaderfactory(http: HttpClient) {
         deps: [HttpClient],
       },
     }),
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
   ],
   exports: [
     CommonModule,
@@ -134,6 +140,8 @@ export function httpTranslateLoaderfactory(http: HttpClient) {
     CustomFilterDropdownComponent,
     AddDeficiencyModalComponent,
     AddItemModalComponent,
+    OwlDateTimeModule,
+    OwlNativeDateTimeModule,
   ],
   providers: [HttpClient],
 })

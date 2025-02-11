@@ -229,7 +229,12 @@
                       {{ value[key?.name] ? (value[key?.name] | date) : "_" }}
                     </div>
                   </ng-container>
-                  <ng-container *ngIf="key?.name == 'hours'">
+                  <ng-container *ngIf="key?.name == 'startTime'">
+                    <div class="text-center">
+                      {{ value[key?.name] ? value[key?.name] : "_" }}
+                    </div>
+                  </ng-container>
+                  <!-- <ng-container *ngIf="key?.name == 'hours'">
                     <div class="text-center">
                       {{ value[key?.name] ? value[key?.name] : "_" }}
                     </div>
@@ -243,7 +248,7 @@
                     <div class="text-uppercase text-center">
                       {{ value[key?.name] ? value[key?.name] : "_" }}
                     </div>
-                  </ng-container>
+                  </ng-container> -->
                   <ng-container *ngIf="key?.name == 'external'">
                     <div class="text-uppercase text-center">
                       {{
