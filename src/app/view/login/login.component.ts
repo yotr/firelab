@@ -79,10 +79,7 @@ export class LoginComponent implements OnInit {
           // check if ther is token
           if (data?.value?.token && data?.value?.userData) {
             // store the token
-            localStorage.setItem(
-              'firelab-loginData',
-              JSON.stringify(data?.value)
-            );
+            localStorage.setItem('mms-loginData', JSON.stringify(data?.value));
             isTokenExist = true;
             this.auth.currentUserSignal?.set(data);
           } else {

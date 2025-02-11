@@ -193,7 +193,7 @@
               }"
             >
               <!-- select checkbox -->
-              <td class="select-column">
+              <td class="select-column" *ngIf="value?.isManager != true">
                 <span class="select-input">
                   <label
                     class="table-checkbox-container"
@@ -203,6 +203,11 @@
                     <div class="checkmark"></div>
                   </label>
                 </span>
+              </td>
+              <td *ngIf="value?.isManager == true">
+                <div class="text-center text-danger">
+                  <i class="pi pi-shield"></i>
+                </div>
               </td>
               <ng-container *ngFor="let key of dataKeys">
                 <td *ngIf="key.active && key?.name != 'id'">
@@ -250,7 +255,12 @@
                 </td>
               </ng-container>
               <!-- actions -->
-              <td class="actions-table">
+              <td *ngIf="value?.isManager == true">
+                <div class="text-center text-danger">
+                  <i class="pi pi-shield"></i>
+                </div>
+              </td>
+              <td class="actions-table" *ngIf="value?.isManager != true">
                 <div class="dropdown dropdown-action">
                   <a
                     class="action-icon dropdown-toggle h-auto text-secondary fw-bold"

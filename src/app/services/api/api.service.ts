@@ -262,12 +262,12 @@ export class ApiService {
       console.error('An error occurred:', error.error);
     } else if (error.status === 401) {
       // Handle Unauthorized error
-      let isLoggedIn = localStorage.getItem('firelab-loginData');
+      let isLoggedIn = localStorage.getItem('mms-loginData');
 
       if (isLoggedIn) {
         // Remove user from storage
-        localStorage.removeItem('firelab-loginData');
-        localStorage.removeItem('firelab-roles');
+        localStorage.removeItem('mms-loginData');
+        localStorage.removeItem('mms-roles');
       }
 
       // Navigate to login page
@@ -302,12 +302,12 @@ export class ApiService {
 
   public logUserOut(): any {
     // get user if exist
-    let isLoggedIn = localStorage.getItem('firelab-loginData');
+    let isLoggedIn = localStorage.getItem('mms-loginData');
 
     if (isLoggedIn) {
       // remove uset from storage
-      localStorage.removeItem('firelab-loginData');
-      localStorage.removeItem('firelab-roles');
+      localStorage.removeItem('mms-loginData');
+      localStorage.removeItem('mms-roles');
       // make current user signal undefined
       this.currentUserSignal.set(undefined);
       // navigate to login page

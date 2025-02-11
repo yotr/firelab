@@ -69,7 +69,7 @@ export class EditSupplierComponent implements OnInit, AfterViewInit {
   // get current user
   getCurrentActiveUser() {
     // check local storage
-    let user = localStorage.getItem('firelab-loginData');
+    let user = localStorage.getItem('mms-loginData');
     // if exist
     if (user) {
       this.auth.currentUserSignal.set(JSON.parse(user));
@@ -110,8 +110,7 @@ export class EditSupplierComponent implements OnInit, AfterViewInit {
         console.log(data);
         if (data?.isSuccess) {
           this.currentFile = data?.value?.logo;
-          this.defaultImgUrl =
-            environment.API + '/images/' + data?.value?.logo;
+          this.defaultImgUrl = environment.API + '/images/' + data?.value?.logo;
           this.addForm.patchValue({
             supplierName: data?.value?.supplierName,
             website: data?.value?.website,

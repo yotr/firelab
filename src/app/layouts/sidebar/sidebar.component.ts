@@ -64,7 +64,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
   // get current user
   getCurrentActiveUser() {
     // check local storage
-    let user = localStorage.getItem('firelab-loginData');
+    let user = localStorage.getItem('mms-loginData');
     // if exist
     if (user) {
       // this.auth.currentUserSignal.set(JSON.parse(user));
@@ -220,7 +220,7 @@ export class SidebarComponent implements OnInit, AfterViewInit {
               this.role = data?.value?.role;
               // store the token
               localStorage.setItem(
-                'firelab-roles',
+                'mms-roles',
                 JSON.stringify(data?.value?.role)
               );
             } else {

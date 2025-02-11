@@ -29,7 +29,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     this.translateService.use(this.currentLanguage);
     // this.titleService.setTitle(this.title);
     // check local storage
-    let user = localStorage.getItem('firelab-loginData');
+    let user = localStorage.getItem('mms-loginData');
     if (user) {
       // this.signalRService.startConnection();
       // signal R connection test
@@ -65,12 +65,11 @@ export class AppComponent implements OnInit, AfterViewInit {
   // get current user
   getCurrentActiveUser() {
     // check local storage
-    let user = localStorage.getItem('firelab-loginData');
+    let user = localStorage.getItem('mms-loginData');
     // if exist
     if (user) {
       this.auth.currentUserSignal.set(JSON.parse(user));
     } else {
     }
   }
-
 }

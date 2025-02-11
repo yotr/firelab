@@ -55,7 +55,7 @@ export class ModulesComponent implements OnInit {
   }
   // get current user
   getCurrentUser() {
-    let user = localStorage.getItem('firelab-loginData');
+    let user = localStorage.getItem('mms-loginData');
     if (user && this.isLoggedIn()) {
       let data = JSON?.parse(user);
       this.currentUser = data?.userData;

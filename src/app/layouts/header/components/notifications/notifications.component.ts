@@ -17,9 +17,9 @@ export class NotificationsComponent implements OnInit {
 
   constructor(
     // private apiService: ApiService,
-    private toastr: ToastrService,
-    // private signalRService: SignalrService
-  ) {
+    private toastr: ToastrService
+  ) // private signalRService: SignalrService
+  {
     // signal R connection test
     // this.signalRService.startConnection();
     // this.signalRService.addReceiveMessageListener((user, message) => {
@@ -34,7 +34,7 @@ export class NotificationsComponent implements OnInit {
 
   // get current user
   getCurrentUser() {
-    let user = localStorage.getItem('firelab-loginData');
+    let user = localStorage.getItem('mms-loginData');
     if (user) {
       let data = JSON?.parse(user);
       this.currentUser = data?.userData;

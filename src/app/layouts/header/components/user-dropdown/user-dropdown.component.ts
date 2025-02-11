@@ -25,7 +25,7 @@ export class UserDropdownComponent implements OnInit {
   getCurrentUserData() {
     if (this.isLoggedIn()) {
       // check local storage
-      let user = localStorage.getItem('firelab-loginData');
+      let user = localStorage.getItem('mms-loginData');
       // if exist
       if (user) {
         this.auth.currentUserSignal.set(JSON.parse(user));

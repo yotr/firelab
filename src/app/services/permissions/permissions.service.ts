@@ -39,13 +39,19 @@ export class PermissionsService {
     if (currentUser?.isManager) {
       return true;
     } else {
-      let roles: any = localStorage.getItem('firelab-roles');
+      let roles: any = localStorage.getItem('mms-roles');
       let permissions: any[] = JSON.parse(roles)?.permissions;
       // check action if true
       let isAllowed = permissions?.find(
         (p: any) => p?.page?.code === code && p[action] === true
       );
+      console.log(isAllowed);
       if (isAllowed) {
+        // store page code
+        localStorage.setItem(
+          'mms-pageId',
+          JSON.stringify(isAllowed?.pageId)
+        );
         return true;
       } else {
         return false;

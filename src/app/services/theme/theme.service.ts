@@ -8,7 +8,7 @@ export class ThemeService implements OnInit {
   // array of theme
   themeSettings: any = {};
   private themeData: BehaviorSubject<string>;
-  storedThemes: any = localStorage.getItem('firelab-theme-settings');
+  storedThemes: any = localStorage.getItem('mms-theme-settings');
   // default theme settings and binded to input values
   defaultSettings: any = {
     // layout: {
@@ -118,21 +118,21 @@ export class ThemeService implements OnInit {
   //set the theme layout
   setTheme(key: string, value: any) {
     // check if there is no theme settings in local storage
-    if (!localStorage.getItem('firelab-theme-settings')) {
+    if (!localStorage.getItem('mms-theme-settings')) {
       let updateDefaultSettings = { ...this.defaultSettings, [key]: value };
       localStorage.setItem(
-        'firelab-theme-settings',
+        'mms-theme-settings',
         JSON.stringify(updateDefaultSettings)
       );
       this.themeData.next(JSON.stringify(updateDefaultSettings));
     }
     // if there is data update this theme settings
     else {
-      let storedSettings: any = localStorage.getItem('firelab-theme-settings');
+      let storedSettings: any = localStorage.getItem('mms-theme-settings');
       let settingsConverted = JSON.parse(storedSettings);
       let updateStoredSettings = { ...settingsConverted, [key]: value };
       localStorage.setItem(
-        'firelab-theme-settings',
+        'mms-theme-settings',
         JSON.stringify(updateStoredSettings)
       );
       this.themeData.next(JSON.stringify(updateStoredSettings));
@@ -142,9 +142,9 @@ export class ThemeService implements OnInit {
   //ser default theme settings
   setDefaultThemeSettings() {
     //set default theme
-    if (!localStorage.getItem('firelab-theme-settings')) {
+    if (!localStorage.getItem('mms-theme-settings')) {
       localStorage.setItem(
-        'firelab-theme-settings',
+        'mms-theme-settings',
         JSON.stringify(this.defaultSettings)
       );
       this.themeData.next(JSON.stringify(this.defaultSettings));

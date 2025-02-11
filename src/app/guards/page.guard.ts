@@ -10,7 +10,7 @@ export const pageGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
   const code: any = route.data['code'];
   const action: any = route.data['action'];
-  const user: any = localStorage.getItem('firelab-loginData');
+  const user: any = localStorage.getItem('mms-loginData');
   const currentLanguage: any = localStorage.getItem('lang');
 
   let isAllowed = permissionsService.checkPage(

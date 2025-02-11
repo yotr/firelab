@@ -62,7 +62,7 @@ export class AddItemComponent implements OnInit {
   // get current user
   getCurrentActiveUser() {
     // check local storage
-    let user = localStorage.getItem('firelab-loginData');
+    let user = localStorage.getItem('mms-loginData');
     // if exist
     if (user) {
       this.auth.currentUserSignal.set(JSON.parse(user));
@@ -114,4 +114,3 @@ export class AddItemComponent implements OnInit {
     }
   }
 }
-
