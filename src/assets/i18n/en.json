@@ -460,7 +460,7 @@
       "phone": "Phone",
       "status": "Status",
       "postion": "Postion",
-      "manager":"Manager"
+      "manager": "Manager"
     },
     "time_card": {
       "name": "Name",
@@ -726,7 +726,41 @@
       "invoiceNumber": "Invoice Number",
       "InvoiceDate": "Date & Time",
       "tax": "Tax",
-      "totalAmount": "Total Amount"
+      "totalAmount": "Total Amount",
+      "grand": "Total Grand"
+    }
+  },
+  "payments": {
+    "title": "Payments",
+    "table_title": "Payments Table",
+    "add_btn": "Add Payment",
+    "update_title": "Update Payment",
+    "form": {
+      "invoice": "Invoice",
+      "invoice_required": "Invoice is required",
+      "customer": "Customer",
+      "customer_required": "Customer is required",
+      "paidAmount": "Paid Amount",
+      "paidAmount_required": "Paid Amount is required",
+      "totalAmount": "Total Amount",
+      "totalAmount_required": "Total Amount is required",
+      "bank": "Bank Name",
+      "paymentType": "Payment Type",
+      "address": "Billing Address",
+      "country": "Country",
+      "iban": "Iban",
+      "swiftCode": "SwiftCode"
+    },
+    "table": {
+      "customer": "Customer",
+      "invoice": "Invoice",
+      "paidDate": "Paid Date",
+      "paidAmount": "Paid Amount",
+      "totalAmount": "Total Amount",
+      "status": "Status",
+      "unpaid": "Unpaid",
+      "partialyPaid": "Partialy Paid",
+      "paid": "Paid"
     }
   },
   "jobs": {

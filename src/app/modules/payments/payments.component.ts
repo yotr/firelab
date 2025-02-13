@@ -9,12 +9,13 @@ import { PermissionsService } from 'src/app/services/permissions/permissions.ser
 import { SidebarService } from 'src/app/services/sidebar/sidebar.service';
 import { ThemeService } from 'src/app/services/theme/theme.service';
 declare const $: any;
+
 @Component({
-  selector: 'app-invoices',
-  templateUrl: './invoices.component.html',
-  styleUrls: ['./invoices.component.css'],
+  selector: 'app-payments',
+  templateUrl: './payments.component.html',
+  styleUrls: ['./payments.component.css'],
 })
-export class InvoicesComponent implements OnInit, AfterViewInit {
+export class PaymentsComponent implements OnInit {
   // current language
   currentLanguage: any = localStorage.getItem('lang');
   currentTheme: any;
@@ -42,39 +43,39 @@ export class InvoicesComponent implements OnInit, AfterViewInit {
     this.translateService.use(this.currentLanguage);
     this.dataKeys = [
       {
-        name: 'invoiceNumber',
-        display: this.translateService.instant('invoices.table.invoiceNumber'),
-        type: 'string',
-        active: true,
-      },
-      {
         name: 'customer',
-        display: this.translateService.instant('invoices.table.customer'),
+        display: this.translateService.instant('payments.table.customer'),
         type: 'object',
         active: true,
       },
       {
-        name: 'invoiceDate',
-        display: this.translateService.instant('invoices.table.InvoiceDate'),
+        name: 'invoice',
+        display: this.translateService.instant('payments.table.invoice'),
+        type: 'object',
+        active: true,
+      },
+      {
+        name: 'paidDate',
+        display: this.translateService.instant('payments.table.paidDate'),
         type: 'string',
         active: true,
       },
       {
-        name: 'tax',
-        display: this.translateService.instant('invoices.table.tax'),
+        name: 'paidAmount',
+        display: this.translateService.instant('payments.table.paidAmount'),
         type: 'number',
         active: true,
       },
       {
-        name: 'totalAmount',
-        display: this.translateService.instant('invoices.table.totalAmount'),
+        name: 'paidAmount',
+        display: this.translateService.instant('payments.table.paidAmount'),
         type: 'number',
         active: true,
       },
       {
-        name: 'grandTotal',
-        display: this.translateService.instant('invoices.table.grand'),
-        type: 'number',
+        name: 'status',
+        display: this.translateService.instant('payments.table.status'),
+        type: 'boolean',
         active: true,
       },
     ];
@@ -126,9 +127,8 @@ export class InvoicesComponent implements OnInit, AfterViewInit {
   ) {
     // api
     this.loading = true;
-    this.apiService
-      ?.filterData(
-        'invoices/getFilteredInvoices',
+    this.apiService.filterData(
+        'payments/getFilteredPayments',
         page ? page : 1,
         pageSize ? pageSize : 20
       )
@@ -136,7 +136,7 @@ export class InvoicesComponent implements OnInit, AfterViewInit {
         next: (data: any) => {
           console.log(data);
           if (data?.isSuccess) {
-            this.data = data?.value?.invoices;
+            this.data = data?.value?.payments;
             this.totalItemsCount = data?.value?.totalCount;
             this.getDataError = false;
           }
@@ -163,7 +163,7 @@ export class InvoicesComponent implements OnInit, AfterViewInit {
     if (event?.value != null && event.value?.trim() != '') {
       this.loading = true;
       this.apiService
-        .globalSearch('invoices/globalsearch', event?.value, event?.column)
+        .globalSearch('payments/globalsearch', event?.value, event?.column)
         .subscribe({
           next: (data: any) => {
             if (data?.isSuccess) {
@@ -189,7 +189,7 @@ export class InvoicesComponent implements OnInit, AfterViewInit {
 
   delete(deleteId: any) {
     console.log(deleteId);
-    this.apiService.delete('invoices', deleteId).subscribe({
+    this.apiService.delete('payments', deleteId).subscribe({
       next: (data) => {
         console.log(data);
         if (data?.isSuccess) {
@@ -218,7 +218,7 @@ export class InvoicesComponent implements OnInit, AfterViewInit {
     // check if filters operator  contains selected
     this.apiService
       .filterData(
-        'invoices/getFilteredInvoices',
+        'payments/getFilteredPayments',
         1,
         20,
         event?.column,
@@ -231,7 +231,7 @@ export class InvoicesComponent implements OnInit, AfterViewInit {
         next: (data: any) => {
           console.log(data);
           if (data?.isSuccess) {
-            this.data = data?.value?.invoices;
+            this.data = data?.value?.payments;
             this.totalItemsCount = data?.value?.totalCount;
           }
           this.loading = false;
@@ -256,7 +256,7 @@ export class InvoicesComponent implements OnInit, AfterViewInit {
   checkPageActions(action: string): boolean {
     return this.permissionsService.checkPageActions(
       this.auth.currentUserSignal()?.userData,
-      'CRMM15P1',
+      'CRMM16P1',
       action
     );
   }

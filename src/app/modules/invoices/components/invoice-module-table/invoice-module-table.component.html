@@ -228,7 +228,15 @@
                   </ng-container>
                   <!-- totalAmount -->
                   <ng-container *ngIf="key?.name == 'totalAmount'">
-                    {{ value[key?.name] ? value[key?.name] + " (egp or $)" : "_" }}
+                    {{
+                      value[key?.name] ? value[key?.name] + " (egp or $)" : "_"
+                    }}
+                  </ng-container>
+                  <!-- grandTotal -->
+                  <ng-container *ngIf="key?.name == 'grandTotal'">
+                    {{
+                      value[key?.name] ? value[key?.name] + " (egp or $)" : "_"
+                    }}
                   </ng-container>
                 </td>
               </ng-container>

@@ -49,6 +49,9 @@ import { AddWarrantyContractComponent } from './warranty-contract/components/add
 import { EditWarrantyContractComponent } from './warranty-contract/components/edit-warranty-contract/edit-warranty-contract.component';
 import { InvoicesComponent } from './invoices/invoices.component';
 import { EditInvoiceComponent } from './invoices/components/edit-invoice/edit-invoice.component';
+import { PaymentsComponent } from './payments/payments.component';
+import { AddPaymentComponent } from './payments/components/add-payment/add-payment.component';
+import { EditPaymentComponent } from './payments/components/edit-payment/edit-payment.component';
 
 const routes: Routes = [
   {
@@ -306,6 +309,25 @@ const routes: Routes = [
         component: EditInvoiceComponent,
         canActivate: [pageGuard],
         data: { code: 'CRMM15P1', action: 'update' },
+      },
+      // payments
+      {
+        path: 'payments',
+        component: PaymentsComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM16P1', action: 'read' },
+      },
+      {
+        path: 'payments/add',
+        component: AddPaymentComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM16P1', action: 'create' },
+      },
+      {
+        path: 'payments/edit/:id',
+        component: EditPaymentComponent,
+        canActivate: [pageGuard],
+        data: { code: 'CRMM16P1', action: 'update' },
       },
       // reports
       {

@@ -258,6 +258,13 @@
         "code": "CRMM15P1",
         "icon": "pi-receipt",
         "path": "/modules/invoices"
+      },
+      {
+        "id": 15,
+        "title": "Payments",
+        "code": "CRMM16P1",
+        "icon": "pi-credit-card",
+        "path": "/modules/payments"
       }
     ]
   }

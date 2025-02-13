@@ -3,6 +3,7 @@
   ClickOutside
   (clickOutside)="close()"
   [ngStyle]="{ minWidth: minWidth }"
+  [dir]="'dir' | translate"
 >
   <div
     class="custom-dropdown-title"
@@ -22,8 +23,7 @@
         (keydown)="filterFunction($event)"
       />
       <i
-        class="pi pi-refresh fs-5 position-absolute"
-        style="right: 10px"
+        class="refresh-icon pi pi-refresh fs-5 position-absolute"
         role="button"
         (click)="refresh()"
       ></i>

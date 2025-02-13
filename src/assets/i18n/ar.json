@@ -706,7 +706,41 @@
       "invoiceNumber": "رقم الفاتورة",
       "InvoiceDate": "التاريخ والوقت",
       "tax": "الضريبة",
-      "totalAmount": "المبلغ الإجمالي"
+      "totalAmount": "المبلغ الإجمالي",
+      "grand": "المجموع الكلي"
+    }
+  },
+  "payments": {
+    "title": "المدفوعات",
+    "table_title": "جدول المدفوعات",
+    "add_btn": "إضافة دفع",
+    "update_title": "تحديث الدفع",
+    "form": {
+      "invoice": "فاتورة",
+      "invoice_required": "الفاتورة مطلوبة",
+      "customer": "عميل",
+      "customer_required": "العميل مطلوب",
+      "paidAmount": "المبلغ المدفوع",
+      "paidAmount_required": "المبلغ المدفوع مطلوب",
+      "totalAmount": "المبلغ الإجمالي",
+      "totalAmount_required": "المبلغ الإجمالي مطلوب",
+      "bank": "اسم البنك",
+      "paymentType": "نوع الدفع",
+      "address": "عنوان الفاتورة",
+      "country": "دولة",
+      "iban": "ايبان",
+      "swiftCode": "رمز سويفت"
+    },
+    "table": {
+      "customer": "العميل",
+      "invoice": "الفاتورة",
+      "paidDate": "تاريخ الدفع",
+      "paidAmount": "المبلغ المدفوع",
+      "totalAmount": "المبلغ الإجمالي",
+      "status": "الحالة",
+      "unpaid": "غير مدفوع",
+      "partialyPaid": "تم الدفع جزئيا",
+      "paid": "مدفوع"
     }
   },
   "items": {

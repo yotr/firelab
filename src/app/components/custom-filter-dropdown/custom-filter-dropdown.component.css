@@ -149,3 +149,13 @@ circle {
     stroke-dashoffset: -125px;
   }
 }
+
+/* dirctions */
+
+.dropdown[dir="ltr"] .refresh-icon {
+  right: 10px;
+}
+
+.dropdown[dir="rtl"] .refresh-icon {
+  left: 10px;
+}

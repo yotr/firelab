@@ -11,12 +11,12 @@ import { SidebarService } from 'src/app/services/sidebar/sidebar.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-invoice-module-table',
-  templateUrl: './invoice-module-table.component.html',
-  styleUrls: ['./invoice-module-table.component.css'],
+  selector: 'app-payment-module-table',
+  templateUrl: './payment-module-table.component.html',
+  styleUrls: ['./payment-module-table.component.css'],
 })
-export class InvoiceModuleTableComponent implements OnInit {
-//variables
+export class PaymentModuleTableComponent implements OnInit {
+  //variables
   @Input() data: any[] = [];
   @Input() dataKeys: any[] = [];
   @Input() loading: boolean = true;
@@ -66,6 +66,8 @@ export class InvoiceModuleTableComponent implements OnInit {
   currentUser: any = {} as any;
   deletedData: any[] = [];
 
+  statusDropdown: any[] = [];
+
   constructor(
     private printService: NgxPrintService,
     private sidebarService: SidebarService,
@@ -78,6 +80,27 @@ export class InvoiceModuleTableComponent implements OnInit {
     private toastr: ToastrService
   ) {
     this.api = environment.API;
+
+    this.statusDropdown = [
+      {
+        id: 0,
+        title: this.translateService.instant('payments.table.unpaid'),
+        value: 'payments.table.unpaid',
+        color: 'text-danger',
+      },
+      {
+        id: 1,
+        title: this.translateService.instant('payments.table.partialyPaid'),
+        value: 'payments.table.partialyPaid',
+        color: 'text-warning',
+      },
+      {
+        id: 2,
+        title: this.translateService.instant('payments.table.paid'),
+        value: 'payments.table.paid',
+        color: 'text-success',
+      },
+    ];
   }
 
   // ================== \\  General Functions for all tables  \\ ==================
@@ -183,7 +206,7 @@ export class InvoiceModuleTableComponent implements OnInit {
     if (this.deletedData.length > 0) {
       // api
       this.apiService
-        .deleteMulti(`invoices/delete-multi`, this.deletedData)
+        .deleteMulti(`payments/delete-multi`, this.deletedData)
         .subscribe({
           next: (data) => {
             console.log(data);
@@ -244,8 +267,12 @@ export class InvoiceModuleTableComponent implements OnInit {
   checkPageActions(action: string): boolean {
     return this.permissionsService.checkPageActions(
       this.auth.currentUserSignal()?.userData,
-      'CRMM15P1',
+      'CRMM16P1',
       action
     );
+  }
+
+  getPaymentStatus() {
+    
   }
 }

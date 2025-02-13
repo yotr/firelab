@@ -195,7 +195,7 @@
               }"
             >
               <!-- select checkbox -->
-              <td class="select-column" *ngIf="value?.job?.complete != true">
+              <td class="select-column">
                 <span class="select-input">
                   <label
                     class="table-checkbox-container"
@@ -206,97 +206,46 @@
                   </label>
                 </span>
               </td>
-              <td *ngIf="value?.job?.complete == true">
-                <div class="text-center text-success">
-                  <i class="pi pi-check-circle"></i>
-                </div>
-              </td>
               <ng-container *ngFor="let key of dataKeys">
                 <td *ngIf="key.active && key?.name != 'id'">
-                  <!-- data -->
-                  <ng-container *ngIf="key?.name == 'job'">
-                    <div class="">
-                      {{ value[key?.name]?.name }}
-                    </div>
+                  <!-- customer -->
+                  <ng-container *ngIf="key?.name == 'customer'">
+                    {{ value?.invoice?.customer?.businessName }}
                   </ng-container>
-                  <ng-container *ngIf="key?.name == 'startDate'">
-                    <div class="text-center">
-                      {{
-                        value[key?.name]
-                          ? (value[key?.name] | date : "MMM d, y h:mm a")
-                          : "_"
-                      }}
-                    </div>
+                  <!-- invoice -->
+                  <ng-container *ngIf="key?.name == 'invoice'">
+                    {{
+                      value[key?.name] ? value[key?.name]?.invoiceNumber : "_"
+                    }}
                   </ng-container>
-                  <ng-container *ngIf="key?.name == 'endDate'">
-                    <div class="text-center">
-                      {{
-                        value[key?.name]
-                          ? (value[key?.name] | date : "MMM d, y h:mm a")
-                          : "_"
-                      }}
-                    </div>
+                  <!-- paidDate -->
+                  <ng-container *ngIf="key?.name == 'paidDate'">
+                    {{ value[key?.name] ? (value[key?.name] | date) : "_" }}
                   </ng-container>
-                  <ng-container *ngIf="key?.name == 'startTime'">
-                    <div class="text-center">
-                      {{
-                        value[key?.name]
-                          ? (value[key?.name] | date : "MMM d, y h:mm a")
-                          : "_"
-                      }}
-                    </div>
+                  <!-- paidAmount -->
+                  <ng-container *ngIf="key?.name == 'paidAmount'">
+                    {{ value[key?.name] ? value[key?.name] : "_" }}
                   </ng-container>
-                  <!-- <ng-container *ngIf="key?.name == 'hours'">
-                    <div class="text-center">
-                      {{ value[key?.name] ? value[key?.name] : "_" }}
-                    </div>
-                  </ng-container>
-                  <ng-container *ngIf="key?.name == 'minutes'">
-                    <div class="text-center">
-                      {{ value[key?.name] ? value[key?.name] : "_" }}
-                    </div>
-                  </ng-container>
-                  <ng-container *ngIf="key?.name == 'meridiem'">
-                    <div class="text-uppercase text-center">
-                      {{ value[key?.name] ? value[key?.name] : "_" }}
-                    </div>
-                  </ng-container> -->
-                  <ng-container *ngIf="key?.name == 'external'">
-                    <div class="text-uppercase text-center">
-                      {{
-                        value[key?.name]
-                          ? ("job_link.assign_job.external" | translate)
-                          : ("job_link.assign_job.internal" | translate)
-                      }}
-                    </div>
+                  <!-- totalAmount -->
+                  <ng-container *ngIf="key?.name == 'totalAmount'">
+                    {{ value[key?.name] ? value[key?.name] : "_" }}
                   </ng-container>
                   <!-- status -->
-                  <ng-container *ngIf="key?.name == 'complete'">
-                    <div
-                      *ngIf="value?.job?.complete"
-                      class="text-uppercase text-center text-success"
-                    >
-                      {{ "job_link.table.completed" | translate }}
-                    </div>
-                    <div
-                      *ngIf="
-                        value?.job?.complete == false ||
-                        value?.job?.complete == null
-                      "
-                      class="text-uppercase text-center text-danger"
-                    >
-                      {{ "job_link.table.uncompleted" | translate }}
+                  <ng-container *ngIf="key?.name == 'status'">
+                    <div class="text-decoration-underline fw-bold fs-6 text-muted">
+                      {{
+                        value[key?.name] == 0
+                          ? (statusDropdown[0]?.value | translate)
+                          : value[key?.name] == 1
+                          ? (statusDropdown[1]?.value | translate)
+                          : (statusDropdown[2]?.value | translate)
+                      }}
                     </div>
                   </ng-container>
                 </td>
               </ng-container>
               <!-- actions -->
-              <td *ngIf="value?.job?.complete == true">
-                <div class="text-center text-success">
-                  <i class="pi pi-check-circle"></i>
-                </div>
-              </td>
-              <td class="actions-table" *ngIf="value?.job?.complete != true">
+              <td class="actions-table">
                 <div class="dropdown dropdown-action">
                   <a
                     class="action-icon dropdown-toggle h-auto text-secondary fw-bold"
@@ -336,10 +285,17 @@
       </table>
       <!-- no data -->
       <h1
-        *ngIf="totalItems == 0 && loading == false"
+        *ngIf="totalItems == 0 && loading == false && getDataError == false"
         class="fs-3 my-4 text-center"
       >
         {{ "module_table.table_empty_text" | translate }}
+      </h1>
+      <!-- error -->
+      <h1
+        *ngIf="totalItems == 0 && loading == false && getDataError"
+        class="fs-3 my-4 text-center"
+      >
+        {{ "module_table.table_error_text" | translate }}
       </h1>
       <!-- load skeleton if there is no data -->
       <app-skeleton
@@ -394,7 +350,7 @@
   [currentTheme]="currentTheme"
   (onDelete)="deleteItems()"
 ></app-delete-modal>
-<!--/ delete modal-->
+<!--/ delete modal -->
 <!-- printing spinner -->
 <div class="printing" *ngIf="printing">
   <div class="spinner-grow" role="status"></div>

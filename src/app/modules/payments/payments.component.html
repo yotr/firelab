@@ -1,0 +1,39 @@
+<div>
+  <!-- page header  -->
+  <div
+    class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
+    [dir]="'dir' | translate"
+  >
+    <app-breadcrumb [title]="'payments.title' | translate"></app-breadcrumb>
+    <div routerLink="/modules/payments/add">
+      <a
+        class="btn add-btn d-flex align-items-center {{
+          currentTheme?.colorSchema?.background
+        }} {{ currentTheme?.colorSchema?.color }}"
+      >
+        <i class="pi pi-plus d-none d-sm-block"></i>
+        {{ "payments.add_btn" | translate }}
+      </a>
+    </div>
+  </div>
+
+  <!-- /page header  -->
+  <app-back-button></app-back-button>
+  <!-- table -->
+  <app-payment-module-table
+    [data]="data"
+    [totalItems]="totalItemsCount"
+    [dataKeys]="dataKeys"
+    [loading]="loading"
+    [getDataError]="getDataError"
+    [currentTheme]="currentTheme"
+    [deleteModalTitle]="'payments.title' | translate"
+    [tableTitle]="'payments.table_title' | translate"
+    editPagePath="/modules/payments/edit"
+    (onPageChange)="onPaginate($event)"
+    (onDelete)="delete($event)"
+    (onSearch)="search($event)"
+    (onFilter)="handleFiltersSubmit($event)"
+    (onReset)="resetData()"
+  ></app-payment-module-table>
+</div>

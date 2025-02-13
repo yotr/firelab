@@ -1,0 +1,199 @@
+<!-- Add  Modal -->
+<div class="add-page">
+  <!-- Page Header -->
+  <div
+    class="page-header w-100 d-flex justify-content-between align-items-center gap-4"
+    [dir]="'dir' | translate"
+  >
+    <!-- breadcrumb -->
+    <app-breadcrumb [title]="'payments.add_btn' | translate"></app-breadcrumb>
+    <!-- status -->
+    <div [class]="currentPaymentStatus?.color" class="fw-bold fs-5">
+      {{ currentPaymentStatus?.value | translate }}
+    </div>
+  </div>
+  <!-- /Page Header -->
+
+  <app-back-button></app-back-button>
+  <!-- content -->
+  <form (ngSubmit)="submit()" [formGroup]="addForm">
+    <div class="row">
+      <!-- invoicesId -->
+      <div class="col-sm-6">
+        <div class="form-group mt-2">
+          <label
+            >{{ "payments.form.invoice" | translate }}
+            <span class="text-danger">*</span></label
+          >
+          <app-custom-filter-dropdown
+            minWidth="100%"
+            objectKey="invoiceNumber"
+            [data]="invoices"
+            [loading]="invoicesLoading"
+            (onAction)="onSelectInvoice($event)"
+            (onFilter)="onFilterInvoice($event)"
+            (onLoadMore)="loadMore()"
+            (onRefresh)="getInvoices()"
+          ></app-custom-filter-dropdown>
+        </div>
+        <!-- errors -->
+        <div
+          *ngIf="
+            addForm.get('invoicesId')?.invalid &&
+            addForm.get('invoicesId')?.touched
+          "
+        >
+          <small
+            *ngIf="
+              addForm.get('invoicesId')?.invalid &&
+              addForm.get('invoicesId')?.touched
+            "
+            class="text-danger"
+          >
+            {{ "payments.form.invoice_required" | translate }}</small
+          >
+        </div>
+        <!-- errors -->
+      </div>
+      <!-- customerId -->
+      <div class="col-sm-6">
+        <div class="form-group mt-2">
+          <label
+            >{{ "payments.form.customer" | translate }}
+            <span class="text-danger">*</span></label
+          >
+          <input
+            class="form-control"
+            type="text"
+            [value]="selectedCustomer"
+            readonly
+          />
+        </div>
+      </div>
+      <!-- paidAmount -->
+      <div class="col-sm-6">
+        <div class="form-group mt-2">
+          <label
+            >{{ "payments.form.paidAmount" | translate }}
+            <span class="text-danger">*</span></label
+          >
+          <input
+            class="form-control"
+            type="number"
+            formControlName="paidAmount"
+            (change)="onPaidAmountChange()"
+          />
+          <!-- errors -->
+          <div
+            *ngIf="
+              addForm.get('paidAmount')?.invalid &&
+              addForm.get('paidAmount')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('paidAmount')?.invalid &&
+                addForm.get('paidAmount')?.touched
+              "
+              class="text-danger"
+            >
+              {{ "payments.form.paidAmount_required" | translate }}</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+      <!-- totalAmount -->
+      <div class="col-sm-6">
+        <div class="form-group mt-2">
+          <label
+            >{{ "payments.form.totalAmount" | translate }}
+            <span class="text-danger">*</span></label
+          >
+          <input
+            class="form-control"
+            type="number"
+            formControlName="totalAmount"
+            readonly
+          />
+          <!-- errors -->
+          <div
+            *ngIf="
+              addForm.get('totalAmount')?.invalid &&
+              addForm.get('totalAmount')?.touched
+            "
+          >
+            <small
+              *ngIf="
+                addForm.get('totalAmount')?.invalid &&
+                addForm.get('totalAmount')?.touched
+              "
+              class="text-danger"
+            >
+              {{ "payments.form.totalAmount_required" | translate }}</small
+            >
+          </div>
+          <!-- errors -->
+        </div>
+      </div>
+      <!-- bank -->
+      <div class="col-sm-6">
+        <div class="form-group mt-2">
+          <label>{{ "payments.form.bank" | translate }} </label>
+          <input class="form-control" type="text" formControlName="bankName" />
+        </div>
+      </div>
+      <!-- paymentType -->
+      <div class="col-sm-6">
+        <div class="form-group mt-2">
+          <label>{{ "payments.form.paymentType" | translate }} </label>
+          <input
+            class="form-control"
+            type="text"
+            formControlName="paymentType"
+          />
+        </div>
+      </div>
+      <!-- address -->
+      <div class="col-sm-6">
+        <div class="form-group mt-2">
+          <label>{{ "payments.form.address" | translate }} </label>
+          <input class="form-control" type="text" formControlName="address" />
+        </div>
+      </div>
+      <!-- country -->
+      <div class="col-sm-6">
+        <div class="form-group mt-2">
+          <label>{{ "payments.form.country" | translate }} </label>
+          <input class="form-control" type="text" formControlName="country" />
+        </div>
+      </div>
+      <!-- iban -->
+      <div class="col-sm-6">
+        <div class="form-group mt-2">
+          <label>{{ "payments.form.iban" | translate }} </label>
+          <input class="form-control" type="text" formControlName="iban" />
+        </div>
+      </div>
+      <!-- swiftCode -->
+      <div class="col-sm-6">
+        <div class="form-group mt-2">
+          <label>{{ "payments.form.swiftCode" | translate }} </label>
+          <input class="form-control" type="text" formControlName="swiftCode" />
+        </div>
+      </div>
+    </div>
+
+    <!-- submit -->
+    <div class="save-btn text-center">
+      <button [disabled]="addForm.invalid" type="submit" class="save mt-4">{{ "save" | translate }}</button>
+    </div>
+  </form>
+</div>
+<!-- /Add  Modal -->
+
+<!-- loading section -->
+<div *ngIf="uploading">
+  <app-loading-section></app-loading-section>
+</div>
+<!-- /loading section -->

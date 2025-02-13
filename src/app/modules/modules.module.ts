@@ -87,6 +87,10 @@ import { EditWarrantyContractComponent } from './warranty-contract/components/ed
 import { InvoicesComponent } from './invoices/invoices.component';
 import { EditInvoiceComponent } from './invoices/components/edit-invoice/edit-invoice.component';
 import { InvoiceModuleTableComponent } from './invoices/components/invoice-module-table/invoice-module-table.component';
+import { PaymentsComponent } from './payments/payments.component';
+import { PaymentModuleTableComponent } from './payments/components/payment-module-table/payment-module-table.component';
+import { AddPaymentComponent } from './payments/components/add-payment/add-payment.component';
+import { EditPaymentComponent } from './payments/components/edit-payment/edit-payment.component';
 
 @NgModule({
   declarations: [
@@ -164,8 +168,11 @@ import { InvoiceModuleTableComponent } from './invoices/components/invoice-modul
     EditWarrantyContractComponent,
     InvoicesComponent,
     EditInvoiceComponent,
-    InvoiceModuleTableComponent
-
+    InvoiceModuleTableComponent,
+    PaymentsComponent,
+    PaymentModuleTableComponent,
+    AddPaymentComponent,
+    EditPaymentComponent
   ],
   imports: [
     CommonModule,
