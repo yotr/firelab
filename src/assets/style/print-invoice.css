@@ -70,11 +70,6 @@ body {
   padding: 0; /* Reset default body padding */
 }
 
-#header-content {
-  /* display: flex;
-  justify-content: space-around;
-  align-items: center; */
-}
 .header {
   padding: 0 20px 0 20px;
   margin-top: 70px;
