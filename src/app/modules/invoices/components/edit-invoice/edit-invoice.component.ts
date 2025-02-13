@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { NgxPrintService, PrintOptions } from 'ngx-print';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api/api.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -27,6 +28,11 @@ export class EditInvoiceComponent implements OnInit, AfterViewInit {
 
   updateId: any = null;
 
+  //print
+  tableTitle: string = '';
+  date: Date = new Date();
+  printing: boolean = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private themeService: ThemeService,
@@ -34,7 +40,8 @@ export class EditInvoiceComponent implements OnInit, AfterViewInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private apiService: ApiService,
-    private auth: AuthService
+    private auth: AuthService,
+    private printService: NgxPrintService,
   ) {
     //get id
     this.activatedRoute.paramMap.subscribe((paramMap: Params) => {
@@ -303,5 +310,17 @@ export class EditInvoiceComponent implements OnInit, AfterViewInit {
     } else {
       history.back();
     }
+  }
+
+  print() {
+    this.printing = true;
+    setTimeout(() => {
+        this.printing = false;
+        const customPrintOptions: PrintOptions = new PrintOptions({
+          printSectionId: 'print-invoice-section',
+        });
+        this.printService.styleSheetFile = 'assets/style/print-invoice.css';
+        this.printService.print(customPrintOptions);
+    }, 1000);
   }
 }

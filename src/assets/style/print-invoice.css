@@ -1,0 +1,178 @@
+@media print {
+  /* .element-you-donnot-want-to-be-cut-off {
+    page-break-inside: avoid;
+  } */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    border-top: 3px solid #000;
+  }
+
+  footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    border-bottom: 3px solid #000;
+  }
+
+  /* .border-line { */
+  /* border-left: 3px solid #000; */
+  /* page-break-inside: avoid; */
+  /* } */
+}
+
+/* header */
+#print-section-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ccc;
+}
+/* content */
+
+img {
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+#invoice-content {
+  padding: 20px;
+}
+
+/* style */
+
+/* dirctions */
+
+/* <!--===================printed section ===================--> */
+
+/* <!--===================printed section ===================--> */
+@page {
+  size: A4; /* Set the paper size (you can adjust this as needed) */
+  margin: 1cm; /* Set the margins (top, right, bottom, left) */
+  border: 1px solid #000; /* Set the border style and color */
+}
+
+/* Apply the border to the content area */
+body {
+  margin: 0; /* Reset default body margin */
+  padding: 0; /* Reset default body padding */
+}
+
+#header-content {
+  /* display: flex;
+  justify-content: space-around;
+  align-items: center; */
+}
+.header {
+  padding: 0 20px 0 20px;
+  margin-top: 70px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-top: 20px;
+  border-bottom: 2px dashed #ccc;
+  margin-bottom: 20px;
+}
+.left-section,
+.right-section {
+  flex: 1;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.left-section li,
+.right-section li {
+  margin-bottom: 20px;
+}
+.form-control {
+  border: none;
+  background-color: #fafafacc;
+}
+.btns {
+  display: none;
+}
+.save {
+  display: none;
+}
+
+.total-text::before {
+  content: ":";
+}
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.rq-input-span {
+  display: none;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+.row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* table */
+#table-id {
+  break-before: always;
+  width: 100%;
+}
+
+#table-id thead {
+  display: table-header-group;
+}
+#table-id thead #table-top-speace {
+  height: 100px;
+}
+#table-id thead #caption {
+  display: table-row;
+}
+#table-id thead tr {
+  /* display: block; */
+  /* border-bottom: 1px solid #ccc; */
+}
+
+/* remove action column */
+#table-id tbody tr .actions-table,
+#table-id tbody tr .select-column {
+  display: none;
+}
+#table-id thead tr .actions-table,
+#table-id thead tr .select-column {
+  display: none;
+}
+/* style */
+#table-id thead tr th {
+  font-size: medium;
+  /* border: 1px solid #363535; */
+  padding: 8px;
+}
+#table-id tbody tr td {
+  font-size: smaller;
+  white-space: nowrap;
+  /* border: 1px solid #dddddd; */
+  padding: 8px;
+}
+#table-id tbody tr td div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}

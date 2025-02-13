@@ -62,7 +62,7 @@
     </div>
     <!-- /table print header section  -->
     <!-- small table -->
-    <table [dir]="'dir' | translate" class="test-small-table d-none">
+    <!-- <table [dir]="'dir' | translate" class="test-small-table d-none">
       <thead>
         <tr>
           <th>From</th>
@@ -76,7 +76,7 @@
           <td>{{ data?.to }}</td>
         </tr>
       </tbody>
-    </table>
+    </table> -->
     <!-- /small table -->
     <!------------------- /header ------------------->
     <!-- grid table  -->
@@ -232,7 +232,9 @@
                   </ng-container>
                   <!-- status -->
                   <ng-container *ngIf="key?.name == 'status'">
-                    <div class="text-decoration-underline fw-bold fs-6 text-muted">
+                    <div
+                      class="text-decoration-underline fw-bold fs-6 text-muted"
+                    >
                       {{
                         value[key?.name] == 0
                           ? (statusDropdown[0]?.value | translate)

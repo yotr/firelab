@@ -14,10 +14,10 @@
     class="dropdown-menu dropdown-menu-right w-auto"
   >
     <button class="dropdown-item" role="button" (click)="printAll()">
-      <i class="pi pi-file-export"></i
+      <i class="pi pi-file-export mx-1"></i
       >{{ "download_pdf.export_all_btn" | translate }}
     </button>
-    <button
+    <!-- <button
       class="dropdown-item"
       role="button"
       styleSheetFile="assets/style/print-pdf.css"
@@ -26,7 +26,7 @@
     >
       <i class="pi pi-file-export"></i>
       {{ "download_pdf.export_selected_btn" | translate }}
-    </button>
+    </button> -->
   </div>
 </div>
 <!-- /export pdf -->
@@ -43,7 +43,7 @@
     </div>
     <!-- /table print header section  -->
     <!-- small table -->
-    <table [dir]="'dir' | translate" class="test-small-table d-none">
+    <!-- <table [dir]="'dir' | translate" class="test-small-table d-none">
       <thead>
         <tr>
           <th>From</th>
@@ -56,7 +56,7 @@
           <td>{{ data?.to }}</td>
         </tr>
       </tbody>
-    </table>
+    </table> -->
     <!-- /small table -->
     <!-- table -->
     <div class="table-responsive">

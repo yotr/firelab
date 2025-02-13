@@ -143,7 +143,7 @@
   },
   "download_pdf": {
     "export_btn": "Export To PDF",
-    "export_all_btn": "Export All",
+    "export_all_btn": "Export",
     "export_selected_btn": "Export Seleced"
   },
   "export_excel": {
