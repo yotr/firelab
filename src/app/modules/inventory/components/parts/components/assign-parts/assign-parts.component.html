@@ -34,12 +34,16 @@
         <div class="form-group mt-2">
           <label>{{ "inventory.parts.assign.vehicle_no" | translate }} </label>
           <app-custom-filter-dropdown
+            newItemPath="/modules/inventory/vehicles/add"
             minWidth="100%"
             title="Select Here"
             objectKey="vehicleNumber"
             [data]="vehicles"
+            [loading]="vehiclesLoading"
             (onFilter)="onFilterVehicles($event)"
             (onAction)="onSelectVehicle($event)"
+            (onLoadMore)="loadMoreVehicles()"
+            (onRefresh)="getVehicles()"
           ></app-custom-filter-dropdown>
           <!-- <select
             class="form-select form-control"
@@ -84,11 +88,15 @@
             >{{ "inventory.parts.assign.assigned_technician" | translate }}
           </label>
           <app-custom-filter-dropdown
+            newItemPath="/modules/team/add"
             minWidth="100%"
             [title]="TeamMemberName"
             objectKey="userName"
             [data]="members"
+            [loading]="membersLoading"
             (onFilter)="onFilterMembers($event)"
+            (onLoadMore)="loadMoreMembers()"
+            (onRefresh)="getMembers()"
           ></app-custom-filter-dropdown>
           <!-- <select
             class="form-select form-control"

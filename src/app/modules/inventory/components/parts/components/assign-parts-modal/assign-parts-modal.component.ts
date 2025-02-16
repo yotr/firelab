@@ -40,6 +40,8 @@ export class AssignPartsModalComponent implements OnInit, AfterViewInit {
 
   selectedPart: any = null;
 
+  currentPage: number = 1;
+
   constructor(
     private formBuilder: FormBuilder,
     private themeService: ThemeService,
@@ -148,6 +150,44 @@ export class AssignPartsModalComponent implements OnInit, AfterViewInit {
         },
         complete: () => {},
       });
+  }
+  // get data
+  getDataEnd(page?: number, pageSize?: number) {
+    this.partsLoading = true;
+    // api
+    this.apiService
+      .filterData(
+        'Parts/getFilteredParts',
+        page ? page : 1,
+        pageSize ? pageSize : 10
+      )
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.parts = [...this.parts, ...data?.value?.parts];
+            //  this.totalItemsCount = data?.value?.totalCount;
+            this.partsGetDataError = false;
+          }
+          this.partsLoading = false;
+        },
+        error: (err: any) => {
+          this.partsLoading = false;
+          this.partsGetDataError = true;
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {
+          this.partsLoading = false;
+        },
+      });
+  }
+  loadMore() {
+    this.currentPage++;
+    this.getDataEnd(this.currentPage);
   }
   onFilterParts(value: string) {
     if (value != null && value?.trim() != '') {

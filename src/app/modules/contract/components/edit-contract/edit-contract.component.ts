@@ -28,6 +28,7 @@ export class EditContractComponent implements OnInit, AfterViewInit {
   getDataError: boolean = false;
   uploading: boolean = false;
   currentTeamMember: any = null;
+  currentPage: number = 1;
 
   updateId: any = null;
 
@@ -174,6 +175,44 @@ export class EditContractComponent implements OnInit, AfterViewInit {
         },
         complete: () => {},
       });
+  }
+  // get data
+  getMembersEnd(page?: number, pageSize?: number) {
+    this.membersLoading = true;
+    // api
+    this.apiService
+      .filterData(
+        'teamMembers/getFilteredTeamMembers',
+        page ? page : 1,
+        pageSize ? pageSize : 10
+      )
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.members = [...this.members, ...data?.value?.teamMemberDtos];
+            this.totalItemsCount = data?.value?.totalCount;
+            this.getDataError = false;
+          }
+          this.membersLoading = false;
+        },
+        error: (err: any) => {
+          this.membersLoading = false;
+          this.getDataError = true;
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {
+          this.membersLoading = false;
+        },
+      });
+  }
+  loadMore() {
+    this.currentPage++;
+    this.getMembersEnd(this.currentPage);
   }
   onFilterMembers(value: string) {
     if (value != null && value?.trim() != '') {

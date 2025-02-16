@@ -18,6 +18,7 @@ export class AssignToolsComponent implements OnInit, AfterViewInit {
   currentTheme: any;
   currentLanguage: any = localStorage.getItem('lang');
   currentUser: any = null;
+  currentPage: number = 1;
   // members
   members: any[] = [];
   membersLoading: boolean = true;
@@ -174,6 +175,44 @@ export class AssignToolsComponent implements OnInit, AfterViewInit {
         },
         complete: () => {},
       });
+  }
+  // get data
+  getDataEnd(page?: number, pageSize?: number) {
+    this.vehiclesLoading = true;
+    // api
+    this.apiService
+      .filterData(
+        'vehicles/getFilteredVehicles',
+        page ? page : 1,
+        pageSize ? pageSize : 10
+      )
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.vehicles = [...this.vehicles, ...data?.value?.vehicleDtos];
+            //  this.totalItemsCount = data?.value?.totalCount;
+            this.getDataError = false;
+          }
+          this.vehiclesLoading = false;
+        },
+        error: (err: any) => {
+          this.vehiclesLoading = false;
+          this.getDataError = true;
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {
+          this.vehiclesLoading = false;
+        },
+      });
+  }
+  loadMore() {
+    this.currentPage++;
+    this.getDataEnd(this.currentPage);
   }
   onFilterVehicles(value: string) {
     if (value != null && value?.trim() != '') {

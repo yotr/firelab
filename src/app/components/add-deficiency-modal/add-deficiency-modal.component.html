@@ -1,8 +1,4 @@
-<div
-  class="modal custom-modal fade"
-  id="add_deficiency_modal"
-  role="dialog"
->
+<div class="modal custom-modal fade" id="add_deficiency_modal" role="dialog">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-body">
@@ -15,11 +11,15 @@
             <div class="form-group mt-2">
               <label>{{ "customers.add_job.deficiency" | translate }} </label>
               <app-custom-filter-dropdown
+                newItemPath="/modules/deficiencies/add"
                 minWidth="100%"
                 objectKey="name"
                 [data]="deficiencies"
+                [loading]="deficienciesLoading"
                 (onAction)="onSelect($event)"
                 (onFilter)="onFilter($event)"
+                (onLoadMore)="loadMore()"
+                (onRefresh)="getDeficiencies()"
               ></app-custom-filter-dropdown>
             </div>
           </div>

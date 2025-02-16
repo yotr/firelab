@@ -24,6 +24,7 @@ export class AddServiceModalComponent implements OnInit {
   uploading: boolean = false;
 
   selectedServices: any = null;
+  currentPage: number = 1;
 
   constructor(
     private themeService: ThemeService,
@@ -72,6 +73,44 @@ export class AddServiceModalComponent implements OnInit {
         },
         complete: () => {},
       });
+  }
+  // get data
+  getDataEnd(page?: number, pageSize?: number) {
+    this.servicesLoading = true;
+    // api
+    this.apiService
+      .filterData(
+        'services/getFilteredServices',
+        page ? page : 1,
+        pageSize ? pageSize : 10
+      )
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.services = [...this.services, ...data?.value?.services];
+            //  this.totalItemsCount = data?.value?.totalCount;
+            this.getDataError = false;
+          }
+          this.servicesLoading = false;
+        },
+        error: (err: any) => {
+          this.servicesLoading = false;
+          this.getDataError = true;
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {
+          this.servicesLoading = false;
+        },
+      });
+  }
+  loadMore() {
+    this.currentPage++;
+    this.getDataEnd(this.currentPage);
   }
   onFilter(value: string) {
     if (value != null && value?.trim() != '') {

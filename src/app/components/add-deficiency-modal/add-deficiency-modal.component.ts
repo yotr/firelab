@@ -16,6 +16,7 @@ export class AddDeficiencyModalComponent implements OnInit {
   @Output() onAdd: EventEmitter<any> = new EventEmitter();
 
   // deficiencies
+  currentPage: number = 1;
   deficiencies: any[] = [];
   deficienciesLoading: boolean = true;
   totalItemsCount: number = 0;
@@ -72,6 +73,46 @@ export class AddDeficiencyModalComponent implements OnInit {
         },
         complete: () => {},
       });
+  }
+  getDeficienciesEnd(page?: number, pageSize?: number) {
+    this.deficienciesLoading = true;
+    // api
+    this.apiService
+      .filterData(
+        'deficiencies/getFilteredDeficiencies',
+        page ? page : 1,
+        pageSize ? pageSize : 10
+      )
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.deficiencies = [
+              ...this.deficiencies,
+              ...data?.value?.deficiencies,
+            ];
+            this.totalItemsCount = data?.value?.totalCount;
+            this.getDataError = false;
+          }
+          this.deficienciesLoading = false;
+        },
+        error: (err: any) => {
+          this.deficienciesLoading = false;
+          this.getDataError = true;
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {
+          this.deficienciesLoading = false;
+        },
+      });
+  }
+  loadMore() {
+    this.currentPage++;
+    this.getDeficienciesEnd(this.currentPage);
   }
   onFilter(value: string) {
     if (value != null && value?.trim() != '') {

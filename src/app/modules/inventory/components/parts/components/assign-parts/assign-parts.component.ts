@@ -19,11 +19,13 @@ export class AssignPartsComponent implements OnInit, AfterViewInit {
   currentLanguage: any = localStorage.getItem('lang');
   currentUser: any = null;
   // members
+  membersCurrentPage: number = 1;
   members: any[] = [];
   membersLoading: boolean = true;
   totalItemsCount: number = 0;
   getDataError: boolean = false;
   // vehicles
+  vehiclesCurrentPage: number = 1;
   vehicles: any[] = [];
   vehiclesLoading: boolean = true;
 
@@ -174,6 +176,44 @@ export class AssignPartsComponent implements OnInit, AfterViewInit {
         complete: () => {},
       });
   }
+  // get data
+  getVehiclesEnd(page?: number, pageSize?: number) {
+    this.vehiclesLoading = true;
+    // api
+    this.apiService
+      .filterData(
+        'vehicles/getFilteredVehicles',
+        page ? page : 1,
+        pageSize ? pageSize : 10
+      )
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.vehicles = [...this.vehicles, ...data?.value?.vehicleDtos];
+            //  this.totalItemsCount = data?.value?.totalCount;
+            this.getDataError = false;
+          }
+          this.vehiclesLoading = false;
+        },
+        error: (err: any) => {
+          this.vehiclesLoading = false;
+          this.getDataError = true;
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {
+          this.vehiclesLoading = false;
+        },
+      });
+  }
+  loadMoreVehicles() {
+    this.vehiclesCurrentPage++;
+    this.getVehiclesEnd(this.vehiclesCurrentPage);
+  }
   onFilterVehicles(value: string) {
     if (value != null && value?.trim() != '') {
       this.apiService
@@ -227,6 +267,44 @@ export class AssignPartsComponent implements OnInit, AfterViewInit {
         },
         complete: () => {},
       });
+  }
+  // get data
+  getMembersEnd(page?: number, pageSize?: number) {
+    this.membersLoading = true;
+    // api
+    this.apiService
+      .filterData(
+        'teamMembers/getFilteredTeamMembers',
+        page ? page : 1,
+        pageSize ? pageSize : 10
+      )
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.members = [...this.members, ...data?.value?.teamMemberDtos];
+            //  this.totalItemsCount = data?.value?.totalCount;
+            this.getDataError = false;
+          }
+          this.membersLoading = false;
+        },
+        error: (err: any) => {
+          this.membersLoading = false;
+          this.getDataError = true;
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {
+          this.membersLoading = false;
+        },
+      });
+  }
+  loadMoreMembers() {
+    this.membersCurrentPage++;
+    this.getMembersEnd(this.membersCurrentPage);
   }
   onFilterMembers(value: string) {
     if (value != null && value?.trim() != '') {

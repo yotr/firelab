@@ -15,11 +15,15 @@
                   <span class="text-danger">*</span></label
                 >
                 <app-custom-filter-dropdown
+                  newItemPath="/modules/inventory/parts/add"
                   minWidth="100%"
                   objectKey="partName"
                   [data]="parts"
+                  [loading]="partsLoading"
                   (onAction)="onSelect($event)"
                   (onFilter)="onFilter($event)"
+                  (onLoadMore)="loadMore()"
+                  (onRefresh)="getParts()"
                 ></app-custom-filter-dropdown>
               </div>
             </div>

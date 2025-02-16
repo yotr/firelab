@@ -1,4 +1,9 @@
-<div class="modal custom-modal fade" id="add_service_modal" role="dialog" aria-hidden="false">
+<div
+  class="modal custom-modal fade"
+  id="add_service_modal"
+  role="dialog"
+  aria-hidden="false"
+>
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
       <div class="modal-body">
@@ -11,11 +16,15 @@
             <div class="form-group mt-2">
               <label>{{ "job_link.assign_job.service" | translate }} </label>
               <app-custom-filter-dropdown
+                newItemPath="/modules/serviceRequests/add"
                 minWidth="100%"
                 objectKey="name"
                 [data]="services"
+                [loading]="servicesLoading"
                 (onAction)="onSelect($event)"
                 (onFilter)="onFilter($event)"
+                (onLoadMore)="loadMore()"
+                (onRefresh)="getServices()"
               ></app-custom-filter-dropdown>
             </div>
           </div>

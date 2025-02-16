@@ -30,6 +30,7 @@ export class AssignToolsModalComponent implements OnInit {
   uploading: boolean = false;
 
   selectedTool: any = null;
+  currentPage: number = 1;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -89,6 +90,44 @@ export class AssignToolsModalComponent implements OnInit {
         },
         complete: () => {},
       });
+  }
+  // get data
+  getDataEnd(page?: number, pageSize?: number) {
+    this.toolsLoading = true;
+    // api
+    this.apiService
+      .filterData(
+        'Tools/getFilteredTools',
+        page ? page : 1,
+        pageSize ? pageSize : 10
+      )
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.tools = [...this.tools, ...data?.value?.tools];
+            //  this.totalItemsCount = data?.value?.totalCount;
+            this.getDataError = false;
+          }
+          this.toolsLoading = false;
+        },
+        error: (err: any) => {
+          this.toolsLoading = false;
+          this.getDataError = true;
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {
+          this.toolsLoading = false;
+        },
+      });
+  }
+  loadMore() {
+    this.currentPage++;
+    this.getDataEnd(this.currentPage);
   }
   onFilterTools(value: string) {
     if (value != null && value?.trim() != '') {

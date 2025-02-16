@@ -16,6 +16,7 @@ export class AddJobComponent implements OnInit, AfterViewInit {
   addForm: FormGroup;
   currentTheme: any;
   currentLanguage: any = localStorage.getItem('lang');
+  currentPage: number = 1;
   // types
   types: any[] = [];
   typesLoading: boolean = true;
@@ -287,6 +288,47 @@ export class AddJobComponent implements OnInit, AfterViewInit {
         },
         complete: () => {},
       });
+  }
+  // get data
+  getDataEnd(page?: number, pageSize?: number) {
+    this.warrantyContractsLoading = true;
+    // api
+    this.apiService
+      .filterData(
+        'warrantyContract/getFilteredWarrantyContractsOfCustomer',
+        page ? page : 1,
+        pageSize ? pageSize : 10
+      )
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.warrantyContracts = [
+              ...this.warrantyContracts,
+              ...data?.value?.warrantyContracts,
+            ];
+            //  this.totalItemsCount = data?.value?.totalCount;
+            this.getDataError = false;
+          }
+          this.warrantyContractsLoading = false;
+        },
+        error: (err: any) => {
+          this.warrantyContractsLoading = false;
+          this.getDataError = true;
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {
+          this.warrantyContractsLoading = false;
+        },
+      });
+  }
+  loadMore() {
+    this.currentPage++;
+    this.getDataEnd(this.currentPage);
   }
   onFilterWarrantyContract(value: string) {
     if (value != null && value?.trim() != '') {

@@ -32,6 +32,7 @@ export class AddPartModalComponent implements OnInit, AfterViewInit {
   uploading: boolean = false;
 
   selectedParts: any = null;
+  currentPage: number = 1;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -98,6 +99,44 @@ export class AddPartModalComponent implements OnInit, AfterViewInit {
         complete: () => {},
       });
   }
+  // get data
+  getDataEnd(page?: number, pageSize?: number) {
+    this.partsLoading = true;
+    // api
+    this.apiService
+      .filterData(
+        'Parts/getFilteredParts',
+        page ? page : 1,
+        pageSize ? pageSize : 10
+      )
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.parts = [...this.parts, ...data?.value?.parts];
+            //  this.totalItemsCount = data?.value?.totalCount;
+            // this.partsGetDataError = false;
+          }
+          this.partsLoading = false;
+        },
+        error: (err: any) => {
+          this.partsLoading = false;
+          // this.partsGetDataError = true;
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {
+          this.partsLoading = false;
+        },
+      });
+  }
+  loadMore() {
+    this.currentPage++;
+    this.getDataEnd(this.currentPage);
+  }
   onFilter(value: string) {
     if (value != null && value?.trim() != '') {
       this.apiService
@@ -132,7 +171,7 @@ export class AddPartModalComponent implements OnInit, AfterViewInit {
         // let newPartQty =
         //   this.selectedParts?.quantity - this.addForm.get('qty')?.value;
         // this.updatePartQuantity(partId, newPartQty);
-        this.onAdd.emit({ ...this.addForm.value});
+        this.onAdd.emit({ ...this.addForm.value });
       } else {
         if (this.currentLanguage == 'ar') {
           this.toastr.warning('الرجاء إدخال الكمية الصحيحة');

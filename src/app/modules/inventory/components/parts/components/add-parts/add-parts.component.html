@@ -45,11 +45,15 @@
             <span class="text-danger">*</span></label
           >
           <app-custom-filter-dropdown
+            newItemPath="/modules/inventory/suppliers/add"
             minWidth="100%"
             objectKey="supplierName"
             [data]="suppliers"
+            [loading]="suppliersLoading"
             (onAction)="onSelectSuppliers($event)"
             (onFilter)="onFilterSuppliers($event)"
+            (onLoadMore)="loadMore()"
+            (onRefresh)="getSuppliers()"
           ></app-custom-filter-dropdown>
           <!-- <select class="form-select form-control" formControlName="supplierId">
             <option disabled selected>

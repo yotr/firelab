@@ -22,6 +22,7 @@ export class AddPartsComponent implements OnInit, AfterViewInit {
   categoriesLoading: boolean = true;
   getDataError: boolean = false;
   // suppliers
+  currentPage: number = 1;
   suppliers: any[] = [];
   suppliersLoading: boolean = true;
   totalItemsCount: number = 0;
@@ -175,6 +176,47 @@ export class AddPartsComponent implements OnInit, AfterViewInit {
           this.suppliersLoading = false;
         },
       });
+  }
+  // get data
+  getDataEnd(page?: number, pageSize?: number) {
+    this.suppliersLoading = true;
+    // api
+    this.apiService
+      .filterData(
+        'suppliers/getFilteredSuppliers',
+        page ? page : 1,
+        pageSize ? pageSize : 10
+      )
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.suppliers = [
+              ...this.suppliers,
+              ...data?.value?.warrantyContracts,
+            ];
+            //  this.totalItemsCount = data?.value?.totalCount;
+            this.getDataError = false;
+          }
+          this.suppliersLoading = false;
+        },
+        error: (err: any) => {
+          this.suppliersLoading = false;
+          this.getDataError = true;
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {
+          this.suppliersLoading = false;
+        },
+      });
+  }
+  loadMore() {
+    this.currentPage++;
+    this.getDataEnd(this.currentPage);
   }
 
   onFilterSuppliers(value: string) {

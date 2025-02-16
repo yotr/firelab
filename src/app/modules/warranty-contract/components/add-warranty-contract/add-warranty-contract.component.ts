@@ -20,6 +20,8 @@ export class AddWarrantyContractComponent implements OnInit, AfterViewInit {
   currentLanguage: any = localStorage.getItem('lang');
   currentUser: any = null;
   uploading: boolean = false;
+  customersCurrentPage: number = 1;
+  warrantyCurrentPage: number = 1;
 
   // customer
   customers: any[] = [];
@@ -118,6 +120,44 @@ export class AddWarrantyContractComponent implements OnInit, AfterViewInit {
         complete: () => {},
       });
   }
+  // get data
+  getWarrantyEnd(page?: number, pageSize?: number) {
+    this.warrantyLoading = true;
+    // api
+    this.apiService
+      .filterData(
+        `warranty/getFilteredWarranties`,
+        page ? page : 1,
+        pageSize ? pageSize : 10
+      )
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.warranty = [...this.warranty, ...data?.value?.warranty];
+            //  this.totalItemsCount = data?.value?.totalCount;
+            // this.getDataError = false;
+          }
+          this.warrantyLoading = false;
+        },
+        error: (err: any) => {
+          this.warrantyLoading = false;
+          // this.getDataError = true;
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {
+          this.warrantyLoading = false;
+        },
+      });
+  }
+  loadMoreWarranty() {
+    this.warrantyCurrentPage++;
+    this.getWarrantyEnd(this.warrantyCurrentPage);
+  }
   onFilterWarranty(value: string) {
     if (value != null && value?.trim() != '') {
       this.apiService
@@ -172,6 +212,44 @@ export class AddWarrantyContractComponent implements OnInit, AfterViewInit {
         },
         complete: () => {},
       });
+  }
+  // get data
+  getCustomersEnd(page?: number, pageSize?: number) {
+    this.customersLoading = true;
+    // api
+    this.apiService
+      .filterData(
+        `customers/getFilteredCustomers`,
+        page ? page : 1,
+        pageSize ? pageSize : 10
+      )
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.customers = [...this.customers, ...data?.value?.customerDto];
+            //  this.totalItemsCount = data?.value?.totalCount;
+            // this.getDataError = false;
+          }
+          this.customersLoading = false;
+        },
+        error: (err: any) => {
+          this.customersLoading = false;
+          // this.getDataError = true;
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {
+          this.customersLoading = false;
+        },
+      });
+  }
+  loadMoreCustomers() {
+    this.customersCurrentPage++;
+    this.getCustomersEnd(this.customersCurrentPage);
   }
   onFilterCustomers(value: string) {
     if (value != null && value?.trim() != '') {

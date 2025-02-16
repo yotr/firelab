@@ -48,11 +48,15 @@
             <span class="text-danger">*</span></label
           >
           <app-custom-filter-dropdown
+            newItemPath="/modules/warranty/add"
             minWidth="100%"
             objectKey="name"
             [data]="warranty"
+            [loading]="warrantyLoading"
             (onAction)="onSelectWarranty($event)"
             (onFilter)="onFilterWarranty($event)"
+            (onLoadMore)="loadMoreWarranty()"
+            (onRefresh)="getWarranty()"
           ></app-custom-filter-dropdown>
         </div>
         <!-- errors -->
@@ -83,11 +87,15 @@
             <span class="text-danger">*</span></label
           >
           <app-custom-filter-dropdown
+            newItemPath="/modules/customers/add"
             minWidth="100%"
             objectKey="businessName"
             [data]="customers"
+            [loading]="customersLoading"
             (onAction)="onSelectCustomer($event)"
             (onFilter)="onFilterCustomers($event)"
+            (onLoadMore)="loadMoreCustomers()"
+            (onRefresh)="getCustomers()"
           ></app-custom-filter-dropdown>
         </div>
         <!-- errors -->

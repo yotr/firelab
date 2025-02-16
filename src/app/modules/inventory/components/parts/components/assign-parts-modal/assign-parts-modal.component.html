@@ -53,11 +53,15 @@
                   <span class="text-danger">*</span></label
                 >
                 <app-custom-filter-dropdown
+                  newItemPath="/modules/inventory/parts/add"
                   minWidth="100%"
                   objectKey="partName"
                   [data]="parts"
+                  [loading]="partsLoading"
                   (onAction)="onSelectPart($event)"
                   (onFilter)="onFilterParts($event)"
+                  (onLoadMore)="loadMore()"
+                  (onRefresh)="getParts()"
                 ></app-custom-filter-dropdown>
                 <!-- <app-custom-dropdown
                   title="Select Here"
@@ -75,8 +79,8 @@
                 <label
                   >{{ "inventory.parts.assign.add_modal.quantity" | translate }}
                   <span [hidden]="selectedPart == null">{{
-                   ( selectedPart?.quantity -
-                      selectedPart?.vehicleQty) -
+                    selectedPart?.quantity -
+                      selectedPart?.vehicleQty -
                       addForm.get("quantity")?.value +
                       " ) "
                   }}</span>

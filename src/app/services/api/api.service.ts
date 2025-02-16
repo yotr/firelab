@@ -262,21 +262,21 @@ export class ApiService {
       console.error('An error occurred:', error.error);
     } else if (error.status === 401) {
       // Handle Unauthorized error
-      let isLoggedIn = localStorage.getItem('mms-loginData');
+      // let isLoggedIn = localStorage.getItem('mms-loginData');
 
-      if (isLoggedIn) {
+      // if (isLoggedIn) {
         // Remove user from storage
         localStorage.removeItem('mms-loginData');
         localStorage.removeItem('mms-roles');
-      }
+        // }
+        window.location.reload();
 
       // Navigate to login page
       this.router.navigate(['/login']);
 
       // Reload page (only after navigating)
-      setTimeout(() => {
-        window.location.reload();
-      }, 500);
+      // setTimeout(() => {
+      // }, 500);
 
       // return console.error(
       //   'Unauthorized request. Please check your credentials.'

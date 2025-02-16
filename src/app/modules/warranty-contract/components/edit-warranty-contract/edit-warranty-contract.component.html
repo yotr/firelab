@@ -48,12 +48,16 @@
             <span class="text-danger">*</span></label
           >
           <app-custom-filter-dropdown
+            newItemPath="/modules/warranty/add"
             minWidth="100%"
             [title]="cusrrentWarranty?.name"
             objectKey="name"
             [data]="warranty"
+            [loading]="warrantyLoading"
             (onAction)="onSelectWarranty($event)"
             (onFilter)="onFilterWarranty($event)"
+            (onLoadMore)="loadMoreWarranty()"
+            (onRefresh)="getWarranty()"
           ></app-custom-filter-dropdown>
         </div>
         <!-- errors -->
@@ -84,12 +88,16 @@
             <span class="text-danger">*</span></label
           >
           <app-custom-filter-dropdown
+            newItemPath="/modules/customers/add"
             minWidth="100%"
             [title]="cusrrentCustomer?.businessName"
             objectKey="businessName"
             [data]="customers"
+            [loading]="customersLoading"
             (onAction)="onSelectCustomer($event)"
             (onFilter)="onFilterCustomers($event)"
+            (onLoadMore)="loadMoreCustomers()"
+            (onRefresh)="getCustomers()"
           ></app-custom-filter-dropdown>
         </div>
         <!-- errors -->
@@ -178,9 +186,7 @@
                       <i
                         class="pi pi-trash"
                         role="button"
-                        (click)="
-                          removeItem(i, formValues['items'].value[i])
-                        "
+                        (click)="removeItem(i, formValues['items'].value[i])"
                       ></i>
                     </div>
                   </td>

@@ -12,6 +12,7 @@
               <div class="form-group mt-2">
                 <label>{{ "warrantyContract.form.item" | translate }} </label>
                 <app-custom-filter-dropdown
+                  newItemPath="/modules/inventory/items/add"
                   minWidth="100%"
                   objectKey="name"
                   [data]="items"

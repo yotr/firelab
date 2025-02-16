@@ -7,6 +7,7 @@ import {
   Output,
   ViewChild,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api/api.service';
 
@@ -18,6 +19,7 @@ import { ApiService } from 'src/app/services/api/api.service';
 export class CustomFilterDropdownComponent implements OnInit {
   @Input() translated: boolean = false;
   @Input() minWidth: string = '150px';
+  @Input() newItemPath: string = '';
   // filter
   @Input() filterLoading: boolean = true;
   @Input() filterTotal: number = 0;
@@ -33,7 +35,11 @@ export class CustomFilterDropdownComponent implements OnInit {
   isActive: boolean = false;
   @ViewChild('targetElement') targetElement!: ElementRef;
 
-  constructor(public apiService: ApiService, private toastr: ToastrService) {}
+  constructor(
+    public apiService: ApiService,
+    private toastr: ToastrService,
+    public router: Router
+  ) {}
   ngOnInit() {}
 
   toggle() {
@@ -63,5 +69,9 @@ export class CustomFilterDropdownComponent implements OnInit {
       block: 'start',
     });
     this.onRefresh.emit();
+  }
+
+  navigateTo(newItemPath: any) {
+    this.router.navigate([newItemPath]);
   }
 }

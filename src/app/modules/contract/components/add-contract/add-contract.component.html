@@ -60,11 +60,15 @@
             <span class="text-danger">*</span></label
           >
           <app-custom-filter-dropdown
+            newItemPath="/modules/team/add"
             minWidth="100%"
             objectKey="userName"
             [data]="members"
+            [loading]="membersLoading"
             (onAction)="onSelectTeamMember($event)"
             (onFilter)="onFilterMembers($event)"
+            (onLoadMore)="loadMore()"
+            (onRefresh)="getMembers()"
           ></app-custom-filter-dropdown>
 
           <!-- <select

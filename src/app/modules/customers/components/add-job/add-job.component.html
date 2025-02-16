@@ -217,11 +217,15 @@
                 >{{ "customers.add_job.warranty_template" | translate }}
               </label>
               <app-custom-filter-dropdown
+                newItemPath="/modules/warranty-contract/add"
                 minWidth="100%"
                 objectKey="name"
                 [data]="warrantyContracts"
+                [loading]="warrantyContractsLoading"
                 (onAction)="onSelectWarrantyContract($event)"
                 (onFilter)="onFilterWarrantyContract($event)"
+                (onLoadMore)="loadMore()"
+                (onRefresh)="getWarrantyContacts()"
               ></app-custom-filter-dropdown>
               <!-- <select
                 class="form-select form-control"

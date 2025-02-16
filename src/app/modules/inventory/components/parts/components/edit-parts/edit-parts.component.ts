@@ -33,6 +33,7 @@ export class EditPartsComponent implements OnInit, AfterViewInit {
   updateId: any = null;
   currentSupplier: any = null;
   defaultImgUrl: any = 'assets/img/camera.png';
+  currentPage: number = 1;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -184,7 +185,44 @@ export class EditPartsComponent implements OnInit, AfterViewInit {
         },
       });
   }
-
+  // get data
+  getDataEnd(page?: number, pageSize?: number) {
+    this.suppliersLoading = true;
+    // api
+    this.apiService
+      .filterData(
+        'suppliers/getFilteredSuppliers',
+        page ? page : 1,
+        pageSize ? pageSize : 10
+      )
+      .subscribe({
+        next: (data: any) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.suppliers = [...this.suppliers, ...data?.value?.suppliers];
+            //  this.totalItemsCount = data?.value?.totalCount;
+            this.getDataError = false;
+          }
+          this.suppliersLoading = false;
+        },
+        error: (err: any) => {
+          this.suppliersLoading = false;
+          this.getDataError = true;
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {
+          this.suppliersLoading = false;
+        },
+      });
+  }
+  loadMore() {
+    this.currentPage++;
+    this.getDataEnd(this.currentPage);
+  }
   onFilterSuppliers(value: string) {
     if (value != null && value?.trim() != '') {
       this.apiService

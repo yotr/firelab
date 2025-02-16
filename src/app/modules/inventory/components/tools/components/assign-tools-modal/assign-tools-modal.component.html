@@ -16,11 +16,15 @@
                   <span class="text-danger">*</span></label
                 >
                 <app-custom-filter-dropdown
+                  newItemPath="/modules/inventory/tools/add"
                   minWidth="100%"
                   objectKey="toolName"
                   [data]="tools"
+                  [loading]="toolsLoading"
                   (onAction)="onSelectTool($event)"
                   (onFilter)="onFilterTools($event)"
+                  (onLoadMore)="loadMore()"
+                  (onRefresh)="getTools()"
                 ></app-custom-filter-dropdown>
               </div>
             </div>
@@ -30,8 +34,8 @@
                 <label
                   >{{ "inventory.tools.assign.add_modal.quantity" | translate }}
                   <span [hidden]="selectedTool == null">{{
-                   ( selectedTool?.quantity -
-                      selectedTool?.vehicleQty) -
+                    selectedTool?.quantity -
+                      selectedTool?.vehicleQty -
                       addForm.get("quantity")?.value +
                       " ) "
                   }}</span>
