@@ -93,8 +93,8 @@
 }
 
 .unassign {
-  color: #0e161a;
-  border: 1px solid #0e161a;
+  color: rgb(106, 161, 78);
+  border: 1px solid rgb(106, 161, 78);
   padding: 6px 18px;
   display: flex;
   justify-content: center;
@@ -111,7 +111,7 @@
 .unassign:hover {
   cursor: pointer;
   color: white;
-  background-color: #0e161a;
+  background-color: rgb(106, 161, 78);
 }
 .save {
   color: rgb(106, 161, 78);

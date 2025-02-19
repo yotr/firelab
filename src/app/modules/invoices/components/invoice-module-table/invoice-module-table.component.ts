@@ -16,7 +16,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./invoice-module-table.component.css'],
 })
 export class InvoiceModuleTableComponent implements OnInit {
-//variables
+  //variables
   @Input() data: any[] = [];
   @Input() dataKeys: any[] = [];
   @Input() loading: boolean = true;
@@ -247,5 +247,27 @@ export class InvoiceModuleTableComponent implements OnInit {
       'CRMM15P1',
       action
     );
+  }
+
+  pay(id: any) {
+    // api
+    this.apiService.get(`payments/checkInvoice?invoiceId=${id}`).subscribe({
+      next: (data) => {
+        console.log(data);
+        if (data?.isSuccess) {
+          if (data?.reasons) {
+            this.toastr.success(data?.reasons[0]?.message);
+          }
+          this.router.navigate(['/modules/payments/add'], {
+            queryParams: { invoiceId: id },
+          });
+        }
+      },
+      error: (err: any) => {
+        console.log(err);
+        this.toastr.warning(err?.message);
+      },
+      complete: () => {},
+    });
   }
 }

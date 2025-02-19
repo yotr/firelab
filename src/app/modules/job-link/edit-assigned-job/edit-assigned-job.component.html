@@ -8,6 +8,16 @@
     <app-breadcrumb
       [title]="'job_link.assign_job.update_title' | translate"
     ></app-breadcrumb>
+    <!-- status -->
+    <h4 class="text-decoration-underline">
+      {{
+        accepted == null
+          ? ("job_link.assign_job.notAssigned" | translate)
+          : accepted
+          ? ("job_link.assign_job.accept" | translate)
+          : ("job_link.assign_job.reject" | translate)
+      }}
+    </h4>
   </div>
   <!-- /Page Header -->
 
@@ -731,14 +741,22 @@
 
     <!-- submit -->
     <div class="btns">
-      <div class="delete-btn text-center" (click)="deleteAssignedJob()">
+      <div
+        [hidden]="accepted == false"
+        class="delete-btn text-center"
+        (click)="rejectAssignedJob()"
+      >
         <div class="delete mt-4">
-          {{ "job_link.assign_job.delete" | translate }}
+          {{ "job_link.assign_job.reject" | translate }}
         </div>
       </div>
-      <div class="unassign-btn text-center" (click)="unassignJob()">
+      <div
+        [hidden]="accepted"
+        class="unassign-btn text-center"
+        (click)="acceptAssignedJob()"
+      >
         <div class="unassign mt-4">
-          {{ "job_link.assign_job.unassign" | translate }}
+          {{ "job_link.assign_job.accept" | translate }}
         </div>
       </div>
       <div class="save-btn text-center">

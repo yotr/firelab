@@ -27,6 +27,7 @@
           >
           <app-custom-filter-dropdown
             minWidth="100%"
+            [title]="selectedInvoice != null ?  selectedInvoice : 'Select'"
             objectKey="invoiceNumber"
             [data]="invoices"
             [loading]="invoicesLoading"

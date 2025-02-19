@@ -19,7 +19,7 @@ import { ApiService } from 'src/app/services/api/api.service';
 export class CustomFilterDropdownComponent implements OnInit {
   @Input() translated: boolean = false;
   @Input() minWidth: string = '150px';
-  @Input() newItemPath: string = '';
+  @Input() newItemPath: any = null;
   // filter
   @Input() filterLoading: boolean = true;
   @Input() filterTotal: number = 0;
@@ -72,6 +72,10 @@ export class CustomFilterDropdownComponent implements OnInit {
   }
 
   navigateTo(newItemPath: any) {
-    this.router.navigate([newItemPath]);
+    // this.router.navigate([newItemPath]);
+    const url = this.router.serializeUrl(
+      this.router.createUrlTree([newItemPath])
+    );
+    window.open(url, '_blank'); // Opens i
   }
 }

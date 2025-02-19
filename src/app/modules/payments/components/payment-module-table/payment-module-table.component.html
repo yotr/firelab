@@ -222,13 +222,17 @@
                   <ng-container *ngIf="key?.name == 'paidDate'">
                     {{ value[key?.name] ? (value[key?.name] | date) : "_" }}
                   </ng-container>
+                  <!-- totalAmount -->
+                  <ng-container *ngIf="key?.name == 'totalAmount'">
+                    {{ value[key?.name] ? value[key?.name] : "_" }}
+                  </ng-container>
                   <!-- paidAmount -->
                   <ng-container *ngIf="key?.name == 'paidAmount'">
                     {{ value[key?.name] ? value[key?.name] : "_" }}
                   </ng-container>
-                  <!-- totalAmount -->
-                  <ng-container *ngIf="key?.name == 'totalAmount'">
-                    {{ value[key?.name] ? value[key?.name] : "_" }}
+                  <!-- remaining -->
+                  <ng-container *ngIf="key?.name == 'remaining'">
+                    {{ value?.totalAmount - value?.paidAmount }}
                   </ng-container>
                   <!-- status -->
                   <ng-container *ngIf="key?.name == 'status'">

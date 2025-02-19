@@ -502,6 +502,7 @@
       "meridiem": "صباحا/ ومساء",
       "external": "خارجي/داخلي",
       "status": "حالة",
+      "acceptance": "القبول",
       "completed": "مكتمل",
       "uncompleted": "غير مكتمل"
     },
@@ -550,8 +551,10 @@
       "inspectors_note": "ملاحظة المفتش",
       "add_note": "أضف ملاحظة",
       "customer_note": "ملاحظة العميل",
-      "delete": "حذف",
-      "unassign": "إلغاء التعيين",
+      "reject": "مرفوض",
+      "accept": "مقبول",
+      "order": "طلب",
+      "notAssigned": "لم يتم التعيين بعد",
       "schedule": "منطقة العمل",
       "approval": "الموافقة على إضافة عناصر",
       "internal": "داخلي",
@@ -708,7 +711,8 @@
       "InvoiceDate": "التاريخ والوقت",
       "tax": "الضريبة",
       "totalAmount": "المبلغ الإجمالي",
-      "grand": "المجموع الكلي"
+      "grand": "المجموع الكلي",
+      "pay": "ادفع"
     }
   },
   "payments": {
@@ -737,6 +741,7 @@
       "invoice": "الفاتورة",
       "paidDate": "تاريخ الدفع",
       "paidAmount": "المبلغ المدفوع",
+      "remaining": "متبقي",
       "totalAmount": "المبلغ الإجمالي",
       "status": "الحالة",
       "unpaid": "غير مدفوع",

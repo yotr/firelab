@@ -503,6 +503,7 @@
       "meridiem": "Meridiem",
       "external": "External/Internal",
       "status": "Status",
+      "acceptance": "Acceptance",
       "completed": "Completed",
       "uncompleted": "uncompleted"
     },
@@ -551,8 +552,10 @@
       "inspectors_note": "Inspector's Note",
       "add_note": "Add Note",
       "customer_note": "Customer's Note",
-      "delete": "Delete",
-      "unassign": "Unassign",
+      "reject": "Rejected",
+      "accept": "Accepted",
+      "order": "Order",
+      "notAssigned": "Not Assigned Yet",
       "schedule": "Schedule",
       "approval": "Approval To Add Items",
       "internal": "Internal",
@@ -728,7 +731,8 @@
       "InvoiceDate": "Date & Time",
       "tax": "Tax",
       "totalAmount": "Total Amount",
-      "grand": "Total Grand"
+      "grand": "Total Grand",
+      "pay": "Pay"
     }
   },
   "payments": {
@@ -758,6 +762,7 @@
       "paidDate": "Paid Date",
       "paidAmount": "Paid Amount",
       "totalAmount": "Total Amount",
+      "remaining": "Remaining",
       "status": "Status",
       "unpaid": "Unpaid",
       "partialyPaid": "Partialy Paid",

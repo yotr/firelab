@@ -262,6 +262,14 @@
                       {{ "module_table.edit_action_text" | translate }}</a
                     >
                     <a
+                      class="dropdown-item"
+                      role="button"
+                      (click)="pay(value?.id)"
+                      ><i class="pi pi-paypal mx-1"></i>
+                      {{ "invoices.table.pay" | translate }}</a
+                    >
+
+                    <a
                       *ngIf="checkPageActions('delete')"
                       class="dropdown-item"
                       data-bs-toggle="modal"

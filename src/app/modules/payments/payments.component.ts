@@ -61,14 +61,20 @@ export class PaymentsComponent implements OnInit {
         active: true,
       },
       {
-        name: 'paidAmount',
-        display: this.translateService.instant('payments.table.paidAmount'),
+        name: 'totalAmount',
+        display: this.translateService.instant('payments.table.totalAmount'),
         type: 'number',
         active: true,
       },
       {
         name: 'paidAmount',
         display: this.translateService.instant('payments.table.paidAmount'),
+        type: 'number',
+        active: true,
+      },
+      {
+        name: 'remaining',
+        display: this.translateService.instant('payments.table.remaining'),
         type: 'number',
         active: true,
       },

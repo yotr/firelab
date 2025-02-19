@@ -271,6 +271,28 @@
                     </div>
                   </ng-container>
                   <!-- status -->
+                  <ng-container *ngIf="key?.name == 'accepted'">
+                    <div
+                      *ngIf="value?.accepted"
+                      class="text-uppercase text-center text-success text-decoration-underline"
+                    >
+                      {{ "job_link.assign_job.accept" | translate }}
+                    </div>
+                    <div
+                      *ngIf="value?.accepted == false"
+                      class="text-uppercase text-center text-danger text-decoration-underline"
+                    >
+                      {{ "job_link.assign_job.reject" | translate }}
+                    </div>
+
+                    <div
+                      *ngIf="value?.accepted == null"
+                      class="text-uppercase text-center text-warnning text-decoration-underline"
+                    >
+                      {{ "job_link.assign_job.notAssigned" | translate }}
+                    </div>
+                  </ng-container>
+                  <!-- status -->
                   <ng-container *ngIf="key?.name == 'complete'">
                     <div
                       *ngIf="value?.job?.complete"
@@ -314,7 +336,7 @@
                       role="button"
                       [routerLink]="[editPagePath + '/' + value?.id]"
                       ><i class="pi pi-pencil mx-1"></i>
-                      {{ "module_table.edit_action_text" | translate }}</a
+                      {{ "job_link.assign_job.order" | translate }}</a
                     >
                     <a
                       *ngIf="checkPageActions('delete')"

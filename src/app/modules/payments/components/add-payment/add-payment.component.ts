@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/services/api/api.service';
@@ -35,6 +35,9 @@ export class AddPaymentComponent implements OnInit, AfterViewInit {
   statusDropdown: any[] = [];
   currentPaymentStatus: any = null;
 
+  selectedInvoice: any = null;
+  invoiceId: any = null;
+
   constructor(
     private formBuilder: FormBuilder,
     private themeService: ThemeService,
@@ -42,9 +45,16 @@ export class AddPaymentComponent implements OnInit, AfterViewInit {
     private translateService: TranslateService,
     private toastr: ToastrService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private apiService: ApiService,
     private auth: AuthService
   ) {
+    //get id
+    this.activatedRoute.queryParamMap.subscribe((paramMap: Params) => {
+      if (paramMap['get']('invoiceId')) {
+        this.invoiceId = paramMap['get']('invoiceId');
+      }
+    });
     // Add form
     this.addForm = this.formBuilder.group({
       invoicesId: [null, [Validators.required]],
@@ -84,13 +94,14 @@ export class AddPaymentComponent implements OnInit, AfterViewInit {
     this.currentPaymentStatus = this.statusDropdown[0];
   }
   ngAfterViewInit(): void {
-    this.getInvoices();
     // this.getCustomers();
+    this.getInvoiceById();
   }
   ngOnInit() {
     this.getTheme();
     this.getCurrentLanguage();
     this.getCurrentActiveUser();
+    this.getInvoices();
   }
   // get theme from localStorage
   getTheme() {
@@ -232,6 +243,35 @@ export class AddPaymentComponent implements OnInit, AfterViewInit {
         });
     } else {
       this.getInvoices();
+    }
+  }
+
+  getInvoiceById() {
+    if (this.invoiceId != null) {
+      this.apiService.getById('invoices', this.invoiceId).subscribe({
+        next: (data: any) => {
+          console.log(data);
+          if (data?.isSuccess) {
+            this.selectedCustomer =
+              data?.value?.assignedJob?.job?.customer?.businessName;
+            this.selectedInvoice = data?.value?.invoiceNumber;
+            this.addForm.patchValue({
+              invoicesId: data?.value?.id,
+              customerId: data?.value?.customerId,
+              totalAmount: data?.value?.grandTotal,
+            });
+          }
+        },
+        error: (error) => {
+          console.log(error);
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {},
+      });
     }
   }
 

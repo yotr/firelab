@@ -51,6 +51,7 @@ export class EditAssignedJobComponent implements OnInit, AfterViewInit {
   servicesTotal: any = '00.00';
   partsTotal: any = '00.00';
   itemsTotal: any = '00.00';
+  accepted: any = null;
 
   currentWarrantyContract: any = null;
 
@@ -417,6 +418,8 @@ export class EditAssignedJobComponent implements OnInit, AfterViewInit {
           data?.value?.durationBy == 'Hours'
             ? this.isDurationByHours == true
             : (this.isDurationByHours = false);
+
+          this.accepted = data?.value?.accepted;
         }
       },
       error: (error) => {
@@ -537,29 +540,34 @@ export class EditAssignedJobComponent implements OnInit, AfterViewInit {
       history.back();
     }
   }
-  unassignJob() {
-    let assigned = false;
-    this.apiService.delete('assignedJobs', this.deleteId).subscribe({
-      next: (data) => {
-        if (data?.isSuccess) {
-          assigned = true;
-          if (this.currentLanguage == 'ar') {
-            this.toastr.success('تم حذف العنصر بنجاح...');
-          } else {
-            this.toastr.success('item deleted successfully...');
+  acceptAssignedJob() {
+    let value = true;
+    this.apiService
+      .update('assignedJobs/accept', this.assignedJobId, value)
+      .subscribe({
+        next: (data) => {
+          if (data?.isSuccess) {
+            this.accepted = true;
+            if (this.currentLanguage == 'ar') {
+              this.toastr.success('تم تحديث الحالة بنجاح...');
+            } else {
+              this.toastr.success('Status updated successfully...');
+            }
+            // this.router.navigate(['/modules/jobLink'], {
+            //   queryParams: { view: 'Week' },
+            // });
           }
-        }
-      },
-      error: (err) => {
-        console.log(err);
-        if (this.currentLanguage == 'ar') {
-          this.toastr.error('هناك شيء خاطئ', 'خطأ');
-        } else {
-          this.toastr.error('There Is Somthing Wrong', 'Error');
-        }
-      },
-      complete: () => {
-        if (assigned) {
+        },
+        error: (err) => {
+          console.log(err);
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {
+          // if (assigned) {
           // // update job to be assigned
           // this.apiService
           //   .statusChange(
@@ -583,62 +591,64 @@ export class EditAssignedJobComponent implements OnInit, AfterViewInit {
           //       }
           //     },
           //   });
-        }
-      },
-    });
+          // }
+        },
+      });
   }
-  deleteAssignedJob() {
-    let assigned = false;
-    this.apiService.delete('assignedJobs', this.deleteId).subscribe({
-      next: (data) => {
-        if (data?.isSuccess) {
-          assigned = true;
-          if (this.currentLanguage == 'ar') {
-            this.toastr.success('تم حذف العنصر بنجاح...');
-          } else {
-            this.toastr.success('item deleted successfully...');
+  rejectAssignedJob() {
+    let value = false;
+    this.apiService
+      .update('assignedJobs/accept', this.assignedJobId, value)
+      .subscribe({
+        next: (data) => {
+          if (data?.isSuccess) {
+            this.accepted = false;
+            if (this.currentLanguage == 'ar') {
+              this.toastr.success('تم تحديث الحالة بنجاح...');
+            } else {
+              this.toastr.success('Status updated successfully...');
+            }
+            // this.router.navigate(['/modules/jobLink'], {
+            //   queryParams: { view: 'Week' },
+            // });
           }
-          this.router.navigate(['/modules/jobLink'], {
-            queryParams: { view: 'Week' },
-          });
-        }
-      },
-      error: (err) => {
-        console.log(err);
-        if (this.currentLanguage == 'ar') {
-          this.toastr.error('هناك شيء خاطئ', 'خطأ');
-        } else {
-          this.toastr.error('There Is Somthing Wrong', 'Error');
-        }
-      },
-      complete: () => {
-        if (assigned) {
-          // update job to be assigned
-          this.apiService
-            .statusChange(
-              `jobs/updateStatus/${
-                this.addForm.get('jobId')?.value
-              }?status=${true}`
-            )
-            .subscribe({
-              next: (data) => {
-                console.log(data);
-                this.router.navigate(['/modules/jobLink'], {
-                  queryParams: { view: 'Week' },
-                });
-              },
-              error: (err: any) => {
-                console.log('Error:', err);
-                if (this.currentLanguage == 'ar') {
-                  this.toastr.error('هناك شيء خاطئ', 'خطأ');
-                } else {
-                  this.toastr.error('There Is Somthing Wrong', 'Error');
-                }
-              },
-            });
-        }
-      },
-    });
+        },
+        error: (err) => {
+          console.log(err);
+          if (this.currentLanguage == 'ar') {
+            this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          } else {
+            this.toastr.error('There Is Somthing Wrong', 'Error');
+          }
+        },
+        complete: () => {
+          // if (assigned) {
+          //   // update job to be assigned
+          //   this.apiService
+          //     .statusChange(
+          //       `jobs/updateStatus/${
+          //         this.addForm.get('jobId')?.value
+          //       }?status=${true}`
+          //     )
+          //     .subscribe({
+          //       next: (data) => {
+          //         console.log(data);
+          //         this.router.navigate(['/modules/jobLink'], {
+          //           queryParams: { view: 'Week' },
+          //         });
+          //       },
+          //       error: (err: any) => {
+          //         console.log('Error:', err);
+          //         if (this.currentLanguage == 'ar') {
+          //           this.toastr.error('هناك شيء خاطئ', 'خطأ');
+          //         } else {
+          //           this.toastr.error('There Is Somthing Wrong', 'Error');
+          //         }
+          //       },
+          //     });
+          // }
+        },
+      });
   }
 
   addNewMemeber(memberId: any) {

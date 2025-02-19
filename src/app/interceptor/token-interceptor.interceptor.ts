@@ -25,6 +25,8 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
     const userId: string = JSON.parse(user)?.userData?.id;
     const roleId: string = JSON.parse(user)?.userData?.roleId;
     const pageId: string = JSON.parse(pageIdJson);
+    let lang: any = localStorage.getItem('lang');
+    // const language: string = JSON.parse(lang)?.lang;
     // console.log(token);
     // const token = 'YOUR_ACCESS_TOKEN_HERE';
 
@@ -37,6 +39,7 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
         RoleId: `${roleId}`,
         PageId: `${pageId}`,
         IsManager: `${isManager}`,
+        Lang: `${lang}`,
       },
     });
 
