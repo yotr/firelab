@@ -3,13 +3,7 @@
     "id": 0,
     "section": "رئيسي",
     "menu": [
-      {
-        "id": 0,
-        "title": "اللوحة الرئيسية",
-        "code": "CRMM1P1",
-        "icon": "pi-gauge",
-        "path": "/modules/dashboard"
-      },
+
       {
         "id": 1,
         "title": "العملاء",

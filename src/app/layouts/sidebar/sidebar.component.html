@@ -21,6 +21,16 @@
           >
             {{ link?.section }}
           </div> -->
+
+          <!-- dashboard page -->
+          <ng-container>
+            <app-sidebar-link
+              [page]="'dashboard_page' | translate"
+              path="/modules/dashboard"
+              icon="pi-gauge"
+            ></app-sidebar-link>
+          </ng-container>
+          <!-- /dashboard page -->
           <ng-container *ngFor="let list of link?.menu">
             <app-sidebar-dropdown
               *ngIf="list?.list"

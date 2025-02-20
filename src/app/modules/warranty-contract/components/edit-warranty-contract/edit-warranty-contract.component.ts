@@ -415,15 +415,16 @@ export class EditWarrantyContractComponent implements OnInit {
                 this.toastr.error('There Is Somthing Wrong', 'Error');
               }
             }
+            this.uploading = false;
           },
           error: (err: any) => {
+            this.uploading = false;
             if (this.currentLanguage == 'ar') {
               this.toastr.error('هناك شيء خاطئ', 'خطأ');
             } else {
               this.toastr.error('There Is Somthing Wrong', 'Error');
-              this.toastr.error(err?.error[0]?.message, 'Error');
+              this.toastr.error(err?.message, 'Error');
             }
-            this.uploading = false;
           },
           complete: () => {
             this.uploading = false;

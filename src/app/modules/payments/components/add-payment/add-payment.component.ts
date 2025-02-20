@@ -411,15 +411,17 @@ export class AddPaymentComponent implements OnInit, AfterViewInit {
             } else {
               this.toastr.error('There Is Somthing Wrong', 'Error');
             }
-            this.uploading = false;
           }
+          this.uploading = false;
         },
         error: (err: any) => {
           this.uploading = false;
           if (this.currentLanguage == 'ar') {
             this.toastr.error('هناك شيء خاطئ', 'خطأ');
+            this.toastr.error(err?.message);
           } else {
             this.toastr.error('There Is Somthing Wrong', 'Error');
+            this.toastr.error(err?.message);
             this.toastr.error(err, 'Error');
           }
         },

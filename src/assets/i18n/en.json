@@ -16,6 +16,7 @@
   "unassign": "Unassign",
   "no_role": "No role for you, ask your manager to give you a role.",
   "companies_page": "Companies",
+  "dashboard_page": "Dashboard",
   "edit_profile": "Edit Profile",
   "invoice_btn": "Create Invoice",
   "gps": {
@@ -722,6 +723,7 @@
       "job": "Job",
       "job_required": "Job is required",
       "tax": "Tax",
+      "note": "Note",
       "total": "Total",
       "grand": "Total Grand"
     },

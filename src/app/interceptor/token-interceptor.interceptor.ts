@@ -21,9 +21,9 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
     let pageIdJson: any = localStorage.getItem('mms-pageId');
     const token: string = JSON.parse(user)?.token;
     const companyId: string = JSON.parse(user)?.userData?.companyId;
-    const isManager: string = JSON.parse(user)?.userData?.isManager;
+    // const isManager: string = JSON.parse(user)?.userData?.isManager;
     const userId: string = JSON.parse(user)?.userData?.id;
-    const roleId: string = JSON.parse(user)?.userData?.roleId;
+    // const roleId: string = JSON.parse(user)?.userData?.roleId;
     const pageId: string = JSON.parse(pageIdJson);
     let lang: any = localStorage.getItem('lang');
     // const language: string = JSON.parse(lang)?.lang;
@@ -36,9 +36,9 @@ export class TokenInterceptorInterceptor implements HttpInterceptor {
         Authorization: `Bearer ${token}`,
         CompanyId: `${companyId}`,
         UserId: `${userId}`,
-        RoleId: `${roleId}`,
+        // RoleId: `${roleId}`,
         PageId: `${pageId}`,
-        IsManager: `${isManager}`,
+        // IsManager: `${isManager}`,
         Lang: `${lang}`,
       },
     });

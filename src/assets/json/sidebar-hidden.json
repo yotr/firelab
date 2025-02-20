@@ -1,6 +1,20 @@
 [
   {
     "id": 0,
+    "title": "Dashboard",
+    "code": "CRMM1P1",
+    "icon": "pi-gauge",
+    "path": "/modules/dashboard"
+  },
+  {
+    "id": 0,
+    "title": "اللوحة الرئيسية",
+    "code": "CRMM1P1",
+    "icon": "pi-gauge",
+    "path": "/modules/dashboard"
+  },
+  {
+    "id": 0,
     "page": "الرئيسية",
     "code": "CRMM2P2",
     "path": "/modules/customers/home"
